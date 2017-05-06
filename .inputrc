@@ -1,0 +1,2 @@
+# makes autocomplete ignore case on the command line
+set completion-ignore-case On

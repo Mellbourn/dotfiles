@@ -1,0 +1,9 @@
+bind generic 9 !@sh -c "git rev-parse --short %(commit) | pbcopy"
+bind generic T !git difftool %(commit)^..%(commit)
+bind generic W !git reflog
+bind generic Z !git reset --hard %(commit)
+bind refs    3 !git rebase -i %(branch)
+bind refs    M !git merge %(branch)
+set main-view-author-width = 18
+set main-view-date = relative
+set tree-view-date = relative

@@ -1,0 +1,53 @@
+[user]
+	name = Klas Mellbourn
+[core]
+	excludesfile = ~/.gitignore_global
+[commit]
+	template = ~/.stCommitMsg
+[mergetool]
+	keepbackup = false
+	prompt = false
+    trustExitCode = true
+[difftool]
+    prompt = false
+[diff]
+    tool = kdiff3
+	guitool = vscode
+[merge]
+    tool = kdiff3
+[alias]
+	lol = log --graph --all
+	lo = log --graph
+	ci = commit
+	br = branch
+	co = checkout
+	st = status
+	mt = mergetool
+	dt = difftool
+	unstage = reset HEAD --
+	last = log -1 HEAD
+    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+[fetch]
+	prune = true
+[log]
+	decorate = short
+	abbrevcommit = true
+	date = relative
+[rerere]
+	enabled = true
+[pull]
+	rebase = true
+[push]
+	followTags = true
+[rebase]
+	autoStash = true
+[format]
+	pretty = %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%<(12,trunc)%cd %C(auto)%d%Creset %s
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
