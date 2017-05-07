@@ -27,6 +27,7 @@ apps=(
     ansible
     bash-completion
     chromedriver
+    fish
     gettext
     git
     git-number
@@ -95,6 +96,11 @@ brew cask install "${casks[@]}"
 brew link --force gettext
 
 pip install virtualenvwrapper
+
+# install fisherman fish plugin manager
+if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
+  curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
+fi
 
 # supress Spotlight indexing of git folder
 touch $HOME/git/.metadata_never_index
