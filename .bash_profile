@@ -75,12 +75,8 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 ### aliases
 eval $(thefuck --alias)
-alias f="fuck"
-# note that command line completion does not work well for this alias
-alias gn='git number --column'
-alias ga='git number add'
 
-alias eg=egrep
+. ~/.aliases
 
 . /usr/local/etc/profile.d/z.sh
 
