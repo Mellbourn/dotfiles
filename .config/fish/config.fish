@@ -1,1 +1,1 @@
-fisher simple
+fisher aquaman
