@@ -1,1 +1,1 @@
-fisher aquaman
+fisher -q aquaman
