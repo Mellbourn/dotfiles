@@ -76,7 +76,6 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 eval $(thefuck --alias)
 alias f="fuck"
 # note that command line completion does not work well for this alias
-alias g=git
 alias gn='git number --column'
 alias ga='git number add'
 
