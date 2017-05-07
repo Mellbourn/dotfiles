@@ -81,6 +81,8 @@ alias ga='git number add'
 
 alias eg=egrep
 
+. /usr/local/etc/profile.d/z.sh
+
 # ctrl-p and ctrl-n now searches history
 bind '"":history-search-backward'
 bind '"":history-search-forward'

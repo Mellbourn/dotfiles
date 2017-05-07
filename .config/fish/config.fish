@@ -1,4 +1,4 @@
-fisher -q aquaman
+fisher -q aquaman z
 
 thefuck --alias | source
 alias f="fuck"
