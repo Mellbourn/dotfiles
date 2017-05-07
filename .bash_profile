@@ -78,7 +78,7 @@ eval $(thefuck --alias)
 
 . ~/.aliases
 
-. /usr/local/etc/profile.d/z.sh
+eval "$(fasd --init auto)"
 
 # ctrl-p and ctrl-n now searches history
 bind '"":history-search-backward'

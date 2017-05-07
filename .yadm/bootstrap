@@ -27,6 +27,7 @@ apps=(
     ansible
     bash-completion
     chromedriver
+    fasd
     fish
     gettext
     git
@@ -52,7 +53,6 @@ apps=(
     watch
     yadm
     yarn
-    z
 )
 # note: yarn will install node, which you might want to remove, since it is handled by nvm
 
