@@ -6,8 +6,8 @@ if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
 
-if [ -f ~/.secrets ]; then
-  source ~/.secrets
+if [ -f ~/.protocol ]; then
+  source ~/.protocol
 fi
 
 if [ -f ~/.local_settings ]; then
