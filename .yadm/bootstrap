@@ -105,6 +105,9 @@ if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
 fi
 fish -c "thefuck --alias > ~/.config/fish/functions/fuck.fish"
 
+# set up alternate gitconfig file used to determine local settings
+yadm alt
+
 # supress Spotlight indexing of git folder
 touch $HOME/git/.metadata_never_index
 
