@@ -1,5 +1,7 @@
 [user]
 	name = Klas Mellbourn
+[include]
+    path = .gitconfig.local
 [core]
 	excludesfile = ~/.gitignore_global
 [commit]
