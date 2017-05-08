@@ -34,6 +34,7 @@ apps=(
     git-number
     gradle
     gtm
+    gnupg
     homebrew/completions/docker-completion
     homebrew/completions/docker-compose-completion
     homebrew/completions/docker-machine-completion
