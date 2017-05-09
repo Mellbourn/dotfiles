@@ -105,6 +105,7 @@ if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
   curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
 fi
 fish -c "thefuck --alias > ~/.config/fish/functions/fuck.fish"
+fish -c "fisher"
 
 # set up alternate gitconfig file used to determine local settings
 yadm alt
