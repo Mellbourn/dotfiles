@@ -41,6 +41,7 @@ apps=(
     kubernetes-cli
     liquidprompt
     mas
+    maven
     nvm
     pyenv
     pyenv-virtualenv
