@@ -26,7 +26,7 @@ LP_TEMP_THRESHOLD=60
 
 # The maximum percentage of the screen width used to display the path
 # Recommended value is 35
-LP_PATH_LENGTH=35
+LP_PATH_LENGTH=20
 
 # How many directories to keep at the beginning of a shortened path
 # Recommended value is 2
@@ -154,4 +154,4 @@ LP_DISABLED_VCS_PATH=""
 
 # vim: set et sts=4 sw=4 tw=120 ft=sh:
 
-LP_PS1_POSTFIX="\n> "
+LP_PS1_POSTFIX=""

@@ -40,6 +40,7 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+export PROMPT_DIRTRIM=3
 if [ -f /usr/local/share/liquidprompt ]; then
   . /usr/local/share/liquidprompt
 fi
