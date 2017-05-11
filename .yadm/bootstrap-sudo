@@ -4,19 +4,26 @@ sudo nvram SystemAudioVolume=%80
 sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
 
 ###############################################################################
-# Update App Store apps
-###############################################################################
-sudo softwareupdate -i -a
-
-###############################################################################
 # installations for Klarna
 ###############################################################################
 sudo gem install cocoapods --pre
+
+###############################################################################
+# bash4
+###############################################################################
+if ! grep -q "/usr/local/bin/bash" "/etc/shells"; then
+   sudo sh -c 'echo /usr/local/bin/bash >> /etc/shells'
+fi
+chsh -s /usr/local/bin/bash
 
 ###############################################################################
 # fish
 ###############################################################################
 if ! grep -q fish "/etc/shells"; then
    sudo sh -c 'echo /usr/local/bin/fish >> /etc/shells'
- fi
- # chsh -s /usr/local/bin/fish
+fi
+
+###############################################################################
+# Update App Store apps
+###############################################################################
+sudo softwareupdate -i -a

@@ -25,6 +25,7 @@ brew upgrade
 
 apps=(
     ansible
+    bash
     bash-completion
     chromedriver
     fasd
