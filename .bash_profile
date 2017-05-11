@@ -29,6 +29,12 @@ else
   export AT_WORK=1
 fi
 
+if  [[ $SHELL == *bash ]] && [[ $BASH_VERSINFO == 4 ]] ;
+then
+  # bash shell options
+  shopt -s autocd globstar
+fi
+
 ### prompt
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
