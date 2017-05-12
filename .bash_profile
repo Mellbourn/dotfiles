@@ -81,11 +81,9 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 #    PKG_CONFIG_PATH: /usr/local/opt/openssl@1.1/lib/pkgconfig
 
 ### aliases
-eval $(thefuck --alias)
-
-. ~/.aliases
-
 eval "$(fasd --init auto)"
+eval $(thefuck --alias)
+. ~/.aliases
 
 # ctrl-p and ctrl-n now searches history
 bind '"":history-search-backward'
