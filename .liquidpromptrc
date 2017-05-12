@@ -65,15 +65,18 @@ LP_ENABLE_PROXY=1
 
 # Do you want to use the jobs feature?
 # Recommended value is 1
-LP_ENABLE_JOBS=1
+# DENNA KAN FÖRSÄMRA PRESTANDA
+LP_ENABLE_JOBS=0
 
 # Do you want to use the load feature?
 # Recommended value is 1
-LP_ENABLE_LOAD=1
+# DENNA KAN FÖRSÄMRA PRESTANDA
+LP_ENABLE_LOAD=0
 
 # Do you want to use the battery feature?
 # Recommended value is 1
-LP_ENABLE_BATT=1
+# DENNA KAN FÖRSÄMRA PRESTANDA
+LP_ENABLE_BATT=0
 
 # Do you want to use the 'sudo credentials' feature?
 # Be warned that this may pollute the syslog if you don't have sudo
@@ -106,7 +109,7 @@ LP_ENABLE_BZR=0
 
 # Show time of the last prompt display
 # Recommended value is 0
-LP_ENABLE_TIME=0
+LP_ENABLE_TIME=1
 
 # Show runtime of the last command if over LP_RUNTIME_THRESHOLD
 # Recommended value is 0
@@ -125,7 +128,8 @@ LP_ENABLE_VIRTUALENV=1
 LP_ENABLE_SCLS=1
 
 # Show average system temperature
-LP_ENABLE_TEMP=1
+# DENNA KAN FÖRSÄMRA PRESTANDA
+LP_ENABLE_TEMP=0
 
 # When showing time, use an analog clock instead of numeric values.
 # The analog clock is "accurate" to the nearest half hour.
