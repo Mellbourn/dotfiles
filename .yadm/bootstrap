@@ -1,3 +1,4 @@
+#!/bin/bash
 ###############################################################################
 # Klas Mellbourn's dotfile
 #
@@ -19,83 +20,89 @@ if ! hash brew 2>/dev/null; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-brew tap git-time-metric/gtm
-brew update
-brew upgrade
+#brew tap git-time-metric/gtm
+#brew update
+#brew upgrade
 
-apps=(
-    ansible
-    bash
-    bash-completion
-    chromedriver
-    fasd
-    fish
-    gettext
-    git
-    git-number
-    gradle
-    gtm
-    gnupg
-    homebrew/completions/docker-completion
-    homebrew/completions/docker-compose-completion
-    homebrew/completions/docker-machine-completion
-    kubernetes-cli
-    liquidprompt
-    mas
-    maven
-    nvm
-    pyenv
-    pyenv-virtualenv
-    pyenv-virtualenvwrapper
-    reattach-to-user-namespace
-    thefuck
-    tig
-    tldr
-    tmux
-    tree
-    watch
-    yadm
-    yarn
-)
+# this must be in alphabetical order!
+apps="
+ansible
+bash
+bash-completion
+chromedriver
+docker-completion
+docker-compose-completion
+docker-machine-completion
+fasd
+fish
+gettext
+git
+git-number
+gnupg
+gradle
+gtm
+kubernetes-cli
+liquidprompt
+mas
+maven
+nvm
+pyenv
+pyenv-virtualenv
+pyenv-virtualenvwrapper
+reattach-to-user-namespace
+thefuck
+tig
+tldr
+tmux
+tree
+watch
+yadm
+yarn
+"
 # note: yarn will install node, which you might want to remove, since it is handled by nvm
+alreadyInstalled=`brew ls`
+installTheseLines=`comm -23 <(echo "$apps") <(echo "$alreadyInstalled")`
+installThese=${installTheseLines//$'\n'/ }
+echo $installThese | xargs brew install
 
-brew install "${apps[@]}"
+casks="
+adobe-reader
+alfred
+atom
+bartender
+charles
+day-o
+firefox
+flux
+flycut
+google-chrome
+google-drive
+google-photos-backup
+intellij-idea
+iterm2
+java
+kdiff3
+keeweb
+keycue
+logitech-gaming-software
+minikube
+plex-media-player
+rowanj-gitx
+skype
+slack
+sourcetree
+spectacle
+tripmode
+virtualbox
+visual-studio-code
+vlc
+webstorm
+"
 
-casks=(
-    adobe-reader
-    alfred
-    atom
-    bartender
-    charles
-    day-o
-    firefox
-    flux
-    flycut
-    google-chrome
-    google-drive
-    google-photos-backup
-    intellij-idea
-    iterm2
-    java
-    kdiff3
-    keeweb
-    keycue
-    logitech-gaming-software
-    minikube
-    plex-media-player
-    rowanj-gitx
-    skype
-    slack
-    sourcetree
-    spectacle
-    tripmode
-    virtualbox
-    visual-studio-code
-    vlc
-    webstorm
-)
-
-brew cask install "${casks[@]}"
+alreadyInstalled=`brew cask ls`
+installTheseLines=`comm -23 <(echo "$casks") <(echo "$alreadyInstalled")`
+installThese=${installTheseLines//$'\n'/ }
+echo $installThese | xargs brew cask install
 
 brew link --force gettext
 
