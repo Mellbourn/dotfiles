@@ -6,8 +6,8 @@ fi
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # history settings
-export HISTFILESIZE=9999
-export HISTFILESIZE=999999
+export HISTFILESIZE=2500
+export HISTFILESIZE=99999
 # make sure history is saved
 shopt -s histappend
 # stop duplicates in history
