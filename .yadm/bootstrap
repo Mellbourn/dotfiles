@@ -155,6 +155,8 @@ defaults write com.apple.screencapture location "${HOME}/Pictures"
 #defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 #defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 #defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+# disable dashboard (the stupid widget thing reached by ctrl-right)
+defaults write com.apple.dashboard mcx-disabled -boolean true
 
 ###############################################################################
 # Keyboard                                                                    #
@@ -167,6 +169,8 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 25
 ###############################################################################
 # Dock                                                                        #
 ###############################################################################
+# autohide dock - my screen realestate is valuable!
+defaults write com.apple.dock autohide -bool true
 # Set the icon size of Dock items to 24 pixels
 defaults write com.apple.dock tilesize -int 24
 
