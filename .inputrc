@@ -1,2 +1,14 @@
 # makes autocomplete ignore case on the command line
 set completion-ignore-case On
+# don't send bell if tab completion is ambiguous, immediately show alternatives
+set show-all-if-ambiguous on
+# colored file completion
+set colored-stats on
+# color beginnin of completion
+set colored-completion-prefix on
+# make standard "alt" key in mac behave like meta. This disables åäö, and is an alternative to opt setting in iterm
+#set convert-meta on
+# behave smarter when completing in the middle of a word
+set skip-completed-text on
+# show file type with suffix too
+set visible-stats on
