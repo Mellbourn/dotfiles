@@ -1,5 +1,7 @@
 # makes autocomplete ignore case on the command line
 set completion-ignore-case On
+# ignore dash/underscore differences when completing
+set completion-map-case on
 # don't send bell if tab completion is ambiguous, immediately show alternatives
 set show-all-if-ambiguous on
 # colored file completion
