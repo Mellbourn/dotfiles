@@ -21,6 +21,8 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vi
 
+set -o emacs
+
 if [ "$USER" == "Klas" ]; then
   export AT_HOME=1
   export AT_WORK=0
