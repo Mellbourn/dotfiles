@@ -123,6 +123,13 @@ else
   fish -c "omf update"
 fi
 
+# install zsh plugin manager
+if [ ! -f ~/.oh-my-zsh ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+else
+  upgrade_oh_my_zsh
+fi
+
 # set up alternate gitconfig file used to determine local settings
 yadm alt
 
