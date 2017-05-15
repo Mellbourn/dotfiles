@@ -6,6 +6,7 @@
     path = .gitconfig.dir.free
 [core]
 	excludesfile = ~/.gitignore_global
+	pager = less -F -X
 [commit]
 	template = ~/.stCommitMsg
 [mergetool]
