@@ -87,3 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+bindkey "^P" history-beginning-search-backward
+bindkey "^N" history-beginning-search-forward
+
