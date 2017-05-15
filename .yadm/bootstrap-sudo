@@ -1,3 +1,4 @@
+#!/bin/bash
 # stop startup sound
 sudo nvram SystemAudioVolume=%80
 # Add Watch Simulator to Launchpad
@@ -14,7 +15,7 @@ sudo gem install cocoapods --pre
 if ! grep -q "/usr/local/bin/bash" "/etc/shells"; then
    sudo sh -c 'echo /usr/local/bin/bash >> /etc/shells'
 fi
-chsh -s /usr/local/bin/bash
+# chsh -s /usr/local/bin/bash $SUDO_USER
 
 ###############################################################################
 # fish
@@ -22,6 +23,15 @@ chsh -s /usr/local/bin/bash
 if ! grep -q fish "/etc/shells"; then
    sudo sh -c 'echo /usr/local/bin/fish >> /etc/shells'
 fi
+
+###############################################################################
+# zsh
+###############################################################################
+if ! grep -q "/usr/local/bin/zsh" "/etc/shells"; then
+   sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
+fi
+chsh -s /usr/local/bin/zsh $SUDO_USER
+
 
 ###############################################################################
 # Update App Store apps
