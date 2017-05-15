@@ -9,7 +9,9 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export HISTSIZE=2500
 export HISTFILESIZE=99999
 # make sure history is saved
-shopt -s histappend
+if  [[ $SHELL == *bash ]]; then
+  shopt -s histappend
+fi
 # stop duplicates in history
 export HISTCONTROL=ignoreboth:erasedups
 # and synced https://unix.stackexchange.com/questions/18212/bash-history-ignoredups-and-erasedups-setting-conflict-with-common-history

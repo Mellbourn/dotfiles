@@ -2,12 +2,12 @@ if [ -f ~/.profile ]; then
   source ~/.profile
 fi
 
-if [ -f ~/.bashrc ]; then
-   source ~/.bashrc
-fi
-
 if [ -f ~/.protocol ]; then
   source ~/.protocol
+fi
+
+if [ -f ~/.bashrc ]; then
+   source ~/.bashrc
 fi
 
 if [ -f ~/.local_settings ]; then
@@ -29,20 +29,29 @@ else
   export AT_WORK=1
 fi
 
-if  [[ $SHELL == *bash ]] && [[ $BASH_VERSINFO == 4 ]] ;
+if  [[ $SHELL == *bash ]];
 then
-  # bash shell options
-  shopt -s autocd globstar
-fi
+  if [[ $BASH_VERSINFO == 4 ]]; then
+    # bash shell options
+    shopt -s autocd globstar
+  fi
 
-### prompt
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
+  ### prompt
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
 
-export PROMPT_DIRTRIM=3
-if [ -f /usr/local/share/liquidprompt ]; then
-  . /usr/local/share/liquidprompt
+  export PROMPT_DIRTRIM=3
+  if [ -f /usr/local/share/liquidprompt ]; then
+    . /usr/local/share/liquidprompt
+  fi
+
+  # ctrl-p and ctrl-n now searches history
+  bind '"":history-search-backward'
+  bind '"":history-search-forward'
+
+  # this line is added by iTerm command "Install shell integration"
+  test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 fi
 
 ### version managers
@@ -84,10 +93,3 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 eval "$(fasd --init auto)"
 eval $(thefuck --alias)
 . ~/.aliases
-
-# ctrl-p and ctrl-n now searches history
-bind '"":history-search-backward'
-bind '"":history-search-forward'
-
-# this line is added by iTerm command "Install shell integration"
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
