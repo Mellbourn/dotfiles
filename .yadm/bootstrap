@@ -20,9 +20,9 @@ if ! hash brew 2>/dev/null; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-brew tap git-time-metric/gtm
 brew update
 brew upgrade
+brew tap git-time-metric/gtm
 
 # this must be in alphabetical order!
 apps="
