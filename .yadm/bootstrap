@@ -58,6 +58,7 @@ tree
 watch
 yadm
 yarn
+zplug
 zsh
 "
 # note: yarn will install node, which you might want to remove, since it is handled by nvm
@@ -122,9 +123,6 @@ if [ ! -d ~/.config/omf ]; then
 else
   fish -c "omf update"
 fi
-
-# install zsh plugin manager
-
 
 # set up alternate gitconfig file used to determine local settings
 yadm alt
