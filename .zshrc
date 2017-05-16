@@ -1,7 +1,16 @@
+###############################################################################
+# remember your ancestor
+###############################################################################
 source ~/.bash_profile
 
+###############################################################################
+# options!
+###############################################################################
 setopt autocd autopushd correct histignoredups
 
+###############################################################################
+# completion
+###############################################################################
 # Do menu-driven completion.
 zstyle ':completion:*' menu select
 
@@ -18,6 +27,9 @@ zstyle ':completion:*:warnings' format "$fg[red]No matches for:$reset_color %d"
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' group-name ''
 
+###############################################################################
+# zplug - zsh plugin manager
+###############################################################################
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
@@ -42,5 +54,8 @@ fi
 # source plugins and add commands to the PATH
 zplug load
 
+###############################################################################
+# keybindings
+###############################################################################
 bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
