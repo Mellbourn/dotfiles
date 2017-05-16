@@ -124,20 +124,7 @@ else
 fi
 
 # install zsh plugin manager
-if [ ! -d ~/.oh-my-zsh ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-else
-  if  [[ $SHELL == *zsh ]]; then
-    env ZSH=$ZSH sh $ZSH/tools/upgrade.sh
-  fi
-fi
-ZSH_CUSTOM_PLUGINS=~/.oh-my-zsh/custom/plugins
-if [ ! -d $ZSH_CUSTOM_PLUGINS/zsh-autosuggestions ]; then
-  git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM_PLUGINS/zsh-autosuggestions
-fi
-if [ ! -d $ZSH_CUSTOM_PLUGINS/zsh-syntax-highlighting ]; then
-  git clone git://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM_PLUGINS/zsh-syntax-highlighting
-fi
+
 
 # set up alternate gitconfig file used to determine local settings
 yadm alt
