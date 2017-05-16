@@ -51,10 +51,9 @@ then
   # ctrl-p and ctrl-n now searches history
   bind '"":history-search-backward'
   bind '"":history-search-forward'
-
-  # this line is added by iTerm command "Install shell integration"
-  test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 fi
+# this line is added by iTerm command "Install shell integration"
+test -e "${HOME}/.iterm2_shell_integration.`basename $SHELL`" && source "${HOME}/.iterm2_shell_integration.`basename $SHELL`"
 
 ### version managers
 export PATH="$PATH:$(yarn global bin)"
