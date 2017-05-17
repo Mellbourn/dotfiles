@@ -6,7 +6,7 @@ source ~/.bash_profile
 ###############################################################################
 # options!
 ###############################################################################
-setopt autocd autopushd correct histignoredups
+setopt autocd autopushd correct histignoredups pushdignoredups globcomplete
 
 ###############################################################################
 # completion
