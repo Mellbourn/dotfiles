@@ -1,3 +1,7 @@
+###############################################################################
+# .bash_profile is read by login shells, but not run by subshells
+###############################################################################
+echo ".bash_profile running"
 if [ -f ~/.profile ]; then
   source ~/.profile
 fi
