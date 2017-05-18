@@ -12,6 +12,7 @@ source ~/.bash_profile
 # options!
 ###############################################################################
 setopt autocd autopushd correct histignoredups pushdignoredups globcomplete
+export DIRSTACKSIZE=10
 
 ###############################################################################
 # completion
