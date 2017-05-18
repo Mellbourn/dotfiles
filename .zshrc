@@ -11,8 +11,16 @@ source ~/.bash_profile
 ###############################################################################
 # options!
 ###############################################################################
-setopt autocd autopushd correct histignoredups pushdignoredups globcomplete
+setopt autocd autopushd correct pushdignoredups globcomplete
 export DIRSTACKSIZE=10
+
+###############################################################################
+# history
+###############################################################################
+setopt histignoredups histignorealldups incappendhistory extendedhistory histignorespace
+
+export HISTFILE=~/.zsh_history
+export SAVEHIST=$HISTSIZE
 
 ###############################################################################
 # completion
