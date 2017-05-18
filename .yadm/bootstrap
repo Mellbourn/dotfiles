@@ -30,6 +30,7 @@ ansible
 bash
 bash-completion
 chromedriver
+coreutils
 docker-completion
 docker-compose-completion
 docker-machine-completion
