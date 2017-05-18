@@ -1,7 +1,9 @@
 ###############################################################################
 # .bash_profile is read by login shells, but not run by subshells
 ###############################################################################
+START=$(gdate +%s.%N)
 echo ".bash_profile running"
+
 if [ -f ~/.profile ]; then
   source ~/.profile
 fi
@@ -62,14 +64,18 @@ test -e "${HOME}/.iterm2_shell_integration.`basename $SHELL`" && source "${HOME}
 ### version managers
 export PATH="$PATH:$(yarn global bin)"
 
+# this takes 0.51s
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 
+# this takes 0.166s
 eval "$(pyenv init -)"
+
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
+# this takes 0.39s
 export WORKON_HOME=~/.py_virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
@@ -98,3 +104,7 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 eval "$(fasd --init auto)"
 eval $(thefuck --alias)
 . ~/.aliases
+
+echo ".bash_profile took:"
+END=$(gdate +%s.%N)
+echo "$END - $START" | bc
