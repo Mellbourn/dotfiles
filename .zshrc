@@ -65,6 +65,7 @@ zplug "themes/wedisagree", from:oh-my-zsh
 # (If the defer tag is given 2 or above, run after compinit command)
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
