@@ -1,7 +1,6 @@
 ###############################################################################
-# .inputrc
+# .inputrc - this is run *while commands are entered*
 ###############################################################################
-echo ".inputrc running"
 # makes autocomplete ignore case on the command line
 set completion-ignore-case On
 # ignore dash/underscore differences when completing
