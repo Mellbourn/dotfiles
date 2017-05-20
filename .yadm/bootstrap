@@ -36,6 +36,7 @@ docker-compose-completion
 docker-machine-completion
 fasd
 fish
+fzf
 gettext
 git
 git-number
