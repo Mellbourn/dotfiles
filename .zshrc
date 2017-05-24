@@ -68,6 +68,16 @@ fi
 zplug load
 
 ###############################################################################
+# add-ons installed by homebrew
+###############################################################################
+if [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+###############################################################################
 # keybindings
 ###############################################################################
 bindkey "^P" history-beginning-search-backward
