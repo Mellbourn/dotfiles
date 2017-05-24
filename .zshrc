@@ -78,6 +78,9 @@ if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; 
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+# fuzzy completion
+[ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
+
 ###############################################################################
 # fun functions
 ###############################################################################
