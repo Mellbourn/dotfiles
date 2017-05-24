@@ -63,6 +63,7 @@ yarn
 zplug
 zsh
 zsh-autosuggestions
+zsh-navigation-tools
 zsh-syntax-highlighting
 "
 # note: yarn will install node, which you might want to remove, since it is handled by nvm
@@ -113,6 +114,9 @@ echo $installThese | xargs brew cask install
 brew link --force gettext
 
 pip install virtualenvwrapper
+
+# this is needed to suppress zsh message "compinit: insecure directories""
+chmod g-w /usr/local/share
 
 # install fisherman fish plugin manager
 if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
