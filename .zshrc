@@ -77,6 +77,25 @@ fi
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+###############################################################################
+# fun functions
+###############################################################################
+function co() {
+    local branches branch
+    branches=$(git branch -a) &&
+    branch=$(echo "$branches" | fzf +s +m) &&
+    #git checkout $(echo "$branch" | sed "s/.* //")
+    git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+}
+
+function go() {
+    local repos repo
+    repos=$(find ~/git -name .git -type d -maxdepth 3 -prune | sed 's#/.git$##') &&
+    repo=$(echo "$repos" | fzf +s +m) &&
+    cd $(echo "$repo" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+}
+
 ###############################################################################
 # keybindings
 ###############################################################################
