@@ -23,3 +23,5 @@ if  [[ $SHELL == *bash ]]; then
   # and synced https://unix.stackexchange.com/questions/18212/bash-history-ignoredups-and-erasedups-setting-conflict-with-common-history
   PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 fi
+
+[ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`

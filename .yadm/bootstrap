@@ -114,6 +114,9 @@ brew link --force gettext
 
 pip install virtualenvwrapper
 
+# this is needed to suppress zsh message "compinit: insecure directories""
+chmod g-w /usr/local/share
+
 # install fisherman fish plugin manager
 if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
   curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
