@@ -74,8 +74,8 @@ fi
 
 if [ -f /usr/local/opt/zsh-git-prompt/zshrc.sh ]; then
   source /usr/local/opt/zsh-git-prompt/zshrc.sh
-  ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚%G%}"
-  ZSH_THEME_GIT_PROMPT_CACHE=1
+  ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚%G%}" # blue is too dark
+  ZSH_THEME_GIT_PROMPT_CACHE=1 # only update prompt after git commands and cd
 fi
 
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
