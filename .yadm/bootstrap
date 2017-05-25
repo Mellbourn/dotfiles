@@ -74,7 +74,6 @@ echo $installThese | xargs brew install
 casks="
 adobe-reader
 alfred
-atom
 bartender
 charles
 day-o
@@ -90,7 +89,6 @@ java
 kdiff3
 keeweb
 keycue
-logitech-gaming-software
 minikube
 plex-media-player
 rowanj-gitx
