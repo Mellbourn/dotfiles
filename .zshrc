@@ -88,7 +88,7 @@ fi
 ###############################################################################
 # prompt
 ###############################################################################
-PROMPT="%{$fg[cyan]%}%2~%{$reset_color%} %(?..%{$fg[red]%}%? %{$reset_color%})%(1j.%{$fg[green]%}%j %{$reset_color%}.)%# "
+PROMPT="%{$fg[cyan]%}%20<..<%3~%<<%{$reset_color%} %(?..%{$fg[red]%}%? %{$reset_color%})%(1j.%{$fg[green]%}%j %{$reset_color%}.)%# "
 local git_part='$(git_super_status)'
 RPROMPT="${git_part} %*"
 
