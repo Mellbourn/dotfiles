@@ -56,8 +56,6 @@ source $ZPLUG_HOME/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
-zplug "themes/wedisagree", from:oh-my-zsh
-
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
 if ! zplug check; then
@@ -74,12 +72,25 @@ if [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
   source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
+if [ -f /usr/local/opt/zsh-git-prompt/zshrc.sh ]; then
+  source /usr/local/opt/zsh-git-prompt/zshrc.sh
+  ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚%G%}"
+  ZSH_THEME_GIT_PROMPT_CACHE=1
+fi
+
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # fuzzy completion
 [ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
+
+###############################################################################
+# prompt
+###############################################################################
+PROMPT="%{$fg[cyan]%}%2~%{$reset_color%} %# "
+local git_part='$(git_super_status)'
+RPROMPT="${git_part} %? %*"
 
 ###############################################################################
 # fun functions
