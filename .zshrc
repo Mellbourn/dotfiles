@@ -11,7 +11,7 @@ source ~/.bash_profile
 ###############################################################################
 # options!
 ###############################################################################
-setopt autocd autopushd correct pushdignoredups globcomplete
+setopt autocd autopushd pushdignoredups globcomplete
 export DIRSTACKSIZE=10
 
 ###############################################################################
