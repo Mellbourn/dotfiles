@@ -113,6 +113,14 @@ echo $installThese | xargs brew cask install
 
 brew link --force gettext
 
+# ruby version manager
+if ! hash rvm 2>/dev/null; then
+  # trust download
+  command curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+  # install rvm and latest ruby
+  curl -sSL https://get.rvm.io | bash -s stable --ruby
+fi
+
 pip install virtualenvwrapper
 
 # this is needed to suppress zsh message "compinit: insecure directories""
