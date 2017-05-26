@@ -43,6 +43,7 @@ git-number
 gnupg
 gradle
 gtm
+haskell-stack
 kubernetes-cli
 liquidprompt
 mas
@@ -63,7 +64,6 @@ yarn
 zplug
 zsh
 zsh-autosuggestions
-zsh-git-prompt
 zsh-syntax-highlighting
 "
 # note: yarn will install node, which you might want to remove, since it is handled by nvm
@@ -138,6 +138,13 @@ if [ ! -d ~/.config/omf ]; then
   fish -c "${TMPDIR}install --path=~/.local/share/omf --config=~/.config/omf"
 else
   fish -c "omf update"
+fi
+
+if [ ! -d ~/.zsh-git-prompt ]; then
+  git clone git@github.com:olivierverdier/zsh-git-prompt.git ~/.zsh-git-prompt
+  pushd ~/.zsh-git-prompt
+  stack setup && stack build && stack install
+  popd
 fi
 
 # set up alternate gitconfig file used to determine local settings
