@@ -42,9 +42,9 @@ zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' group-name ''
 
 # activate approximate completion, but only after regular completion (_complete)
-zstyle ':completion:::::' completer _complete _approximate
+# zstyle ':completion:::::' completer _complete _approximate
 # limit to 1 error
-zstyle ':completion:*:approximate:*' max-errors 1
+# zstyle ':completion:*:approximate:*' max-errors 1
 # case insensitive completion
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 
