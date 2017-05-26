@@ -88,9 +88,9 @@ fi
 ###############################################################################
 # prompt
 ###############################################################################
-PROMPT="%{$fg[magenta]%}%22<…<%3~%{$reset_color%}%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.)%# "
+PROMPT="%F{106}%22<…<%3~%f%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.)%# "
 local git_part='$(git_super_status)'
-RPROMPT="${git_part} %{$fg[green]%}%*%{$reset_color%}"
+RPROMPT="${git_part} %F{106}%*%f"
 
 ###############################################################################
 # fun functions
