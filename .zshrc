@@ -56,6 +56,8 @@ source $ZPLUG_HOME/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
+zplug 'popstas/zsh-command-time', use:command-time.plugin.zsh
+
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
 if ! zplug check; then
@@ -89,7 +91,7 @@ fi
 # prompt
 ###############################################################################
 PROMPT="%F{106}%22<…<%3~%f%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.)%# "
-local git_part='$(git_super_status)'
+local git_part='%F{219}${ZSH_COMMAND_TIME}%f$(git_super_status)'
 RPROMPT="${git_part} %F{106}%*%f"
 
 ###############################################################################
