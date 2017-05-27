@@ -48,6 +48,7 @@ kubernetes-cli
 liquidprompt
 mas
 maven
+ncdu
 nvm
 pyenv
 pyenv-virtualenv
