@@ -29,8 +29,8 @@ export SAVEHIST=$HISTSIZE
 zstyle ':completion:*' menu select
 
 # Color completion for some things.
-# http://linuxshellaccount.blogspot.com/2008/12/color-completion-using-zsh-modules-on.html
-zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
+# converted LSCOLORS using https://geoff.greer.fm/lscolors/
+zstyle ':completion:*' list-colors 'di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 
 # formatting and messages
 # http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
