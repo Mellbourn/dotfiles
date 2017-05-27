@@ -27,7 +27,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vi
 
-export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style orion"
+export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style molokai"
 export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quit-if-one-screen --no-init"
 
 set -o emacs
