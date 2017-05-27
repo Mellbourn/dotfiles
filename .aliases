@@ -5,3 +5,4 @@ alias gn='git number --column'
 alias ga='git number add'
 
 alias eg=egrep
+alias more=less
