@@ -78,12 +78,13 @@ if [ -d ~/.zsh-git-prompt ]; then
   ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚%G%}" # blue is too dark
 fi
 
+# fuzzy completion
+[ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
+
+# syntax highlighting should be loaded after all widgets, to work with them
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-
-# fuzzy completion
-[ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
 
 ###############################################################################
 # prompt
