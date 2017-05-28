@@ -153,7 +153,7 @@ fi
 yadm alt
 
 # supress Spotlight indexing of git folder
-touch $HOME/git/.metadata_never_index
+touch $CODE_DIR/.metadata_never_index
 
 # automate mac store installation
 #mas signin klas@mellbourn.net

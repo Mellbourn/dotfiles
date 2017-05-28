@@ -23,6 +23,16 @@ export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
 
 ###############################################################################
+# named directories
+###############################################################################
+# folder with all my Code
+hash -d -- c=$CODE_DIR
+# folder with main Repo
+hash -d -- r=~c/checkout
+# folder where I work the most
+hash -d -- w=~r/packages/app/src/next/features
+
+###############################################################################
 # completion
 ###############################################################################
 # Do menu-driven completion.
@@ -106,7 +116,7 @@ function co() {
 
 function go() {
     local repos repo
-    repos=$(find ~/git -name .git -type d -maxdepth 3 -prune | sed 's#/.git$##') &&
+    repos=$(find $CODE_DIR -name .git -type d -maxdepth 3 -prune | sed 's#/.git$##') &&
     repo=$(echo "$repos" | fzf +s +m) &&
     cd $(echo "$repo" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
