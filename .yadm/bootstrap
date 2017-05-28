@@ -152,8 +152,10 @@ fi
 # set up alternate gitconfig file used to determine local settings
 yadm alt
 
-# supress Spotlight indexing of git folder
-touch $CODE_DIR/.metadata_never_index
+# supress Spotlight indexing of code folder
+if [ -n "$CODE_DIR" ]; then
+  touch $CODE_DIR/.metadata_never_index
+fi
 
 # automate mac store installation
 #mas signin klas@mellbourn.net
