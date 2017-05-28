@@ -3,7 +3,7 @@
 ###############################################################################
 START=$(gdate +%s.%N)
 echo ".bash_profile running"
-export CODE_DIR=~/Code
+export CODE_DIR=~/code
 
 if [ -f ~/.profile ]; then
   source ~/.profile
