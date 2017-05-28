@@ -140,7 +140,7 @@ if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
 fi
 fish -c "thefuck --alias > ~/.config/fish/functions/fuck.fish"
 fish -c "fisher"
-if [ ! -d ~/.config/omf ]; then
+if [ ! -d ~/.local/share/omf ]; then
   curl -L https://get.oh-my.fish > "${TMPDIR}install"
   chmod a+x "${TMPDIR}install"
   fish -c "${TMPDIR}install --path=~/.local/share/omf --config=~/.config/omf"
