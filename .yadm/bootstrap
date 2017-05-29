@@ -158,6 +158,8 @@ if [ "$CODE_DIR" ]; then
   touch $CODE_DIR/.metadata_never_index
 fi
 
+tldr --update
+
 # automate mac store installation
 #mas signin klas@mellbourn.net
 
