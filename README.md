@@ -8,5 +8,6 @@ I use [yadm](https://github.com/TheLocehiliosan/yadm) to manage my dotfiles.
 
 ```bash
 brew install yadm
-yadm clone git@github.com:Mellbourn/dotfiles.git
+yadm clone --bootstrap git@github.com:Mellbourn/dotfiles.git
+. .yadm/bootstrap-sudo
 ```
