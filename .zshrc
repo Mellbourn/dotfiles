@@ -131,3 +131,5 @@ c() {                                                                           
 ###############################################################################
 bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
+# make zsh behave like bash for ctrl-u
+bindkey "^U" backward-kill-line
