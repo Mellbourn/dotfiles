@@ -98,14 +98,14 @@ fi
 export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root)
 export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background
 export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' #pink
-export ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=27' # muted blue
+export ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=27,bg=17' # muted blue
 export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown?
 export ZSH_HIGHLIGHT_STYLES[globbing]='fg=99' # lilac
 export ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=63' # softer lilac
 export ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,underline' # make folders same colors as in ls
 export ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=243,underline'
 export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline'
-export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold' # >> yellow-green
+export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green
 export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 
 ###############################################################################
