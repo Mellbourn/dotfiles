@@ -97,7 +97,7 @@ if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; 
 fi
 export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root)
 export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background
-export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=234' #pink
+export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' #pink
 export ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=27' # muted blue
 export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown?
 export ZSH_HIGHLIGHT_STYLES[globbing]='fg=99' # lilac
