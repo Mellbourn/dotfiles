@@ -165,6 +165,14 @@ tldr --update
 #mas signin klas@mellbourn.net
 
 ###############################################################################
+# crontab                                                                     #
+###############################################################################
+# clean up old tmux ressurect sessions
+command="ls -tr \$HOME/.tmux/resurrect/*.txt | ghead -n-5 | xargs rm"
+job="0 0 1 * * $command"
+cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
+
+###############################################################################
 # Finder                                                                      #
 ###############################################################################
 defaults write com.apple.finder AppleShowAllFiles YES
