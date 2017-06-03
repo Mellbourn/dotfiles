@@ -168,9 +168,13 @@ tldr --update
 # crontab                                                                     #
 ###############################################################################
 # clean up old tmux ressurect sessions
-command="ls -tr \$HOME/.tmux/resurrect/*.txt | ghead -n-5 | xargs rm"
-job="0 0 1 * * $command"
-cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
+function addtocrontab () {
+  local frequency=$1
+  local command=$2
+  local job="$frequency $command"
+  cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
+}
+addtocrontab "0 0 1 * *" "ls -tr \$HOME/.tmux/resurrect/*.txt | ghead -n-5 | xargs rm"
 
 ###############################################################################
 # Finder                                                                      #
