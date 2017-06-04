@@ -22,6 +22,7 @@ if [ -f ~/.local_settings ]; then
 fi
 
 ### environment variables
+export PATH=$PATH:~/bin
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export LC_ALL=en_US.UTF-8

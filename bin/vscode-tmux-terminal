@@ -1,0 +1,3 @@
+#!/bin/sh
+SESSION="`dirs -0`-vscode"
+tmux attach-session -t $SESSION || tmux new-session -s $SESSION
