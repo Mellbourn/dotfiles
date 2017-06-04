@@ -145,3 +145,7 @@ bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
 # make zsh behave like bash for ctrl-u (fine to modify since most others will have bash)
 bindkey "^U" backward-kill-line
+# edit command line like in bash (zsh has 'fc' bit it has to execute the command first)
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
