@@ -2,7 +2,7 @@
 # .zshrc is sourced in interactive shells.
 # It should contain commands to set up aliases, functions, options, key bindings, etc.
 ###############################################################################
-echo ".zshrc running"
+#echo ".zshrc running"
 ###############################################################################
 # remember your ancestor
 ###############################################################################

@@ -1,7 +1,7 @@
 ###############################################################################
 # .bashrc subshells run only this, not .bash_profile
 ###############################################################################
-echo ".bashrc running"
+#echo ".bashrc running"
 if [ -f /usr/local/opt/nvm/nvm.sh ]; then
   export NVM_DIR="$HOME/.nvm"
   # this command is very slow! 0.93s

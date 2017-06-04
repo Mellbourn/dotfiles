@@ -1,8 +1,8 @@
 ###############################################################################
 # .bash_profile is read by login shells, but not run by subshells
 ###############################################################################
-START=$(gdate +%s.%N)
-echo ".bash_profile running"
+#START=$(gdate +%s.%N)
+#echo ".bash_profile running"
 export CODE_DIR=~/code
 
 if [ -f ~/.profile ]; then
@@ -109,6 +109,6 @@ eval "$(fasd --init auto)"
 eval $(thefuck --alias)
 . ~/.aliases
 
-echo ".bash_profile took:"
-END=$(gdate +%s.%N)
-echo "$END - $START" | bc
+#echo ".bash_profile took:"
+#END=$(gdate +%s.%N)
+#echo "$END - $START" | bc
