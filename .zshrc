@@ -97,9 +97,9 @@ if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; 
 fi
 export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root)
 export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background
-export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' #pink
-export ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=27,bg=17' # muted blue
-export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown?
+export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' # pink
+export ZSH_HIGHLIGHT_STYLES[commandseparator]='bg=21,fg=195' # light on dark blue
+export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown
 export ZSH_HIGHLIGHT_STYLES[globbing]='fg=99' # lilac
 export ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=63' # softer lilac
 export ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,underline' # make folders same colors as in ls
