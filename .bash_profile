@@ -34,13 +34,9 @@ export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --
 
 set -o emacs
 
-if [ "$USER" == "Klas" ]; then
-  export AT_HOME=1
-  export AT_WORK=0
-else
-  export AT_HOME=0
-  export AT_WORK=1
-fi
+function current_context {
+   osascript -e 'tell application "ControlPlane"' -e 'get current context' -e 'end tell'
+}
 
 if  [[ $SHELL == *bash ]];
 then
