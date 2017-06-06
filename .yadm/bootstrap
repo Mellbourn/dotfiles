@@ -46,6 +46,7 @@ gradle
 gtm
 haskell-stack
 highlight
+htop
 kubernetes-cli
 liquidprompt
 mas
