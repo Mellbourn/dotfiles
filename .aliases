@@ -1,9 +1,9 @@
-alias f="fuck"
+alias f=fuck
 alias g=git
 # note that command line completion does not work well for this alias
 alias gn='git number --column'
 alias ga='git number add'
 
-alias eg=egrep
-alias l="ls -F "
+alias eg='egrep -i'
+alias l='ls -F '
 alias more=less
