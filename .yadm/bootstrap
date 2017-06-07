@@ -39,6 +39,7 @@ fish
 fzf
 gettext
 git
+git-crypt
 git-number
 gnupg
 googler
