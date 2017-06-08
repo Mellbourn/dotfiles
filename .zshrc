@@ -50,6 +50,8 @@ zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format "$fg[red]No matches for:$reset_color %d"
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' group-name ''
+# this should make completion for some commands faster, haven't noticed though. saves in .zcompcache
+zstyle ':completion::complete:*' use-cache 1
 
 # activate approximate completion, but only after regular completion (_complete)
 # zstyle ':completion:::::' completer _complete _approximate
