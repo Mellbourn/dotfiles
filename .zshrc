@@ -115,9 +115,9 @@ export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 ###############################################################################
 export PROMPT_PERCENT_PATH_LENGTH=20
 function myPromptWidth() { echo $(( ${COLUMNS:-80} * PROMPT_PERCENT_PATH_LENGTH / 100 )) }
-local width_part='$(myPromptWidth)'
+width_part='$(myPromptWidth)'
 PROMPT="%F{106}%${width_part}<…<%3~%f%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.)%# "
-local git_part='$(git_super_status)'
+git_part='$(git_super_status)'
 RPROMPT="${git_part} %F{106}%*%f"
 
 ###############################################################################

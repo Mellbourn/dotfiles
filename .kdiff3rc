@@ -89,5 +89,5 @@ UseCvsIgnore=0
 WhiteSpace2FileMergeDefault=0
 WhiteSpace3FileMergeDefault=0
 WhiteSpaceEqual=1
-WindowStateMaximised=0
+WindowStateMaximised=1
 WordWrap=1
