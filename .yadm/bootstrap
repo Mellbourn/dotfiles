@@ -80,6 +80,7 @@ echo $installThese | xargs brew install
 casks="
 adobe-reader
 alfred
+android-studio
 bartender
 charles
 copyq
