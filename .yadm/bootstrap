@@ -199,6 +199,12 @@ defaults write com.apple.finder CreateDesktop false
 defaults write com.apple.finder FXRemoveOldTrashItems -bool true
 
 ###############################################################################
+# Sound                                                                       #
+###############################################################################
+# Play feedback when volume is changed
+defaults write com.apple.sound.beep.feedback -bool true
+
+###############################################################################
 # Miscellaneous                                                               #
 ###############################################################################
 # Save screenshots to Pictures
