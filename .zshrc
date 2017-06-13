@@ -128,14 +128,13 @@ RPROMPT="${git_part} %F{106}%*%f"
 function co() {
     local branches branch
     branches=$(git branch -a) &&
-    branch=$(echo "$branches" | fzf +s +m) &&
-    #git checkout $(echo "$branch" | sed "s/.* //")
+    branch=$(echo "$branches" | egrep -i "$1"  | fzf +s +m) &&
     git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
 
 function go() {
     local repos repo
-    repos=$(find $CODE_DIR -name .git -type d -maxdepth 3 -prune | sed 's#/.git$##') &&
+    repos=$(find $CODE_DIR -name .git -type d -maxdepth 3 -prune | egrep -i "$1"  | sed 's#/.git$##') &&
     repo=$(echo "$repos" | fzf +s +m) &&
     cd $(echo "$repo" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
