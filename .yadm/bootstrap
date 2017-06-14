@@ -155,6 +155,8 @@ if [ ! -d ~/.zsh-git-prompt ]; then
   popd
 fi
 
+zsh -ic "zplug update"
+
 # set up alternate gitconfig file used to determine local settings
 yadm alt
 

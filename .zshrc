@@ -67,6 +67,7 @@ export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug "zsh-users/zsh-completions"
 
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
