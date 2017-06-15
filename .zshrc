@@ -30,7 +30,7 @@ hash -d -- c=$CODE_DIR
 # folder with main Repo
 hash -d -- r=~c/checkout
 # folder where I work the most
-hash -d -- w=~r/packages/app/src/next/features
+hash -d -- w=~r/packages/app
 
 ###############################################################################
 # completion
