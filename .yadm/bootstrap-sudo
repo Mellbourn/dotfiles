@@ -38,3 +38,12 @@ chsh -s /usr/local/bin/zsh $SUDO_USER
 # Update App Store apps
 ###############################################################################
 sudo softwareupdate -i -a
+
+# always boot in verbose mode (not MacOS GUI mode)
+sudo nvram boot-args="-v"
+
+# Enable firewall. Possible values:
+#   0 = off
+#   1 = on for specific sevices
+#   2 = on for essential services
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
