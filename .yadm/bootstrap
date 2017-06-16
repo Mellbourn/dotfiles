@@ -188,6 +188,8 @@ addtocrontab "0 0 1 * *" "ls -tr \$HOME/.tmux/resurrect/*.txt | ghead -n-5 | xar
 # Finder                                                                      #
 ###############################################################################
 defaults write com.apple.finder AppleShowAllFiles YES
+# Show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # sets the first window shown in finder to home
 defaults write com.apple.finder NewWindowTarget PfHm
 # Finder: show status bar
@@ -200,6 +202,8 @@ defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder CreateDesktop false
 # Remove items from the Trash after 30 days
 defaults write com.apple.finder FXRemoveOldTrashItems -bool true
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 ###############################################################################
 # Sound                                                                       #
