@@ -23,6 +23,7 @@ fi
 brew update
 brew upgrade
 brew tap git-time-metric/gtm
+brew install vim --with-override-system-vi
 
 # this must be in alphabetical order!
 apps="
@@ -64,7 +65,6 @@ tldr
 tmux
 trash
 tree
-vim
 watch
 yadm
 yarn
@@ -246,7 +246,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 25
 # Disable smart quotes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
-#Disable smart dashes as they’re annoying when typing code
+# Disable smart dashes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 ###############################################################################
