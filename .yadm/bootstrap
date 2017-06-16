@@ -220,6 +220,15 @@ defaults write com.apple.screencapture location "${HOME}/Pictures"
 # disable dashboard (the stupid widget thing reached by ctrl-right)
 defaults write com.apple.dashboard mcx-disabled -boolean true
 
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+
 ###############################################################################
 # Keyboard                                                                    #
 ###############################################################################
