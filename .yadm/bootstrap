@@ -202,6 +202,8 @@ defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder CreateDesktop false
 # Remove items from the Trash after 30 days
 defaults write com.apple.finder FXRemoveOldTrashItems -bool true
+# Display full POSIX path as Finder window title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
