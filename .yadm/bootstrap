@@ -256,6 +256,8 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write com.apple.dock autohide -bool true
 # Set the icon size of Dock items to 24 pixels
 defaults write com.apple.dock tilesize -int 24
+# Make Dock icons of hidden applications translucent
+defaults write com.apple.dock showhidden -bool true
 
 ###############################################################################
 # Safari & WebKit                                                             #
