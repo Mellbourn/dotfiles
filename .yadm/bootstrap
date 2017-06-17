@@ -173,6 +173,9 @@ tldr --update
 # automate mac store installation
 #mas signin klas@mellbourn.net
 
+# install tmux session manager
+pip install tmuxp -U
+
 ###############################################################################
 # crontab                                                                     #
 ###############################################################################

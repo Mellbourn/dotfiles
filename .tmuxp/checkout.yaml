@@ -1,0 +1,10 @@
+session_name: checkout-vscode
+start_directory: "${CODE_DIR}/checkout"
+windows:
+- window_name: build
+  layout: tiled
+  panes:
+  - make all
+  - shell_command:
+    - sleep 30
+    - npm run test:watch
