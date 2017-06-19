@@ -22,7 +22,6 @@ if [ -f ~/.local_settings ]; then
 fi
 
 ### environment variables
-export PATH=$PATH:~/bin
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export LC_ALL=en_US.UTF-8
@@ -30,7 +29,7 @@ export LANG=en_US.UTF-8
 export EDITOR=vi
 # make gpg prompt work, otherwise I get "Inappropriate ioctl for device"
 export GPG_TTY=$(tty)
-export GREP_OPTIONS='--color=auto'
+
 export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style molokai"
 export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quit-if-one-screen --no-init"
 
@@ -107,6 +106,9 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 eval "$(fasd --init auto)"
 eval $(thefuck --alias)
 . ~/.aliases
+
+# make it possible to overide commands in own bin folder
+export PATH=~/bin:$PATH
 
 #echo ".bash_profile took:"
 #END=$(gdate +%s.%N)
