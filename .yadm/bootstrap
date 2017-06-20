@@ -224,10 +224,6 @@ osascript -e 'set volume alert volume 100'
 ###############################################################################
 # Save screenshots to Pictures
 defaults write com.apple.screencapture location "${HOME}/Pictures"
-# Trackpad: enable tap to click for this user and for the login screen - don't work!
-#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-#defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-#defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 # disable dashboard (the stupid widget thing reached by ctrl-right)
 defaults write com.apple.dashboard mcx-disabled -boolean true
 
@@ -238,6 +234,24 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+###############################################################################
+# Mouse & Trackpad                                                            #
+###############################################################################
+# Trackpad: enable tap to click for this user and for the login screen - don't work!
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+#defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+#defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton
+# Smart zoom disabled, double-tap with one finger (set to 1 to enable)
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture -int 0
+# Double-tap with two fingers to Mission Control (set to 0 to disable)
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerDoubleTapGesture -int 3
+# Two finger horizontal swipe
+# 0 = Swipe between pages with one finger
+# 1 = Swipe between pages
+# 2 = Swipe between full screen apps with two fingers, swipe between pages with one finger (Default Mode)
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerHorizSwipeGesture -int 2
 
 ###############################################################################
 # Keyboard                                                                    #
