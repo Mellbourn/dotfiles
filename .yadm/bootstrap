@@ -105,6 +105,7 @@ keycue
 minikube
 moom
 plex-media-player
+private-internet-access
 rowanj-gitx
 screenhero
 skype
@@ -133,6 +134,11 @@ if ! hash rvm 2>/dev/null; then
 fi
 
 pip install virtualenvwrapper
+
+# finish PIA installation
+if [ ! -d /Applications/Private\ Internet\ Access.app ]; then
+  /usr/local/Caskroom/private-internet-access/v70/Private\ Internet\ Access\ Installer.app/Contents/MacOS/runner.sh
+fi
 
 # this is needed to suppress zsh message "compinit: insecure directories""
 chmod g-w /usr/local/share
