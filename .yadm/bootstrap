@@ -136,6 +136,8 @@ fi
 pip install virtualenvwrapper
 
 # finish PIA installation
+# if you already have a manual installation, you will have to remove it with
+# rm -rf /Applications/Private\ Internet\ Access.app
 if [ ! -d /Applications/Private\ Internet\ Access.app ]; then
   /usr/local/Caskroom/private-internet-access/v70/Private\ Internet\ Access\ Installer.app/Contents/MacOS/runner.sh
 fi
