@@ -30,6 +30,7 @@ apps="
 ansible
 bash
 bash-completion
+brightness
 chromedriver
 coreutils
 docker-completion
