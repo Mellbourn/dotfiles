@@ -161,6 +161,8 @@ fi
 
 if [ ! -d ~/.zsh-git-prompt ]; then
   git clone git@github.com:olivierverdier/zsh-git-prompt.git ~/.zsh-git-prompt
+fi
+if [ ! -f ~/.zsh-git-prompt/src/.bin/gitstatus ]; then
   pushd ~/.zsh-git-prompt
   stack setup && stack build && stack install
   popd
