@@ -81,7 +81,7 @@ installThese=${installTheseLines//$'\n'/ }
 echo $installThese | xargs brew install
 
 casks="
-adobe-reader
+adobe-acrobat-reader
 alfred
 android-studio
 bartender
