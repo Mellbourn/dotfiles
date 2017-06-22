@@ -248,6 +248,10 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 ###############################################################################
 # Mouse & Trackpad                                                            #
 ###############################################################################
+# increase trackpad tracking speed - works!
+defaults write -g com.apple.trackpad.scaling -float 3.0
+# increase mouse tracking speed
+defaults write -g com.apple.mouse.scaling -float 3.0
 # Trackpad: enable tap to click for this user and for the login screen - don't work!
 #defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 #defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
