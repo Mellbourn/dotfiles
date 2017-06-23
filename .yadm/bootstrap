@@ -271,6 +271,16 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerDou
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerHorizSwipeGesture -int 2
 
 ###############################################################################
+# Calendar                                                                    #
+###############################################################################
+# Show week numbers (10.8 only)
+defaults write com.apple.iCal "Show Week Numbers" -bool true
+# disable Show invitation messages in Notification Center
+defaults write com.apple.iCal InvitationNotificationsDisabled -int 1
+# disable Time to Leave alert
+defaults write com.apple.iCal TimeToLeaveEnabled  -int 0
+
+###############################################################################
 # Keyboard                                                                    #
 ###############################################################################
 # THESE SEEM DANGEROUS, NOT CONSISTENT, destroys key repeat in Chrome?
