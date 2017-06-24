@@ -249,6 +249,9 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 # show battery percent
 defaults write com.apple.menuextra.battery ShowPercent YES
 
+# set TextEdit default format to plain text
+defaults write com.apple.TextEdit RichText -int 0
+
 ###############################################################################
 # Mouse & Trackpad                                                            #
 ###############################################################################
@@ -323,6 +326,3 @@ defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 # Update extensions automatically
 defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
-
-# set TextEdit default format to plain text
-defaults write com.apple.TextEdit RichText -int 0
