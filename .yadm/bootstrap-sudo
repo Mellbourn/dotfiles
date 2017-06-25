@@ -37,6 +37,11 @@ chsh -s /usr/local/bin/zsh $SUDO_USER
 ###############################################################################
 # Update App Store apps
 ###############################################################################
+# enable automatically "Install app updates" from the Mac App Store
+sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool TRUE
+# enable automatically "install macOS updates"
+sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired -bool TRUE
+
 sudo softwareupdate -i -a
 
 # always boot in verbose mode (not MacOS GUI mode)
