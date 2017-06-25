@@ -212,7 +212,7 @@ defaults write com.apple.finder NewWindowTarget PfHm
 defaults write com.apple.finder ShowStatusBar -bool true
 # Show Path bar in Finder
 defaults write com.apple.finder ShowPathbar -bool true
-# Use list view in all Finder windows by default, NOT STABLE?
+# Use list view in all Finder windows by default (won't affect folders where there is already a DS_Store)
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
