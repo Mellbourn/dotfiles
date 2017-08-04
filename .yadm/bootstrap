@@ -134,7 +134,7 @@ if ! hash rvm 2>/dev/null; then
   curl -sSL https://get.rvm.io | bash -s stable --ruby
 fi
 
-pip install virtualenvwrapper
+pip2 install virtualenvwrapper
 
 # finish PIA installation
 # if you already have a manual installation, you will have to remove it with
@@ -186,7 +186,7 @@ tldr --update
 #mas signin klas@mellbourn.net
 
 # install tmux session manager
-pip install tmuxp -U
+pip2 install tmuxp -U
 
 ###############################################################################
 # crontab                                                                     #
