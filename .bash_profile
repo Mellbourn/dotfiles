@@ -80,6 +80,7 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 
 # this takes 0.39s
 export WORKON_HOME=~/.py_virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
 source /usr/local/bin/virtualenvwrapper.sh
 
 # ansible needs sqlite3
