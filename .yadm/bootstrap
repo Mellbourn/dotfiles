@@ -132,6 +132,8 @@ if ! hash rvm 2>/dev/null; then
   command curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
   # install rvm and latest ruby
   curl -sSL https://get.rvm.io | bash -s stable --ruby
+  # interesting ruby version
+  rvm install ruby-2.2.3
 fi
 
 pip2 install virtualenvwrapper
