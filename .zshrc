@@ -3,6 +3,10 @@
 # It should contain commands to set up aliases, functions, options, key bindings, etc.
 ###############################################################################
 #echo ".zshrc running"
+#rm ~/.zcompdump ~/.zcompcache
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
 ###############################################################################
 # remember your ancestor
 ###############################################################################
@@ -68,6 +72,7 @@ source $ZPLUG_HOME/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
+zplug "lukechilds/zsh-better-npm-completion", defer:2
 
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
