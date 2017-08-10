@@ -1,28 +1,25 @@
 #compdef yadm
 _yadm(){
-    local -a options arguments
-    options=()
-    arguments=('help:Display yadm command help'
-               'init:Initialize an empty repository'
-               'config:Configure a setting'
-               'list:List tracked files'
-               'alt:Create links for alternates'
-               'bootstrap:Execute $HOME/.yadm/bootstrap'
-               'encrypt:Encrypt files'
-               'decrypt:Decrypt files'
-               'perms:Fix perms for private files'
-               'add:git add'
-               'push:git push'
-               'pull:git pull'
-               'diff:git diff'
-               'checkout:git checkout'
-               'co:git co'
-               'commit:git commit'
-               'ci:git ci'
-               'status:git status'
-               'st:git st'
-               'reset:git reset'
-               'log:git log')
-    _describe 'values' options -- arguments
+    _alternative 'args:custom args:((help\:"Display yadm command help"
+               init\:"Initialize an empty repository"
+               config\:"Configure a setting"
+               list\:"List tracked files"
+               alt\:"Create links for alternates"
+               bootstrap\:"Execute $HOME/.yadm/bootstrap"
+               encrypt\:"Encrypt files"
+               decrypt\:"Decrypt files"
+               perms\:"Fix perms for private files"
+               add\:"git add"
+               push\:"git push"
+               pull\:"git pull"
+               diff\:"git diff"
+               checkout\:"git checkout"
+               co\:"git co"
+               commit\:"git commit"
+               ci\:"git ci"
+               status\:"git status"
+               st\:"git st"
+               reset\:"git reset"
+               log\:"git log"))' 'files:filenames:_files'
 }
 _yadm "$@"
