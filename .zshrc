@@ -4,7 +4,7 @@
 ###############################################################################
 #echo ".zshrc running"
 #rm ~/.zcompdump ~/.zcompcache
-fpath=(~/bin $fpath)
+fpath=(~/.zsh-personal-completions $fpath)
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
