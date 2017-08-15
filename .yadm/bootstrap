@@ -27,6 +27,7 @@ brew install vim --with-override-system-vi
 
 # this must be in alphabetical order!
 apps="
+ack
 ansible
 bash
 bash-completion
