@@ -33,6 +33,7 @@ export GPG_TTY=$(tty)
 export GREP_OPTIONS='--color=auto'
 export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style molokai"
 export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quit-if-one-screen --no-init"
+export ACK_OPTIONS="--pager=less --ignore-directory=.happypack"
 
 set -o emacs
 
