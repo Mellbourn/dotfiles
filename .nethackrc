@@ -32,7 +32,7 @@ OPTIONS=color
 OPTIONS=!lit_corridor
 
 # Enable sound and beeps
-OPTIONS=sound,!silent
+OPTIONS=!silent
 
 
 ### Start-up and ending ###
@@ -64,7 +64,7 @@ OPTIONS=menustyle:full
 #OPTIONS=msghistory:60
 
 # Enable the number pad keys
-OPTIONS=number_pad
+#OPTIONS=number_pad
 
 # Pause for --more-- and make it boldface
 OPTIONS=page_wait,standout
@@ -89,6 +89,7 @@ OPTIONS=verbose
 ### Character ###
 # A Valkyrie...
 #OPTIONS=name:Brunhilda,role:Val
+OPTIONS=name:Callicles
 
 # The old way works, too:
 #OPTIONS=name:Brunhilda-V
