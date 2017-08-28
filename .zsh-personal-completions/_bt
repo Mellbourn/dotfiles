@@ -1,0 +1,5 @@
+#compdef bt
+_bt(){
+  _arguments "1: :(`ls ~r/browser_tests/features/*.feature | sed 's/.*features\///' | sed 's/.feature$//'`)"
+}
+_bt "$@"
