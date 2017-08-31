@@ -1,5 +1,5 @@
 #compdef bt
 _bt(){
-  _arguments "1: :(`ls ~r/browser_tests/features/*.feature | sed 's/.*features\///' | sed 's/.feature$//'`)"
+  _arguments "1: :(`print ~r/browser_tests/features/*.feature(:t:r)`)"
 }
 _bt "$@"
