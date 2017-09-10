@@ -205,7 +205,7 @@ function addtocrontab () {
   local job="$frequency $command"
   cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
 }
-addtocrontab "0 0 1 * *" "ls -tr \$HOME/.tmux/resurrect/*.txt | ghead -n-5 | xargs rm"
+addtocrontab "0 0 1 * *" "ls -tr \$HOME/.tmux/resurrect/*.txt | /usr/local/bin/ghead -n-5 | xargs rm"
 
 ###############################################################################
 # Finder                                                                      #
