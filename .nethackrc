@@ -108,7 +108,7 @@ OPTIONS=name:Callicles
 #OPTIONS=autodig
 
 # Disable autopickup (toggle it with the `@' command)
-#OPTIONS=!autopickup,pickup_types:$*
+OPTIONS=autopickup,pickup_types:$*?/=!+"
 
 # Automatically fill the quiver
 #OPTIONS=autoquiver
@@ -123,7 +123,7 @@ OPTIONS=!fixinv,perm_invent,sortpack
 #OPTIONS=packorder:)[(
 
 # How much you're willing to carry without confirmation
-#OPTIONS=pickup_burden:B
+OPTIONS=pickup_burden:B
 
 # Put weapon in secondary slot when wielding another
 #OPTIONS=pushweapon
