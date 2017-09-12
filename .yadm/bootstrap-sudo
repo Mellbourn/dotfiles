@@ -55,3 +55,6 @@ sudo nvram boot-args="-v"
 #   1 = on for specific sevices
 #   2 = on for essential services
 sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+
+# allow remote login
+sudo systemsetup -setremotelogin on
