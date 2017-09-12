@@ -130,6 +130,9 @@ echo $installThese | xargs brew cask install
 
 brew link --force gettext
 
+# set up wemux user name
+sed -i -- "s/host_list=(brew)/host_list=($USER)/" /usr/local/etc/wemux.conf
+
 # ruby version manager
 if ! hash rvm 2>/dev/null; then
   # trust download
