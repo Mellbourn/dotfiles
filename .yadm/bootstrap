@@ -200,6 +200,9 @@ tldr --update
 # install tmux session manager
 pip2 install tmuxp -U
 
+# remove itunes from login items. This way it does not open when you plug in an iPhone
+osascript -e 'tell application "System Events" to delete login item "iTunesHelper"'
+
 ###############################################################################
 # crontab                                                                     #
 ###############################################################################
