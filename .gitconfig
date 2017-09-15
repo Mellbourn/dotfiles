@@ -7,8 +7,6 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -F -X -E
-[commit]
-	template = ~/.stCommitMsg
 [mergetool]
 	keepbackup = false
 	prompt = false
