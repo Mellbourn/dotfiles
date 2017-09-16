@@ -156,7 +156,7 @@ fi
 # this is needed to suppress zsh message "compinit: insecure directories""
 chmod g-w /usr/local/share
 # this seems healthy to do every now and then to make sure zsh completion works
-rm -r ~/.zcompdump ~/.zcompcache
+rm -rf ~/.zcompdump ~/.zcompcache
 
 # install fisherman fish plugin manager
 if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
