@@ -144,6 +144,7 @@ if ! hash rvm 2>/dev/null; then
   rvm install ruby-2.2.3
 fi
 
+pip2 install --upgrade pip setuptools
 pip2 install virtualenvwrapper
 
 # finish PIA installation
