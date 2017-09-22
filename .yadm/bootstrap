@@ -31,6 +31,7 @@ ack
 ansible
 bash
 bash-completion
+cheat
 chromedriver
 coreutils
 docker-completion
