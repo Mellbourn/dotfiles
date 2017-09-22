@@ -59,6 +59,7 @@ maven
 ncdu
 nethack
 nvm
+pv
 pyenv
 pyenv-virtualenv
 pyenv-virtualenvwrapper
