@@ -3,6 +3,8 @@
 ###############################################################################
 #START=$(gdate +%s.%N)
 #echo ".bash_profile running"
+
+# directory for git repositories
 export CODE_DIR=~/code
 
 if [ -f ~/.profile ]; then

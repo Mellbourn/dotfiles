@@ -1,9 +1,12 @@
 [user]
 	name = Klas Mellbourn
 [include]
-    path = .gitconfig.local
-[includeIf "gitdir:~/code/private/"]
     path = .gitconfig.dir.free
+[includeIf "gitdir:~/code/klarna/"]
+    path = .gitconfig.local
+[includeIf "gitdir:~/code/klarna/ui/"]
+    path = .gitconfig.dir.free
+# redundant, but don't forget this repo
 [includeIf "gitdir:~/.yadm/"]
     path = .gitconfig.dir.free
 [core]
