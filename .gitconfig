@@ -4,6 +4,8 @@
     path = .gitconfig.local
 [includeIf "gitdir:~/code/private/"]
     path = .gitconfig.dir.free
+[includeIf "gitdir:~/.yadm/"]
+    path = .gitconfig.dir.free
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -F -X -E
