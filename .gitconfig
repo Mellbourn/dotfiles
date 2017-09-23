@@ -2,7 +2,7 @@
 	name = Klas Mellbourn
 [include]
     path = .gitconfig.local
-[includeIf "gitdir:~/git/private/"]
+[includeIf "gitdir:~/code/private/"]
     path = .gitconfig.dir.free
 [core]
 	excludesfile = ~/.gitignore_global
