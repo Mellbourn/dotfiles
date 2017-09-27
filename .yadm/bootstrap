@@ -29,6 +29,7 @@ brew install vim --with-override-system-vi
 apps="
 ack
 ansible
+awscli
 bash
 bash-completion
 cheat
