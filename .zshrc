@@ -126,7 +126,7 @@ function myPromptWidth() {
   echo $(( ${COLUMNS:-80} * PROMPT_PERCENT_OF_LINE / 100 ))
 }
 width_part='$(myPromptWidth)'
-PROMPT="%F{106}%${width_part}<…<%3~%f%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.)%# "
+PROMPT="%K{106}%F%${width_part}<…<%3~%f%k%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.)%# "
 git_part='$(git_super_status)'
 RPROMPT="${git_part} %F{106}%*%f"
 
