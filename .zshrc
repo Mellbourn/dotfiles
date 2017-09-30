@@ -121,9 +121,9 @@ export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 ###############################################################################
 # prompt
 ###############################################################################
-export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}%{●%G%}"
+export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}%{✚%G%}"
 export ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg_bold[red]%}%{✖%G%}"
-export ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]%}%{✚%G%}"
+export ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]%}%{●%G%}"
 export PROMPT_PERCENT_OF_LINE=20
 function myPromptWidth() {
   echo $(( ${COLUMNS:-80} * PROMPT_PERCENT_OF_LINE / 100 ))
