@@ -1,2 +1,2 @@
 #!/usr/local/bin/zsh
-ls -tr $HOME/Pictures/*(.) | /usr/local/bin/ghead -n-20 | while read FILENAME; do rm "$FILENAME"; done
+ls -tr $HOME/Pictures/*(.) | /usr/local/bin/ghead -n-10 | while read FILENAME; do /usr/local/bin/trash "$FILENAME"; done
