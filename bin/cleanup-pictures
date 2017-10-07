@@ -1,0 +1,2 @@
+#!/bin/sh
+ls -tr $HOME/Pictures/* | /usr/local/bin/ghead -n-10 | while read FILENAME; do rm "$FILENAME"; done
