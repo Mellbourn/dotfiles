@@ -6,7 +6,7 @@
 	<string>local.cleanup.pictures</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>zsh</string>
+		<string>sh</string>
 		<string>-c</string>
 		<string>$HOME/bin/cleanup-pictures</string>
 	</array>
@@ -16,5 +16,12 @@
 	<string>/tmp/local.cleanup.pictures.stderr</string>
 	<key>StandardOutPath</key>
 	<string>/tmp/local.cleanup.pictures.stdout</string>
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Hour</key>
+		<integer>15</integer>
+		<key>Minute</key>
+		<integer>56</integer>
+	</dict>
 </dict>
 </plist>
