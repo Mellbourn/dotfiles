@@ -159,6 +159,11 @@ c() {
 # command line completion for kubectl
 source <(kubectl completion zsh)
 
+# set up direnv
+eval "$(direnv hook $SHELL)"
+# this needs to be done just once, and you will be prompted about it
+# direnv allow
+
 ###############################################################################
 # keybindings
 ###############################################################################

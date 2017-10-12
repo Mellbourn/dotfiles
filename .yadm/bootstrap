@@ -35,6 +35,7 @@ bash-completion
 cheat
 chromedriver
 coreutils
+direnv
 docker-completion
 docker-compose-completion
 docker-machine-completion
@@ -44,16 +45,19 @@ fzf
 gettext
 git
 git-crypt
+git-lfs
 git-number
 gnupg
 googler
 gradle
+graphicsmagick
 grep
 gtm
 haskell-stack
 highlight
 htop
 kubernetes-cli
+librsvg
 liquidprompt
 mas
 maven
@@ -72,6 +76,7 @@ tmux
 trash
 tree
 watch
+watchman
 wemux
 yadm
 yarn
@@ -116,6 +121,7 @@ moom
 muzzle
 plex-media-player
 private-internet-access
+react-native-debugger
 rowanj-gitx
 screenhero
 skype
