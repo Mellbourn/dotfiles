@@ -1,6 +1,7 @@
 #!/bin/bash
 # stop startup sound
 sudo nvram SystemAudioVolume=%80
+sudo xcodebuild -license accept
 # Add Watch Simulator to Launchpad
 sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
 
