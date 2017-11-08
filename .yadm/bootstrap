@@ -94,8 +94,8 @@ echo $installThese | xargs brew install
 casks="
 adobe-acrobat-reader
 alfred
-android-studio
 android-sdk
+android-studio
 bartender
 charles
 copyq
