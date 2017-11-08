@@ -22,7 +22,7 @@ fi
 
 brew update
 brew upgrade
-brew tap git-time-metric/gtm
+brew tap git-time-metric/gtm wix/brew
 brew install vim --with-override-system-vi
 
 # this must be in alphabetical order!
@@ -78,6 +78,7 @@ tree
 watch
 watchman
 wemux
+wix/brew/applesimutils
 yadm
 yarn
 zplug
@@ -95,6 +96,7 @@ casks="
 adobe-acrobat-reader
 alfred
 android-studio
+android-sdk
 bartender
 charles
 copyq
@@ -215,6 +217,11 @@ pip2 install tmuxp -U
 
 # remove itunes from login items. This way it does not open when you plug in an iPhone
 osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2> /tmp/delete_itunes_helper_error.txt
+
+###############################################################################
+# development
+###############################################################################
+npm i -g node-gyp
 
 ###############################################################################
 # crontab                                                                     #
