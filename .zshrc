@@ -80,6 +80,12 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
 zplug "paoloantinori/hhighlighter", use:"h.sh"
+zplug "lukechilds/zsh-nvm"
+
+# this command is very slow! 0.93s
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install

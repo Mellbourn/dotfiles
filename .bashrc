@@ -2,11 +2,6 @@
 # .bashrc subshells run only this, not .bash_profile
 ###############################################################################
 #echo ".bashrc running"
-if [ -f /usr/local/opt/nvm/nvm.sh ]; then
-  export NVM_DIR="$HOME/.nvm"
-  # this command is very slow! 0.93s
-  . "/usr/local/opt/nvm/nvm.sh"
-fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
