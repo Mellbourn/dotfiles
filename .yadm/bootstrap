@@ -92,6 +92,7 @@ installThese=${installTheseLines//$'\n'/ }
 echo $installThese | xargs brew install
 
 casks="
+a-better-finder-attributes
 adobe-acrobat-reader
 alfred
 android-sdk
