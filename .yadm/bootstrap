@@ -157,7 +157,7 @@ if ! hash rvm 2>/dev/null; then
   # install rvm and latest ruby
   curl -sSL https://get.rvm.io | bash -s stable --ruby
   # interesting ruby version
-  rvm install ruby-2.2.3
+  rvm install ruby-2.4.1
 fi
 
 pip2 install --upgrade pip setuptools
