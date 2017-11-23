@@ -154,7 +154,7 @@ sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' /usr/loca
 # ruby version manager
 if ! hash rvm 2>/dev/null; then
   # trust download
-  command curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+  command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
   # install rvm and latest ruby
   curl -sSL https://get.rvm.io | bash -s stable --ruby
   # interesting ruby version
