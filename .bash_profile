@@ -76,6 +76,9 @@ export PATH="$PATH:$(yarn global bin)"
 
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 
+# anaconda
+export PATH=/usr/local/anaconda3/bin:"$PATH"
+
 # this takes 0.166s
 eval "$(pyenv init -)"
 
