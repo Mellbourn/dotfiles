@@ -163,7 +163,7 @@ fi
 
 pip2 install --upgrade pip setuptools
 pip2 install virtualenvwrapper
-pip install autopep8 pylint
+pip2 install autopep8 pylint rope
 
 # finish PIA installation
 # if you already have a manual installation, you will have to remove it with
