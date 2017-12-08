@@ -30,6 +30,8 @@ fi
 export PATH=$PATH:~/bin
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
+# this is to compile vim
+export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vi

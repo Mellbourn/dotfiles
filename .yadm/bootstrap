@@ -21,9 +21,9 @@ if ! hash brew 2>/dev/null; then
 fi
 
 brew update
+brew install vim --without-ruby --with-override-system-vi
 brew upgrade
 brew tap git-time-metric/gtm wix/brew
-brew install vim --with-override-system-vi
 
 # this must be in alphabetical order!
 apps="
@@ -226,6 +226,7 @@ osascript -e 'tell application "System Events" to delete login item "iTunesHelpe
 # development
 ###############################################################################
 npm i -g npm node-gyp
+xcode-select --install
 
 ###############################################################################
 # crontab                                                                     #
