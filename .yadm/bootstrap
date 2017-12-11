@@ -22,6 +22,7 @@ fi
 
 brew update
 brew install vim --without-ruby --with-override-system-vi
+brew install yarn --ignore-dependencies
 brew upgrade
 brew tap git-time-metric/gtm wix/brew
 
@@ -79,7 +80,6 @@ watchman
 wemux
 wix/brew/applesimutils
 yadm
-yarn
 zplug
 zsh
 zsh-autosuggestions
