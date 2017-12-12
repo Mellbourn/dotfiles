@@ -28,16 +28,6 @@ export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
 
 ###############################################################################
-# named directories
-###############################################################################
-# folder with all my Code
-hash -d -- c=$CODE_DIR
-# folder with repo that I mainly work on
-hash -d -- r=~c/klarna/checkout
-# folder where I work the most
-hash -d -- w=~r/packages/app
-
-###############################################################################
 # development
 ###############################################################################
 export ANDROID_HOME=/usr/local/share/android-sdk
