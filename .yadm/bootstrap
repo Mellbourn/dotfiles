@@ -20,11 +20,11 @@ if ! hash brew 2>/dev/null; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-if [ ! -d $HOME/.nvm ]; then
-  NVM_PROFILE=/tmp/.discard curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.7/install.sh | bash
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  # this fixes "env: node: No such file or directory"
+  nvm alias default node
 fi
-# this fixes "env: node: No such file or directory"
-nvm alias default node
 
 brew update
 brew install vim --without-ruby --with-override-system-vi
