@@ -100,6 +100,8 @@ if ! type node > /dev/null; then
   nvm install node
 fi
 
+# yarn must be run after node is defined
+export PATH="$PATH:$(yarn global bin)"
 
 ###############################################################################
 # add-ons installed by homebrew
