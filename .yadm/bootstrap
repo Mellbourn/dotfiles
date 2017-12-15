@@ -22,6 +22,8 @@ fi
 
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  # install latest node
+  nvm install node
   # this fixes "env: node: No such file or directory"
   nvm alias default node
 fi
