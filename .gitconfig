@@ -26,7 +26,7 @@
 [alias]
 	lol = log --graph --all
 	lo = log --graph
-	ci = commit
+	ci = commit -v
 	br = branch
 	co = checkout
 	st = status
