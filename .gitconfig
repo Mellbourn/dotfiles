@@ -68,5 +68,3 @@
 	smudge = git-lfs smudge --skip -- %f
 	process = git-lfs filter-process --skip
 	required = true
-[remote "origin"]
-	prune = true
