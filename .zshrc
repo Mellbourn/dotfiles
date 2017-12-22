@@ -7,6 +7,7 @@
 fpath=(~/.zsh-personal-completions $fpath)
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
+autoload -U zmv
 
 ###############################################################################
 # remember your ancestor
