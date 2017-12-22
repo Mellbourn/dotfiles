@@ -65,6 +65,7 @@ gtm
 haskell-stack
 highlight
 htop
+jq
 kubernetes-cli
 librsvg
 liquidprompt
