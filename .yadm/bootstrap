@@ -34,9 +34,11 @@ brew install yarn --ignore-dependencies
 brew upgrade
 brew tap git-time-metric/gtm wix/brew
 
+# TODO: remove these removals eventually
+brew uninstall --force ack
+
 # this must be in alphabetical order!
 apps="
-ack
 ansible
 awscli
 bash
@@ -78,6 +80,7 @@ pyenv
 pyenv-virtualenv
 pyenv-virtualenvwrapper
 reattach-to-user-namespace
+ripgrep
 thefuck
 tig
 tldr
