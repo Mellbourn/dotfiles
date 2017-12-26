@@ -34,7 +34,8 @@ brew install yarn --ignore-dependencies
 brew upgrade
 brew tap git-time-metric/gtm wix/brew
 
-# TODO: remove these removals eventually
+# remove brews here that were previously installed, to sync between machines
+# TODO: eventually remove these removals, when all machines have synced
 brew uninstall --force ack
 
 # this must be in alphabetical order!
