@@ -239,7 +239,7 @@ osascript -e 'tell application "System Events" to delete login item "iTunesHelpe
 ###############################################################################
 # development
 ###############################################################################
-npm i -g npm node-gyp
+npm i -g npm node-gyp eslint
 xcode-select --install
 
 ###############################################################################
