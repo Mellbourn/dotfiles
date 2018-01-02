@@ -159,6 +159,10 @@ function go() {
     cd $(echo "$repo" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
 
+function rg() {
+  command rg --pretty --smart-case $* | less
+}
+
 # like z, but if there are alternatives show them in fzf
 c() {
   local dir
