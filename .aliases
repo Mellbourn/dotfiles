@@ -1,4 +1,3 @@
-alias eg='egrep -i'
 alias f=fuck
 alias ga='git number add'
 alias gn='git number --column' # note that command line completion does not work well for this alias
