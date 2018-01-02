@@ -70,7 +70,6 @@ source $ZPLUG_HOME/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
-zplug "paoloantinori/hhighlighter", use:"h.sh"
 zplug "lukechilds/zsh-nvm"
 
 # zplug check returns true if all packages are installed
@@ -161,6 +160,11 @@ function go() {
 
 function rg() {
   command rg --pretty --smart-case $* | less
+}
+
+# highlighter
+function h {
+  grep --color=always -E "$1|$" $2
 }
 
 # like z, but if there are alternatives show them in fzf
