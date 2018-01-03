@@ -214,7 +214,7 @@ if [ ! -f ~/.zsh-git-prompt/src/.bin/gitstatus ]; then
   popd
 fi
 
-zsh -ic "zplug update"
+zsh -ic "zplug clean --force; zplug update"
 
 # set up alternate gitconfig file used to determine local settings
 yadm alt
