@@ -164,7 +164,7 @@ function rg() {
 
 # highlighter
 function h {
-  grep --color=always -E "$1|$" $2
+  grep --color=always -E "$1|$" $2 | less
 }
 
 # like z, but if there are alternatives show them in fzf
