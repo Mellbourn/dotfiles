@@ -53,6 +53,7 @@ docker-compose-completion
 docker-machine-completion
 fasd
 fish
+flow
 fzf
 gettext
 git
