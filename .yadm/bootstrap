@@ -33,7 +33,11 @@ brew install vim --without-ruby --with-override-system-vi
 brew install yarn --ignore-dependencies
 brew upgrade
 brew tap git-time-metric/gtm wix/brew
-brew tap caskroom/fonts caskroom/drivers # for font-fira-code and logitech-gaming-software
+brew tap caskroom/fonts # for font-fira-code
+
+# not all computers need logitech drivers
+# brew tap caskroom/drivers # for logitech-gaming-software
+# brew cask install caskroom/drivers/logitech-gaming-software
 
 # remove brews here that were previously installed, to sync between machines
 # TODO: eventually remove these removals, when all machines have synced
@@ -118,7 +122,6 @@ charles
 copyq
 day-o
 docker
-caskroom/drivers/logitech-gaming-software
 eve
 firefox
 flycut
