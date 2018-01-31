@@ -88,6 +88,7 @@ pyenv
 pyenv-virtualenv
 pyenv-virtualenvwrapper
 reattach-to-user-namespace
+redis
 ripgrep
 thefuck
 tig
