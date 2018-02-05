@@ -8,7 +8,7 @@ sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.a
 ###############################################################################
 # installations for Klarna
 ###############################################################################
-sudo gem install cocoapods --pre
+sudo gem install cocoapods
 sudo gem install bundler
 # for chrome debugging
 gem install ruby-debug-ide -v 0.6.0
