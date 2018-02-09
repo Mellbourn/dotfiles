@@ -106,7 +106,7 @@ if [ -d ~/.zsh-git-prompt ]; then
   ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚%G%}" # blue is too dark
 fi
 
-# fuzzy completion: ^R, ⌥C, **
+# fuzzy completion: ^R, ^T, ⌥C, **
 [ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
 
 # syntax highlighting should be loaded after all widgets, to work with them
