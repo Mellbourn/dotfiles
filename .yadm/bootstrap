@@ -43,6 +43,8 @@ brew tap caskroom/fonts # for font-fira-code
 # remove brews here that were previously installed, to sync between machines
 # TODO: eventually remove these removals, when all machines have synced
 brew uninstall --force ack
+brew cask uninstall --force screenhero
+brew cask uninstall --force flycut
 
 # this must be in alphabetical order!
 apps="
@@ -126,7 +128,6 @@ day-o
 docker
 eve
 firefox
-flycut
 fork
 font-fira-code
 gitup
@@ -152,7 +153,6 @@ react-native-debugger
 reactotron
 rescuetime
 rowanj-gitx
-screenhero
 sketch
 skype
 slack
@@ -403,4 +403,3 @@ defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 # 1 = Prompt for each website once each day
 # 2 = Prompt for each website one time only
 defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
-
