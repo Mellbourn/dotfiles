@@ -234,6 +234,7 @@ fi
 tldr --update
 
 /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
+nodebrew selfupdate
 nodebrew install-binary latest
 nodebrew use latest
 
