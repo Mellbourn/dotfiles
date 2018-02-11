@@ -2,8 +2,8 @@
 # .zshrc is sourced in interactive shells.
 # It should contain commands to set up aliases, functions, options, key bindings, etc.
 ###############################################################################
-echo ".zshrc running"
-START=$(gdate +%s.%N)
+#echo ".zshrc running"
+#START=$(gdate +%s.%N)
 #rm ~/.zcompdump ~/.zcompcache
 fpath=(~/.zsh-personal-completions $fpath)
 autoload -U +X compinit && compinit
@@ -183,6 +183,6 @@ bindkey "^U" backward-kill-line
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
-echo ".zshrc finished:"
-END=$(gdate +%s.%N)
-echo "$END - $START" | bc
+#echo ".zshrc finished:"
+#END=$(gdate +%s.%N)
+#echo "$END - $START" | bc

@@ -1,7 +1,7 @@
 ###############################################################################
 # .bashrc subshells run only this, not .bash_profile
 ###############################################################################
-echo ".bashrc running"
+#echo ".bashrc running"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
