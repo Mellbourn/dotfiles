@@ -77,6 +77,7 @@ mas
 maven
 ncdu
 nethack
+nodebrew
 pv
 pyenv
 pyenv-virtualenv
@@ -231,6 +232,10 @@ if [ "$CODE_DIR" ]; then
 fi
 
 tldr --update
+
+/usr/local/opt/nodebrew/bin/nodebrew setup_dirs
+nodebrew install-binary latest
+nodebrew use latest
 
 # automate mac store installation
 #mas signin klas@mellbourn.net

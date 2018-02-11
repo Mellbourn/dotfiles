@@ -89,6 +89,8 @@ export WORKON_HOME=~/.py_virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
 source /usr/local/bin/virtualenvwrapper.sh
 
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
 # ansible needs sqlite3
 # macOS provides an older sqlite3.
 #If you need to have this software first in your PATH run:
