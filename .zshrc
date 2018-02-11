@@ -3,6 +3,7 @@
 # It should contain commands to set up aliases, functions, options, key bindings, etc.
 ###############################################################################
 #echo ".zshrc running"
+#START=$(gdate +%s.%N)
 #rm ~/.zcompdump ~/.zcompcache
 fpath=(~/.zsh-personal-completions $fpath)
 autoload -U +X compinit && compinit
@@ -70,7 +71,6 @@ source $ZPLUG_HOME/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
-zplug "lukechilds/zsh-nvm"
 
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
@@ -80,15 +80,6 @@ fi
 
 # source plugins and add commands to the PATH
 zplug load
-
-# It is super important that the nvm commands are AFTER zplug load.
-# Also note that loading nvm is very slow! 0.93s
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-if ! type node > /dev/null; then
-  nvm install node
-fi
 
 # yarn must be run after node is defined
 export PATH="$PATH:$(yarn global bin)"
@@ -192,3 +183,6 @@ bindkey "^U" backward-kill-line
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
+#echo ".zshrc finished:"
+#END=$(gdate +%s.%N)
+#echo "$END - $START" | bc
