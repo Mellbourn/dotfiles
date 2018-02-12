@@ -24,7 +24,7 @@ export DIRSTACKSIZE=10
 ###############################################################################
 # history
 ###############################################################################
-setopt correct histignorealldups incappendhistory extendedhistory histignorespace histreduceblanks
+setopt correct histignorealldups incappendhistory extendedhistory histignorespace histreduceblanks hist_verify
 
 export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
