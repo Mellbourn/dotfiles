@@ -47,11 +47,16 @@ zstyle ':completion:*' list-colors 'di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34
 # formatting and messages
 # http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
 zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format "$fg[yellow]%B--- %d%b"
+# describe different versions of completion. Test with: cd<tab>
+zstyle ':completion:*:descriptions' format "%F{yellow}--- %d%f"
 zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format "$fg[red]No matches for:$reset_color %d"
+# when no match exists. Test with: cd fdjsakl<tab>
+zstyle ':completion:*:warnings' format "%F{red}No matches for:%f %d"
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+# groups matches. Test with cd<tab>
 zstyle ':completion:*' group-name ''
+# this will only show up if a parameter flag has a name but no description
+zstyle ':completion:*' auto-description 'specify: %d'
 # this should make completion for some commands faster, haven't noticed though. saves in .zcompcache
 zstyle ':completion::complete:*' use-cache 1
 
