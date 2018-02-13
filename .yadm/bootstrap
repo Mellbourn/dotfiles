@@ -16,9 +16,7 @@
 # Linux (and Windows Subsystem for Linux)                                     #
 ###############################################################################
 if [[ `uname` == 'Linux' ]]; then
-  sudo apt-get update
-  sudo apt-get upgrade
-  sudo apt-get install yadm
+  echo run bootstrap-sudo instead of this file
   exit 0
 fi
 
