@@ -16,7 +16,7 @@ autoload -U zmv
 source ~/.bash_profile
 
 ###############################################################################
-# options!
+# directory navigation options
 ###############################################################################
 setopt autocd autopushd pushdignoredups globcomplete
 export DIRSTACKSIZE=10
@@ -67,6 +67,9 @@ zstyle ':completion::complete:*' use-cache 1
 # case insensitive completion
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 
+# command line completion for kubectl
+source <(kubectl completion zsh)
+
 ###############################################################################
 # zplug - zsh plugin manager
 ###############################################################################
@@ -96,35 +99,23 @@ if [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
   source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-if [ -d ~/.zsh-git-prompt ]; then
-  GIT_PROMPT_EXECUTABLE="haskell"
-  source ~/.zsh-git-prompt/zshrc.sh
-  ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚%G%}" # blue is too dark
-fi
-
 # fuzzy completion: ^R, ^T, ⌥C, **
 [ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
 
-# syntax highlighting should be loaded after all widgets, to work with them
-if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root)
-export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background
-export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' # pink
-export ZSH_HIGHLIGHT_STYLES[commandseparator]='bg=21,fg=195' # light on dark blue
-export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown
-export ZSH_HIGHLIGHT_STYLES[globbing]='fg=99' # lilac
-export ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=63' # softer lilac
-export ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,underline' # make folders same colors as in ls
-export ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=243,underline'
-export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline'
-export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green
-export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
+# set up direnv
+eval "$(direnv hook $SHELL)"
+# this needs to be done just once, and you will be prompted about it
+# direnv allow
 
 ###############################################################################
 # prompt
 ###############################################################################
+if [ -d ~/.zsh-git-prompt ]; then
+  GIT_PROMPT_EXECUTABLE="haskell"
+  source ~/.zsh-git-prompt/zshrc.sh
+fi
+
+export ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}%{✚%G%}"
 export ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg_bold[red]%}%{✖%G%}"
 export ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]%}%{●%G%}"
@@ -169,14 +160,6 @@ c() {
   dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
 }
 
-# command line completion for kubectl
-source <(kubectl completion zsh)
-
-# set up direnv
-eval "$(direnv hook $SHELL)"
-# this needs to be done just once, and you will be prompted about it
-# direnv allow
-
 ###############################################################################
 # keybindings
 ###############################################################################
@@ -188,6 +171,27 @@ bindkey "^U" backward-kill-line
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
+
+###############################################################################
+# Syntax highlighting for the shell
+# syntax highlighting should be loaded after all widgets, to work with them
+###############################################################################
+if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root)
+export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background
+export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' # pink
+export ZSH_HIGHLIGHT_STYLES[commandseparator]='bg=21,fg=195' # light on dark blue
+export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown
+export ZSH_HIGHLIGHT_STYLES[globbing]='fg=99' # lilac
+export ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=63' # softer lilac
+export ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,underline' # make folders same colors as in ls
+export ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=243,underline'
+export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline'
+export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green
+export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
+
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)
 #echo "$END - $START" | bc
