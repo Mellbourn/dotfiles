@@ -68,7 +68,9 @@ zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 
 # command line completion for kubectl
-source <(kubectl completion zsh)
+if [ -x "$(command -v kubectl)" ]; then
+  source <(kubectl completion zsh)
+fi
 
 ###############################################################################
 # zplug - zsh plugin manager
@@ -112,7 +114,9 @@ fi
 [ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
 
 # set up direnv
-eval "$(direnv hook $SHELL)"
+if [ -x "$(command -v direnv)" ]; then
+  eval "$(direnv hook $SHELL)"
+fi
 # this needs to be done just once, and you will be prompted about it
 # direnv allow
 
