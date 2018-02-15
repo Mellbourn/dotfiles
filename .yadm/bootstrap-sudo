@@ -14,7 +14,9 @@ if [[ `uname` == 'Linux' ]]; then
   sudo -H pip install virtualenv virtualenvwrapper
   sudo -H pip3 install thefuck
 
-  cargo install ripgrep
+  if ! [ -f ~/.cargo/bin/rg ]; then
+    cargo install ripgrep
+  fi
 
   if  [[ $SHELL != *zsh ]];
   then
