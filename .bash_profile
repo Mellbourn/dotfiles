@@ -80,8 +80,12 @@ if [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 fi
 
-# this takes 0.166s
-eval "$(pyenv init -)"
+if type 'pyenv' 2>/dev/null | grep -q 'function'
+then
+  echy pyenv found
+  # this takes 0.166s
+  eval "$(pyenv init -)"
+fi
 
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
