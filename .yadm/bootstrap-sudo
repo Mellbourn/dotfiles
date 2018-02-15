@@ -7,7 +7,9 @@
 if [[ `uname` == 'Linux' ]]; then
   sudo apt-get update
   sudo apt-get upgrade
-  sudo apt-get install -y yadm zsh highlight build-essential virtualenv
+  sudo apt-get install -y yadm zsh highlight build-essential python-pip python3-pip
+  sudo -H pip install virtualenv virtualenvwrapper
+  sudo -H pip install --upgrade pip
 
   if  [[ $SHELL != *zsh ]];
   then
