@@ -28,6 +28,9 @@ fi
 
 ### environment variables
 export PATH=$PATH:~/bin
+if [ -d ~/.cargo/bin ]; then
+  export PATH=$PATH:~/.cargo/bin
+fi
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 # this is to compile vim
