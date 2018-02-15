@@ -18,6 +18,12 @@ if [[ `uname` == 'Linux' ]]; then
   then
     chsh -s $(which zsh)
   fi
+
+  if [[ ! -d ~/.zplug ]]; then
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+  fi
+  # this is needed to suppress zsh message "compinit: insecure directories"
+  sudo chmod -R 755 $ZPLUG_REPOS
   exit 0
 fi
 

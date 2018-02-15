@@ -73,7 +73,11 @@ source <(kubectl completion zsh)
 ###############################################################################
 # zplug - zsh plugin manager
 ###############################################################################
-export ZPLUG_HOME=/usr/local/opt/zplug
+if [[ -d /usr/local/opt/zplug ]]; then
+  export ZPLUG_HOME=/usr/local/opt/zplug
+elif [[ -d ~/.zplug ]]; then
+  export ZPLUG_HOME=~/.zplug
+fi
 source $ZPLUG_HOME/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
