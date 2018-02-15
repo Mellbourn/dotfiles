@@ -82,7 +82,7 @@ fi
 
 if type 'pyenv' 2>/dev/null | grep -q 'function'
 then
-  echy pyenv found
+  echo pyenv found
   # this takes 0.166s
   eval "$(pyenv init -)"
 fi
