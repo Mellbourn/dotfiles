@@ -117,6 +117,7 @@ echo $installThese | xargs brew install
 
 casks="
 a-better-finder-attributes
+abstract
 adobe-acrobat-reader
 alfred
 android-sdk
