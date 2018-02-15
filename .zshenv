@@ -3,3 +3,8 @@
 ###############################################################################
 # outputting stuff here is bad, it breaks "less help" et.al.
 #echo ".zshenv running"
+
+if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+    # Windows Subsystem for Linux
+    unsetopt BG_NICE
+fi
