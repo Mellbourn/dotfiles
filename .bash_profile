@@ -81,7 +81,6 @@ if [ -f /usr/libexec/java_home ]; then
 fi
 
 if [ -x "$(command -v pyenv)" ]; then
-  echo pyenv found
   # this takes 0.166s
   eval "$(pyenv init -)"
 fi
@@ -91,8 +90,14 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 
 # this takes 0.39s
 export WORKON_HOME=~/.py_virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -x "$(command -v python2)" ]; then
+  export VIRTUALENVWRAPPER_PYTHON=$(command -v python2)
+elif  [ -x "$(command -v python3)" ]; then
+  export VIRTUALENVWRAPPER_PYTHON=$(command -v python3)
+fi
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
