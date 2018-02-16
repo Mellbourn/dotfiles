@@ -54,8 +54,13 @@ if [[ `uname` == 'Linux' ]]; then
   # no more Linux related things to do
   exit 0
 fi
+###############################################################################
+# macOS
+###############################################################################
 
-/usr/local/opt/fzf/install
+if ! [ -x "$(command -v fzf)" ]; then
+  /usr/local/opt/fzf/install
+fi
 
 # stop startup sound
 sudo nvram SystemAudioVolume=%80
