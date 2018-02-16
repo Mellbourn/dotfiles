@@ -32,6 +32,11 @@ if [[ `uname` == 'Linux' ]]; then
     curl -L git.io/nodebrew | perl - setup
   fi
 
+  if ! [ -x "$(command -v fzf)" ]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+  fi
+
   if [[ ! -d ~/.zplug ]]; then
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
   fi
