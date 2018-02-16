@@ -23,6 +23,11 @@ if [[ `uname` == 'Linux' ]]; then
     chsh -s $(which zsh)
   fi
 
+  # haskell
+  if ! [ -x "$(command -v stack)" ]; then
+    wget -qO- https://get.haskellstack.org/ | sh
+  fi
+
   if ! [ -x "$(command -v nodebrew)" ]; then
     curl -L git.io/nodebrew | perl - setup
   fi

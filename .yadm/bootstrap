@@ -217,6 +217,10 @@ else
   fish -c "omf update"
 fi
 
+fi ############################################################################
+# configuration for both Mac and Linux
+###############################################################################
+
 if [ ! -d ~/.zsh-git-prompt ]; then
   git clone git@github.com:olivierverdier/zsh-git-prompt.git ~/.zsh-git-prompt
 fi
@@ -225,10 +229,6 @@ if [ ! -f ~/.zsh-git-prompt/src/.bin/gitstatus ]; then
   stack setup && stack build && stack install
   popd
 fi
-
-fi ############################################################################
-# configuration for both Mac and Linux
-###############################################################################
 
 zsh -ic "zplug clean --force; zplug update"
 
