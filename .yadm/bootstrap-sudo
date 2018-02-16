@@ -8,15 +8,14 @@ if [[ `uname` == 'Linux' ]]; then
   sudo add-apt-repository -y ppa:aacebedo/fasd
   sudo apt-get update
   sudo apt-get upgrade
-  sudo apt-get install -y yadm zsh highlight build-essential python-pip python3-pip fasd cargo
+  sudo apt-get install -y yadm zsh highlight build-essential python-pip python3-pip fasd cargo trash-cli
   sudo -H pip install --upgrade pip
   sudo -H pip3 install --upgrade pip
   sudo -H pip install virtualenv virtualenvwrapper
   sudo -H pip3 install thefuck
 
-  if ! [ -f ~/.cargo/bin/rg ]; then
-    cargo install ripgrep
-  fi
+  # do some cleanup
+  trash-empty 30
 
   if  [[ $SHELL != *zsh ]];
   then
@@ -28,24 +27,35 @@ if [[ `uname` == 'Linux' ]]; then
     wget -qO- https://get.haskellstack.org/ | sh
   fi
 
+  # install ripgrep, depends on haskell
+  if ! [ -f ~/.cargo/bin/rg ]; then
+    cargo install ripgrep
+  fi
+
+  # install nodebrew, node version manager
   if ! [ -x "$(command -v nodebrew)" ]; then
     curl -L git.io/nodebrew | perl - setup
   fi
 
+  # install fuzzy matcher (^R, **)
   if ! [ -x "$(command -v fzf)" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
   fi
 
+  # install zplug
   if [[ ! -d ~/.zplug ]]; then
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
   fi
+
   # this is needed to suppress zsh message "compinit: insecure directories"
   sudo chmod -R 755 $ZPLUG_REPOS
+
+  # no more Linux related things to do
   exit 0
-else
-  /usr/local/opt/fzf/install
 fi
+
+/usr/local/opt/fzf/install
 
 # stop startup sound
 sudo nvram SystemAudioVolume=%80
