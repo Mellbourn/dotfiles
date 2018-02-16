@@ -23,6 +23,10 @@ if [[ `uname` == 'Linux' ]]; then
     chsh -s $(which zsh)
   fi
 
+  if ! [ -x "$(command -v nodebrew)" ]; then
+    curl -L git.io/nodebrew | perl - setup
+  fi
+
   if [[ ! -d ~/.zplug ]]; then
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
   fi

@@ -15,10 +15,7 @@
 ###############################################################################
 # Linux (and Windows Subsystem for Linux)                                     #
 ###############################################################################
-if [[ `uname` == 'Linux' ]]; then
-  echo run bootstrap-sudo instead of this file
-  exit 0
-fi
+if [[ `uname` == 'Darwin' ]]; then
 
 ###############################################################################
 # Homebrew                                                                    #
@@ -242,22 +239,36 @@ fi
 
 tldr --update
 
-/usr/local/opt/nodebrew/bin/nodebrew setup_dirs
+fi ############################################################################
+# mac specific configurations
+###############################################################################
+
+if [ -x "$(command -v /usr/local/opt/nodebrew/bin/nodebrew)" ]; then
+  /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
+fi
 nodebrew selfupdate
 nodebrew install-binary latest
 nodebrew use latest
 
-# automate mac store installation
-#mas signin klas@mellbourn.net
+if [[ `uname` == 'Linux' ]]; then
+  exit 0
+fi
 
-# remove itunes from login items. This way it does not open when you plug in an iPhone
-osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2> /tmp/delete_itunes_helper_error.txt
+###############################################################################
+# mac specific configurations
+###############################################################################
 
 ###############################################################################
 # development
 ###############################################################################
 npm i -g npm node-gyp eslint
 xcode-select --install
+
+# automate mac store installation
+#mas signin klas@mellbourn.net
+
+# remove itunes from login items. This way it does not open when you plug in an iPhone
+osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2> /tmp/delete_itunes_helper_error.txt
 
 ###############################################################################
 # crontab                                                                     #
