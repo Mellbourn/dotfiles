@@ -226,6 +226,10 @@ if [ ! -f ~/.zsh-git-prompt/src/.bin/gitstatus ]; then
   popd
 fi
 
+fi ############################################################################
+# configuration for both Mac and Linux
+###############################################################################
+
 zsh -ic "zplug clean --force; zplug update"
 
 # set up alternate gitconfig file used to determine local settings
@@ -237,18 +241,17 @@ if [ "$CODE_DIR" ]; then
   touch $CODE_DIR/.metadata_never_index
 fi
 
-tldr --update
-
-fi ############################################################################
-# mac specific configurations
-###############################################################################
-
 if [ -x "$(command -v /usr/local/opt/nodebrew/bin/nodebrew)" ]; then
   /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
 fi
 nodebrew selfupdate
 nodebrew install-binary latest
 nodebrew use latest
+
+if ! [ -x "$(command -v tldr)" ]; then
+  yarn global add tldr
+fi
+tldr --update
 
 if [[ `uname` == 'Linux' ]]; then
   exit 0
