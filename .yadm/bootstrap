@@ -253,6 +253,9 @@ if ! [ -x "$(command -v tldr)" ]; then
 fi
 tldr --update
 
+# do some cleanup
+trash-empty 30
+
 if [[ `uname` == 'Linux' ]]; then
   exit 0
 fi ############################################################################
