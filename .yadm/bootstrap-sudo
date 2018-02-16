@@ -43,6 +43,8 @@ if [[ `uname` == 'Linux' ]]; then
   # this is needed to suppress zsh message "compinit: insecure directories"
   sudo chmod -R 755 $ZPLUG_REPOS
   exit 0
+else
+  /usr/local/opt/fzf/install
 fi
 
 # stop startup sound
