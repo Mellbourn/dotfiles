@@ -18,6 +18,8 @@ if [[ `uname` == 'Linux' ]]; then
 
   # do some cleanup
   trash-empty 30
+  # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
+  find /mnt/c/.Trash -mindepth 1 -mtime 30 -delete
 
   if  [[ $SHELL != *zsh ]];
   then
