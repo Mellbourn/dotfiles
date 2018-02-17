@@ -253,10 +253,12 @@ if ! [ -x "$(command -v tldr)" ]; then
 fi
 tldr --update
 
-# do some cleanup
-trash-empty 30
-
 if [[ `uname` == 'Linux' ]]; then
+  # do some cleanup
+  trash-empty 30
+  # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
+  find /mnt/c/.Trash -mindepth 1 -mtime +30 -delete
+
   exit 0
 fi ############################################################################
 # mac specific configurations
