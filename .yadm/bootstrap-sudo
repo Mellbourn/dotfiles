@@ -27,6 +27,7 @@ if [[ `uname` == 'Linux' ]]; then
     trash-cli \
     tree \
     tig \
+    aptitude \
 
   sudo -H pip install --upgrade pip
   sudo -H pip3 install --upgrade pip
