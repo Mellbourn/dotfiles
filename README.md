@@ -22,7 +22,7 @@ yadm decrypt
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
 
-Install Ubuntu from windows store, then continue the instructions under "Ubuntu"
+Install Ubuntu from windows store, then continue the instructions under the heading "Ubuntu"
 
 ### Ubuntu
 
