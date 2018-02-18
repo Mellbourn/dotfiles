@@ -32,7 +32,15 @@ if [ -d ~/.cargo/bin ]; then
   export PATH=$PATH:~/.cargo/bin
 fi
 export CLICOLOR=1
-export LSCOLORS=gxfxcxdxbxegedabagacad
+if [[ $OSTYPE == 'linux-gnu' ]]; then
+  # WSL
+  export LSCOLORS=gxfxcxdxbxegedabaggxgx
+  export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=36:ow=36'
+  alias ls='ls --color=auto'
+else
+  # macOS
+  export LSCOLORS=gxfxcxdxbxegedabagacad
+fi
 # this is to compile vim
 export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers
 export LC_ALL=en_US.UTF-8
