@@ -85,6 +85,7 @@ source $ZPLUG_HOME/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
+zplug "plugins/colored-man-pages", from:oh-my-zsh, defer:2
 
 if [[ `uname` == 'Linux' ]]; then
   zplug "zsh-users/zsh-syntax-highlighting", defer:2
