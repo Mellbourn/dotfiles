@@ -76,7 +76,7 @@ if [[ `uname` == 'Linux' ]]; then
   # this is needed to suppress zsh message "compinit: insecure directories"
   sudo chmod -R 755 $ZPLUG_REPOS
 
-  # when it is needed, this will take a LONG time
+  # when it is needed, this updates the OS, so it will take a LONG time
   sudo do-release-upgrade
 
   # no more Linux related things to do
