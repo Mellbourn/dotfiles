@@ -11,7 +11,7 @@ if [[ `uname` == 'Linux' ]]; then
   # add repo to get newest tmux
   sudo add-apt-repository -y ppa:pi-rho/dev
   sudo apt-get update
-  sudo apt-get upgrade
+  sudo apt-get dist-upgrade -y
   sudo apt-get install -y \
     zsh \
     build-essential \
