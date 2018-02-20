@@ -28,6 +28,7 @@ if [[ `uname` == 'Linux' ]]; then
     tree \
     tig \
     aptitude \
+    nethack-console \
 
   sudo -H pip install --upgrade pip
   sudo -H pip3 install --upgrade pip
