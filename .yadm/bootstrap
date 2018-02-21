@@ -31,6 +31,7 @@ brew install yarn --ignore-dependencies
 brew upgrade
 brew tap git-time-metric/gtm wix/brew
 brew tap caskroom/fonts # for font-fira-code
+brew tap caskroom/versions # for visual-studio-code-insiders
 
 # not all computers need logitech drivers, also, these need sudo
 # brew tap caskroom/drivers # for logitech-gaming-software
@@ -161,6 +162,7 @@ spotify
 tripmode
 virtualbox
 visual-studio-code
+visual-studio-code-insiders
 vlc
 webstorm
 "
