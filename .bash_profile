@@ -28,8 +28,19 @@ fi
 
 ### environment variables
 export PATH=$PATH:~/bin
+if [ -d ~/.cargo/bin ]; then
+  export PATH=$PATH:~/.cargo/bin
+fi
 export CLICOLOR=1
-export LSCOLORS=gxfxcxdxbxegedabagacad
+if [[ $OSTYPE == 'linux-gnu' ]]; then
+  # WSL
+  export LSCOLORS=gxfxcxdxbxegedabaggxgx
+  export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=36:ow=36'
+  alias ls='ls --color=auto'
+else
+  # macOS
+  export LSCOLORS=gxfxcxdxbxegedabagacad
+fi
 # this is to compile vim
 export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers
 export LC_ALL=en_US.UTF-8
@@ -37,7 +48,6 @@ export LANG=en_US.UTF-8
 export EDITOR=vi
 # make gpg prompt work, otherwise I get "Inappropriate ioctl for device"
 export GPG_TTY=$(tty)
-export GREP_OPTIONS='--color=auto'
 export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style molokai"
 export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quit-if-one-screen --no-init"
 export CHEATCOLORS=true
@@ -80,16 +90,24 @@ if [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 fi
 
-# this takes 0.166s
-eval "$(pyenv init -)"
+if [ -x "$(command -v pyenv)" ]; then
+  # this takes 0.166s
+  eval "$(pyenv init -)"
+fi
 
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # this takes 0.39s
 export WORKON_HOME=~/.py_virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -x "$(command -v python2)" ]; then
+  export VIRTUALENVWRAPPER_PYTHON=$(command -v python2)
+elif  [ -x "$(command -v python3)" ]; then
+  export VIRTUALENVWRAPPER_PYTHON=$(command -v python3)
+fi
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 

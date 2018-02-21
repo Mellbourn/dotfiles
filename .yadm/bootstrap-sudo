@@ -5,15 +5,90 @@
 # Linux (and Windows Subsystem for Linux)                                     #
 ###############################################################################
 if [[ `uname` == 'Linux' ]]; then
+  sudo add-apt-repository -y ppa:aacebedo/fasd
+  # add repo to get newest git
+  sudo add-apt-repository -y ppa:git-core/ppa
+  # add repo to get newest tmux
+  sudo add-apt-repository -y ppa:pi-rho/dev
   sudo apt-get update
-  sudo apt-get upgrade
-  sudo apt-get install yadm zsh highlight
+  sudo apt-get dist-upgrade -y
+  sudo apt-get install -y \
+    zsh \
+    build-essential \
+    git \
+    yadm \
+    python-pip \
+    python3-pip \
+    cargo \
+    tmux-next \
+    direnv \
+    highlight \
+    fasd \
+    trash-cli \
+    tree \
+    tig \
+    aptitude \
+    nethack-console \
+
+  sudo -H pip install --upgrade pip
+  sudo -H pip3 install --upgrade pip
+  sudo -H pip install virtualenv virtualenvwrapper
+  sudo -H pip3 install thefuck
+
+  # overwrite old tmux
+  sudo ln -sf /usr/bin/tmux-next /usr/bin/tmux
+
+  # do some cleanup
+  trash-empty 30
+  # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
+  ~/bin/trash-empty-wsl +30
 
   if  [[ $SHELL != *zsh ]];
   then
     chsh -s $(which zsh)
   fi
+
+  # haskell
+  if ! [ -x "$(command -v stack)" ]; then
+    wget -qO- https://get.haskellstack.org/ | sh
+  fi
+
+  # install ripgrep, depends on haskell
+  if ! [ -f ~/.cargo/bin/rg ]; then
+    cargo install ripgrep
+  fi
+
+  # install nodebrew, node version manager
+  if ! [ -x "$(command -v nodebrew)" ]; then
+    curl -L git.io/nodebrew | perl - setup
+  fi
+
+  # install fuzzy matcher (^R, **)
+  if ! [ -x "$(command -v fzf)" ]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+  fi
+
+  # install zplug
+  if [[ ! -d ~/.zplug ]]; then
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+  fi
+
+  # this is needed to suppress zsh message "compinit: insecure directories"
+  sudo chmod -R 755 $ZPLUG_REPOS
+
+  # when it is needed, this updates the OS, so it will take a LONG time
+  sudo do-release-upgrade
+
+  # no more Linux related things to do
   exit 0
+fi
+###############################################################################
+# macOS
+###############################################################################
+
+if ! [ -x "$(command -v fzf)" ]; then
+  /usr/local/opt/fzf/install
 fi
 
 # stop startup sound

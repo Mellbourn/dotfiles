@@ -42,7 +42,11 @@ zstyle ':completion:*' menu select
 
 # Color completion for some things.
 # converted LSCOLORS using https://geoff.greer.fm/lscolors/
-zstyle ':completion:*' list-colors 'di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+if [[ $OSTYPE == 'linux-gnu' ]]; then
+  zstyle ':completion:*' list-colors 'di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=36:ow=36'
+else
+  zstyle ':completion:*' list-colors 'di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+fi
 
 # formatting and messages
 # http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
@@ -68,17 +72,29 @@ zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 
 # command line completion for kubectl
-source <(kubectl completion zsh)
+if [ -x "$(command -v kubectl)" ]; then
+  source <(kubectl completion zsh)
+fi
 
 ###############################################################################
 # zplug - zsh plugin manager
 ###############################################################################
-export ZPLUG_HOME=/usr/local/opt/zplug
+if [[ -d /usr/local/opt/zplug ]]; then
+  export ZPLUG_HOME=/usr/local/opt/zplug
+elif [[ -d ~/.zplug ]]; then
+  export ZPLUG_HOME=~/.zplug
+fi
 source $ZPLUG_HOME/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
+zplug "plugins/colored-man-pages", from:oh-my-zsh, defer:2
+
+if [[ $OSTYPE == 'linux-gnu' ]]; then
+  zplug "zsh-users/zsh-syntax-highlighting", defer:2
+  zplug "zsh-users/zsh-autosuggestions", defer:2
+fi
 
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
@@ -103,7 +119,9 @@ fi
 [ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
 
 # set up direnv
-eval "$(direnv hook $SHELL)"
+if [ -x "$(command -v direnv)" ]; then
+  eval "$(direnv hook $SHELL)"
+fi
 # this needs to be done just once, and you will be prompted about it
 # direnv allow
 

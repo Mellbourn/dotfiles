@@ -12,13 +12,10 @@
 # https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789#.2d3cfjv7d
 ###############################################################################
 
+if [[ `uname` == 'Darwin' ]]; then
 ###############################################################################
-# Linux (and Windows Subsystem for Linux)                                     #
+# macOS specific installations
 ###############################################################################
-if [[ `uname` == 'Linux' ]]; then
-  echo run bootstrap-sudo instead of this file
-  exit 0
-fi
 
 ###############################################################################
 # Homebrew                                                                    #
@@ -34,6 +31,7 @@ brew install yarn --ignore-dependencies
 brew upgrade
 brew tap git-time-metric/gtm wix/brew
 brew tap caskroom/fonts # for font-fira-code
+brew tap caskroom/versions # for visual-studio-code-insiders
 
 # not all computers need logitech drivers, also, these need sudo
 # brew tap caskroom/drivers # for logitech-gaming-software
@@ -83,6 +81,7 @@ librsvg
 liquidprompt
 mas
 maven
+nano
 ncdu
 nethack
 nodebrew
@@ -163,6 +162,7 @@ spotify
 tripmode
 virtualbox
 visual-studio-code
+visual-studio-code-insiders
 vlc
 webstorm
 "
@@ -220,6 +220,10 @@ else
   fish -c "omf update"
 fi
 
+fi ############################################################################
+# configuration for both Mac and Linux
+###############################################################################
+
 if [ ! -d ~/.zsh-git-prompt ]; then
   git clone git@github.com:olivierverdier/zsh-git-prompt.git ~/.zsh-git-prompt
 fi
@@ -240,24 +244,40 @@ if [ "$CODE_DIR" ]; then
   touch $CODE_DIR/.metadata_never_index
 fi
 
-tldr --update
-
-/usr/local/opt/nodebrew/bin/nodebrew setup_dirs
+if [ -x "$(command -v /usr/local/opt/nodebrew/bin/nodebrew)" ]; then
+  /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
+fi
 nodebrew selfupdate
 nodebrew install-binary latest
 nodebrew use latest
 
-# automate mac store installation
-#mas signin klas@mellbourn.net
+if ! [ -x "$(command -v tldr)" ]; then
+  yarn global add tldr
+fi
+tldr --update
 
-# remove itunes from login items. This way it does not open when you plug in an iPhone
-osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2> /tmp/delete_itunes_helper_error.txt
+if [[ `uname` == 'Linux' ]]; then
+  # do some cleanup
+  trash-empty 30
+  # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
+  ~/bin/trash-empty-wsl +30
+
+  exit 0
+fi ############################################################################
+# mac specific configurations
+###############################################################################
 
 ###############################################################################
 # development
 ###############################################################################
 npm i -g npm node-gyp eslint
 xcode-select --install
+
+# automate mac store installation
+#mas signin klas@mellbourn.net
+
+# remove itunes from login items. This way it does not open when you plug in an iPhone
+osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2> /tmp/delete_itunes_helper_error.txt
 
 ###############################################################################
 # crontab                                                                     #
@@ -302,7 +322,7 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 ###############################################################################
 # Play feedback when volume is changed
 defaults write -g com.apple.sound.beep.feedback -int 1
-osascript -e 'set volume alert volume 100'
+osascript -e 'set volume alert volume 25'
 
 ###############################################################################
 # Miscellaneous                                                               #

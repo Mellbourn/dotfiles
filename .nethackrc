@@ -28,6 +28,9 @@ OPTIONS=color
 #OPTIONS=font_status:monaco,font_size_status:9
 #OPTIONS=font_text:geneva,font_size_text:9
 
+# Klas own additions
+OPTIONS=fullscreen
+
 # Don't make dark corridors look like lit corridors
 OPTIONS=!lit_corridor
 
@@ -111,10 +114,10 @@ OPTIONS=name:Callicles
 OPTIONS=autopickup,pickup_types:$*?/=!+"
 
 # Automatically fill the quiver
-#OPTIONS=autoquiver
+OPTIONS=autoquiver
 
-# Don't use fixed inventory letters
-OPTIONS=!fixinv,perm_invent,sortpack
+# use fixed inventory letters
+OPTIONS=fixinv,perm_invent,sortpack
 
 # What you want to call slime molds
 #OPTIONS=fruit:grape
@@ -126,7 +129,7 @@ OPTIONS=!fixinv,perm_invent,sortpack
 OPTIONS=pickup_burden:B
 
 # Put weapon in secondary slot when wielding another
-#OPTIONS=pushweapon
+OPTIONS=pushweapon
 
 
 ### Pets ###

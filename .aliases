@@ -3,4 +3,4 @@ alias ga='git number add'
 alias gn='git number --column' # note that command line completion does not work well for this alias
 alias l='ls -F '
 alias more=less
-alias rm=trash # unfortunately not identical in behavior, but much safer
+alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"'; false"
