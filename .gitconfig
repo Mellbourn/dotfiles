@@ -12,6 +12,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -F -X -E
+	editor = code --wait
 [mergetool]
 	keepbackup = false
 	prompt = false
