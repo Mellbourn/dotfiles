@@ -6,6 +6,8 @@
     path = .gitconfig.local
 [includeIf "gitdir:~/code/klarna/ui/"]
     path = .gitconfig.dir.free
+[includeIf "gitdir:~/code/klarna/bubble-ui/"]
+    path = .gitconfig.dir.free
 # redundant, but don't forget this repo
 [includeIf "gitdir:~/.yadm/"]
     path = .gitconfig.dir.free
