@@ -1,2 +1,4 @@
 [user]
     email = klas.mellbourn@klarna.com
+[core]
+	editor = code --wait
