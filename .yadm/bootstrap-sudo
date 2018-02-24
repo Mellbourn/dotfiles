@@ -28,6 +28,7 @@ if [[ `uname` == 'Linux' ]]; then
     tree \
     tig \
     aptitude \
+    tmpreaper \
     nethack-console \
 
   sudo -H pip install --upgrade pip
@@ -42,6 +43,7 @@ if [[ `uname` == 'Linux' ]]; then
   trash-empty 30
   # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
   ~/bin/trash-empty-wsl +30
+  sudo tmpreaper --all --showdeleted 30d /tmp
 
   if  [[ $SHELL != *zsh ]];
   then
