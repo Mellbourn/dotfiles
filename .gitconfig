@@ -1,16 +1,16 @@
 [user]
 	name = Klas Mellbourn
 [include]
-    path = .gitconfig.dir.free
+    path = .gitconfig.user.foss
 [includeIf "gitdir:~/code/klarna/"]
-    path = .gitconfig.local
+    path = .gitconfig.user
 [includeIf "gitdir:~/code/klarna/ui/"]
-    path = .gitconfig.dir.free
+    path = .gitconfig.user.foss
 [includeIf "gitdir:~/code/klarna/bubble-ui/"]
-    path = .gitconfig.dir.free
+    path = .gitconfig.user.foss
 # redundant, but don't forget this repo
 [includeIf "gitdir:~/.yadm/"]
-    path = .gitconfig.dir.free
+    path = .gitconfig.user.foss
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -F -X -E
