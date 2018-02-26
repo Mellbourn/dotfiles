@@ -37,6 +37,7 @@ export ANDROID_HOME=/usr/local/share/android-sdk
 ###############################################################################
 # completion
 ###############################################################################
+setopt nolistbeep
 # Do menu-driven completion.
 zstyle ':completion:*' menu select
 
