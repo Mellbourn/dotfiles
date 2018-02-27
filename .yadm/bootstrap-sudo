@@ -104,9 +104,8 @@ sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.a
 ###############################################################################
 sudo gem install cocoapods
 sudo gem install bundler
-# for chrome debugging
-gem install ruby-debug-ide -v 0.6.0
-gem install debase -v 0.2.2.beta10
+sudo gem update --system
+sudo gem update
 
 ###############################################################################
 # bash4
