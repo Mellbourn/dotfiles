@@ -32,6 +32,8 @@ if [[ `uname` == 'Darwin' ]]; then
   brew tap git-time-metric/gtm wix/brew
   brew tap caskroom/fonts # for font-fira-code
   brew tap caskroom/versions # for visual-studio-code-insiders
+  # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
+  brew tap homebrew/command-not-found
 
   # not all computers need logitech drivers, also, these need sudo
   # brew tap caskroom/drivers # for logitech-gaming-software
