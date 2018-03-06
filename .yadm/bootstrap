@@ -188,11 +188,11 @@ if ! hash rvm 2>/dev/null; then
   rvm install ruby-2.4.1
 fi
 
-pip2 install --upgrade pip setuptools
-pip2 install virtualenvwrapper
-pip2 install autopep8 pylint rope
+pip install --upgrade pip setuptools
+pip install virtualenvwrapper
+pip install autopep8 pylint rope
 # install tmux session manager
-pip2 install tmuxp -U
+pip install tmuxp -U
 
 # finish PIA installation
 # if you already have a manual installation, you will have to remove it with
