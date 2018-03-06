@@ -13,39 +13,39 @@
 ###############################################################################
 
 if [[ `uname` == 'Darwin' ]]; then
-###############################################################################
-# macOS specific installations
-###############################################################################
+  ###############################################################################
+  # macOS specific installations
+  ###############################################################################
 
-###############################################################################
-# Homebrew                                                                    #
-###############################################################################
+  ###############################################################################
+  # Homebrew                                                                    #
+  ###############################################################################
 
-if ! hash brew 2>/dev/null; then
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+  if ! hash brew 2>/dev/null; then
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
 
-brew update
-brew install vim --without-ruby --with-override-system-vi
-brew install yarn --ignore-dependencies
-brew upgrade
-brew tap git-time-metric/gtm wix/brew
-brew tap caskroom/fonts # for font-fira-code
-brew tap caskroom/versions # for visual-studio-code-insiders
+  brew update
+  brew install vim --without-ruby --with-override-system-vi
+  brew install yarn --ignore-dependencies
+  brew upgrade
+  brew tap git-time-metric/gtm wix/brew
+  brew tap caskroom/fonts # for font-fira-code
+  brew tap caskroom/versions # for visual-studio-code-insiders
 
-# not all computers need logitech drivers, also, these need sudo
-# brew tap caskroom/drivers # for logitech-gaming-software
-# brew cask install caskroom/drivers/logitech-gaming-software
-# brew cask install caskroom/drivers/logitech-options
+  # not all computers need logitech drivers, also, these need sudo
+  # brew tap caskroom/drivers # for logitech-gaming-software
+  # brew cask install caskroom/drivers/logitech-gaming-software
+  # brew cask install caskroom/drivers/logitech-options
 
-# remove brews here that were previously installed, to sync between machines
-# TODO: eventually remove these removals, when all machines have synced
-brew uninstall --force ack
-brew cask uninstall --force screenhero
-brew cask uninstall --force flycut
+  # remove brews here that were previously installed, to sync between machines
+  # TODO: eventually remove these removals, when all machines have synced
+  brew uninstall --force ack
+  brew cask uninstall --force screenhero
+  brew cask uninstall --force flycut
 
-# this must be in alphabetical order!
-apps="
+  # this must be in alphabetical order!
+  apps="
 ansible
 awscli
 bash
@@ -108,13 +108,13 @@ zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
 "
-# note: yarn will install node, which you might want to remove, since it is handled by nvm
-alreadyInstalled=`brew ls`
-installTheseLines=`comm -23 <(echo "$apps") <(echo "$alreadyInstalled")`
-installThese=${installTheseLines//$'\n'/ }
-echo $installThese | xargs brew install
+  # note: yarn will install node, which you might want to remove, since it is handled by nvm
+  alreadyInstalled=`brew ls`
+  installTheseLines=`comm -23 <(echo "$apps") <(echo "$alreadyInstalled")`
+  installThese=${installTheseLines//$'\n'/ }
+  echo $installThese | xargs brew install
 
-casks="
+  casks="
 a-better-finder-attributes
 abstract
 adobe-acrobat-reader
@@ -167,58 +167,58 @@ vlc
 webstorm
 "
 
-alreadyInstalled=`brew cask ls`
-installTheseLines=`comm -23 <(echo "$casks") <(echo "$alreadyInstalled")`
-installThese=${installTheseLines//$'\n'/ }
-echo $installThese | xargs brew cask install
+  alreadyInstalled=`brew cask ls`
+  installTheseLines=`comm -23 <(echo "$casks") <(echo "$alreadyInstalled")`
+  installThese=${installTheseLines//$'\n'/ }
+  echo $installThese | xargs brew cask install
 
-brew link --force gettext
+  brew link --force gettext
 
-# set up wemux user name
-sed -i -- "s/host_list=(brew)/host_list=($USER)/" /usr/local/etc/wemux.conf
-sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' /usr/local/etc/wemux.conf
+  # set up wemux user name
+  sed -i -- "s/host_list=(brew)/host_list=($USER)/" /usr/local/etc/wemux.conf
+  sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' /usr/local/etc/wemux.conf
 
-# ruby version manager
-if ! hash rvm 2>/dev/null; then
-  # trust download
-  command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-  # install rvm and latest ruby
-  curl -sSL https://get.rvm.io | bash -s stable --ruby
-  # interesting ruby version
-  rvm install ruby-2.4.1
-fi
+  # ruby version manager
+  if ! hash rvm 2>/dev/null; then
+    # trust download
+    command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+    # install rvm and latest ruby
+    curl -sSL https://get.rvm.io | bash -s stable --ruby
+    # interesting ruby version
+    rvm install ruby-2.4.1
+  fi
 
-pip install --upgrade pip setuptools
-pip install virtualenvwrapper
-pip install autopep8 pylint rope
-# install tmux session manager
-pip install tmuxp -U
+  pip install --upgrade pip setuptools
+  pip install virtualenvwrapper
+  pip install autopep8 pylint rope
+  # install tmux session manager
+  pip install tmuxp -U
 
-# finish PIA installation
-# if you already have a manual installation, you will have to remove it with
-# rm -rf /Applications/Private\ Internet\ Access.app
-if [ ! -d /Applications/Private\ Internet\ Access.app ]; then
-  /usr/local/Caskroom/private-internet-access/v70/Private\ Internet\ Access\ Installer.app/Contents/MacOS/runner.sh
-fi
+  # finish PIA installation
+  # if you already have a manual installation, you will have to remove it with
+  # rm -rf /Applications/Private\ Internet\ Access.app
+  if [ ! -d /Applications/Private\ Internet\ Access.app ]; then
+    /usr/local/Caskroom/private-internet-access/v70/Private\ Internet\ Access\ Installer.app/Contents/MacOS/runner.sh
+  fi
 
-# this is needed to suppress zsh message "compinit: insecure directories""
-chmod g-w /usr/local/share
-# this seems healthy to do every now and then to make sure zsh completion works
-trash -a ~/.zcompdump* ~/.zcompcache 2> /tmp/zcomp_delete_error.txt
+  # this is needed to suppress zsh message "compinit: insecure directories""
+  chmod g-w /usr/local/share
+  # this seems healthy to do every now and then to make sure zsh completion works
+  trash -a ~/.zcompdump* ~/.zcompcache 2> /tmp/zcomp_delete_error.txt
 
-# install fisherman fish plugin manager
-if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
-  curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
-fi
-fish -c "thefuck --alias > ~/.config/fish/functions/fuck.fish"
-fish -c "fisher"
-if [ ! -d ~/.local/share/omf ]; then
-  curl -L https://get.oh-my.fish > "${TMPDIR}install"
-  chmod a+x "${TMPDIR}install"
-  fish -c "${TMPDIR}install --path=~/.local/share/omf --config=~/.config/omf"
-else
-  fish -c "omf update"
-fi
+  # install fisherman fish plugin manager
+  if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
+    curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
+  fi
+  fish -c "thefuck --alias > ~/.config/fish/functions/fuck.fish"
+  fish -c "fisher"
+  if [ ! -d ~/.local/share/omf ]; then
+    curl -L https://get.oh-my.fish > "${TMPDIR}install"
+    chmod a+x "${TMPDIR}install"
+    fish -c "${TMPDIR}install --path=~/.local/share/omf --config=~/.config/omf"
+  else
+    fish -c "omf update"
+  fi
 
 fi ############################################################################
 # configuration for both Mac and Linux
