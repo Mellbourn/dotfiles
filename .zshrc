@@ -91,6 +91,8 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
 zplug "plugins/colored-man-pages", from:oh-my-zsh, defer:2
+# command-not-found works for both Ubuntu and Mac
+zplug "plugins/command-not-found", from:oh-my-zsh, defer:2
 
 if [[ $OSTYPE == 'linux-gnu' ]]; then
   zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
