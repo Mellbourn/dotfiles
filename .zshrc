@@ -185,7 +185,7 @@ function go() {
 }
 
 function rg() {
-  command rg --pretty --smart-case $* | less
+  command rg --pretty --smart-case --no-line-number $* | less
 }
 
 # highlighter
