@@ -199,6 +199,13 @@ c() {
   dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
 }
 
+# Use Ctrl-x,Ctrl-l to get the output of the last command
+insert-last-command-output() {
+LBUFFER+="$(eval $history[$((HISTCMD-1))])"
+}
+zle -N insert-last-command-output
+bindkey "^X^L" insert-last-command-output
+
 ###############################################################################
 # keybindings
 ###############################################################################
