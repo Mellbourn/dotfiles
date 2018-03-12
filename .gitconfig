@@ -8,8 +8,6 @@
     path = .gitconfig.user.foss
 [includeIf "gitdir:~/code/klarna/bubble-ui/"]
     path = .gitconfig.user.foss
-[include]
-    path = .gitconfig.editor
 # redundant, but don't forget this repo
 [includeIf "gitdir:~/.yadm/"]
     path = .gitconfig.user.foss
