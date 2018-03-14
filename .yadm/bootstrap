@@ -167,6 +167,7 @@ visual-studio-code
 visual-studio-code-insiders
 vlc
 webstorm
+zeplin
 "
 
   alreadyInstalled=`brew cask ls`
