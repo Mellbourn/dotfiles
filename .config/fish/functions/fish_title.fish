@@ -1,1 +1,0 @@
-/Users/klas.mellbourn/.config/fisherman/aquaman/fish_title.fish

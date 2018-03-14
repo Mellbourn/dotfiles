@@ -42,7 +42,7 @@ if [[ `uname` == 'Darwin' ]]; then
 
   # remove brews here that were previously installed, to sync between machines
   # TODO: eventually remove these removals, when all machines have synced
-  brew uninstall --force ack
+  brew uninstall --force ack fish
   brew cask uninstall --force screenhero
   brew cask uninstall --force flycut
 
@@ -60,7 +60,6 @@ docker-completion
 docker-compose-completion
 docker-machine-completion
 fasd
-fish
 flow
 fzf
 gettext
@@ -208,20 +207,6 @@ zeplin
   chmod g-w /usr/local/share
   # this seems healthy to do every now and then to make sure zsh completion works
   trash -a ~/.zcompdump* ~/.zcompcache 2> /tmp/zcomp_delete_error.txt
-
-  # install fisherman fish plugin manager
-  if [ ! -f ~/.config/fish/functions/fisher.fish ]; then
-    curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
-  fi
-  fish -c "thefuck --alias > ~/.config/fish/functions/fuck.fish"
-  fish -c "fisher"
-  if [ ! -d ~/.local/share/omf ]; then
-    curl -L https://get.oh-my.fish > "${TMPDIR}install"
-    chmod a+x "${TMPDIR}install"
-    fish -c "${TMPDIR}install --path=~/.local/share/omf --config=~/.config/omf"
-  else
-    fish -c "omf update"
-  fi
 
 fi ############################################################################
 # configuration for both Mac and Linux
