@@ -207,6 +207,11 @@ zle -N insert-last-command-output
 bindkey "^X^L" insert-last-command-output
 
 ###############################################################################
+# Suffix aliases - http://zshwiki.org/home/examples/aliassuffix
+###############################################################################
+alias -s zip="zipinfo"
+
+###############################################################################
 # keybindings
 ###############################################################################
 bindkey "^P" history-beginning-search-backward
