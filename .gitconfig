@@ -61,6 +61,8 @@
 	pretty = %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%<(12,trunc)%cd %C(auto)%d%Creset %s
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
