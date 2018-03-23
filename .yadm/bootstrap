@@ -262,8 +262,10 @@ fi ############################################################################
 ###############################################################################
 # development
 ###############################################################################
-npm i -g node-gyp eslint
+npm rm -g eslint
+npm i -g node-gyp
 npm update -g
+yarn global add eslint
 xcode-select --install
 
 # automate mac store installation
