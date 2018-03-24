@@ -25,6 +25,7 @@ if [[ `uname` == 'Darwin' ]]; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 
+  brew cleanup
   brew update
   brew install vim --without-ruby --with-override-system-vi
   brew install yarn --ignore-dependencies
