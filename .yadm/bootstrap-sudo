@@ -31,6 +31,8 @@ if [[ `uname` == 'Linux' ]]; then
     tmpreaper \
     nethack-console \
 
+  sudo apt autoremove --yes
+
   sudo -H pip install --upgrade pip
   sudo -H pip3 install --upgrade pip
   sudo -H pip install virtualenv virtualenvwrapper
