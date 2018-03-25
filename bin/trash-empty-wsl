@@ -9,5 +9,5 @@ fi
 age=$1
 find /mnt/c/.Trash/*/files -mindepth 1 -mtime $age | while read trashFile; do
   infoFile=${trashFile/files/info}
-  rm $trashFile && rm ${infoFile}.trashinfo
+  rm -r $trashFile && rm ${infoFile}.trashinfo
 done
