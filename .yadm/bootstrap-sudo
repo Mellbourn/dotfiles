@@ -41,6 +41,12 @@ if [[ `uname` == 'Linux' ]]; then
   # overwrite old tmux
   sudo ln -sf /usr/bin/tmux-next /usr/bin/tmux
 
+  if ! [ -x "$(command -v git-lfs)" ]; then
+    curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+  fi
+  sudo apt-get install git-lfs
+  git lfs install --skip-smudge
+
   # do some cleanup
   trash-empty 30
   # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
