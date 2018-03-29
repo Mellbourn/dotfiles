@@ -26,6 +26,7 @@ if [[ `uname` == 'Darwin' ]]; then
   fi
 
   brew cleanup
+  brew cask cleanup
   brew update
   brew install vim --without-ruby --with-override-system-vi
   brew install yarn --ignore-dependencies
@@ -44,8 +45,11 @@ if [[ `uname` == 'Darwin' ]]; then
   # remove brews here that were previously installed, to sync between machines
   # TODO: eventually remove these removals, when all machines have synced
   brew uninstall --force ack fish
-  brew cask uninstall --force screenhero
+  brew cask uninstall --force abstract
   brew cask uninstall --force flycut
+  brew cask uninstall --force intellij-idea
+  brew cask uninstall --force screenhero
+  brew cask uninstall --force webstorm
 
   # this must be in alphabetical order!
   apps="
@@ -119,7 +123,6 @@ zsh-syntax-highlighting
 
   casks="
 a-better-finder-attributes
-abstract
 adobe-acrobat-reader
 alfred
 android-sdk
@@ -140,7 +143,6 @@ google-backup-and-sync
 google-chrome
 imageoptim
 intel-power-gadget
-intellij-idea
 iterm2
 java
 jdiskreport
@@ -168,7 +170,6 @@ virtualbox
 visual-studio-code
 visual-studio-code-insiders
 vlc
-webstorm
 zeplin
 "
 
