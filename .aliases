@@ -4,5 +4,5 @@ alias git='noglob git' # git rarely need globs, but uses weird characters, like 
 alias gn='git number --column' # note that command line completion does not work well for this alias
 alias l='ls -F '
 alias more=less
-alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"'; false"
+alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
 alias zmv='noglob zmv'
