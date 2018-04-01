@@ -3,6 +3,12 @@
 # zsh completions for 'code'
 local arguments
 
+_locale() {
+  local -a locales
+  locales=($(locale -a | sed -e 's/\..*$//'))
+  _describe 'locale' locales
+}
+
 arguments=(
     {-d,--diff}'[Compare two files with each other.]:file to compare:_files:file to compare with:_files'
     {-a,--add}'[Add folder(s) to the last active window.]:folder:_directories'
@@ -10,7 +16,7 @@ arguments=(
     {-n,--new-window}'[Force to open a new window.]'
     {-r,--reuse-window}'[Force to open a file or folder in the last active window.]'
     {-w,--wait}'[Wait for the files to be closed before]'
-    '--locale[The locale to use (e.g. en-US or zh-TW).]:locale'
+    '--locale[The locale to use (e.g. en-US or zh-TW).]:locale:_locale'
     '--user-data-dir[Specifies the directory that user data is in.]:directory:_directories'
     {-v,--version}'[Print version.]'
     {-h,--help}'[Print usage.]'
