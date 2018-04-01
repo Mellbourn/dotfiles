@@ -5,10 +5,10 @@
 #echo ".zshrc running"
 #START=$(gdate +%s.%N)
 #rm ~/.zcompdump ~/.zcompcache
-fpath=(~/.zsh-personal-completions $fpath)
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 autoload -U zmv
+export PATH="$PATH:~/.zsh-personal-completions"
 
 ###############################################################################
 # remember your ancestor
@@ -76,6 +76,8 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 if [ -x "$(command -v kubectl)" ]; then
   source <(kubectl completion zsh)
 fi
+
+compdef _code code
 
 ###############################################################################
 # zplug - zsh plugin manager

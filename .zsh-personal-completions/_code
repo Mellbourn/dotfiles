@@ -1,5 +1,38 @@
-_code () {
-	local arguments
-	arguments=({-d,--diff}'[<file>           Compare two files with each other.]' {-a,--add}'[Add folder(s) to the last active window.]' {-g,--goto}'[Open a file at the path on the specified]' {-n,--new-window}'[Force to open a new window.]' {-r,--reuse-window}'[Force to open a file or folder in the last]' {-w,--wait}'[Wait for the files to be closed before]' '--locale[The locale to use (e.g. en-US or zh-TW).]' '--user-data-dir[Specifies the directory that user data is]' {-v,--version}'[Print version.]' {-h,--help}'[Print usage.]' '--extensions-dir[Set the root path for extensions.]' '--list-extensions[List the installed extensions.]' '--show-versions[Show versions of installed extensions, when using --list-extension.]' '--install-extension[| <extension-vsix-path>)]' '--uninstall-extension[| <extension-vsix-path>)]' '--enable-proposed-api[Enables proposed api features for an extension.]' '--verbose[Print verbose output (implies --wait).]' '--log[Log level to use. Default is info. Allowed values]' {-s,--status}'[Print process usage and diagnostics information.]' {-p,--performance}'[Start with the Developer: Startup Performance]' '--prof-startup[Run CPU profiler during startup]' '--disable-extensions[Disable all installed extensions.]' '--inspect-extensions[Allow debugging and profiling of extensions. Check]' '--inspect-brk-extensions[debugging and profiling of extensions with the]' '--disable-gpu[Disable GPU hardware acceleration.]' '--upload-logs[Uploads logs from current session to a secure]' '--max-memory[Max memory size for a window (in Mbytes).]' '*:filename:_files') 
-	_arguments -s $arguments
-}
+#compdef code
+
+# zsh completions for 'code'
+# automatically generated with http://github.com/RobSis/zsh-completion-generator
+local arguments
+
+arguments=(
+    {-d,--diff}'[<file>           Compare two files with each other.]'
+    {-a,--add}'[Add folder(s) to the last active window.]'
+    {-g,--goto}'[Open a file at the path on the specified]'
+    {-n,--new-window}'[Force to open a new window.]'
+    {-r,--reuse-window}'[Force to open a file or folder in the last]'
+    {-w,--wait}'[Wait for the files to be closed before]'
+    '--locale[The locale to use (e.g. en-US or zh-TW).]'
+    '--user-data-dir[Specifies the directory that user data is]'
+    {-v,--version}'[Print version.]'
+    {-h,--help}'[Print usage.]'
+    '--extensions-dir[Set the root path for extensions.]'
+    '--list-extensions[List the installed extensions.]'
+    '--show-versions[Show versions of installed extensions, when using --list-extension.]'
+    '--install-extension[| <extension-vsix-path>)]'
+    '--uninstall-extension[| <extension-vsix-path>)]'
+    '--enable-proposed-api[Enables proposed api features for an extension.]'
+    '--verbose[Print verbose output (implies --wait).]'
+    '--log[Log level to use. Default is info. Allowed values]'
+    {-s,--status}'[Print process usage and diagnostics information.]'
+    {-p,--performance}'[Start with the Developer: Startup Performance]'
+    '--prof-startup[Run CPU profiler during startup]'
+    '--disable-extensions[Disable all installed extensions.]'
+    '--inspect-extensions[Allow debugging and profiling of extensions. Check]'
+    '--inspect-brk-extensions[debugging and profiling of extensions with the]'
+    '--disable-gpu[Disable GPU hardware acceleration.]'
+    '--upload-logs[Uploads logs from current session to a secure]'
+    '--max-memory[Max memory size for a window (in Mbytes).]'
+    '*:filename:_files'
+)
+
+_arguments -s $arguments
