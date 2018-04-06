@@ -4,10 +4,10 @@ local arguments
 
 arguments=(
   '(-d --diff)'{-d,--diff}'[compare two files with each other]:file to compare:_files:file to compare with:_files'
-  '(-a --add)'\*{-a,--add}'[add specified folder(s) to the last active window]:folder:_directories'
-  '(-g --goto)'{-g,--goto}'[open a file at the path on the specified line and character position]'
+  '(-a --add)'\*{-a,--add}'[add specified directory (or directories) to the last active window.]:directory:_directories'
+  '(-g --goto)'{-g,--goto}'[open a file at the path on the specified line and character position]:file\:line[\:character]:_files'
   '(-n --new-window -r --reuse-window)'{-n,--new-window}'[open a new window]'
-  '(-n --new-window -r --reuse-window)'{-r,--reuse-window}'[open a file or folder in the last active window]'
+  '(-n --new-window -r --reuse-window)'{-r,--reuse-window}'[open a file or directory in the last active window]'
   '(-w --wait)'{-w,--wait}'[wait for the files to be closed before returning]'
   '--locale[specify the locale to use]:locale (e.g. en-US or zh-TW):(de en en-US es fr it ja ko ru zh-CN zh-TW bg hu pt-br tr)'
   '--user-data-dir[specify the directory that user data is in]:directory:_directories'
