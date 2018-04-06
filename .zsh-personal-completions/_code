@@ -28,7 +28,7 @@ arguments=(
   '--inspect-extensions[allow debugging and profiling of extensions]'
   '--inspect-brk-extensions[allow debugging and profiling of extensions with the extension host being paused after start]'
   '--disable-gpu[disable GPU hardware acceleration]'
-  '--upload-logs[uploads logs from current session to a secure endpoint]'
+  '--upload-logs[uploads logs from current session to a secure endpoint]:confirm:(iConfirmLogsUpload)'
   '--max-memory[specify max memory size for a window]:size (Mbytes):'
   '*:filename:_files'
 )
