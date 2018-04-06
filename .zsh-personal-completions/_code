@@ -26,7 +26,7 @@ arguments=(
   '--uninstall-extension[uninstalls an extension]:id or path:_files -g "*.vsix"'
   '--enable-proposed-api[enables proposed api features for an extension]:extension id:'
   '--verbose[print verbose output (implies --wait)]'
-  '--log[log level to use. Default is info]:level:(critical error warn info debug trace off)'
+  '--log[log level to use]:level (default is info):(critical error warn info debug trace off)'
   {-s,--status}'[print process usage and diagnostics information]'
   {-p,--performance}'[start with the "Developer: Startup Performance" command enabled]'
   '--prof-startup[run CPU profiler during startup]'
