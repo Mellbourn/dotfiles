@@ -132,7 +132,7 @@ if ! grep -q "/usr/local/bin/zsh" "/etc/shells"; then
 fi
 chsh -s /usr/local/bin/zsh $SUDO_USER
 
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "This laptop belongs to Klas Mellbourn, klas@mellbourn.net, +46 708 80 00 00. Reward offered without questions for return of this MacBook if it is lost."
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "This laptop belongs to Klas Mellbourn.\ne-mail: klas@mellbourn.net phone: +46 708 80 00 00\nReward offered for return of this MacBook. No questions asked."
 ###############################################################################
 # Update App Store apps
 ###############################################################################
