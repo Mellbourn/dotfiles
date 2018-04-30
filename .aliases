@@ -1,3 +1,4 @@
+alias cr='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
 alias f=fuck
 alias ga='git number add'
 alias git='noglob git' # git rarely need globs, but uses weird characters, like ^, so this avoids need of quoting
