@@ -64,6 +64,7 @@ direnv
 docker-completion
 docker-compose-completion
 docker-machine-completion
+duti
 fasd
 flow
 fzf
@@ -301,6 +302,8 @@ addtocrontab "41 16 * * *" "ls -tr \$HOME/Downloads/* 2>/dev/null | /usr/local/b
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
+# open text files in Visual Studio Code
+duti -s com.microsoft.VSCode public.plain-text all
 defaults write com.apple.finder AppleShowAllFiles YES
 # Show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
