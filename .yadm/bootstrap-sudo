@@ -102,6 +102,8 @@ if ! [ -x "$(command -v fzf)" ]; then
   /usr/local/opt/fzf/install
 fi
 
+sudo git lfs install --system
+
 # stop startup sound
 sudo nvram SystemAudioVolume=%80
 sudo xcodebuild -license accept
