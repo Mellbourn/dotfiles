@@ -286,10 +286,8 @@ xcode-select --install
 # remove itunes from login items. This way it does not open when you plug in an iPhone
 osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2> /tmp/delete_itunes_helper_error.txt
 
-export SUPPRESS_ZPLUG_LOAD=1
-# this generates "suspended (tty output)" when "zplug update" is at the end
-zsh -ic "echo $SUPPRESS_ZPLUG_LOAD; zplug clean --force; zplug update"
-unset SUPPRESS_ZPLUG_LOAD
+# zplug update must be executed late in the script, otherwise it interrupts with "suspened (tty output)"
+zsh -ic "zplug clean --force; zplug update"
 
 ###############################################################################
 # crontab                                                                     #
