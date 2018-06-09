@@ -108,8 +108,12 @@ if ! zplug check; then
     zplug install
 fi
 
-# source plugins and add commands to the PATH
-zplug load
+# this check is to avoid the weird "suspended (tty output)" problems of running "zsh -ic" (as in bootstrap)
+if [ ! -v SUPPRESS_ZPLUG_LOAD ]; then
+  echo "running zplug load - $SUPPRESS_ZPLUG_LOAD -"
+  # source plugins and add commands to the PATH
+  zplug load
+fi
 
 # yarn must be run after node is defined
 export PATH="$PATH:$(yarn global bin)"
