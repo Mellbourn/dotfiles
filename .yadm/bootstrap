@@ -49,6 +49,7 @@ if [[ `uname` == 'Darwin' ]]; then
   brew cask uninstall --force flycut
   brew cask uninstall --force intellij-idea
   brew cask uninstall --force screenhero
+  brew cask uninstall --force visual-studio-code-insiders
   brew cask uninstall --force webstorm
 
   # this must be in alphabetical order!
@@ -173,7 +174,6 @@ spotify
 tripmode
 virtualbox
 visual-studio-code
-visual-studio-code-insiders
 vlc
 zeplin
 "
