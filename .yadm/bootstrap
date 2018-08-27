@@ -26,7 +26,6 @@ if [[ `uname` == 'Darwin' ]]; then
   fi
 
   brew cleanup
-  brew cask cleanup
   brew update
   brew install vim --without-ruby --with-override-system-vi
   brew install yarn --ignore-dependencies
