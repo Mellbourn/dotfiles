@@ -45,6 +45,7 @@ if [[ `uname` == 'Darwin' ]]; then
   # TODO: eventually remove these removals, when all machines have synced
   brew uninstall --force ack fish
   brew cask uninstall --force abstract
+  brew cask uninstall --force copyq
   brew cask uninstall --force flycut
   brew cask uninstall --force intellij-idea
   brew cask uninstall --force screenhero
@@ -135,7 +136,6 @@ android-studio
 atom
 bartender
 charles
-copyq
 dash
 day-o
 docker
