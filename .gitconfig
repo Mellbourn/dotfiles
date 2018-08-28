@@ -19,9 +19,9 @@
 	prompt = false
     trustExitCode = true
 [difftool]
-    prompt = false
+    prompt = true
 [diff]
-    tool = kdiff3
+    tool = vscode
 [merge]
     tool = kdiff3
 [alias]
