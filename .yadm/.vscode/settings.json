@@ -1,0 +1,5 @@
+{
+  "files.exclude": {
+    "repo.git": true
+  }
+}
