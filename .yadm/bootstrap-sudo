@@ -144,7 +144,7 @@ sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool TRU
 sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired -bool TRUE
 
 # TODO: turn on this when ok to upgrade macOS at work
-sudo softwareupdate -i -a
+#sudo softwareupdate -i -a
 
 # always boot in verbose mode (not MacOS GUI mode)
 sudo nvram boot-args="-v"
