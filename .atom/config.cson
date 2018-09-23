@@ -1,5 +1,7 @@
 "*":
   autosave:
     enabled: true
+  core:
+    telemetryConsent: "limited"
   "exception-reporting":
     userId: "2a18ca5c-b1e4-4cea-a6c6-e0771afc7c77"
