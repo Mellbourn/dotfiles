@@ -60,6 +60,7 @@ bash-completion
 cheat
 chromedriver
 coreutils
+cloc
 direnv
 docker-completion
 docker-compose-completion
