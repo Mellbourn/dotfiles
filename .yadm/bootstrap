@@ -44,7 +44,6 @@ if [[ `uname` == 'Darwin' ]]; then
   # remove brews here that were previously installed, to sync between machines
   # TODO: eventually remove these removals, when all machines have synced
   brew uninstall --force ack fish
-  brew cask uninstall --force abstract
   brew cask uninstall --force copyq
   brew cask uninstall --force flycut
   brew cask uninstall --force intellij-idea
@@ -129,6 +128,7 @@ zsh-syntax-highlighting
 
   casks="
 a-better-finder-attributes
+abstract
 adobe-acrobat-reader
 alfred
 android-sdk
