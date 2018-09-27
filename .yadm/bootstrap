@@ -103,6 +103,7 @@ pyenv-virtualenvwrapper
 reattach-to-user-namespace
 redis
 ripgrep
+stunnel
 thefuck
 tig
 tldr
