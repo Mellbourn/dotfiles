@@ -43,13 +43,8 @@ if [[ `uname` == 'Darwin' ]]; then
 
   # remove brews here that were previously installed, to sync between machines
   # TODO: eventually remove these removals, when all machines have synced
-  brew uninstall --force ack fish
-  brew cask uninstall --force copyq
-  brew cask uninstall --force flycut
-  brew cask uninstall --force intellij-idea
-  brew cask uninstall --force screenhero
-  brew cask uninstall --force visual-studio-code-insiders
-  brew cask uninstall --force webstorm
+  #brew uninstall --force ack fish
+  #brew cask uninstall --force intellij-idea
 
   # this must be in alphabetical order!
   apps="
