@@ -167,6 +167,7 @@ skype
 slack
 sourcetree
 spotify
+tor-browser
 tripmode
 virtualbox
 visual-studio-code
@@ -350,6 +351,9 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# restore windows when you restart an application
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
 
 # show battery percent
 defaults write com.apple.menuextra.battery ShowPercent YES
