@@ -189,6 +189,7 @@ function go() {
 function rg() {
   command rg --pretty --smart-case --no-line-number $* | less
 }
+alias rg='noglob rg'
 
 # highlighter
 function h {
