@@ -1,0 +1,4 @@
+#!/usr/local/bin/zsh
+FOLDER=${1:-$HOME/Pictures}
+NUMBER_LEFT=${2:-20}
+ls -tr $FOLDER/*(.) | /usr/local/bin/ghead -n-$NUMBER_LEFT | while read FILENAME; do /usr/local/bin/trash "$FILENAME"; done

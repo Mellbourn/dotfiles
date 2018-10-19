@@ -3,25 +3,25 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>local.cleanup.pictures</string>
+	<string>local.cleanup.downloads</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/bin/sh</string>
 		<string>-c</string>
-		<string>sh -c "$HOME/bin/cleanup-directory $HOME/Pictures 20"</string>
+		<string>sh -c "$HOME/bin/cleanup-directory $HOME/Downloads 20"</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
 	<key>StandardErrorPath</key>
-	<string>/tmp/local.cleanup.pictures.stderr</string>
+	<string>/tmp/local.cleanup.downloads.stderr</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/local.cleanup.pictures.stdout</string>
+	<string>/tmp/local.cleanup.downloads.stdout</string>
 	<key>StartCalendarInterval</key>
 	<dict>
 		<key>Hour</key>
 		<integer>3</integer>
 		<key>Minute</key>
-		<integer>32</integer>
+		<integer>33</integer>
 	</dict>
 </dict>
 </plist>
