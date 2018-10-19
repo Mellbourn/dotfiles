@@ -110,6 +110,9 @@ sudo xcodebuild -license accept
 # Add Watch Simulator to Launchpad
 sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
 
+# speed up time machine backups until next reboot
+sudo sysctl debug.lowpri_throttle_enabled=0
+
 ###############################################################################
 # installations for Klarna
 ###############################################################################
