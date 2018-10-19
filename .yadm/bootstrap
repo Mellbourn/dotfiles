@@ -100,7 +100,6 @@ reattach-to-user-namespace
 redis
 ripgrep
 stunnel
-telnet
 thefuck
 tig
 tldr
