@@ -362,6 +362,9 @@ defaults write com.apple.menuextra.battery ShowPercent YES
 # set TextEdit default format to plain text
 defaults write com.apple.TextEdit RichText -int 0
 
+# smoother font on low DPI https://code.visualstudio.com/updates/v1_28#_blurriness-on-macos-mojave
+defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+
 ###############################################################################
 # Mouse & Trackpad                                                            #
 ###############################################################################
