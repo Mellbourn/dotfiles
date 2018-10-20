@@ -290,19 +290,6 @@ osascript -e 'tell application "System Events" to delete login item "iTunesHelpe
 zsh -ic "zplug clean --force; zplug update"
 
 ###############################################################################
-# crontab                                                                     #
-###############################################################################
-# clean up old tmux ressurect sessions
-function addtocrontab () {
-  local frequency=$1
-  local command=$2
-  local job="$frequency $command"
-  cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
-}
-addtocrontab "0 12 * * *" "ls -tr \$HOME/.tmux/resurrect/*.txt | /usr/local/bin/ghead -n-5 | xargs /usr/local/bin/trash -a &> /tmp/tmux_ressurect_erase_errors.txt"
-#addtocrontab "41 16 * * *" "ls -tr \$HOME/Downloads/* 2>/dev/null | /usr/local/bin/ghead -n-20 | while read FILENAME; do /usr/local/bin/trash -a \"\$FILENAME\"; done &> /tmp/downloads_erase_errors.txt"
-
-###############################################################################
 # Finder                                                                      #
 ###############################################################################
 # open text files in Visual Studio Code
