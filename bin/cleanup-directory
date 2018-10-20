@@ -1,4 +1,25 @@
 #!/usr/local/bin/zsh
-FOLDER=${1:-$HOME/Pictures}
-NUMBER_LEFT=${2:-20}
-ls -tr $FOLDER/*(.) | /usr/local/bin/ghead -n-$NUMBER_LEFT | while read FILENAME; do /usr/local/bin/trash "$FILENAME"; done
+number_left=20
+directory=$HOME/Pictures
+
+usage () { echo "-d directory to clean
+-f glob pattern of files to clean
+-l number of files to leave"; }
+
+while getopts "hd:f:l:" opt; do
+    case $opt in
+        d ) directory=$OPTARG;;
+        f ) file_glob=$OPTARG;;
+        l ) number_left=$OPTARG;;
+        h ) usage; exit;;
+    esac
+done
+
+setopt GLOB_SUBST
+
+if [ -v file_glob ]
+then
+  ls -tr $file_glob(.) | /usr/local/bin/ghead -n-$number_left | while read FILENAME; do /usr/local/bin/trash $FILENAME; done
+else
+  ls -tr $directory/*(.) | /usr/local/bin/ghead -n-$number_left | while read FILENAME; do /usr/local/bin/trash "$FILENAME"; done
+fi

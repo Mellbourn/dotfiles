@@ -3,25 +3,25 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>local.cleanup.downloads</string>
+	<string>local.cleanup.resurrect</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/bin/sh</string>
 		<string>-c</string>
-		<string>sh -c "$HOME/bin/cleanup-directory -d $HOME/Downloads -l 20"</string>
+		<string>sh -c "$HOME/bin/cleanup-directory -f '$HOME/.tmux/resurrect/*.txt' -l 5"</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
 	<key>StandardErrorPath</key>
-	<string>/tmp/local.cleanup.downloads.stderr</string>
+	<string>/tmp/local.cleanup.resurrect.stderr</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/local.cleanup.downloads.stdout</string>
+	<string>/tmp/local.cleanup.resurrect.stdout</string>
 	<key>StartCalendarInterval</key>
 	<dict>
 		<key>Hour</key>
 		<integer>3</integer>
 		<key>Minute</key>
-		<integer>33</integer>
+		<integer>35</integer>
 	</dict>
 </dict>
 </plist>
