@@ -13,7 +13,6 @@
     path = .gitconfig.user.foss
 [core]
 	excludesfile = ~/.gitignore_global
-	pager = less -F -X -E
 [mergetool]
 	keepbackup = false
 	prompt = false
@@ -79,3 +78,20 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+# settings for diff-so-fancy
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX -+W -+J
+[color "diff-highlight"]
+	oldNormal = red bold
+	newNormal = green bold
+	newHighlight = green bold 22
+	oldHighlight = red bold 52
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[diff-so-fancy]
+	useUnicodeRuler = false
