@@ -81,6 +81,7 @@ highlight
 htop
 jq
 kubernetes-cli
+less
 librsvg
 liquidprompt
 mas
