@@ -290,6 +290,8 @@ osascript -e 'tell application "System Events" to delete login item "iTunesHelpe
 # zplug update must be executed late in the script, otherwise it interrupts with "suspened (tty output)"
 zsh -ic "zplug clean --force; zplug update"
 
+docker system prune -f 2>> /tmp/docker_system_prune.err.txt
+
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
