@@ -95,3 +95,4 @@
 	whitespace = red reverse
 [diff-so-fancy]
 	useUnicodeRuler = false
+	stripLeadingSymbols = false
