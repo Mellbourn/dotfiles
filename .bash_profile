@@ -3,6 +3,7 @@
 ###############################################################################
 #START=$(gdate +%s.%N)
 #echo ".bash_profile running"
+fortune
 
 # fix for ENFILE: file table overflow
 ulimit -n 20000
