@@ -123,6 +123,9 @@ if [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
 fi
 
 # fuzzy completion: ^R, ^T, ⌥C, **
+export FZF_DEFAULT_COMMAND="rg --files --color=never"
+export FZF_ALT_C_COMMAND='for x in `rg --files --null --color=never`; do [[ ! -z $x ]] && dirname $x; done | sort -u'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
 
 # set up direnv
