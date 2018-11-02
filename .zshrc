@@ -96,6 +96,7 @@ zplug "plugins/command-not-found", from:oh-my-zsh, defer:2
 # I should only activate this when I need to generate completions
 #zplug "RobSis/zsh-completion-generator", defer:2
 zplug "djui/alias-tips", defer:2
+zplug 'wfxr/forgit', defer:1
 
 if [[ $OSTYPE == 'linux-gnu' ]]; then
   zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
