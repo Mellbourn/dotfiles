@@ -227,8 +227,9 @@ fi ############################################################################
 # this can soon be removed
 trash ~/.gitconfig.local
 
+# This git prompt is an optimized fork from olivierverdier/zsh-git-prompt. It can still be slow in large repos.
 if [ ! -d ~/.zsh-git-prompt ]; then
-  git clone git@github.com:olivierverdier/zsh-git-prompt.git ~/.zsh-git-prompt
+  git clone git@github.com:tombh/zsh-git-prompt.git ~/.zsh-git-prompt
 fi
 if [ ! -f ~/.zsh-git-prompt/src/.bin/gitstatus ]; then
   pushd ~/.zsh-git-prompt
