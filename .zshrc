@@ -125,6 +125,7 @@ fi
 
 # fuzzy completion: ^R, ^T, ⌥C, **
 export FZF_DEFAULT_COMMAND="rg --files --color=never"
+# this is very slow for large sets
 export FZF_ALT_C_COMMAND='for x in `rg --files --null --color=never`; do [[ ! -z $x ]] && dirname $x; done | sort -u'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
