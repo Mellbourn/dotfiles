@@ -49,12 +49,15 @@ export LANG=en_US.UTF-8
 export EDITOR=vi
 # make gpg prompt work, otherwise I get "Inappropriate ioctl for device"
 export GPG_TTY=$(tty)
-CUSTOM_HIGHLIGHT_THEME=$HOME/code/private/highlight/themes/darkplus.theme
-if [ -f $CUSTOM_HIGHLIGHT_THEME ]; then
-  export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --config $CUSTOM_HIGHLIGHT_THEME"
-else
-  export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
-fi
+setLessOpen() {
+  local CUSTOM_HIGHLIGHT_THEME=$HOME/code/private/highlight/themes/darkplus.theme
+  if [ -f $CUSTOM_HIGHLIGHT_THEME ]; then
+    export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --config $CUSTOM_HIGHLIGHT_THEME"
+  else
+    export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
+  fi
+}
+setLessOpen
 
 export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quit-if-one-screen --no-init"
 export CHEATCOLORS=true
