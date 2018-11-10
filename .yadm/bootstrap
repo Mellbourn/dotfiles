@@ -263,6 +263,8 @@ yarn global add eslint
 # configuration for just Linux
 ###############################################################################
 if [[ `uname` == 'Linux' ]]; then
+  yarn global add diff-so-fancy
+
   # do some cleanup
   trash-empty 30
   # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
