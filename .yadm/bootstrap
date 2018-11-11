@@ -282,6 +282,8 @@ npm i -g npm node-gyp
 npm rm -g eslint
 npm update -g
 xcode-select --install
+# save some disk
+xcrun simctl delete unavailable
 
 # automate mac store installation
 #mas signin klas@mellbourn.net
