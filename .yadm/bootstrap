@@ -201,6 +201,7 @@ zeplin
     # interesting ruby version
     rvm install ruby-2.4.1
   fi
+  rvm get stable --auto
 
   pip install --upgrade pip setuptools
   pip install virtualenvwrapper
