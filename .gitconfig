@@ -82,16 +82,16 @@
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX -+W -+J
 [color "diff-highlight"]
-	oldNormal = red bold
-	newNormal = green bold
-	newHighlight = green bold 22
-	oldHighlight = red bold 52
+	oldNormal = red
+	newNormal = green
+	newHighlight = green 22
+	oldHighlight = red 52
 [color "diff"]
 	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
+	frag = magenta
+	commit = yellow
+	old = red
+	new = green
 	whitespace = red reverse
 [diff-so-fancy]
 	useUnicodeRuler = false
