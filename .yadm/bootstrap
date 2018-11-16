@@ -201,6 +201,7 @@ zeplin
     # local LATEST_STABLE_RUBY_VERSON=$(rvm list known | grep "\[ruby-\]" | grep -v "preview" | tail -1 | sed 's/\[ruby-\]\([0-9]*\.[0-9]\)*\[.*\]/\1/g')
     # rvm install ruby-$LATEST_STABLE_RUBY_VERSON
   fi
+  # update rvm
   rvm get stable --auto
 
   pip install --upgrade pip setuptools
