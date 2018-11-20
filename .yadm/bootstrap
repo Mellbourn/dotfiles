@@ -45,6 +45,7 @@ if [[ `uname` == 'Darwin' ]]; then
   # TODO: eventually remove these removals, when all machines have synced
   #brew uninstall --force ack fish
   #brew cask uninstall --force intellij-idea
+  brew cask uninstall --force google-chrome
 
   # this must be in alphabetical order!
   apps="
@@ -145,7 +146,7 @@ font-fira-code
 fork
 gitup
 google-backup-and-sync
-google-chrome
+google-chrome-beta
 imageoptim
 intel-power-gadget
 iterm2
