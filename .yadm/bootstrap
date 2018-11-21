@@ -215,7 +215,6 @@ zeplin
 
   if [ -d ~/.tmux/plugins ]; then
     for plugin in ~/.tmux/plugins/*; do
-      echo "updating tmux plign $plugin"
       pushd $plugin
       git pull
       git submodule update --init --recursive
