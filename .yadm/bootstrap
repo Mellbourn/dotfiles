@@ -213,6 +213,16 @@ zeplin
   # install tmux session manager
   pip install tmuxp -U
 
+  if [ -d ~/.tmux/plugins ]; then
+    for plugin in ~/.tmux/plugins/*; do
+      echo "updating tmux plign $plugin"
+      pushd $plugin
+      git pull
+      git submodule update --init --recursive
+      popd
+    done
+  fi
+
   # finish PIA installation
   # if you already have a manual installation, you will have to remove it with
   # rm -rf /Applications/Private\ Internet\ Access.app
