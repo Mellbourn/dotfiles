@@ -38,7 +38,7 @@ if [[ `uname` == 'Darwin' ]]; then
   brew tap homebrew/command-not-found
 
   # not all computers need logitech drivers, also, these need sudo
-  # brew tap caskroom/drivers # for logitech-gaming-software
+  brew tap caskroom/drivers # for philips-hue-sync
   # brew cask install caskroom/drivers/logitech-gaming-software
   # brew cask install caskroom/drivers/logitech-options
 
