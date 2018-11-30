@@ -30,7 +30,8 @@ if [[ `uname` == 'Darwin' ]]; then
   brew install vim --without-ruby --with-override-system-vi
   brew install yarn --without-node
   brew upgrade
-  brew tap git-time-metric/gtm wix/brew
+  brew tap git-time-metric/gtm # for gtm
+  brew tap wix/brew # for AppleSimulatorUtils
   brew tap caskroom/fonts # for font-fira-code
   brew tap caskroom/versions # for visual-studio-code-insiders
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
@@ -55,7 +56,6 @@ awscli
 bash
 bash-completion
 cheat
-chromedriver
 cloc
 coreutils
 diff-so-fancy
@@ -138,6 +138,7 @@ android-studio
 atom
 bartender
 charles
+chromedriver
 dash
 day-o
 docker
