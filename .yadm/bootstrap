@@ -46,6 +46,7 @@ if [[ `uname` == 'Darwin' ]]; then
   #brew uninstall --force ack fish
   #brew cask uninstall --force intellij-idea
   #brew cask uninstall --force google-chrome
+  brew uninstall --force postgresql
 
   # this must be in alphabetical order!
   apps="
@@ -81,6 +82,7 @@ gtm
 haskell-stack
 highlight
 htop
+imagemagick
 jq
 kubernetes-cli
 less
@@ -95,7 +97,6 @@ nethack
 nginx
 nodebrew
 parallel
-postgresql
 pv
 pyenv
 pyenv-virtualenv
