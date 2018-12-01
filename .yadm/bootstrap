@@ -212,11 +212,12 @@ zeplin
   source ~/.rvm/scripts/rvm
   rvm --default use ruby-$LATEST_STABLE_RUBY_VERSON
 
-  pip install --upgrade pip setuptools
-  pip install virtualenvwrapper
-  pip install autopep8 pylint rope
+  # pip no longer installable from pip3? not needed?
+  #pip3 install --upgrade pip setuptools
+  pip3 install virtualenvwrapper
+  pip3 install autopep8 pylint rope
   # install tmux session manager
-  pip install tmuxp -U
+  pip3 install tmuxp -U
 
   if [ -d ~/.tmux/plugins ]; then
     for plugin in ~/.tmux/plugins/*; do
