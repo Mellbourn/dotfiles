@@ -383,6 +383,8 @@ defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 ###############################################################################
 # Mouse & Trackpad                                                            #
 ###############################################################################
+# show in menu bar
+defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/Volume.menu"
 # increase trackpad tracking speed - works!
 defaults write -g com.apple.trackpad.scaling -float 3.0
 # increase mouse tracking speed
