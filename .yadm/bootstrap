@@ -267,7 +267,10 @@ if [ -x "$(command -v /usr/local/opt/nodebrew/bin/nodebrew)" ]; then
 fi
 nodebrew selfupdate
 nodebrew install-binary latest
-#nodebrew use latest
+if ! [ -x "$(command -v node)" ]; then
+  # if no node is present, definitely use the latest
+  nodebrew use latest
+fi
 
 if ! [ -x "$(command -v tldr)" ]; then
   yarn global add tldr
