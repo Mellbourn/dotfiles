@@ -110,6 +110,7 @@ nethack
 nginx
 nodebrew
 parallel
+pkg-config
 pv
 pyenv
 pyenv-virtualenv
