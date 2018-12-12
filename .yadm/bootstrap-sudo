@@ -102,10 +102,6 @@ fi
 # if xcode has just been manually installed
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
-if ! [ -x "$(command -v fzf)" ]; then
-  /usr/local/opt/fzf/install
-fi
-
 sudo git lfs install --system
 
 # stop startup sound
