@@ -59,6 +59,7 @@ if [[ `uname` == 'Darwin' ]]; then
   #brew cask uninstall --force google-chrome
   brew cask uninstall --force a-better-finder-attributes
   brew cask uninstall --force atom
+  brew cask uninstall --force rescuetime
   brew cask uninstall --force rowanj-gitx
   brew uninstall --force postgresql
 
@@ -182,7 +183,6 @@ postman
 private-internet-access
 react-native-debugger
 reactotron
-rescuetime
 sketch
 skype
 slack
