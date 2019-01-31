@@ -5,6 +5,7 @@ alias ga='git number add'
 alias gn='git number --column' # note that command line completion does not work well for this alias
 alias l='ls -F '
 alias more=less
+alias ping='prettyping --nolegend'
 alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
 alias zmv='noglob zmv'
 alias rm_node_modules="find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' +"

@@ -114,6 +114,7 @@ nginx
 nodebrew
 parallel
 pkg-config
+prettyping
 pv
 pyenv
 pyenv-virtualenv
