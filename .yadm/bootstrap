@@ -81,6 +81,7 @@ docker-compose-completion
 docker-machine-completion
 duti
 fasd
+fd
 flow
 fortune
 fzf

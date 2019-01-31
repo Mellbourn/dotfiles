@@ -193,6 +193,10 @@ function go() {
     cd $(echo "$repo" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
 
+function fd() {
+  command fd --color always $* | less
+}
+
 function rg() {
   command rg --pretty --smart-case --no-line-number $* | less
 }
