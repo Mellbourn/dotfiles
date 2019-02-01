@@ -329,9 +329,6 @@ xcode-select --install
 # save some disk
 xcrun simctl delete unavailable
 
-# automate mac store installation
-#mas signin klas@mellbourn.net
-
 # remove itunes from login items. This way it does not open when you plug in an iPhone
 osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2> /tmp/delete_itunes_helper_error.txt
 
