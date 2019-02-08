@@ -40,8 +40,8 @@ if [[ `uname` == 'Darwin' ]]; then
   brew upgrade
   brew tap git-time-metric/gtm # for gtm
   brew tap wix/brew # for AppleSimulatorUtils
-  brew tap caskroom/fonts # for font-fira-code
-  brew tap caskroom/versions # for visual-studio-code-insiders
+  brew tap homebrew/cask-fonts # for font-fira-code
+  #brew tap homebrew/cask-versions # for visual-studio-code-insiders
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
   brew tap homebrew/command-not-found
 
@@ -52,6 +52,8 @@ if [[ `uname` == 'Darwin' ]]; then
 
   # remove brews here that were previously installed, to sync between machines
   # TODO: eventually remove these removals, when all machines have synced
+  brew untap caskroom/fonts # for font-fira-code
+  brew untap caskroom/versions # for visual-studio-code-insiders
   #brew uninstall --force ack fish
   #brew cask uninstall --force intellij-idea
   #brew cask uninstall --force google-chrome
