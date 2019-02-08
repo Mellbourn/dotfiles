@@ -37,10 +37,6 @@ if [[ `uname` == 'Darwin' ]]; then
 
   brew cleanup
   brew update
-  brew install vim --without-ruby --with-override-system-vi
-  brew install yarn --without-node
-  # --with-libheif needed to convert HEIC files
-  brew install imagemagick --with-libheif
   brew upgrade
   brew tap git-time-metric/gtm # for gtm
   brew tap wix/brew # for AppleSimulatorUtils
@@ -99,6 +95,7 @@ gtm
 haskell-stack
 highlight
 htop
+imagemagick
 jq
 kubernetes-cli
 less
@@ -129,12 +126,14 @@ tldr
 tmux
 trash
 tree
+vim
 wakeonlan
 watch
 watchman
 wemux
 wix/brew/applesimutils
 yadm
+yarn
 zplug
 zsh
 zsh-autosuggestions
