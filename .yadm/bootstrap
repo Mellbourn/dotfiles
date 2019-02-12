@@ -41,17 +41,18 @@ if [[ `uname` == 'Darwin' ]]; then
   brew tap git-time-metric/gtm # for gtm
   brew tap wix/brew # for AppleSimulatorUtils
   brew tap homebrew/cask-fonts # for font-fira-code
+  brew tap homebrew/cask-drivers # for philips-hue-sync and luna-display
   #brew tap homebrew/cask-versions # for visual-studio-code-insiders
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
   brew tap homebrew/command-not-found
 
   # not all computers need logitech drivers, also, these need sudo
-  brew tap caskroom/drivers # for philips-hue-sync
   # brew cask install caskroom/drivers/logitech-gaming-software
   # brew cask install caskroom/drivers/logitech-options
 
   # remove brews here that were previously installed, to sync between machines
   # TODO: eventually remove these removals, when all machines have synced
+  brew untap caskroom/drivers # for philips-hue-sync
   brew untap caskroom/fonts # for font-fira-code
   brew untap caskroom/versions # for visual-studio-code-insiders
   #brew uninstall --force ack fish
@@ -177,6 +178,7 @@ kdiff3
 keeweb
 keycue
 launchcontrol
+luna-display
 minikube
 moom
 muzzle
