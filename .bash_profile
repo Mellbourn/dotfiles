@@ -51,7 +51,7 @@ export EDITOR=vi
 export GPG_TTY=$(tty)
 export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
 
-export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quit-if-one-screen --no-init"
+export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --no-init --HILITE-UNREAD --status-column"
 export CHEATCOLORS=true
 # git checkout should only complete local branches (unless origin/), since I have fzf for more complex scenarios
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
