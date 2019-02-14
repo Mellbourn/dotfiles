@@ -1,3 +1,10 @@
+# bat (alias cat) configuration
+
+# colorful
 --theme="OneHalfDark"
+# header might be nice
 --style="changes"
---pager="less -+W -+J"
+# remove first column, it confuses bat. Also, in cat, quit more easily
+--pager="less -+W -+J --QUIT-AT-EOF"
+# maybe never have a pager?
+#--paging=never
