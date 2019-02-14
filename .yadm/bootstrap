@@ -70,6 +70,7 @@ ansible
 awscli
 bash
 bash-completion
+bat
 cheat
 cloc
 coreutils
