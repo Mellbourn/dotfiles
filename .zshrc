@@ -131,7 +131,7 @@ export FZF_DEFAULT_OPTS="--ansi"
 # this is very slow for large sets
 export FZF_ALT_C_COMMAND='fd --type directory | sort -u'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_T_OPTS="--preview '(less {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 [ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
 
 # set up direnv
