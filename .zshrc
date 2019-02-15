@@ -127,7 +127,7 @@ fi
 # fuzzy completion: ^R, ^T, ⌥C, **
 export FZF_DEFAULT_COMMAND="fd --type file"
 # --ansi makes fzf a bit slower, but I haven't really noticed
-export FZF_DEFAULT_OPTS="--ansi"
+export FZF_DEFAULT_OPTS="--ansi --select-1 --exit-0 --height 40%"
 # this is very slow for large sets
 export FZF_ALT_C_COMMAND='fd --type directory | sort -u'
 export FZF_ALT_C_OPTS="--preview '(ls {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200' --preview-window=right:20%"
