@@ -1,7 +1,7 @@
 # bat (alias cat) configuration
 
 # colorful
---theme="OneHalfDark"
+--theme="Monokai Extended"
 # header might be nice
 --style="changes"
 # remove first column, it confuses bat. Also, in cat, quit more easily
