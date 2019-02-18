@@ -104,10 +104,10 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 
 # this takes 0.39s
 export WORKON_HOME=~/.py_virtualenvs
-if [ -x "$(command -v python2)" ]; then
-  export VIRTUALENVWRAPPER_PYTHON=$(command -v python2)
-elif  [ -x "$(command -v python3)" ]; then
+if [ -x "$(command -v python3)" ]; then
   export VIRTUALENVWRAPPER_PYTHON=$(command -v python3)
+elif  [ -x "$(command -v python2)" ]; then
+  export VIRTUALENVWRAPPER_PYTHON=$(command -v python2)
 fi
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
   source /usr/local/bin/virtualenvwrapper.sh
