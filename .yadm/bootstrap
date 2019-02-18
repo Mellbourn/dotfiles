@@ -490,3 +490,6 @@ defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 # 1 = Prompt for each website once each day
 # 2 = Prompt for each website one time only
 defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
+
+# run customer specific bootstrap
+. $HOME/.yadm/bootstrap-customer

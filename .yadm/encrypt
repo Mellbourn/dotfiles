@@ -1,4 +1,5 @@
 .protocol
 .kube/config
 .kube/certificate-authority.pem
+.yadm/bootstrap-sudo
 .yadm/bootstrap-sudo-customer
