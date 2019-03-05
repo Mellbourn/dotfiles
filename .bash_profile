@@ -140,6 +140,10 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 eval "$(fasd --init auto)"
 eval $(thefuck --alias)
 . ~/.aliases
+if [ -x "$(command -v bat)" ]; then
+  # bat is hard to install in Ubuntu (e.g. WSL)
+  alias cat=bat
+fi
 
 #echo ".bash_profile took:"
 #END=$(gdate +%s.%N)
