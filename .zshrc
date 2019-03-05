@@ -98,6 +98,8 @@ zplug "plugins/command-not-found", from:oh-my-zsh, defer:2
 zplug "djui/alias-tips", defer:2
 zplug 'wfxr/forgit', defer:1
 zplug "plugins/dircycle", from:oh-my-zsh, defer:2
+zplug "supercrabtree/k", defer:2
+
 
 if [[ $OSTYPE == 'linux-gnu' ]]; then
   zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
