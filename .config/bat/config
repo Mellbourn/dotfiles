@@ -5,6 +5,6 @@
 # header might be nice
 --style="changes"
 # remove first column, it confuses bat. Also, in cat, quit more easily
---pager="less -+W -+J --QUIT-AT-EOF"
+--pager="less -+W -+J --QUIT-AT-EOF --no-init"
 # maybe never have a pager?
 #--paging=never
