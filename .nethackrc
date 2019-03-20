@@ -111,7 +111,7 @@ OPTIONS=name:Callicles
 #OPTIONS=autodig
 
 # Disable autopickup (toggle it with the `@' command)
-OPTIONS=autopickup,pickup_types:$*?/=!+"
+OPTIONS=autopickup,pickup_types:$"?+!=/(*
 
 # Automatically fill the quiver
 OPTIONS=autoquiver
