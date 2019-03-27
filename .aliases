@@ -1,6 +1,5 @@
 alias cr='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
 alias f=fuck
-alias fd='noglob fd'
 alias g='noglob git'
 alias ga='git number add'
 alias glances='glances --process-short-name'

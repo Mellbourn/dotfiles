@@ -122,6 +122,7 @@ export PATH="$PATH:$(yarn global bin)"
 ###############################################################################
 # add-ons installed by homebrew
 ###############################################################################
+
 if [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
   source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
@@ -204,11 +205,14 @@ function go() {
 function fd() {
   command fd --color always $* | less
 }
+alias fd='noglob fd'
 
 function rg() {
   command rg --pretty --smart-case --no-line-number $* | less
 }
 alias rg='noglob rg'
+
+alias sd='noglob sd'
 
 # highlighter
 function h {
