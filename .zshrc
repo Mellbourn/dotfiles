@@ -99,7 +99,7 @@ zplug "djui/alias-tips", defer:2
 zplug 'wfxr/forgit', defer:1
 zplug "plugins/dircycle", from:oh-my-zsh, defer:2
 zplug "supercrabtree/k", defer:2
-
+zplug "woefe/git-prompt.zsh", from:github, as:plugin, use:git-prompt.zsh
 
 if [[ $OSTYPE == 'linux-gnu' ]]; then
   zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
@@ -150,22 +150,15 @@ fi
 ###############################################################################
 # prompt
 ###############################################################################
-if [ -d ~/.zsh-git-prompt ]; then
-  GIT_PROMPT_EXECUTABLE="haskell"
-  source ~/.zsh-git-prompt/zshrc.sh
-fi
 
 export ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
-export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}%{✚%G%}"
-export ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg_bold[red]%}%{✖%G%}"
-export ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[red]%}%{●%G%}"
 export PROMPT_PERCENT_OF_LINE=20
 function myPromptWidth() {
   echo $(( ${COLUMNS:-80} * PROMPT_PERCENT_OF_LINE / 100 ))
 }
 width_part='$(myPromptWidth)'
 PROMPT="%K{106}%F%${width_part}<…<%4~%f%k%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.) "
-git_part='$(git_super_status)'
+git_part='$(gitprompt)'
 RPROMPT="${git_part} %F{106}%*%f"
 
 ###############################################################################
