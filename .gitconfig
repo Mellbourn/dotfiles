@@ -35,7 +35,8 @@
 	d = diff --color-words=.
 	unstage = reset HEAD --
 	last = log -1 HEAD
-    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+	unchange-assumed = !git ls-files -v | grep "^[[:lower:]]"
+        cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
 	cleanup-all = "!f(){\
         git branch | grep -v 'master' | grep -v ^* | sh -c 'while read br; \
 		  do git log -1 $br; \
