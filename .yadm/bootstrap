@@ -120,6 +120,7 @@ parallel
 pkg-config
 prettyping
 pv
+pipenv
 pyenv
 pyenv-virtualenv
 pyenv-virtualenvwrapper
