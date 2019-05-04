@@ -106,6 +106,7 @@ imagemagick
 jq
 kpcli
 kubernetes-cli
+lastpass-cli
 less
 librsvg
 liquidprompt
