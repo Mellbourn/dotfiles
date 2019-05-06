@@ -89,8 +89,6 @@ source $ZPLUG_HOME/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
-# this is needed by woefe/git-prompt.zsh package. Without it you get errors "zsh: command not found: async_job"
-zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
 zplug "plugins/colored-man-pages", from:oh-my-zsh, defer:2
 # command-not-found works for both Ubuntu and Mac
