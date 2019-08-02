@@ -4,8 +4,11 @@
     "files.gpg": true
   },
   "workbench.colorCustomizations": {
-    "editor.background": "#000000",
-    "sideBar.background": "#0C0C0C",
+    "activityBar.background": "#92725299",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#85ba9f",
+    "activityBarBadge.foreground": "#15202b",
     "titleBar.activeBackground": "#92725299",
     "titleBar.inactiveBackground": "#92725299",
     "titleBar.activeForeground": "#e7e7e7",
@@ -13,5 +16,6 @@
     "statusBar.background": "#92725299",
     "statusBarItem.hoverBackground": "#ac8b6b99",
     "statusBar.foreground": "#e7e7e7"
-  }
+  },
+  "peacock.color": "#92725299"
 }
