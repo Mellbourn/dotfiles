@@ -272,3 +272,4 @@ export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)
 #echo "$END - $START" | bc
+[[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
