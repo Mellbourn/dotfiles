@@ -241,7 +241,7 @@ zeplin
     curl -sSL https://get.rvm.io | bash -s stable --ruby
   fi
   # update rvm
-  rvm get stable --auto
+  rvm get stable
   # interesting ruby version
   rvm install ruby-2.4.1
   LATEST_STABLE_RUBY_VERSON=$(rvm list known | grep "\[ruby-\]" | grep -v "preview" | tail -1 | sed 's/\[ruby-\]\([0-9]*\.[0-9]\)*\[.*\]/\1/g')
