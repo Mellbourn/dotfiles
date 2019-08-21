@@ -130,6 +130,7 @@ pipenv
 pyenv
 pyenv-virtualenv
 pyenv-virtualenvwrapper
+react-native-cli
 reattach-to-user-namespace
 redis
 ripgrep
