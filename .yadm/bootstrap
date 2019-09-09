@@ -318,7 +318,8 @@ tldr --update
 ###############################################################################
 # development
 ###############################################################################
-yarn global add eslint
+# TODO: remove this when global eslint has been removed everywhere
+yarn global remove eslint
 
 ############################################################################
 # configuration for just Linux
