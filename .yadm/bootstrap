@@ -374,6 +374,8 @@ duti -s com.microsoft.VSCode public.source-code all # this has no effect?
 duti -s com.microsoft.VSCode public.text all # I think this affected a lot of dotfiles that were previously opened by textedit
 duti -s com.microsoft.VSCode public.xml all
 duti -s com.microsoft.VSCode public.yaml all
+duti -s com.microsoft.VSCode .rb all # ruby. Look extensions works too!
+# seems to have no effecxt: public.data
 # open in chrome
 duti -s com.google.chrome public.svg-image all # .svg
 
