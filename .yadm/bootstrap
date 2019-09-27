@@ -369,6 +369,8 @@ duti -s com.microsoft.VSCode public.plain-text all
 duti -s com.microsoft.VSCode public.json all
 # and md
 duti -s com.microsoft.VSCode net.daringfireball.markdown all
+# and yaml
+duti -s com.microsoft.VSCode public.yaml all
 # open svg with chrome
 duti -s com.google.chrome public.svg-image all
 
