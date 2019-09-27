@@ -372,7 +372,7 @@ duti -s com.microsoft.VSCode public.plain-text all # text files
 duti -s com.microsoft.VSCode public.python-script all # .py
 duti -s com.microsoft.VSCode public.shell-script all # .sh
 duti -s com.microsoft.VSCode public.source-code all # this has no effect?
-duti -s com.microsoft.VSCode public.text all # I think this affected a lot of dotfiles that were previously opened by textedit
+duti -s com.microsoft.VSCode public.text all # does this have a real effect?
 duti -s com.microsoft.VSCode public.xml all
 duti -s com.microsoft.VSCode public.yaml all
 # seems to have no effecxt: public.data, .lock
