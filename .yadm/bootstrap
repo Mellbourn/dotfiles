@@ -361,20 +361,17 @@ zsh -ic "zplug clean --force; zplug update"
 docker system prune -f 2>> /tmp/docker_system_prune.err.txt
 
 ###############################################################################
-# Map filetypes to apps that should open them                                 #
+# Associate filetypes to apps that should open them                           #
 ###############################################################################
-# open text files in Visual Studio Code
-duti -s com.microsoft.VSCode public.plain-text all
-# and json
+# open in Visual Studio Code
+duti -s com.microsoft.VSCode net.daringfireball.markdown all # .md
 duti -s com.microsoft.VSCode public.json all
-# and md
-duti -s com.microsoft.VSCode net.daringfireball.markdown all
-# and xml
+duti -s com.microsoft.VSCode public.plain-text all # text files
+duti -s com.microsoft.VSCode public.shell-script all # .sh
 duti -s com.microsoft.VSCode public.xml all
-# and yaml
 duti -s com.microsoft.VSCode public.yaml all
-# open svg with chrome
-duti -s com.google.chrome public.svg-image all
+# open in chrome
+duti -s com.google.chrome public.svg-image all # .svg
 
 ###############################################################################
 # Finder                                                                      #
