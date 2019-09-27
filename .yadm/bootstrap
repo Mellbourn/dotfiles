@@ -364,10 +364,10 @@ docker system prune -f 2>> /tmp/docker_system_prune.err.txt
 # Associate filetypes to apps that should open them                           #
 ###############################################################################
 # open in Visual Studio Code
+#duti -s com.microsoft.VSCode public.text all # this has no effect?
 duti -s com.microsoft.VSCode com.apple.log all # .log
 duti -s com.microsoft.VSCode net.daringfireball.markdown all # .md
 duti -s com.microsoft.VSCode public.json all
-#duti -s com.microsoft.VSCode public.text all # this has no effect?
 duti -s com.microsoft.VSCode public.plain-text all # text files
 duti -s com.microsoft.VSCode public.python-script all # .py
 duti -s com.microsoft.VSCode public.shell-script all # .sh
