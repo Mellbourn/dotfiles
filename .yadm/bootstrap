@@ -365,6 +365,8 @@ docker system prune -f 2>> /tmp/docker_system_prune.err.txt
 ###############################################################################
 # open text files in Visual Studio Code
 duti -s com.microsoft.VSCode public.plain-text all
+# and json
+duti -s com.microsoft.VSCode public.json all
 defaults write com.apple.finder AppleShowAllFiles YES
 # Show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
