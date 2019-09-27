@@ -364,6 +364,7 @@ docker system prune -f 2>> /tmp/docker_system_prune.err.txt
 # Associate filetypes to apps that should open them                           #
 ###############################################################################
 # open in Visual Studio Code
+duti -s com.microsoft.VSCode .rb all # ruby. Look extensions works too!
 duti -s com.microsoft.VSCode com.apple.log all # .log
 duti -s com.microsoft.VSCode net.daringfireball.markdown all # .md
 duti -s com.microsoft.VSCode public.json all
@@ -374,7 +375,6 @@ duti -s com.microsoft.VSCode public.source-code all # this has no effect?
 duti -s com.microsoft.VSCode public.text all # I think this affected a lot of dotfiles that were previously opened by textedit
 duti -s com.microsoft.VSCode public.xml all
 duti -s com.microsoft.VSCode public.yaml all
-duti -s com.microsoft.VSCode .rb all # ruby. Look extensions works too!
 # seems to have no effecxt: public.data
 # open in chrome
 duti -s com.google.chrome public.svg-image all # .svg
