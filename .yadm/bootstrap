@@ -165,6 +165,8 @@ zsh-syntax-highlighting
   installThese=${installTheseLines//$'\n'/ }
   echo $installThese | xargs brew install
 
+# not working, destroys existing installation: intel-power-gadget
+
   casks="
 abstract
 adobe-acrobat-reader
@@ -190,7 +192,6 @@ google-chrome-beta
 grandperspective
 imageoptim
 insomnia
-intel-power-gadget
 iterm2
 java8
 jdiskreport
