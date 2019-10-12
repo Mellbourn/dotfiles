@@ -81,14 +81,6 @@ if [[ `uname` == 'Linux' ]]; then
     ~/.fzf/install
   fi
 
-  # install zplug
-  if [[ ! -d ~/.zplug ]]; then
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
-  fi
-
-  # this is needed to suppress zsh message "compinit: insecure directories"
-  sudo chmod -R 755 $ZPLUG_REPOS
-
   # when it is needed, this updates the OS, so it will take a LONG time
   sudo do-release-upgrade
 

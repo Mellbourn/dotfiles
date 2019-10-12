@@ -5,6 +5,8 @@
 #echo ".zshrc running"
 #START=$(gdate +%s.%N)
 #rm ~/.zcompdump ~/.zcompcache
+source ~/.zplugin/bin/zplugin.zsh
+
 fpath=(~/.zsh-personal-completions $fpath)
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
@@ -80,43 +82,29 @@ if [ -x "$(command -v kubectl)" ]; then
 fi
 
 ###############################################################################
-# zplug - zsh plugin manager
+# zplugin - zsh plugin manager
 ###############################################################################
-if [[ -d /usr/local/opt/zplug ]]; then
-  export ZPLUG_HOME=/usr/local/opt/zplug
-elif [[ -d ~/.zplug ]]; then
-  export ZPLUG_HOME=~/.zplug
-fi
-source $ZPLUG_HOME/init.zsh
+zplugin ice atload'!_zsh_git_prompt_precmd_hook' lucid
+zplugin load woefe/git-prompt.zsh
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "zsh-users/zsh-completions"
-zplug "lukechilds/zsh-better-npm-completion", defer:2
-zplug "plugins/colored-man-pages", from:oh-my-zsh, defer:2
-# command-not-found works for both Ubuntu and Mac
-zplug "plugins/command-not-found", from:oh-my-zsh, defer:2
-# I should only activate this when I need to generate completions
-#zplug "RobSis/zsh-completion-generator", defer:2
-zplug "djui/alias-tips", defer:2
-zplug 'wfxr/forgit', defer:1
-zplug "plugins/dircycle", from:oh-my-zsh, defer:2
-zplug "supercrabtree/k", defer:2
-zplug "woefe/git-prompt.zsh", from:github, as:plugin, use:git-prompt.zsh
-
-if [[ $OSTYPE == 'linux-gnu' ]]; then
-  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
-  zplug "zsh-users/zsh-syntax-highlighting", defer:2
-  zplug "zsh-users/zsh-autosuggestions", defer:2
-fi
-
-# zplug check returns true if all packages are installed
-# Therefore, when it returns false, run zplug install
-if ! zplug check; then
-    zplug install
-fi
-
-# source plugins and add commands to the PATH
-zplug load
+# TODO: convert these to zplugin
+# zplug "zsh-users/zsh-completions"
+# zplug "lukechilds/zsh-better-npm-completion", defer:2
+# zplug "plugins/colored-man-pages", from:oh-my-zsh, defer:2
+# # command-not-found works for both Ubuntu and Mac
+# zplug "plugins/command-not-found", from:oh-my-zsh, defer:2
+# # I should only activate this when I need to generate completions
+# #zplug "RobSis/zsh-completion-generator", defer:2
+# zplug "djui/alias-tips", defer:2
+# zplug 'wfxr/forgit', defer:1
+# zplug "plugins/dircycle", from:oh-my-zsh, defer:2
+# zplug "supercrabtree/k", defer:2
+#
+# if [[ $OSTYPE == 'linux-gnu' ]]; then
+#   zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
+#   zplug "zsh-users/zsh-syntax-highlighting", defer:2
+#   zplug "zsh-users/zsh-autosuggestions", defer:2
+# fi
 
 # yarn must be run after node is defined
 export PATH="$PATH:$(yarn global bin)"
