@@ -4,6 +4,7 @@
 ###############################################################################
 #echo ".zshrc running"
 #START=$(gdate +%s.%N)
+#zmodload zsh/zprof
 #rm ~/.zcompdump ~/.zcompcache
 source ~/.zplugin/bin/zplugin.zsh
 
@@ -270,7 +271,8 @@ export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline'
 export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green
 export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 
+[[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)
 #echo "$END - $START" | bc
-[[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
+#zprof
