@@ -290,11 +290,11 @@ fi ############################################################################
 ###############################################################################
 
 # Install `zplugin` if not installed
-if [ ! -d "~/.zplugin" ]; then
+if [ ! -d ~/.zplugin ]; then
   mkdir ~/.zplugin
   git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
 fi
-zplugin self-update
+zsh -ic "zplugin self-update; zplugin update"
 
 # this can soon be removed
 trash ~/.gitconfig.local
