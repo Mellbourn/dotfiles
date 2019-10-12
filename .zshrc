@@ -87,18 +87,31 @@ fi
 zplugin ice atload'!_zsh_git_prompt_precmd_hook' lucid
 zplugin load woefe/git-prompt.zsh
 
+zplugin ice wait'0a' lucid blockf
+zplugin light zsh-users/zsh-completions
+
+zplugin ice wait'2' lucid
+zplugin load wfxr/forgit
+
+zplugin ice wait'2' lucid
+zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+
+zplugin ice wait'1' lucid
+zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+
+zplugin ice wait'2' lucid
+zplugin load djui/alias-tips
+
+zplugin ice wait'0b' lucid
+zplugin snippet OMZ::plugins/dircycle/dircycle.plugin.zsh
+
+zplugin ice wait'1' lucid
+zplugin load supercrabtree/k
+
 # TODO: convert these to zplugin
-# zplug "zsh-users/zsh-completions"
 # zplug "lukechilds/zsh-better-npm-completion", defer:2
-# zplug "plugins/colored-man-pages", from:oh-my-zsh, defer:2
-# # command-not-found works for both Ubuntu and Mac
-# zplug "plugins/command-not-found", from:oh-my-zsh, defer:2
 # # I should only activate this when I need to generate completions
 # #zplug "RobSis/zsh-completion-generator", defer:2
-# zplug "djui/alias-tips", defer:2
-# zplug 'wfxr/forgit', defer:1
-# zplug "plugins/dircycle", from:oh-my-zsh, defer:2
-# zplug "supercrabtree/k", defer:2
 #
 # if [[ $OSTYPE == 'linux-gnu' ]]; then
 #   zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
