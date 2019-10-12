@@ -88,7 +88,7 @@ zplugin ice atload'!_zsh_git_prompt_precmd_hook' lucid
 zplugin load woefe/git-prompt.zsh
 
 zplugin ice wait'0a' lucid blockf
-zplugin light zsh-users/zsh-completions
+zplugin load zsh-users/zsh-completions
 
 zplugin ice wait'2' lucid
 zplugin load wfxr/forgit
