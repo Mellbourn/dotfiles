@@ -113,6 +113,11 @@ zplugin load supercrabtree/k
 zplugin ice wait'2' lucid
 zplugin light laggardkernel/zsh-thefuck
 
+# Not really plugins, but very good to have async anyway
+# sourcing rvm takes 0.51s, so there will be a lag when it is sourced
+zplugin ice wait'3' lucid atinit'source "$HOME/.rvm/scripts/rvm"'
+zplugin light zdharma/null
+
 # TODO: convert these to zplugin
 # zplug "lukechilds/zsh-better-npm-completion", defer:2
 # # I should only activate this when I need to generate completions

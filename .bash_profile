@@ -87,9 +87,6 @@ fi
 # this line is added by iTerm command "Install shell integration"
 test -e "${HOME}/.iterm2_shell_integration.`basename $SHELL`" && source "${HOME}/.iterm2_shell_integration.`basename $SHELL`"
 
-# this takes 0.51s
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 if [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 fi
