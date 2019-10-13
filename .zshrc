@@ -97,8 +97,9 @@ zplugin load wfxr/forgit
 zplugin ice wait'2' lucid
 zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
-zplugin ice wait'1' lucid
-zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+# command-not-found seems to cause lag when starting the shell
+#zplugin ice wait'1' lucid
+#zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 
 zplugin ice wait'2' lucid
 zplugin load djui/alias-tips
