@@ -117,6 +117,10 @@ zplugin load tj/git-extras
 zplugin ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
 zplugin light ogham/exa
 
+# give extra color to exa
+zplugin ice wait'2' atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
+zplugin light trapd00r/LS_COLORS
+
 # fasd takes 0.06s
 zplugin ice wait'0' lucid atinit'eval "$(fasd --init auto)"'
 zplugin light zdharma/null
