@@ -77,10 +77,10 @@ zstyle ':completion::complete:*' use-cache 1
 # case insensitive completion
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 
-# command line completion for kubectl
-if [ -x "$(command -v kubectl)" ]; then
-  source <(kubectl completion zsh)
-fi
+# command line completion for kubectl, only activate if really needed, since this takes 0.2s to load
+#if [ -x "$(command -v kubectl)" ]; then
+#  source <(kubectl completion zsh)
+#fi
 
 ###############################################################################
 # zplugin - zsh plugin manager
