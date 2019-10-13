@@ -3,7 +3,8 @@
 ###############################################################################
 #START=$(gdate +%s.%N)
 #echo ".bash_profile running"
-fortune
+# fortune takes 0.017s
+#fortune
 
 # fix for ENFILE: file table overflow
 ulimit -n 20000
@@ -115,7 +116,6 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 #    PKG_CONFIG_PATH: /usr/local/opt/openssl@1.1/lib/pkgconfig
 
 ### aliases
-eval "$(fasd --init auto)"
 . ~/.aliases
 
 #echo ".bash_profile took:"

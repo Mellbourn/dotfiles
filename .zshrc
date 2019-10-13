@@ -111,6 +111,10 @@ zplugin load supercrabtree/k
 zplugin ice wait'2' lucid
 zplugin light laggardkernel/zsh-thefuck
 
+# fasd takes 0.06s
+zplugin ice wait'0' lucid atinit'eval "$(fasd --init auto)"'
+zplugin light zdharma/null
+
 # Not really plugins, but very good to have async anyway
 # sourcing rvm takes 0.51s, so there will be a lag when it is sourced
 zplugin ice wait'4' lucid atinit'source "$HOME/.rvm/scripts/rvm"'
