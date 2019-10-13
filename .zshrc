@@ -9,8 +9,6 @@
 source ~/.zplugin/bin/zplugin.zsh
 
 fpath=(~/.zsh-personal-completions $fpath)
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
 autoload -U zmv
 
 ###############################################################################
@@ -297,4 +295,11 @@ export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)
 #echo "$END - $START" | bc
+
+# it is 0.5s faster to load compinit in turbo mode, but all completions should be loaded with zplugin then
+#zplugin ice wait'0z' lucid atinit'zpcompinit; zpcdreplay'
+#zplugin light zdharma/null
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+zplugin cdreplay
 #zprof
