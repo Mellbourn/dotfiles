@@ -97,8 +97,8 @@ zplugin load wfxr/forgit
 zplugin ice wait'2' lucid
 zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
-# command-not-found seems to cause lag when starting the shell
-#zplugin ice wait'1' lucid
+# command-not-found cuases lag in command prompt when starting
+#zplugin ice wait'4' lucid
 #zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 
 zplugin ice wait'2' lucid
