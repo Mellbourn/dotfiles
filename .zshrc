@@ -103,7 +103,7 @@ zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 zplugin ice wait'2' lucid
 zplugin load djui/alias-tips
 
-zplugin ice wait'0b' lucid
+zplugin ice wait'2' lucid
 zplugin snippet OMZ::plugins/dircycle/dircycle.plugin.zsh
 
 zplugin ice wait'1' lucid
