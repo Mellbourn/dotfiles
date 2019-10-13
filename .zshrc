@@ -292,9 +292,6 @@ export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green
 export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 
 [[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
-#echo ".zshrc finished:"
-#END=$(gdate +%s.%N)
-#echo "$END - $START" | bc
 
 # it is 0.5s faster to load compinit in turbo mode, but all completions should be loaded with zplugin then
 #zplugin ice wait'0z' lucid atinit'zpcompinit; zpcdreplay'
@@ -302,4 +299,8 @@ export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 zplugin cdreplay
+
+#echo ".zshrc finished:"
+#END=$(gdate +%s.%N)
+#echo "$END - $START" | bc
 #zprof
