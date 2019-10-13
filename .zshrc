@@ -110,7 +110,7 @@ zplugin ice wait'1' lucid
 zplugin load supercrabtree/k
 
 zplugin ice wait'2' lucid
-zplugin load laggardkernel/zsh-thefuck
+zplugin light laggardkernel/zsh-thefuck
 
 # TODO: convert these to zplugin
 # zplug "lukechilds/zsh-better-npm-completion", defer:2
