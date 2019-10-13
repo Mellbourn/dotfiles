@@ -138,7 +138,6 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 ### aliases
 eval "$(fasd --init auto)"
-eval $(thefuck --alias)
 . ~/.aliases
 
 #echo ".bash_profile took:"
