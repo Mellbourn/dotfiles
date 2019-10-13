@@ -298,7 +298,7 @@ export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 
 [[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
 
-# it is 0.5s faster to load compinit in turbo mode, but all completions should be loaded with zplugin then
+# it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zplugin then
 #zplugin ice wait'0z' lucid atinit'zpcompinit; zpcdreplay'
 #zplugin light zdharma/null
 autoload -U +X compinit && compinit
