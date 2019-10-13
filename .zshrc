@@ -111,6 +111,9 @@ zplugin load supercrabtree/k
 zplugin ice wait'2' lucid
 zplugin light laggardkernel/zsh-thefuck
 
+zplugin ice wait"2" lucid as"program" pick"$ZPFX/bin/git-alias" make"PREFIX=$ZPFX"
+zplugin load tj/git-extras
+
 # fasd takes 0.06s
 zplugin ice wait'0' lucid atinit'eval "$(fasd --init auto)"'
 zplugin light zdharma/null
