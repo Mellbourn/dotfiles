@@ -133,6 +133,10 @@ zplugin light zdharma/null
 zplugin ice wait'3' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
 zplugin light zdharma/null
 
+# yarn must be run after node is defined, takes 0.31s, and only adds /usr/local/bin
+#zplugin ice wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"'
+#zplugin light zdharma/null
+
 # TODO: convert these to zplugin
 # zplug "lukechilds/zsh-better-npm-completion", defer:2
 # # I should only activate this when I need to generate completions
@@ -143,9 +147,6 @@ zplugin light zdharma/null
 #   zplug "zsh-users/zsh-syntax-highlighting", defer:2
 #   zplug "zsh-users/zsh-autosuggestions", defer:2
 # fi
-
-# yarn must be run after node is defined
-export PATH="$PATH:$(yarn global bin)"
 
 ###############################################################################
 # add-ons installed by homebrew
