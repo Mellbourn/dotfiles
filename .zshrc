@@ -3,8 +3,8 @@
 # It should contain commands to set up aliases, functions, options, key bindings, etc.
 ###############################################################################
 #echo ".zshrc running"
-#START=$(gdate +%s.%N)
 #zmodload zsh/zprof
+#START=$(gdate +%s.%N)
 #rm ~/.zcompdump ~/.zcompcache
 source ~/.zplugin/bin/zplugin.zsh
 
