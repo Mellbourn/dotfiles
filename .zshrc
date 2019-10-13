@@ -115,7 +115,20 @@ zplugin light laggardkernel/zsh-thefuck
 
 # Not really plugins, but very good to have async anyway
 # sourcing rvm takes 0.51s, so there will be a lag when it is sourced
-zplugin ice wait'3' lucid atinit'source "$HOME/.rvm/scripts/rvm"'
+zplugin ice wait'4' lucid atinit'source "$HOME/.rvm/scripts/rvm"'
+zplugin light zdharma/null
+
+# python environent will also cause a lag
+# this takes 0.166s
+zplugin ice wait'2a' lucid atinit'command -v pip > /dev/null && eval "$(pyenv init -)"'
+zplugin light zdharma/null
+zplugin ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
+zplugin light zdharma/null
+export WORKON_HOME=~/.py_virtualenvs
+zplugin ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
+zplugin light zdharma/null
+# this taskes 0.39s
+zplugin ice wait'3' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
 zplugin light zdharma/null
 
 # TODO: convert these to zplugin

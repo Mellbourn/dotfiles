@@ -91,25 +91,6 @@ if [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 fi
 
-if [ -x "$(command -v pyenv)" ]; then
-  # this takes 0.166s
-  eval "$(pyenv init -)"
-fi
-
-# pyenv-virtualenv
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
-# this takes 0.39s
-export WORKON_HOME=~/.py_virtualenvs
-if [ -x "$(command -v python3)" ]; then
-  export VIRTUALENVWRAPPER_PYTHON=$(command -v python3)
-elif  [ -x "$(command -v python2)" ]; then
-  export VIRTUALENVWRAPPER_PYTHON=$(command -v python2)
-fi
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-  source /usr/local/bin/virtualenvwrapper.sh
-fi
-
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # ansible needs sqlite3
