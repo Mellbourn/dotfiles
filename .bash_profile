@@ -3,7 +3,8 @@
 ###############################################################################
 #START=$(gdate +%s.%N)
 #echo ".bash_profile running"
-fortune
+# fortune takes 0.017s
+#fortune
 
 # fix for ENFILE: file table overflow
 ulimit -n 20000
@@ -87,30 +88,8 @@ fi
 # this line is added by iTerm command "Install shell integration"
 test -e "${HOME}/.iterm2_shell_integration.`basename $SHELL`" && source "${HOME}/.iterm2_shell_integration.`basename $SHELL`"
 
-# this takes 0.51s
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 if [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
-fi
-
-if [ -x "$(command -v pyenv)" ]; then
-  # this takes 0.166s
-  eval "$(pyenv init -)"
-fi
-
-# pyenv-virtualenv
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
-# this takes 0.39s
-export WORKON_HOME=~/.py_virtualenvs
-if [ -x "$(command -v python3)" ]; then
-  export VIRTUALENVWRAPPER_PYTHON=$(command -v python3)
-elif  [ -x "$(command -v python2)" ]; then
-  export VIRTUALENVWRAPPER_PYTHON=$(command -v python2)
-fi
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-  source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
@@ -137,8 +116,6 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 #    PKG_CONFIG_PATH: /usr/local/opt/openssl@1.1/lib/pkgconfig
 
 ### aliases
-eval "$(fasd --init auto)"
-eval $(thefuck --alias)
 . ~/.aliases
 
 #echo ".bash_profile took:"

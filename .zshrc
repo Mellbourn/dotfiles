@@ -3,11 +3,12 @@
 # It should contain commands to set up aliases, functions, options, key bindings, etc.
 ###############################################################################
 #echo ".zshrc running"
+#zmodload zsh/zprof
 #START=$(gdate +%s.%N)
 #rm ~/.zcompdump ~/.zcompcache
+source ~/.zplugin/bin/zplugin.zsh
+
 fpath=(~/.zsh-personal-completions $fpath)
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
 autoload -U zmv
 
 ###############################################################################
@@ -74,52 +75,88 @@ zstyle ':completion::complete:*' use-cache 1
 # case insensitive completion
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 
-# command line completion for kubectl
-if [ -x "$(command -v kubectl)" ]; then
-  source <(kubectl completion zsh)
-fi
+# command line completion for kubectl, only activate if really needed, since this takes 0.2s to load
+#if [ -x "$(command -v kubectl)" ]; then
+#  source <(kubectl completion zsh)
+#fi
 
 ###############################################################################
-# zplug - zsh plugin manager
+# zplugin - zsh plugin manager
 ###############################################################################
-if [[ -d /usr/local/opt/zplug ]]; then
-  export ZPLUG_HOME=/usr/local/opt/zplug
-elif [[ -d ~/.zplug ]]; then
-  export ZPLUG_HOME=~/.zplug
-fi
-source $ZPLUG_HOME/init.zsh
+zplugin ice atload'!_zsh_git_prompt_precmd_hook' lucid
+zplugin load woefe/git-prompt.zsh
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "zsh-users/zsh-completions"
-zplug "lukechilds/zsh-better-npm-completion", defer:2
-zplug "plugins/colored-man-pages", from:oh-my-zsh, defer:2
-# command-not-found works for both Ubuntu and Mac
-zplug "plugins/command-not-found", from:oh-my-zsh, defer:2
-# I should only activate this when I need to generate completions
-#zplug "RobSis/zsh-completion-generator", defer:2
-zplug "djui/alias-tips", defer:2
-zplug 'wfxr/forgit', defer:1
-zplug "plugins/dircycle", from:oh-my-zsh, defer:2
-zplug "supercrabtree/k", defer:2
-zplug "woefe/git-prompt.zsh", from:github, as:plugin, use:git-prompt.zsh
+zplugin ice wait'0a' lucid blockf
+zplugin load zsh-users/zsh-completions
 
-if [[ $OSTYPE == 'linux-gnu' ]]; then
-  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
-  zplug "zsh-users/zsh-syntax-highlighting", defer:2
-  zplug "zsh-users/zsh-autosuggestions", defer:2
-fi
+zplugin ice wait'2' lucid
+zplugin load wfxr/forgit
 
-# zplug check returns true if all packages are installed
-# Therefore, when it returns false, run zplug install
-if ! zplug check; then
-    zplug install
-fi
+zplugin ice wait'2' lucid
+zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
-# source plugins and add commands to the PATH
-zplug load
+# command-not-found cuases lag in command prompt when starting
+#zplugin ice wait'4' lucid
+#zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 
-# yarn must be run after node is defined
-export PATH="$PATH:$(yarn global bin)"
+zplugin ice wait'2' lucid
+zplugin load djui/alias-tips
+
+zplugin ice wait'2' lucid
+zplugin snippet OMZ::plugins/dircycle/dircycle.plugin.zsh
+
+zplugin ice wait'1' lucid
+zplugin load supercrabtree/k
+
+zplugin ice wait'2' lucid
+zplugin light laggardkernel/zsh-thefuck
+
+zplugin ice wait"2" lucid as"program" pick"$ZPFX/bin/git-alias" make"PREFIX=$ZPFX"
+zplugin load tj/git-extras
+
+zplugin ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
+zplugin light ogham/exa
+
+# give extra color to exa
+zplugin ice wait'2' lucid atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
+zplugin light trapd00r/LS_COLORS
+
+# fasd takes 0.06s
+zplugin ice wait'0' lucid atinit'eval "$(fasd --init auto)"'
+zplugin light zdharma/null
+
+# Not really plugins, but very good to have async anyway
+# sourcing rvm takes 0.51s, so there will be a lag when it is sourced
+zplugin ice wait'4' lucid atinit'source "$HOME/.rvm/scripts/rvm"'
+zplugin light zdharma/null
+
+# python environent will also cause a lag
+# this takes 0.166s
+zplugin ice wait'2a' lucid atinit'command -v pip > /dev/null && eval "$(pyenv init -)"'
+zplugin light zdharma/null
+zplugin ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
+zplugin light zdharma/null
+export WORKON_HOME=~/.py_virtualenvs
+zplugin ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
+zplugin light zdharma/null
+# this taskes 0.39s
+zplugin ice wait'3' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
+zplugin light zdharma/null
+
+# yarn must be run after node is defined, takes 0.31s, and only adds /usr/local/bin
+#zplugin ice wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"'
+#zplugin light zdharma/null
+
+# TODO: convert these to zplugin
+# zplug "lukechilds/zsh-better-npm-completion", defer:2
+# # I should only activate this when I need to generate completions
+# #zplug "RobSis/zsh-completion-generator", defer:2
+#
+# if [[ $OSTYPE == 'linux-gnu' ]]; then
+#   zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
+#   zplug "zsh-users/zsh-syntax-highlighting", defer:2
+#   zplug "zsh-users/zsh-autosuggestions", defer:2
+# fi
 
 ###############################################################################
 # add-ons installed by homebrew
@@ -269,7 +306,16 @@ export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline'
 export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green
 export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 
+[[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
+
+# it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zplugin then
+#zplugin ice wait'0z' lucid atinit'zpcompinit; zpcdreplay'
+#zplugin light zdharma/null
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+zplugin cdreplay
+
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)
 #echo "$END - $START" | bc
-[[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
+#zprof

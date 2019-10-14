@@ -61,6 +61,8 @@ if [[ `uname` == 'Darwin' ]]; then
   brew untap caskroom/fonts # for font-fira-code
   brew untap caskroom/versions # for visual-studio-code-insiders
   #brew uninstall --force ack fish
+  # TODO: eventually uninstall zplug
+  #brew uninstall --force zplug
   #brew cask uninstall --force intellij-idea
   #brew cask uninstall --force google-chrome
   brew cask uninstall --force a-better-finder-attributes
@@ -154,7 +156,6 @@ wget
 wix/brew/applesimutils
 yadm
 yarn
-zplug
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
@@ -288,6 +289,13 @@ fi ############################################################################
 # configuration for both Mac and Linux
 ###############################################################################
 
+# Install `zplugin` if not installed
+if [ ! -d ~/.zplugin ]; then
+  mkdir ~/.zplugin
+  git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+fi
+zsh -ic "zplugin self-update; zplugin update --all"
+
 # this can soon be removed
 trash ~/.gitconfig.local
 
@@ -359,9 +367,6 @@ xcrun simctl delete unavailable
 
 # remove itunes from login items. This way it does not open when you plug in an iPhone
 osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2> /tmp/delete_itunes_helper_error.txt
-
-# zplug update must be executed late in the script, otherwise it interrupts with "suspened (tty output)"
-zsh -ic "zplug clean --force; zplug update"
 
 docker system prune -f 2>> /tmp/docker_system_prune.err.txt
 
