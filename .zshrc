@@ -127,12 +127,12 @@ zplugin light zdharma/null
 
 # Not really plugins, but very good to have async anyway
 # sourcing rvm takes 0.51s, so there will be a lag when it is sourced
-zplugin ice wait'4' lucid atinit'source "$HOME/.rvm/scripts/rvm"'
+zplugin ice wait'4' lucid atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi'
 zplugin light zdharma/null
 
 # python environent will also cause a lag
 # this takes 0.166s
-zplugin ice wait'2a' lucid atinit'command -v pip > /dev/null && eval "$(pyenv init -)"'
+zplugin ice wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"'
 zplugin light zdharma/null
 zplugin ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
 zplugin light zdharma/null
@@ -152,11 +152,12 @@ zplugin light zdharma/null
 # # I should only activate this when I need to generate completions
 # #zplug "RobSis/zsh-completion-generator", defer:2
 #
-# if [[ $OSTYPE == 'linux-gnu' ]]; then
-#   zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
-#   zplug "zsh-users/zsh-syntax-highlighting", defer:2
-#   zplug "zsh-users/zsh-autosuggestions", defer:2
-# fi
+if [[ $OSTYPE == 'linux-gnu' ]]; then
+#  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
+#  zplug "zsh-users/zsh-syntax-highlighting", defer:2
+  zplugin ice wait"1" lucid atload"!_zsh_autosuggest_start"
+  zplugin load zsh-users/zsh-autosuggestions
+fi
 
 ###############################################################################
 # add-ons installed by homebrew
