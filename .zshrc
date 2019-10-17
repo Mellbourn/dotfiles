@@ -153,8 +153,9 @@ zplugin light zdharma/null
 # #zplug "RobSis/zsh-completion-generator", defer:2
 #
 if [[ $OSTYPE == 'linux-gnu' ]]; then
+  export PATH="$PATH:$(yarn global bin)"
 #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
-#  zplug "zsh-users/zsh-syntax-highlighting", defer:2
+  zplugin load zsh-users/zsh-syntax-highlighting
   zplugin ice wait"1" lucid atload"!_zsh_autosuggest_start"
   zplugin load zsh-users/zsh-autosuggestions
 fi
