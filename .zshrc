@@ -127,6 +127,7 @@ zplugin light zdharma/null
 
 # Not really plugins, but very good to have async anyway
 # sourcing rvm takes 0.51s, so there will be a lag when it is sourced
+# also, loading rvm as a zplugin will make it ignore the .ruby-version file if you are already inside that folder
 zplugin ice wait'4' lucid atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi'
 zplugin light zdharma/null
 
