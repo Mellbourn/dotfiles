@@ -108,7 +108,7 @@ zplugin snippet OMZ::plugins/dircycle/dircycle.plugin.zsh
 zplugin ice wait'1' lucid
 zplugin load supercrabtree/k
 
-zplugin ice wait'2' lucid
+zplugin ice wait'2' lucid atinit'alias f=fuck'
 zplugin light laggardkernel/zsh-thefuck
 
 zplugin ice wait"2" lucid as"program" pick"$ZPFX/bin/git-alias" make"PREFIX=$ZPFX"
