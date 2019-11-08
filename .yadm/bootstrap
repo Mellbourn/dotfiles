@@ -17,6 +17,11 @@ if [[ `uname` == 'Darwin' ]]; then
   # macOS specific installations
   ###############################################################################
 
+  # activate cleanup jobs
+  launchctl load -w ~/Library/LaunchAgents/local.cleanup.downloads.plist
+  launchctl load -w ~/Library/LaunchAgents/local.cleanup.pictures.plist
+  launchctl load -w ~/Library/LaunchAgents/local.cleanup.resurrect.plist
+
   ###############################################################################
   # App store                                                                   #
   ###############################################################################
