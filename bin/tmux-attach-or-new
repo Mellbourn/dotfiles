@@ -1,2 +1,2 @@
 #!/bin/bash
-/usr/local/bin/tmux attach -t base || /usr/local/bin/tmux new -s base
+/usr/local/bin/tmux new-session -A -s base
