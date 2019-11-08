@@ -52,8 +52,8 @@ if [[ `uname` == 'Darwin' ]]; then
   brew tap homebrew/command-not-found
 
   # not all computers need logitech drivers, also, these need sudo
-  # brew cask install caskroom/drivers/logitech-gaming-software
-  # brew cask install caskroom/drivers/logitech-options
+  # brew cask install homebrew/cask-drivers/logitech-gaming-software
+  # brew cask install homebrew/cask-drivers/logitech-options
 
   # remove brews here that were previously installed, to sync between machines
   # TODO: eventually remove these removals, when all machines have synced
