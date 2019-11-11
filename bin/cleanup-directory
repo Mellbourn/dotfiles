@@ -1,6 +1,7 @@
 #!/usr/local/bin/zsh
 number_left=20
 directory=$HOME/Pictures
+file_glob=*
 
 usage () { echo "-d directory to clean
 -f glob pattern of files to clean
@@ -17,9 +18,10 @@ done
 
 setopt GLOB_SUBST
 
-if [ -v file_glob ]
-then
-  ls -tr $file_glob(.) | /usr/local/bin/ghead -n-$number_left | while read FILENAME; do /usr/local/bin/trash $FILENAME; done
-else
-  ls -tr $directory/*(.) | /usr/local/bin/ghead -n-$number_left | while read FILENAME; do /usr/local/bin/trash "$FILENAME"; done
-fi
+gfind $directory -maxdepth 1 -path "$file_glob" -not -path '*/\.*' -mtime +1 -type f,d -printf '%T@ %p\n' | \
+sort -n | \
+ghead --lines=-$number_left |\
+while read date filename
+do
+  /usr/local/bin/trash "$filename"
+done
