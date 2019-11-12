@@ -7,11 +7,12 @@ usage () { echo "-d directory to clean
 -f glob pattern of files to clean
 -l number of files to leave"; }
 
-while getopts "hd:f:l:" opt; do
+while getopts "hvd:f:l:" opt; do
     case $opt in
         d ) directory=$OPTARG;;
         f ) file_glob=$OPTARG;;
         l ) number_left=$OPTARG;;
+        v ) verbose=1;;
         h ) usage; exit;;
     esac
 done
@@ -23,5 +24,9 @@ sort -n | \
 /usr/local/bin/ghead --lines=-$number_left |\
 while read date filename
 do
+  if [[ -v verbose ]]
+  then
+    echo trashing "$filename"
+  fi
   /usr/local/bin/trash "$filename"
 done
