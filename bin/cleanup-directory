@@ -19,7 +19,11 @@ done
 
 setopt GLOB_SUBST
 
-/usr/local/bin/gfind $directory -maxdepth 1 -path "$file_glob" -not -path '*/\.*' -mtime +1 -type f,d -printf '%T@ %p\n' | \
+find $directory -maxdepth 1 -path "$file_glob" -not -path '*/\.*' -mtime +1 \( -type f -or -type d \) |\
+while read file
+do
+  stat -f "%-10m %40N" $file
+done |\
 sort -n | \
 /usr/local/bin/ghead --lines=-$number_left |\
 while read date filename
