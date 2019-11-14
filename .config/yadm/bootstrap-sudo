@@ -26,6 +26,7 @@ if [[ `uname` == 'Linux' ]]; then
     highlight \
     fasd \
     trash-cli \
+    ripgrep \
     tree \
     tig \
     aptitude \
@@ -72,11 +73,6 @@ if [[ `uname` == 'Linux' ]]; then
   # haskell
   if ! [ -x "$(command -v stack)" ]; then
     wget -qO- https://get.haskellstack.org/ | sh
-  fi
-
-  # install ripgrep, depends on haskell
-  if ! [ -f ~/.cargo/bin/rg ]; then
-    cargo install ripgrep
   fi
 
   # install nodebrew, node version manager
