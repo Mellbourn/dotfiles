@@ -44,6 +44,8 @@ if [[ `uname` == 'Linux' ]]; then
   # export LSCOLORS=gxfxcxdxbxegedabaggxgx
   export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=36:ow=36'
   alias ls='ls --color=auto'
+
+  export TERM=xterm-256color
 else
   # macOS
   export LSCOLORS=gxfxcxdxbxegedabagacad
