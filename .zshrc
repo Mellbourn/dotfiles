@@ -114,6 +114,10 @@ zplugin light laggardkernel/zsh-thefuck
 zplugin ice wait"2" lucid as"program" pick"$ZPFX/bin/git-alias" make"PREFIX=$ZPFX"
 zplugin load tj/git-extras
 
+# load diff-so-fancy if not already present (it can have been installed by homebrew)
+zplugin ice wait'2' as"program" pick"bin/git-dsf" if'[[ ! -x  "$(command -v diff-so-fancy)" ]]'
+zplugin light zdharma/zsh-diff-so-fancy
+
 #zplugin ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
 #zplugin light ogham/exa
 
@@ -125,28 +129,31 @@ zplugin load tj/git-extras
 zplugin ice wait'0' lucid atinit'eval "$(fasd --init auto)"'
 zplugin light zdharma/null
 
-# Not really plugins, but very good to have async anyway
-# sourcing rvm takes 0.51s, so there will be a lag when it is sourced
-# also, loading rvm as a zplugin will make it ignore the .ruby-version file if you are already inside that folder
-zplugin ice wait'4' lucid atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi'
-zplugin light zdharma/null
+if [ -z "$DOTFILES_LITE" ]
+then
+  # Not really plugins, but very good to have async anyway
+  # sourcing rvm takes 0.51s, so there will be a lag when it is sourced
+  # also, loading rvm as a zplugin will make it ignore the .ruby-version file if you are already inside that folder
+  zplugin ice wait'4' lucid atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi'
+  zplugin light zdharma/null
 
-# python environent will also cause a lag
-# this takes 0.166s
-zplugin ice wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"'
-zplugin light zdharma/null
-zplugin ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
-zplugin light zdharma/null
-export WORKON_HOME=~/.py_virtualenvs
-zplugin ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
-zplugin light zdharma/null
-# this taskes 0.39s
-zplugin ice wait'3' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
-zplugin light zdharma/null
+  # python environent will also cause a lag
+  # this takes 0.166s
+  zplugin ice wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"'
+  zplugin light zdharma/null
+  zplugin ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
+  zplugin light zdharma/null
+  export WORKON_HOME=~/.py_virtualenvs
+  zplugin ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
+  zplugin light zdharma/null
+  # this taskes 0.39s
+  zplugin ice wait'3' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
+  zplugin light zdharma/null
 
-# yarn must be run after node is defined, takes 0.31s, and only adds /usr/local/bin
-#zplugin ice wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"'
-#zplugin light zdharma/null
+  # yarn must be run after node is defined, takes 0.31s, and only adds /usr/local/bin
+  #zplugin ice wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"'
+  #zplugin light zdharma/null
+fi
 
 # TODO: convert these to zplugin
 # zplug "lukechilds/zsh-better-npm-completion", defer:2

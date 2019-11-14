@@ -9,6 +9,11 @@
 # fix for ENFILE: file table overflow
 ulimit -n 20000
 
+if grep -q Raspbian /etc/os-release 2> /dev/null
+then
+  export DOTFILES_LITE=1
+fi
+
 # directory for git repositories
 export CODE_DIR=~/code
 

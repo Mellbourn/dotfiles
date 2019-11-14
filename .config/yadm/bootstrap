@@ -12,6 +12,11 @@
 # https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789#.2d3cfjv7d
 ###############################################################################
 
+if grep -q Raspbian /etc/os-release 2> /dev/null
+then
+  DOTFILES_LITE=1
+fi
+
 if [[ `uname` == 'Darwin' ]]; then
   ###############################################################################
   # macOS specific installations
@@ -326,32 +331,34 @@ if [ "$CODE_DIR" ]; then
   touch $CODE_DIR/.metadata_never_index
 fi
 
-if [ -x "$(command -v /usr/local/opt/nodebrew/bin/nodebrew)" ]; then
-  /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
-fi
-nodebrew selfupdate
-nodebrew install-binary latest
-if ! [ -x "$(command -v node)" ]; then
-  # if no node is present, definitely use the latest
-  nodebrew use latest
-fi
+if [ -z "$DOTFILES_LITE" ]
+then
+  if [ -x "$(command -v /usr/local/opt/nodebrew/bin/nodebrew)" ]; then
+    /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
+  fi
+  nodebrew selfupdate
+  nodebrew install-binary latest
+  if ! [ -x "$(command -v node)" ]; then
+    # if no node is present, definitely use the latest
+    nodebrew use latest
+  fi
 
-if ! [ -x "$(command -v tldr)" ]; then
-  yarn global add tldr
-fi
-tldr --update
+  if ! [ -x "$(command -v tldr)" ]; then
+    yarn global add tldr
+  fi
+  tldr --update
 
-###############################################################################
-# development
-###############################################################################
-# TODO: remove this when global eslint has been removed everywhere
-yarn global remove eslint
+  ###############################################################################
+  # development
+  ###############################################################################
+  # TODO: remove this when global eslint has been removed everywhere
+  yarn global remove eslint
+fi
 
 ############################################################################
 # configuration for just Linux
 ###############################################################################
 if [[ `uname` == 'Linux' ]]; then
-  yarn global add diff-so-fancy
 
   # do some cleanup
   trash-empty 30

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if grep -q Raspbian /etc/os-release 2> /dev/null
+then
+  DOTFILES_LITE=1
+fi
 
 ###############################################################################
 # Linux (and Windows Subsystem for Linux)                                     #
@@ -14,13 +18,9 @@ if [[ `uname` == 'Linux' ]]; then
   sudo apt-get dist-upgrade -y
   sudo apt-get install -y \
     zsh \
-    build-essential \
     git \
     git-crypt \
     yadm \
-    python-pip \
-    python3-pip \
-    cargo \
     tmux-next \
     direnv \
     highlight \
@@ -33,12 +33,21 @@ if [[ `uname` == 'Linux' ]]; then
     nethack-console \
     fortune-mod \
 
-  sudo apt autoremove --yes
+  if [ -z "$DOTFILES_LITE" ]
+  then
+    sudo apt-get install -y \
+      build-essential \
+      python-pip \
+      python3-pip \
+      cargo \
 
-  sudo -H pip install --upgrade pip
-  sudo -H pip3 install --upgrade pip
-  sudo -H pip install virtualenv virtualenvwrapper
-  sudo -H pip3 install thefuck
+    sudo -H pip install --upgrade pip
+    sudo -H pip3 install --upgrade pip
+    sudo -H pip install virtualenv virtualenvwrapper
+    sudo -H pip3 install thefuck
+  fi
+
+  sudo apt autoremove --yes
 
   # overwrite old tmux
   sudo ln -sf /usr/bin/tmux-next /usr/bin/tmux
