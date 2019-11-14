@@ -316,12 +316,6 @@ zsh -ic "zplugin self-update; zplugin update --all"
 # this can soon be removed
 trash ~/.gitconfig.local
 
-# This git prompt is an optimized fork from olivierverdier/zsh-git-prompt. It can still be slow in large repos.
-# note that this version does not compile using haskell
-if [ ! -d ~/.zsh-git-prompt ]; then
-  git clone https://github.com/tombh/zsh-git-prompt.git ~/.zsh-git-prompt
-fi
-
 # set up alternate gitconfig file used to determine local settings
 yadm alt
 
