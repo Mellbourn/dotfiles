@@ -21,12 +21,10 @@ if [[ `uname` == 'Linux' ]]; then
     git \
     git-crypt \
     yadm \
-    tmux-next \
+    tmux \
     direnv \
     highlight \
-    fasd \
     trash-cli \
-    ripgrep \
     tree \
     tig \
     aptitude \
@@ -36,7 +34,11 @@ if [[ `uname` == 'Linux' ]]; then
 
   if [ -z "$DOTFILES_LITE" ]
   then
+    # tmux-next, fasd and ripgrep were not present for
     sudo apt-get install -y \
+      tmux-next \
+      fasd \
+      ripgrep \
       build-essential \
       python-pip \
       python3-pip \
