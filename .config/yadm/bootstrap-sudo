@@ -155,4 +155,4 @@ sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 sudo systemsetup -setremotelogin on
 
 # run customer specific bootstrap
-. $HOME/.yadm/bootstrap-sudo-customer
+. ${XDG_CONFIG_HOME:-$HOME/.config}/yadm/bootstrap-sudo-customer

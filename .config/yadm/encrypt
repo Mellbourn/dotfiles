@@ -2,5 +2,5 @@
 .kube/config
 .kube/certificate-authority.pem
 .ssh/config
-.yadm/bootstrap-customer
-.yadm/bootstrap-sudo-customer
+.config/yadm/bootstrap-customer
+.config/yadm/bootstrap-sudo-customer
