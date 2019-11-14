@@ -16,29 +16,38 @@ if [[ `uname` == 'Linux' ]]; then
   sudo add-apt-repository -y ppa:pi-rho/dev
   sudo apt-get update
   sudo apt-get dist-upgrade -y
-  sudo apt-get install -y \
-    zsh \
-    git \
-    git-crypt \
-    yadm \
-    tmux \
-    direnv \
-    highlight \
-    trash-cli \
-    tree \
-    tig \
-    aptitude \
-    tmpreaper \
-    nethack-console \
-    fortune-mod \
+  # tmux-next, fasd and ripgrep are absent from raspbian
+  apps="
+    zsh
+    git
+    git-crypt
+    yadm
+    tmux
+    tmux-next
+    direnv
+    highlight
+    fasd
+    trash-cli
+    ripgrep
+    tree
+    tig
+    aptitude
+    tmpreaper
+    nethack-console
+    fortune-mod
+  "
+  for app in $apps
+  do
+    if ! dpkg-query -l $app > /dev/null
+    then
+      echo "installing $app"
+      sudo apt-get install -y $app
+    fi
+  done
 
   if [ -z "$DOTFILES_LITE" ]
   then
-    # tmux-next, fasd and ripgrep were not present for
     sudo apt-get install -y \
-      tmux-next \
-      fasd \
-      ripgrep \
       build-essential \
       python-pip \
       python3-pip \
