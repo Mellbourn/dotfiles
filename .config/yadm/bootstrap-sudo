@@ -87,7 +87,9 @@ if [[ `uname` == 'Linux' ]]; then
   fi
 
   # when it is needed, this updates the OS, so it will take a LONG time
-  sudo do-release-upgrade
+  if [ -x "$(command -v do-release-upgrade)"]; then
+    sudo do-release-upgrade
+  fi
 
   # no more Linux related things to do
   exit 0
