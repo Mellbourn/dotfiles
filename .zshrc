@@ -160,7 +160,7 @@ fi
 # # I should only activate this when I need to generate completions
 # #zplug "RobSis/zsh-completion-generator", defer:2
 #
-if [[ $OSTYPE == 'linux-gnu' ]]; then
+if [[ `uname` == 'Linux' ]]; then
   export PATH="$PATH:$(yarn global bin)"
 #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
   zplugin load zsh-users/zsh-syntax-highlighting
