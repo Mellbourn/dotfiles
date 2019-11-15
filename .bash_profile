@@ -13,6 +13,7 @@ if grep -q Raspbian /etc/os-release 2> /dev/null
 then
   export DOTFILES_LITE=1
 fi
+export SHELLNAME=`echo $0|rev|cut -d '-' -f1|cut -d '/' -f1|rev`
 
 # directory for git repositories
 export CODE_DIR=~/code
@@ -93,7 +94,7 @@ then
 fi
 
 # this line is added by iTerm command "Install shell integration"
-test -e "${HOME}/.iterm2_shell_integration.`basename $SHELL`" && source "${HOME}/.iterm2_shell_integration.`basename $SHELL`"
+test -e "${HOME}/.iterm2_shell_integration.$SHELLNAME" && source "${HOME}/.iterm2_shell_integration.$SHELLNAME"
 
 if [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
