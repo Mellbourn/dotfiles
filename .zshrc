@@ -190,7 +190,7 @@ SHELLNAME=`echo $0|rev|cut -d '-' -f1|cut -d '/' -f1|rev`
 [ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME
 
 # set up direnv
-if [ -x "$(command -v direnv)" ]; then
+if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
   eval "$(direnv hook $SHELL)"
 fi
 # this needs to be done just once, and you will be prompted about it
