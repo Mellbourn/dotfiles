@@ -126,7 +126,7 @@ zplugin light zdharma/zsh-diff-so-fancy
 #zplugin light trapd00r/LS_COLORS
 
 # fasd takes 0.06s
-zplugin ice wait'0' lucid atinit'eval "$(fasd --init auto)"'
+zplugin ice wait'0' lucid atinit'eval "$(fasd --init auto)"' if'[[ ! -x  "$(command -v fasd)" ]]'
 zplugin light zdharma/null
 
 if [ -z "$DOTFILES_LITE" ]
