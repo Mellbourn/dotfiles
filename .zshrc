@@ -304,7 +304,7 @@ bindkey "^X^E" edit-command-line
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root)
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background
 export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' # pink
 export ZSH_HIGHLIGHT_STYLES[commandseparator]='bg=21,fg=195' # light on dark blue
