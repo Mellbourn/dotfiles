@@ -25,7 +25,6 @@ if [[ `uname` == 'Linux' ]]; then
     vim
     tmux
     tmux-next
-    direnv
     highlight
     fasd
     trash-cli
@@ -49,6 +48,7 @@ if [[ `uname` == 'Linux' ]]; then
   if [ -z "$DOTFILES_LITE" ]
   then
     sudo apt-get install -y \
+      direnv \
       build-essential \
       python-pip \
       python3-pip \
