@@ -209,7 +209,7 @@ function myPromptWidth() {
 width_part='$(myPromptWidth)'
 PROMPT="%K{106}%F%${width_part}<…<%4~%f%k%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.) "
 git_part='$(gitprompt)'
-RPROMPT="${git_part} %F{106}%*%f"
+RPROMPT="${git_part}%F{021}%n%F{025}@%F{033}%m%f %F{106}%*%f"
 
 ###############################################################################
 # fun functions
