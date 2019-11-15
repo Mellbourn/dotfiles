@@ -89,7 +89,7 @@ zplugin load woefe/git-prompt.zsh
 zplugin ice wait'0a' lucid blockf
 zplugin load zsh-users/zsh-completions
 
-zplugin ice wait'2' lucid
+zplugin ice wait'2' lucid if'[[ -x  "$(command -v fzf)" ]]'
 zplugin load wfxr/forgit
 
 zplugin ice wait'2' lucid
