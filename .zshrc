@@ -161,7 +161,6 @@ fi
 # #zplug "RobSis/zsh-completion-generator", defer:2
 #
 if [[ `uname` == 'Linux' ]]; then
-  export PATH="$PATH:$(yarn global bin)"
 #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
   zplugin load zsh-users/zsh-syntax-highlighting
   zplugin ice wait"1" lucid atload"!_zsh_autosuggest_start"
