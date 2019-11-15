@@ -187,7 +187,8 @@ export FZF_ALT_C_COMMAND='fd --type directory'
 export FZF_ALT_C_OPTS="--preview 'CLICOLOR_FORCE=1 ls -GF {} | head -200' --preview-window=right:20%"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'less {} 2> /dev/null | head -200' --preview-window=right:33%"
-[ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
+SHELLNAME=`echo $0|rev|cut -d '-' -f1|cut -d '/' -f1|rev`
+[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME
 
 # set up direnv
 if [ -x "$(command -v direnv)" ]; then
