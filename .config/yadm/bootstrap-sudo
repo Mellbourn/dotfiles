@@ -34,8 +34,6 @@ if [[ `uname` == 'Linux' ]]; then
     tig
     aptitude
     tmpreaper
-    nethack-console
-    fortune-mod
   "
   for app in $apps
   do
@@ -54,6 +52,8 @@ if [[ `uname` == 'Linux' ]]; then
       python-pip \
       python3-pip \
       cargo \
+      nethack-console \
+      fortune-mod \
 
     sudo -H pip install --upgrade pip
     sudo -H pip3 install --upgrade pip
