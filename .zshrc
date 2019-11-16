@@ -199,7 +199,8 @@ fi
 # prompt
 ###############################################################################
 HOSTNAME=`hostname`
-if [[ $HOSTNAME == "C02X558PJG5H" ]]; then
+WELL_KNOWN_COMPUTER="C02X558PJG5H"
+if [[ $HOSTNAME == $WELL_KNOWN_COMPUTER ]]; then
   HOSTNAME=
 fi
 PROMPT_NAME=${LOGNAME}@
