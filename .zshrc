@@ -203,7 +203,7 @@ if [[ $HOSTNAME == "C02X558PJG5H" ]]; then
   HOSTNAME=
 fi
 PROMPT_NAME=${LOGNAME}@
-if [[ $LOGNAME == *"ellbourn"* ]] || [[ $LOGNAME == *"klas"* ]]; then
+if [[ $LOGNAME == *"ellbourn"* ]] || [[ $LOGNAME == *"klas"* ]]; then
   PROMPT_NAME=
 fi
 export ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
