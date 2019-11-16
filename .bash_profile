@@ -87,7 +87,7 @@ fi
 if  [[ $SHELL == *bash ]];
 then
   ### prompt
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  if [ -x "$(command -v brew)" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
   fi
 
