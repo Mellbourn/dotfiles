@@ -29,7 +29,7 @@ Install Ubuntu from windows store, then continue the instructions under the head
 ```bash
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt install -y yadm
+sudo apt install -y git yadm
 yadm clone https://github.com/Mellbourn/dotfiles.git
 sudo ~/.yadm/bootstrap-sudo
 ~/.yadm/bootstrap
