@@ -208,6 +208,15 @@ if [[ $LOGNAME == *"ellbourn"* ]] || [[ $LOGNAME == *"klas"* ]]; then
   PROMPT_NAME=
 fi
 export ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
+if [ -n "$DOTFILES_LITE" ]; then
+  # ssh terminal causes unicode to show as two left cursor, https://github.com/woefe/git-prompt.zsh/issues/8
+  export ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}v"
+  export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}*"
+  export ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[blue]%}~"
+  export ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}x"
+  export ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}+"
+  export ZSH_THEME_GIT_PROMPT_UNTRACKED="..."
+fi
 export PROMPT_PERCENT_OF_LINE=20
 function myPromptWidth() {
   echo $(( ${COLUMNS:-80} * PROMPT_PERCENT_OF_LINE / 100 ))
