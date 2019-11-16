@@ -79,13 +79,12 @@ function current_context {
    osascript -e 'tell application "ControlPlane"' -e 'get current context' -e 'end tell'
 }
 
+if [[ $BASH_VERSINFO == 4 ]]; then
+  # bash shell options
+  shopt -s autocd globstar
+fi
 if  [[ $SHELL == *bash ]];
 then
-  if [[ $BASH_VERSINFO == 4 ]]; then
-    # bash shell options
-    shopt -s autocd globstar
-  fi
-
   ### prompt
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
