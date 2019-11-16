@@ -198,7 +198,14 @@ fi
 ###############################################################################
 # prompt
 ###############################################################################
-
+HOSTNAME=`hostname`
+if [[ $HOSTNAME == "C02X558PJG5H" ]]; then
+  HOSTNAME=
+fi
+PROMPT_NAME=${LOGNAME}@
+if [[ $LOGNAME == *"ellbourn"* ]] || [[ $LOGNAME == *"klas"* ]]; then
+  PROMPT_NAME=
+fi
 export ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 export PROMPT_PERCENT_OF_LINE=20
 function myPromptWidth() {
@@ -207,7 +214,7 @@ function myPromptWidth() {
 width_part='$(myPromptWidth)'
 PROMPT="%K{106}%F%${width_part}<…<%4~%f%k%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.) "
 git_part='$(gitprompt)'
-RPROMPT="${git_part}%F{021}%n%F{025}@%F{033}%m%f %F{106}%*%f"
+RPROMPT="${git_part}%F{021}${PROMPT_NAME}%F{033}${HOSTNAME}%f %F{106}%*%f"
 
 ###############################################################################
 # fun functions
