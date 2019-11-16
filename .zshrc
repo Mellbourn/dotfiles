@@ -126,8 +126,8 @@ zplugin light zdharma/zsh-diff-so-fancy
 #zplugin light trapd00r/LS_COLORS
 
 # fasd takes 0.06s
-zplugin ice wait'0' lucid atinit'eval "$(fasd --init auto)"' if'[[ -x  "$(command -v fasd)" ]]'
-zplugin light zdharma/null
+zplugin ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)"'
+zplugin light clvv/fasd
 
 if [ -z "$DOTFILES_LITE" ]
 then

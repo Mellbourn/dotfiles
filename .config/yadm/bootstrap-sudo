@@ -12,14 +12,15 @@ if [[ `uname` == 'Linux' ]]; then
   if ! [ -x "$(command -v add-apt-repository)" ]; then
     sudo apt install software-properties-common
   fi
-  sudo add-apt-repository -y ppa:aacebedo/fasd
   # add repo to get newest git
   sudo add-apt-repository -y ppa:git-core/ppa
   # add repo to get newest tmux
   sudo add-apt-repository -y ppa:pi-rho/dev
   sudo apt-get update
   sudo apt-get dist-upgrade -y
-  # tmux-next, fasd, ripgrep and bat are absent from raspbian
+  # eventually remove the removals
+  sudo apt remove fasd
+  # tmux-next, ripgrep and bat are absent from raspbian
   apps="
     zsh
     git
@@ -29,7 +30,6 @@ if [[ `uname` == 'Linux' ]]; then
     tmux
     tmux-next
     highlight
-    fasd
     trash-cli
     ripgrep
     bat
