@@ -115,7 +115,7 @@ zplugin ice wait"2" lucid as"program" pick"$ZPFX/bin/git-alias" make"PREFIX=$ZPF
 zplugin load tj/git-extras
 
 # load diff-so-fancy if not already present (it can have been installed by homebrew)
-zplugin ice wait'2' as"program" pick"bin/git-dsf" if'[[ ! -x  "$(command -v diff-so-fancy)" ]]' silent
+zplugin ice wait'2' lucid as"program" pick"bin/git-dsf" if'[[ ! -x  "$(command -v diff-so-fancy)" ]]'
 zplugin light zdharma/zsh-diff-so-fancy
 
 #zplugin ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
