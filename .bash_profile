@@ -17,8 +17,11 @@ if grep -q Raspbian /etc/os-release 2> /dev/null
 then
   export DOTFILES_LITE=1
 fi
-export SHELLNAME=`ps -o comm= -c "$$"|sed 's/-//'`
-
+if [ -n "$SHELL" ]; then
+  export SHELLNAME=`echo $SHELL|sed 's#.*/##'`
+else
+  export SHELLNAME=`ps -o comm= -c "$$"|sed 's/-//'`
+fi
 # directory for git repositories
 export CODE_DIR=~/code
 
