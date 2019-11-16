@@ -47,9 +47,13 @@ if [[ `uname` == 'Linux' ]]; then
   alias ls='ls --color=auto'
 
   export TERM=xterm-256color
+  export LESSOPEN="| $(which highlight) %s --out-format ansi --quiet --force"
+  export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column"
 else
   # macOS
   export LSCOLORS=gxfxcxdxbxegedabagacad
+  export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
+  export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column"
 fi
 # this is to compile vim
 export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers
@@ -58,9 +62,6 @@ export LANG=en_US.UTF-8
 export EDITOR=vi
 # make gpg prompt work, otherwise I get "Inappropriate ioctl for device"
 export GPG_TTY=$(tty)
-export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
-
-export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column"
 export CHEATCOLORS=true
 # git checkout should only complete local branches (unless origin/), since I have fzf for more complex scenarios
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
