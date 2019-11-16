@@ -64,8 +64,9 @@ else
 fi
 # this is to compile vim
 export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# why is this important? This doesn't always work on old raspbian
+#export LC_ALL=en_US.UTF-8
+#export LANG=en_US.UTF-8
 export EDITOR=vi
 # make gpg prompt work, otherwise I get "Inappropriate ioctl for device"
 export GPG_TTY=$(tty)
