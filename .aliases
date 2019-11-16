@@ -6,16 +6,20 @@ alias d='dirs -v | head -10'
 alias cr='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
 alias dkill='docker stop $(docker ps -a -q)'
 alias drm='docker rm $(docker ps -a -q)'
+alias drma='dkill; drm; drmi; drmv'
 alias drmi='docker rmi -f $(docker images -q); docker rmi -f $(docker images -f "dangling=true" -q)'
 alias drmv='docker volume rm $(docker volume ls -q); docker volume rm $(docker volume ls -qf dangling=true)'
-alias drma='dkill; drm; drmi; drmv'
+alias egrep='egrep --color=auto'
 alias g='noglob git'
 alias ga='git number add'
 alias glances='glances --process-short-name'
 alias gn='git number --column' # note that command line completion does not work well for this alias
+alias grep='grep --color=auto'
 alias l='ls -F '
+alias la='ls -aF '
+alias ll='ls -lF '
 alias more=less
 alias ping='prettyping --nolegend'
+alias rm_node_modules="find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' +"
 alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
 alias zmv='noglob zmv'
-alias rm_node_modules="find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' +"
