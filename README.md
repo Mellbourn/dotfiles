@@ -24,13 +24,13 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 
 Install Ubuntu from windows store, then continue the instructions under the heading "Ubuntu"
 
-### Ubuntu
+### Ubuntu & Debian
 
 ```bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install yadm
-yadm clone git@github.com:Mellbourn/dotfiles.git
+sudo apt update
+sudo apt upgrade
+sudo apt install yadm
+yadm clone https://github.com/Mellbourn/dotfiles.git
 sudo ~/.yadm/bootstrap-sudo
 ~/.yadm/bootstrap
 ```
