@@ -83,14 +83,17 @@ if [[ `uname` == 'Linux' ]]; then
     chsh -s $(which zsh)
   fi
 
-  # haskell
-  if ! [ -x "$(command -v stack)" ]; then
-    wget -qO- https://get.haskellstack.org/ | sh
-  fi
+  if [ -z "$DOTFILES_LITE" ]
+  then
+    # haskell
+    if ! [ -x "$(command -v stack)" ]; then
+      wget -qO- https://get.haskellstack.org/ | sh
+    fi
 
-  # install nodebrew, node version manager
-  if ! [ -x "$(command -v nodebrew)" ]; then
-    curl -L git.io/nodebrew | perl - setup
+    # install nodebrew, node version manager
+    if ! [ -x "$(command -v nodebrew)" ]; then
+      curl -L git.io/nodebrew | perl - setup
+    fi
   fi
 
   # install fuzzy matcher (^R, **)
