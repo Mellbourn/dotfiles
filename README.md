@@ -27,9 +27,9 @@ Install Ubuntu from windows store, then continue the instructions under the head
 ### Ubuntu & Debian
 
 ```bash
-sudo apt update
-sudo apt upgrade
-sudo apt install yadm
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install -y yadm
 yadm clone https://github.com/Mellbourn/dotfiles.git
 sudo ~/.yadm/bootstrap-sudo
 ~/.yadm/bootstrap
