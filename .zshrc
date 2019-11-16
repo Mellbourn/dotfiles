@@ -46,7 +46,7 @@ zstyle ':completion:*' menu select
 
 # Color completion for some things.
 # converted LSCOLORS using https://geoff.greer.fm/lscolors/
-if [[ `uname` == 'Linux' ]]; then
+if [[ -n $UNAME_LINUX ]]; then
   zstyle ':completion:*' list-colors 'di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=36:ow=36'
 else
   zstyle ':completion:*' list-colors 'di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
@@ -160,7 +160,7 @@ fi
 # # I should only activate this when I need to generate completions
 # #zplug "RobSis/zsh-completion-generator", defer:2
 #
-if [[ `uname` == 'Linux' ]]; then
+if [[ -n $UNAME_LINUX ]]; then
 #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
   zplugin load zsh-users/zsh-syntax-highlighting
   zplugin ice wait"1" lucid atload"!_zsh_autosuggest_start"

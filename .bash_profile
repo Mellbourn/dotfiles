@@ -9,6 +9,10 @@
 # fix for ENFILE: file table overflow
 ulimit -n 20000
 
+if [[ `uname` == 'Linux' ]]
+then
+  export UNAME_LINUX=1
+fi
 if grep -q Raspbian /etc/os-release 2> /dev/null
 then
   export DOTFILES_LITE=1
@@ -40,7 +44,7 @@ if [ -d ~/.cargo/bin ]; then
   export PATH=$PATH:~/.cargo/bin
 fi
 export CLICOLOR=1
-if [[ `uname` == 'Linux' ]]; then
+if [[ -n $UNAME_LINUX ]]; then
   # WSL
   # export LSCOLORS=gxfxcxdxbxegedabaggxgx
   export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=36:ow=36'
