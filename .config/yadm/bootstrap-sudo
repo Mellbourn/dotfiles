@@ -19,7 +19,7 @@ if [[ `uname` == 'Linux' ]]; then
   sudo apt-get update
   sudo apt-get dist-upgrade -y
   # eventually remove the removals
-  sudo apt remove fasd
+  sudo apt remove -y fasd
   # tmux-next, ripgrep and bat are absent from raspbian
   apps="
     zsh
