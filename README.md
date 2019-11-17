@@ -35,3 +35,13 @@ yadm clone https://github.com/Mellbourn/dotfiles.git
 ~/.config/yadm/bootstrap-sudo
 yadm decrypt
 ```
+
+## post Installation
+
+After ssh keys have been set up, enable pushing changes by pasting the public key into github and changing the remote url.
+
+```bash
+pbcopy < ~/.ssh/id_rsa.pub
+# paste the key manually to github account, then change the remote url
+yadm remote set-url origin git@github.com:Mellbourn/dotfiles.git
+```
