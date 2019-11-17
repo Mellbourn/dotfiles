@@ -46,7 +46,7 @@ zstyle ':completion:*' menu select
 
 # Color completion for some things.
 # converted LSCOLORS using https://geoff.greer.fm/lscolors/
-if [[ $OSTYPE == 'linux-gnu' ]]; then
+if [[ -n $UNAME_LINUX ]]; then
   zstyle ':completion:*' list-colors 'di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=36:ow=36'
 else
   zstyle ':completion:*' list-colors 'di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
@@ -89,7 +89,7 @@ zplugin load woefe/git-prompt.zsh
 zplugin ice wait'0a' lucid blockf
 zplugin load zsh-users/zsh-completions
 
-zplugin ice wait'2' lucid
+zplugin ice wait'2' lucid if'[[ -x "$(command -v fzf)" ]]'
 zplugin load wfxr/forgit
 
 zplugin ice wait'2' lucid
@@ -114,6 +114,10 @@ zplugin light laggardkernel/zsh-thefuck
 zplugin ice wait"2" lucid as"program" pick"$ZPFX/bin/git-alias" make"PREFIX=$ZPFX"
 zplugin load tj/git-extras
 
+# load diff-so-fancy if not already present (it can have been installed by homebrew)
+zplugin ice wait'2' lucid as"program" pick"bin/git-dsf" if'[[ ! -x "$(command -v diff-so-fancy)" ]]'
+zplugin light zdharma/zsh-diff-so-fancy
+
 #zplugin ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
 #zplugin light ogham/exa
 
@@ -122,39 +126,41 @@ zplugin load tj/git-extras
 #zplugin light trapd00r/LS_COLORS
 
 # fasd takes 0.06s
-zplugin ice wait'0' lucid atinit'eval "$(fasd --init auto)"'
-zplugin light zdharma/null
+zplugin ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)"'
+zplugin light clvv/fasd
 
-# Not really plugins, but very good to have async anyway
-# sourcing rvm takes 0.51s, so there will be a lag when it is sourced
-# also, loading rvm as a zplugin will make it ignore the .ruby-version file if you are already inside that folder
-zplugin ice wait'4' lucid atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi'
-zplugin light zdharma/null
+if [ -z "$DOTFILES_LITE" ]
+then
+  # Not really plugins, but very good to have async anyway
+  # sourcing rvm takes 0.51s, so there will be a lag when it is sourced
+  # also, loading rvm as a zplugin will make it ignore the .ruby-version file if you are already inside that folder
+  zplugin ice wait'4' lucid atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi'
+  zplugin light zdharma/null
 
-# python environent will also cause a lag
-# this takes 0.166s
-zplugin ice wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"'
-zplugin light zdharma/null
-zplugin ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
-zplugin light zdharma/null
-export WORKON_HOME=~/.py_virtualenvs
-zplugin ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
-zplugin light zdharma/null
-# this taskes 0.39s
-zplugin ice wait'3' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
-zplugin light zdharma/null
+  # python environent will also cause a lag
+  # this takes 0.166s
+  zplugin ice wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"'
+  zplugin light zdharma/null
+  zplugin ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
+  zplugin light zdharma/null
+  export WORKON_HOME=~/.py_virtualenvs
+  zplugin ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
+  zplugin light zdharma/null
+  # this taskes 0.39s
+  zplugin ice wait'3' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
+  zplugin light zdharma/null
 
-# yarn must be run after node is defined, takes 0.31s, and only adds /usr/local/bin
-#zplugin ice wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"'
-#zplugin light zdharma/null
+  # yarn must be run after node is defined, takes 0.31s, and only adds /usr/local/bin
+  #zplugin ice wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"'
+  #zplugin light zdharma/null
+fi
 
 # TODO: convert these to zplugin
 # zplug "lukechilds/zsh-better-npm-completion", defer:2
 # # I should only activate this when I need to generate completions
 # #zplug "RobSis/zsh-completion-generator", defer:2
 #
-if [[ $OSTYPE == 'linux-gnu' ]]; then
-  export PATH="$PATH:$(yarn global bin)"
+if [[ -n $UNAME_LINUX ]]; then
 #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
   zplugin load zsh-users/zsh-syntax-highlighting
   zplugin ice wait"1" lucid atload"!_zsh_autosuggest_start"
@@ -180,10 +186,10 @@ export FZF_ALT_C_COMMAND='fd --type directory'
 export FZF_ALT_C_OPTS="--preview 'CLICOLOR_FORCE=1 ls -GF {} | head -200' --preview-window=right:20%"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'less {} 2> /dev/null | head -200' --preview-window=right:33%"
-[ -f ~/.fzf.`basename $SHELL` ] && source ~/.fzf.`basename $SHELL`
+[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME
 
 # set up direnv
-if [ -x "$(command -v direnv)" ]; then
+if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
   eval "$(direnv hook $SHELL)"
 fi
 # this needs to be done just once, and you will be prompted about it
@@ -192,16 +198,34 @@ fi
 ###############################################################################
 # prompt
 ###############################################################################
-
+HOSTNAME=${HOST:=`hostname`}
+WELL_KNOWN_COMPUTER="C02X558PJG5H"
+if [[ $HOSTNAME == $WELL_KNOWN_COMPUTER ]]; then
+  HOSTNAME=
+fi
+PROMPT_NAME=${LOGNAME}@
+if [[ $LOGNAME == *"ellbourn"* ]] || [[ $LOGNAME == *"klas"* ]]; then
+  PROMPT_NAME=
+fi
 export ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
+if [ -n "$DOTFILES_LITE" ]; then
+  # ssh terminal causes unicode to show as two left cursor, https://github.com/woefe/git-prompt.zsh/issues/8
+  export ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}v"
+  export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}*"
+  export ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[blue]%}~"
+  export ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}x"
+  export ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}+"
+  export ZSH_THEME_GIT_PROMPT_UNTRACKED="..."
+fi
 export PROMPT_PERCENT_OF_LINE=20
 function myPromptWidth() {
   echo $(( ${COLUMNS:-80} * PROMPT_PERCENT_OF_LINE / 100 ))
 }
 width_part='$(myPromptWidth)'
-PROMPT="%K{106}%F%${width_part}<…<%4~%f%k%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.) "
+local prompt_hashcolor=$((16#${$(echo $HOST|md5sum):0:2}))
+PROMPT="%K{${prompt_hashcolor}}%F%${width_part}<…<%4~%f%k%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.) "
 git_part='$(gitprompt)'
-RPROMPT="${git_part} %F{106}%*%f"
+RPROMPT="${git_part}%F{021}${PROMPT_NAME}%F{033}${HOSTNAME}%f %F{106}%*%f"
 
 ###############################################################################
 # fun functions
@@ -296,7 +320,7 @@ bindkey "^X^E" edit-command-line
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root)
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background
 export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' # pink
 export ZSH_HIGHLIGHT_STYLES[commandseparator]='bg=21,fg=195' # light on dark blue

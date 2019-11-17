@@ -9,6 +9,19 @@
 # fix for ENFILE: file table overflow
 ulimit -n 20000
 
+if [[ `uname` == 'Linux' ]]
+then
+  export UNAME_LINUX=1
+fi
+if grep -q Raspbian /etc/os-release 2> /dev/null
+then
+  export DOTFILES_LITE=1
+fi
+if [ -n "$SHELL" ]; then
+  export SHELLNAME=`echo $SHELL|sed 's#.*/##'`
+else
+  export SHELLNAME=`ps -o comm= -c "$$"|sed 's/-//'`
+fi
 # directory for git repositories
 export CODE_DIR=~/code
 
@@ -30,29 +43,36 @@ fi
 
 ### environment variables
 export PATH=$PATH:~/bin
+if [ -d "$HOME/.local/bin" ] ; then
+  PATH="$HOME/.local/bin:$PATH"
+fi
 if [ -d ~/.cargo/bin ]; then
   export PATH=$PATH:~/.cargo/bin
 fi
 export CLICOLOR=1
-if [[ $OSTYPE == 'linux-gnu' ]]; then
+if [[ -n $UNAME_LINUX ]]; then
   # WSL
   # export LSCOLORS=gxfxcxdxbxegedabaggxgx
   export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=36:ow=36'
   alias ls='ls --color=auto'
+
+  export TERM=xterm-256color
+  export LESSOPEN="| $(which highlight) %s --out-format ansi --quiet --force"
+  export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column"
 else
   # macOS
   export LSCOLORS=gxfxcxdxbxegedabagacad
+  export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
+  export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column"
 fi
 # this is to compile vim
 export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers
+# why is this important? This doesn't always work on old raspbian
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vi
 # make gpg prompt work, otherwise I get "Inappropriate ioctl for device"
 export GPG_TTY=$(tty)
-export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
-
-export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column"
 export CHEATCOLORS=true
 # git checkout should only complete local branches (unless origin/), since I have fzf for more complex scenarios
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
@@ -63,15 +83,14 @@ function current_context {
    osascript -e 'tell application "ControlPlane"' -e 'get current context' -e 'end tell'
 }
 
+if [[ $BASH_VERSINFO == 4 ]]; then
+  # bash shell options
+  shopt -s autocd globstar
+fi
 if  [[ $SHELL == *bash ]];
 then
-  if [[ $BASH_VERSINFO == 4 ]]; then
-    # bash shell options
-    shopt -s autocd globstar
-  fi
-
   ### prompt
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  if [ -x "$(command -v brew)" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
   fi
 
@@ -86,7 +105,7 @@ then
 fi
 
 # this line is added by iTerm command "Install shell integration"
-test -e "${HOME}/.iterm2_shell_integration.`basename $SHELL`" && source "${HOME}/.iterm2_shell_integration.`basename $SHELL`"
+test -e "${HOME}/.iterm2_shell_integration.$SHELLNAME" && source "${HOME}/.iterm2_shell_integration.$SHELLNAME"
 
 if [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"

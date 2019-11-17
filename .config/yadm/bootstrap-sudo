@@ -1,44 +1,70 @@
 #!/bin/bash
 
+if grep -q Raspbian /etc/os-release 2> /dev/null
+then
+  DOTFILES_LITE=1
+fi
 
 ###############################################################################
 # Linux (and Windows Subsystem for Linux)                                     #
 ###############################################################################
 if [[ `uname` == 'Linux' ]]; then
-  sudo add-apt-repository -y ppa:aacebedo/fasd
+  if ! [ -x "$(command -v add-apt-repository)" ]; then
+    sudo apt install -y software-properties-common
+  fi
   # add repo to get newest git
   sudo add-apt-repository -y ppa:git-core/ppa
   # add repo to get newest tmux
   sudo add-apt-repository -y ppa:pi-rho/dev
   sudo apt-get update
   sudo apt-get dist-upgrade -y
-  sudo apt-get install -y \
-    zsh \
-    build-essential \
-    git \
-    git-crypt \
-    yadm \
-    python-pip \
-    python3-pip \
-    cargo \
-    tmux-next \
-    direnv \
-    highlight \
-    fasd \
-    trash-cli \
-    tree \
-    tig \
-    aptitude \
-    tmpreaper \
-    nethack-console \
-    fortune-mod \
+  # eventually remove the removals
+  sudo apt remove fasd
+  # tmux-next, ripgrep and bat are absent from raspbian
+  apps="
+    zsh
+    git
+    git-crypt
+    yadm
+    vim
+    tmux
+    tmux-next
+    highlight
+    trash-cli
+    ripgrep
+    bat
+    tree
+    tig
+    aptitude
+    tmpreaper
+  "
+  for app in $apps
+  do
+    if ! dpkg-query -l $app > /dev/null
+    then
+      echo "--------------> installing $app"
+      sudo apt-get install -y $app
+    fi
+  done
+
+  if [ -z "$DOTFILES_LITE" ]
+  then
+    sudo apt-get install -y \
+      direnv \
+      build-essential \
+      python-pip \
+      python3-pip \
+      cargo \
+      nethack-console \
+      fortune-mod \
+
+    sudo -H pip install --upgrade pip
+    sudo -H pip3 install --upgrade pip
+    sudo -H pip install virtualenv virtualenvwrapper
+    sudo -H pip3 install thefuck
+  fi
 
   sudo apt autoremove --yes
-
-  sudo -H pip install --upgrade pip
-  sudo -H pip3 install --upgrade pip
-  sudo -H pip install virtualenv virtualenvwrapper
-  sudo -H pip3 install thefuck
 
   # overwrite old tmux
   sudo ln -sf /usr/bin/tmux-next /usr/bin/tmux
@@ -55,24 +81,22 @@ if [[ `uname` == 'Linux' ]]; then
   ~/bin/trash-empty-wsl +30
   sudo tmpreaper --all --showdeleted 30d /tmp
 
-  if  [[ $SHELL != *zsh ]];
+  if  [[ $SHELLNAME != zsh ]];
   then
     chsh -s $(which zsh)
   fi
 
-  # haskell
-  if ! [ -x "$(command -v stack)" ]; then
-    wget -qO- https://get.haskellstack.org/ | sh
-  fi
+  if [ -z "$DOTFILES_LITE" ]
+  then
+    # haskell
+    if ! [ -x "$(command -v stack)" ]; then
+      wget -qO- https://get.haskellstack.org/ | sh
+    fi
 
-  # install ripgrep, depends on haskell
-  if ! [ -f ~/.cargo/bin/rg ]; then
-    cargo install ripgrep
-  fi
-
-  # install nodebrew, node version manager
-  if ! [ -x "$(command -v nodebrew)" ]; then
-    curl -L git.io/nodebrew | perl - setup
+    # install nodebrew, node version manager
+    if ! [ -x "$(command -v nodebrew)" ]; then
+      curl -L git.io/nodebrew | perl - setup
+    fi
   fi
 
   # install fuzzy matcher (^R, **)
@@ -82,7 +106,9 @@ if [[ `uname` == 'Linux' ]]; then
   fi
 
   # when it is needed, this updates the OS, so it will take a LONG time
-  sudo do-release-upgrade
+  if [ -x "$(command -v do-release-upgrade)" ]; then
+    sudo do-release-upgrade
+  fi
 
   # no more Linux related things to do
   exit 0

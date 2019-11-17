@@ -12,6 +12,11 @@
 # https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789#.2d3cfjv7d
 ###############################################################################
 
+if grep -q Raspbian /etc/os-release 2> /dev/null
+then
+  DOTFILES_LITE=1
+fi
+
 if [[ `uname` == 'Darwin' ]]; then
   ###############################################################################
   # macOS specific installations
@@ -72,6 +77,7 @@ if [[ `uname` == 'Darwin' ]]; then
   #brew uninstall --force ack fish
   # TODO: eventually uninstall zplug
   #brew uninstall --force zplug
+  brew uninstall --force fasd
   #brew cask uninstall --force intellij-idea
   #brew cask uninstall --force google-chrome
   brew cask uninstall --force a-better-finder-attributes
@@ -97,7 +103,6 @@ docker-completion
 docker-compose-completion
 docker-machine-completion
 duti
-fasd
 fd
 findutils
 flow
@@ -311,12 +316,6 @@ zsh -ic "zplugin self-update; zplugin update --all"
 # this can soon be removed
 trash ~/.gitconfig.local
 
-# This git prompt is an optimized fork from olivierverdier/zsh-git-prompt. It can still be slow in large repos.
-# note that this version does not compile using haskell
-if [ ! -d ~/.zsh-git-prompt ]; then
-  git clone git@github.com:tombh/zsh-git-prompt.git ~/.zsh-git-prompt
-fi
-
 # set up alternate gitconfig file used to determine local settings
 yadm alt
 
@@ -326,32 +325,34 @@ if [ "$CODE_DIR" ]; then
   touch $CODE_DIR/.metadata_never_index
 fi
 
-if [ -x "$(command -v /usr/local/opt/nodebrew/bin/nodebrew)" ]; then
-  /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
-fi
-nodebrew selfupdate
-nodebrew install-binary latest
-if ! [ -x "$(command -v node)" ]; then
-  # if no node is present, definitely use the latest
-  nodebrew use latest
-fi
+if [ -z "$DOTFILES_LITE" ]
+then
+  if [ -x "$(command -v /usr/local/opt/nodebrew/bin/nodebrew)" ]; then
+    /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
+  fi
+  nodebrew selfupdate
+  nodebrew install-binary latest
+  if ! [ -x "$(command -v node)" ]; then
+    # if no node is present, definitely use the latest
+    nodebrew use latest
+  fi
 
-if ! [ -x "$(command -v tldr)" ]; then
-  yarn global add tldr
-fi
-tldr --update
+  if ! [ -x "$(command -v tldr)" ]; then
+    yarn global add tldr
+  fi
+  tldr --update
 
-###############################################################################
-# development
-###############################################################################
-# TODO: remove this when global eslint has been removed everywhere
-yarn global remove eslint
+  ###############################################################################
+  # development
+  ###############################################################################
+  # TODO: remove this when global eslint has been removed everywhere
+  yarn global remove eslint
+fi
 
 ############################################################################
 # configuration for just Linux
 ###############################################################################
 if [[ `uname` == 'Linux' ]]; then
-  yarn global add diff-so-fancy
 
   # do some cleanup
   trash-empty 30

@@ -12,7 +12,7 @@ I use [yadm](https://github.com/TheLocehiliosan/yadm) to manage my dotfiles.
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &&
 brew install yadm &&
 yadm clone --bootstrap git@github.com:Mellbourn/dotfiles.git &&
-sudo .yadm/bootstrap-sudo &&
+sudo .config/yadm/bootstrap-sudo &&
 yadm decrypt
 ```
 
@@ -24,13 +24,13 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 
 Install Ubuntu from windows store, then continue the instructions under the heading "Ubuntu"
 
-### Ubuntu
+### Ubuntu & Debian
 
 ```bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install yadm
-yadm clone git@github.com:Mellbourn/dotfiles.git
-sudo ~/.yadm/bootstrap-sudo
-~/.yadm/bootstrap
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install -y git yadm
+yadm clone https://github.com/Mellbourn/dotfiles.git
+~/.config/yadm/bootstrap
+~/.config/yadm/bootstrap-sudo
 ```
