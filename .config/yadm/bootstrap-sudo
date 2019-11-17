@@ -88,7 +88,7 @@ if [[ `uname` == 'Linux' ]]; then
   if [ -f /etc/motd ] && ! [ -f /etc/motd~]; then
     pushd /etc
     sudo mv motd motd~
-    touch motd
+    sudo touch motd
     popd
   fi
 
