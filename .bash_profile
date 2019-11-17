@@ -43,6 +43,9 @@ fi
 
 ### environment variables
 export PATH=$PATH:~/bin
+if [ -d "$HOME/.local/bin" ] ; then
+  PATH="$HOME/.local/bin:$PATH"
+fi
 if [ -d ~/.cargo/bin ]; then
   export PATH=$PATH:~/.cargo/bin
 fi
