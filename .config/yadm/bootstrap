@@ -305,6 +305,12 @@ fi ############################################################################
 # configuration for both Mac and Linux
 ###############################################################################
 
+if ! [ -f ~/.ssh/id_rsa ]; then
+  ssh-keygen -t rsa -b 4096 -C "${USER}@$(hostname)"
+  ssh-add -K ~/.ssh/id_rsa
+  echo "Remember to add the new public key in ~/.ssh/id_rsa.pub to github and appropriate authorized_hosts."
+fi
+
 # Install `zplugin` if not installed
 if [ ! -d ~/.zplugin ]; then
   mkdir ~/.zplugin
