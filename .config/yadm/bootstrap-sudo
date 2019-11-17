@@ -42,7 +42,6 @@ if [[ `uname` == 'Linux' ]]; then
   do
     if ! dpkg-query -l $app > /dev/null
     then
-      echo "--------------> installing $app"
       sudo apt-get install -y $app
     fi
   done
