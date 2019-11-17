@@ -84,6 +84,14 @@ if [[ `uname` == 'Linux' ]]; then
   # remove cron warning
   sudo sed -i~ 's/^SHOWWARNING=true$/# SHOWWARNING=true/' /etc/tmpreaper.conf
 
+  # remove boring motd
+  if [ -f /etc/motd ] && ! [ -f /etc/motd~]; then
+    pushd /etc
+    sudo mv motd motd~
+    touch motd
+    popd
+  fi
+
   if  [[ $SHELLNAME != zsh ]];
   then
     chsh -s $(which zsh)
