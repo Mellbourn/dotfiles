@@ -33,4 +33,5 @@ sudo apt install -y git yadm
 yadm clone https://github.com/Mellbourn/dotfiles.git
 ~/.config/yadm/bootstrap
 ~/.config/yadm/bootstrap-sudo
+yadm decrypt
 ```
