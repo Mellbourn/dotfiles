@@ -307,7 +307,12 @@ fi ############################################################################
 
 if ! [ -f ~/.ssh/id_rsa ]; then
   ssh-keygen -t rsa -b 4096 -C "${USER}@$(hostname)" -f ~/.ssh/id_rsa -N ""
-  ssh-add -K ~/.ssh/id_rsa
+  eval `ssh-agent -s`
+  if [[ `uname` == 'Darwin' ]]; then
+    ssh-add -K ~/.ssh/id_rsa
+  else
+    ssh-add
+  fi
   echo "Remember to add the new public key in ~/.ssh/id_rsa.pub to github and appropriate authorized_hosts."
 fi
 
