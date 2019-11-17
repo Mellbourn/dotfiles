@@ -85,7 +85,7 @@ if [[ `uname` == 'Linux' ]]; then
   sudo sed -i~ 's/^SHOWWARNING=true$/# SHOWWARNING=true/' /etc/tmpreaper.conf
 
   # remove the booring and verbose standard motd
-  if [ -f /etc/motd ] && ! [ -f /etc/motd~]; then
+  if [ -f /etc/motd ] && ! [ -f /etc/motd~ ]; then
     pushd /etc
     sudo mv motd motd~
     sudo touch motd
