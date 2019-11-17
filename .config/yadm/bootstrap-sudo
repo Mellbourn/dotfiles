@@ -81,6 +81,9 @@ if [[ `uname` == 'Linux' ]]; then
   ~/bin/trash-empty-wsl +30
   sudo tmpreaper --all --showdeleted 30d /tmp
 
+  # remove cron warning
+  sudo sed -i~ 's/^SHOWWARNING=true$/# SHOWWARNING=true/' /etc/tmpreaper.conf
+
   if  [[ $SHELLNAME != zsh ]];
   then
     chsh -s $(which zsh)
