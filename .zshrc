@@ -198,7 +198,7 @@ fi
 ###############################################################################
 # prompt
 ###############################################################################
-HOSTNAME=${HOST:=`hostname`}
+HOSTNAME=$(hostname -s)
 WELL_KNOWN_COMPUTER="C02X558PJG5H"
 if [[ $HOSTNAME == $WELL_KNOWN_COMPUTER ]]; then
   HOSTNAME=
