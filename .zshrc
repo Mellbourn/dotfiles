@@ -222,8 +222,8 @@ function myPromptWidth() {
   echo $(( ${COLUMNS:-80} * PROMPT_PERCENT_OF_LINE / 100 ))
 }
 width_part='$(myPromptWidth)'
-# variant: local prompt_hashcolor=$(echo $HOST|cksum|awk '{print $1%239 + 17}')
 local prompt_hashcolor=$((16#${$(echo $HOST|md5sum):0:2}))
+# variant: local prompt_hashcolor=$(echo $HOST|cksum|awk '{print $1%239 + 17}')
 PROMPT="%K{${prompt_hashcolor}}%F%${width_part}<…<%4~%f%k%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.) "
 git_part='$(gitprompt)'
 RPROMPT="${git_part}%F{021}${PROMPT_NAME}%F{033}${HOSTNAME}%f %F{106}%*%f"
