@@ -66,7 +66,9 @@ if [[ `uname` == 'Linux' ]]; then
   sudo apt autoremove --yes
 
   # overwrite old tmux
-  sudo ln -sf /usr/bin/tmux-next /usr/bin/tmux
+  if [ -f /usr/bin/tmux-next]; then
+    sudo ln -sf /usr/bin/tmux-next /usr/bin/tmux
+  fi
 
   if ! [ -x "$(command -v git-lfs)" ]; then
     curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
