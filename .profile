@@ -3,4 +3,7 @@
 ###############################################################################
 #echo ".profile running"
 
+# directory for git repositories
+export CODE_DIR=~/code
+
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

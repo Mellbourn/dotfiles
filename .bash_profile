@@ -6,6 +6,10 @@
 # fortune takes 0.017s
 #fortune
 
+if [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && command -v tmux &> /dev/null; then
+  exec ~/bin/tmux-attach-or-new
+fi
+
 # fix for ENFILE: file table overflow
 ulimit -n 20000
 
@@ -22,8 +26,6 @@ if [ -n "$SHELL" ]; then
 else
   export SHELLNAME=`ps -o comm= -c "$$"|sed 's/-//'`
 fi
-# directory for git repositories
-export CODE_DIR=~/code
 
 if [ -f ~/.profile ]; then
   source ~/.profile

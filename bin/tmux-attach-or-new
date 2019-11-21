@@ -1,2 +1,2 @@
-#!/bin/bash
+#!/bin/sh
 /usr/local/bin/tmux new-session -A -s base
