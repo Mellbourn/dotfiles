@@ -6,7 +6,7 @@
 # fortune takes 0.017s
 #fortune
 
-if [ -n "$PS1" ] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && command -v tmux &> /dev/null; then
+if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &> /dev/null; then
   exec ~/bin/tmux-attach-or-new
 fi
 
