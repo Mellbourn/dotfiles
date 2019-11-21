@@ -3,7 +3,7 @@
 ###############################################################################
 #echo ".profile running"
 
-# directory for git repositories
+# directory for git repositories, should be set up before tmux starts
 export CODE_DIR=~/code
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
