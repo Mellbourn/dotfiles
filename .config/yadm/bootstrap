@@ -85,6 +85,7 @@ if [[ `uname` == 'Darwin' ]]; then
   brew cask uninstall --force plex-media-player
   brew cask uninstall --force rescuetime
   brew cask uninstall --force rowanj-gitx
+  brew cask uninstall --force intel-power-gadget
   brew uninstall --force postgresql
 
   # this must be in alphabetical order!
