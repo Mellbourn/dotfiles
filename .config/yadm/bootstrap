@@ -85,6 +85,7 @@ if [[ `uname` == 'Darwin' ]]; then
   brew cask uninstall --force plex-media-player
   brew cask uninstall --force rescuetime
   brew cask uninstall --force rowanj-gitx
+  brew cask uninstall --force intel-power-gadget
   brew uninstall --force postgresql
 
   # this must be in alphabetical order!
@@ -360,6 +361,10 @@ then
   yarn global remove eslint
 fi
 
+function zsh_performance_measurements() {
+  for i in {1..5}; do /usr/bin/time zsh -i -c exit; done
+}
+
 ############################################################################
 # configuration for just Linux
 ###############################################################################
@@ -370,6 +375,7 @@ if [[ `uname` == 'Linux' ]]; then
   # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
   ~/bin/trash-empty-wsl +30
 
+  zsh_performance_measurements
   exit 0
 fi ############################################################################
 # mac specific configurations
@@ -566,3 +572,5 @@ defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 
 # run customer specific bootstrap
 . ${XDG_CONFIG_HOME:-$HOME/.config}/yadm/bootstrap-customer
+
+zsh_performance_measurements

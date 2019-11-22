@@ -6,6 +6,10 @@
 # fortune takes 0.017s
 #fortune
 
+if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &> /dev/null; then
+  exec ~/bin/tmux-attach-or-new
+fi
+
 # fix for ENFILE: file table overflow
 ulimit -n 20000
 
@@ -22,8 +26,6 @@ if [ -n "$SHELL" ]; then
 else
   export SHELLNAME=`ps -o comm= -c "$$"|sed 's/-//'`
 fi
-# directory for git repositories
-export CODE_DIR=~/code
 
 if [ -f ~/.profile ]; then
   source ~/.profile
@@ -56,7 +58,6 @@ if [[ -n $UNAME_LINUX ]]; then
   export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=36:ow=36'
   alias ls='ls --color=auto'
 
-  export TERM=xterm-256color
   export LESSOPEN="| $(which highlight) %s --out-format ansi --quiet --force"
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column"
 else
