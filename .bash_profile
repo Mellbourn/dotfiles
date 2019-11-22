@@ -71,7 +71,11 @@ export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers
 # why is this important? This doesn't always work on old raspbian
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export EDITOR=vi
+if [ -x "$(command -v code)" ]; then
+  export EDITOR="code --wait"
+else
+  export EDITOR=vi
+fi
 # make gpg prompt work, otherwise I get "Inappropriate ioctl for device"
 export GPG_TTY=$(tty)
 export CHEATCOLORS=true
