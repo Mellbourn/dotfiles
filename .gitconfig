@@ -14,6 +14,8 @@
     path = .gitconfig.user.foss
 [core]
 	excludesfile = ~/.gitignore_global
+[commit]
+	gpgsign = true
 [mergetool]
 	keepbackup = false
 	prompt = false
