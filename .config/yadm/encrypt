@@ -4,3 +4,5 @@
 .ssh/config
 .config/yadm/bootstrap-customer
 .config/yadm/bootstrap-sudo-customer
+.gnupg/pubring.kbx
+.gnupg/private-keys-v1.d/*.key
