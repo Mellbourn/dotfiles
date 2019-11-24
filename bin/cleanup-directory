@@ -5,7 +5,8 @@ file_glob=*
 
 usage () { echo "-d directory to clean
 -f glob pattern of files to clean
--l number of files to leave"; }
+-l number of files to leave
+-v verbose"; }
 
 while getopts "hvd:f:l:" opt; do
     case $opt in
