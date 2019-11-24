@@ -1,5 +1,6 @@
 [user]
 	name = Klas Mellbourn
+	signingkey = 9421003411C7A828
 [include]
     path = .gitconfig.user.foss
 [includeIf "gitdir:~/code/klarna/"]
