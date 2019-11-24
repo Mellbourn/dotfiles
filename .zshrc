@@ -147,7 +147,8 @@ then
   zplugin ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
   zplugin light zdharma/null
   # this taskes 0.39s
-  zplugin ice wait'3' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
+  # this has to be loaded much later than the preceding plugins, otherwise you will get "No module named virtualenvwrapper  "
+  zplugin ice wait'4' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
   zplugin light zdharma/null
 
   # yarn must be run after node is defined, takes 0.31s, and only adds /usr/local/bin
