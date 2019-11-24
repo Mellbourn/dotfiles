@@ -5,4 +5,5 @@
 .config/yadm/bootstrap-customer
 .config/yadm/bootstrap-sudo-customer
 .gnupg/pubring.kbx
+.gnupg/trustdb.gpg
 .gnupg/private-keys-v1.d/*.key
