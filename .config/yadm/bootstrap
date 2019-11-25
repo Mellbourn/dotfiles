@@ -143,10 +143,11 @@ nethack
 nginx
 nodebrew
 parallel
+pinentry-mac
+pipenv
 pkg-config
 prettyping
 pv
-pipenv
 pyenv
 pyenv-virtualenv
 pyenv-virtualenvwrapper
