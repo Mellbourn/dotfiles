@@ -136,7 +136,7 @@ if [ -f /etc/paths ]; then
       echo -n "${line}:"
     fi
   done < /etc/paths)
-  PATH_OVERRIDE=${ETC_PATHS}${USR_LOCAL_BIN}:${HOME}/.nodebrew/current/bin
+  PATH_OVERRIDE=${ETC_PATHS}${USR_LOCAL_BIN}:${HOME}/bin:${HOME}/.nodebrew/current/bin
   echo "overrding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
   sudo launchctl config user path $PATH_OVERRIDE
   # revert
