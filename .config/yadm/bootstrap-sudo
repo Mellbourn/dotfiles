@@ -74,7 +74,9 @@ if [[ `uname` == 'Linux' ]]; then
     curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
   fi
   sudo apt install git-lfs
-  git lfs install --skip-smudge
+  if [ -x "$(command -v git-lfs)" ]; then
+    git lfs install --skip-smudge
+  fi
 
   # do some cleanup
   trash-empty 30
