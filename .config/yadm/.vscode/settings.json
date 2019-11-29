@@ -3,6 +3,7 @@
     "repo.git": true,
     "files.gpg": true
   },
+  "window.zoomLevel": 0,
   "workbench.colorCustomizations": {
     "activityBar.background": "#92725299",
     "activityBar.activeBorder": "#85ba9f",
