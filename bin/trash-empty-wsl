@@ -7,7 +7,9 @@ if [ $# -ne 1 ]; then
 fi
 
 age=$1
-find /mnt/c/.Trash/*/files -mindepth 1 -mtime $age | while read trashFile; do
-  infoFile=${trashFile/files/info}
-  rm -r $trashFile && rm ${infoFile}.trashinfo
-done
+if [ -d /mnt/c ]; then
+  find /mnt/c/.Trash/*/files -mindepth 1 -mtime $age | while read trashFile; do
+    infoFile=${trashFile/files/info}
+    rm -r $trashFile && rm ${infoFile}.trashinfo
+  done
+fi
