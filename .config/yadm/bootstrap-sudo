@@ -33,7 +33,6 @@ if [[ `uname` == 'Linux' ]]; then
     trash-cli
     ripgrep
     bat
-    cargo
     tree
     tig
     aptitude
@@ -54,6 +53,7 @@ if [[ `uname` == 'Linux' ]]; then
       build-essential \
       python-pip \
       python3-pip \
+      cargo \
       nethack-console \
       fortune-mod \
 
@@ -62,8 +62,6 @@ if [[ `uname` == 'Linux' ]]; then
     sudo -H pip install virtualenv virtualenvwrapper
     sudo -H pip3 install thefuck
   fi
-
-  cargo install hyperfine
 
   sudo apt autoremove --yes
 
