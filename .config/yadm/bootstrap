@@ -353,7 +353,7 @@ fi
 
 function zsh_performance_measurements() {
   if [ -x "$(command -v hyperfine)" ]; then
-    hyperfine 'zsh -i -c exit'
+    hyperfine -w 1 'zsh -i -c exit'
   else
     for i in {1..5}; do time zsh -i -c exit; done
   fi
