@@ -2,6 +2,7 @@
 
 if grep -q Raspbian /etc/os-release 2> /dev/null
 then
+  OS_RASPBIAN=1
   DOTFILES_LITE=1
 fi
 
@@ -64,6 +65,11 @@ if [[ `uname` == 'Linux' ]]; then
   fi
 
   sudo apt autoremove --yes
+
+  if [ -n "$OS_RASPBIAN" ]; then
+    wget https://github.com/sharkdp/hyperfine/releases/download/v1.9.0/hyperfine_1.9.0_amd64.deb
+    sudo dpkg -i hyperfine_1.9.0_amd64.deb
+  fi
 
   # overwrite old tmux
   if [ -f /usr/bin/tmux-next ]; then
