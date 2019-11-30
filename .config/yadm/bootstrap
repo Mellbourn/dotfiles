@@ -352,11 +352,7 @@ then
 fi
 
 function zsh_performance_measurements() {
-  if [ -x "$(command -v hyperfine)" ]; then
-    hyperfine -w 1 'zsh -i -c exit'
-  else
-    for i in {1..5}; do time zsh -i -c exit; done
-  fi
+  ~/bin/measure-zsh-startup-time -m 5
 }
 
 ############################################################################
@@ -369,7 +365,7 @@ if [[ `uname` == 'Linux' ]]; then
   # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
   ~/bin/trash-empty-wsl +30
 
-  ~/bin/measure-zsh-startup-time
+  zsh_performance_measurements
   exit 0
 fi ############################################################################
 # mac specific configurations
@@ -567,4 +563,4 @@ defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 # run customer specific bootstrap
 . ${XDG_CONFIG_HOME:-$HOME/.config}/yadm/bootstrap-customer
 
-~/bin/measure-zsh-startup-time
+zsh_performance_measurements
