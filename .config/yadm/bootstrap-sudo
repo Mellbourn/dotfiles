@@ -5,6 +5,10 @@ then
   DOTFILES_LITE=1
 fi
 
+if [ -x "$(command -v lsb_release)" ] && [[ `lsb_release -si` == 'Ubuntu' ]]; then
+  OS_UBUNTU=1
+fi
+
 ###############################################################################
 # Linux (and Windows Subsystem for Linux)                                     #
 ###############################################################################
@@ -76,6 +80,10 @@ if [[ `uname` == 'Linux' ]]; then
   sudo apt install git-lfs
   if [ -x "$(command -v git-lfs)" ]; then
     git lfs install --skip-smudge
+  fi
+
+  if [ -n OS_UBUNTU ]; then
+    cargo install hyperfine
   fi
 
   # do some cleanup
