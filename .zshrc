@@ -199,14 +199,14 @@ fi
 ###############################################################################
 # prompt
 ###############################################################################
-HOSTNAME=$(hostname -s)
+UNUSUAL_HOSTNAME=$(hostname -s)
 WELL_KNOWN_COMPUTERS=("C02X558PJG5H")
-if [[ " ${WELL_KNOWN_COMPUTERS[@]} " =~ " ${HOSTNAME} " ]]; then
-  HOSTNAME=
+if [[ " ${WELL_KNOWN_COMPUTERS[@]} " =~ " ${UNUSUAL_HOSTNAME} " ]]; then
+  UNUSUAL_HOSTNAME=
 fi
-PROMPT_NAME=${LOGNAME}@
+UNUSUAL_NAME=${LOGNAME}@
 if [[ $LOGNAME == *"ellbourn"* ]] || [[ $LOGNAME == *"klas"* ]]; then
-  PROMPT_NAME=
+  UNUSUAL_NAME=
 fi
 export ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
 if [ -n "$DOTFILES_LITE" ]; then
@@ -231,7 +231,7 @@ fi
 # other good: 239+17, 233+23, 253+3
 PROMPT="%K{${prompt_hashcolor}}%F%${width_part}<…<%4~%f%k%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.) "
 git_part='$(gitprompt)'
-RPROMPT="${git_part}%F{021}${PROMPT_NAME}%F{033}${HOSTNAME}%f %F{106}%*%f"
+RPROMPT="${git_part}%F{021}${UNUSUAL_NAME}%F{033}${UNUSUAL_HOSTNAME}%f %F{106}%*%f"
 
 ###############################################################################
 # fun functions
