@@ -1,0 +1,10 @@
+#!/bin/bash
+FILENAME=`mktemp`
+if [ -x "$(command -v hyperfine)" ]; then
+    hyperfine -w 1 'zsh -i -c exit'
+else
+    for i in {1..10}; do
+      time zsh -i -c exit
+    done |& grep real | sed 's/real\s*0m//' | sed 's/s$//' | tee -a $FILENAME
+    awk '{sum+=$1}END{printf "Count=%d\nAve=%.2f\n",NR,sum/NR}' $FILENAME
+fi
