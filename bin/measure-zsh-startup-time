@@ -1,9 +1,23 @@
 #!/bin/bash
+min_runs=10
+
+usage () { echo "OPTIONS:
+
+-m minimum number of runs"; }
+
+while getopts "hvm:" opt; do
+    case $opt in
+        m ) min_runs=$OPTARG;;
+        v ) verbose=1;;
+        h ) usage; exit;;
+    esac
+done
+
 FILENAME=`mktemp`
 if [ -x "$(command -v hyperfine)" ]; then
-    hyperfine -w 1 'zsh -i -c exit'
+    hyperfine --warmup 1 --min-runs $min_runs 'zsh -i -c exit'
 else
-    for i in {1..10}; do
+    for ((i=1;i<=$min_runs;i++)); do
       time zsh -i -c exit
     done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tee -a $FILENAME
     awk '{sum+=$1}END{printf "Count=%d\nAve=%.2f\n",NR,sum/NR}' $FILENAME
