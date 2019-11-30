@@ -369,7 +369,7 @@ if [[ `uname` == 'Linux' ]]; then
   # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
   ~/bin/trash-empty-wsl +30
 
-  zsh_performance_measurements
+  ~/bin/measure-zsh-startup-time
   exit 0
 fi ############################################################################
 # mac specific configurations
@@ -567,4 +567,4 @@ defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 # run customer specific bootstrap
 . ${XDG_CONFIG_HOME:-$HOME/.config}/yadm/bootstrap-customer
 
-zsh_performance_measurements
+~/bin/measure-zsh-startup-time
