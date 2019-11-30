@@ -77,8 +77,12 @@ export CHEATCOLORS=true
 # git checkout should only complete local branches (unless origin/), since I have fzf for more complex scenarios
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 # this takes about 0.02s and is used by some Klarna seach docker containers
-HOST_IP=$(ifconfig | grep -E '([0-9]{1,3}\.){3}[0-9]{1,3}' | grep -v 127.0.0.1 | awk '{ print $2 }' | cut -f2 -d: | head -n1) && export HOST_IP=$HOST_IP
-
+if [ -x "$(command -v ifconfig)" ]; then
+  HOST_IP=$(ifconfig | grep -E '([0-9]{1,3}\.){3}[0-9]{1,3}' | grep -v 127.0.0.1 | awk '{ print $2 }' | cut -f2 -d: | head -n1)
+else
+  HOST_IP=$(ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
+fi
+export HOST_IP=$HOST_IP
 set -o emacs
 
 function current_context {
