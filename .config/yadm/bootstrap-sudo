@@ -82,7 +82,7 @@ if [[ `uname` == 'Linux' ]]; then
     git lfs install --skip-smudge
   fi
 
-  if [ -n OS_UBUNTU ]; then
+  if [ -n "$OS_UBUNTU" ]; then
     cargo install hyperfine
   fi
 
