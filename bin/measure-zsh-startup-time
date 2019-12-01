@@ -23,7 +23,7 @@ else
 
     awk '{ sum += $1; sum_square += $1^2 } \
     END { \
-      printf "Count\t%d\nTotal\t%.1f\nSt.dev.\t%.3f\nAverage\t%.3f\n", \
-        NR, sum, sqrt(sum_square/NR-(sum/NR)^2), sum/NR \
+      printf "Count\t%4d\nTotal\t%4.1fs\nSt.dev.\t%4.0fms\nAverage\t%4.0fms\n", \
+        NR, sum, sqrt(sum_square/NR-(sum/NR)^2)*1000, sum/NR*1000 \
     }' $FILENAME
 fi
