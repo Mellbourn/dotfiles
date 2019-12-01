@@ -20,7 +20,7 @@ else
   FILENAME=`mktemp`
   for ((i=1;i<=$min_runs;i++)); do
     time zsh -i -c exit
-  done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" > $FILENAME
+  done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" | sort > $FILENAME
   if [ -n "$verbose" ]; then
     cat $FILENAME
   fi
