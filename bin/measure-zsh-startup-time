@@ -5,15 +5,16 @@ warmup=1
 
 usage () { echo "OPTIONS:
 
--m minimum number of runs
 -c command to profile, e.g. 'bash -i -l -c exit'
+-m minimum number of runs
+-w number of warmup runs
 -v verbose"; }
 
 while getopts "hvc:m:w:" opt; do
     case $opt in
         c ) command=$OPTARG;;
         m ) min_runs=$OPTARG;;
-        2 ) warmup=$OPTARG;;
+        w ) warmup=$OPTARG;;
         v ) verbose=1;;
         h ) usage; exit;;
     esac
