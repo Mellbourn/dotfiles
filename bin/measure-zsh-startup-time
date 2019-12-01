@@ -13,17 +13,17 @@ while getopts "hvm:" opt; do
     esac
 done
 
-FILENAME=`mktemp`
 if [ -x "$(command -v hyperfine)" ]; then
-    hyperfine --warmup 1 --min-runs $min_runs 'zsh -i -c exit'
+  hyperfine --warmup 1 --min-runs $min_runs 'zsh -i -c exit'
 else
-    for ((i=1;i<=$min_runs;i++)); do
-      time zsh -i -c exit
-    done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" | tee -a $FILENAME
+  FILENAME=`mktemp`
+  for ((i=1;i<=$min_runs;i++)); do
+    time zsh -i -c exit
+  done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" | tee -a $FILENAME
 
-    awk '{ sum += $1; sum_square += $1^2 } \
-    END { \
-      printf "Count\t%4d\nTotal\t%4.1fs\nSt.dev.\t%4.0fms\nAverage\t%4.0fms\n", \
-        NR, sum, sqrt(sum_square/NR-(sum/NR)^2)*1000, sum/NR*1000 \
-    }' $FILENAME
+  awk '{ sum += $1; sum_square += $1^2 } \
+  END { \
+    printf "Count\t%4d\nTotal\t%4.1fs\nSt.dev.\t%4.0fms\nAverage\t%4.0fms\n", \
+      NR, sum, sqrt(sum_square/NR-(sum/NR)^2)*1000, sum/NR*1000 \
+  }' $FILENAME
 fi
