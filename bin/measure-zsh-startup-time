@@ -6,7 +6,7 @@ warmup=1
 usage () { echo "OPTIONS:
 
 -m minimum number of runs
--c command to profile
+-c command to profile, e.g. 'bash -i -l -c exit'
 -v verbose"; }
 
 while getopts "hvc:m:w:" opt; do
