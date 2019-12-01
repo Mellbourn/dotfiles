@@ -1,25 +1,28 @@
 #!/bin/bash
 min_runs=10
+command='zsh -i -c exit'
 
 usage () { echo "OPTIONS:
 
 -m minimum number of runs
+-c command to profile
 -v verbose"; }
 
-while getopts "hvm:" opt; do
+while getopts "hvc:m:" opt; do
     case $opt in
         m ) min_runs=$OPTARG;;
+        c ) command=$OPTARG;;
         v ) verbose=1;;
         h ) usage; exit;;
     esac
 done
 
 if [ -x "$(command -v hyperfine)" ]; then
-  hyperfine --warmup 1 --min-runs $min_runs 'zsh -i -c exit'
+  hyperfine --warmup 1 --min-runs $min_runs $command
 else
   FILENAME=`mktemp`
   for ((i=1;i<=$min_runs;i++)); do
-    time zsh -i -c exit
+    `time $command`
   done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" | sort > $FILENAME
   if [ -n "$verbose" ]; then
     cat $FILENAME
