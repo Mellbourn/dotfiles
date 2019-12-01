@@ -3,7 +3,8 @@ min_runs=10
 
 usage () { echo "OPTIONS:
 
--m minimum number of runs"; }
+-m minimum number of runs
+-v verbose"; }
 
 while getopts "hvm:" opt; do
     case $opt in
@@ -19,7 +20,10 @@ else
   FILENAME=`mktemp`
   for ((i=1;i<=$min_runs;i++)); do
     time zsh -i -c exit
-  done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" | tee -a $FILENAME
+  done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" > $FILENAME
+  if [ -n "$verbose" ]; then
+    cat $FILENAME
+  fi
 
   awk '{ sum += $1; sum_square += $1^2 } \
   END { \
