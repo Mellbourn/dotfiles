@@ -21,5 +21,9 @@ else
       time zsh -i -c exit
     done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" | tee -a $FILENAME
 
-    awk '{ sum += $1 } END { printf "Count\t%d\nTotal\t%.1f\nAverage\t%.3f\n", NR, sum, sum/NR}' $FILENAME
+    awk '{ sum += $1; sum_square += $1^2 } \
+    END { \
+      printf "Count\t%d\nTotal\t%.1f\nSt.dev.\t%.3f\nAverage\t%.3f\n", \
+        NR, sum, sqrt(sum_square/NR-(sum/NR)^2), sum/NR \
+    }' $FILENAME
 fi
