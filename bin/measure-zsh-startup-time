@@ -24,6 +24,9 @@ if [ -x "$(command -v hyperfine)" ]; then
   hyperfine --warmup $warmup --min-runs $min_runs "$command"
 else
   FILENAME=`mktemp`
+  for ((i=1;i<=$warmup;i++)); do
+    `time $command`
+  done > /dev/null 2>&1
   for ((i=1;i<=$min_runs;i++)); do
     `time $command`
   done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" | sort > $FILENAME
