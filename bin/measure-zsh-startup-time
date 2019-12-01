@@ -20,7 +20,7 @@ while getopts "hvc:m:w:" opt; do
 done
 
 if [ -x "$(command -v hyperfine)" ]; then
-  hyperfine --warmup $warmup --min-runs $min_runs $command
+  hyperfine --warmup $warmup --min-runs $min_runs "$command"
 else
   FILENAME=`mktemp`
   for ((i=1;i<=$min_runs;i++)); do
