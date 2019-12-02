@@ -20,8 +20,18 @@ while getopts "hvc:m:w:" opt; do
     esac
 done
 
+LOGDIR=${XDG_CACHE_HOME:-~/Library/Caches}/measure-zsh-startup-time
+mkdir -p $LOGDIR
+
 if [ -x "$(command -v hyperfine)" ]; then
-  hyperfine --warmup $warmup --min-runs $min_runs "$command"
+  LOGFILE=$LOGDIR/times.md
+  TEMP_LOGFILE=$(mktemp)
+  hyperfine --warmup $warmup --min-runs $min_runs --export-markdown $TEMP_LOGFILE "$command"
+  if [ -f $LOGFILE ]; then
+    tac $TEMP_LOGFILE | head -n 1 >> $LOGFILE
+  else
+    mv $TEMP_LOGFILE $LOGFILE
+  fi
 else
   FILENAME=`mktemp`
   for ((i=1;i<=$warmup;i++)); do
@@ -34,9 +44,10 @@ else
     cat $FILENAME
   fi
 
+  LOGFILE=$LOGDIR/times.log
   awk '{ sum += $1; sum_square += $1^2 } \
   END { \
     printf "Runs\t%4d\nTotal\t%4.2gs\nSt.dev.\t%4.2gms\nAverage\t%4.0fms\n", \
       NR, sum, sqrt(sum_square/NR-(sum/NR)^2)*1000, sum/NR*1000 \
-  }' $FILENAME
+  }' $FILENAME | tee -a $LOGFILE
 fi
