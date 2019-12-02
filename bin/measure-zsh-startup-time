@@ -60,4 +60,5 @@ else
       NR, sum, sqrt(sum_square/NR-(sum/NR)^2)*1000, sum/NR*1000 \
   }' $FILENAME | tee -a $LOGFILE
   echo -en '\n' >> $LOGFILE
+
 fi
