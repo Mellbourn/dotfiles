@@ -24,6 +24,7 @@ LOGDIR=${XDG_CACHE_HOME:-~/Library/Caches}/measure-zsh-startup-time
 mkdir -p $LOGDIR
 
 if [ -x "$(command -v hyperfine)" ]; then
+
   LOGFILE=$LOGDIR/times.md
   TEMP_LOGFILE=$(mktemp)
   hyperfine --warmup $warmup --min-runs $min_runs --export-markdown $TEMP_LOGFILE "$command"
@@ -32,7 +33,11 @@ if [ -x "$(command -v hyperfine)" ]; then
   else
     mv $TEMP_LOGFILE $LOGFILE
   fi
+  truncate -s-1 $LOGFILE
+  date "+ %Y-%m-%dT%H:%M:%S" >> $LOGFILE
+
 else
+
   # warmup
   for ((i=1;i<=$warmup;i++)); do
     `time $command`
