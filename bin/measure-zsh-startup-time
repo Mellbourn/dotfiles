@@ -42,17 +42,20 @@ else
   for ((i=1;i<=$warmup;i++)); do
     `time $command`
   done > /dev/null 2>&1
+
   # run
   FILENAME=`mktemp`
   for ((i=1;i<=$min_runs;i++)); do
     `time $command`
   done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" | sort > $FILENAME
+
   if [ -n "$verbose" ]; then
     cat $FILENAME
   fi
 
   LOGFILE=$LOGDIR/times.log
   date --iso-8601=s >> $LOGFILE
+
   # produce report
   awk '{ sum += $1; sum_square += $1^2 } \
   END { \
