@@ -46,6 +46,7 @@ if [ -x "$(command -v hyperfine)" ]; then
   else
     mv $TEMP_LOGFILE $LOGFILE
   fi
+  # remove last newline
   truncate -s-1 $LOGFILE
   date "+ %Y-%m-%dT%H:%M:%S" >> $LOGFILE
 
@@ -68,6 +69,7 @@ else
 
   LOGFILE=$LOGDIR/times.log
   date --iso-8601=s >> $LOGFILE
+  echo $command >> $LOGFILE
 
   # produce report
   awk '{ sum += $1; sum_square += $1^2 } \
