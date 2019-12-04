@@ -1,26 +1,33 @@
 #!/usr/local/bin/zsh
-number_left=20
+number_left=10
 directory=$HOME/Pictures
 file_glob=*
+ignore_files_younger_than_days=2
+exclude=*.photoslibrary
 
 usage () { echo "-d directory to clean
 -f glob pattern of files to clean
 -l number of files to leave
+-i ignore files younger than this number of days, and don't count them towards the number of files to leave
+-x exclude this pattern of files or folders
 -v verbose"; }
 
-while getopts "hvd:f:l:" opt; do
+while getopts "hvd:f:l:i:x:" opt; do
     case $opt in
         d ) directory=$OPTARG;;
         f ) file_glob=$OPTARG;;
         l ) number_left=$OPTARG;;
         v ) verbose=1;;
+        i ) ignore_files_younger_than_days=$OPTARG;;
+        x ) exclude=$OPTARG;;
         h ) usage; exit;;
     esac
 done
 
 setopt GLOB_SUBST
 
-find $directory -maxdepth 1 -path "$file_glob" -not -path '*/\.*' -mtime +1 \( -type f -or -type d \) |\
+
+find $directory -maxdepth 1 -path "$file_glob" -not -path '*/\.*' -mtime +$ignore_files_younger_than_days \( -type f -or -type d \) -not -path "$exclude" |\
 while read file
 do
   stat -f "%-10m %40N" "$file"

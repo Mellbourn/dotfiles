@@ -27,8 +27,8 @@ if [[ `uname` == 'Darwin' ]]; then
   launchctl load -w ~/Library/LaunchAgents/local.cleanup.pictures.plist
   launchctl load -w ~/Library/LaunchAgents/local.cleanup.resurrect.plist
   # they don't work, so run them anyway
-  $HOME/bin/cleanup-directory -d $HOME/Downloads -l 20 -v
-  $HOME/bin/cleanup-directory -d $HOME/Pictures -l 20 -v
+  $HOME/bin/cleanup-directory -d $HOME/Downloads -l 10 -v
+  $HOME/bin/cleanup-directory -d $HOME/Pictures -l 10 -v
   $HOME/bin/cleanup-directory -d $HOME/.tmux/resurrect -f \*/tmux_resurrect_\*.txt -l 5 -v
 
   ###############################################################################

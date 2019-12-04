@@ -8,7 +8,7 @@
 	<array>
 		<string>/bin/sh</string>
 		<string>-c</string>
-		<string>sh -c "$HOME/bin/cleanup-directory -d $HOME/Pictures -l 20 -v"</string>
+		<string>sh -c "$HOME/bin/cleanup-directory -d $HOME/Pictures -l 10 -v"</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
