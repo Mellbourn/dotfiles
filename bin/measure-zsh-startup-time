@@ -28,9 +28,9 @@ OLDLOGDIR=~/Library/Caches/measure-zsh-startup-time
 if [ -d $OLDLOGDIR ]; then
   mv $OLDLOGDIR/* $LOGDIR
   trash $OLDLOGDIR
-  if find ~/Library/Caches -mindepth 1 | read; then
+  if [ -z "$(ls -A ~/Library/Caches)" ]; then
    trash ~/Library/Caches
-    if find ~/Library -mindepth 1 | read; then
+  if [ -z "$(ls -A ~/Library)" ]; then
       trash ~/Library
     fi
   fi
