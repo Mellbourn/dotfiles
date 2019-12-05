@@ -7,7 +7,7 @@
 export CODE_DIR=~/code
 
 if [ -x "$(command -v code)" ]; then
-  export EDITOR="code -w -r"
+  export EDITOR="code -wr"
 else
   export EDITOR=vi
 fi
