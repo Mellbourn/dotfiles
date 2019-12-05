@@ -2,19 +2,22 @@
 command='zsh -i -c exit'
 min_runs=10
 warmup=1
+hyperfine_is_fine=1
 
 usage () { echo "OPTIONS:
 
 -c command to profile, e.g. 'bash -i -l -c exit'
 -m minimum number of runs
 -w number of warmup runs
+-n do not use hyperfine even if present
 -v verbose"; }
 
-while getopts "hvc:m:w:" opt; do
+while getopts "hnvc:m:w:" opt; do
     case $opt in
         c ) command=$OPTARG;;
         m ) min_runs=$OPTARG;;
         w ) warmup=$OPTARG;;
+        n ) hyperfine_is_fine=;;
         v ) verbose=1;;
         h ) usage; exit;;
     esac
@@ -36,7 +39,7 @@ if [ -d $OLDLOGDIR ]; then
   fi
 fi
 
-if [ -x "$(command -v hyperfine)" ]; then
+if [ -x "$(command -v hyperfine)" ] && [ -n "$hyperfine_is_fine" ]; then
 
   LOGFILE=$LOGDIR/times.md
   TEMP_LOGFILE=$(mktemp)
@@ -68,7 +71,7 @@ else
   fi
 
   LOGFILE=$LOGDIR/times.log
-  date --iso-8601=s >> $LOGFILE
+  date "+%Y-%m-%dT%H:%M:%S" >> $LOGFILE
   echo $command >> $LOGFILE
 
   # produce report
