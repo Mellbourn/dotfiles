@@ -27,7 +27,7 @@ done
 setopt GLOB_SUBST
 
 
-find $directory -maxdepth 1 -path "$file_glob" -not -path '*/\.*' -mtime +$ignore_files_younger_than_days \( -type f -or -type d \) -not -path "$exclude" |\
+find $directory -maxdepth 1 -path "$file_glob" -not -path '*/\.*' -atime +$ignore_files_younger_than_days \( -type f -or -type d \) -not -path "$exclude" |\
 while read file
 do
   stat -f "%-10m %40N" "$file"
