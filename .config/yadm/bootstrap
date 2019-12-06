@@ -395,8 +395,9 @@ docker system prune -f 2>> /tmp/docker_system_prune.err.txt
 ###############################################################################
 # open in Visual Studio Code
 duti -s com.microsoft.VSCode .graphql all
-duti -s com.microsoft.VSCode .js all # ruby. Look extensions works too!
+duti -s com.microsoft.VSCode .js all # javascript. Look extensions works too!
 duti -s com.microsoft.VSCode .rb all # ruby. Look extensions works too!
+duti -s com.microsoft.VSCode .ts all # typescript. Look extensions works too!
 duti -s com.microsoft.VSCode com.apple.log all # .log
 duti -s com.microsoft.VSCode net.daringfireball.markdown all # .md
 duti -s com.microsoft.VSCode public.json all
