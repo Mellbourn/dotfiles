@@ -126,7 +126,8 @@ zplugin light zdharma/zsh-diff-so-fancy
 #zplugin light trapd00r/LS_COLORS
 
 # fasd takes 0.06s
-zplugin ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)"'
+
+zplugin ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)" && alias sd="noglob sd"'
 zplugin light clvv/fasd
 
 if [ -z "$DOTFILES_LITE" ]
@@ -276,8 +277,6 @@ function rg() {
   command rg --pretty --smart-case --no-line-number $* | less
 }
 alias rg='noglob rg'
-
-alias sd='noglob sd'
 
 # highlighter
 function h {
