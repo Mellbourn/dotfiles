@@ -37,6 +37,7 @@ if [[ `uname` == 'Linux' ]]; then
     trash-cli
     ripgrep
     bat
+    fd-find
     tree
     tig
     aptitude
