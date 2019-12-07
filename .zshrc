@@ -262,12 +262,12 @@ _fzf_complete_git_post() {
      awk '{print $1}' | sed "s:remotes/origin/::"
 }
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
+  fd --follow . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
+  fd --type d --follow . "$1"
 }
 
 function go() {
