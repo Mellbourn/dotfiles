@@ -278,7 +278,12 @@ function go() {
 }
 
 function fd() {
-  command fd --color always $* | less
+  if [ -x "$(command -v fdfind)" ]; then
+    # alternate name used on ubuntu/debian
+    command fdfind --color always $* | less
+  else
+    command fd --color always $* | less
+  fi
 }
 alias fd='noglob fd'
 
