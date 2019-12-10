@@ -84,7 +84,7 @@ if [[ `uname` == 'Linux' ]]; then
   fi
 
   if [ -n "$OS_UBUNTU" ]; then
-    cargo install hyperfine
+    cargo install -f hyperfine
   fi
 
   # do some cleanup
