@@ -411,6 +411,8 @@ duti -s com.microsoft.VSCode public.yaml all
 # seems to have no effecxt: public.data, .lock
 # open in chrome
 duti -s com.google.chrome public.svg-image all # .svg
+# prefer vlc over quicktime
+duti -s org.videolan.vlc .avi Viewer
 
 ###############################################################################
 # Finder                                                                      #
