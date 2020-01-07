@@ -59,7 +59,6 @@ if [[ `uname` == 'Linux' ]]; then
       python-pip \
       python3-pip \
       cargo \
-      nethack-console \
       fortune-mod \
 
     sudo -H pip install --upgrade pip
