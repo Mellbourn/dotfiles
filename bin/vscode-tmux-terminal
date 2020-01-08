@@ -1,3 +1,3 @@
-#!/bin/sh
-SESSION="`echo $VSCODE_WORKSPACE_FOLDER|sed "s#$CODE_DIR/##"|sed "s#$HOME/##"|sed "s#$HOME#~#"|sed "s#\.##g"`-vscode"
+#!/bin/bash
+SESSION="`echo $VSCODE_WORKSPACE_FOLDER|sed "s#${CODE_DIR:=$HOME/code}/##"|sed "s#$HOME/##"|sed "s#$HOME#~#"|sed "s#\.##g"`-vscode"
 tmux new-session -A -s $SESSION
