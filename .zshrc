@@ -83,6 +83,9 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 ###############################################################################
 # zplugin - zsh plugin manager
 ###############################################################################
+zplugin ice wait'2' atload"zpcdreplay" atclone'./zplug.zsh' lucid
+zplugin load g-plane/zsh-yarn-autocompletions
+
 zplugin ice atload'!_zsh_git_prompt_precmd_hook' lucid
 zplugin load woefe/git-prompt.zsh
 
