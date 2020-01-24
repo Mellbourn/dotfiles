@@ -334,6 +334,15 @@ bindkey "^U" backward-kill-line
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
+# insert matching completions in command line
+zle -C all-matches complete-word _my_generic
+zstyle ':completion:all-matches::::' completer _all_matches
+zstyle ':completion:all-matches:*' old-matches only
+_my_generic () {
+  local ZSH_TRACE_GENERIC_WIDGET=  # works with "setopt nounset"
+  _generic "$@"
+}
+bindkey '^X^a' all-matches
 
 ###############################################################################
 # Syntax highlighting for the shell
