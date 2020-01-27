@@ -100,3 +100,5 @@
 [diff-so-fancy]
 	useUnicodeRuler = false
 	stripLeadingSymbols = false
+[protocol]
+	version = 2
