@@ -152,7 +152,7 @@ then
   zplugin light zdharma/null
   # this taskes 0.39s
   # this has to be loaded much later than the preceding plugins, otherwise you will get "No module named virtualenvwrapper  "
-  zplugin ice wait'4' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
+  zplugin ice wait'6' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
   zplugin light zdharma/null
 
   # yarn must be run after node is defined, takes 0.31s, and only adds /usr/local/bin
