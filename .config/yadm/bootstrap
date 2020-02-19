@@ -381,6 +381,8 @@ fi
 # development
 ###############################################################################
 npm i -g npm node-gyp
+# yarn 2 should not be installed globally!
+#npm i -g yarn@berry
 npm rm -g eslint
 npm update -g
 xcode-select --install
