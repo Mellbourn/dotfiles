@@ -6,7 +6,7 @@
 #zmodload zsh/zprof
 #START=$(gdate +%s.%N)
 #rm ~/.zcompdump ~/.zcompcache
-source ~/.zplugin/bin/zplugin.zsh
+source ~/.zinit/bin/zinit.zsh
 
 fpath=(~/.zsh-personal-completions $fpath)
 autoload -U zmv
@@ -81,95 +81,95 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 #fi
 
 ###############################################################################
-# zplugin - zsh plugin manager
+# zinit - zsh plugin manager
 ###############################################################################
-zplugin ice wait'2' atload"zpcdreplay" atclone'./zplug.zsh' lucid
-zplugin load g-plane/zsh-yarn-autocompletions
+zinit ice wait'2' atload"zpcdreplay" atclone'./zplug.zsh' lucid
+zinit load g-plane/zsh-yarn-autocompletions
 
-zplugin ice atload'!_zsh_git_prompt_precmd_hook' lucid
-zplugin load woefe/git-prompt.zsh
+zinit ice atload'!_zsh_git_prompt_precmd_hook' lucid
+zinit load woefe/git-prompt.zsh
 
-zplugin ice wait'0a' lucid blockf
-zplugin load zsh-users/zsh-completions
+zinit ice wait'0a' lucid blockf
+zinit load zsh-users/zsh-completions
 
-zplugin ice wait'2' lucid if'[[ -x "$(command -v fzf)" ]]'
-zplugin load wfxr/forgit
+zinit ice wait'2' lucid if'[[ -x "$(command -v fzf)" ]]'
+zinit load wfxr/forgit
 
-zplugin ice wait'2' lucid
-zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zinit ice wait'2' lucid
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
 # command-not-found cuases lag in command prompt when starting
-#zplugin ice wait'4' lucid
-#zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+#zinit ice wait'4' lucid
+#zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 
-zplugin ice wait'2' lucid
-zplugin load djui/alias-tips
+zinit ice wait'2' lucid
+zinit load djui/alias-tips
 
-zplugin ice wait'2' lucid
-zplugin snippet OMZ::plugins/dircycle/dircycle.plugin.zsh
+zinit ice wait'2' lucid
+zinit snippet OMZ::plugins/dircycle/dircycle.plugin.zsh
 
-zplugin ice wait'1' lucid
-zplugin load supercrabtree/k
+zinit ice wait'1' lucid
+zinit load supercrabtree/k
 
-zplugin ice wait'2' lucid atinit'alias f=fuck'
-zplugin light laggardkernel/zsh-thefuck
+zinit ice wait'2' lucid atinit'alias f=fuck'
+zinit light laggardkernel/zsh-thefuck
 
-zplugin ice wait"2" lucid as"program" pick"$ZPFX/bin/git-alias" make"PREFIX=$ZPFX"
-zplugin load tj/git-extras
+zinit ice wait"2" lucid as"program" pick"$ZPFX/bin/git-alias" make"PREFIX=$ZPFX"
+zinit load tj/git-extras
 
 # load diff-so-fancy if not already present (it can have been installed by homebrew)
-zplugin ice wait'2' lucid as"program" pick"bin/git-dsf" if'[[ ! -x "$(command -v diff-so-fancy)" ]]'
-zplugin light zdharma/zsh-diff-so-fancy
+zinit ice wait'2' lucid as"program" pick"bin/git-dsf" if'[[ ! -x "$(command -v diff-so-fancy)" ]]'
+zinit light zdharma/zsh-diff-so-fancy
 
-#zplugin ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
-#zplugin light ogham/exa
+#zinit ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
+#zinit light ogham/exa
 
 # give extra color to exa
-#zplugin ice wait'2' lucid atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
-#zplugin light trapd00r/LS_COLORS
+#zinit ice wait'2' lucid atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
+#zinit light trapd00r/LS_COLORS
 
 # fasd takes 0.06s
 
-zplugin ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)" && alias sd="noglob sd"'
-zplugin light clvv/fasd
+zinit ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)" && alias sd="noglob sd"'
+zinit light clvv/fasd
 
 if [ -z "$DOTFILES_LITE" ]
 then
   # Not really plugins, but very good to have async anyway
   # sourcing rvm takes 0.51s, so there will be a lag when it is sourced
-  # also, loading rvm as a zplugin will make it ignore the .ruby-version file if you are already inside that folder
-  zplugin ice wait'4' lucid atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi'
-  zplugin light zdharma/null
+  # also, loading rvm as a zinit will make it ignore the .ruby-version file if you are already inside that folder
+  zinit ice wait'4' lucid atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi'
+  zinit light zdharma/null
 
   # python environent will also cause a lag
   # this takes 0.166s
-  zplugin ice wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"'
-  zplugin light zdharma/null
-  zplugin ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
-  zplugin light zdharma/null
+  zinit ice wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"'
+  zinit light zdharma/null
+  zinit ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
+  zinit light zdharma/null
   export WORKON_HOME=~/.py_virtualenvs
-  zplugin ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
-  zplugin light zdharma/null
+  zinit ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
+  zinit light zdharma/null
   # this taskes 0.39s
   # this has to be loaded much later than the preceding plugins, otherwise you will get "No module named virtualenvwrapper  "
-  zplugin ice wait'6' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
-  zplugin light zdharma/null
+  zinit ice wait'6' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
+  zinit light zdharma/null
 
   # yarn must be run after node is defined, takes 0.31s, and only adds /usr/local/bin
-  #zplugin ice wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"'
-  #zplugin light zdharma/null
+  #zinit ice wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"'
+  #zinit light zdharma/null
 fi
 
-# TODO: convert these to zplugin
+# TODO: convert these to zinit
 # zplug "lukechilds/zsh-better-npm-completion", defer:2
 # # I should only activate this when I need to generate completions
 # #zplug "RobSis/zsh-completion-generator", defer:2
 #
 if [[ -n $UNAME_LINUX ]]; then
 #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
-  zplugin load zsh-users/zsh-syntax-highlighting
-  zplugin ice wait"1" lucid atload"!_zsh_autosuggest_start"
-  zplugin load zsh-users/zsh-autosuggestions
+  zinit load zsh-users/zsh-syntax-highlighting
+  zinit ice wait"1" lucid atload"!_zsh_autosuggest_start"
+  zinit load zsh-users/zsh-autosuggestions
 fi
 
 ###############################################################################
@@ -366,12 +366,12 @@ export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 
 [[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
 
-# it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zplugin then
-#zplugin ice wait'0z' lucid atinit'zpcompinit; zpcdreplay'
-#zplugin light zdharma/null
+# it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zinit then
+#zinit ice wait'0z' lucid atinit'zpcompinit; zpcdreplay'
+#zinit light zdharma/null
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
-zplugin cdreplay
+zinit cdreplay
 
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)

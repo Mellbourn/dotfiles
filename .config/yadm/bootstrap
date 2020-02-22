@@ -309,13 +309,13 @@ if ! [ -f ~/.ssh/id_rsa ]; then
   echo "Remember to add the new public key in ~/.ssh/id_rsa.pub to github and appropriate authorized_hosts."
 fi
 
-# Install `zplugin` if not installed
-if [ ! -d ~/.zplugin ]; then
-  mkdir ~/.zplugin
-  chmod go-w ~/.zplugin # to avoid insecure directories complaint
-  git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+# Install `zinit` if not installed
+if [ ! -d ~/.zinit ]; then
+  mkdir ~/.zinit
+  chmod go-w ~/.zinit # to avoid insecure directories complaint
+  git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 fi
-zsh -ic "zplugin self-update; zplugin update --all"
+zsh -ic "zinit self-update; zinit update --all"
 
 # this can soon be removed
 trash ~/.gitconfig.local
