@@ -298,6 +298,10 @@ fi ############################################################################
 # configuration for both Mac and Linux
 ###############################################################################
 
+# TODO: eventually remove this removal
+# remove obsolete folder for .zplugin, since it has been renamed to zinit
+trash ~/.zplugin
+
 if ! [ -f ~/.ssh/id_rsa ]; then
   ssh-keygen -t rsa -b 4096 -C "${USER}@$(hostname)" -f ~/.ssh/id_rsa -N ""
   eval `ssh-agent -s`
