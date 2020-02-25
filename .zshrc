@@ -141,19 +141,19 @@ then
   zinit ice wait'4' lucid atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi'
   zinit light zdharma/null
 
-  # python environent will also cause a lag
-  # this takes 0.166s
-  zinit ice wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"'
-  zinit light zdharma/null
-  zinit ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
-  zinit light zdharma/null
-  export WORKON_HOME=~/.py_virtualenvs
-  zinit ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
-  zinit light zdharma/null
-  # this taskes 0.39s
-  # this has to be loaded much later than the preceding plugins, otherwise you will get "No module named virtualenvwrapper  "
-  zinit ice wait'6' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
-  zinit light zdharma/null
+  # # python environent will also cause a lag
+  # # this takes 0.166s
+  # zinit ice wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"'
+  # zinit light zdharma/null
+  # zinit ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
+  # zinit light zdharma/null
+  # export WORKON_HOME=~/.py_virtualenvs
+  # zinit ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
+  # zinit light zdharma/null
+  # # this taskes 0.39s
+  # # this has to be loaded much later than the preceding plugins, otherwise you will get "No module named virtualenvwrapper  "
+  # zinit ice wait'10' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
+  # zinit light zdharma/null
 
   # yarn must be run after node is defined, takes 0.31s, and only adds /usr/local/bin
   #zinit ice wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"'
