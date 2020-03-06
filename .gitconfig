@@ -102,6 +102,7 @@
 	stripLeadingSymbols = false
 [protocol]
 	version = 2
+# this will redirect all http based remote URLs to the git protocol instead, fixing auth problems at github
 [url "git@github.com:"]
 	insteadOf = http://github.com/
 	insteadOf = https://github.com/
