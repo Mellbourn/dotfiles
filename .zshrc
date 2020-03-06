@@ -240,6 +240,15 @@ RPROMPT="${git_part}%F{021}${UNUSUAL_NAME}%F{033}${UNUSUAL_HOSTNAME}%f %F{106}%*
 ###############################################################################
 # fun functions
 ###############################################################################
+# usage: cd services && getTreeidForService orders
+function getTreeidForService() {
+	noglob git cat-file -p @^{tree} | \
+     grep "services$" | \
+     awk '{ system("git cat-file -p " $3) }' | \
+     egrep "$1$" | \
+     awk '{ print substr($3, 0, 11) }'
+}
+
 function co() {
     local branches branch
     branches=$(git branch -a) &&
