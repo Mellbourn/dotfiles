@@ -102,3 +102,6 @@
 	stripLeadingSymbols = false
 [protocol]
 	version = 2
+[url "git@github.com:"]
+	insteadOf = http://github.com/
+	insteadOf = https://github.com/
