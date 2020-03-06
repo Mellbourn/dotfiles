@@ -146,6 +146,7 @@ react-native-cli
 reattach-to-user-namespace
 redis
 ripgrep
+schollz/tap/croc
 sd
 stunnel
 thefuck
