@@ -204,6 +204,9 @@ sudo nvram boot-args="-v"
 #   2 = on for essential services
 sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 
+# disable Gatekeeper, i.e. allow unsigned apps. Seems to be default at current customer
+#sudo spctl --master-disable
+
 # allow remote login
 sudo systemsetup -setremotelogin on
 
