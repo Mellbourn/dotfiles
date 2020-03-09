@@ -472,6 +472,10 @@ defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool FALSE
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
+# Make animated dialog boxes, like the save, appear faster (0.2 is default)
+# did this make dialogs appear slower?
+#defaults write NSGlobalDomain NSWindowResizeTime .05
+
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
