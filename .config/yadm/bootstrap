@@ -79,6 +79,7 @@ if [[ `uname` == 'Darwin' ]]; then
 
   # this must be in alphabetical order!
   apps="
+android-file-transfer
 ansible
 aws-sam-cli
 awscli
