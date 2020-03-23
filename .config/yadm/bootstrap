@@ -79,7 +79,6 @@ if [[ `uname` == 'Darwin' ]]; then
 
   # this must be in alphabetical order!
   apps="
-android-file-transfer
 ansible
 aws-sam-cli
 awscli
@@ -183,6 +182,7 @@ zsh-syntax-highlighting
 abstract
 adobe-acrobat-reader
 alfred
+android-file-transfer
 android-platform-tools
 android-sdk
 android-studio
