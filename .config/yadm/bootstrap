@@ -71,6 +71,8 @@ if [[ `uname` == 'Darwin' ]]; then
   # brew cask install homebrew/cask-drivers/logitech-options
 
   # remove brews here that were previously installed, to sync between machines
+  brew cask uninstall --force gitup
+  brew cask uninstall --force sourcetree
   # TODO: eventually uninstall zplug
   #brew uninstall --force zplug
   brew uninstall --force fasd
@@ -199,7 +201,6 @@ flipper
 font-cascadia
 font-fira-code
 fork
-gitup
 google-backup-and-sync
 google-chrome-beta
 grandperspective
@@ -228,7 +229,6 @@ reactotron
 sketch
 skype
 slack
-sourcetree
 spotify
 tor-browser
 tripmode
