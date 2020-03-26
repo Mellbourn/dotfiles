@@ -428,6 +428,7 @@ duti -s org.videolan.vlc .avi Viewer
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
+# show hidden files
 defaults write com.apple.finder AppleShowAllFiles YES
 # Show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
