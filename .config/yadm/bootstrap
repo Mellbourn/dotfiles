@@ -237,6 +237,7 @@ visual-studio-code
 vlc
 zenmap
 zeplin
+zoomus
 "
 
   alreadyInstalled=`brew cask ls`
