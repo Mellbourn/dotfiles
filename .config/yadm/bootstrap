@@ -26,6 +26,7 @@ if [[ `uname` == 'Darwin' ]]; then
   launchctl load -w ~/Library/LaunchAgents/local.cleanup.downloads.plist
   launchctl load -w ~/Library/LaunchAgents/local.cleanup.pictures.plist
   launchctl load -w ~/Library/LaunchAgents/local.cleanup.resurrect.plist
+  launchctl load -w ~/Library/LaunchAgents/local.cleanup.trash.plist
   # they don't work, so run them anyway
   $HOME/bin/cleanup-directory -d $HOME/Downloads -l 10 -v
   $HOME/bin/cleanup-directory -d $HOME/Pictures -l 10 -v
@@ -157,6 +158,7 @@ stunnel
 thefuck
 tig
 tldr
+tmpreaper
 tmux
 trash
 tree
