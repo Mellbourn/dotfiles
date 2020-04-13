@@ -105,11 +105,11 @@ fpp
 fx
 fzf
 gettext
-github/gh/gh
 git
 git-crypt
 git-lfs
 git-number
+github/gh/gh
 glances
 gnupg
 googler
@@ -219,10 +219,10 @@ luna-display
 minikube
 mockoon
 moom
-pokerth
 p4v
 philips-hue-sync
 plex
+pokerth
 postman
 private-internet-access
 react-native-debugger
