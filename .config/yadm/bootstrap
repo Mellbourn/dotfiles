@@ -23,9 +23,13 @@ if [[ `uname` == 'Darwin' ]]; then
   ###############################################################################
 
   # activate cleanup jobs, doesn't actually update?
+  launchctl unload ~/Library/LaunchAgents/local.cleanup.downloads.plist
   launchctl load -w ~/Library/LaunchAgents/local.cleanup.downloads.plist
+  launchctl unload ~/Library/LaunchAgents/local.cleanup.pictures.plist
   launchctl load -w ~/Library/LaunchAgents/local.cleanup.pictures.plist
+  launchctl unload ~/Library/LaunchAgents/local.cleanup.resurrect.plist
   launchctl load -w ~/Library/LaunchAgents/local.cleanup.resurrect.plist
+  launchctl unload ~/Library/LaunchAgents/local.cleanup.trash.plist
   launchctl load -w ~/Library/LaunchAgents/local.cleanup.trash.plist
   # they don't work, so run them anyway
   $HOME/bin/cleanup-directory -d $HOME/Downloads -l 10 -v
