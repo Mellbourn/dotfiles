@@ -35,6 +35,7 @@ if [[ `uname` == 'Darwin' ]]; then
   $HOME/bin/cleanup-directory -d $HOME/Downloads -l 10 -v
   $HOME/bin/cleanup-directory -d $HOME/Pictures -l 10 -v
   $HOME/bin/cleanup-directory -d $HOME/.tmux/resurrect -f \*/tmux_resurrect_\*.txt -l 5 -v
+  /usr/local/sbin/tmpreaper -vv -M 5d $HOME/.Trash &
 
   ###############################################################################
   # App store                                                                   #
