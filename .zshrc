@@ -18,6 +18,9 @@ source ~/.bash_profile
 
 # allow command line comments
 setopt interactivecomments
+
+# word movement should stop on slashes
+export WORDCHARS=$WORDCHARS:s:/:
 ###############################################################################
 # directory navigation options
 ###############################################################################
