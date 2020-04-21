@@ -1,0 +1,9 @@
+#!/bin/bash
+# Works for extension packs too
+extension_list=$(mktemp /tmp/extension_list.XXXXX)
+echo "extension list: $extension_list"
+code --list-extensions > extension_list
+while read extension; do
+  echo "reinstalling $extension"
+  code --uninstall-extension $extension && code --install-extension $extension
+done <extension_list
