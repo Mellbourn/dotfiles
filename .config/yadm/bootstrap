@@ -471,6 +471,12 @@ defaults write com.apple.finder QuitMenuItem -bool true
 defaults write -g com.apple.sound.beep.feedback -int 1
 
 ###############################################################################
+# Performance                                                                 #
+###############################################################################
+# reduce transparency to make WindowServer take less CPU, but looks like shit
+#defaults write com.apple.universalaccess reduceTransparency 1
+
+###############################################################################
 # Miscellaneous                                                               #
 ###############################################################################
 # Save screenshots to Pictures
