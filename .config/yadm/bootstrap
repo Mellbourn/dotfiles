@@ -82,15 +82,19 @@ if [[ `uname` == 'Darwin' ]]; then
   brew cask uninstall --force gitup
   brew cask uninstall --force muzzle
   brew cask uninstall --force sourcetree
+  brew cask uninstall --force sketch
   # TODO: eventually uninstall zplug
   #brew uninstall --force zplug
   brew uninstall --force fasd
+  brew uninstall --force ansible
+  brew uninstall --force flow
+  brew uninstall --force liquidprompt
+  brew uninstall --force nano
   # this forces you to enter password all the time
   #brew cask uninstall --force intel-power-gadget
 
   # this must be in alphabetical order!
   apps="
-ansible
 aws-sam-cli
 awscli
 bash
@@ -107,7 +111,6 @@ docker-machine-completion
 duti
 fd
 findutils
-flow
 fortune
 fpp
 fx
@@ -136,12 +139,10 @@ kubernetes-cli
 lastpass-cli
 less
 librsvg
-liquidprompt
 lnav
 mas
 maven
 mono
-nano
 ncdu
 nginx
 nodebrew
@@ -236,7 +237,6 @@ postman
 private-internet-access
 react-native-debugger
 reactotron
-sketch
 skype
 slack
 spotify
