@@ -365,7 +365,9 @@ bindkey -s "\e4" \$  # option-4 maps to dollar
 bindkey -s "\e7" \|  # option-7 maps to vertical bar
 bindkey -s "\e8" \[  # option-8 maps to left square bracket
 bindkey -s "\e9" \]  # option-9 maps to right square bracket
-# TODO: make these work \{}
+bindkey -s '\e(' \}  # option-shift-9 maps to right curly brace
+# TODO: make these work \{
+# also, Ctrl-b ] does not work
 
 ###############################################################################
 # Syntax highlighting for the shell
