@@ -187,6 +187,8 @@ fi
 export FZF_DEFAULT_COMMAND="fd --type file"
 # --ansi makes fzf a bit slower, but I haven't really noticed, this preview is used for ** completion
 export FZF_DEFAULT_OPTS="--ansi --select-1 --height 40%"
+export FZF_TMUX_OPTS="-d 70%"
+export FZF_TMUX=1
 # this harmed kill -9 and git co **
 #export FZF_COMPLETION_OPTS="--preview '(bat --color always --paging never {} 2> /dev/null || tree -C {}) 2> /dev/null | head -200' --preview-window=right:33%"
 # this is slow for large sets, could be sorted with ' | sort -u' but that is just the initial sorting
@@ -194,7 +196,6 @@ export FZF_ALT_C_COMMAND='fd --type directory'
 export FZF_ALT_C_OPTS="--preview 'CLICOLOR_FORCE=1 ls -GF {} | head -200' --preview-window=right:20%"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'less {} 2> /dev/null | head -200' --preview-window=right:33%"
-export FZF_TMUX=1
 [ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME
 
 # set up direnv
