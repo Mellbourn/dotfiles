@@ -186,7 +186,7 @@ fi
 # fuzzy completion: ^R, ^T, ⌥C, **
 export FZF_DEFAULT_COMMAND="fd --type file"
 # --ansi makes fzf a bit slower, but I haven't really noticed, this preview is used for ** completion
-export FZF_DEFAULT_OPTS="--ansi --select-1 --height 40% --reverse"
+export FZF_DEFAULT_OPTS="--ansi --select-1 --height 40% --reverse --tiebreak=begin"
 export FZF_TMUX_OPTS="-d 70%"
 export FZF_TMUX=1
 FZF="fzf-tmux"
