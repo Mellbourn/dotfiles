@@ -359,6 +359,14 @@ _my_generic () {
 }
 bindkey '^X^a' all-matches
 
+# binding needed in VS Code integrated terminal when "terminal.integrated.macOptionIsMeta" is set
+bindkey -s "\e2" @
+bindkey -s "\e4" \$
+bindkey -s "\e7" \|
+bindkey -s "\e8" \[
+bindkey -s "\e9" \]
+# TODO \
+
 ###############################################################################
 # Syntax highlighting for the shell
 # syntax highlighting should be loaded after all widgets, to work with them
