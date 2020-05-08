@@ -124,6 +124,10 @@ zinit load tj/git-extras
 zinit ice wait'2' lucid as"program" pick"bin/git-dsf" if'[[ ! -x "$(command -v diff-so-fancy)" ]]'
 zinit light zdharma/zsh-diff-so-fancy
 
+# this was cool but a bit too buggy
+#zinit ice wait'2' lucid
+#zinit light marlonrichert/zsh-autocomplete
+
 #zinit ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
 #zinit light ogham/exa
 
