@@ -186,9 +186,10 @@ fi
 # fuzzy completion: ^R, ^T, ⌥C, **
 export FZF_DEFAULT_COMMAND="fd --type file"
 # --ansi makes fzf a bit slower, but I haven't really noticed, this preview is used for ** completion
-export FZF_DEFAULT_OPTS="--ansi --select-1 --height 40%"
+export FZF_DEFAULT_OPTS="--ansi --select-1 --height 40% --reverse"
 export FZF_TMUX_OPTS="-d 70%"
 export FZF_TMUX=1
+FZF="fzf-tmux"
 # this harmed kill -9 and git co **
 #export FZF_COMPLETION_OPTS="--preview '(bat --color always --paging never {} 2> /dev/null || tree -C {}) 2> /dev/null | head -200' --preview-window=right:33%"
 # this is slow for large sets, could be sorted with ' | sort -u' but that is just the initial sorting
@@ -257,7 +258,7 @@ function getTreeidForService() {
 function co() {
     local branches branch
     branches=$(git branch -a) &&
-    branch=$(echo "$branches" | egrep -i "$1"  | fzf +s +m) &&
+    branch=$(echo "$branches" | egrep -i "$1"  | $FZF +s +m) &&
     git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
 
@@ -290,7 +291,7 @@ _fzf_compgen_dir() {
 function go() {
     local repos repo
     repos=$(find $CODE_DIR -name .git -type d -maxdepth 3 -prune | egrep -i "$1"  | sed 's#/.git$##') &&
-    repo=$(echo "$repos" | fzf +s +m) &&
+    repo=$(echo "$repos" | $FZF +s +m) &&
     cd $(echo "$repo" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
 
@@ -317,7 +318,7 @@ function h {
 # like z, but if there are alternatives show them in fzf
 c() {
   local dir
-  dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+  dir="$(fasd -Rdl "$1" | $FZF -1 -0 --no-sort +m)" && cd "${dir}" || return 1
 }
 
 # Use Ctrl-x,Ctrl-l to get the output of the last command
