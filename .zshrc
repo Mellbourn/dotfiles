@@ -372,7 +372,6 @@ bindkey -s "\e9" \]  # option-9 maps to right square bracket
 bindkey -s '\e&' \\  # option-shift-7 maps to backslash ('&' is found on the US keyboard!)
 bindkey -s '\e*' \{  # option-shift-8 maps to left curly brace ('*' is found on the US keyboard!)
 bindkey -s '\e(' \}  # option-shift-9 maps to right curly brace ('(' is found on the US keyboard!)
-# TODO: Ctrl-b ] does not work, because tmux runs in bash
 
 ###############################################################################
 # Syntax highlighting for the shell
