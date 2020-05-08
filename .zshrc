@@ -360,11 +360,11 @@ _my_generic () {
 bindkey '^X^a' all-matches
 
 # binding needed in VS Code integrated terminal when "terminal.integrated.macOptionIsMeta" is set
-bindkey -s "\e2" @
-bindkey -s "\e4" \$
-bindkey -s "\e7" \|
-bindkey -s "\e8" \[
-bindkey -s "\e9" \]
+bindkey -s "\e2" @ # option-2 maps to the at-sign
+bindkey -s "\e4" \$ # option-4 maps to dollar
+bindkey -s "\e7" \| # option-7 maps to vertical bar
+bindkey -s "\e8" \[ # option-8 maps to left square bracket
+bindkey -s "\e9" \] # option-9 maps to right square bracket
 # TODO \
 
 ###############################################################################
