@@ -365,7 +365,8 @@ bindkey -s "\e4" \$  # option-4 maps to dollar
 bindkey -s "\e7" \|  # option-7 maps to vertical bar
 bindkey -s "\e8" \[  # option-8 maps to left square bracket
 bindkey -s "\e9" \]  # option-9 maps to right square bracket
-bindkey -s '\e(' \}  # option-shift-9 maps to right curly brace
+bindkey -s '\e*' \{  # option-shift-8 maps to left curly brace ('*'' is found on the US keyboard!)
+bindkey -s '\e(' \}  # option-shift-9 maps to right curly brace ('(' is found on the US keyboard!)
 # TODO: make these work \{
 # also, Ctrl-b ] does not work
 
