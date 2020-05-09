@@ -190,7 +190,7 @@ fi
 # fuzzy completion: ^R, ^T, ⌥C, **
 export FZF_DEFAULT_COMMAND="fd --type file"
 # --ansi makes fzf a bit slower, but I haven't really noticed, this preview is used for ** completion
-export FZF_DEFAULT_OPTS="--ansi --select-1 --height 40% --reverse --tiebreak=begin"
+export FZF_DEFAULT_OPTS="--ansi --select-1 --height 40% --reverse --tiebreak=begin --bind end:preview-down,home:preview-up"
 export FZF_TMUX_OPTS="-d 70%"
 export FZF_TMUX=1
 FZF="fzf-tmux"
@@ -347,7 +347,7 @@ alias -s zip="zipinfo"
 ###############################################################################
 bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
-# make zsh behave like bash for ctrl-u (fine to modify since most others will have bash)
+# make zsh behave like bash for ctrl-u (fine to modify since most others will have bash, and ⌥q kills whole line)
 bindkey "^U" backward-kill-line
 # edit command line like in bash (zsh has 'fc' but it has to execute the command first)
 autoload -z edit-command-line
