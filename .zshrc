@@ -374,12 +374,23 @@ bindkey -s '\e*' \{  # option-shift-8 maps to left curly brace ('*' is found on 
 bindkey -s '\e(' \}  # option-shift-9 maps to right curly brace ('(' is found on the US keyboard!)
 
 # binding needed in VS Code integrated terminal when "terminal.integrated.macOptionIsMeta" is false
-bindkey '›' backward-word # option-f
+bindkey '' accept-and-hold # option-a
 bindkey 'ƒ' forward-word # option-b
-bindkey '˛' run-help #option-h
-bindkey 'Ω' copy-region-as-kill #option-w
-bindkey '∂' delete-word #option-d
 bindkey 'ç' fzf-cd-widget #option-c
+bindkey '∂' delete-word #option-d
+bindkey '›' backward-word # option-f
+bindkey '¸' get-line # option-g
+bindkey '˛' run-help #option-h
+bindkey 'ﬁ' down-case-word #option-l
+bindkey '‘' history-search-forward #option-n
+bindkey 'π' history-search-backward #option-p
+bindkey '•' push-line #option-q
+bindkey 'ß' spell-word #option-s
+bindkey '†' transpose-words #option-t
+bindkey 'ü' up-case-word #option-u
+bindkey 'Ω' copy-region-as-kill #option-w
+bindkey '≈' execute-named-cmd #option-x
+bindkey 'µ' yank-pop #option-y
 # TODO: other metas?
 
 ###############################################################################
