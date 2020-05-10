@@ -391,7 +391,6 @@ bindkey 'ü' up-case-word #option-u
 bindkey 'Ω' copy-region-as-kill #option-w
 bindkey '≈' execute-named-cmd #option-x
 bindkey 'µ' yank-pop #option-y
-# TODO: other metas?
 
 ###############################################################################
 # Syntax highlighting for the shell
