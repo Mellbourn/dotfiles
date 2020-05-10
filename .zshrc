@@ -364,14 +364,14 @@ _my_generic () {
 bindkey '^X^a' all-matches
 
 # binding needed in VS Code integrated terminal when "terminal.integrated.macOptionIsMeta" is true
-bindkey -s "\e2" @   # option-2 maps to the at-sign
-bindkey -s "\e4" \$  # option-4 maps to dollar
-bindkey -s "\e7" \|  # option-7 maps to vertical bar
-bindkey -s "\e8" \[  # option-8 maps to left square bracket
-bindkey -s "\e9" \]  # option-9 maps to right square bracket
-bindkey -s '\e&' \\  # option-shift-7 maps to backslash ('&' is found on the US keyboard!)
-bindkey -s '\e*' \{  # option-shift-8 maps to left curly brace ('*' is found on the US keyboard!)
-bindkey -s '\e(' \}  # option-shift-9 maps to right curly brace ('(' is found on the US keyboard!)
+#bindkey -s "\e2" @   # option-2 maps to the at-sign
+#bindkey -s "\e4" \$  # option-4 maps to dollar
+#bindkey -s "\e7" \|  # option-7 maps to vertical bar
+#bindkey -s "\e8" \[  # option-8 maps to left square bracket
+#bindkey -s "\e9" \]  # option-9 maps to right square bracket
+#bindkey -s '\e&' \\  # option-shift-7 maps to backslash ('&' is found on the US keyboard!)
+#bindkey -s '\e*' \{  # option-shift-8 maps to left curly brace ('*' is found on the US keyboard!)
+#bindkey -s '\e(' \}  # option-shift-9 maps to right curly brace ('(' is found on the US keyboard!)
 
 # binding needed in VS Code integrated terminal when "terminal.integrated.macOptionIsMeta" is false
 bindkey '' accept-and-hold # option-a
