@@ -391,6 +391,7 @@ bindkey 'ü' up-case-word #option-u
 bindkey 'Ω' copy-region-as-kill #option-w
 bindkey '≈' execute-named-cmd #option-x
 bindkey 'µ' yank-pop #option-y
+bindkey '¿' which-command #option-?
 
 ###############################################################################
 # Syntax highlighting for the shell
