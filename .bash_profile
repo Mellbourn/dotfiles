@@ -52,6 +52,7 @@ if [ -d ~/.cargo/bin ]; then
   export PATH=$PATH:~/.cargo/bin
 fi
 export CLICOLOR=1
+export GCAL='--starting-day=Monday --iso-week-number=yes --with-week-number --cc-holidays=SE'
 if [[ -n $UNAME_LINUX ]]; then
   # WSL
   # export LSCOLORS=gxfxcxdxbxegedabaggxgx
