@@ -25,4 +25,5 @@ alias rm_node_modules='fd -t d -u node_modules -x rm -rf'
 alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
 alias trash='trash -F'
 alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
+alias weather='curl wttr.in/Stockholm'
 alias zmv='noglob zmv'
