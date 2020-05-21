@@ -124,6 +124,9 @@ zinit load tj/git-extras
 zinit ice wait'2' lucid as"program" pick"bin/git-dsf" if'[[ ! -x "$(command -v diff-so-fancy)" ]]'
 zinit light zdharma/zsh-diff-so-fancy
 
+zinit ice wait'2' lucid as"completion"
+zinit light nilsonholger/osx-zsh-completions
+
 # this was cool but a bit too buggy
 #zinit ice wait'2' lucid
 #zinit light marlonrichert/zsh-autocomplete
