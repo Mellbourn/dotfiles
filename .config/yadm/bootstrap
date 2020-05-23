@@ -215,7 +215,7 @@ docker
 eve
 firefox
 flipper
-font-cascadia
+font-cascadia-pl
 font-fira-code
 fork
 google-backup-and-sync
@@ -262,6 +262,9 @@ zoomus
   echo $installThese | xargs brew cask install
 
   brew link --force gettext
+
+  # remove uninstalls eventually
+  brew cask uninstall font-cascadia
 
   echo will cite | parallel --citation > /dev/null 2>&1
 
