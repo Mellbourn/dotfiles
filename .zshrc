@@ -246,7 +246,7 @@ else
   local prompt_hashcolor=$(echo $HOST|cksum|awk '{print $1%233+23}')
 fi
 # other good: 239+17, 233+23, 253+3
-PROMPT="%K{${prompt_hashcolor}}%F%${width_part}<…<%4~%f%k%(?..%{$fg[red]%} %?%{$reset_color%})%(1j.%{$fg[cyan]%} %j%{$reset_color%}.) "
+PROMPT="%K{${prompt_hashcolor}}%F%${width_part}<…<%4~%(?..%{$bg[red]%} %?)%(1j.%{$bg[cyan]%} %j.)%k%F{${prompt_hashcolor}}%(!..)%f"
 git_part='$(gitprompt)'
 RPROMPT="${git_part}%F{021}${UNUSUAL_NAME}%F{033}${UNUSUAL_HOSTNAME}%f %F{106}%*%f"
 
