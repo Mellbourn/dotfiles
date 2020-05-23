@@ -79,19 +79,11 @@ if [[ `uname` == 'Darwin' ]]; then
   # brew cask install homebrew/cask-drivers/logitech-options
 
   # remove brews here that were previously installed, to sync between machines
-
   brew cask zap --force gitup
 
-  brew cask uninstall --force muzzle
-  brew cask uninstall --force sourcetree
-  brew cask uninstall --force sketch
   # TODO: eventually uninstall zplug
   #brew uninstall --force zplug
-  brew uninstall --force fasd
-  brew uninstall --force ansible
-  brew uninstall --force flow
-  brew uninstall --force liquidprompt
-  brew uninstall --force nano
+
   # this forces you to enter password all the time
   #brew cask uninstall --force intel-power-gadget
 
