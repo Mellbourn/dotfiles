@@ -26,3 +26,6 @@ alias trash='trash -F'
 alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
 alias weather='curl v2.wttr.in/Stockholm'
 alias zmv='noglob zmv'
+
+# suffix aliases for file types: these become "executable"
+alias -s {avdl,bat,c,coffee,css,el,gql,gradle,graphql,h,handlebars,hpp,html,http,java,js,json,json5,lock,log,md,py,rb,scss,sh,swift,text,ts,tsx,txt,xml,yaml,yml,yo}=code
