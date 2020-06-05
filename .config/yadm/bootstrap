@@ -51,6 +51,8 @@ if [[ `uname` == 'Darwin' ]]; then
   mas install 1295203466
   # Copy'em Paste (Clipboard Mgr.) (2.8.1)
   mas install 876540291
+  # Discovery - DNS-SD Browser, scan bonjour network
+  mas install 1381004916
   ###############################################################################
   # Homebrew                                                                    #
   ###############################################################################
