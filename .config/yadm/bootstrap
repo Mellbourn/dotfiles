@@ -43,16 +43,15 @@ if [[ `uname` == 'Darwin' ]]; then
   brew install mas
   # Xcode
   mas install 497799835
-  # John's Background Switcher
-  mas install 907640277
-  # Bredbandskollen
-  mas install 1147976909
-  # Microsoft Remote Desktop 10
-  mas install 1295203466
-  # Copy'em Paste (Clipboard Mgr.) (2.8.1)
-  mas install 876540291
-  # Discovery - DNS-SD Browser, scan bonjour network
-  mas install 1381004916
+  mas lucky "John's Background Switcher" # 907640277
+  mas lucky Bredbandskollen # 1147976909
+  # Microsoft Remote Desktop 10 1295203466
+  mas lucky "Microsoft Remote Desktop"
+  mas lucky "Copy'em Paste (Clipboard Mgr.)" # (2.8.1) 876540291
+  # DNS-SD scans bonjour network (2.0.3) 1381004916
+  mas lucky "Discovery - DNS-SD Browser"
+  # upgrade all
+  mas upgrade
   ###############################################################################
   # Homebrew                                                                    #
   ###############################################################################
