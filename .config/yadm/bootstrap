@@ -92,7 +92,7 @@ if [[ `uname` == 'Darwin' ]]; then
   # this must be in alphabetical order!
   apps="
 aws-sam-cli
-awscli
+awscli@1
 bash
 bash-completion
 bat

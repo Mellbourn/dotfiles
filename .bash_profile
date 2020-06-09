@@ -48,6 +48,10 @@ export PATH=$PATH:~/bin
 if [ -d "$HOME/.local/bin" ] ; then
   PATH="$HOME/.local/bin:$PATH"
 fi
+if [ -d /usr/local/opt/awscli@1/bin ]; then
+  # this is needed while we are using an old awscli
+  export PATH=$PATH:/usr/local/opt/awscli@1/bin
+fi
 if [ -d ~/.cargo/bin ]; then
   export PATH=$PATH:~/.cargo/bin
 fi
