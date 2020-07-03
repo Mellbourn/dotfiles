@@ -64,8 +64,6 @@ if [[ `uname` == 'Darwin' ]]; then
   brew update
   brew upgrade
   brew cask upgrade
-  # this will force upgrade from 3 to 4
-  brew cask upgrade alfred
   brew tap aws/tap # for aws-sam-cli
   brew tap git-time-metric/gtm # for gtm
   brew tap wix/brew # for AppleSimulatorUtils
@@ -82,6 +80,7 @@ if [[ `uname` == 'Darwin' ]]; then
   # remove brews here that were previously installed, to sync between machines
   brew cask zap --force gitup
   brew cask uninstall day-o
+  brew cask uninstall alfred
 
   # TODO: eventually uninstall zplug
   #brew uninstall --force zplug
@@ -194,7 +193,6 @@ zsh-syntax-highlighting
   casks="
 abstract
 adobe-acrobat-reader
-alfred
 android-platform-tools
 android-sdk
 android-studio
