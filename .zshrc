@@ -251,7 +251,7 @@ if [[ -n $UNAME_LINUX ]]; then
 else
   local prompt_ending="%(!..)"
 fi
-PROMPT="%K{${prompt_hashcolor}}%F%${width_part}<…<%4~%(?..%{$bg[red]%} %?)%(1j.%{$bg[cyan]%} %j.)%k%F{${prompt_hashcolor}}${prompt_ending}%f"
+PROMPT="%K{${prompt_hashcolor}}%F%${width_part}<…<%4~%(?..%{$bg[red]%} %?)%(1j.%{$bg[cyan]%} %j.)%k%F{${prompt_hashcolor}}${prompt_ending}%f "
 git_part='$(gitprompt)'
 RPROMPT="${git_part}%F{021}${UNUSUAL_NAME}%F{033}${UNUSUAL_HOSTNAME}%f %F{106}%*%f"
 
