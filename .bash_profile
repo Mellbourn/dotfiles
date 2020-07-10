@@ -10,9 +10,6 @@ if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &> /d
   exec ~/bin/tmux-attach-or-new
 fi
 
-# fix for ENFILE: file table overflow
-ulimit -n 20000
-
 if [[ `uname` == 'Linux' ]]
 then
   export UNAME_LINUX=1
@@ -67,6 +64,9 @@ if [[ -n $UNAME_LINUX ]]; then
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column"
 else
   # macOS
+  # fix for ENFILE: file table overflow
+  ulimit -n 20000
+
   export LSCOLORS=gxfxcxdxbxegedabagacad
   export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column"
