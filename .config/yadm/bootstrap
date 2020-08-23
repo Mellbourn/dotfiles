@@ -47,7 +47,7 @@ if [[ `uname` == 'Darwin' ]]; then
   mas lucky Bredbandskollen # 1147976909
   # Microsoft Remote Desktop 10 1295203466
   mas lucky "Microsoft Remote Desktop"
-  mas lucky "Copy'em Paste (Clipboard Mgr.)" # (2.8.1) 876540291
+  mas lucky "Copy'em (Clipboard Mgr.)" # (2.8.1) 876540291
   # DNS-SD scans bonjour network (2.0.3) 1381004916
   mas lucky "Discovery - DNS-SD Browser"
   # upgrade all
