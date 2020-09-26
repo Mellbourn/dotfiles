@@ -6,9 +6,10 @@
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # history settings
-export HISTSIZE=2500
+# HISTSIZE 2500 had good performance (250ms startup, contains about three to four months history)
+export HISTSIZE=9999
 if  [[ $SHELL == *bash ]]; then
-  export HISTFILESIZE=99999
+  export HISTFILESIZE=$HISTSIZE
   # make sure history is saved
   shopt -s histappend
   # http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
