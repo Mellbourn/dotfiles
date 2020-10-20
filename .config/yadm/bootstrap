@@ -256,7 +256,7 @@ zoomus
   brew link --force gettext
 
   # remove uninstalls eventually
-  brew cask uninstall font-cascadia
+  #brew cask uninstall font-cascadia
 
   echo will cite | parallel --citation > /dev/null 2>&1
 
