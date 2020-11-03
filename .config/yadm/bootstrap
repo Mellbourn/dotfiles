@@ -276,10 +276,12 @@ zoomus
   rvm get stable
   # interesting ruby version
   rvm install ruby-2.4.1
-  LATEST_STABLE_RUBY_VERSON=$(rvm list known | grep "\[ruby-\]" | grep -v "preview" | tail -1 | sed 's/\[ruby-\]\([0-9]*\.[0-9]\)*\[.*\]/\1/g')
-  rvm install ruby-$LATEST_STABLE_RUBY_VERSON
+  LATEST_STABLE_RUBY_VERSION=$(rvm list known | grep "\[ruby-\]" | grep -v "preview" | tail -1 | sed 's/\[ruby-\]\([0-9]*\.[0-9]\)*\[.*\]/\1/g')
+  rvm install ruby-$LATEST_STABLE_RUBY_VERSION
   source ~/.rvm/scripts/rvm
-  rvm --default use ruby-$LATEST_STABLE_RUBY_VERSON
+  #rvm --default use ruby-$LATEST_STABLE_RUBY_VERSION
+  # v2.4.1 required by dev environment
+  rvm --default use ruby-2.4.1
 
   # pip no longer installable from pip3? not needed?
   #pip3 install --upgrade pip setuptools
