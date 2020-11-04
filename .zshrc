@@ -145,6 +145,19 @@ zinit light clvv/fasd
 
 if [ -z "$DOTFILES_LITE" ]
 then
+  if [ "$NODE_PACKAGE_MANAGER" = 'nvm' ]; then
+    zinit light lukechilds/zsh-nvm
+
+    # It is super important that the nvm commands are AFTER zplug load.
+    # Also note that loading nvm is very slow! 0.93s
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    if ! type node > /dev/null; then
+      nvm install node
+    fi
+  fi
+
   # Not really plugins, but very good to have async anyway
   # sourcing rvm takes 0.51s, so there will be a lag when it is sourced
   # also, loading rvm as a zinit will make it ignore the .ruby-version file if you are already inside that folder

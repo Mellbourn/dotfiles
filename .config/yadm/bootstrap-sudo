@@ -116,9 +116,12 @@ if [[ `uname` == 'Linux' ]]; then
       wget -qO- https://get.haskellstack.org/ | sh
     fi
 
-    # install nodebrew, node version manager
-    if ! [ -x "$(command -v nodebrew)" ]; then
-      curl -L git.io/nodebrew | perl - setup
+    if [ "$NODE_PACKAGE_MANAGER" = 'nvm' ]; then
+    else
+      # install nodebrew, node version manager
+      if ! [ -x "$(command -v nodebrew)" ]; then
+        curl -L git.io/nodebrew | perl - setup
+      fi
     fi
   fi
 
@@ -141,7 +144,11 @@ fi
 ###############################################################################
 
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
-PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:${HOME}/.nodebrew/current/bin:/usr/local/bin
+if [ "$NODE_PACKAGE_MANAGER" = 'nvm' ]; then
+  PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:${HOME}/.nvm/versions/node/v12.8.3/bin:/usr/local/bin
+else
+  PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:${HOME}/.nodebrew/current/bin:/usr/local/bin
+fi
 sudo launchctl config user path $PATH_OVERRIDE
 
 # if xcode has just been manually installed

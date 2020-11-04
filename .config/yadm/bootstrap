@@ -352,14 +352,24 @@ fi
 
 if [ -z "$DOTFILES_LITE" ]
 then
-  if [ -x "$(command -v /usr/local/opt/nodebrew/bin/nodebrew)" ]; then
-    /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
-  fi
-  nodebrew selfupdate
-  nodebrew install-binary latest
-  if ! [ -x "$(command -v node)" ]; then
-    # if no node is present, definitely use the latest
-    nodebrew use latest
+  if [ "$NODE_PACKAGE_MANAGER" = 'nvm' ]; then
+    if [ -s "$NVM_DIR/nvm.sh" ]; then
+      \. "$NVM_DIR/nvm.sh"  # This loads nvm
+      # install latest node
+      nvm install node
+      # this fixes "env: node: No such file or directory"
+      nvm alias default node
+    fi
+  else
+    if [ -x "$(command -v /usr/local/opt/nodebrew/bin/nodebrew)" ]; then
+      /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
+    fi
+    nodebrew selfupdate
+    nodebrew install-binary latest
+    if ! [ -x "$(command -v node)" ]; then
+      # if no node is present, definitely use the latest
+      nodebrew use latest
+    fi
   fi
 
   if ! [ -x "$(command -v tldr)" ]; then

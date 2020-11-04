@@ -79,6 +79,8 @@ export LANG=en_US.UTF-8
 # make gpg prompt work, otherwise I get "Inappropriate ioctl for device"
 export GPG_TTY=$(tty)
 export CHEATCOLORS=true
+# choose node package manager
+export NODE_PACKAGE_MANAGER=nvm
 # git checkout should only complete local branches (unless origin/), since I have fzf for more complex scenarios
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 # this takes about 0.02s and is used by some Klarna seach docker containers
