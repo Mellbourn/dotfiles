@@ -43,10 +43,10 @@ fi
 ### environment variables
 export PATH=$PATH:~/bin
 if [ -d "/opt/homebrew/bin" ] ; then
-  PATH=/opt/homebrew/bin:$PATH
-  export HOMEBREW_ROOT=/opt/homebrew
+  export HOMEBREW_PREFIX=/opt/homebrew
+  PATH=$HOMEBREW_PREFIX/bin:$PATH
 else
-  export HOMEBREW_ROOT=/usr/local
+  export HOMEBREW_PREFIX=/usr/local
 fi
 if [ -d "$HOME/.local/bin" ] ; then
   PATH="$HOME/.local/bin:$PATH"
@@ -144,7 +144,7 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 # ansible also needed openssl
 # If you need to have this software first in your PATH run:
 #  echo 'export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"' >> ~/.bash_profile
-export PATH="$HOMEBREW_ROOT/opt/openssl@1.1/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/openssl@1.1/bin:$PATH"
 # For compilers to find this software you may need to set:
 #    LDFLAGS:  -L/usr/local/opt/openssl@1.1/lib
 #    CPPFLAGS: -I/usr/local/opt/openssl@1.1/include
