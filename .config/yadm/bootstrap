@@ -81,6 +81,7 @@ if [[ `uname` == 'Darwin' ]]; then
   brew cask zap --force gitup
   brew cask uninstall day-o
   brew cask uninstall alfred
+  brew uninstall --cask zoomus
 
   # TODO: eventually uninstall zplug
   #brew uninstall --force zplug
@@ -245,7 +246,7 @@ visual-studio-code
 vlc
 zenmap
 zeplin
-zoomus
+zoom
 "
 
   alreadyInstalled=`brew cask ls`
