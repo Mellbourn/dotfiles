@@ -86,8 +86,8 @@ if [[ `uname` == 'Darwin' ]]; then
 
   # remove brews here that were previously installed, to sync between machines
   brew cask zap --force gitup
-  brew cask uninstall day-o
-  brew cask uninstall alfred
+  brew uninstall --cask day-o
+  brew uninstall --cask alfred
   brew uninstall --cask zoomus
 
   # TODO: eventually uninstall zplug
