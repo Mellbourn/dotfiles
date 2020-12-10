@@ -6,17 +6,6 @@
 # fortune takes 0.017s
 #fortune
 
-if [ -d "/opt/homebrew/bin" ] ; then
-  export HOMEBREW_PREFIX=/opt/homebrew
-  PATH=$HOMEBREW_PREFIX/bin:$PATH
-else
-  export HOMEBREW_PREFIX=/usr/local
-fi
-
-if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &> /dev/null; then
-  exec ~/bin/tmux-attach-or-new
-fi
-
 if [[ `uname` == 'Linux' ]]
 then
   export UNAME_LINUX=1
@@ -33,6 +22,10 @@ fi
 
 if [ -f ~/.profile ]; then
   source ~/.profile
+fi
+
+if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &> /dev/null; then
+  exec ~/bin/tmux-attach-or-new
 fi
 
 if [ -f ~/.protocol ]; then
