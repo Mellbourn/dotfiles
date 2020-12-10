@@ -108,6 +108,8 @@ if [[ `uname` == 'Darwin' ]]; then
   brew cask install google-chrome
   brew cask install iterm2
 
+  brew cask install font-cascadia-code-pl font-fira-code font-jetbrains-mono
+
   exit 0
   # this must be in alphabetical order!
   apps="
