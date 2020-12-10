@@ -6,6 +6,13 @@
 # fortune takes 0.017s
 #fortune
 
+if [ -d "/opt/homebrew/bin" ] ; then
+  export HOMEBREW_PREFIX=/opt/homebrew
+  PATH=$HOMEBREW_PREFIX/bin:$PATH
+else
+  export HOMEBREW_PREFIX=/usr/local
+fi
+
 if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &> /dev/null; then
   exec ~/bin/tmux-attach-or-new
 fi
@@ -42,12 +49,6 @@ fi
 
 ### environment variables
 export PATH=$PATH:~/bin
-if [ -d "/opt/homebrew/bin" ] ; then
-  export HOMEBREW_PREFIX=/opt/homebrew
-  PATH=$HOMEBREW_PREFIX/bin:$PATH
-else
-  export HOMEBREW_PREFIX=/usr/local
-fi
 if [ -d "$HOME/.local/bin" ] ; then
   PATH="$HOME/.local/bin:$PATH"
 fi
