@@ -105,6 +105,8 @@ if [[ `uname` == 'Darwin' ]]; then
   brew install -s pcre2
   brew install -s git
 
+  brew install -s zsh-autosuggestions zsh-syntax-highlighting
+
   brew cask install google-chrome
   brew cask install iterm2
 
