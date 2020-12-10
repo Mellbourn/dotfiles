@@ -38,7 +38,7 @@ export SAVEHIST=$HISTSIZE
 ###############################################################################
 # development
 ###############################################################################
-export ANDROID_HOME=/usr/local/share/android-sdk
+export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
 
 ###############################################################################
 # completion
@@ -162,10 +162,10 @@ then
   # zinit light zdharma/null
   # # this taskes 0.39s
   # # this has to be loaded much later than the preceding plugins, otherwise you will get "No module named virtualenvwrapper  "
-  # zinit ice wait'10' lucid atinit'if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi'
+  # zinit ice wait'10' lucid atinit'if [ -f $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh ]; then source $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh; fi'
   # zinit light zdharma/null
 
-  # yarn must be run after node is defined, takes 0.31s, and only adds /usr/local/bin
+  # yarn must be run after node is defined, takes 0.31s, and only adds $HOMEBREW_PREFIX/bin
   #zinit ice wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"'
   #zinit light zdharma/null
 fi
@@ -186,8 +186,8 @@ fi
 # add-ons installed by homebrew
 ###############################################################################
 
-if [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 # fuzzy completion: ^R, ^T, ⌥C, **
@@ -405,21 +405,21 @@ bindkey '¿' which-command #option-?
 # Syntax highlighting for the shell
 # syntax highlighting should be loaded after all widgets, to work with them
 ###############################################################################
-if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+  export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background
+  export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' # pink
+  export ZSH_HIGHLIGHT_STYLES[commandseparator]='bg=21,fg=195' # light on dark blue
+  export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown
+  export ZSH_HIGHLIGHT_STYLES[globbing]='fg=99' # lilac
+  export ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=63' # softer lilac
+  export ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,underline' # make folders same colors as in ls
+  export ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=243,underline'
+  export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline'
+  export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green
+  export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 fi
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background
-export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' # pink
-export ZSH_HIGHLIGHT_STYLES[commandseparator]='bg=21,fg=195' # light on dark blue
-export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown
-export ZSH_HIGHLIGHT_STYLES[globbing]='fg=99' # lilac
-export ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=63' # softer lilac
-export ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,underline' # make folders same colors as in ls
-export ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=243,underline'
-export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline'
-export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green
-export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 
 [[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
 
