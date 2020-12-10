@@ -40,7 +40,8 @@ if [[ `uname` == 'Darwin' ]]; then
   ###############################################################################
   # App store                                                                   #
   ###############################################################################
-  brew install mas
+  brew install -s carthage
+  brew install -s mas
   # Xcode
   mas install 497799835
   mas lucky "John's Background Switcher" # 907640277
@@ -89,6 +90,25 @@ if [[ `uname` == 'Darwin' ]]; then
   # this forces you to enter password all the time
   #brew cask uninstall --force intel-power-gadget
 
+  brew install -s yadm
+  brew install -s openssl@1.1
+  brew install -s autoconf
+  brew install -s automake
+  brew install -s libtool
+  brew install -s pkg-config
+  brew install -s libevent
+  brew install -s ncurses
+  brew install -s utf8proc
+  brew install -s tmux
+
+  brew install -s gettext
+  brew install -s pcre2
+  brew install -s git
+
+  brew cask install google-chrome
+  brew cask install iterm2
+
+  exit 0
   # this must be in alphabetical order!
   apps="
 aws-sam-cli
