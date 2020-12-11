@@ -217,7 +217,7 @@ fi
 # prompt
 ###############################################################################
 UNUSUAL_HOSTNAME=$(hostname -s)
-WELL_KNOWN_COMPUTERS=("KlasKlarnaMacHN")
+WELL_KNOWN_COMPUTERS=("KlasKlarnaMacHN" "Klass-Mac-mini-2020-M1" "Klass-Mac-mini-2018")
 if [[ " ${WELL_KNOWN_COMPUTERS[@]} " =~ " ${UNUSUAL_HOSTNAME} " ]]; then
   UNUSUAL_HOSTNAME=
 fi
