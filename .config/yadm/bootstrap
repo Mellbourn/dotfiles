@@ -105,6 +105,9 @@ if [[ `uname` == 'Darwin' ]]; then
   brew install -s pcre2
   brew install -s git
 
+  # jq has a dependency: oniguruma
+  brew install -s jq
+
   brew install -s zsh-autosuggestions zsh-syntax-highlighting
 
   brew cask install google-chrome
