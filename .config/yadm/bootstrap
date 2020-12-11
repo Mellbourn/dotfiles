@@ -35,7 +35,7 @@ if [[ `uname` == 'Darwin' ]]; then
   $HOME/bin/cleanup-directory -d $HOME/Downloads -l 10 -v
   $HOME/bin/cleanup-directory -d $HOME/Pictures -l 10 -v
   $HOME/bin/cleanup-directory -d $HOME/.tmux/resurrect -f \*/tmux_resurrect_\*.txt -l 5 -v
-  /usr/local/sbin/tmpreaper -vv 2d -T 180 $HOME/.Trash &
+  $HOMEBREW_PREFIX/sbin/tmpreaper -vv 2d -T 180 $HOME/.Trash &
 
   ###############################################################################
   # App store                                                                   #
@@ -302,8 +302,8 @@ zoom
   echo will cite | parallel --citation > /dev/null 2>&1
 
   # set up wemux user name
-  sed -i -- "s/host_list=(brew)/host_list=($USER)/" /usr/local/etc/wemux.conf
-  sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' /usr/local/etc/wemux.conf
+  sed -i -- "s/host_list=(brew)/host_list=($USER)/" $HOMEBREW_PREFIX/etc/wemux.conf
+  sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
 
   if [[ $(uname -p) != 'arm' ]]; then
     # ruby version manager
@@ -341,17 +341,16 @@ zoom
       popd
     done
   fi
-  exit 0
 
   # finish PIA installation
   # if you already have a manual installation, you will have to remove it with
   # rm -rf /Applications/Private\ Internet\ Access.app
   if [ ! -d /Applications/Private\ Internet\ Access.app ]; then
-    /usr/local/Caskroom/private-internet-access/v70/Private\ Internet\ Access\ Installer.app/Contents/MacOS/runner.sh
+    $HOMEBREW_PREFIX/Caskroom/private-internet-access/v70/Private\ Internet\ Access\ Installer.app/Contents/MacOS/runner.sh
   fi
 
   # this is needed to suppress zsh message "compinit: insecure directories""
-  chmod g-w /usr/local/share ~/.zsh-personal-completions
+  chmod g-w $HOMEBREW_PREFIX/share ~/.zsh-personal-completions
   # this seems healthy to do every now and then to make sure zsh completion works
   trash ~/.zcompdump* ~/.zcompcache 2> /tmp/zcomp_delete_error.txt
 
@@ -396,8 +395,8 @@ fi
 
 if [ -z "$DOTFILES_LITE" ]
 then
-  if [ -x "$(command -v /usr/local/opt/nodebrew/bin/nodebrew)" ]; then
-    /usr/local/opt/nodebrew/bin/nodebrew setup_dirs
+  if [ -x "$(command -v $HOMEBREW_PREFIX/opt/nodebrew/bin/nodebrew)" ]; then
+    $HOMEBREW_PREFIX/opt/nodebrew/bin/nodebrew setup_dirs
   fi
   nodebrew selfupdate
   nodebrew install-binary latest
@@ -439,8 +438,9 @@ fi ############################################################################
 ###############################################################################
 
 if ! [ -f ~/.fzf.`basename $SHELL` ]; then
-  /usr/local/opt/fzf/install --key-bindings --completion --no-update-rc
+  $HOMEBREW_PREFIX/opt/fzf/install --key-bindings --completion --no-update-rc
 fi
+exit 0
 
 ###############################################################################
 # development
