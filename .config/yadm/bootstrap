@@ -40,8 +40,12 @@ if [[ `uname` == 'Darwin' ]]; then
   ###############################################################################
   # App store                                                                   #
   ###############################################################################
-  brew install -s carthage
-  brew install -s mas
+  if [[ $(uname -p) == 'arm' ]]; then
+    brew install -s carthage
+    brew install -s mas
+  else
+    brew install mas
+  fi
   # Xcode
   mas install 497799835
   mas lucky "John's Background Switcher" # 907640277
@@ -90,36 +94,37 @@ if [[ `uname` == 'Darwin' ]]; then
   # this forces you to enter password all the time
   #brew cask uninstall --force intel-power-gadget
 
-  brew install -s yadm
-  brew install -s openssl@1.1
-  brew install -s autoconf
-  brew install -s automake
-  brew install -s libtool
-  brew install -s pkg-config
-  brew install -s libevent
-  brew install -s ncurses
-  brew install -s utf8proc
-  brew install -s tmux
+  if [[ $(uname -p) == 'arm' ]]; then
+    brew install -s yadm
+    brew install -s openssl@1.1
+    brew install -s autoconf
+    brew install -s automake
+    brew install -s libtool
+    brew install -s pkg-config
+    brew install -s libevent
+    brew install -s ncurses
+    brew install -s utf8proc
+    brew install -s tmux
 
-  brew install -s gettext
-  brew install -s pcre2
-  brew install -s git
+    brew install -s gettext
+    brew install -s pcre2
+    brew install -s git
 
-  # jq has a dependency: oniguruma
-  brew install -s jq
+    # jq has a dependency: oniguruma
+    brew install -s jq
 
-  brew install -s zsh-autosuggestions zsh-syntax-highlighting
+    brew install -s zsh-autosuggestions zsh-syntax-highlighting
 
-  brew cask install google-chrome
-  brew cask install iterm2
-  brew cask install moom
+    brew cask install google-chrome
+    brew cask install iterm2
+    brew cask install moom
 
-  brew cask install font-cascadia-code-pl font-fira-code font-jetbrains-mono
+    brew cask install font-cascadia-code-pl font-fira-code font-jetbrains-mono
 
-  brew install --cask istat-menus
-  brew install --cask bartender
+    brew install --cask istat-menus
+    brew install --cask bartender
+  fi
 
-  exit 0
   # this must be in alphabetical order!
   apps="
 aws-sam-cli
@@ -218,7 +223,9 @@ zsh-syntax-highlighting
   alreadyInstalled=`brew ls`
   installTheseLines=`comm -23 <(echo "$apps") <(echo "$alreadyInstalled")`
   installThese=${installTheseLines//$'\n'/ }
-  echo $installThese | xargs brew install
+  if [[ $(uname -p) != 'arm' ]]; then
+    echo $installThese | xargs brew install
+  fi
 
 # not working, destroys existing installation: intel-power-gadget
 
@@ -283,7 +290,9 @@ zoom
   alreadyInstalled=`brew cask ls`
   installTheseLines=`comm -23 <(echo "$casks") <(echo "$alreadyInstalled")`
   installThese=${installTheseLines//$'\n'/ }
-  echo $installThese | xargs brew cask install
+  if [[ $(uname -p) != 'arm' ]]; then
+    echo $installThese | xargs brew cask install
+  fi
 
   brew link --force gettext
 
@@ -296,31 +305,33 @@ zoom
   sed -i -- "s/host_list=(brew)/host_list=($USER)/" /usr/local/etc/wemux.conf
   sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' /usr/local/etc/wemux.conf
 
-  # ruby version manager
-  gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-  if ! hash rvm 2>/dev/null; then
-    # trust download
-    command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-    # install rvm and latest ruby
-    curl -sSL https://get.rvm.io | bash -s stable --ruby
-  fi
-  # update rvm
-  rvm get stable
-  # interesting ruby version
-  rvm install ruby-2.4.1
-  LATEST_STABLE_RUBY_VERSION=$(rvm list known | grep "\[ruby-\]" | grep -v "preview" | tail -1 | sed 's/\[ruby-\]\([0-9]*\.[0-9]\)*\[.*\]/\1/g')
-  rvm install ruby-$LATEST_STABLE_RUBY_VERSION
-  source ~/.rvm/scripts/rvm
-  #rvm --default use ruby-$LATEST_STABLE_RUBY_VERSION
-  # v2.4.1 required by dev environment
-  rvm --default use ruby-2.4.1
+  if [[ $(uname -p) != 'arm' ]]; then
+    # ruby version manager
+    gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+    if ! hash rvm 2>/dev/null; then
+      # trust download
+      command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+      # install rvm and latest ruby
+      curl -sSL https://get.rvm.io | bash -s stable --ruby
+    fi
+    # update rvm
+    rvm get stable
+    # interesting ruby version
+    rvm install ruby-2.4.1
+    LATEST_STABLE_RUBY_VERSION=$(rvm list known | grep "\[ruby-\]" | grep -v "preview" | tail -1 | sed 's/\[ruby-\]\([0-9]*\.[0-9]\)*\[.*\]/\1/g')
+    rvm install ruby-$LATEST_STABLE_RUBY_VERSION
+    source ~/.rvm/scripts/rvm
+    #rvm --default use ruby-$LATEST_STABLE_RUBY_VERSION
+    # v2.4.1 required by dev environment
+    rvm --default use ruby-2.4.1
 
-  # pip no longer installable from pip3? not needed?
-  #pip3 install --upgrade pip setuptools
-  pip3 install virtualenvwrapper
-  pip3 install autopep8 pylint rope
-  # install tmux session manager
-  pip3 install tmuxp -U
+    # pip no longer installable from pip3? not needed?
+    #pip3 install --upgrade pip setuptools
+    pip3 install virtualenvwrapper
+    pip3 install autopep8 pylint rope
+    # install tmux session manager
+    pip3 install tmuxp -U
+  fi
 
   if [ -d ~/.tmux/plugins ]; then
     for plugin in ~/.tmux/plugins/*; do
@@ -330,6 +341,7 @@ zoom
       popd
     done
   fi
+  exit 0
 
   # finish PIA installation
   # if you already have a manual installation, you will have to remove it with
