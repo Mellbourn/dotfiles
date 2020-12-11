@@ -116,6 +116,9 @@ if [[ `uname` == 'Darwin' ]]; then
 
   brew cask install font-cascadia-code-pl font-fira-code font-jetbrains-mono
 
+  brew install --cask istat-menus
+  brew install --cask bartender
+
   exit 0
   # this must be in alphabetical order!
   apps="
