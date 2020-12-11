@@ -509,6 +509,9 @@ defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
 # show battery percent
 defaults write com.apple.menuextra.battery ShowPercent YES
 
+# make clock show only time, so it can be clickable in Big Sur (to show notification center)
+defaults write com.apple.menuextra.clock DateFormat -string "HH:mm"
+
 # set TextEdit default format to plain text
 defaults write com.apple.TextEdit RichText -int 0
 
