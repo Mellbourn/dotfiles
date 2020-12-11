@@ -11,6 +11,9 @@ source ~/.zinit/bin/zinit.zsh
 fpath=(~/.zsh-personal-completions $fpath)
 autoload -U zmv
 
+# helping brew completion is needed if HOMEBREW_PREFIX is not /usr/local
+FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH
+
 ###############################################################################
 # remember your ancestor
 ###############################################################################
