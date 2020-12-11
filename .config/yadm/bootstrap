@@ -110,6 +110,8 @@ if [[ `uname` == 'Darwin' ]]; then
     brew install -s pcre2
     brew install -s git
 
+    brew install -s duti
+
     # jq has a dependency: oniguruma
     brew install -s jq
 
@@ -440,7 +442,6 @@ fi ############################################################################
 if ! [ -f ~/.fzf.`basename $SHELL` ]; then
   $HOMEBREW_PREFIX/opt/fzf/install --key-bindings --completion --no-update-rc
 fi
-exit 0
 
 ###############################################################################
 # development
@@ -482,6 +483,7 @@ duti -s com.microsoft.VSCode public.yaml all
 duti -s com.google.chrome public.svg-image all # .svg
 # prefer vlc over quicktime
 duti -s org.videolan.vlc .avi Viewer
+exit 0
 
 ###############################################################################
 # Finder                                                                      #
