@@ -483,15 +483,15 @@ duti -s com.microsoft.VSCode public.yaml all
 duti -s com.google.chrome public.svg-image all # .svg
 # prefer vlc over quicktime
 duti -s org.videolan.vlc .avi Viewer
-exit 0
 
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
 # show hidden files
-defaults write com.apple.finder AppleShowAllFiles YES
+defaults write com.apple.finder AppleShowAllFiles -bool true
 # Show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+exit 0
 # sets the first window shown in finder to home
 defaults write com.apple.finder NewWindowTarget PfHm
 # Finder: show status bar
