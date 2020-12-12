@@ -539,13 +539,12 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 # did this make dialogs appear slower?
 #defaults write NSGlobalDomain NSWindowResizeTime .05
 
-exit 0
-# Expand print panel by default
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+# Expand print panel by default - these don't work anymore? (but expanded state is preserved between restarts)
+#defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+#defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
-# restore windows when you restart an application
-defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
+# restore windows when you restart an application - mostly irritating?
+#defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
 
 # show battery percent
 defaults write com.apple.menuextra.battery ShowPercent YES
@@ -557,13 +556,15 @@ defaults write com.apple.menuextra.clock DateFormat -string "HH:mm"
 defaults write com.apple.TextEdit RichText -int 0
 
 # smoother font on low DPI https://code.visualstudio.com/updates/v1_28#_blurriness-on-macos-mojave
-defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+# Apple doesn't intend to support this option https://intellij-support.jetbrains.com/hc/en-us/articles/360016827360-Reporting-font-rendering-problems
+#defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+defaults delete CGFontRenderingFontSmoothingDisabled
 
 ###############################################################################
 # Mouse & Trackpad                                                            #
 ###############################################################################
-# show in menu bar
-defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/Volume.menu"
+# show in menu bar - these files no longer present in Big Sur
+#defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/Volume.menu"
 # increase trackpad tracking speed - works!
 defaults write -g com.apple.trackpad.scaling -float 3.0
 # increase mouse tracking speed
@@ -573,14 +574,14 @@ defaults write -g com.apple.mouse.scaling -float 3.0
 #defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 #defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton
-# Smart zoom disabled, double-tap with one finger (set to 1 to enable)
+# Smart zoom disabled, double-tap with one finger (set to 1 to enable) (already default?)
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture -int 0
-# Double-tap with two fingers to Mission Control (set to 0 to disable)
+# Double-tap with two fingers to Mission Control (set to 0 to disable) (already default?)
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerDoubleTapGesture -int 3
 # Two finger horizontal swipe
 # 0 = Swipe between pages with one finger
 # 1 = Swipe between pages
-# 2 = Swipe between full screen apps with two fingers, swipe between pages with one finger (Default Mode)
+# 2 = Swipe between full screen apps with two fingers, swipe between pages with one finger (already default?)
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerHorizSwipeGesture -int 2
 
 ###############################################################################
@@ -590,8 +591,8 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerHor
 defaults write com.apple.iCal "Show Week Numbers" -bool true
 # disable Show invitation messages in Notification Center
 defaults write com.apple.iCal InvitationNotificationsDisabled -int 1
-# disable Time to Leave alert
-defaults write com.apple.iCal TimeToLeaveEnabled  -int 0
+# disable Time to Leave alert - this seems unnecessary to disable
+#defaults write com.apple.iCal TimeToLeaveEnabled  -int 0
 
 ###############################################################################
 # Keyboard                                                                    #
@@ -619,6 +620,7 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock tilesize -int 24
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
+exit 0
 
 ###############################################################################
 # Safari & WebKit                                                             #
