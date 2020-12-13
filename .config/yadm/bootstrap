@@ -620,33 +620,34 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock tilesize -int 24
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
-exit 0
 
-###############################################################################
-# Safari & WebKit                                                             #
-###############################################################################
-# Show status bar
-defaults write com.apple.Safari ShowStatusBar -bool true
-defaults write com.apple.Safari ShowOverlayStatusBar -bool true
-# Show the full URL in the address bar (note: this still hides the scheme)
-defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
-# Safari opens with: last session
-defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
-# Set Safari’s home page to `about:blank` for faster loading
-defaults write com.apple.Safari HomePage -string "about:blank"
-# Enable the Develop menu and the Web Inspector in Safari
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-# Enable Safari’s debug menu
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-# Update extensions automatically
-defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
-# Make Safari’s search banners default to Contains instead of Starts With
-defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
-# Website use of location services
-# 0 = Deny without prompting
-# 1 = Prompt for each website once each day
-# 2 = Prompt for each website one time only
-defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
+if [[ $(uname -p) != 'arm' ]]; then
+  ###############################################################################
+  # Safari & WebKit                                                             #
+  ###############################################################################
+  # Show status bar
+  defaults write com.apple.Safari ShowStatusBar -bool true
+  defaults write com.apple.Safari ShowOverlayStatusBar -bool true
+  # Show the full URL in the address bar (note: this still hides the scheme)
+  defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+  # Safari opens with: last session
+  defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
+  # Set Safari’s home page to `about:blank` for faster loading - doesn't have effect anymore?
+  defaults write com.apple.Safari HomePage -string "about:blank"
+  # Enable the Develop menu and the Web Inspector in Safari
+  defaults write com.apple.Safari IncludeDevelopMenu -bool true
+  # Enable Safari’s debug menu
+  defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+  # Update extensions automatically
+  defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+  # Make Safari’s search banners default to Contains instead of Starts With
+  defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+  # Website use of location services
+  # 0 = Deny without prompting
+  # 1 = Prompt for each website once each day
+  # 2 = Prompt for each website one time only
+  defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
+fi
 
 # run customer specific bootstrap
 . ${XDG_CONFIG_HOME:-$HOME/.config}/yadm/bootstrap-customer
