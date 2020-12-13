@@ -149,8 +149,8 @@ sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
 sudo git lfs install --system
 
-# stop startup sound
-sudo nvram SystemAudioVolume=%80
+# stop startup sound - no longer works on Big Sur
+#sudo nvram SystemAudioVolume=%80
 sudo xcodebuild -license accept
 # Add Watch Simulator to Launchpad
 sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
@@ -189,7 +189,7 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "
 # enable automatically "Install app updates" from the Mac App Store
 sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool TRUE
 # enable automatically "install macOS updates"
-sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired -bool TRUE
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool true
 
 # this will not install major updates, e.g. Catalina
 sudo softwareupdate --schedule on
