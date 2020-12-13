@@ -17,6 +17,7 @@ then
   DOTFILES_LITE=1
 fi
 OS_MAJOR_VERSION=$(sw_vers -productVersion| cut -d. -f1)
+BIG_SUR_MAJOR_VERSION=11
 
 if [[ `uname` == 'Darwin' ]]; then
   ###############################################################################
@@ -622,7 +623,7 @@ defaults write com.apple.dock tilesize -int 24
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
 
-if (( $MAJOR_OS_VERSION <= 10 )); then
+if (( $OS_MAJOR_VERSION < $BIG_SUR_MAJOR_VERSION )); then
   ###############################################################################
   # Safari & WebKit                                                             #
   ###############################################################################
