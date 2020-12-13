@@ -89,6 +89,7 @@ if [[ `uname` == 'Darwin' ]]; then
   brew uninstall --cask day-o
   brew uninstall --cask alfred
   brew uninstall --cask zoomus
+  brew unninstall --cask font-cascadia-pl
 
   # TODO: eventually uninstall zplug
   #brew uninstall --force zplug
@@ -249,7 +250,7 @@ docker
 eve
 firefox
 flipper
-font-cascadia-pl
+font-cascadia-code-pl
 font-fira-code
 font-jetbrains-mono
 fork
