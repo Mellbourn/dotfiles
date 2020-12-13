@@ -195,8 +195,12 @@ sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyI
 sudo softwareupdate --schedule on
 sudo softwareupdate -i -a --restart
 
-# always boot in verbose mode (not MacOS GUI mode)
-sudo nvram boot-args="-v"
+# always boot in verbose mode (not MacOS GUI mode) - no longer seems to work on Big Sur
+if [[ $(uname -p) == 'arm' ]]; then
+  sudo nvram -d boot-args
+else
+  sudo nvram boot-args="-v"
+fi
 
 # Enable firewall. Possible values:
 #   0 = off
