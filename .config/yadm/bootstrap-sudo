@@ -141,6 +141,7 @@ fi
 ###############################################################################
 
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
+# not working on Big Sur?
 PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:${HOME}/.nodebrew/current/bin:$HOMEBREW_PREFIX/bin
 sudo launchctl config user path $PATH_OVERRIDE
 
