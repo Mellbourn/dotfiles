@@ -141,7 +141,7 @@ fi
 ###############################################################################
 
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
-PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:${HOME}/.nodebrew/current/bin:/usr/local/bin
+PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:${HOME}/.nodebrew/current/bin:$HOMEBREW_PREFIX/bin
 sudo launchctl config user path $PATH_OVERRIDE
 
 # if xcode has just been manually installed
@@ -169,18 +169,18 @@ yes | sudo gem update
 ###############################################################################
 # bash4
 ###############################################################################
-if ! grep -q "/usr/local/bin/bash" "/etc/shells"; then
-   sudo sh -c 'echo /usr/local/bin/bash >> /etc/shells'
+if ! grep -q "$HOMEBREW_PREFIX/bin/bash" "/etc/shells"; then
+   sudo sh -c 'echo $HOMEBREW_PREFIX/bin/bash >> /etc/shells'
 fi
-# chsh -s /usr/local/bin/bash $SUDO_USER
+# chsh -s $HOMEBREW_PREFIX/bin/bash $SUDO_USER
 
 ###############################################################################
 # zsh
 ###############################################################################
-if ! grep -q "/usr/local/bin/zsh" "/etc/shells"; then
-   sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
+if ! grep -q "$HOMEBREW_PREFIX/bin/zsh" "/etc/shells"; then
+   sudo sh -c 'echo $HOMEBREW_PREFIX/bin/zsh >> /etc/shells'
 fi
-chsh -s /usr/local/bin/zsh $SUDO_USER
+chsh -s $HOMEBREW_PREFIX/bin/zsh $SUDO_USER
 
 sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "This Mac belongs to Klas Mellbourn.\ne-mail: klas@mellbourn.net phone: +46 708 80 00 00\nReward offered for return of this Mac. No questions asked."
 ###############################################################################
