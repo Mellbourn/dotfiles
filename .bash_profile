@@ -71,11 +71,7 @@ else
 
   export LSCOLORS=gxfxcxdxbxegedabagacad
   export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
-  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-    export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column --no-init"
-  else
-    export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column"
-  fi
+  export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column"
 fi
 # this is to compile vim
 export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers

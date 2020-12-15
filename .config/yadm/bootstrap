@@ -119,6 +119,9 @@ if [[ `uname` == 'Darwin' ]]; then
     brew install -s lua
     brew install -s highlight
 
+    brew install -s pcre
+    brew install -s less
+
     brew install -s duti
 
     # jq has a dependency: oniguruma
