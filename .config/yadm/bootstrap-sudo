@@ -159,10 +159,12 @@ sudo sysctl debug.lowpri_throttle_enabled=0
 ###############################################################################
 # installations for Klarna
 ###############################################################################
-sudo gem install cocoapods
-yes | sudo gem install bundler
-yes | sudo gem update --system
-yes | sudo gem update
+if [[ $(uname -p) != 'arm' ]]; then
+  sudo gem install cocoapods
+  yes | sudo gem install bundler
+  yes | sudo gem update --system
+  yes | sudo gem update
+fi
 
 ###############################################################################
 # bash4
