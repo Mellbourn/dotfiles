@@ -6,6 +6,8 @@
 # fortune takes 0.017s
 #fortune
 
+PROCESSOR_ARCHITECTURE=$(uname -p)
+
 if [[ `uname` == 'Linux' ]]
 then
   export UNAME_LINUX=1
@@ -69,7 +71,11 @@ else
 
   export LSCOLORS=gxfxcxdxbxegedabagacad
   export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
-  export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column"
+  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
+    export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column --no-init"
+  else
+    export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column"
+  fi
 fi
 # this is to compile vim
 export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers
