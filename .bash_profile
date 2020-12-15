@@ -6,7 +6,7 @@
 # fortune takes 0.017s
 #fortune
 
-PROCESSOR_ARCHITECTURE=$(uname -p)
+export PROCESSOR_ARCHITECTURE=$(uname -p)
 
 if [[ `uname` == 'Linux' ]]
 then
