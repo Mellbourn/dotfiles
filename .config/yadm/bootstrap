@@ -18,6 +18,7 @@ then
 fi
 OS_MAJOR_VERSION=$(sw_vers -productVersion| cut -d. -f1)
 BIG_SUR_MAJOR_VERSION=11
+PROCESSOR_ARCHITECTURE=$(uname -p)
 
 if [[ `uname` == 'Darwin' ]]; then
   ###############################################################################
@@ -42,7 +43,7 @@ if [[ `uname` == 'Darwin' ]]; then
   ###############################################################################
   # App store                                                                   #
   ###############################################################################
-  if [[ $(uname -p) == 'arm' ]]; then
+  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
     brew install -s carthage
     brew install -s mas
   else
@@ -97,7 +98,7 @@ if [[ `uname` == 'Darwin' ]]; then
   # this forces you to enter password all the time
   #brew cask uninstall --force intel-power-gadget
 
-  if [[ $(uname -p) == 'arm' ]]; then
+  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
     brew install -s yadm
     brew install -s openssl@1.1
     brew install -s autoconf
@@ -233,7 +234,7 @@ zsh-syntax-highlighting
   alreadyInstalled=`brew ls`
   installTheseLines=`comm -23 <(echo "$apps") <(echo "$alreadyInstalled")`
   installThese=${installTheseLines//$'\n'/ }
-  if [[ $(uname -p) != 'arm' ]]; then
+  if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     echo $installThese | xargs brew install
   fi
 
@@ -300,7 +301,7 @@ zoom
   alreadyInstalled=`brew cask ls`
   installTheseLines=`comm -23 <(echo "$casks") <(echo "$alreadyInstalled")`
   installThese=${installTheseLines//$'\n'/ }
-  if [[ $(uname -p) != 'arm' ]]; then
+  if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     echo $installThese | xargs brew cask install
   fi
 
@@ -315,7 +316,7 @@ zoom
   sed -i -- "s/host_list=(brew)/host_list=($USER)/" $HOMEBREW_PREFIX/etc/wemux.conf
   sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
 
-  if [[ $(uname -p) != 'arm' ]]; then
+  if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     # ruby version manager
     gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
     if ! hash rvm 2>/dev/null; then

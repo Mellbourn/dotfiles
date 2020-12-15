@@ -9,6 +9,8 @@ if [ -x "$(command -v lsb_release)" ] && [[ `lsb_release -si` == 'Ubuntu' ]]; th
   OS_UBUNTU=1
 fi
 
+PROCESSOR_ARCHITECTURE=$(uname -p)
+
 ###############################################################################
 # Linux (and Windows Subsystem for Linux)                                     #
 ###############################################################################
@@ -159,7 +161,7 @@ sudo sysctl debug.lowpri_throttle_enabled=0
 ###############################################################################
 # installations for Klarna
 ###############################################################################
-if [[ $(uname -p) != 'arm' ]]; then
+if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
   sudo gem install cocoapods
   yes | sudo gem install bundler
   yes | sudo gem update --system
@@ -196,7 +198,7 @@ sudo softwareupdate --schedule on
 sudo softwareupdate -i -a --restart
 
 # always boot in verbose mode (not MacOS GUI mode) - no longer seems to work on Big Sur
-if [[ $(uname -p) == 'arm' ]]; then
+if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
   sudo nvram -d boot-args
 else
   sudo nvram boot-args="-v"
