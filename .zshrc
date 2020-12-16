@@ -198,8 +198,10 @@ export FZF_DEFAULT_COMMAND="fd --type file"
 # --ansi makes fzf a bit slower, but I haven't really noticed, this preview is used for ** completion
 export FZF_DEFAULT_OPTS="--ansi --select-1 --height 40% --reverse --tiebreak=begin --bind end:preview-down,home:preview-up"
 export FZF_TMUX_OPTS="-d 70%"
-export FZF_TMUX=1
-FZF="fzf-tmux"
+# tmux was a bit slower
+#export FZF_TMUX=1
+#FZF="fzf-tmux"
+FZF=fzf
 # this harmed kill -9 and git co **
 #export FZF_COMPLETION_OPTS="--preview '(bat --color always --paging never {} 2> /dev/null || tree -C {}) 2> /dev/null | head -200' --preview-window=right:33%"
 # this is slow for large sets, could be sorted with ' | sort -u' but that is just the initial sorting
