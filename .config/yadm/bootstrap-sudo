@@ -9,6 +9,12 @@ if [ -x "$(command -v lsb_release)" ] && [[ `lsb_release -si` == 'Ubuntu' ]]; th
   OS_UBUNTU=1
 fi
 
+if [ -d "/opt/homebrew/bin" ] ; then
+  export HOMEBREW_PREFIX=/opt/homebrew
+else
+  export HOMEBREW_PREFIX=/usr/local
+fi
+
 PROCESSOR_ARCHITECTURE=$(uname -p)
 
 ###############################################################################
