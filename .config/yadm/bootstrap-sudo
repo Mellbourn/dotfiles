@@ -15,7 +15,7 @@ else
   export HOMEBREW_PREFIX=/usr/local
 fi
 
-PROCESSOR_ARCHITECTURE=$(uname -p)
+export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 
 ###############################################################################
 # Linux (and Windows Subsystem for Linux)                                     #
