@@ -60,7 +60,7 @@ fi
 
 # formatting and messages
 # http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
-zstyle ':completion:*' verbose yes
+zstyle ':completion:*' extra-verbose yes
 # describe different versions of completion. Test with: cd<tab>
 zstyle ':completion:*:descriptions' format "%F{yellow}--- %d%f"
 zstyle ':completion:*:messages' format '%d'
@@ -131,8 +131,16 @@ zinit ice wait'2' lucid as"completion"
 zinit light nilsonholger/osx-zsh-completions
 
 # this was cool but a bit too buggy
-#zinit ice wait'2' lucid
-#zinit light marlonrichert/zsh-autocomplete
+zinit ice wait'2' lucid
+zinit light marlonrichert/zsh-autocomplete
+zstyle ':autocomplete:*' config off
+zstyle ':autocomplete:*' min-input 2
+zstyle ':autocomplete:tab:*' insert-unambiguous yes
+zstyle ':autocomplete:tab:*' widget-style menu-select
+# when fzf work test this
+#zstyle ':autocomplete:tab:*' fzf-completion yes
+# this doesn't really repair ctrl-space
+#bindkey $key[ControlSpace] set-mark-command
 
 #zinit ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
 #zinit light ogham/exa
