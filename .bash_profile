@@ -26,7 +26,8 @@ if [ -f ~/.profile ]; then
   source ~/.profile
 fi
 
-if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &> /dev/null; then
+# only start tmux if you are not already in tmux, or you are starting up Visual Studio Code from spotlight
+if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &> /dev/null && [ -z "$VSCODE_PID" ]; then
   exec ~/bin/tmux-attach-or-new
 fi
 
