@@ -157,8 +157,13 @@ sudo launchctl config user path $PATH_OVERRIDE
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 sudo git-lfs install --system
 
-# stop startup sound - no longer works on Big Sur
-#sudo nvram SystemAudioVolume=%80
+# stop startup sound
+if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
+  sudo nvram StartupMute=%01
+else
+  sudo nvram SystemAudioVolume=%80
+fi
+
 sudo xcodebuild -license accept
 
 # speed up time machine backups until next reboot
