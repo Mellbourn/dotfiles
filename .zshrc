@@ -130,7 +130,7 @@ zinit light zdharma/zsh-diff-so-fancy
 zinit ice wait'2' lucid as"completion"
 zinit light nilsonholger/osx-zsh-completions
 
-# this was cool but a bit too buggy
+# this was cool but a bit too buggy - adds blank lines after ls after a while
 zinit ice wait'2' lucid
 zinit light marlonrichert/zsh-autocomplete
 zstyle ':autocomplete:*' config off
