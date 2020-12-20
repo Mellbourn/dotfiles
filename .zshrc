@@ -135,6 +135,7 @@ zinit ice wait'2' lucid
 zinit light marlonrichert/zsh-autocomplete
 zstyle ':autocomplete:*' config off
 zstyle ':autocomplete:*' min-input 2
+#zstyle ':autocomplete:*' min-delay 0.4
 zstyle ':autocomplete:tab:*' insert-unambiguous yes
 zstyle ':autocomplete:tab:*' widget-style menu-select
 # when fzf work test this
