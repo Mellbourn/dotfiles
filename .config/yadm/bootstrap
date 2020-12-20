@@ -114,6 +114,8 @@ if [[ `uname` == 'Darwin' ]]; then
     brew install -s pcre2
     brew install -s git
 
+    brew install -s zsh
+
     brew install -s icu4c
     brew install -s boost
     brew install -s lua
