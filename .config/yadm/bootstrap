@@ -82,11 +82,11 @@ if [[ `uname` == 'Darwin' ]]; then
   brew tap homebrew/command-not-found
 
   # not all computers need logitech drivers, also, these need sudo
-  # brew cask install homebrew/cask-drivers/logitech-gaming-software
-  # brew cask install homebrew/cask-drivers/logitech-options
+  # brew install --cask homebrew/cask-drivers/logitech-gaming-software
+  # brew install --cask homebrew/cask-drivers/logitech-options
 
   # remove brews here that were previously installed, to sync between machines
-  brew cask zap --force gitup
+  brew uninstall --cask --zap --force gitup
   brew uninstall --cask day-o
   brew uninstall --cask alfred
   brew uninstall --cask zoomus
@@ -96,7 +96,7 @@ if [[ `uname` == 'Darwin' ]]; then
   #brew uninstall --force zplug
 
   # this forces you to enter password all the time
-  #brew cask uninstall --force intel-power-gadget
+  #brew uninstall --cask --force intel-power-gadget
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
     brew install -s yadm
@@ -303,17 +303,18 @@ zeplin
 zoom
 "
 
-  alreadyInstalled=`brew cask ls`
+  alreadyInstalled=`brew list --cask`
   installTheseLines=`comm -23 <(echo "$casks") <(echo "$alreadyInstalled")`
   installThese=${installTheseLines//$'\n'/ }
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
-    echo $installThese | xargs brew cask install
+    echo $installThese | xargs brew install --cask
   fi
 
   brew link --force gettext
 
   # remove uninstalls eventually
-  #brew cask uninstall font-cascadia
+  #brew uninstall --cask font-cascadia
+  brew uninstall --cask font-cascadia-pl
 
   echo will cite | parallel --citation > /dev/null 2>&1
 
