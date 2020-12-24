@@ -236,7 +236,7 @@ zsh-autosuggestions
 zsh-syntax-highlighting
 "
   # note: yarn will install node, which you might want to remove, since it is handled by nvm
-  alreadyInstalled=`brew ls`
+  alreadyInstalled=`brew list --formula`
   installTheseLines=`comm -23 <(echo "$apps") <(echo "$alreadyInstalled")`
   installThese=${installTheseLines//$'\n'/ }
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
