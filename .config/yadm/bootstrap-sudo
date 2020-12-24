@@ -157,11 +157,21 @@ sudo launchctl config user path $PATH_OVERRIDE
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 sudo git-lfs install --system
 
-# stop startup sound
-if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-  sudo nvram StartupMute=%01
+export WORKING_FROM_HOME=1
+if [ -n "$WORKING_FROM_HOME" ]; then
+  # enable startup sound
+  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
+    sudo nvram StartupMute=%00
+  else
+    sudo nvram -d SystemAudioVolume
+  fi
 else
-  sudo nvram SystemAudioVolume=%80
+  # stop startup sound
+  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
+    sudo nvram StartupMute=%01
+  else
+    sudo nvram SystemAudioVolume=%80
+  fi
 fi
 
 sudo xcodebuild -license accept
