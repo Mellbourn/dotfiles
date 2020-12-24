@@ -90,7 +90,7 @@ if [[ `uname` == 'Darwin' ]]; then
   brew uninstall --cask day-o
   brew uninstall --cask alfred
   brew uninstall --cask zoomus
-  brew unninstall --cask font-cascadia-pl
+  brew uninstall --cask font-cascadia-pl
 
   # TODO: eventually uninstall zplug
   #brew uninstall --force zplug
