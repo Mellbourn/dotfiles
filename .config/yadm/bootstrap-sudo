@@ -148,7 +148,6 @@ else
 fi
 export HW_MODEL=${HW_MODEL:-$(sysctl -n hw.model)}
 
-
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
 # not working on Big Sur?
 PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:${HOME}/.nodebrew/current/bin:$HOMEBREW_PREFIX/bin
@@ -167,7 +166,7 @@ if [ -n "$WORKING_FROM_HOME" ]; then
     sudo nvram -d SystemAudioVolume
   fi
 else
-  if [[ ${HW_MODEL} == Macbook* ]]; then
+  if [[ ${HW_MODEL} == MacBook* ]]; then
     # stop startup sound
     if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
       sudo nvram StartupMute=%01
