@@ -100,6 +100,7 @@ if [[ `uname` == 'Darwin' ]]; then
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
     brew install -s yadm
+    brew install -s gcal
     brew install -s openssl@1.1
     brew install -s autoconf
     brew install -s automake
