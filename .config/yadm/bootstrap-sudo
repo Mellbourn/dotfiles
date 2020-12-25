@@ -9,12 +9,6 @@ if [ -x "$(command -v lsb_release)" ] && [[ `lsb_release -si` == 'Ubuntu' ]]; th
   OS_UBUNTU=1
 fi
 
-if [ -d "/opt/homebrew/bin" ] ; then
-  export HOMEBREW_PREFIX=/opt/homebrew
-else
-  export HOMEBREW_PREFIX=/usr/local
-fi
-
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 
 ###############################################################################
@@ -147,6 +141,13 @@ fi
 ###############################################################################
 # macOS
 ###############################################################################
+if [ -d "/opt/homebrew/bin" ] ; then
+  export HOMEBREW_PREFIX=/opt/homebrew
+else
+  export HOMEBREW_PREFIX=/usr/local
+fi
+export HW_MODEL=${HW_MODEL:-$(sysctl -n hw.model)}
+
 
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
 # not working on Big Sur?
@@ -166,11 +167,13 @@ if [ -n "$WORKING_FROM_HOME" ]; then
     sudo nvram -d SystemAudioVolume
   fi
 else
-  # stop startup sound
-  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-    sudo nvram StartupMute=%01
-  else
-    sudo nvram SystemAudioVolume=%80
+  if [[ ${HW_MODEL} == Macbook* ]]; then
+    # stop startup sound
+    if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
+      sudo nvram StartupMute=%01
+    else
+      sudo nvram SystemAudioVolume=%80
+    fi
   fi
 fi
 

@@ -16,14 +16,14 @@ if grep -q Raspbian /etc/os-release 2> /dev/null
 then
   DOTFILES_LITE=1
 fi
-export OS_MAJOR_VERSION=$(sw_vers -productVersion| cut -d. -f1)
-BIG_SUR_MAJOR_VERSION=11
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 
 if [[ `uname` == 'Darwin' ]]; then
   ###############################################################################
   # macOS specific installations
   ###############################################################################
+  export OS_MAJOR_VERSION=$(sw_vers -productVersion| cut -d. -f1)
+  BIG_SUR_MAJOR_VERSION=11
 
   # activate cleanup jobs, doesn't actually update?
   launchctl unload ~/Library/LaunchAgents/local.cleanup.downloads.plist
