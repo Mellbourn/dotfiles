@@ -23,7 +23,7 @@ alias ping='prettyping --nolegend'
 alias rm_node_modules='fd -t d -u node_modules -x rm -rf'
 alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
 alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
-alias weather='curl v2.wttr.in/Stockholm'
+alias weather='curl v2.wttr.in'
 alias zmv='noglob zmv'
 
 # suffix aliases for file types: these become "executable"
