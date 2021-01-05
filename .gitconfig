@@ -104,3 +104,5 @@
 [url "git@github.com:"]
 	insteadOf = http://github.com/
 	insteadOf = https://github.com/
+[maintenance]
+	repo = /Users/klas.mellbourn/code/klarna/klarna-app
