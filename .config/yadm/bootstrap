@@ -319,6 +319,9 @@ zoom
   #brew uninstall --cask font-cascadia
   brew uninstall --cask font-cascadia-pl
 
+  # allow flipper to be opened
+  xattr -d com.apple.quarantine /Applications/Flipper.app
+
   echo will cite | parallel --citation > /dev/null 2>&1
 
   # set up wemux user name
