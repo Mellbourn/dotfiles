@@ -130,14 +130,14 @@ zinit light zdharma/zsh-diff-so-fancy
 zinit ice wait'2' lucid as"completion"
 zinit light nilsonholger/osx-zsh-completions
 
-# this was cool but a bit too buggy - adds blank lines after ls after a while
-zinit ice wait'2' lucid
-zinit light marlonrichert/zsh-autocomplete
-zstyle ':autocomplete:*' config off
-zstyle ':autocomplete:*' min-input 2
-#zstyle ':autocomplete:*' min-delay 0.4
-zstyle ':autocomplete:tab:*' insert-unambiguous yes
-zstyle ':autocomplete:tab:*' widget-style menu-select
+# this was cool but a bit too slow - adds blank lines after ls after a while
+#zinit ice wait'2' lucid
+#zinit light marlonrichert/zsh-autocomplete
+#zstyle ':autocomplete:*' config off
+#zstyle ':autocomplete:*' min-input 2
+##zstyle ':autocomplete:*' min-delay 0.4
+#zstyle ':autocomplete:tab:*' insert-unambiguous yes
+#zstyle ':autocomplete:tab:*' widget-style menu-select
 # when fzf work test this
 #zstyle ':autocomplete:tab:*' fzf-completion yes
 # this doesn't really repair ctrl-space
