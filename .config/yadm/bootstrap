@@ -213,6 +213,7 @@ reattach-to-user-namespace
 redis
 ripgrep
 schollz/tap/croc
+shellcheck
 sd
 speedtest-cli
 stunnel
