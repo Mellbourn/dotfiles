@@ -492,7 +492,7 @@ duti -s com.microsoft.VSCode net.daringfireball.markdown all # .md
 duti -s com.microsoft.VSCode public.json all
 duti -s com.microsoft.VSCode public.plain-text all # text files
 duti -s com.microsoft.VSCode public.python-script all # .py
-duti -s com.microsoft.VSCode public.shell-script all # .sh
+#duti -s com.microsoft.VSCode public.shell-script all # .sh - no, you want it to be executable
 duti -s com.microsoft.VSCode public.source-code all # this has no effect?
 duti -s com.microsoft.VSCode public.text all # does this have a real effect?
 duti -s com.microsoft.VSCode public.xml all
