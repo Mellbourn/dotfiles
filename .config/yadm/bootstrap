@@ -89,7 +89,7 @@ if [[ `uname` == 'Darwin' ]]; then
   #brew uninstall --cask font-cascadia-pl
 
   # TODO: eventually uninstall zplug
-  #brew uninstall --force zplug
+  brew uninstall --force zplug
 
   # this forces you to enter password all the time
   #brew uninstall --cask --force intel-power-gadget
