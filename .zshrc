@@ -155,11 +155,9 @@ if [ -x "$(command -v zoxide)" ]; then
   zinit ice wait'0' lucid atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi'
   zinit light zdharma/null
 else
-  # zoxide not available on old raspberry pi. fasd is pure shell
-  # fasd takes 0.06s
+  # zoxide not available on old raspberry pi. fasd is pure shell, but slow: fasd takes 0.06s
   zinit ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)" &  alias sd="noglob sd"'
   zinit light clvv/fasd
-   like z, but if there are alternatives show them in fzf - fasd replaced with zoxide
   c() {
     local dir
     dir="$(fasd -Rdl "$1" | $FZF -1 -0 --no-sort +m)" && cd "${dir}" || return 1
