@@ -151,7 +151,7 @@ zinit light nilsonholger/osx-zsh-completions
 #zinit light trapd00r/LS_COLORS
 
 if [ -x "$(command -v zoxide)" ]; then
-  export _ZO_MAXAGE=182
+  export _ZO_MAXAGE=400
   export _ZO_EXCLUDE_DIRS=$HOME
   zinit ice wait'0' lucid atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi'
   zinit light zdharma/null
