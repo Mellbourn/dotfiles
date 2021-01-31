@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh
+#!/bin/zsh
 number_left=10
 directory=$HOME/Pictures
 file_glob=*
