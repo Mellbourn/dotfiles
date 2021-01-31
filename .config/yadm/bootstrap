@@ -126,6 +126,8 @@ if [[ `uname` == 'Darwin' ]]; then
     brew install -s pcre
     brew install -s less
 
+    brew install bat fzf fd
+
     brew install -s duti
 
     # jq has a dependency: oniguruma
