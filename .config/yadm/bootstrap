@@ -128,6 +128,8 @@ if [[ `uname` == 'Darwin' ]]; then
 
     brew install -s zsh-autosuggestions zsh-syntax-highlighting
 
+    brew install rg
+
     brew install --cask google-chrome
     brew install --cask iterm2
     brew install --cask moom
