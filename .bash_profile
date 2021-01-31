@@ -48,9 +48,9 @@ export PATH=$PATH:~/bin
 if [ -d "$HOME/.local/bin" ] ; then
   PATH="$HOME/.local/bin:$PATH"
 fi
-if [ -d /usr/local/opt/awscli@1/bin ]; then
+if [ -d $HOMEBREW_PREFIX/opt/awscli@1/bin ]; then
   # this is needed while we are using an old awscli
-  export PATH=$PATH:/usr/local/opt/awscli@1/bin
+  export PATH=$PATH:$HOMEBREW_PREFIX/opt/awscli@1/bin
 fi
 if [ -d ~/.cargo/bin ]; then
   export PATH=$PATH:~/.cargo/bin
@@ -109,8 +109,8 @@ then
   fi
 
   export PROMPT_DIRTRIM=3
-  if [ -f /usr/local/share/liquidprompt ]; then
-    . /usr/local/share/liquidprompt
+  if [ -f $HOMEBREW_PREFIX/share/liquidprompt ]; then
+    . $HOMEBREW_PREFIX/share/liquidprompt
   fi
 
   # ctrl-p and ctrl-n now searches history
@@ -130,23 +130,23 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 # ansible needs sqlite3
 # macOS provides an older sqlite3.
 #If you need to have this software first in your PATH run:
-#  echo 'export PATH="/usr/local/opt/sqlite/bin:$PATH"' >> ~/.bash_profile
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
+#  echo 'export PATH="$HOMEBREW_PREFIX/opt/sqlite/bin:$PATH"' >> ~/.bash_profile
+export PATH="$HOMEBREW_PREFIX/opt/sqlite/bin:$PATH"
 # For compilers to find this software you may need to set:
-#    LDFLAGS:  -L/usr/local/opt/sqlite/lib
-#    CPPFLAGS: -I/usr/local/opt/sqlite/include
+#    LDFLAGS:  -L$HOMEBREW_PREFIX/opt/sqlite/lib
+#    CPPFLAGS: -I$HOMEBREW_PREFIX/opt/sqlite/include
 # For pkg-config to find this software you may need to set:
-#    PKG_CONFIG_PATH: /usr/local/opt/sqlite/lib/pkgconfig
+#    PKG_CONFIG_PATH: $HOMEBREW_PREFIX/opt/sqlite/lib/pkgconfig
 
 # ansible also needed openssl
 # If you need to have this software first in your PATH run:
-#  echo 'export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"' >> ~/.bash_profile
+#  echo 'export PATH="$HOMEBREW_PREFIX/opt/openssl@1.1/bin:$PATH"' >> ~/.bash_profile
 export PATH="$HOMEBREW_PREFIX/opt/openssl@1.1/bin:$PATH"
 # For compilers to find this software you may need to set:
-#    LDFLAGS:  -L/usr/local/opt/openssl@1.1/lib
-#    CPPFLAGS: -I/usr/local/opt/openssl@1.1/include
+#    LDFLAGS:  -L$HOMEBREW_PREFIX/opt/openssl@1.1/lib
+#    CPPFLAGS: -I$HOMEBREW_PREFIX/opt/openssl@1.1/include
 # For pkg-config to find this software you may need to set:
-#    PKG_CONFIG_PATH: /usr/local/opt/openssl@1.1/lib/pkgconfig
+#    PKG_CONFIG_PATH: $HOMEBREW_PREFIX/opt/openssl@1.1/lib/pkgconfig
 
 ### aliases
 . ~/.aliases

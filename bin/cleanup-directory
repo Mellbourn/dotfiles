@@ -33,12 +33,12 @@ do
   stat -f "%-10m %40N" "$file"
 done |\
 sort -n | \
-/usr/local/bin/ghead --lines=-$number_left |\
+$HOMEBREW_PREFIX/bin/ghead --lines=-$number_left |\
 while read date filename
 do
   if [[ -v verbose ]]
   then
     echo trashing "$filename"
   fi
-  /usr/local/bin/trash "$filename"
+  $HOMEBREW_PREFIX/bin/trash "$filename"
 done
