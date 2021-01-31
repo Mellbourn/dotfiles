@@ -414,7 +414,7 @@ if [ ! -d ~/.zinit ]; then
   chmod go-w ~/.zinit # to avoid insecure directories complaint
   git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 fi
-zsh -ic "zinit self-update; zinit update --all; zinit delete marlonrichert/zsh-autocomplete"
+zsh -ic "zinit self-update; zinit update --all; zinit delete --clean"
 
 # this can soon be removed
 trash ~/.gitconfig.local
