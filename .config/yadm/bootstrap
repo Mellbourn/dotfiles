@@ -127,6 +127,7 @@ if [[ `uname` == 'Darwin' ]]; then
     brew install -s less
 
     brew install bat fzf fd
+    brew install sd zoxide
 
     brew install -s duti
 
@@ -242,6 +243,7 @@ wget
 wix/brew/applesimutils
 yadm
 yarn
+zoxide
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting

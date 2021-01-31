@@ -150,10 +150,13 @@ zinit light nilsonholger/osx-zsh-completions
 #zinit ice wait'2' lucid atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
 #zinit light trapd00r/LS_COLORS
 
-# fasd takes 0.06s
+# fasd takes 0.06s, replaced with zoxide
+#zinit ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)" && alias sd="noglob sd"'
+#zinit light clvv/fasd
 
-zinit ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)" && alias sd="noglob sd"'
-zinit light clvv/fasd
+export _ZO_MAXAGE=182
+zinit ice wait'0' lucid atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi'
+zinit light zdharma/null
 
 if [ -z "$DOTFILES_LITE" ]
 then
@@ -341,11 +344,11 @@ function h {
   grep --color=always -E "$1|$" $2 | less
 }
 
-# like z, but if there are alternatives show them in fzf
-c() {
-  local dir
-  dir="$(fasd -Rdl "$1" | $FZF -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-}
+# like z, but if there are alternatives show them in fzf - fasd replaced with zoxide
+#c() {
+#  local dir
+#  dir="$(fasd -Rdl "$1" | $FZF -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+#}
 
 # Use Ctrl-x,Ctrl-l to get the output of the last command
 insert-last-command-output() {

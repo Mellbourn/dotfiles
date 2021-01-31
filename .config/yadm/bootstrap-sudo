@@ -37,6 +37,7 @@ if [[ `uname` == 'Linux' ]]; then
     tmux-next
     highlight
     trash-cli
+    zoxide
     ripgrep
     bat
     fd-find
