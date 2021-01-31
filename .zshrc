@@ -156,7 +156,7 @@ if [ -x "$(command -v zoxide)" ]; then
   zinit light zdharma/null
 else
   # zoxide not available on old raspberry pi. fasd is pure shell, but slow: fasd takes 0.06s
-  zinit ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)" &  alias sd="noglob sd"'
+  zinit ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)" && alias sd="noglob sd"'
   zinit light clvv/fasd
   c() {
     local dir
