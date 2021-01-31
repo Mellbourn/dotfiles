@@ -95,6 +95,9 @@ if [[ `uname` == 'Darwin' ]]; then
   #brew uninstall --cask --force intel-power-gadget
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
+    brew install go
+    brew install gh
+
     brew install -s yadm
     brew install -s gcal
     brew install -s openssl@1.1
