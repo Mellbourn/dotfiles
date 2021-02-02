@@ -122,7 +122,12 @@ fi
 #test -e "${HOME}/.iterm2_shell_integration.$SHELLNAME" && source "${HOME}/.iterm2_shell_integration.$SHELLNAME"
 
 if [ -f /usr/libexec/java_home ]; then
-  export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+  JAVA_HOME_FROM_COMMAND="$(/usr/libexec/java_home -v 1.8)"
+  if [[ $JAVA_HOME_FROM_COMMAND == *"JavaAppletPlugin"* ]]; then
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home
+  else
+    export JAVA_HOME=$JAVA_HOME_FROM_COMMAND
+  fi
 fi
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
