@@ -124,7 +124,7 @@ fi
 if [ -f /usr/libexec/java_home ]; then
   JAVA_HOME_FROM_COMMAND="$(/usr/libexec/java_home -v 1.8)"
   if [[ $JAVA_HOME_FROM_COMMAND == *"JavaAppletPlugin"* ]]; then
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home
+    export JAVA_HOME=$(print /Library/Java/JavaVirtualMachines/jdk1.8.*.jdk/Contents/Home)
   else
     export JAVA_HOME=$JAVA_HOME_FROM_COMMAND
   fi
