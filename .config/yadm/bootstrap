@@ -87,6 +87,7 @@ if [[ `uname` == 'Darwin' ]]; then
 
   # remove brews here that were previously installed, to sync between machines
   #brew uninstall --cask font-cascadia-pl
+  brew uninstall --cask eve
 
   # TODO: eventually uninstall zplug
   brew uninstall --force zplug
@@ -272,7 +273,6 @@ controlplane
 dash
 discord
 docker
-eve
 firefox
 flipper
 font-cascadia-code-pl
