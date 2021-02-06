@@ -121,7 +121,7 @@ fi
 # this line is added by iTerm command "Install shell integration"
 #test -e "${HOME}/.iterm2_shell_integration.$SHELLNAME" && source "${HOME}/.iterm2_shell_integration.$SHELLNAME"
 
-if [ -f /usr/libexec/java_home ]; then
+if [ -f /usr/libexec/java_home ] && [ ! /usr/libexec/java_home 2> /dev/null ]; then
   JAVA_HOME_FROM_COMMAND="$(/usr/libexec/java_home -v 1.8)"
   if [[ $JAVA_HOME_FROM_COMMAND == *"JavaAppletPlugin"* ]]; then
     export JAVA_HOME=$(print /Library/Java/JavaVirtualMachines/jdk1.8.*.jdk/Contents/Home)
