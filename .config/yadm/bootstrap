@@ -192,29 +192,38 @@ zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
 "
-  # note: yarn will install node, which you might want to remove, since it is handled by nvm
-  alreadyInstalled=`brew list --formula`
-  installTheseLines=`comm -23 <(echo "$apps") <(echo "$alreadyInstalled")`
-  installThese=${installTheseLines//$'\n'/ }
-  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-    echo $installThese | xargs brew install
-  fi
+    # note: yarn will install node, which you might want to remove, since it is handled by nvm
+    alreadyInstalled=`brew list --formula`
+    installTheseLines=`comm -23 <(echo "$apps") <(echo "$alreadyInstalled")`
+    installThese=${installTheseLines//$'\n'/ }
+    if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
+      echo $installThese | xargs brew install
+    fi
 
-    brew install --cask google-chrome
-    brew install --cask iterm2
-    brew install --cask moom
-    brew install --cask keeweb
+    # TODO: add more: java8, google-chrome-beta, p4v philips-hue-sync launchcontrol plex private-internet-access visual-studio-code
+    casks="
+bartender
+font-cascadia-code-pl
+font-fira-code
+font-jetbrains-mono
+google-chrome
+istat-menus
+iterm2
+keeweb
+moom
+paletro
+vlc
+witch
+"
 
-    brew install --cask font-cascadia-code-pl font-fira-code font-jetbrains-mono
+    alreadyInstalled=`brew list --cask`
+    installTheseLines=`comm -23 <(echo "$casks") <(echo "$alreadyInstalled")`
+    installThese=${installTheseLines//$'\n'/ }
+    if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
+      echo $installThese | xargs brew install --cask
+    fi
 
-    brew install --cask istat-menus
-    brew install --cask bartender
-
-    brew install --cask vlc
-
-    brew install --cask witch
-    brew install --cask paletro
-  fi
+  fi # arm part ends
 
   # this must be in alphabetical order!
   apps="
