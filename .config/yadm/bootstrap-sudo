@@ -240,5 +240,8 @@ sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 # allow remote login
 sudo systemsetup -setremotelogin on
 
+# protect KeeWeb
+sudo chown -R root /Applications/KeeWeb.app
+
 # run customer specific bootstrap
 . ${XDG_CONFIG_HOME:-$HOME/.config}/yadm/bootstrap-sudo-customer

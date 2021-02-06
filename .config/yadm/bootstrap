@@ -251,6 +251,7 @@ zsh-syntax-highlighting
     brew install --cask google-chrome
     brew install --cask iterm2
     brew install --cask moom
+    brew install --cask keeweb
 
     brew install --cask font-cascadia-code-pl font-fira-code font-jetbrains-mono
 
