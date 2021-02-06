@@ -96,49 +96,157 @@ if [[ `uname` == 'Darwin' ]]; then
   #brew uninstall --cask --force intel-power-gadget
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-    brew install go
-    brew install gh
 
-    brew install -s yadm
-    brew install -s gcal
-    brew install -s openssl@1.1
-    brew install -s autoconf
-    brew install -s automake
-    brew install -s libtool
-    brew install -s pkg-config
-    brew install -s libevent
-    brew install -s ncurses
-    brew install -s utf8proc
-    brew install -s tmux
+    # this must be in alphabetical order!
+    #add these eventually:
+    # aws-sam-cli (when python installed)
+    # gradle (when java installed)
+    # maven (when java installed)
+    # haskell-stack (when cabal-install?)
+    # mas (when it works)
+    # mono (when python)
+    # fx (node)
+    # nodebrew (node)
+    # pipenv (python)
+    # shellcheck (cabal-install)
+    # thefuck (python)
+    # wix/brew/applesimutils (not ready yet?)
+    # yarn (node)
+    # kubernetes-cli (no bottle)
+    #
+    apps="
+aws-sam-cli
+awscli@1
+bash
+bash-completion
+bat
+cheat
+cloc
+coreutils
+deno
+diff-so-fancy
+direnv
+duti
+fd
+findutils
+fortune
+fpp
+fzf
+gcal
+gettext
+gh
+git
+git-crypt
+git-lfs
+git-number
+glances
+gnu-sed
+gnupg
+googler
+graphicsmagick
+grep
+gtm
+highlight
+htop
+httpie
+hyperfine
+imagemagick
+jq
+kpcli
+lastpass-cli
+less
+librsvg
+lnav
+ncdu
+nginx
+parallel
+pinentry-mac
+pkg-config
+prettyping
+pv
+pyenv
+pyenv-virtualenv
+pyenv-virtualenvwrapper
+react-native-cli
+reattach-to-user-namespace
+redis
+ripgrep
+croc
+sd
+speedtest-cli
+stunnel
+tig
+tldr
+tmpreaper
+tmux
+transcrypt
+trash
+tree
+vim
+wakeonlan
+watch
+watchman
+weechat
+wemux
+wget
+yadm
+zoxide
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
+"
+  # note: yarn will install node, which you might want to remove, since it is handled by nvm
+  alreadyInstalled=`brew list --formula`
+  installTheseLines=`comm -23 <(echo "$apps") <(echo "$alreadyInstalled")`
+  installThese=${installTheseLines//$'\n'/ }
+  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
+    echo $installThese | xargs brew install
+  fi
 
-    brew install -s gettext
-    brew install -s pcre2
-    brew install -s git
 
-    brew install rust
+    #brew install go
+    #brew install gh
 
-    brew install -s zsh
+    #brew install -s yadm
+    #brew install -s gcal
+    #brew install -s openssl@1.1
+    #brew install -s autoconf
+    #brew install -s automake
+    #brew install -s libtool
+    #brew install -s pkg-config
+    #brew install -s libevent
+    #brew install -s ncurses
+    #brew install -s utf8proc
+    #brew install -s tmux
 
-    brew install -s icu4c
-    brew install -s boost
-    brew install -s lua
-    brew install -s highlight
+    #brew install -s gettext
+    #brew install -s pcre2
+    #brew install -s git
 
-    brew install -s pcre
-    brew install -s less
+    #brew install rust
 
-    brew install bat fzf fd
-    brew install sd zoxide
-    brew install hyperfine coreutils
+    #brew install -s zsh
 
-    brew install -s duti
+    #brew install -s icu4c
+    #brew install -s boost
+    #brew install -s lua
+    #brew install -s highlight
+
+    #brew install -s pcre
+    #brew install -s less
+
+    #brew install bat fzf fd
+    #brew install sd zoxide
+    #brew install hyperfine coreutils
+
+    #brew install -s duti
 
     # jq has a dependency: oniguruma
-    brew install -s jq
+    #brew install -s jq
 
-    brew install -s zsh-autosuggestions zsh-syntax-highlighting
+    #brew install -s zsh-autosuggestions zsh-syntax-highlighting
 
-    brew install rg
+    #brew install rg
 
     brew install --cask google-chrome
     brew install --cask iterm2
@@ -168,9 +276,6 @@ coreutils
 deno
 diff-so-fancy
 direnv
-docker-completion
-docker-compose-completion
-docker-machine-completion
 duti
 fd
 findutils
@@ -225,7 +330,7 @@ react-native-cli
 reattach-to-user-namespace
 redis
 ripgrep
-schollz/tap/croc
+croc
 shellcheck
 sd
 speedtest-cli
