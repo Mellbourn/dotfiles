@@ -150,6 +150,8 @@ if [[ `uname` == 'Darwin' ]]; then
     brew install --cask bartender
 
     brew install --cask vlc
+
+    brew install --cask witch
   fi
 
   # this must be in alphabetical order!
