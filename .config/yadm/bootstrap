@@ -203,51 +203,6 @@ zsh-syntax-highlighting
     echo $installThese | xargs brew install
   fi
 
-
-    #brew install go
-    #brew install gh
-
-    #brew install -s yadm
-    #brew install -s gcal
-    #brew install -s openssl@1.1
-    #brew install -s autoconf
-    #brew install -s automake
-    #brew install -s libtool
-    #brew install -s pkg-config
-    #brew install -s libevent
-    #brew install -s ncurses
-    #brew install -s utf8proc
-    #brew install -s tmux
-
-    #brew install -s gettext
-    #brew install -s pcre2
-    #brew install -s git
-
-    #brew install rust
-
-    #brew install -s zsh
-
-    #brew install -s icu4c
-    #brew install -s boost
-    #brew install -s lua
-    #brew install -s highlight
-
-    #brew install -s pcre
-    #brew install -s less
-
-    #brew install bat fzf fd
-    #brew install sd zoxide
-    #brew install hyperfine coreutils
-
-    #brew install -s duti
-
-    # jq has a dependency: oniguruma
-    #brew install -s jq
-
-    #brew install -s zsh-autosuggestions zsh-syntax-highlighting
-
-    #brew install rg
-
     brew install --cask google-chrome
     brew install --cask iterm2
     brew install --cask moom
@@ -307,7 +262,6 @@ hyperfine
 imagemagick
 jq
 kpcli
-kubernetes-cli
 lastpass-cli
 less
 librsvg
