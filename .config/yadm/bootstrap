@@ -99,21 +99,13 @@ if [[ `uname` == 'Darwin' ]]; then
 
     # this must be in alphabetical order!
     #add these eventually:
-    # aws-sam-cli (when python installed)
     # gradle (when java installed)
     # maven (when java installed)
     # haskell-stack (when cabal-install?)
     # mas (when it works)
-    # mono (when python)
-    # fx (node)
-    # nodebrew (node)
-    # pipenv (python)
+    # mono (when arm64 supported)
     # shellcheck (cabal-install)
-    # thefuck (python)
     # wix/brew/applesimutils (not ready yet?)
-    # yarn (node)
-    # kubernetes-cli (no bottle)
-    #
     apps="
 aws-sam-cli
 awscli@1
@@ -131,6 +123,7 @@ fd
 findutils
 fortune
 fpp
+fx
 fzf
 gcal
 gettext
@@ -159,8 +152,10 @@ librsvg
 lnav
 ncdu
 nginx
+nodebrew
 parallel
 pinentry-mac
+pipenv
 pkg-config
 prettyping
 pv
@@ -175,6 +170,7 @@ croc
 sd
 speedtest-cli
 stunnel
+thefuck
 tig
 tldr
 tmpreaper
@@ -190,6 +186,7 @@ weechat
 wemux
 wget
 yadm
+yarn
 zoxide
 zsh
 zsh-autosuggestions
