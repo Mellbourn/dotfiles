@@ -152,6 +152,7 @@ if [[ `uname` == 'Darwin' ]]; then
     brew install --cask vlc
 
     brew install --cask witch
+    brew install --cask paletro
   fi
 
   # this must be in alphabetical order!
