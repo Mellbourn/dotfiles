@@ -196,7 +196,7 @@ fi
 # bash4
 ###############################################################################
 if ! grep -q "$HOMEBREW_PREFIX/bin/bash" "/etc/shells"; then
-   sudo sh -c 'echo $HOMEBREW_PREFIX/bin/bash >> /etc/shells'
+   sudo sh -c "echo $HOMEBREW_PREFIX/bin/bash >> /etc/shells"
 fi
 # chsh -s $HOMEBREW_PREFIX/bin/bash $SUDO_USER
 
@@ -204,7 +204,7 @@ fi
 # zsh
 ###############################################################################
 if ! grep -q "$HOMEBREW_PREFIX/bin/zsh" "/etc/shells"; then
-   sudo sh -c 'echo $HOMEBREW_PREFIX/bin/zsh >> /etc/shells'
+   sudo sh -c "echo $HOMEBREW_PREFIX/bin/zsh >> /etc/shells"
 fi
 chsh -s $HOMEBREW_PREFIX/bin/zsh $SUDO_USER
 
