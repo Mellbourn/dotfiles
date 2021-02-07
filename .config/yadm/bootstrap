@@ -488,7 +488,7 @@ if [ ! -d ~/.zinit ]; then
 fi
 zsh -ic "zinit self-update; zinit update --all"
 
-# this can soon be removed
+# TODO: eventually remove this removal
 trash ~/.gitconfig.local
 
 # set up alternate gitconfig file used to determine local settings
@@ -498,6 +498,8 @@ yadm alt
 if [ "$CODE_DIR" ]; then
   mkdir -p $CODE_DIR
   touch $CODE_DIR/.metadata_never_index
+  mkdir -p $CODE_DIR/private
+  mkdir -p $CODE_DIR/experiments
 fi
 
 if [ -z "$DOTFILES_LITE" ]
