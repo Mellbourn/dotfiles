@@ -144,6 +144,8 @@ fi
 ###############################################################################
 if [ -d "/opt/homebrew/bin" ] ; then
   export HOMEBREW_PREFIX=/opt/homebrew
+  # the /usr/local path is hard coded n gpg-agent.conf
+  ln -s $HOMEBREW_PREFIX/bin/pinentry-mac /usr/local/bin/pinentry-mac
 else
   export HOMEBREW_PREFIX=/usr/local
 fi
