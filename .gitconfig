@@ -100,7 +100,7 @@
 [diff-so-fancy]
 	useUnicodeRuler = false
 	stripLeadingSymbols = false
-# this will redirect all http based remote URLs to the git protocol instead, fixing auth problems at github
+# this will redirect all http based remote URLs to the git protocol instead, fixing auth problems at github. But causing https://stackoverflow.com/questions/58596233/failed-to-fetch-https-github-com-rust-lang-crates-io-index
 [url "git@github.com:"]
 	insteadOf = http://github.com/
 	insteadOf = https://github.com/
