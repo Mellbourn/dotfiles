@@ -102,5 +102,5 @@ if has('langmap') && exists('+langnoremap')
 endif
 
 " Klas additions
-set rtp+=/usr/local/opt/fzf
+set rtp+=$HOMEBREW_PREFIX/opt/fzf
 set ignorecase

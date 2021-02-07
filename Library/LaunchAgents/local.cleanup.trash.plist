@@ -8,7 +8,7 @@
 	<array>
 		<string>/bin/sh</string>
 		<string>-c</string>
-		<string>/usr/local/sbin/tmpreaper -vv --showdeleted -M --delay -T 300 5d $HOME/.Trash</string>
+		<string>$HOMEBREW_PREFIX/sbin/tmpreaper -vv --showdeleted -M --delay -T 300 5d $HOME/.Trash</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
