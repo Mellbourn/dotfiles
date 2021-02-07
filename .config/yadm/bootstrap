@@ -130,6 +130,7 @@ gettext
 gh
 git
 git-crypt
+git-delta
 git-lfs
 git-number
 glances
@@ -251,6 +252,7 @@ gettext
 gh
 git
 git-crypt
+git-delta
 git-lfs
 git-number
 glances

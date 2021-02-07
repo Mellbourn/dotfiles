@@ -1,0 +1,9 @@
+# settings for git-delta https://github.com/dandavison/delta
+[core]
+    pager = delta
+[delta]
+    side-by-side = true
+    line-numbers = false
+    file-style = bold yellow
+    file-decoration-style = ul yellow
+    hunk-header-decoration-style = ul

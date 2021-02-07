@@ -74,6 +74,8 @@ else
   export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column"
 fi
+# git-delta can't handle a status column
+export DELTA_PAGER="less -+J -+W"
 # this is to compile vim
 export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers
 # why is this important? This doesn't always work on old raspbian

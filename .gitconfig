@@ -2,6 +2,8 @@
 	name = Klas Mellbourn
 	signingkey = 9421003411C7A828
 [include]
+    path = .gitconfig.pager
+[include]
     path = .gitconfig.user.foss
 [includeIf "gitdir:~/code/klarna/"]
     path = .gitconfig.user
@@ -24,6 +26,7 @@
     prompt = true
 [diff]
     tool = vscode
+    colorMoved = default
 [merge]
     tool = kdiff3
 [alias]
@@ -82,24 +85,6 @@
 	smudge = git-lfs smudge --skip -- %f
 	process = git-lfs filter-process --skip
 	required = true
-# settings for diff-so-fancy
-[core]
-	pager = diff-so-fancy | less --tabs=4 -RFX -+W -+J
-[color "diff-highlight"]
-	oldNormal = red
-	newNormal = green
-	newHighlight = green 22
-	oldHighlight = red 52
-[color "diff"]
-	meta = yellow
-	frag = magenta
-	commit = yellow
-	old = red
-	new = green
-	whitespace = red reverse
-[diff-so-fancy]
-	useUnicodeRuler = false
-	stripLeadingSymbols = false
 # this will redirect all http based remote URLs to the git protocol instead, fixing auth problems at github. But causing https://stackoverflow.com/questions/58596233/failed-to-fetch-https-github-com-rust-lang-crates-io-index
 [url "git@github.com:"]
 	insteadOf = http://github.com/
