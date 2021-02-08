@@ -4,6 +4,7 @@
 [interactive]
     diffFilter = delta --color-only
 [delta]
+    tabs = 2
     side-by-side = true
     line-numbers = false
     file-style = bold yellow
