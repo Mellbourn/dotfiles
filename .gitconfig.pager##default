@@ -9,3 +9,4 @@
     file-style = bold yellow
     file-decoration-style = ul yellow
     hunk-header-decoration-style = ul blue
+    commit-decoration-style = bold green box ul
