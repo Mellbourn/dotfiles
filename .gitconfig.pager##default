@@ -7,6 +7,6 @@
     side-by-side = true
     line-numbers = false
     file-style = bold yellow
-    file-decoration-style = ul yellow
-    hunk-header-decoration-style = ul blue
+    file-decoration-style = ol yellow
+    hunk-header-decoration-style = ol blue
     commit-decoration-style = bold green box ul
