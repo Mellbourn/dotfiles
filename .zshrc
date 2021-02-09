@@ -98,8 +98,12 @@ zinit load woefe/git-prompt.zsh
 zinit ice wait'0a' lucid blockf
 zinit load zsh-users/zsh-completions
 
-zinit ice wait'2' lucid if'[[ -x "$(command -v fzf)" ]]'
-zinit load wfxr/forgit
+#zinit ice wait'2' lucid if'[[ -x "$(command -v fzf)" ]]'
+#zinit load wfxr/forgit
+
+# instead of forgit
+zinit ice wait'2' lucid as"program" pick"bin/git-fuzzy"
+zinit light bigH/git-fuzzy
 
 zinit ice wait'2' lucid
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
