@@ -143,8 +143,8 @@ zinit light nilsonholger/osx-zsh-completions
 # this doesn't really repair ctrl-space
 #bindkey $key[ControlSpace] set-mark-command
 
-#zinit ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
-#zinit light ogham/exa
+zinit ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
+zinit light ogham/exa
 
 # give extra color to exa
 #zinit ice wait'2' lucid atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
