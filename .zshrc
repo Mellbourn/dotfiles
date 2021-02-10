@@ -145,6 +145,14 @@ zinit light nilsonholger/osx-zsh-completions
 
 zinit ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
 zinit light ogham/exa
+export TIME_STYLE=long-iso
+export EXA_COLORS="da=1;34"
+function x() {
+ command exa -F --color-scale --color=always --git-ignore --git -x $*
+}
+function xl() {
+ command exa -F --color-scale --color=always --git-ignore --git -l $* | less -r
+}
 
 # give extra color to exa
 #zinit ice wait'2' lucid atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
