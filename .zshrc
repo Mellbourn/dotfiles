@@ -470,6 +470,9 @@ autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 zinit cdreplay
 
+compdef x='exa'
+compdef xl='exa'
+
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)
 #echo "$END - $START" | bc
