@@ -132,7 +132,6 @@ zinit light nilsonholger/osx-zsh-completions
 
 zinit ice wait'3' lucid
 zinit load Aloxaf/fzf-tab
-
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
@@ -145,7 +144,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group ',' '.'
 # due to a bug in fzf-tab, bell is always, triggered https://github.com/Aloxaf/fzf-tab/issues/187
 # TODO: this should be removed when the aforementioned bug is fixed
-unsetopt BEEP
+setopt nobeep
 
 # this was cool but a bit too slow - adds blank lines after ls after a while
 #zinit ice wait'2' lucid
