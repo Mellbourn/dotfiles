@@ -143,7 +143,9 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
-
+# due to a bug in fzf-tab, bell is always, triggered https://github.com/Aloxaf/fzf-tab/issues/187
+# TODO: this should be removed when the aforementioned bug is fixed
+unsetopt BEEP
 
 # this was cool but a bit too slow - adds blank lines after ls after a while
 #zinit ice wait'2' lucid
