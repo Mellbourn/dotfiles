@@ -140,6 +140,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:ls:*' fzf-preview '[ -f "$realpath" ] && bat --color=always $realpath || exa -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:export:*' fzf-preview 'printenv $word'
+zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'ping -c1 $word'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 # due to a bug in fzf-tab, bell is always, triggered https://github.com/Aloxaf/fzf-tab/issues/187
