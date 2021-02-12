@@ -769,4 +769,5 @@ fi
 # run customer specific bootstrap
 . ${XDG_CONFIG_HOME:-$HOME/.config}/yadm/bootstrap-customer
 
+brew doctor
 zsh_performance_measurements
