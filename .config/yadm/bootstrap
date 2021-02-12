@@ -89,6 +89,7 @@ if [[ `uname` == 'Darwin' ]]; then
   #brew uninstall --cask font-cascadia-pl
   brew uninstall --cask eve
   brew uninstall --cask minikube
+  brew remove minikube
   brew uninstall reactotron
   brew uninstall python@2
 
