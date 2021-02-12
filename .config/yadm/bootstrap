@@ -139,6 +139,7 @@ git-crypt
 git-delta
 git-lfs
 git-number
+git-recent
 glances
 gnu-sed
 gnupg
@@ -262,6 +263,7 @@ git-crypt
 git-delta
 git-lfs
 git-number
+git-recent
 glances
 gnu-sed
 gnupg
