@@ -109,6 +109,7 @@ if [[ `uname` == 'Darwin' ]]; then
     # mas (when it works)
     # mono (when arm64 supported)
     # shellcheck (cabal-install)
+    # hadolint (cabal-install)
     # wix/brew/applesimutils (not ready yet?)
     apps="
 aws-sam-cli
@@ -269,6 +270,7 @@ gradle
 graphicsmagick
 grep
 gtm
+hadolint
 haskell-stack
 highlight
 htop
