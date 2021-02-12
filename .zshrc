@@ -163,7 +163,7 @@ setopt nobeep
 zinit ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
 zinit light ogham/exa
 export TIME_STYLE=long-iso
-export EXA_COLORS="da=1;34"
+export EXA_COLORS="da=1;34:di=36"
 function x() {
  command exa -F --color-scale --color=always --git-ignore --git -x $*
 }
