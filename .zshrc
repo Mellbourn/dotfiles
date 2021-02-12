@@ -143,9 +143,6 @@ zstyle ':fzf-tab:complete:export:*' fzf-preview 'printenv $word'
 zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'ping -c1 $word'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
-# due to a bug in fzf-tab, bell is always, triggered https://github.com/Aloxaf/fzf-tab/issues/187
-# TODO: this should be removed when the aforementioned bug is fixed
-setopt nobeep
 
 # this was cool but a bit too slow - adds blank lines after ls after a while
 #zinit ice wait'2' lucid
