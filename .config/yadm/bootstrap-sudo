@@ -187,11 +187,14 @@ sudo sysctl debug.lowpri_throttle_enabled=0
 ###############################################################################
 # installations for Klarna
 ###############################################################################
-if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
+if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]] && [[ $PATH == */.rvm/* ]]; then
+  echo "Ruby (should be rvm version\!): $(which ruby) $(ruby --version)"
+  # is sudo really needed here? Hmm, yeah it might be
   sudo gem install cocoapods
-  yes | sudo gem install bundler
   yes | sudo gem update --system
   yes | sudo gem update
+  # this is the exact version required by `klapp doctor`, this doesn't really work
+  yes | sudo gem install bundler:2.1.4
 fi
 
 ###############################################################################
