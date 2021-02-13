@@ -236,10 +236,10 @@ fi
 if [ -f $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
   source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
-
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=78
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
-export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+# match_prev_cmd doesn't work well, but I'll try it"
+export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 # fuzzy completion: ^R, ^T, ⌥C, **
 export FZF_DEFAULT_COMMAND="fd --type file"
