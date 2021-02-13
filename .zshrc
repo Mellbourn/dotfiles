@@ -237,7 +237,6 @@ fi
 if [ -f $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
   source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=78
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 # for match_prev_cmd to work, it requires histignorealldups to be removed (which is ok: do histsavenodups instead)
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
