@@ -33,7 +33,8 @@ export DIRSTACKSIZE=10
 ###############################################################################
 # history
 ###############################################################################
-setopt correct histignorealldups incappendhistory extendedhistory histignorespace histreduceblanks hist_verify
+# replace histignorealldups with histsavenodups to make zsh autosuggestion option match_prev_cmd work
+setopt correct histsavenodups incappendhistory extendedhistory histignorespace histreduceblanks hist_verify
 
 export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
@@ -238,7 +239,7 @@ if [ -f $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; th
 fi
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=78
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
-# match_prev_cmd doesn't work well, but I'll try it. Maybe it can't work?
+# for match_prev_cmd to work, it requires histignorealldups to be removed (which is ok: do histsavenodups instead)
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 # fuzzy completion: ^R, ^T, ⌥C, **
