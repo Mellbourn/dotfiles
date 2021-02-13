@@ -257,7 +257,9 @@ FZF=fzf
 export FZF_ALT_C_COMMAND='fd --type directory'
 export FZF_ALT_C_OPTS="--preview 'CLICOLOR_FORCE=1 ls -GF {} | head -200' --preview-window=right:20%"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview 'bat --color always {} | head -120' --preview-window=right:33%"
+if [ -x "$(command -v bat)" ]; then
+  export FZF_CTRL_T_OPTS="--preview 'bat --color always {} | head -120' --preview-window=right:33%"
+fi
 [ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME
 
 # set up direnv
