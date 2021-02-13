@@ -242,8 +242,15 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 # for match_prev_cmd to work, it requires histignorealldups to be removed (which is ok: do histsavenodups instead)
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
+if [ -x "$(command -v fdfind)" ]; then
+  # alternate name used on ubuntu/debian
+  export FD=fdfind
+else
+  export FD=fd
+fi
+
 # fuzzy completion: ^R, ^T, ⌥C, **
-export FZF_DEFAULT_COMMAND="fd --type file"
+export FZF_DEFAULT_COMMAND="$FD --type file"
 # --ansi makes fzf a bit slower, but I haven't really noticed, this preview is used for ** completion
 export FZF_DEFAULT_OPTS="--ansi --select-1 --height 40% --reverse --tiebreak=begin --bind end:preview-down,home:preview-up"
 export FZF_TMUX_OPTS="-d 70%"
@@ -254,7 +261,7 @@ FZF=fzf
 # this harmed kill -9 and git co **
 #export FZF_COMPLETION_OPTS="--preview '(bat --color always --paging never {} 2> /dev/null || tree -C {}) 2> /dev/null | head -200' --preview-window=right:33%"
 # this is slow for large sets, could be sorted with ' | sort -u' but that is just the initial sorting
-export FZF_ALT_C_COMMAND='fd --type directory'
+export FZF_ALT_C_COMMAND='$FD --type directory'
 export FZF_ALT_C_OPTS="--preview 'CLICOLOR_FORCE=1 ls -GF {} | head -200' --preview-window=right:20%"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 if [ -x "$(command -v bat)" ]; then
@@ -348,12 +355,12 @@ _fzf_complete_git_post() {
      awk '{print $1}' | sed "s:remotes/origin/::"
 }
 _fzf_compgen_path() {
-  fd --follow . "$1"
+  $FD --follow . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d --follow . "$1"
+  $FD --type d --follow . "$1"
 }
 
 function go() {
@@ -364,12 +371,7 @@ function go() {
 }
 
 function fd() {
-  if [ -x "$(command -v fdfind)" ]; then
-    # alternate name used on ubuntu/debian
-    command fdfind --color always $* | less
-  else
-    command fd --color always $* | less
-  fi
+  command $FD --color always $* | less
 }
 alias fd='noglob fd'
 
