@@ -1,5 +1,6 @@
 # from oh-my-zsh
 alias ...='cd ../..'
+alias ....='cd ../../..'
 alias d='dirs -v | head -10'
 
 #personal
