@@ -134,6 +134,9 @@ zinit light nilsonholger/osx-zsh-completions
 zinit ice wait'4' lucid
 zinit light paulirish/git-open
 
+zinit ice wait'4' lucid
+zinit light peterhurford/git-it-on.zsh
+
 zinit ice wait'3' lucid
 zinit load Aloxaf/fzf-tab
 # disable sort when completing `git checkout`
