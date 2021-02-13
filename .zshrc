@@ -121,9 +121,6 @@ zinit load supercrabtree/k
 zinit ice wait'2' lucid atinit'alias f=fuck'
 zinit light laggardkernel/zsh-thefuck
 
-zinit ice wait"2" lucid as"program" pick"$ZPFX/bin/git-alias" make"PREFIX=$ZPFX"
-zinit load tj/git-extras
-
 # load diff-so-fancy if not already present (it can have been installed by homebrew)
 zinit ice wait'2' lucid as"program" pick"bin/git-dsf" if'[[ ! -x "$(command -v diff-so-fancy)" ]]'
 zinit light zdharma/zsh-diff-so-fancy

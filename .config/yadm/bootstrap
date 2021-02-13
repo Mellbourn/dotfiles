@@ -137,6 +137,7 @@ gh
 git
 git-crypt
 git-delta
+git-extras
 git-lfs
 git-number
 git-recent
@@ -261,6 +262,7 @@ gh
 git
 git-crypt
 git-delta
+git-extras
 git-lfs
 git-number
 git-recent
