@@ -134,22 +134,20 @@ zinit light paulirish/git-open
 zinit ice wait'4' lucid
 zinit light peterhurford/git-it-on.zsh
 
-if [ -z "$OS_UBUNTU" ]; then
-  # fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
-  zinit ice wait'3' lucid
-  zinit load Aloxaf/fzf-tab
-  # disable sort when completing `git checkout`
-  zstyle ':completion:*:git-checkout:*' sort false
-  # set descriptions format to enable group support
-  zstyle ':completion:*:descriptions' format '[%d]'
-  # preview directory's content with exa when completing cd
-  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-  zstyle ':fzf-tab:complete:ls:*' fzf-preview '[ -f "$realpath" ] && bat --color=always $realpath || exa -1 --color=always $realpath'
-  zstyle ':fzf-tab:complete:export:*' fzf-preview 'printenv $word'
-  zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'ping -c1 $word'
-  # switch group using `,` and `.`
-  zstyle ':fzf-tab:*' switch-group ',' '.'
-fi
+# fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
+zinit ice wait'3' lucid
+zinit load Aloxaf/fzf-tab
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:ls:*' fzf-preview '[ -f "$realpath" ] && bat --color=always $realpath || exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:export:*' fzf-preview 'printenv $word'
+zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'ping -c1 $word'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # this was cool but a bit too slow - adds blank lines after ls after a while
 #zinit ice wait'2' lucid
