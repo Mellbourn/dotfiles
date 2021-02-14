@@ -126,9 +126,6 @@ if [[ `uname` == 'Linux' ]]; then
     fi
   fi
 
-  # apt fzf was too old on Raspbian, going with manual deploy instead
-  # TODO: remove this purge soon
-  sudo apt purge fzf
   # install fuzzy matcher (^R, Alt-C, ^T, **)
   if [ -x "$(command -v fzf)" ]; then
     pushd ~/.fzf
