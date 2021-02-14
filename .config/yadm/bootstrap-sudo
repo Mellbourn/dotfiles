@@ -40,7 +40,6 @@ if [[ `uname` == 'Linux' ]]; then
     zoxide
     ripgrep
     bat
-    fzf
     fd-find
     tree
     tig
@@ -127,8 +126,15 @@ if [[ `uname` == 'Linux' ]]; then
     fi
   fi
 
-  # install fuzzy matcher (^R, **) if apt install failed
-  if ! [ -x "$(command -v fzf)" ]; then
+  # apt fzf was too old on Raspbian, going with manual deploy instead
+  # TODO: remove this purge soon
+  sudo apt purge fzf
+  # install fuzzy matcher (^R, Alt-C, ^T, **)
+  if [ -x "$(command -v fzf)" ]; then
+    pushd ~/.fzf
+    git pull
+    popd
+  else
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
   fi
