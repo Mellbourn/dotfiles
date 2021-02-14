@@ -482,8 +482,10 @@ autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 zinit cdreplay
 
-compdef x='exa'
-compdef xl='exa'
+if [ $(command -v _exa) ]; then
+  compdef x='exa'
+  compdef xl='exa'
+fi
 
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)
