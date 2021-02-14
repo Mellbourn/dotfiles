@@ -127,6 +127,12 @@ if [[ `uname` == 'Linux' ]]; then
     fi
   fi
 
+  # install fuzzy matcher (^R, **) if apt install failed
+  if ! [ -x "$(command -v fzf)" ]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+  fi
+
   # when it is needed, this updates the OS, so it will take a LONG time
   if [ -x "$(command -v do-release-upgrade)" ]; then
     sudo do-release-upgrade
