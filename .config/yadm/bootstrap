@@ -43,21 +43,19 @@ if [[ `uname` == 'Darwin' ]]; then
   ###############################################################################
   # App store                                                                   #
   ###############################################################################
-  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-    brew install -s carthage
-    brew install -s mas
-  else
-    brew install mas
-  fi
+  brew install mas
+
   # Xcode
   mas install 497799835
-  mas lucky "John's Background Switcher" # 907640277
-  mas lucky Bredbandskollen # 1147976909
-  # Microsoft Remote Desktop 10 1295203466
-  mas lucky "Microsoft Remote Desktop"
-  mas lucky "Copy'em (Clipboard Manager)" # (2.8.1) 876540291
-  # DNS-SD scans bonjour network (2.0.3) 1381004916
-  mas lucky "Discovery - DNS-SD Browser"
+  if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
+    # these still require rosetta afaik
+    mas lucky "John's Background Switcher" # 907640277
+    mas lucky Bredbandskollen # 1147976909
+    # Microsoft Remote Desktop 10 1295203466
+    mas lucky "Microsoft Remote Desktop"
+    mas lucky "Copy'em (Clipboard Manager)" # (2.8.1) 876540291
+  fi
+
   # upgrade all
   mas upgrade
   ###############################################################################
