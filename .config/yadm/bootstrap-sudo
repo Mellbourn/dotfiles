@@ -133,10 +133,11 @@ if [[ `uname` == 'Linux' ]]; then
   if [ -x "$(command -v fzf)" ]; then
     pushd ~/.fzf
     git pull
+    ./install --bin
     popd
   else
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
+    ~/.fzf/install --completion --key-bindings --no-update-rc
   fi
 
   # when it is needed, this updates the OS, so it will take a LONG time
