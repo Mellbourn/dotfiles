@@ -21,11 +21,14 @@ for c in "${characters[@]}"; do
         local dir=$(zoxide query $c 2>/dev/null || true)
 
         if [[ "$dir" == "$directory" ]]; then
-            echo $c
-            exit
+            echo - $c
+            found=1
         fi
     fi
 done
+if [[ -n $found ]]; then
+    exit
+fi
 
 dangerous() {
     if [[ $1 == "-i" ]]; then
@@ -49,7 +52,7 @@ for c in "${characters[@]}"; do
             local dir=$(zoxide query $c$d 2>/dev/null || true)
 
             if [[ "$dir" == "$directory" ]]; then
-                echo $c$d
+                echo - $c$d
                 found=1
             fi
         done
@@ -71,7 +74,7 @@ for c in "${characters[@]}"; do
                     local dir=$(zoxide query $c$d$e 2>/dev/null || true)
 
                     if [[ "$dir" == "$directory" ]]; then
-                        echo $c$d$e
+                        echo - $c$d$e
                         exit
                     fi
                 done
