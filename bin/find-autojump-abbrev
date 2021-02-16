@@ -12,6 +12,8 @@ fi
 
 basename=$(basename $directory)
 
+setopt nocasematch
+
 for c in {a..z}; do
     if [[ $basename =~ $c ]]; then
         local dir=$(zoxide query $c 2>/dev/null || true)
@@ -31,11 +33,14 @@ for c in {a..z}; do
 
             if [[ "$dir" == "$directory" ]]; then
                 echo $c$d
-                exit
+                found=1
             fi
         done
     fi
 done
+if [[ -n $found ]]; then
+    exit
+fi
 echo "No two character abbreviation found for $directory"
 
 for c in {a..z}; do
