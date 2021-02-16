@@ -19,7 +19,7 @@ done
 setopt nocasematch
 
 for c in "${characters[@]}"; do
-    if [[ $basename =~ $c ]]; then
+    if [[ $basename == *"$c"* ]]; then
         local dir=$(zoxide query $c 2>/dev/null || true)
 
         if [[ "$dir" == "$directory" ]]; then
@@ -30,8 +30,17 @@ for c in "${characters[@]}"; do
 done
 
 for c in "${characters[@]}"; do
-    if [[ $basename =~ $c ]]; then
+    if [[ $basename == *"$c"* ]]; then
         for d in "${characters[@]}"; do
+            if [[ $c$d == "-i" ]]; then
+                echo "sorry, can't check for -i"
+                continue
+            fi
+            if [[ $c$d == "-s" ]]; then
+                echo "sorry, can't check for -s"
+                continue
+            fi
+
             local dir=$(zoxide query $c$d 2>/dev/null || true)
 
             if [[ "$dir" == "$directory" ]]; then
@@ -44,12 +53,20 @@ done
 if [[ -n $found ]]; then
     exit
 fi
-echo "No one or two character abbreviation found for $directory"
+echo "No one or two character abbreviation found for $(basename $directory)"
 
 for c in "${characters[@]}"; do
-    if [[ $basename =~ $c ]]; then
+    if [[ $basename == *"$c"* ]]; then
         for d in "${characters[@]}"; do
-            if [[ $basename =~ $d ]]; then
+            if [[ $c$d == "-i" ]]; then
+                echo "sorry, can't check for -i"
+                continue
+            fi
+            if [[ $c$d == "-s" ]]; then
+                echo "sorry, can't check for -s"
+                continue
+            fi
+            if [[ $basename == *"$d"* ]]; then
                 for e in "${characters[@]}"; do
                     local dir=$(zoxide query $c$d$e 2>/dev/null || true)
 
@@ -60,8 +77,8 @@ for c in "${characters[@]}"; do
                 done
             fi
         done
-        echo "No three character abbreviation starting with $c found for $directory"
+        echo "No three character abbreviation starting with $c found for $(basename $directory)"
     fi
 done
 
-echo "No abbreviation found for $directory"
+echo "No abbreviation found for $(basename $directory)"
