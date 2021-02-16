@@ -11,10 +11,14 @@ else
 fi
 
 basename=$(basename $directory)
+characters=()
+for ((i = 0; i < ${#basename}; i++)); do
+    characters+=$(echo "${basename:$i:1}" | tr '[:upper:]' '[:lower:]')
+done
 
 setopt nocasematch
 
-for c in {a..z}; do
+for c in "${characters[@]}"; do
     if [[ $basename =~ $c ]]; then
         local dir=$(zoxide query $c 2>/dev/null || true)
 
@@ -24,11 +28,10 @@ for c in {a..z}; do
         fi
     fi
 done
-echo "No single character abbreviation found for $directory"
 
-for c in {a..z}; do
+for c in "${characters[@]}"; do
     if [[ $basename =~ $c ]]; then
-        for d in {a..z}; do
+        for d in "${characters[@]}"; do
             local dir=$(zoxide query $c$d 2>/dev/null || true)
 
             if [[ "$dir" == "$directory" ]]; then
@@ -41,13 +44,13 @@ done
 if [[ -n $found ]]; then
     exit
 fi
-echo "No two character abbreviation found for $directory"
+echo "No one or two character abbreviation found for $directory"
 
-for c in {a..z}; do
+for c in "${characters[@]}"; do
     if [[ $basename =~ $c ]]; then
-        for d in {a..z}; do
+        for d in "${characters[@]}"; do
             if [[ $basename =~ $d ]]; then
-                for e in {a..z}; do
+                for e in "${characters[@]}"; do
                     local dir=$(zoxide query $c$d$e 2>/dev/null || true)
 
                     if [[ "$dir" == "$directory" ]]; then
