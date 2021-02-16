@@ -54,13 +54,14 @@ for c in "${characters[@]}"; do
             local dir=$(zoxide query $c$d 2>/dev/null || true)
 
             if [[ "$dir" == "$directory" ]]; then
-                echo - $c$d
-                found=1
+                answers+=$c$d
             fi
         done
     fi
 done
-if [[ -n $found ]]; then
+if [ ${#answers[@]} -gt 0 ]; then
+    # only type unique abbreviations
+    echo "${answers[@]}" | tr ' ' '\n' | awk '!a[$0]++'
     exit
 fi
 echo "No one or two character abbreviation found for $(basename $directory)"
