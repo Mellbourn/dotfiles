@@ -1,5 +1,17 @@
 #!/bin/zsh
 # script to find the shortest abbreviation for autojump for the current, or given directory
+dangerous() {
+    if [[ $1 == "-i" ]]; then
+        echo "sorry, can't check for -i"
+        return 0
+    fi
+    if [[ $1 == "-s" ]]; then
+        echo "sorry, can't check for -s"
+        return 0
+    fi
+    return 1
+}
+
 if [ -z "$1" ]; then
     directory=$PWD
 else
@@ -16,31 +28,21 @@ for ((i = 0; i < ${#basename}; i++)); do
     characters+=${basename:$i:1}
 done
 
+answers=()
 for c in "${characters[@]}"; do
     if [[ $basename == *"$c"* ]]; then
         local dir=$(zoxide query $c 2>/dev/null || true)
 
         if [[ "$dir" == "$directory" ]]; then
-            echo - $c
-            found=1
+            answers+=$c
         fi
     fi
 done
-if [[ -n $found ]]; then
+if [ ${#answers[@]} -gt 0 ]; then
+    # only type unique abbreviations
+    echo "${answers[@]}" | tr ' ' '\n' | awk '!a[$0]++'
     exit
 fi
-
-dangerous() {
-    if [[ $1 == "-i" ]]; then
-        echo "sorry, can't check for -i"
-        return 0
-    fi
-    if [[ $1 == "-s" ]]; then
-        echo "sorry, can't check for -s"
-        return 0
-    fi
-    return 1
-}
 
 for c in "${characters[@]}"; do
     if [[ $basename == *"$c"* ]]; then
