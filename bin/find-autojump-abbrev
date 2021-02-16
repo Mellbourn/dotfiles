@@ -1,0 +1,29 @@
+#!/bin/zsh
+# script to find the shortest abbreviation for autojump for the current, or given directory
+if [ -z "$1" ]; then
+    directory=$PWD
+else
+    directory=$1
+fi
+
+for c in {a..z}; do
+    local dir=$(zoxide query $c 2>/dev/null || true)
+
+    if [[ "$dir" == "$directory" ]]; then
+        echo $c
+        exit
+    fi
+done
+
+for c in {a..z}; do
+    for d in {a..z}; do
+        local dir=$(zoxide query $c$d 2>/dev/null || true)
+
+        if [[ "$dir" == "$directory" ]]; then
+            echo $c$d
+            exit
+        fi
+    done
+done
+
+echo "No match found for $directory"
