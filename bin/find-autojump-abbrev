@@ -3,27 +3,57 @@
 if [ -z "$1" ]; then
     directory=$PWD
 else
-    directory=$1
+    directory=$(realpath $1)
+    if [ ! -d "$directory" ]; then
+        echo "$directory is not a valid, existing directory"
+        exit
+    fi
 fi
 
-for c in {a..z}; do
-    local dir=$(zoxide query $c 2>/dev/null || true)
+basename=$(basename $directory)
 
-    if [[ "$dir" == "$directory" ]]; then
-        echo $c
-        exit
+for c in {a..z}; do
+    if [[ $basename == *"$c"* ]]; then
+        local dir=$(zoxide query $c 2>/dev/null || true)
+
+        if [[ "$dir" == "$directory" ]]; then
+            echo $c
+            exit
+        fi
+    fi
+done
+echo "No single character abbreviation found for $directory"
+
+for c in {a..z}; do
+    if [[ $basename == *"$c"* ]]; then
+        for d in {a..z}; do
+            local dir=$(zoxide query $c$d 2>/dev/null || true)
+
+            if [[ "$dir" == "$directory" ]]; then
+                echo $c$d
+                exit
+            fi
+        done
+    fi
+done
+echo "No two character abbreviation found for $directory"
+
+for c in {a..z}; do
+    if [[ $basename == *"$c"* ]]; then
+        for d in {a..z}; do
+            if [[ $basename == *"$d"* ]]; then
+                for e in {a..z}; do
+                    local dir=$(zoxide query $c$d$e 2>/dev/null || true)
+
+                    if [[ "$dir" == "$directory" ]]; then
+                        echo $c$d$e
+                        exit
+                    fi
+                done
+            fi
+        done
+        echo "No three character abbreviation starting with $c found for $directory"
     fi
 done
 
-for c in {a..z}; do
-    for d in {a..z}; do
-        local dir=$(zoxide query $c$d 2>/dev/null || true)
-
-        if [[ "$dir" == "$directory" ]]; then
-            echo $c$d
-            exit
-        fi
-    done
-done
-
-echo "No match found for $directory"
+echo "No abbreviation found for $directory"
