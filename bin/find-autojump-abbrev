@@ -27,15 +27,22 @@ for c in "${characters[@]}"; do
     fi
 done
 
+dangerous() {
+    if [[ $1 == "-i" ]]; then
+        echo "sorry, can't check for -i"
+        return 0
+    fi
+    if [[ $1 == "-s" ]]; then
+        echo "sorry, can't check for -s"
+        return 0
+    fi
+    return 1
+}
+
 for c in "${characters[@]}"; do
     if [[ $basename == *"$c"* ]]; then
         for d in "${characters[@]}"; do
-            if [[ $c$d == "-i" ]]; then
-                echo "sorry, can't check for -i"
-                continue
-            fi
-            if [[ $c$d == "-s" ]]; then
-                echo "sorry, can't check for -s"
+            if dangerous $c$d; then
                 continue
             fi
 
@@ -56,12 +63,7 @@ echo "No one or two character abbreviation found for $(basename $directory)"
 for c in "${characters[@]}"; do
     if [[ $basename == *"$c"* ]]; then
         for d in "${characters[@]}"; do
-            if [[ $c$d == "-i" ]]; then
-                echo "sorry, can't check for -i"
-                continue
-            fi
-            if [[ $c$d == "-s" ]]; then
-                echo "sorry, can't check for -s"
+            if dangerous $c$d; then
                 continue
             fi
             if [[ $basename == *"$d"* ]]; then
