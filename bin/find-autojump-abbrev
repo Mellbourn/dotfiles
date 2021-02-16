@@ -16,8 +16,6 @@ for ((i = 0; i < ${#basename}; i++)); do
     characters+=${basename:$i:1}
 done
 
-setopt nocasematch
-
 for c in "${characters[@]}"; do
     if [[ $basename == *"$c"* ]]; then
         local dir=$(zoxide query $c 2>/dev/null || true)
