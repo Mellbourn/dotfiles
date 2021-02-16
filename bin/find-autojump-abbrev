@@ -10,10 +10,10 @@ else
     fi
 fi
 
-basename=$(basename $directory)
+basename=$(basename $directory | tr '[:upper:]' '[:lower:]')
 characters=()
 for ((i = 0; i < ${#basename}; i++)); do
-    characters+=$(echo "${basename:$i:1}" | tr '[:upper:]' '[:lower:]')
+    characters+=${basename:$i:1}
 done
 
 setopt nocasematch
