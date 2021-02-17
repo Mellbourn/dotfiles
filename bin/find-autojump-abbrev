@@ -29,10 +29,10 @@ else
 fi
 
 basename=$(basename $directory | tr '[:upper:]' '[:lower:]')
-answers=()
 
 baseLength=${#basename}
 for ((length = 1; length < baseLength + 1; length++)); do
+    answers=()
     for ((offset = 0; offset < $((baseLength - length + 1)); offset++)); do
         local fragment=${basename:$offset:$length}
         if dangerous $fragment; then
@@ -48,7 +48,6 @@ for ((length = 1; length < baseLength + 1; length++)); do
         # only type unique abbreviations
         echo "${answers[@]}" | tr ' ' '\n' | awk '!a[$0]++'
         exit
-        answers=()
     fi
 done
 
