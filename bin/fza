@@ -1,5 +1,5 @@
 #!/bin/bash
-# script to find the shortest abbreviation for autojump for the current, or given directory
+# script to find the shortest abbreviation for autojump, "z", for the given (or current) directory
 
 verbose() {
     if [ -n "$verbose" ]; then
@@ -8,7 +8,7 @@ verbose() {
 }
 
 dangerous() {
-    # these cannot be arguments to zoxide query
+    # -i and -s cannot be arguments to zoxide query
     if [ "$1" == "-i" ]; then
         verbose "sorry, can't check for -i"
         return 0
@@ -48,7 +48,7 @@ findAbbrevs() {
             fi
         done
         if [ ${#abbrevs[@]} -gt 0 ]; then
-            # only type unique abbrevs
+            # only report unique abbrevs
             echo "${abbrevs[@]}" | tr ' ' '\n' | awk '!a[$0]++'
             exit 0
         fi
