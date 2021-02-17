@@ -1,19 +1,25 @@
 #!/bin/bash
 # script to find the shortest abbreviation for autojump for the current, or given directory
 
+verbose() {
+    if [ -n "$verbose" ]; then
+        echo "$*"
+    fi
+}
+
 dangerous() {
     # these cannot be arguments to zoxide query
     if [ "$1" == "-i" ]; then
-        echo "sorry, can't check for -i"
+        verbose "sorry, can't check for -i"
         return 0
     fi
     if [ "$1" == "-s" ]; then
-        echo "sorry, can't check for -s"
+        verbose "sorry, can't check for -s"
         return 0
     fi
     local strippedWhitespace=$(echo $1 | xargs)
     if [ "$1" != "$strippedWhitespace" ]; then
-        echo "space is a bad abbreviation ($1)"
+        verbose "space is a bad abbreviation ($1)"
         return 0
     fi
     return 2
@@ -52,10 +58,17 @@ findAbbrevs() {
     exit 3
 }
 
-if [ -z "$1" ]; then
+while getopts "v" opt; do
+    case $opt in
+    v) verbose=1 ;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+if [ -z "$*" ]; then
     directory=$(realpath "$PWD")
 else
-    directory=$(realpath "$1")
+    directory=$(realpath "$*")
     if [ ! -d "$directory" ]; then
         echo "$directory is not a valid, existing directory"
         exit 1
