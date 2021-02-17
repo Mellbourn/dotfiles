@@ -33,7 +33,7 @@ basename=$(basename $directory | tr '[:upper:]' '[:lower:]')
 
 baseLength=${#basename}
 for ((length = 1; length < baseLength + 1; length++)); do
-    abbreviations=()
+    abbrevs=()
     for ((offset = 0; offset < $((baseLength - length + 1)); offset++)); do
         local fragment=${basename:$offset:$length}
         if dangerous $fragment; then
@@ -42,12 +42,12 @@ for ((length = 1; length < baseLength + 1; length++)); do
         local dir=$(zoxide query $fragment 2>/dev/null || true)
 
         if [[ "$dir" == "$directory" ]]; then
-            abbreviations+=$fragment
+            abbrevs+=$fragment
         fi
     done
-    if [ ${#abbreviations[@]} -gt 0 ]; then
-        # only type unique abbreviations
-        echo "${abbreviations[@]}" | tr ' ' '\n' | awk '!a[$0]++'
+    if [ ${#abbrevs[@]} -gt 0 ]; then
+        # only type unique abbrevs
+        echo "${abbrevs[@]}" | tr ' ' '\n' | awk '!a[$0]++'
         exit 0
     fi
 done
