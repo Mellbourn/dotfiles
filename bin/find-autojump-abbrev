@@ -61,6 +61,7 @@ findAbbrevs() {
 while getopts "v" opt; do
     case $opt in
     v) verbose=1 ;;
+    *) exit ;;
     esac
 done
 shift $(($OPTIND - 1))
