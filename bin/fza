@@ -1,5 +1,4 @@
 #!/bin/bash
-# script to find the shortest abbreviation for autojump, "z", for the given (or current) directory
 
 verbose() {
     if [ -n "$verbose" ]; then
@@ -58,14 +57,27 @@ findAbbrevs() {
     exit 1
 }
 
+help() {
+    echo 'Find the shortest abbreviations to autojump (a.k.a. "z") to the given (or current) directory'
+    echo
+    echo "USAGE:"
+    echo "  $(basename $0) [<folder to find z abbrev for>]"
+    echo
+    echo "FLAGS:"
+    echo "  -h  Print help"
+    echo "  -v  Verbose output"
+    exit 0
+}
+
 usage() {
     echo "Usage: $0 [-v] [<folder to find z abbrev for>]" 1>&2
     exit 2
 }
 
-while getopts "v" opt; do
+while getopts "hv" opt; do
     case $opt in
     v) verbose=1 ;;
+    h) help ;;
     *) usage ;;
     esac
 done
