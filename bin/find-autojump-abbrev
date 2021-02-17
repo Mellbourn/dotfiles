@@ -11,9 +11,9 @@ dangerous() {
         echo "sorry, can't check for -s"
         return 0
     fi
-    local strippedWhitespace=$(echo $1 | xargs)
+    local strippedWhitespace=$(echo - $1 | xargs)
     if [[ $1 != $strippedWhitespace ]]; then
-        echo "space is a bad abbreviation"
+        echo "space is a bad abbreviation ($1)"
         return 0
     fi
     return 2
