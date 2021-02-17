@@ -1,18 +1,18 @@
-#!/bin/zsh
+#!/bin/bash
 # script to find the shortest abbreviation for autojump for the current, or given directory
 
 dangerous() {
     # these cannot be arguments to zoxide query
-    if [[ $1 == "-i" ]]; then
+    if [ "$1" == "-i" ]; then
         echo "sorry, can't check for -i"
         return 0
     fi
-    if [[ $1 == "-s" ]]; then
+    if [ "$1" == "-s" ]; then
         echo "sorry, can't check for -s"
         return 0
     fi
-    local strippedWhitespace=$(echo - $1 | xargs)
-    if [[ $1 != $strippedWhitespace ]]; then
+    local strippedWhitespace=$(echo $1 | xargs)
+    if [ "$1" != "$strippedWhitespace" ]; then
         echo "space is a bad abbreviation ($1)"
         return 0
     fi
@@ -20,21 +20,21 @@ dangerous() {
 }
 
 findAbbrevs() {
-    local directory=$1
-    local basename=$(basename $directory | tr '[:upper:]' '[:lower:]')
+    local directory="$1"
+    local basename=$(basename "$directory" | tr '[:upper:]' '[:lower:]')
 
     local baseLength=${#basename}
     for ((length = 1; length < baseLength + 1; length++)); do
         local abbrevs=()
         for ((offset = 0; offset < $((baseLength - length + 1)); offset++)); do
-            local fragment=${basename:$offset:$length}
-            if dangerous $fragment; then
+            local fragment="${basename:$offset:$length}"
+            if dangerous "$fragment"; then
                 continue
             fi
-            local foundDirectory=$(zoxide query $fragment 2>/dev/null || true)
+            local foundDirectory=$(zoxide query "$fragment" 2>/dev/null || true)
 
             if [[ "$foundDirectory" == "$directory" ]]; then
-                abbrevs+=$fragment
+                abbrevs+=("$fragment")
             fi
         done
         if [ ${#abbrevs[@]} -gt 0 ]; then
@@ -51,11 +51,11 @@ findAbbrevs() {
 if [ -z "$1" ]; then
     directory=$PWD
 else
-    directory=$(realpath $1)
+    directory=$(realpath "$1")
     if [ ! -d "$directory" ]; then
         echo "$directory is not a valid, existing directory"
         exit 1
     fi
 fi
 
-findAbbrevs $directory
+findAbbrevs "$directory"
