@@ -22,7 +22,7 @@ dangerous() {
         verbose "space is a bad abbreviation ($1)"
         return 0
     fi
-    return 2
+    return 4
 }
 
 findAbbrevs() {
@@ -54,14 +54,19 @@ findAbbrevs() {
         fi
     done
 
-    echo "No abbreviation found for $(basename $directory)"
-    exit 3
+    echo "No abbreviation found for $(basename $directory)" 1>&2
+    exit 1
+}
+
+usage() {
+    echo "Usage: $0 [-v] [<folder to find z abbrev for>]" 1>&2
+    exit 2
 }
 
 while getopts "v" opt; do
     case $opt in
     v) verbose=1 ;;
-    *) exit ;;
+    *) usage ;;
     esac
 done
 shift $(($OPTIND - 1))
@@ -71,8 +76,8 @@ if [ -z "$*" ]; then
 else
     directory=$(realpath "$*")
     if [ ! -d "$directory" ]; then
-        echo "$directory is not a valid, existing directory"
-        exit 1
+        echo "$directory is not a valid, existing directory" 1>&2
+        exit 3
     fi
 fi
 
