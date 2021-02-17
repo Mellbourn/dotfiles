@@ -31,9 +31,13 @@ findAbbrevs() {
             if dangerous "$fragment"; then
                 continue
             fi
-            local foundDirectory=$(zoxide query "$fragment" 2>/dev/null || true)
+            local foundDirectory=$(zoxide query "$fragment" 2>/dev/null || false)
+            if [ ! -d "$foundDirectory" ]; then
+                continue
+            fi
+            local realFoundDirectory=$(realpath "$foundDirectory")
 
-            if [[ "$foundDirectory" == "$directory" ]]; then
+            if [[ "$realFoundDirectory" == "$directory" ]]; then
                 abbrevs+=("$fragment")
             fi
         done
