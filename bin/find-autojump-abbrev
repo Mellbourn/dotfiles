@@ -20,28 +20,28 @@ dangerous() {
 }
 
 if [ -z "$1" ]; then
-    directory=$PWD
+    local directory=$PWD
 else
-    directory=$(realpath $1)
+    local directory=$(realpath $1)
     if [ ! -d "$directory" ]; then
         echo "$directory is not a valid, existing directory"
         exit 1
     fi
 fi
 
-basename=$(basename $directory | tr '[:upper:]' '[:lower:]')
+local basename=$(basename $directory | tr '[:upper:]' '[:lower:]')
 
-baseLength=${#basename}
+local baseLength=${#basename}
 for ((length = 1; length < baseLength + 1; length++)); do
-    abbrevs=()
+    local abbrevs=()
     for ((offset = 0; offset < $((baseLength - length + 1)); offset++)); do
         local fragment=${basename:$offset:$length}
         if dangerous $fragment; then
             continue
         fi
-        local dir=$(zoxide query $fragment 2>/dev/null || true)
+        local foundDirectory=$(zoxide query $fragment 2>/dev/null || true)
 
-        if [[ "$dir" == "$directory" ]]; then
+        if [[ "$foundDirectory" == "$directory" ]]; then
             abbrevs+=$fragment
         fi
     done
