@@ -11,11 +11,12 @@ dangerous() {
         echo "sorry, can't check for -s"
         return 0
     fi
-    if [[ $1 == " " ]]; then
+    local strippedWhitespace=$(echo $1 | xargs)
+    if [[ $1 != $strippedWhitespace ]]; then
         echo "space is a bad abbreviation"
         return 0
     fi
-    return 1
+    return 2
 }
 
 if [ -z "$1" ]; then
@@ -24,7 +25,7 @@ else
     directory=$(realpath $1)
     if [ ! -d "$directory" ]; then
         echo "$directory is not a valid, existing directory"
-        exit
+        exit 1
     fi
 fi
 
@@ -47,8 +48,9 @@ for ((length = 1; length < baseLength + 1; length++)); do
     if [ ${#answers[@]} -gt 0 ]; then
         # only type unique abbreviations
         echo "${answers[@]}" | tr ' ' '\n' | awk '!a[$0]++'
-        exit
+        exit 0
     fi
 done
 
 echo "No abbreviation found for $(basename $directory)"
+exit 3
