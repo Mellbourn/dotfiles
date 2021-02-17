@@ -19,38 +19,43 @@ dangerous() {
     return 2
 }
 
+findAbbrevs() {
+    local directory=$1
+    local basename=$(basename $directory | tr '[:upper:]' '[:lower:]')
+
+    local baseLength=${#basename}
+    for ((length = 1; length < baseLength + 1; length++)); do
+        local abbrevs=()
+        for ((offset = 0; offset < $((baseLength - length + 1)); offset++)); do
+            local fragment=${basename:$offset:$length}
+            if dangerous $fragment; then
+                continue
+            fi
+            local foundDirectory=$(zoxide query $fragment 2>/dev/null || true)
+
+            if [[ "$foundDirectory" == "$directory" ]]; then
+                abbrevs+=$fragment
+            fi
+        done
+        if [ ${#abbrevs[@]} -gt 0 ]; then
+            # only type unique abbrevs
+            echo "${abbrevs[@]}" | tr ' ' '\n' | awk '!a[$0]++'
+            exit 0
+        fi
+    done
+
+    echo "No abbreviation found for $(basename $directory)"
+    exit 3
+}
+
 if [ -z "$1" ]; then
-    local directory=$PWD
+    directory=$PWD
 else
-    local directory=$(realpath $1)
+    directory=$(realpath $1)
     if [ ! -d "$directory" ]; then
         echo "$directory is not a valid, existing directory"
         exit 1
     fi
 fi
 
-local basename=$(basename $directory | tr '[:upper:]' '[:lower:]')
-
-local baseLength=${#basename}
-for ((length = 1; length < baseLength + 1; length++)); do
-    local abbrevs=()
-    for ((offset = 0; offset < $((baseLength - length + 1)); offset++)); do
-        local fragment=${basename:$offset:$length}
-        if dangerous $fragment; then
-            continue
-        fi
-        local foundDirectory=$(zoxide query $fragment 2>/dev/null || true)
-
-        if [[ "$foundDirectory" == "$directory" ]]; then
-            abbrevs+=$fragment
-        fi
-    done
-    if [ ${#abbrevs[@]} -gt 0 ]; then
-        # only type unique abbrevs
-        echo "${abbrevs[@]}" | tr ' ' '\n' | awk '!a[$0]++'
-        exit 0
-    fi
-done
-
-echo "No abbreviation found for $(basename $directory)"
-exit 3
+findAbbrevs $directory
