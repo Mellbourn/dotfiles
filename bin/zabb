@@ -58,7 +58,10 @@ findAbbrevs() {
         if [ ${#abbrevs[@]} -gt 0 ]; then
             local abbrevs_found=true
             # only report unique abbrevs
-            echo "${abbrevs[@]}" | tr ' ' '\n' | awk '!a[$0]++'
+            (
+                IFS=$'\n'
+                echo "${abbrevs[*]}"
+            ) | awk '!a[$0]++'
             if [ -z "$all" ]; then
                 exit 0
             fi
