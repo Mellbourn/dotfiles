@@ -90,6 +90,7 @@ if [[ `uname` == 'Darwin' ]]; then
   brew remove minikube
   brew uninstall reactotron
   brew uninstall python@2
+  brew uninstall googler
 
   # TODO: eventually uninstall zplug
   brew uninstall --force zplug
@@ -142,7 +143,6 @@ git-recent
 glances
 gnu-sed
 gnupg
-googler
 graphicsmagick
 grep
 gtm
@@ -267,7 +267,6 @@ git-recent
 glances
 gnu-sed
 gnupg
-googler
 gradle
 graphicsmagick
 grep

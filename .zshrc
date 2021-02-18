@@ -103,17 +103,17 @@ zinit ice wait'2' lucid if'[[ -x "$(command -v fzf)" ]]'
 zinit load wfxr/forgit
 
 zinit ice wait'2' lucid
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zinit snippet OMZP::colored-man-pages
 
 # command-not-found cuases lag in command prompt when starting
 #zinit ice wait'4' lucid
-#zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+#zinit snippet OMZP::command-not-found
 
 zinit ice wait'2' lucid
 zinit load djui/alias-tips
 
 zinit ice wait'2' lucid
-zinit snippet OMZ::plugins/dircycle/dircycle.plugin.zsh
+zinit snippet OMZP::dircycle
 
 zinit ice wait'1' lucid
 zinit load supercrabtree/k
@@ -127,6 +127,13 @@ zinit light zdharma/zsh-diff-so-fancy
 
 zinit ice wait'2' lucid as"completion"
 zinit light nilsonholger/osx-zsh-completions
+
+# some nice OMZ functions: take, alias, try_alias_value, url_encode, url_decode
+zinit ice wait'4' lucid
+zinit snippet OMZ::lib/functions.zsh
+
+zinit ice wait'4' lucid
+zinit snippet OMZ::plugins/web-search/web-search.plugin.zsh
 
 zinit ice wait'4' lucid
 zinit light paulirish/git-open
