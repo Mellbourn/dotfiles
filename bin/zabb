@@ -59,7 +59,7 @@ findAbbrevs() {
 }
 
 help() {
-    echo 'Find the shortest abbreviations to autojump (a.k.a. "z") to the given (or current) directory'
+    echo 'Find the shortest abbreviations that can be used to autojump (a.k.a. "z") to the given (or current) directory'
     echo
     echo "USAGE:"
     echo "  $(basename $0) [<folder to find z abbrev for>]"
