@@ -7,25 +7,33 @@ verbose() {
 }
 
 dangerous() {
+    local strippedWhitespace=$(echo $* | xargs)
+    if [ "$*" != "$strippedWhitespace" ]; then
+        verbose "space is a bad abbreviation ($*)"
+        return 0
+    fi
     # -i and -s cannot be arguments to zoxide query
-    if [ "$1" == "-i" ]; then
+    if [ "$*" == "-i" ]; then
         verbose "sorry, can't check for -i"
         return 0
     fi
-    if [ "$1" == "-s" ]; then
+    if [ "$*" == "-s" ]; then
         verbose "sorry, can't check for -s"
         return 0
     fi
-    local strippedWhitespace=$(echo $1 | xargs)
-    if [ "$1" != "$strippedWhitespace" ]; then
-        verbose "space is a bad abbreviation ($1)"
+    if [ "$*" == "~" ]; then
+        verbose "tilde is a bad abbreviation"
+        return 0
+    fi
+    if [[ "$*" =~ ^"~".* ]]; then
+        verbose "starting with tilde is a bad abbreviation"
         return 0
     fi
     return 4
 }
 
 findAbbrevs() {
-    local directory="$1"
+    local directory="$*"
     local basename=$(basename "$directory" | tr '[:upper:]' '[:lower:]')
 
     local baseLength=${#basename}
@@ -83,8 +91,15 @@ while getopts "vsah" opt; do
     v) verbose=1 ;;
     s) start_only=1 ;;
     a) all=1 ;;
-    h) help; exit 0 ;;
-    *) echo; help; exit 2 ;;
+    h)
+        help
+        exit 0
+        ;;
+    *)
+        echo
+        help
+        exit 2
+        ;;
     esac
 done
 shift $(($OPTIND - 1))
