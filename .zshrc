@@ -105,9 +105,9 @@ zinit load wfxr/forgit
 zinit ice wait'2' lucid
 zinit snippet OMZP::colored-man-pages
 
-# command-not-found cuases lag in command prompt when starting
-#zinit ice wait'4' lucid
-#zinit snippet OMZP::command-not-found
+# command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
+zinit ice wait'4' lucid atinit'source "$HOMEBREW_PREFIX/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"'
+zinit light zdharma/null
 
 zinit ice wait'2' lucid
 zinit load djui/alias-tips
