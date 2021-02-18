@@ -128,7 +128,7 @@ zinit light zdharma/zsh-diff-so-fancy
 zinit ice wait'2' lucid as"completion"
 zinit light nilsonholger/osx-zsh-completions
 
-# some nice OMZ functions: take, alias, try_alias_value, url_encode, url_decode
+# some nice OMZ functions: take, alias, try_alias_value, omz_urlencode, omz_urldecode
 zinit ice wait'4' lucid
 zinit snippet OMZ::lib/functions.zsh
 
