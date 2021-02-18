@@ -62,6 +62,7 @@ findAbbrevs() {
                 IFS=$'\n'
                 echo "${abbrevs[*]}"
             ) | awk '!a[$0]++'
+
             if [ -z "$all" ]; then
                 exit 0
             fi
