@@ -7,7 +7,8 @@ verbose() {
 }
 
 dangerous() {
-    local strippedWhitespace=$(echo $* | xargs)
+    local strippedWhitespace
+    strippedWhitespace=$(echo "$@" | xargs)
     if [ "$*" != "$strippedWhitespace" ]; then
         verbose "space is a bad abbreviation ($*)"
         return 0
@@ -33,30 +34,45 @@ dangerous() {
 }
 
 findAbbrevs() {
-    local directory="$*"
-    local basename=$(basename "$directory" | tr '[:upper:]' '[:lower:]')
+    local directory
+    directory="$*"
 
-    local baseLength=${#basename}
+    local basename
+    basename=$(basename "$directory" | tr '[:upper:]' '[:lower:]')
+
+    local baseLength
+    baseLength=${#basename}
+
     for ((length = 1; length < baseLength + 1; length++)); do
-        local abbrevs=()
-        local endoffset=$([ -n "$start_only" ] && echo 1 || echo $((baseLength - length + 1)))
-        for ((offset = 0; offset < $endoffset; offset++)); do
-            local fragment="${basename:$offset:$length}"
+        local abbrevs
+        abbrevs=()
+
+        local endoffset
+        endoffset=$([ -n "$start_only" ] && echo 1 || echo $((baseLength - length + 1)))
+
+        for ((offset = 0; offset < endoffset; offset++)); do
+            local fragment
+            fragment="${basename:$offset:$length}"
             if dangerous "$fragment"; then
                 continue
             fi
-            local foundDirectory=$(zoxide query "$fragment" 2>/dev/null)
-            if [[ $? -gt 0 || "$foundDirectory" == '' ]]; then
+            local foundDirectory
+            if ! foundDirectory=$(zoxide query "$fragment" 2>/dev/null); then
                 continue
             fi
-            local realFoundDirectory=$(realpath "$foundDirectory")
+            if [[ "$foundDirectory" == '' ]]; then
+                continue
+            fi
+            local realFoundDirectory
+            realFoundDirectory=$(realpath "$foundDirectory")
 
             if [[ "$realFoundDirectory" == "$directory" ]]; then
                 abbrevs+=("$fragment")
             fi
         done
         if [ ${#abbrevs[@]} -gt 0 ]; then
-            local abbrevs_found=true
+            local abbrevs_found
+            abbrevs_found=true
             # only report unique abbrevs
             (
                 IFS=$'\n'
@@ -73,7 +89,7 @@ findAbbrevs() {
         exit 0
     fi
 
-    echo "No abbreviation found for $(basename $directory)" 1>&2
+    echo "No abbreviation found for $(basename "${directory}")" 1>&2
     exit 1
 }
 
@@ -81,7 +97,7 @@ help() {
     echo 'Find the shortest abbreviations that can be used to autojump (a.k.a. "z") to the given (or current) directory'
     echo
     echo "USAGE:"
-    echo "  $(basename $0) [<folder to find z abbrev for>]"
+    echo "  $(basename "$0") [<folder to find z abbrev for>]"
     echo
     echo "FLAGS:"
     echo "  -s  Include only abbreviations that start the same way as the directory name"
@@ -106,7 +122,7 @@ while getopts "vsah" opt; do
         ;;
     esac
 done
-shift $(($OPTIND - 1))
+shift $((OPTIND - 1))
 
 if [ -z "$*" ]; then
     directory=$(realpath "$PWD")
