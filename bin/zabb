@@ -93,8 +93,7 @@ findAbbrevs() {
     exit 1
 }
 
-help() {
-    echo 'Find the shortest abbreviations that can be used to autojump (a.k.a. "z") to the given (or current) directory'
+usage() {
     echo
     echo "USAGE:"
     echo "  $(basename "$0") [<folder to find z abbrev for>]"
@@ -104,6 +103,11 @@ help() {
     echo "  -a  Enumerate all possible abbreviations, even the ones that are not the shortest"
     echo "  -v  Verbose output"
     echo "  -h  Print help"
+}
+
+help() {
+    echo 'Find the shortest abbreviations that can be used to autojump (a.k.a. "z") to the given (or current) directory'
+    usage
 }
 
 while getopts "vsah" opt; do
@@ -116,8 +120,7 @@ while getopts "vsah" opt; do
         exit 0
         ;;
     *)
-        echo
-        help
+        usage
         exit 2
         ;;
     esac
