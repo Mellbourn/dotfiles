@@ -31,7 +31,8 @@ findAbbrevs() {
     local baseLength=${#basename}
     for ((length = 1; length < baseLength + 1; length++)); do
         local abbrevs=()
-        for ((offset = 0; offset < $((baseLength - length + 1)); offset++)); do
+        local endoffset=$([ -n "$start_only" ] && echo 1 || echo $((baseLength - length + 1)))
+        for ((offset = 0; offset < $endoffset; offset++)); do
             local fragment="${basename:$offset:$length}"
             if dangerous "$fragment"; then
                 continue
@@ -66,11 +67,13 @@ help() {
     echo "FLAGS:"
     echo "  -h  Print help"
     echo "  -v  Verbose output"
+    echo "  -s  Include only abbreviations that start the same as the directory name"
 }
 
-while getopts "hv" opt; do
+while getopts "vsh" opt; do
     case $opt in
     v) verbose=1 ;;
+    s) start_only=1 ;;
     h) help; exit 0 ;;
     *) echo; help; exit 2 ;;
     esac
