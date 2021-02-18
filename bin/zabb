@@ -48,7 +48,7 @@ findAbbrevs() {
         abbrevs=()
 
         local endoffset
-        endoffset=$([ -n "$shortest" ] && echo $((baseLength - length + 1)) || echo 1)
+        endoffset=$([ -n "$shortest" ] || [ -n "$all" ] && echo $((baseLength - length + 1)) || echo 1)
 
         for ((offset = 0; offset < endoffset; offset++)); do
             local fragment
@@ -103,9 +103,11 @@ usage() {
     echo "USAGE:"
     echo "  $(basename "$0") [<folder to find z abbrev for>]"
     echo
+    echo "By default, only abbreviations that start the same way as the directory name are returned"
+    echo
     echo "FLAGS:"
-    echo "  -s  Get the shortest abbreviations even if they do not start the same way as the directory name"
-    echo "  -a  Get all abbreviations (can be combined with -s)"
+    echo "  -s  Get abbreviations even if they do not start the same way as the directory name"
+    echo "  -a  Get all abbreviations (implies -s)"
     echo "  -v  Verbose output"
     echo "  -h  Print help"
 }
