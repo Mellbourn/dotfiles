@@ -476,16 +476,16 @@ bindkey '¿' which-command #option-?
 # if [ -f $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
 #   source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #   export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-#   export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background
-#   export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' # pink
-#   export ZSH_HIGHLIGHT_STYLES[commandseparator]='bg=21,fg=195' # light on dark blue
-#   export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown
+#   export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background # migrated
+#   export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' # pink # migrated to fsh
+#   export ZSH_HIGHLIGHT_STYLES[commandseparator]='bg=21,fg=195' # light on dark blue # migrated to fsh
+#   export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown # migrated to fsh
 #   export ZSH_HIGHLIGHT_STYLES[globbing]='fg=99' # lilac
 #   export ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=63' # softer lilac
-#   export ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,underline' # make folders same colors as in ls
-#   export ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=243,underline'
-#   export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline'
-#   export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green
+#   export ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,underline' # make folders same colors as in ls # migrated
+#   export ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=243,underline' #migrated
+#   export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline' # migrated
+#   export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green #migrated
 #   export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 # fi
 
