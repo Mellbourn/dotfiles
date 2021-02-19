@@ -95,19 +95,20 @@ findAbbrevs() {
 
 help() {
     echo 'Find the shortest abbreviations that can be used to autojump (a.k.a. "z") to the given (or current) directory'
+    echo
+    echo "By default, only abbreviations that start the same way as the directory name are returned."
+    echo "Non-contiguous, i.e. space separated, abbreviations are not looked for. So, in some, fairly rare, circumstances the shortest abbreviations may not be found."
     usage
 }
 
 usage() {
     echo
     echo "USAGE:"
-    echo "  $(basename "$0") [<folder to find z abbrev for>]"
-    echo
-    echo "By default, only abbreviations that start the same way as the directory name are returned"
+    echo "  $(basename "$0") [<folder to find z abbrevs for, defaults to current>]"
     echo
     echo "FLAGS:"
-    echo "  -s  Get abbreviations even if they do not start the same way as the directory name"
-    echo "  -a  Get all abbreviations (implies -s)"
+    echo "  -s  Allow abbreviations even if they do not start the same way as the directory name. (This will often find shorter abbreviations, but they may be less easy to remember)"
+    echo "  -a  List all (contiguous) abbreviations (implies -s)"
     echo "  -v  Verbose output"
     echo "  -h  Print help"
 }
