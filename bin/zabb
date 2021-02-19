@@ -97,7 +97,7 @@ help() {
     echo 'Find the shortest abbreviations that can be used to autojump (a.k.a. "z") to the given (or current) directory'
     echo
     echo "By default, only abbreviations that start the same way as the directory name are returned."
-    echo "Non-contiguous, i.e. space separated, abbreviations are not looked for. So, in some, fairly rare, circumstances the shortest abbreviations may not be found."
+    echo "Non-contiguous, i.e. space separated, abbreviations are not looked for. So, in some fairly rare circumstances the shortest abbreviations may not be found."
     usage
 }
 
