@@ -142,7 +142,7 @@ zinit ice wait'4' lucid
 zinit light peterhurford/git-it-on.zsh
 
 # fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
-zinit ice wait'3' lucid
+zinit ice wait'2' lucid
 zinit load Aloxaf/fzf-tab
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
