@@ -104,7 +104,11 @@ help() {
 usage() {
     echo
     echo "USAGE:"
-    echo "  $(basename "$0") [<folder to find z abbrevs for, defaults to current>]"
+    echo "  $(basename "$0") [<DIRECTORY>]"
+    echo
+    echo "ARGS:"
+    echo "  <DIRECTORY>"
+    echo "      Directory to find z abbrevs for. If none is given, it defaults to current working directory"
     echo
     echo "FLAGS:"
     echo "  -s  Allow abbreviations even if they do not start the same way as the directory name. (This will often find shorter abbreviations, but they may be less easy to remember)"
