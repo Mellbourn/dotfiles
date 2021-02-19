@@ -57,7 +57,7 @@ findAbbrevs() {
                 continue
             fi
             local foundDirectory
-            if ! foundDirectory=$(zoxide query "$fragment" 2>/dev/null); then
+            if ! foundDirectory=$((eval ""$z_query" "$fragment"") 2>/dev/null); then
                 continue
             fi
             if [[ "$foundDirectory" == '' ]]; then
@@ -116,6 +116,13 @@ usage() {
     echo "  -v  Verbose output"
     echo "  -h  Print help"
 }
+
+z_command=zoxide
+if [ ! -x "$(command -v "$z_command")" ]; then
+    echo ""$0" only works if you have \""$z_command"\" installed to implement the \"z\" autojump command" 1>&2
+    exit 1
+fi
+z_query=""$z_command" query"
 
 while getopts "vsah" opt; do
     case $opt in
