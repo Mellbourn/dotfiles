@@ -38,6 +38,8 @@
 	st = status
 	mt = mergetool
 	dt = difftool
+	re = restore
+	sw = switch
 	d = diff --color-words=.
 	unstage = reset HEAD --
 	last = log -1 HEAD
