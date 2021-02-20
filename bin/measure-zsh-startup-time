@@ -1,5 +1,5 @@
 #!/bin/bash
-command='zsh -i -c exit'
+command='zsh -is </dev/null'
 min_runs=10
 warmup=1
 hyperfine_is_fine=1
