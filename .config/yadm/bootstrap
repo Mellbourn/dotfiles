@@ -91,6 +91,7 @@ if [[ `uname` == 'Darwin' ]]; then
   brew uninstall reactotron
   brew uninstall python@2
   brew uninstall googler
+  brew uninstall zsh-syntax-highlighting
 
   # TODO: eventually uninstall zplug
   brew uninstall --force zplug
@@ -197,7 +198,6 @@ yarn
 zoxide
 zsh
 zsh-autosuggestions
-zsh-syntax-highlighting
 "
     # note: yarn will install node, which you might want to remove, since it is handled by nvm
     alreadyInstalled=`brew list --formula`
@@ -328,7 +328,6 @@ yarn
 zoxide
 zsh
 zsh-autosuggestions
-zsh-syntax-highlighting
 "
   # note: yarn will install node, which you might want to remove, since it is handled by nvm
   alreadyInstalled=`brew list --formula`

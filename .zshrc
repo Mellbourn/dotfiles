@@ -235,16 +235,9 @@ fi
 if [[ -n $UNAME_LINUX ]]; then
   #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
 
-  # commented out while testing zdharma/fast-syntax-highlighting
-  #zinit load zsh-users/zsh-syntax-highlighting
-
   zinit ice wait"1" lucid atload"!_zsh_autosuggest_start"
   zinit load zsh-users/zsh-autosuggestions
 fi
-
-# loads theme ~/.config/fsh/improved-default.ini for zdharma/fast-syntax-highlighting
-zinit ice wait lucid --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.log"
-zinit light zdharma/fast-syntax-highlighting
 
 ###############################################################################
 # add-ons installed by homebrew
@@ -471,23 +464,10 @@ bindkey '¿' which-command #option-?
 ###############################################################################
 # Syntax highlighting for the shell
 # syntax highlighting should be loaded after all widgets, to work with them
-# this following is commented out while testing zdharma/fast-syntax-highlighting
 ###############################################################################
-# if [ -f $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-#   source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#   export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-#   export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background # migrated
-#   export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' # pink # migrated to fsh
-#   export ZSH_HIGHLIGHT_STYLES[commandseparator]='bg=21,fg=195' # light on dark blue # migrated to fsh
-#   export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown # migrated to fsh
-#   export ZSH_HIGHLIGHT_STYLES[globbing]='fg=99' # lilac
-#   export ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=63' # softer lilac
-#   export ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,underline' # make folders same colors as in ls # migrated
-#   export ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=243,underline' #migrated
-#   export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline' # migrated
-#   export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green #migrated
-#   export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
-# fi
+# loads theme ~/.config/fsh/improved-default.ini for zdharma/fast-syntax-highlighting
+zinit ice wait lucid --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.log"
+zinit light zdharma/fast-syntax-highlighting
 
 [[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
 
