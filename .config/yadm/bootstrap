@@ -535,7 +535,7 @@ then
 fi
 
 function zsh_performance_measurements() {
-  ~/bin/measure-zsh-startup-time -m 5
+  ~/bin/mezsh -m 5
 }
 
 ############################################################################

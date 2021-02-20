@@ -23,20 +23,14 @@ while getopts "hnvc:m:w:" opt; do
     esac
 done
 
-LOGDIR=${XDG_CACHE_HOME:-~/.cache}/measure-zsh-startup-time
+LOGDIR=${XDG_CACHE_HOME:-~/.cache}/$(basename $0)
 mkdir -p $LOGDIR
 
 # TODO: remove this migration
-OLDLOGDIR=~/Library/Caches/measure-zsh-startup-time
+OLDLOGDIR=${XDG_CACHE_HOME:-~/.cache}/measure-zsh-startup-time
 if [ -d $OLDLOGDIR ]; then
   mv $OLDLOGDIR/* $LOGDIR
   trash $OLDLOGDIR
-  if [ -z "$(ls -A ~/Library/Caches)" ]; then
-   trash ~/Library/Caches
-  if [ -z "$(ls -A ~/Library)" ]; then
-      trash ~/Library
-    fi
-  fi
 fi
 
 if [ -x "$(command -v hyperfine)" ] && [ -n "$hyperfine_is_fine" ]; then
