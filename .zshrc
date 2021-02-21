@@ -170,7 +170,7 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 #bindkey $key[ControlSpace] set-mark-command
 
 # exa doesn't download well on WSL
-# zinit ice wait"2" lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
+# zinit ice wait'2' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
 # zinit light ogham/exa
 export TIME_STYLE=long-iso
 export EXA_COLORS="uu=38;5;248:da=1;34:di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
@@ -235,7 +235,7 @@ fi
 if [[ -n $UNAME_LINUX ]]; then
   #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
 
-  zinit ice wait"1" lucid atload"!_zsh_autosuggest_start"
+  zinit ice wait'1' lucid atload"!_zsh_autosuggest_start"
   zinit load zsh-users/zsh-autosuggestions
 fi
 
