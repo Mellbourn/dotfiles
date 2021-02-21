@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 debug() {
     if [ -n "$debug" ]; then
@@ -7,22 +7,21 @@ debug() {
 }
 
 dangerous() {
-    local strippedWhitespace
-    strippedWhitespace=$(echo "$@" | xargs)
-    if [ "$*" != "$strippedWhitespace" ]; then
+    local strippedWhitespace=$(echo "$@" | xargs)
+    if [[ "$*" != "$strippedWhitespace" ]]; then
         debug "space is a bad abbreviation ($*)"
         return 0
     fi
     # -i and -s cannot be arguments to zoxide query
-    if [ "$*" == "-i" ]; then
+    if [[ "$*" == "-i" ]]; then
         debug "sorry, can't check for -i"
         return 0
     fi
-    if [ "$*" == "-s" ]; then
+    if [[ "$*" == "-s" ]]; then
         debug "sorry, can't check for -s"
         return 0
     fi
-    if [ "$*" == "~" ]; then
+    if [[ "$*" == "~" ]]; then
         debug "tilde is a bad abbreviation"
         return 0
     fi
@@ -34,45 +33,32 @@ dangerous() {
 }
 
 findAbbrevs() {
-    local directory
-    directory="$*"
-
-    local basename
-    basename=$(basename "$directory" | tr '[:upper:]' '[:lower:]')
-
-    local baseLength
-    baseLength=${#basename}
+    local directory="$*"
+    local basename=$(basename "$directory" | tr '[:upper:]' '[:lower:]')
+    local baseLength=${#basename}
 
     for ((length = 1; length < baseLength + 1; length++)); do
-        local abbrevs
-        abbrevs=()
-
-        local endoffset
-        endoffset=$([ -n "$shortest" ] || [ -n "$all" ] && echo $((baseLength - length + 1)) || echo 1)
-
+        local abbrevs=()
+        local endoffset=$([ -n "$shortest" ] || [ -n "$all" ] && echo $((baseLength - length + 1)) || echo 1)
         for ((offset = 0; offset < endoffset; offset++)); do
-            local fragment
-            fragment="${basename:$offset:$length}"
+            local fragment="${basename:$offset:$length}"
             if dangerous "$fragment"; then
                 continue
             fi
-            local foundDirectory
-            if ! foundDirectory=$((eval ""$z_query" "$fragment"") 2>/dev/null); then
+            if ! local foundDirectory=$((eval ""$z_query" "$fragment"") 2>/dev/null); then
                 continue
             fi
             if [[ "$foundDirectory" == '' ]]; then
                 continue
             fi
-            local realFoundDirectory
-            realFoundDirectory=$(realpath "$foundDirectory")
+            local realFoundDirectory=$(realpath "$foundDirectory")
 
             if [[ "$realFoundDirectory" == "$directory" ]]; then
-                abbrevs+=("$fragment")
+                abbrevs+="$fragment"
             fi
         done
         if [ ${#abbrevs[@]} -gt 0 ]; then
-            local abbrevs_found
-            abbrevs_found=true
+            local abbrevs_found=true
             # only report unique abbrevs
             (
                 IFS=$'\n'
@@ -85,7 +71,7 @@ findAbbrevs() {
         fi
     done
 
-    if [ "$abbrevs_found" == true ]; then
+    if [[ "$abbrevs_found" == true ]]; then
         exit 0
     fi
 
