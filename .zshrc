@@ -141,7 +141,7 @@ zinit light paulirish/git-open
 zinit ice wait'4' lucid
 zinit light peterhurford/git-it-on.zsh
 
-zinit ice lucid trigger-load'!zabb'
+zinit ice wait'2' lucid
 zinit light mellbourn/zabb
 
 # fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
