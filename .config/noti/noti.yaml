@@ -1,2 +1,4 @@
 nsuser:
   soundName: Submarine
+say:
+  voice: Fiona
