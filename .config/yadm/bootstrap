@@ -145,6 +145,7 @@ glances
 gnu-sed
 gnupg
 graphicsmagick
+grc
 grep
 gtm
 highlight
@@ -270,6 +271,7 @@ gnu-sed
 gnupg
 gradle
 graphicsmagick
+grc
 grep
 gtm
 haskell-stack
