@@ -40,6 +40,17 @@ export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
 
 ###############################################################################
+# dynamic aliases
+###############################################################################
+if [ -x "$(command -v grc)" ]; then
+  # colorize standard commands. Possibilites here /opt/homebrew/share/grc
+  for a in env du id ifconfig lsof last ps traceroute ulimit uptime whois df diff dig
+  do
+    alias $a="grc $a"
+  done
+fi
+
+###############################################################################
 # development
 ###############################################################################
 export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
