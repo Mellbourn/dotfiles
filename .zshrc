@@ -44,7 +44,7 @@ export SAVEHIST=$HISTSIZE
 ###############################################################################
 if [ -x "$(command -v grc)" ]; then
   # colorize standard commands. Possibilites here /opt/homebrew/share/grc
-  for a in env du id ifconfig lsof last ps traceroute ulimit uptime whois df diff dig
+  for a in df diff dig du env id ifconfig last lsof ps traceroute ulimit uptime whois
   do
     # could forcing color be dangerous for some pipes? It is needed for less
     alias $a="grc --colour=on $a"
