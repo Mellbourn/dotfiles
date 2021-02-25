@@ -12,17 +12,16 @@
 # https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789#.2d3cfjv7d
 ###############################################################################
 
-if grep -q Raspbian /etc/os-release 2> /dev/null
-then
+if grep -q Raspbian /etc/os-release 2>/dev/null; then
   DOTFILES_LITE=1
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 
-if [[ `uname` == 'Darwin' ]]; then
+if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
   # macOS specific installations
   ###############################################################################
-  export OS_MAJOR_VERSION=$(sw_vers -productVersion| cut -d. -f1)
+  export OS_MAJOR_VERSION=$(sw_vers -productVersion | cut -d. -f1)
   BIG_SUR_MAJOR_VERSION=11
 
   # activate cleanup jobs, doesn't actually update?
@@ -51,7 +50,7 @@ if [[ `uname` == 'Darwin' ]]; then
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     # these still require rosetta afaik
     mas lucky "John's Background Switcher" # 907640277
-    mas lucky Bredbandskollen # 1147976909
+    mas lucky Bredbandskollen              # 1147976909
     # Microsoft Remote Desktop 10 1295203466
     mas lucky "Microsoft Remote Desktop"
   fi
@@ -70,10 +69,10 @@ if [[ `uname` == 'Darwin' ]]; then
   brew update
   brew upgrade
   brew upgrade --cask
-  brew tap aws/tap # for aws-sam-cli
-  brew tap git-time-metric/gtm # for gtm
-  brew tap wix/brew # for AppleSimulatorUtils
-  brew tap homebrew/cask-fonts # for font-fira-code
+  brew tap aws/tap               # for aws-sam-cli
+  brew tap git-time-metric/gtm   # for gtm
+  brew tap wix/brew              # for AppleSimulatorUtils
+  brew tap homebrew/cask-fonts   # for font-fira-code
   brew tap homebrew/cask-drivers # for philips-hue-sync and luna-display
   #brew tap homebrew/cask-versions # for visual-studio-code-insiders
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
@@ -92,6 +91,7 @@ if [[ `uname` == 'Darwin' ]]; then
   brew uninstall python@2
   brew uninstall googler
   brew uninstall zsh-syntax-highlighting
+  brew uninstall --cask flipper
 
   # TODO: eventually uninstall zplug
   brew uninstall --force zplug
@@ -202,8 +202,8 @@ zsh
 zsh-autosuggestions
 "
     # note: yarn will install node, which you might want to remove, since it is handled by nvm
-    alreadyInstalled=`brew list --formula`
-    installTheseLines=`comm -23 <(echo "$apps") <(echo "$alreadyInstalled")`
+    alreadyInstalled=$(brew list --formula)
+    installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
     installThese=${installTheseLines//$'\n'/ }
     if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
       echo $installThese | xargs brew install
@@ -226,8 +226,8 @@ vlc
 witch
 "
 
-    alreadyInstalled=`brew list --cask`
-    installTheseLines=`comm -23 <(echo "$casks") <(echo "$alreadyInstalled")`
+    alreadyInstalled=$(brew list --cask)
+    installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
     installThese=${installTheseLines//$'\n'/ }
     if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
       echo $installThese | xargs brew install --cask
@@ -334,14 +334,14 @@ zsh
 zsh-autosuggestions
 "
   # note: yarn will install node, which you might want to remove, since it is handled by nvm
-  alreadyInstalled=`brew list --formula`
-  installTheseLines=`comm -23 <(echo "$apps") <(echo "$alreadyInstalled")`
+  alreadyInstalled=$(brew list --formula)
+  installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
   installThese=${installTheseLines//$'\n'/ }
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     echo $installThese | xargs brew install
   fi
 
-# not working, destroys existing installation: intel-power-gadget
+  # not working, destroys existing installation: intel-power-gadget
 
   casks="
 abstract
@@ -357,7 +357,6 @@ dash
 discord
 docker
 firefox
-flipper
 font-cascadia-code-pl
 font-fira-code
 font-jetbrains-mono
@@ -401,8 +400,8 @@ zeplin
 zoom
 "
 
-  alreadyInstalled=`brew list --cask`
-  installTheseLines=`comm -23 <(echo "$casks") <(echo "$alreadyInstalled")`
+  alreadyInstalled=$(brew list --cask)
+  installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
   installThese=${installTheseLines//$'\n'/ }
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     echo $installThese | xargs brew install --cask
@@ -414,10 +413,7 @@ zoom
   #brew uninstall --cask font-cascadia
   brew uninstall --cask font-cascadia-pl
 
-  # allow flipper to be opened
-  xattr -d com.apple.quarantine /Applications/Flipper.app
-
-  echo will cite | parallel --citation > /dev/null 2>&1
+  echo will cite | parallel --citation >/dev/null 2>&1
 
   # set up wemux user name
   sed -i -- "s/host_list=(brew)/host_list=($USER)/" $HOMEBREW_PREFIX/etc/wemux.conf
@@ -475,7 +471,7 @@ fi ############################################################################
 ###############################################################################
 
 # this seems healthy to do every now and then to make sure zsh completion works
-trash ~/.zcompdump* ~/.zcompcache 2> /tmp/zcomp_delete_error.txt
+trash ~/.zcompdump* ~/.zcompcache 2>/tmp/zcomp_delete_error.txt
 
 # TODO: eventually remove this removal
 # remove obsolete folder for .zplugin, since it has been renamed to zinit
@@ -483,8 +479,8 @@ trash ~/.zplugin
 
 if ! [ -f ~/.ssh/id_rsa ]; then
   ssh-keygen -t rsa -b 4096 -C "${USER}@$(hostname)" -f ~/.ssh/id_rsa -N ""
-  eval `ssh-agent -s`
-  if [[ `uname` == 'Darwin' ]]; then
+  eval $(ssh-agent -s)
+  if [[ $(uname) == 'Darwin' ]]; then
     ssh-add -K ~/.ssh/id_rsa
   else
     ssh-add
@@ -514,8 +510,7 @@ if [ "$CODE_DIR" ]; then
   mkdir -p $CODE_DIR/experiments
 fi
 
-if [ -z "$DOTFILES_LITE" ]
-then
+if [ -z "$DOTFILES_LITE" ]; then
   if [ -x "$(command -v $HOMEBREW_PREFIX/opt/nodebrew/bin/nodebrew)" ]; then
     $HOMEBREW_PREFIX/opt/nodebrew/bin/nodebrew setup_dirs
   fi
@@ -545,7 +540,7 @@ function zsh_performance_measurements() {
 ############################################################################
 # configuration for just Linux
 ###############################################################################
-if [[ `uname` == 'Linux' ]]; then
+if [[ $(uname) == 'Linux' ]]; then
 
   # do some cleanup
   trash-empty 30
@@ -558,7 +553,7 @@ fi ############################################################################
 # mac specific configurations
 ###############################################################################
 
-if ! [ -f ~/.fzf.`basename $SHELL` ]; then
+if ! [ -f ~/.fzf.$(basename $SHELL) ]; then
   $HOMEBREW_PREFIX/opt/fzf/install --key-bindings --completion --no-update-rc
 fi
 
@@ -575,26 +570,26 @@ xcode-select --install
 xcrun simctl delete unavailable
 
 # remove itunes from login items. This way it does not open when you plug in an iPhone
-osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2> /tmp/delete_itunes_helper_error.txt
+osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2>/tmp/delete_itunes_helper_error.txt
 
-docker system prune -f 2>> /tmp/docker_system_prune.err.txt
+docker system prune -f 2>>/tmp/docker_system_prune.err.txt
 
 ###############################################################################
 # Associate filetypes to apps that should open them                           #
 ###############################################################################
 # open in Visual Studio Code
 duti -s com.microsoft.VSCode .graphql all
-duti -s com.microsoft.VSCode .js all # javascript. Look extensions works too!
-duti -s com.microsoft.VSCode .rb all # ruby. Look extensions works too!
-duti -s com.microsoft.VSCode .ts all # typescript. Look extensions works too!
-duti -s com.microsoft.VSCode com.apple.log all # .log
+duti -s com.microsoft.VSCode .js all                         # javascript. Look extensions works too!
+duti -s com.microsoft.VSCode .rb all                         # ruby. Look extensions works too!
+duti -s com.microsoft.VSCode .ts all                         # typescript. Look extensions works too!
+duti -s com.microsoft.VSCode com.apple.log all               # .log
 duti -s com.microsoft.VSCode net.daringfireball.markdown all # .md
 duti -s com.microsoft.VSCode public.json all
-duti -s com.microsoft.VSCode public.plain-text all # text files
+duti -s com.microsoft.VSCode public.plain-text all    # text files
 duti -s com.microsoft.VSCode public.python-script all # .py
 #duti -s com.microsoft.VSCode public.shell-script all # .sh - no, you want it to be executable
 duti -s com.microsoft.VSCode public.source-code all # this has no effect?
-duti -s com.microsoft.VSCode public.text all # does this have a real effect?
+duti -s com.microsoft.VSCode public.text all        # does this have a real effect?
 duti -s com.microsoft.VSCode public.xml all
 duti -s com.microsoft.VSCode public.yaml all
 # seems to have no effecxt: public.data, .lock
@@ -744,7 +739,7 @@ defaults write com.apple.dock tilesize -int 24
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
 
-if (( $OS_MAJOR_VERSION < $BIG_SUR_MAJOR_VERSION )); then
+if (($OS_MAJOR_VERSION < $BIG_SUR_MAJOR_VERSION)); then
   ###############################################################################
   # Safari & WebKit                                                             #
   ###############################################################################
