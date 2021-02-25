@@ -418,7 +418,7 @@ alias -s zip="zipinfo"
 ###############################################################################
 bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
-# make zsh behave like bash for ctrl-u (fine to modify since most others will have bash, and ⌥q kills whole line)
+# make zsh behave like bash for ctrl-u (fine to modify since most others will have bash, and ^x^k kills whole line)
 bindkey "^U" backward-kill-line
 # edit command line like in bash (zsh has 'fc' but it has to execute the command first)
 autoload -z edit-command-line
@@ -432,7 +432,18 @@ _my_generic () {
   local ZSH_TRACE_GENERIC_WIDGET=  # works with "setopt nounset"
   _generic "$@"
 }
-bindkey '^X^a' all-matches
+globalias() {
+   # Get last word to the left of the cursor:
+   # (z) splits into words using shell parsing
+   # (A) makes it an array even if there's only one element
+   local word=${${(Az)LBUFFER}[-1]}
+   if [[ $GLOBALIAS_FILTER_VALUES[(Ie)$word] -eq 0 ]]; then
+      zle _expand_alias
+      zle expand-word
+   fi
+}
+zle -N globalias
+bindkey '^X^a' globalias
 
 # binding needed in VS Code integrated terminal when "terminal.integrated.macOptionIsMeta" is true
 #bindkey -s "\e2" @   # option-2 maps to the at-sign
