@@ -44,7 +44,14 @@ export SAVEHIST=$HISTSIZE
 ###############################################################################
 if [ -x "$(command -v grc)" ]; then
   # colorize standard commands. Possibilites here /opt/homebrew/share/grc
-  for a in df diff dig du env id ifconfig last lsof ps traceroute ulimit uptime whois
+  # don't add
+  # * netstat - waits for command to finish
+  # * ifconfig - completion breaks
+  # * ps - completion buggy
+  # some problems
+  # * diff - crashes sometimes
+  # * env - if given utility parameter, it modifies output formatting
+  for a in df diff dig du env id last lsof traceroute ulimit uptime whois
   do
     # function rather than alias is needed to preserve completions
     $a() {
