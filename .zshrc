@@ -196,6 +196,12 @@ zinit light paulirish/git-open
 zinit ice wait'4' lucid
 zinit light peterhurford/git-it-on.zsh
 
+# set up a bell after command that run longer than this many seconds
+zbell_duration=300
+zbell_ignore+=(code less bat cat)
+zinit ice wait'4' lucid
+zinit snippet OMZP::zbell
+
 # exa doesn't download well on WSL
 # zinit ice wait'2' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
 # zinit light ogham/exa
