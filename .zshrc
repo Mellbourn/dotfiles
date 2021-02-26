@@ -109,14 +109,22 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 ###############################################################################
 # zinit - zsh plugin manager
 ###############################################################################
-zinit ice wait'2' atload"zpcdreplay" atclone'./zplug.zsh' lucid
-zinit load g-plane/zsh-yarn-autocompletions
-
 zinit ice atload'!_zsh_git_prompt_precmd_hook' lucid
 zinit load woefe/git-prompt.zsh
 
 zinit ice wait'0a' lucid blockf
 zinit load zsh-users/zsh-completions
+
+zinit ice wait'0' lucid
+zinit snippet OMZP::magic-enter
+MAGIC_ENTER_GIT_COMMAND="git st"
+MAGIC_ENTER_OTHER_COMMAND="x"
+
+zinit ice wait'1' lucid
+zinit load supercrabtree/k
+
+zinit ice wait'1' atload"zpcdreplay" atclone'./zplug.zsh' lucid
+zinit load g-plane/zsh-yarn-autocompletions
 
 zinit ice wait'2' lucid if'[[ -x "$(command -v fzf)" ]]'
 zinit load wfxr/forgit
@@ -134,14 +142,6 @@ zinit load djui/alias-tips
 zinit ice wait'2' lucid
 zinit snippet OMZP::dircycle
 
-zinit ice wait'1' lucid
-zinit load supercrabtree/k
-
-zinit ice wait'1' lucid
-zinit snippet OMZP::magic-enter
-MAGIC_ENTER_GIT_COMMAND="git st"
-MAGIC_ENTER_OTHER_COMMAND="x"
-
 zinit ice wait'2' lucid atinit'alias f=fuck'
 zinit light laggardkernel/zsh-thefuck
 
@@ -151,19 +151,6 @@ zinit light zdharma/zsh-diff-so-fancy
 
 zinit ice wait'2' lucid as"completion"
 zinit light nilsonholger/osx-zsh-completions
-
-# some nice OMZ functions: take, alias, try_alias_value, omz_urlencode, omz_urldecode
-zinit ice wait'4' lucid
-zinit snippet OMZ::lib/functions.zsh
-
-zinit ice wait'4' lucid
-zinit snippet OMZ::plugins/web-search/web-search.plugin.zsh
-
-zinit ice wait'4' lucid
-zinit light paulirish/git-open
-
-zinit ice wait'4' lucid
-zinit light peterhurford/git-it-on.zsh
 
 zinit ice wait'2' lucid
 zinit light mellbourn/zabb
@@ -195,6 +182,19 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 #zstyle ':autocomplete:tab:*' fzf-completion yes
 # this doesn't really repair ctrl-space
 #bindkey $key[ControlSpace] set-mark-command
+
+# some nice OMZ functions: take, alias, try_alias_value, omz_urlencode, omz_urldecode
+zinit ice wait'4' lucid
+zinit snippet OMZ::lib/functions.zsh
+
+zinit ice wait'4' lucid
+zinit snippet OMZ::plugins/web-search/web-search.plugin.zsh
+
+zinit ice wait'4' lucid
+zinit light paulirish/git-open
+
+zinit ice wait'4' lucid
+zinit light peterhurford/git-it-on.zsh
 
 # exa doesn't download well on WSL
 # zinit ice wait'2' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
