@@ -137,6 +137,11 @@ zinit snippet OMZP::dircycle
 zinit ice wait'1' lucid
 zinit load supercrabtree/k
 
+zinit ice wait'1' lucid
+zinit snippet OMZP::magic-enter
+MAGIC_ENTER_GIT_COMMAND="git st"
+MAGIC_ENTER_OTHER_COMMAND="x"
+
 zinit ice wait'2' lucid atinit'alias f=fuck'
 zinit light laggardkernel/zsh-thefuck
 
