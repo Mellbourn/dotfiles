@@ -34,7 +34,7 @@ export DIRSTACKSIZE=10
 # history
 ###############################################################################
 # replace histignorealldups with histsavenodups to make zsh autosuggestion option match_prev_cmd work
-setopt correct histsavenodups incappendhistory extendedhistory histignorespace histreduceblanks hist_verify
+setopt correct histsavenodups incappendhistory extendedhistory histignorespace histreduceblanks hist_verify hist_fcntl_lock
 
 export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
