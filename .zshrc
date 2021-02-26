@@ -19,8 +19,8 @@ FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH
 ###############################################################################
 source ~/.bash_profile
 
-# allow command line comments
-setopt interactivecomments
+# misc
+setopt interactivecomments long_list_jobs
 
 # word movement should stop on slashes
 export WORDCHARS=$WORDCHARS:s:/:
