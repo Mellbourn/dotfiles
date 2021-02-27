@@ -285,8 +285,8 @@ export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 ###############################################################################
 # make paste safe and fix pasted urls, https://forum.endeavouros.com/t/tip-better-url-pasting-in-zsh/6962
-#
-# The following must be after autosuggestion
+# This is what inverts the text when pasting.
+# The following must be after autosuggestion. It could affect performance?
 ###############################################################################
 autoload -U url-quote-magic bracketed-paste-magic
 zle -N self-insert url-quote-magic
