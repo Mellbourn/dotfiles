@@ -283,6 +283,31 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 # for match_prev_cmd to work, it requires histignorealldups to be removed (which is ok: do histsavenodups instead)
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
+###############################################################################
+# make paste safe and fix pasted urls, https://forum.endeavouros.com/t/tip-better-url-pasting-in-zsh/6962
+#
+# The following must be after autosuggestion
+###############################################################################
+autoload -U url-quote-magic bracketed-paste-magic
+zle -N self-insert url-quote-magic
+zle -N bracketed-paste bracketed-paste-magic
+# Now the fix, setup these two hooks:
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic
+}
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+# and finally, make sure zsh-autosuggestions does not interfere with it:
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
+
+###############################################################################
+# fzf
+###############################################################################
+
 if [ -x "$(command -v fdfind)" ]; then
   # alternate name used on ubuntu/debian
   export FD=fdfind
