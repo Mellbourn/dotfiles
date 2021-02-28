@@ -197,6 +197,7 @@ wemux
 wget
 yadm
 yarn
+z.lua
 zoxide
 zsh
 zsh-autosuggestions
@@ -329,6 +330,7 @@ wget
 wix/brew/applesimutils
 yadm
 yarn
+z.lua
 zoxide
 zsh
 zsh-autosuggestions

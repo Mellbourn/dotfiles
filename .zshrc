@@ -220,7 +220,12 @@ function xl() {
 #zinit ice wait'2' lucid atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
 #zinit light trapd00r/LS_COLORS
 
-if [ -x "$(command -v zoxide)" ]; then
+if [ -d "$HOMEBREW_PREFIX/share/z.lua" ]; then
+  export _ZL_MATCH_MODE=1
+  zinit ice wait'0' lucid atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh'
+  zinit light zdharma/null
+  alias c="z -I"
+elif [ -x "$(command -v zoxide)" ]; then
   export _ZO_MAXAGE=400
   export _ZO_EXCLUDE_DIRS=$HOME
   zinit ice wait'0' lucid atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi'
