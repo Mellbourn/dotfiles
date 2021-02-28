@@ -201,6 +201,8 @@ zbell_duration=300
 zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help)
 zinit ice wait'4' lucid
 zinit snippet OMZP::zbell
+# test reporting time too for heavy operations
+export REPORTTIME=300
 
 # exa doesn't download well on WSL
 # zinit ice wait'2' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
