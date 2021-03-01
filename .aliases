@@ -25,7 +25,6 @@ alias rm_node_modules='$FD -t d -u node_modules -x rm -rf'
 alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
 alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
 alias weather='curl v2.wttr.in'
-alias yb='yadm pull && yadm bootstrap && tput bel && sudo ~/.config/yadm/bootstrap-sudo && yadm push && tput bel'
 alias zmv='noglob zmv'
 
 # suffix aliases for file types: these become "executable"

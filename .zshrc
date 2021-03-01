@@ -470,6 +470,14 @@ if [ -x "$(command -v bat)" ]; then
   alias cat=bat
 fi
 
+if [[ "$(yadm --version)" == "yadm 3"* ]]; then
+  # new
+  alias yb='yadm pull && yadm bootstrap && tput bel && sudo ~/.config/yadm/bootstrap-sudo && yadm push && tput bel'
+else
+  # old
+  alias yb='yadm pull && ~/.config/yadm/bootstrap && tput bel && sudo ~/.config/yadm/bootstrap-sudo && yadm push && tput bel'
+fi
+
 ###############################################################################
 # Suffix aliases - http://zshwiki.org/home/examples/aliassuffix
 ###############################################################################
