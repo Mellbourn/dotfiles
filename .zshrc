@@ -117,7 +117,7 @@ zinit load zsh-users/zsh-completions
 
 zinit ice wait'0' lucid
 zinit snippet OMZP::magic-enter
-MAGIC_ENTER_GIT_COMMAND="git st"
+MAGIC_ENTER_GIT_COMMAND="x"
 MAGIC_ENTER_OTHER_COMMAND="x"
 
 zinit ice wait'1' lucid
