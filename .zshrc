@@ -8,7 +8,7 @@
 #rm ~/.zcompdump ~/.zcompcache
 source ~/.zinit/bin/zinit.zsh
 
-fpath=(~/.zsh-personal-functions .zsh-personal-completions $fpath)
+fpath=(~/.zsh-personal-functions ~/.zsh-personal-completions $fpath)
 autoload -U zmv
 # personal functions in ~/.zsh-personal-functions
 autoload -Uz sysnd

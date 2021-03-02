@@ -1,1 +1,9 @@
-(afplay /System/Library/Sounds/Basso.aiff&)
+echo "initializing"
+
+_sysnd_sound_path="/System/Library/Sounds"
+
+sysnd () {
+    (afplay $_sysnd_sound_path/$1.aiff&)
+}
+
+sysnd "$@"

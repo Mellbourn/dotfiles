@@ -1,0 +1,2 @@
+#compdef sysnd
+_files -W /System/Library/Sounds
