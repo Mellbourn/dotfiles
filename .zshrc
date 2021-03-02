@@ -282,7 +282,8 @@ fi
 if [[ -n $UNAME_LINUX ]]; then
   #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
 
-  zinit ice wait'1' lucid atload"!_zsh_autosuggest_start"
+  zinit ice wait'1' lucid atload"!_zsh_autosuggest_start && ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
+"
   zinit load zsh-users/zsh-autosuggestions
 fi
 
@@ -292,6 +293,7 @@ fi
 
 if [ -f $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
   source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 fi
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 # for match_prev_cmd to work, it requires histignorealldups to be removed (which is ok: do histsavenodups instead)
@@ -315,8 +317,7 @@ pastefinish() {
 }
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
-# and finally, make sure zsh-autosuggestions does not interfere with it:
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
+# n.b. ZSH_AUTOSUGGEST_CLEAR_WIDGETS must also be extended, and that is done in two ways above
 
 ###############################################################################
 # fzf
