@@ -10,6 +10,8 @@ source ~/.zinit/bin/zinit.zsh
 
 fpath=(~/.zsh-personal-functions ~/.zsh-personal-completions $fpath)
 autoload -U zmv
+# personal functions in ~/.zsh-personal-functions
+autoload -Uz y
 
 # helping brew completion is needed if HOMEBREW_PREFIX is not /usr/local
 FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH
@@ -473,14 +475,6 @@ bindkey "^X^L" insert-last-command-output
 if [ -x "$(command -v bat)" ]; then
   # this MUST be run after woefe/git-prompt.zsh
   alias cat=bat
-fi
-
-if [[ "$(yadm --version)" == "yadm 3"* ]]; then
-  # new
-  alias y='yadm pull && yadm bootstrap && sysnd Purr && sudo ~/.config/yadm/bootstrap-sudo && yadm push && sysnd Glass'
-else
-  # old
-  alias y='yadm pull && ~/.config/yadm/bootstrap && sysnd Purr && sudo ~/.config/yadm/bootstrap-sudo && yadm push && sysnd Glass'
 fi
 
 ###############################################################################
