@@ -1,5 +1,5 @@
+#!/usr/bin/env zsh
 sysnd () {
     (afplay /System/Library/Sounds/$1.aiff&)
 }
-
 sysnd "$@"
