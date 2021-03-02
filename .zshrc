@@ -477,10 +477,10 @@ fi
 
 if [[ "$(yadm --version)" == "yadm 3"* ]]; then
   # new
-  alias yb='yadm pull && yadm bootstrap && tput bel && sudo ~/.config/yadm/bootstrap-sudo && yadm push && tput bel'
+  alias y='yadm pull && yadm bootstrap && tput bel && sudo ~/.config/yadm/bootstrap-sudo && yadm push && tput bel'
 else
   # old
-  alias yb='yadm pull && ~/.config/yadm/bootstrap && tput bel && sudo ~/.config/yadm/bootstrap-sudo && yadm push && tput bel'
+  alias y='yadm pull && ~/.config/yadm/bootstrap && tput bel && sudo ~/.config/yadm/bootstrap-sudo && yadm push && tput bel'
 fi
 
 ###############################################################################
