@@ -8,8 +8,10 @@
 #rm ~/.zcompdump ~/.zcompcache
 source ~/.zinit/bin/zinit.zsh
 
-fpath=(~/.zsh-personal-completions $fpath)
+fpath=(~/.zsh-personal-functions .zsh-personal-completions $fpath)
 autoload -U zmv
+# personal functions in ~/.zsh-personal-functions
+autoload -Uz sysnd
 
 # helping brew completion is needed if HOMEBREW_PREFIX is not /usr/local
 FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH
