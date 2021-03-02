@@ -1,9 +1,5 @@
-echo "initializing"
-
-_sysnd_sound_path="/System/Library/Sounds"
-
 sysnd () {
-    (afplay $_sysnd_sound_path/$1.aiff&)
+    (afplay /System/Library/Sounds/$1.aiff&)
 }
 
 sysnd "$@"
