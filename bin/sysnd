@@ -1,2 +1,6 @@
 #!/usr/bin/env zsh
-afplay /System/Library/Sounds/$1.aiff&
+if [ -x "$(command -v afplay)" ]; then
+    afplay /System/Library/Sounds/$1.aiff&
+else
+    tput bel
+fi
