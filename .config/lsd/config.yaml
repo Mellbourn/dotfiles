@@ -12,7 +12,6 @@ classic: false
 blocks:
   - permission
   - user
-  - group
   - size
   - date
   - name
@@ -30,7 +29,7 @@ color:
 # accepts an strftime like string.
 # When "classic" is set, this is set to "date".
 # Possible values: date, relative, +<date_format>
-date: date
+date: "+%F %T"
 
 # == Dereference ==
 # Whether to dereference symbolic links.
@@ -47,7 +46,7 @@ icons:
   # When to use icons.
   # When "classic" is set, this is set to "never".
   # Possible values: always, auto, never
-  when: auto
+  when: never
   # Which icon theme to use.
   # Possible values: fancy, unicode
   theme: fancy
@@ -60,7 +59,7 @@ icons:
 # == Indicators ==
 # Whether to add indicator characters to certain listed files.
 # Possible values: false, true
-indicators: false
+indicators: true
 
 # == Layout ==
 # Which layout to use. "oneline" might be a bit confusing here and should be
@@ -93,7 +92,7 @@ sorting:
   # Whether to group directories together and where.
   # When "classic" is set, this is set to "none".
   # Possible values: first, last, none
-  dir-grouping: none
+  dir-grouping: first
 
 # == No Symlink ==
 # Whether to omit showing symlink targets
