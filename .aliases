@@ -19,6 +19,7 @@ alias grep='grep --color=auto'
 alias l='ls -F '
 alias la='ls -aF '
 alias ll='ls -lF '
+alias ls=lsd
 alias more=less
 alias ping='prettyping --nolegend'
 alias rm_node_modules='$FD -t d -u node_modules -x rm -rf'

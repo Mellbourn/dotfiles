@@ -119,8 +119,8 @@ zinit load zsh-users/zsh-completions
 
 zinit ice wait'0' lucid
 zinit snippet OMZP::magic-enter
-MAGIC_ENTER_GIT_COMMAND="x"
-MAGIC_ENTER_OTHER_COMMAND="x"
+MAGIC_ENTER_GIT_COMMAND="l"
+MAGIC_ENTER_OTHER_COMMAND="l"
 
 zinit ice wait'1' lucid
 zinit load supercrabtree/k
@@ -165,8 +165,8 @@ zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
 # preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-zstyle ':fzf-tab:complete:ls:*' fzf-preview '[ -f "$realpath" ] && bat --color=always $realpath || exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:ls:*' fzf-preview '[ -f "$realpath" ] && bat --color=always $realpath || lsd -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:export:*' fzf-preview 'printenv $word'
 zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'ping -c1 $word'
 # switch group using `,` and `.`
@@ -568,6 +568,7 @@ if [ $(command -v _exa) ]; then
   compdef x='exa'
   compdef xl='exa'
 fi
+compdef lsd=ls
 
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)
