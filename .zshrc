@@ -206,6 +206,9 @@ zinit snippet OMZP::zbell
 # test reporting time too for heavy operations
 export REPORTTIME=300
 
+zinit ice wait'4' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)'
+zinit light hlissner/zsh-autopair
+
 # exa doesn't download well on WSL
 # zinit ice wait'2' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
 # zinit light ogham/exa
