@@ -159,6 +159,7 @@ lastpass-cli
 less
 librsvg
 lnav
+lsd
 ncdu
 nginx
 nodebrew
@@ -287,6 +288,7 @@ lastpass-cli
 less
 librsvg
 lnav
+lsd
 mas
 maven
 mono
