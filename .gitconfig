@@ -34,7 +34,6 @@
 	lo = log --graph
 	ci = commit -v
 	br = branch
-	co = checkout
 	st = status
 	mt = mergetool
 	dt = difftool
