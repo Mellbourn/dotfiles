@@ -153,7 +153,7 @@ fi
 if [ -d "/opt/homebrew/bin" ] ; then
   export HOMEBREW_PREFIX=/opt/homebrew
   # the /usr/local path is hard coded n gpg-agent.conf
-  ln -s $HOMEBREW_PREFIX/bin/pinentry-mac /usr/local/bin/pinentry-mac
+  sudo ln -fs $HOMEBREW_PREFIX/bin/pinentry-mac /usr/local/bin/pinentry-mac
 else
   export HOMEBREW_PREFIX=/usr/local
 fi
@@ -211,7 +211,7 @@ fi
 if ! grep -q "$HOMEBREW_PREFIX/bin/bash" "/etc/shells"; then
    sudo sh -c "echo $HOMEBREW_PREFIX/bin/bash >> /etc/shells"
 fi
-# chsh -s $HOMEBREW_PREFIX/bin/bash $SUDO_USER
+# chsh -s $HOMEBREW_PREFIX/bin/bash $(whoami)
 
 ###############################################################################
 # zsh
@@ -219,7 +219,7 @@ fi
 if ! grep -q "$HOMEBREW_PREFIX/bin/zsh" "/etc/shells"; then
    sudo sh -c "echo $HOMEBREW_PREFIX/bin/zsh >> /etc/shells"
 fi
-chsh -s $HOMEBREW_PREFIX/bin/zsh $SUDO_USER
+sudo chsh -s $HOMEBREW_PREFIX/bin/zsh $(whoami)
 
 sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "This Mac belongs to Klas Mellbourn.\ne-mail: klas@mellbourn.net phone: +46 708 80 00 00\nReward offered for return of this Mac. No questions asked."
 ###############################################################################
