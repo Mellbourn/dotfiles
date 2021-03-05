@@ -1,5 +1,10 @@
 yb() {
     local yadmBootstrap=$([[ "$(yadm --version)" == "yadm 3"* ]] && echo "yadm bootstrap" || echo "~/.config/yadm/bootstrap")
-    sudo -v && yadm pull && eval $yadmBootstrap && sysnd Purr && sudo ~/.config/yadm/bootstrap-sudo && yadm push && sysnd Glass
+    sudo -v && \
+    yadm pull && \
+    eval $yadmBootstrap && \
+    sudo ~/.config/yadm/bootstrap-sudo && \
+    yadm push && \
+    sysnd Glass
 }
 yb "$@"
