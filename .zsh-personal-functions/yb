@@ -3,7 +3,7 @@ yb() {
     sudo -v && \
     yadm pull && \
     eval $yadmBootstrap && \
-    sudo ~/.config/yadm/bootstrap-sudo && \
+    ~/.config/yadm/bootstrap-sudo && \
     yadm push && \
     sysnd Glass
 }
