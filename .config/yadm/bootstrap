@@ -479,11 +479,11 @@ fi ############################################################################
 ###############################################################################
 
 # this seems healthy to do every now and then to make sure zsh completion works
-trash ~/.zcompdump* ~/.zcompcache 2>/tmp/zcomp_delete_error.txt
+trash ~/.zcompdump* ~/.zcompcache 2>/tmp/zcomp_delete_error.txt||true
 
 # TODO: eventually remove this removal
 # remove obsolete folder for .zplugin, since it has been renamed to zinit
-trash ~/.zplugin
+trash ~/.zplugin||true
 
 if ! [ -f ~/.ssh/id_rsa ]; then
   ssh-keygen -t rsa -b 4096 -C "${USER}@$(hostname)" -f ~/.ssh/id_rsa -N ""
@@ -505,7 +505,7 @@ fi
 zsh -ic "zinit self-update; zinit update --all; zinit cclear"
 
 # TODO: eventually remove this removal
-trash ~/.gitconfig.local
+trash ~/.gitconfig.local||true
 
 # set up alternate gitconfig file used to determine local settings
 yadm alt
