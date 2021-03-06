@@ -83,21 +83,25 @@ if [[ $(uname) == 'Darwin' ]]; then
   # brew install --cask homebrew/cask-drivers/logitech-gaming-software
   # brew install --cask homebrew/cask-drivers/logitech-options
 
+  brewSafeUninstall() {
+    if brew list "$@" 2> /dev/null; then
+      brew uninstall "$@"
+    fi
+  }
+
   # remove brews here that were previously installed, to sync between machines
-  set +e
-  brew uninstall --cask eve
-  brew uninstall --cask minikube
-  brew remove minikube
-  brew uninstall reactotron
-  brew uninstall python@2
-  brew uninstall googler
-  brew uninstall zsh-syntax-highlighting
-  brew uninstall --cask flipper
-  brew uninstall --cask font-cascadia-pl
+  brewSafeUninstall --cask eve
+  brewSafeUninstall --cask minikube
+  brewSafeUninstall minikube
+  brewSafeUninstall reactotron
+  brewSafeUninstall python@2
+  brewSafeUninstall googler
+  brewSafeUninstall zsh-syntax-highlighting
+  brewSafeUninstall --cask flipper
+  brewSafeUninstall --cask font-cascadia-pl
   brew uninstall --force zplug
   # this forces you to enter password all the time
   #brew uninstall --cask --force intel-power-gadget
-  set -e
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
