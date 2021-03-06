@@ -50,7 +50,7 @@ if [ -f ~/.local_settings ]; then
 fi
 
 ### environment variables
-export PATH=$PATH:~/bin:$HOMEBREW_PREFIX/sbin
+export PATH=~/bin:$PATH:$HOMEBREW_PREFIX/sbin
 if [ -d "$HOME/.local/bin" ] ; then
   PATH="$HOME/.local/bin:$PATH"
 fi
