@@ -18,6 +18,8 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 
+yadm submodule update --remote code/private/yadm
+
 if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
   # macOS specific installations
