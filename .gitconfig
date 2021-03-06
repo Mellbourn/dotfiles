@@ -27,8 +27,11 @@
 [diff]
     tool = vscode
     colorMoved = default
+    submodule = log
 [merge]
     tool = kdiff3
+[status]
+	submodulesummary = true
 [alias]
 	lol = log --graph --all
 	lo = log --graph
