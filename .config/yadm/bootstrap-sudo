@@ -20,6 +20,7 @@ if [[ `uname` == 'Linux' ]]; then
   if ! [ -x "$(command -v add-apt-repository)" ]; then
     sudo apt install -y software-properties-common
   fi
+  set +e
   # add repo to get newest git
   sudo add-apt-repository -y ppa:git-core/ppa
   # add repo to get newest tmux
@@ -72,6 +73,7 @@ if [[ `uname` == 'Linux' ]]; then
     sudo -H pip install virtualenv virtualenvwrapper
     sudo -H pip3 install thefuck
   fi
+  set -e
 
   sudo apt autoremove --yes
 
@@ -83,7 +85,7 @@ if [[ `uname` == 'Linux' ]]; then
   if ! [ -x "$(command -v git-lfs)" ]; then
     curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
   fi
-  sudo apt install git-lfs
+  sudo apt install git-lfs||true
   if [ -x "$(command -v git-lfs)" ]; then
     git lfs install --skip-smudge
   fi
