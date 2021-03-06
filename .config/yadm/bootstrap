@@ -529,10 +529,11 @@ if [ -z "$DOTFILES_LITE" ]; then
     nodebrew use latest
   fi
 
-  if ! [ -x "$(command -v tldr)" ]; then
+  if [ -x "$(command -v tldr)" ]; then
+    tldr --update
+  else
     yarn global add tldr
   fi
-  tldr --update
 
   ###############################################################################
   # development
