@@ -530,7 +530,7 @@ if [ -z "$DOTFILES_LITE" ]; then
     $HOMEBREW_PREFIX/opt/nodebrew/bin/nodebrew setup_dirs
   fi
   nodebrew selfupdate
-  nodebrew install-binary latest
+  nodebrew install-binary latest||true
   if ! [ -x "$(command -v node)" ]; then
     # if no node is present, definitely use the latest
     nodebrew use latest
