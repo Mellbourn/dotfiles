@@ -546,7 +546,9 @@ if [ -z "$DOTFILES_LITE" ]; then
   # development
   ###############################################################################
   # TODO: remove this when global eslint has been removed everywhere
-  yarn global remove eslint
+  if [ -x "$(command -v eslint)" ]; then
+    yarn global remove eslint
+  fi
 fi
 
 function zsh_performance_measurements() {
