@@ -31,7 +31,7 @@ sudo apt update -y
 sudo apt upgrade -y
 sudo apt install -y git yadm
 yadm clone --recurse-submodules https://github.com/Mellbourn/dotfiles.git
-~/.config/yadm/bootstrap
+yadm bootstrap
 ~/.config/yadm/bootstrap-sudo
 yadm decrypt
 ```
