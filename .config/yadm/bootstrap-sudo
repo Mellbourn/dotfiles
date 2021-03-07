@@ -8,6 +8,9 @@ fi
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
   OS_UBUNTU=1
+  if dpkg -l ubuntu-desktop >/dev/null; then
+    UBUNTU_DESKTOP=1
+  fi
 fi
 
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
@@ -87,8 +90,18 @@ if [[ $(uname) == 'Linux' ]]; then
   fi
 
   if [ -n "$OS_UBUNTU" ]; then
-    cargo install -f hyperfine
-    cargo install exa
+    if [ -n "$UBUNTU_DESKTOP" ]; then
+      wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >/tmp/packages.microsoft.gpg
+      sudo install -o root -g root -m 644 /tmp/packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+      sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+      sudo apt install apt-transport-https
+      sudo apt install code
+      sudo snap install chromium --channel latest/beta
+    fi
+    if [ -x "$(command -v cargo)" ]; then
+      cargo install -f hyperfine
+      cargo install exa
+    fi
   fi
 
   # do some cleanup
@@ -112,18 +125,6 @@ if [[ $(uname) == 'Linux' ]]; then
     chsh -s $(which zsh)
   fi
 
-  if [ -z "$DOTFILES_LITE" ]; then
-    # haskell
-    if ! [ -x "$(command -v stack)" ]; then
-      wget -qO- https://get.haskellstack.org/ | sh
-    fi
-
-    # install nodebrew, node version manager
-    if ! [ -x "$(command -v nodebrew)" ]; then
-      curl -L git.io/nodebrew | perl - setup
-    fi
-  fi
-
   # install fuzzy matcher (^R, Alt-C, ^T, **)
   if [ -x "$(command -v fzf)" ]; then
     pushd ~/.fzf
@@ -135,9 +136,21 @@ if [[ $(uname) == 'Linux' ]]; then
     ~/.fzf/install --completion --key-bindings --no-update-rc
   fi
 
+  if [ -z "$DOTFILES_LITE" ]; then
+    # haskell
+    if ! [ -x "$(command -v stack)" ]; then
+      wget -qO- https://get.haskellstack.org/ | sh || true
+    fi
+
+    # install nodebrew, node version manager
+    if ! [ -x "$(command -v nodebrew)" ]; then
+      curl -L git.io/nodebrew | perl - setup
+    fi
+  fi
+
   # when it is needed, this updates the OS, so it will take a LONG time
   if [ -x "$(command -v do-release-upgrade)" ]; then
-    sudo do-release-upgrade
+    sudo do-release-upgrade || true
   fi
 
   # no more Linux related things to do
