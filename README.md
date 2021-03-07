@@ -12,7 +12,7 @@ I use [yadm](https://github.com/TheLocehiliosan/yadm) to manage my dotfiles.
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &&
 brew install yadm &&
 yadm clone --bootstrap https://github.com/Mellbourn/dotfiles.git &&
-sudo .config/yadm/bootstrap-sudo &&
+.config/yadm/bootstrap-sudo &&
 yadm decrypt
 ```
 
