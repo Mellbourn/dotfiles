@@ -18,7 +18,7 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 
-yadm submodule update --remote .yadm-project
+yadm submodule update --init --recursive --remote
 
 if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
