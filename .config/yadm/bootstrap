@@ -18,6 +18,8 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 
+yadm submodule update --remote code/private/yadm
+
 if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
   # macOS specific installations
@@ -481,6 +483,11 @@ fi ############################################################################
 # this seems healthy to do every now and then to make sure zsh completion works
 trash ~/.zcompdump* ~/.zcompcache 2>/tmp/zcomp_delete_error.txt||true
 
+# if, after yadm 3.0 migration, the old .yadm folder is empty, remove it
+if [ -n "$(find "$HOME/.yadm" -maxdepth 0 -type d -empty 2>/dev/null)" ]; then
+  trash $HOME/.yadm
+fi
+
 # TODO: eventually remove this removal
 # remove obsolete folder for .zplugin, since it has been renamed to zinit
 trash ~/.zplugin||true
@@ -523,7 +530,7 @@ if [ -z "$DOTFILES_LITE" ]; then
     $HOMEBREW_PREFIX/opt/nodebrew/bin/nodebrew setup_dirs
   fi
   nodebrew selfupdate
-  nodebrew install-binary latest
+  nodebrew install-binary latest||true
   if ! [ -x "$(command -v node)" ]; then
     # if no node is present, definitely use the latest
     nodebrew use latest

@@ -30,7 +30,7 @@ Install Ubuntu from windows store, then continue the instructions under the head
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install -y git yadm
-yadm clone https://github.com/Mellbourn/dotfiles.git
+yadm clone --recurse-submodules https://github.com/Mellbourn/dotfiles.git
 ~/.config/yadm/bootstrap
 ~/.config/yadm/bootstrap-sudo
 yadm decrypt

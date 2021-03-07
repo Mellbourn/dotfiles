@@ -2,6 +2,7 @@ yb() {
     local yadmBootstrap=$([[ "$(yadm --version)" == "yadm 3"* ]] && echo "yadm bootstrap" || echo "~/.config/yadm/bootstrap")
     sudo -v && \
     yadm pull && \
+    yadm submodule update --init --recursive && \
     eval $yadmBootstrap && \
     ~/.config/yadm/bootstrap-sudo && \
     yadm push && \

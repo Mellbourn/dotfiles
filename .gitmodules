@@ -1,0 +1,3 @@
+[submodule "code/private/yadm"]
+	path = code/private/yadm
+	url = git@github.com:TheLocehiliosan/yadm.git

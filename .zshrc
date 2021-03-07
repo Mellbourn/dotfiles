@@ -568,7 +568,10 @@ if [ $(command -v _exa) ]; then
   compdef x='exa'
   compdef xl='exa'
 fi
-compdef lsd=ls
+if [ -x "$(command -v lsd)" ]; then
+  alias ls=lsd
+  compdef lsd=ls
+fi
 
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)
