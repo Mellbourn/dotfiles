@@ -583,14 +583,14 @@ npm i -g npm node-gyp
 #npm i -g yarn@berry
 npm rm -g eslint
 npm update -g
-xcode-select --install
+xcode-select --install||true
 # save some disk
 xcrun simctl delete unavailable
 
 # remove itunes from login items. This way it does not open when you plug in an iPhone
-osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2>/tmp/delete_itunes_helper_error.txt
+osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2>/tmp/delete_itunes_helper_error.txt||true
 
-docker system prune -f 2>>/tmp/docker_system_prune.err.txt
+docker system prune -f 2>>/tmp/docker_system_prune.err.txt||true
 
 ###############################################################################
 # Associate filetypes to apps that should open them                           #
@@ -694,7 +694,7 @@ defaults write com.apple.TextEdit RichText -int 0
 # smoother font on low DPI https://code.visualstudio.com/updates/v1_28#_blurriness-on-macos-mojave
 # Apple doesn't intend to support this option https://intellij-support.jetbrains.com/hc/en-us/articles/360016827360-Reporting-font-rendering-problems
 #defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
-defaults delete CGFontRenderingFontSmoothingDisabled
+defaults delete CGFontRenderingFontSmoothingDisabled||true
 
 ###############################################################################
 # Mouse & Trackpad                                                            #
