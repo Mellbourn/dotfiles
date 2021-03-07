@@ -18,6 +18,12 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 
+#pushd $HOME/.yadm-project
+# is this necessary? we're not on master by default
+#git switch master
+# it the --remote flag doesn't work as expected, we need to do this
+#git pull
+#popd
 yadm submodule update --init --recursive --remote
 
 if [[ $(uname) == 'Darwin' ]]; then
@@ -86,7 +92,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   # brew install --cask homebrew/cask-drivers/logitech-options
 
   brewSafeUninstall() {
-    if brew list "$@" 2> /dev/null; then
+    if brew list "$@" 2>/dev/null; then
       brew uninstall "$@"
     fi
   }
@@ -481,7 +487,7 @@ fi ############################################################################
 ###############################################################################
 
 # this seems healthy to do every now and then to make sure zsh completion works
-trash ~/.zcompdump* ~/.zcompcache 2>/tmp/zcomp_delete_error.txt||true
+trash ~/.zcompdump* ~/.zcompcache 2>/tmp/zcomp_delete_error.txt || true
 
 # if, after yadm 3.0 migration, the old .yadm folder is empty, remove it
 if [ -n "$(find "$HOME/.yadm" -maxdepth 0 -type d -empty 2>/dev/null)" ]; then
@@ -490,7 +496,7 @@ fi
 
 # TODO: eventually remove this removal
 # remove obsolete folder for .zplugin, since it has been renamed to zinit
-trash ~/.zplugin||true
+trash ~/.zplugin || true
 
 if ! [ -f ~/.ssh/id_rsa ]; then
   ssh-keygen -t rsa -b 4096 -C "${USER}@$(hostname)" -f ~/.ssh/id_rsa -N ""
@@ -512,7 +518,7 @@ fi
 zsh -ic "zinit self-update; zinit update --all; zinit cclear"
 
 # TODO: eventually remove this removal
-trash ~/.gitconfig.local||true
+trash ~/.gitconfig.local || true
 
 # set up alternate gitconfig file used to determine local settings
 yadm alt
@@ -530,7 +536,7 @@ if [ -z "$DOTFILES_LITE" ]; then
     $HOMEBREW_PREFIX/opt/nodebrew/bin/nodebrew setup_dirs
   fi
   nodebrew selfupdate
-  nodebrew install-binary latest||true
+  nodebrew install-binary latest || true
   if ! [ -x "$(command -v node)" ]; then
     # if no node is present, definitely use the latest
     nodebrew use latest
@@ -583,14 +589,14 @@ npm i -g npm node-gyp
 #npm i -g yarn@berry
 npm rm -g eslint
 npm update -g
-xcode-select --install||true
+xcode-select --install || true
 # save some disk
 xcrun simctl delete unavailable
 
 # remove itunes from login items. This way it does not open when you plug in an iPhone
-osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2>/tmp/delete_itunes_helper_error.txt||true
+osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2>/tmp/delete_itunes_helper_error.txt || true
 
-docker system prune -f 2>>/tmp/docker_system_prune.err.txt||true
+docker system prune -f 2>>/tmp/docker_system_prune.err.txt || true
 
 ###############################################################################
 # Associate filetypes to apps that should open them                           #
@@ -694,7 +700,7 @@ defaults write com.apple.TextEdit RichText -int 0
 # smoother font on low DPI https://code.visualstudio.com/updates/v1_28#_blurriness-on-macos-mojave
 # Apple doesn't intend to support this option https://intellij-support.jetbrains.com/hc/en-us/articles/360016827360-Reporting-font-rendering-problems
 #defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
-defaults delete CGFontRenderingFontSmoothingDisabled||true
+defaults delete CGFontRenderingFontSmoothingDisabled || true
 
 ###############################################################################
 # Mouse & Trackpad                                                            #
