@@ -515,7 +515,9 @@ if [ ! -d ~/.zinit ]; then
   chmod go-w ~/.zinit # to avoid insecure directories complaint
   git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 fi
-zsh -ic "zinit self-update; zinit update --all; zinit cclear"
+if [ -x "$(command -v zsh)" ]; then
+  zsh -ic "zinit self-update; zinit update --all; zinit cclear"
+fi
 
 # TODO: eventually remove this removal
 trash ~/.gitconfig.local || true
@@ -535,16 +537,18 @@ if [ -z "$DOTFILES_LITE" ]; then
   if [ -x "$(command -v $HOMEBREW_PREFIX/opt/nodebrew/bin/nodebrew)" ]; then
     $HOMEBREW_PREFIX/opt/nodebrew/bin/nodebrew setup_dirs
   fi
-  nodebrew selfupdate
-  nodebrew install-binary latest || true
-  if ! [ -x "$(command -v node)" ]; then
-    # if no node is present, definitely use the latest
-    nodebrew use latest
+  if [ -x "$(command -v nodebrew)" ]; then
+    nodebrew selfupdate
+    nodebrew install-binary latest || true
+    if ! [ -x "$(command -v node)" ]; then
+      # if no node is present, definitely use the latest
+      nodebrew use latest
+    fi
   fi
 
   if [ -x "$(command -v tldr)" ]; then
     tldr --update
-  else
+  elif [ -x "$(command -v yarn)" ]; then
     yarn global add tldr
   fi
 
@@ -567,7 +571,9 @@ function zsh_performance_measurements() {
 if [[ $(uname) == 'Linux' ]]; then
 
   # do some cleanup
-  trash-empty 30
+  if [ -x "$(command -v trash-empty)" ]; then
+    trash-empty 30
+  fi
   # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
   ~/bin/trash-empty-wsl +30
 
