@@ -30,6 +30,8 @@ Install Ubuntu from windows store, then continue the instructions under the head
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install -y git yadm
+ssh-keygen -t ed25519 -C "klas@mellbourn.net"
+<add ssh key to github>
 yadm clone --recurse-submodules https://github.com/Mellbourn/dotfiles.git
 yadm bootstrap
 ~/.config/yadm/bootstrap-sudo
