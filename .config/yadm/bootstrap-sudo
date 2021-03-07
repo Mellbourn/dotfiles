@@ -2,12 +2,11 @@
 
 set -e
 
-if grep -q Raspbian /etc/os-release 2> /dev/null
-then
+if grep -q Raspbian /etc/os-release 2>/dev/null; then
   DOTFILES_LITE=1
 fi
 
-if [ -x "$(command -v lsb_release)" ] && [[ `lsb_release -si` == 'Ubuntu' ]]; then
+if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
   OS_UBUNTU=1
 fi
 
@@ -16,7 +15,7 @@ export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 ###############################################################################
 # Linux (and Windows Subsystem for Linux)                                     #
 ###############################################################################
-if [[ `uname` == 'Linux' ]]; then
+if [[ $(uname) == 'Linux' ]]; then
   if ! [ -x "$(command -v add-apt-repository)" ]; then
     sudo apt install -y software-properties-common
   fi
@@ -50,23 +49,20 @@ if [[ `uname` == 'Linux' ]]; then
     lnav
     tmpreaper
   "
-  for app in $apps
-  do
-    if ! dpkg-query -l $app > /dev/null
-    then
+  for app in $apps; do
+    if ! dpkg-query -l $app >/dev/null; then
       sudo apt install -y $app
     fi
   done
 
-  if [ -z "$DOTFILES_LITE" ]
-  then
+  if [ -z "$DOTFILES_LITE" ]; then
     sudo apt install -y \
       direnv \
       build-essential \
       python-pip \
       python3-pip \
       cargo \
-      fortune-mod \
+      fortune-mod
 
     sudo -H pip install --upgrade pip
     sudo -H pip3 install --upgrade pip
@@ -85,7 +81,7 @@ if [[ `uname` == 'Linux' ]]; then
   if ! [ -x "$(command -v git-lfs)" ]; then
     curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
   fi
-  sudo apt install git-lfs||true
+  sudo apt install git-lfs || true
   if [ -x "$(command -v git-lfs)" ]; then
     git lfs install --skip-smudge
   fi
@@ -112,13 +108,11 @@ if [[ `uname` == 'Linux' ]]; then
     popd
   fi
 
-  if  [[ $SHELLNAME != zsh ]];
-  then
+  if [[ $SHELLNAME != zsh ]]; then
     chsh -s $(which zsh)
   fi
 
-  if [ -z "$DOTFILES_LITE" ]
-  then
+  if [ -z "$DOTFILES_LITE" ]; then
     # haskell
     if ! [ -x "$(command -v stack)" ]; then
       wget -qO- https://get.haskellstack.org/ | sh
@@ -152,7 +146,7 @@ fi
 ###############################################################################
 # macOS
 ###############################################################################
-if [ -d "/opt/homebrew/bin" ] ; then
+if [ -d "/opt/homebrew/bin" ]; then
   export HOMEBREW_PREFIX=/opt/homebrew
   # the /usr/local path is hard coded n gpg-agent.conf
   sudo ln -fs $HOMEBREW_PREFIX/bin/pinentry-mac /usr/local/bin/pinentry-mac
@@ -211,7 +205,7 @@ fi
 # bash4
 ###############################################################################
 if ! grep -q "$HOMEBREW_PREFIX/bin/bash" "/etc/shells"; then
-   sudo sh -c "echo $HOMEBREW_PREFIX/bin/bash >> /etc/shells"
+  sudo sh -c "echo $HOMEBREW_PREFIX/bin/bash >> /etc/shells"
 fi
 # chsh -s $HOMEBREW_PREFIX/bin/bash $(whoami)
 
@@ -219,7 +213,7 @@ fi
 # zsh
 ###############################################################################
 if ! grep -q "$HOMEBREW_PREFIX/bin/zsh" "/etc/shells"; then
-   sudo sh -c "echo $HOMEBREW_PREFIX/bin/zsh >> /etc/shells"
+  sudo sh -c "echo $HOMEBREW_PREFIX/bin/zsh >> /etc/shells"
 fi
 sudo chsh -s $HOMEBREW_PREFIX/bin/zsh $(whoami)
 
