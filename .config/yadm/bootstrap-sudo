@@ -121,8 +121,8 @@ if [[ $(uname) == 'Linux' ]]; then
     popd
   fi
 
-  if [[ $SHELLNAME != zsh ]]; then
-    chsh -s $(which zsh)
+  if ! grep -q "$USR:.*zsh" /etc/passwd; then
+    sudo chsh -s $(which zsh) $(whoami)
   fi
 
   # install fuzzy matcher (^R, Alt-C, ^T, **)
