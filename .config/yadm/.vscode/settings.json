@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "Cascadia Code PL, Fira Code, JetBrains Mono, Menlo",
+  "editor.fontFamily": "Cascadia Code PL, Fira Code, JetBrains Mono, Menlo, monospace",
   "editor.fontWeight": "400",
   "files.exclude": {
     "repo.git": true,
