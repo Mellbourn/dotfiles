@@ -93,6 +93,10 @@ if [[ $(uname) == 'Linux' ]]; then
     if [ -n "$UBUNTU_DESKTOP" ]; then
       # dark mode
       gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+      # auto hide dock
+      gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+      gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
+      gsettings set org.gnome.shell.extensions.dash-to-dock intellihide-mode 'ALL_WINDOWS'
 
       # install vscode
       wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >/tmp/packages.microsoft.gpg
