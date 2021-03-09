@@ -1,6 +1,12 @@
 #!/usr/bin/env zsh
 if [ -x "$(command -v afplay)" ]; then
-    afplay /System/Library/Sounds/$1.aiff&
+    local soundFolder=/System/Library/Sounds
+    local soundFile=$soundFolder/$1.aiff
+    if [ -f $soundFile ]; then
+        afplay $soundFile &
+    else
+        afplay $soundFolder/Blow.aiff &
+    fi
 else
     tput bel
 fi
