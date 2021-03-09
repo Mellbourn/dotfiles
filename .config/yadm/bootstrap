@@ -450,10 +450,12 @@ zoom
     rvm install ruby-2.4.1
     LATEST_STABLE_RUBY_VERSION=$(rvm list known | grep "\[ruby-\]" | grep -v "preview" | tail -1 | sed 's/\[ruby-\]\([0-9]*\.[0-9]\)*\[.*\]/\1/g')
     rvm install ruby-$LATEST_STABLE_RUBY_VERSION
+    set +e
     source ~/.rvm/scripts/rvm
     #rvm --default use ruby-$LATEST_STABLE_RUBY_VERSION
     # v2.4.1 required by dev environment
     rvm --default use ruby-2.4.1
+    set -e
 
     # pip no longer installable from pip3? not needed?
     #pip3 install --upgrade pip setuptools
@@ -465,10 +467,12 @@ zoom
 
   if [ -d ~/.tmux/plugins ]; then
     for plugin in ~/.tmux/plugins/*; do
+      set +e
       pushd $plugin
       git pull
       git submodule update --init --recursive
       popd
+      set -e
     done
   fi
 
