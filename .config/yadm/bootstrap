@@ -66,6 +66,9 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   # upgrade all
   mas upgrade
+
+  xcode-select --install || true
+
   ###############################################################################
   # Homebrew                                                                    #
   ###############################################################################
@@ -595,7 +598,6 @@ npm i -g npm node-gyp
 #npm i -g yarn@berry
 npm rm -g eslint
 npm update -g
-xcode-select --install || true
 # save some disk
 xcrun simctl delete unavailable
 
