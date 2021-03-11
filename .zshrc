@@ -199,7 +199,7 @@ zinit ice wait'4' lucid
 zinit light peterhurford/git-it-on.zsh
 
 # set up a bell after command that run longer than this many seconds
-zbell_duration=300
+zbell_duration=180
 zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help)
 zinit ice wait'4' lucid
 zinit snippet OMZP::zbell
