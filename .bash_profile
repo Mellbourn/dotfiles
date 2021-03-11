@@ -8,24 +8,22 @@
 
 export PROCESSOR_ARCHITECTURE=$(uname -p)
 
-if [[ `uname` == 'Linux' ]]
-then
+if [[ $(uname) == 'Linux' ]]; then
   export UNAME_LINUX=1
 fi
 
-if [ -x "$(command -v lsb_release)" ] && [[ `lsb_release -si` == 'Ubuntu' ]]; then
+if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
   OS_UBUNTU=1
 fi
 
-if grep -q Raspbian /etc/os-release 2> /dev/null
-then
+if grep -q Raspbian /etc/os-release 2>/dev/null; then
   export DOTFILES_LITE=1
 fi
 
 if [ -n "$SHELL" ]; then
-  export SHELLNAME=`echo $SHELL|sed 's#.*/##'`
+  export SHELLNAME=$(echo $SHELL | sed 's#.*/##')
 else
-  export SHELLNAME=`ps -o comm= -c "$$"|sed 's/-//'`
+  export SHELLNAME=$(ps -o comm= -c "$$" | sed 's/-//')
 fi
 
 if [ -f ~/.profile ]; then
@@ -42,7 +40,7 @@ if [ -f ~/.protocol ]; then
 fi
 
 if [ -f ~/.bashrc ]; then
-   source ~/.bashrc
+  source ~/.bashrc
 fi
 
 if [ -f ~/.local_settings ]; then
@@ -51,7 +49,7 @@ fi
 
 ### environment variables
 export PATH=~/bin:$PATH:$HOMEBREW_PREFIX/sbin
-if [ -d "$HOME/.local/bin" ] ; then
+if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
 if [ -d $HOMEBREW_PREFIX/opt/awscli@1/bin ]; then
@@ -103,16 +101,15 @@ fi
 export HOST_IP=$HOST_IP
 set -o emacs
 
-function current_context {
-   osascript -e 'tell application "ControlPlane"' -e 'get current context' -e 'end tell'
+function current_context() {
+  osascript -e 'tell application "ControlPlane"' -e 'get current context' -e 'end tell'
 }
 
 if [[ $BASH_VERSINFO == 4 ]]; then
   # bash shell options
   shopt -s autocd globstar
 fi
-if  [[ $SHELL == *bash ]];
-then
+if [[ $SHELL == *bash ]]; then
   ### prompt
   if [ -x "$(command -v brew)" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
