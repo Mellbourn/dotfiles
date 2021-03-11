@@ -31,8 +31,11 @@ if [ -f ~/.profile ]; then
 fi
 
 # only start tmux if you are not already in tmux, or you are starting up Visual Studio Code from spotlight
-if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &> /dev/null && [ -z "$VSCODE_PID" ]; then
+if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &>/dev/null && [ -z "$VSCODE_PID" ]; then
+  # use this "if" to suppress tmux in vscode
+  #if [ -z "$VSCODE_WORKSPACE_FOLDER" ]; then
   exec ~/bin/tmux-attach-or-new
+  #fi
 fi
 
 if [ -f ~/.protocol ]; then
