@@ -104,6 +104,12 @@ if [[ $(uname) == 'Linux' ]]; then
       gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
       gsettings set org.gnome.shell.extensions.dash-to-dock intellihide-mode 'ALL_WINDOWS'
 
+      sudo apt install -y curl
+
+      # ssh
+      sudo apt install -y ssh
+      sudo systemctl enable --now ssh
+
       # install vscode
       wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >/tmp/packages.microsoft.gpg
       sudo install -o root -g root -m 644 /tmp/packages.microsoft.gpg /etc/apt/trusted.gpg.d/
