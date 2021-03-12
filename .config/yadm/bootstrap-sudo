@@ -93,6 +93,11 @@ if [[ $(uname) == 'Linux' ]]; then
     if [ -n "$UBUNTU_DESKTOP" ]; then
       # dark mode
       gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+      # no background picture (default was 'zoom')
+      gsettings set org.gnome.desktop.background picture-options 'none'
+      # black Background (default was '#023c88')
+      gsettings set org.gnome.desktop.background primary-color '#000000'
+
       # auto hide dock
       gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
       gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
