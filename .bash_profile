@@ -8,6 +8,13 @@
 
 export PROCESSOR_ARCHITECTURE=$(uname -p)
 
+if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
+  export OS_UBUNTU=1
+  if dpkg -l ubuntu-desktop >/dev/null; then
+    export UBUNTU_DESKTOP=1
+  fi
+fi
+
 if [[ $(uname) == 'Linux' ]]; then
   export UNAME_LINUX=1
 fi

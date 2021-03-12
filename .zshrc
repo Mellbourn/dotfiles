@@ -307,20 +307,22 @@ export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 # This is what inverts the text when pasting. Is it really needed, I can't provoke the "unsafe" behaviour.
 # The following must be after autosuggestion. It could affect performance?
 ###############################################################################
-autoload -U url-quote-magic bracketed-paste-magic
-zle -N self-insert url-quote-magic
-zle -N bracketed-paste bracketed-paste-magic
-# Now the fix, setup these two hooks:
-pasteinit() {
-  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+if [ -z "$UBUNTU_DESKTOP" ]; then
+  autoload -U url-quote-magic bracketed-paste-magic
   zle -N self-insert url-quote-magic
-}
-pastefinish() {
-  zle -N self-insert $OLD_SELF_INSERT
-}
-zstyle :bracketed-paste-magic paste-init pasteinit
-zstyle :bracketed-paste-magic paste-finish pastefinish
-# n.b. ZSH_AUTOSUGGEST_CLEAR_WIDGETS must also be extended, and that is done in two ways above
+  zle -N bracketed-paste bracketed-paste-magic
+  # Now the fix, setup these two hooks:
+  pasteinit() {
+    OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+    zle -N self-insert url-quote-magic
+  }
+  pastefinish() {
+    zle -N self-insert $OLD_SELF_INSERT
+  }
+  zstyle :bracketed-paste-magic paste-init pasteinit
+  zstyle :bracketed-paste-magic paste-finish pastefinish
+  # n.b. ZSH_AUTOSUGGEST_CLEAR_WIDGETS must also be extended, and that is done in two ways above
+fi
 
 ###############################################################################
 # fzf
