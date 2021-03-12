@@ -46,7 +46,7 @@ icons:
   # When to use icons.
   # When "classic" is set, this is set to "never".
   # Possible values: always, auto, never
-  when: never
+  when: auto
   # Which icon theme to use.
   # Possible values: fancy, unicode
   theme: fancy

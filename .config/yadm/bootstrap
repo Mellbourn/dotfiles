@@ -431,6 +431,15 @@ zoom
 
   echo will cite | parallel --citation >/dev/null 2>&1
 
+  # fonts
+  pushd ~/Library/Fonts > /dev/null
+  curl -sL github.com/adam7/delugia-code/releases/latest \
+    | grep "Delugia.Nerd.Font.Complete.ttf\"" \
+    | head -1 \
+    | awk -F "\"" '{print "https://github.com" $2}' \
+    | wget --show-progress -qNi -
+  popd /dev/null
+
   # set up wemux user name
   sed -i -- "s/host_list=(brew)/host_list=($USER)/" $HOMEBREW_PREFIX/etc/wemux.conf
   sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
