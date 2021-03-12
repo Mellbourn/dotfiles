@@ -90,6 +90,7 @@ if [[ $(uname) == 'Linux' ]]; then
   fi
 
   if [ -n "$OS_UBUNTU" ]; then
+    sudo snap install http --channel latest/candidate
     if [ -n "$UBUNTU_DESKTOP" ]; then
       # dark mode
       gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
