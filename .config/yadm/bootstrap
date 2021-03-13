@@ -125,7 +125,7 @@ if [[ $(uname) == 'Darwin' ]]; then
     # shellcheck (cabal-install)
     # maybe hadolint (cabal-install) although I should probably use a vs code plugin like shell-format instead
     # wix/brew/applesimutils (not ready yet?)
-    # when cargo works, cargo install viu https://github.com/atanunq/viu
+    # when cargo works, cargo install viu https://github.com/atanunq/viu, and maybe rpick
     apps="
 asciinema
 aws-sam-cli
