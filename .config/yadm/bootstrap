@@ -127,6 +127,7 @@ if [[ $(uname) == 'Darwin' ]]; then
     # maybe hadolint (cabal-install) although I should probably use a vs code plugin like shell-format instead
     # wix/brew/applesimutils (not ready yet?)
     apps="
+asciinema
 aws-sam-cli
 awscli@1
 bash
@@ -257,6 +258,7 @@ witch
 
   # this must be in alphabetical order!
   apps="
+asciinema
 aws-sam-cli
 awscli@1
 bash
