@@ -441,6 +441,7 @@ zoom
 
   # fonts
   pushd ~/Library/Fonts >/dev/null
+  # Delugia Nerd Font is Cascadia with Nerd and frequently updated, unfortunately it is buggy (too small or high icons)
   curl -sL github.com/adam7/delugia-code/releases/latest |
     grep "Delugia.Nerd.Font.Complete.ttf\"" |
     head -1 |
