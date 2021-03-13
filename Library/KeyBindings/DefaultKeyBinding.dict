@@ -1,4 +1,11 @@
+/*
+
+Disable option-space so that I don't write unusable commands any more
+Stop the bell of ctl-cmd-arrows
+
+*/
 {
+  "~ " = ("insertText:", " ");
   "^@\UF701" = "noop";
   "^@\UF702" = "noop";
   "^@\UF703" = "noop";
