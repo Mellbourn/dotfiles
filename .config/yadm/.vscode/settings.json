@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "Cascadia Code PL, Delugia Nerd Font, Fira Code, JetBrains Mono, JetBrainsMono Nerd Font, Menlo, monospace",
+  "editor.fontFamily": "Cascadia Code PL, CaskaydiaCove Nerd Font, Delugia Nerd Font, JetBrains Mono, JetBrainsMono Nerd Font, Fira Code, Menlo, monospace",
   "editor.fontWeight": "400",
   "files.exclude": {
     "repo.git": true,

@@ -232,6 +232,7 @@ zsh-autosuggestions
     casks="
 bartender
 font-cascadia-code-pl
+font-caskaydia-cove-nerd-font
 font-fira-code
 font-jetbrains-mono
 font-jetbrains-mono-nerd-font
@@ -383,6 +384,7 @@ discord
 docker
 firefox
 font-cascadia-code-pl
+font-caskaydia-cove-nerd-font
 font-fira-code
 font-jetbrains-mono
 font-jetbrains-mono-nerd-font
