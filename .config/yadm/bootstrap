@@ -232,6 +232,7 @@ bartender
 font-cascadia-code-pl
 font-fira-code
 font-jetbrains-mono
+font-jetbrains-mono-nerd-font
 google-chrome-beta
 istat-menus
 iterm2
@@ -380,6 +381,7 @@ firefox
 font-cascadia-code-pl
 font-fira-code
 font-jetbrains-mono
+font-jetbrains-mono-nerd-font
 fork
 google-backup-and-sync
 google-chrome-beta
