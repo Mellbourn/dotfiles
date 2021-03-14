@@ -4,8 +4,13 @@ yb() {
     yadm pull &&
     yadm submodule update --init --recursive &&
     eval $yadmBootstrap &&
-    ~/.config/yadm/bootstrap-sudo &&
-    yadm push &&
-    sysnd Glass
+    ~/.config/yadm/bootstrap-sudo
+    local exit_status=$?
+    if (( exit_status == 0 )); then
+        yadm push
+        sysnd Glass
+    else
+        sysnd Bottle
+    fi
 }
 yb "$@"
