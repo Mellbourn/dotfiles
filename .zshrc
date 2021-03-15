@@ -22,21 +22,21 @@ FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH
 source ~/.bash_profile
 
 # misc
-setopt interactivecomments long_list_jobs extendedglob
+setopt interactive_comments long_list_jobs extendedglob notify list_packed
 
 # word movement should stop on slashes
 export WORDCHARS=$WORDCHARS:s:/:
 ###############################################################################
 # directory navigation options
 ###############################################################################
-setopt autocd autopushd pushdignoredups globcomplete
+setopt auto_cd auto_pushd pushd_ignore_dups glob_complete numeric_glob_sort
 export DIRSTACKSIZE=10
 
 ###############################################################################
 # history
 ###############################################################################
 # replace histignorealldups with histsavenodups to make zsh autosuggestion option match_prev_cmd work
-setopt correct histsavenodups incappendhistory extendedhistory histignorespace histreduceblanks hist_verify hist_fcntl_lock
+setopt correct hist_save_no_dups inc_append_history extended_history hist_ignore_space hist_reduce_blanks hist_verify hist_fcntl_lock
 
 export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
