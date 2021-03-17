@@ -56,6 +56,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   # Xcode
   mas install 497799835
   mas lucky "Copy 'Em (Clipboard Manager)" # (2.9.0) 876540291
+  mas lucky "Dark Reader for Safari" # (1.4.3) 1438243180
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     # these still require rosetta afaik
     mas lucky "John's Background Switcher" # 907640277
