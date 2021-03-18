@@ -24,7 +24,9 @@ export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 # it the --remote flag doesn't work as expected, we need to do this
 #git pull
 #popd
+pushd ~ > /dev/null
 yadm submodule update --init --recursive --remote
+popd > /dev/null
 
 if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
