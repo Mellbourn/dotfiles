@@ -63,6 +63,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   mas lucky "CloseTabs Extension"          # (2.0) 1508584686
   mas lucky "Dark Reader for Safari"       # (1.4.3) 1438243180
   mas lucky "Grammarly for Safari "        # (9.29) 1462114288
+  mas lucky "Popcorn for Safari"           # (1.3) 1535719670
 
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     # these still require rosetta afaik
