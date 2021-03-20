@@ -406,7 +406,7 @@ fi
 PROMPT="%K{${prompt_hashcolor}}%F%${width_part}<…<%4~%(?..%{$bg[red]%} %?$(tput bel))%(1j.%{$bg[cyan]%} %j.)%k%F{${prompt_hashcolor}}${prompt_ending}%f "
 exit_part='${exit_status}'
 git_part='$(gitprompt)'
-RPROMPT="%(?..%{$fg[red]%}${exit_part}) %f${git_part}%F{021}${UNUSUAL_NAME}%F{033}${UNUSUAL_HOSTNAME}%f"
+RPROMPT="%(?..%{$fg[red]%}${exit_part})%(?.. )%f${git_part}%F{021}${UNUSUAL_NAME}%F{033}${UNUSUAL_HOSTNAME}%f"
 
 ###############################################################################
 # fun functions
