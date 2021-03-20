@@ -5,6 +5,7 @@ alias d='dirs -v | head -10'
 
 #personal
 alias cliplast='fc -ln|tail -1|pbcopy'
+alias cp='cp -v'
 alias cr='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
 alias dkill='docker stop $(docker ps -a -q)'
 alias drm='docker rm $(docker ps -a -q)'
@@ -21,6 +22,7 @@ alias l='ls -F '
 alias la='ls -AF '
 alias ll='ls -lF '
 alias more=less
+alias mv='mv -v'
 alias ping='prettyping --nolegend'
 alias rm_node_modules='$FD -t d -u node_modules -x rm -rf'
 alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
