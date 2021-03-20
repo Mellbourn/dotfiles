@@ -9,7 +9,7 @@
     side-by-side = true
     line-numbers = false
     file-style = bold "#eee8aa" # pale golden rod
-    file-decoration-style = ol "#b8860b" # dark orange
+    file-decoration-style = ol "#4B0082" # Indigo
     hunk-header-line-number-style = "#4169e1" # royal blue
     hunk-header-decoration-style = ol "#000080" # navy
     commit-decoration-style = bold "#00fa9a" box ul # medium spring green
