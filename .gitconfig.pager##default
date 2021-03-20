@@ -8,8 +8,8 @@
     tabs = 2
     side-by-side = true
     line-numbers = false
-    file-style = bold "#eee8aa" # pale golden rod
-    file-decoration-style = ol "#eee8aa"
+    file-style = bold "#ff8c00" # dark golden rod
+    file-decoration-style = ol "#b8860b" # dark orange
     hunk-header-line-number-style = "#4169e1" # royal blue
     hunk-header-decoration-style = ol "#000080" # navy
     commit-decoration-style = bold "#00fa9a" box ul # medium spring green
