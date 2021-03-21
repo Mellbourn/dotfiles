@@ -111,58 +111,43 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 ###############################################################################
 # zinit - zsh plugin manager
 ###############################################################################
-zinit ice atload'!_zsh_git_prompt_precmd_hook' lucid
-zinit load woefe/git-prompt.zsh
+zinit atload'!_zsh_git_prompt_precmd_hook' lucid for woefe/git-prompt.zsh
 
-zinit ice wait'0a' lucid blockf
-zinit load zsh-users/zsh-completions
+zinit wait'0a' lucid blockf for zsh-users/zsh-completions
 
-zinit ice wait'0' lucid
-zinit snippet OMZP::magic-enter
+zinit wait'0' lucid for OMZP::magic-enter
 MAGIC_ENTER_GIT_COMMAND="l"
 MAGIC_ENTER_OTHER_COMMAND="l"
 
-zinit ice wait'1' lucid
-zinit load supercrabtree/k
+zinit wait'1' lucid for load supercrabtree/k
 
-zinit ice wait'1' atload"zpcdreplay" atclone'./zplug.zsh' lucid
-zinit load g-plane/zsh-yarn-autocompletions
+zinit wait'1' atload"zpcdreplay" atclone'./zplug.zsh' lucid for g-plane/zsh-yarn-autocompletions
 
-zinit ice wait'2' lucid
-zinit light "cedi/meaningful-error-codes"
+zinit wait'2' lucid light-mode for "cedi/meaningful-error-codes"
 
-zinit ice wait'2' lucid if'[[ -x "$(command -v fzf)" ]]'
-zinit load wfxr/forgit
+zinit wait'2' lucid if'[[ -x "$(command -v fzf)" ]]' for wfxr/forgit
 
-zinit ice wait'2' lucid
-zinit snippet OMZP::colored-man-pages
+zinit wait'2' lucid for OMZP::colored-man-pages
 
 # command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
-#zinit ice wait'4' lucid atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"'
-#zinit light zdharma/null
+#zinit wait'4' lucid atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma/null
 
-zinit ice wait'2' lucid
-zinit load djui/alias-tips
+zinit wait'2' lucid for djui/alias-tips
 
-zinit ice wait'2' lucid
-zinit snippet OMZP::dircycle
+zinit wait'2' lucid for OMZP::dircycle
 
-zinit ice wait'2' lucid atinit'alias f=fuck'
-zinit light laggardkernel/zsh-thefuck
+zinit wait'2' lucid atinit'alias f=fuck' light-mode for laggardkernel/zsh-thefuck
 
 # load diff-so-fancy if not already present (it can have been installed by homebrew)
-zinit ice wait'2' lucid as"program" pick"bin/git-dsf" if'[[ ! -x "$(command -v diff-so-fancy)" ]]'
-zinit light zdharma/zsh-diff-so-fancy
+zinit wait'2' lucid as"program" pick"bin/git-dsf" if'[[ ! -x "$(command -v diff-so-fancy)" ]]' light-mode for \
+  zdharma/zsh-diff-so-fancy
 
-zinit ice wait'2' lucid as"completion"
-zinit light nilsonholger/osx-zsh-completions
+zinit wait'2' lucid as"completion" light-mode for nilsonholger/osx-zsh-completions
 
-zinit ice wait'2' lucid
-zinit light mellbourn/zabb
+zinit wait'2' lucid light-mode for mellbourn/zabb
 
 # fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
-zinit ice wait'2' lucid
-zinit load Aloxaf/fzf-tab
+zinit wait'2' lucid for Aloxaf/fzf-tab
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
@@ -176,8 +161,7 @@ zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'ping -c1 $word'
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # this was cool but a bit too slow - adds blank lines after ls after a while
-#zinit ice wait'2' lucid
-#zinit light marlonrichert/zsh-autocomplete
+#zinit wait'2' lucid light-mode for marlonrichert/zsh-autocomplete
 #zstyle ':autocomplete:*' config off
 #zstyle ':autocomplete:*' min-input 2
 ##zstyle ':autocomplete:*' min-delay 0.4
@@ -189,32 +173,25 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 #bindkey $key[ControlSpace] set-mark-command
 
 # some nice OMZ functions: take, alias, try_alias_value, omz_urlencode, omz_urldecode
-zinit ice wait'4' lucid
-zinit snippet OMZ::lib/functions.zsh
+zinit wait'4' lucid for OMZ::lib/functions.zsh
 
-zinit ice wait'4' lucid
-zinit snippet OMZ::plugins/web-search/web-search.plugin.zsh
+zinit wait'4' lucid for OMZ::plugins/web-search/web-search.plugin.zsh
 
-zinit ice wait'4' lucid
-zinit light paulirish/git-open
+zinit wait'4' lucid light-mode for paulirish/git-open
 
-zinit ice wait'4' lucid
-zinit light peterhurford/git-it-on.zsh
+zinit wait'4' lucid light-mode for peterhurford/git-it-on.zsh
 
 # set up a bell after command that run longer than this many seconds
 zbell_duration=180
 zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help)
-zinit ice wait'4' lucid
-zinit snippet OMZP::zbell
+zinit wait'4' lucid for OMZP::zbell
 # test reporting time too for heavy operations
 export REPORTTIME=300
 
-zinit ice wait'4' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)'
-zinit light hlissner/zsh-autopair
+zinit wait'4' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' light-mode for hlissner/zsh-autopair
 
 # exa doesn't download well on WSL
-# zinit ice wait'2' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa"
-# zinit light ogham/exa
+# zinit wait'2' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa" light-mode for ogham/exa
 export TIME_STYLE=long-iso
 export EXA_COLORS="uu=38;5;248:da=1;34:di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 if [ -x "$(command -v exa)" ]; then
@@ -230,23 +207,20 @@ else
 fi
 
 # give extra color to exa
-#zinit ice wait'2' lucid atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
-#zinit light trapd00r/LS_COLORS
+#zinit wait'2' lucid atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!' light-mode for trapd00r/LS_COLORS
 
 if [ -d "$HOMEBREW_PREFIX/share/z.lua" ]; then
   export _ZL_MATCH_MODE=1
-  zinit ice wait'0' lucid atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh'
-  zinit light zdharma/null
+  zinit wait'0' lucid atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh' light-mode for zdharma/null
   alias c="z -I"
 elif [ -x "$(command -v zoxide)" ]; then
   export _ZO_MAXAGE=400
   export _ZO_EXCLUDE_DIRS=$HOME
-  zinit ice wait'0' lucid atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi'
-  zinit light zdharma/null
+  zinit wait'0' lucid atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi' light-mode for zdharma/null
 else
   # zoxide not available on old raspberry pi. fasd is pure shell, but slow: fasd takes 0.06s
-  zinit ice wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" atinit'eval "$(fasd --init auto)" && alias sd="noglob sd"'
-  zinit light clvv/fasd
+  zinit wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" \
+    atinit'eval "$(fasd --init auto)" && alias sd="noglob sd"' light-mode for clvv/fasd
   c() {
     local dir
     dir="$(fasd -Rdl "$1" | $FZF -1 -0 --no-sort +m)" && cd "${dir}" || return 1
@@ -258,26 +232,21 @@ then
   # Not really plugins, but very good to have async anyway
   # sourcing rvm takes 0.51s, so there will be a lag when it is sourced
   # also, loading rvm as a zinit will make it ignore the .ruby-version file if you are already inside that folder
-  zinit ice wait'4' lucid atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi'
-  zinit light zdharma/null
+  zinit wait'4' lucid \
+    atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi' light-mode for zdharma/null
 
   # # python environent will also cause a lag
   # # this takes 0.166s
-  # zinit ice wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"'
-  # zinit light zdharma/null
-  # zinit ice wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"'
-  # zinit light zdharma/null
+  # zinit wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"' light-mode for zdharma/null
+  # zinit wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"' light-mode for zdharma/null
   # export WORKON_HOME=~/.py_virtualenvs
-  # zinit ice wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi'
-  # zinit light zdharma/null
+  # zinit wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi' light-mode for zdharma/null
   # # this taskes 0.39s
   # # this has to be loaded much later than the preceding plugins, otherwise you will get "No module named virtualenvwrapper  "
-  # zinit ice wait'10' lucid atinit'if [ -f $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh ]; then source $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh; fi'
-  # zinit light zdharma/null
+  # zinit wait'10' lucid atinit'if [ -f $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh ]; then source $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh; fi' light-mode for zdharma/null
 
   # yarn must be run after node is defined, takes 0.31s, and only adds $HOMEBREW_PREFIX/bin
-  #zinit ice wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"'
-  #zinit light zdharma/null
+  #zinit wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"' light-mode for zdharma/null
 fi
 
 # TODO: convert these to zinit
@@ -288,9 +257,8 @@ fi
 if [[ -n $UNAME_LINUX ]]; then
   #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
 
-  zinit ice wait'1' lucid atload"!_zsh_autosuggest_start && ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
-"
-  zinit load zsh-users/zsh-autosuggestions
+  zinit wait'1' lucid atload"!_zsh_autosuggest_start && ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
+" for zsh-users/zsh-autosuggestions
 fi
 
 ###############################################################################
@@ -558,14 +526,12 @@ bindkey '¿' which-command #option-?
 # syntax highlighting should be loaded after all widgets, to work with them
 ###############################################################################
 # loads theme ~/.config/fsh/improved-default.ini for zdharma/fast-syntax-highlighting
-zinit ice wait lucid --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.log"
-zinit light zdharma/fast-syntax-highlighting
+zinit wait lucid --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.log" light-mode for zdharma/fast-syntax-highlighting
 
 [[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
 
 # it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zinit then
-#zinit ice wait'0z' lucid atinit'zpcompinit; zpcdreplay'
-#zinit light zdharma/null
+#zinit wait'0z' lucid atinit'zpcompinit; zpcdreplay' light-mode for zdharma/null
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 zinit cdreplay
