@@ -128,7 +128,7 @@ zinit wait'2' lucid light-mode for "cedi/meaningful-error-codes"
 zinit wait'2' lucid if'[[ -x "$(command -v fzf)" ]]' for wfxr/forgit
 
 # command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
-#zinit wait'4' lucid atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma/null
+#zinit wait'4' lucid as'null' atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma/null
 
 zinit wait'2' lucid for \
   OMZP::colored-man-pages \
@@ -210,12 +210,12 @@ fi
 
 if [ -d "$HOMEBREW_PREFIX/share/z.lua" ]; then
   export _ZL_MATCH_MODE=1
-  zinit wait'0' lucid atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh' light-mode for zdharma/null
+  zinit wait'0' lucid as'null' atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh' light-mode for zdharma/null
   alias c="z -I"
 elif [ -x "$(command -v zoxide)" ]; then
   export _ZO_MAXAGE=400
   export _ZO_EXCLUDE_DIRS=$HOME
-  zinit wait'0' lucid atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi' light-mode for zdharma/null
+  zinit wait'0' lucid as'null' atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi' light-mode for zdharma/null
 else
   # zoxide not available on old raspberry pi. fasd is pure shell, but slow: fasd takes 0.06s
   zinit wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" \
@@ -231,21 +231,21 @@ then
   # Not really plugins, but very good to have async anyway
   # sourcing rvm takes 0.51s, so there will be a lag when it is sourced
   # also, loading rvm as a zinit will make it ignore the .ruby-version file if you are already inside that folder
-  zinit wait'4' lucid \
+  zinit wait'4' lucid as'null' \
     atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi' light-mode for zdharma/null
 
   # # python environent will also cause a lag
   # # this takes 0.166s
-  # zinit wait'2a' lucid atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"' light-mode for zdharma/null
-  # zinit wait'2b' lucid atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"' light-mode for zdharma/null
+  # zinit wait'2a' lucid as'null' atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"' light-mode for zdharma/null
+  # zinit wait'2b' lucid as'null' atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"' light-mode for zdharma/null
   # export WORKON_HOME=~/.py_virtualenvs
-  # zinit wait'2c' lucid atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi' light-mode for zdharma/null
+  # zinit wait'2c' lucid as'null' atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi' light-mode for zdharma/null
   # # this taskes 0.39s
   # # this has to be loaded much later than the preceding plugins, otherwise you will get "No module named virtualenvwrapper  "
-  # zinit wait'10' lucid atinit'if [ -f $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh ]; then source $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh; fi' light-mode for zdharma/null
+  # zinit wait'10' lucid as'null' atinit'if [ -f $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh ]; then source $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh; fi' light-mode for zdharma/null
 
   # yarn must be run after node is defined, takes 0.31s, and only adds $HOMEBREW_PREFIX/bin
-  #zinit wait'2' lucid atinit'export PATH="$PATH:$(yarn global bin)"' light-mode for zdharma/null
+  #zinit wait'2' lucid as'null' atinit'export PATH="$PATH:$(yarn global bin)"' light-mode for zdharma/null
 fi
 
 # TODO: convert these to zinit
@@ -530,7 +530,7 @@ zinit wait lucid --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.lo
 [[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
 
 # it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zinit then
-#zinit wait'0z' lucid atinit'zpcompinit; zpcdreplay' light-mode for zdharma/null
+#zinit wait'0z' lucid as'null' atinit'zpcompinit; zpcdreplay' light-mode for zdharma/null
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 zinit cdreplay
