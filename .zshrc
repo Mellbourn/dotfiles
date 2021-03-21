@@ -119,7 +119,7 @@ zinit wait'0' lucid for OMZP::magic-enter
 MAGIC_ENTER_GIT_COMMAND="l"
 MAGIC_ENTER_OTHER_COMMAND="l"
 
-zinit wait'1' lucid for load supercrabtree/k
+zinit wait'1' lucid for supercrabtree/k
 
 zinit wait'1' atload"zpcdreplay" atclone'./zplug.zsh' lucid for g-plane/zsh-yarn-autocompletions
 
@@ -127,14 +127,13 @@ zinit wait'2' lucid light-mode for "cedi/meaningful-error-codes"
 
 zinit wait'2' lucid if'[[ -x "$(command -v fzf)" ]]' for wfxr/forgit
 
-zinit wait'2' lucid for OMZP::colored-man-pages
-
 # command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
 #zinit wait'4' lucid atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma/null
 
-zinit wait'2' lucid for djui/alias-tips
-
-zinit wait'2' lucid for OMZP::dircycle
+zinit wait'2' lucid for \
+  OMZP::colored-man-pages \
+  djui/alias-tips \
+  OMZP::dircycle
 
 zinit wait'2' lucid atinit'alias f=fuck' light-mode for laggardkernel/zsh-thefuck
 
@@ -173,13 +172,13 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 #bindkey $key[ControlSpace] set-mark-command
 
 # some nice OMZ functions: take, alias, try_alias_value, omz_urlencode, omz_urldecode
-zinit wait'4' lucid for OMZ::lib/functions.zsh
+zinit wait'4' lucid for \
+  OMZ::lib/functions.zsh \
+  OMZ::plugins/web-search/web-search.plugin.zsh
 
-zinit wait'4' lucid for OMZ::plugins/web-search/web-search.plugin.zsh
-
-zinit wait'4' lucid light-mode for paulirish/git-open
-
-zinit wait'4' lucid light-mode for peterhurford/git-it-on.zsh
+zinit wait'4' lucid light-mode for \
+  paulirish/git-open \
+  peterhurford/git-it-on.zsh
 
 # set up a bell after command that run longer than this many seconds
 zbell_duration=180
