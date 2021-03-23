@@ -190,7 +190,7 @@ export REPORTTIME=300
 # zsh-notify is nice, but only notifies when the pane with the command is not focused
 zinit wait'4' lucid atload'
   zstyle ":notify:*" enable-on-ssh yes
-  zstyle ":notify:*" command-complete-timeout 5
+  zstyle ":notify:*" command-complete-timeout 60
   zstyle ":notify:*" error-sound "Sosumi"
   zstyle ":notify:*" success-sound "default"
   zstyle ":notify:*" activate-terminal yes
