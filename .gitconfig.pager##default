@@ -1,8 +1,10 @@
 # settings for git-delta https://github.com/dandavison/delta
 [core]
 pager = delta
+
 [interactive]
 diffFilter = delta --color-only
+
 [delta]
 syntax-theme = Dracula
 tabs = 2
