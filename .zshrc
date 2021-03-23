@@ -180,14 +180,22 @@ zinit wait'4' lucid light-mode for \
   paulirish/git-open \
   peterhurford/git-it-on.zsh
 
-# set up a bell after command that run longer than this many seconds - use zsh-notify instead?
+# set up a bell after command that run longer than this many seconds
 zbell_duration=180
 zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help)
 zinit wait'4' lucid for OMZP::zbell
 # test reporting time too for heavy operations
 export REPORTTIME=300
 
-zinit wait lucid atload' zstyle ":notify:*" enable-on-ssh yes && zstyle ":notify:*" command-complete-timeout 5 && zstyle ":notify:*" error-sound "Sosumi" && zstyle ":notify:*" success-sound "default" && zstyle ":notify:*" activate-terminal yes && zstyle ":notify:*" blacklist-regex "vim|code|more|less|bat|cat|man|run-help"' for marzocchi/zsh-notify
+# zsh-notify is nice, but only notifies when the command is not visible or the terminal is not the active app
+zinit wait'4' lucid atload'
+  zstyle ":notify:*" enable-on-ssh yes
+  zstyle ":notify:*" command-complete-timeout 5
+  zstyle ":notify:*" error-sound "Sosumi"
+  zstyle ":notify:*" success-sound "default"
+  zstyle ":notify:*" activate-terminal yes
+  zstyle ":notify:*" blacklist-regex "vim|code|more|less|bat|cat|man|run-help"' \
+  for marzocchi/zsh-notify
 
 zinit wait'4' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' light-mode for hlissner/zsh-autopair
 
