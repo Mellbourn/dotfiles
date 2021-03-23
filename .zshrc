@@ -187,14 +187,18 @@ zinit wait'4' lucid for OMZP::zbell
 # test reporting time too for heavy operations
 export REPORTTIME=300
 
-# zsh-notify is nice, but only notifies when the pane with the command is not focused
+# zsh-notify is nice, but
+# * only notifies when the pane with the command is not focused
+# * if notifications are too frequent, they seem to be muted - no sound and no popup, but can be seen in center
 zinit wait'4' lucid atload'
-  zstyle ":notify:*" enable-on-ssh yes
-  zstyle ":notify:*" command-complete-timeout 60
-  zstyle ":notify:*" error-sound "Sosumi"
-  zstyle ":notify:*" success-sound "default"
   zstyle ":notify:*" activate-terminal yes
-  zstyle ":notify:*" blacklist-regex "vim|code|more|less|bat|cat|man|run-help"' \
+  zstyle ":notify:*" blacklist-regex "vim|code|more|less|bat|cat|man|run-help"
+  zstyle ":notify:*" command-complete-timeout 60
+  zstyle ":notify:*" enable-on-ssh yes
+  zstyle ":notify:*" error-sound "Sosumi"
+  zstyle ":notify:*" error-title "errored (in #{time_elapsed})"
+  zstyle ":notify:*" success-sound "default"
+  zstyle ":notify:*" success-title "finished (in #{time_elapsed})"' \
   for marzocchi/zsh-notify
 
 zinit wait'4' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' light-mode for hlissner/zsh-autopair
