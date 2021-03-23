@@ -206,6 +206,7 @@ croc
 sd
 speedtest-cli
 stunnel
+terminal-notifier
 thefuck
 tig
 tldr
@@ -344,6 +345,7 @@ shellcheck
 sd
 speedtest-cli
 stunnel
+terminal-notifier
 thefuck
 tig
 tldr
