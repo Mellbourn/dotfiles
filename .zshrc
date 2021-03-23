@@ -187,14 +187,7 @@ zinit wait'4' lucid for OMZP::zbell
 # test reporting time too for heavy operations
 export REPORTTIME=300
 
-zinit wait'1' lucid atload'
-zstyle ":notify:*" enable-on-ssh yes
-zstyle ":notify:*" command-complete-timeout 5
-zstyle ":notify:*" error-sound "Sosumi"
-zstyle ":notify:*" success-sound "default"
-zstyle ":notify:*" activate-terminal yes
-zstyle ":notify:*" blacklist-regex "vim|code|more|less|bat|cat|man|run-help"' \
-  for marzocchi/zsh-notify
+zinit wait lucid atload' zstyle ":notify:*" enable-on-ssh yes && zstyle ":notify:*" command-complete-timeout 5 && zstyle ":notify:*" error-sound "Sosumi" && zstyle ":notify:*" success-sound "default" && zstyle ":notify:*" activate-terminal yes && zstyle ":notify:*" blacklist-regex "vim|code|more|less|bat|cat|man|run-help"' for marzocchi/zsh-notify
 
 zinit wait'4' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' light-mode for hlissner/zsh-autopair
 
