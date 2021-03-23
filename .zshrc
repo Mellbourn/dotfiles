@@ -187,7 +187,7 @@ zinit wait'4' lucid for OMZP::zbell
 # test reporting time too for heavy operations
 export REPORTTIME=300
 
-# zsh-notify is nice, but only notifies when the command is not visible or the terminal is not the active app
+# zsh-notify is nice, but only notifies when the pane with the command is not focused
 zinit wait'4' lucid atload'
   zstyle ":notify:*" enable-on-ssh yes
   zstyle ":notify:*" command-complete-timeout 5
