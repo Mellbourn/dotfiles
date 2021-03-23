@@ -1,18 +1,18 @@
 # settings for git-delta https://github.com/dandavison/delta
 [core]
-    pager = delta
+pager = delta
 [interactive]
-    diffFilter = delta --color-only
+diffFilter = delta --color-only
 [delta]
-    syntax-theme = Dracula
-    tabs = 2
-    side-by-side = true
-    line-numbers = false
-    file-style = bold "#eee8aa" # pale golden rod
-    file-decoration-style = ol "#4B0082" # Indigo
-    hunk-header-line-number-style = "#4169e1" # royal blue
-    hunk-header-decoration-style = ol "#000080" # navy
-    commit-decoration-style = bold "#00fa9a" box ul # medium spring green
-    word-diff-regex = '' # weirdly, this makes the diff character level, which I prefer
-#    plus-style = syntax "#004500" # added lines need to be a bit brighter green
-#    plus-emph-style = syntax "#008500" # added words now need to be even greener
+syntax-theme = Dracula
+tabs = 2
+side-by-side = true
+line-numbers = false
+file-style = bold "#eee8aa"                     # pale golden rod
+file-decoration-style = ol "#b8860b"            # dark orange
+hunk-header-line-number-style = "#4169e1"       # royal blue
+hunk-header-decoration-style = ol "#000080"     # navy
+commit-decoration-style = bold "#00fa9a" box ul # medium spring green
+word-diff-regex = ''                            # weirdly, this makes the diff character level, which I prefer
+# plus-style = syntax "#004500"                   # added lines need to be a bit brighter green
+# plus-emph-style = syntax "#008500"              # added words now need to be even greener
