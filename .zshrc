@@ -190,7 +190,7 @@ export REPORTTIME=300
 # zsh-notify is nice, but
 # * only notifies when the pane with the command is not focused
 # * if notifications are too frequent, they seem to be muted - no sound and no popup, but can be seen in center
-zinit wait'4' lucid atload'
+zinit wait'4' silent atload'
   zstyle ":notify:*" activate-terminal yes
   zstyle ":notify:*" blacklist-regex "vim|code|more|less|bat|cat|man|run-help"
   zstyle ":notify:*" command-complete-timeout 60
