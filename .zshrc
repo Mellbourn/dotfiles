@@ -124,7 +124,6 @@ MAGIC_ENTER_OTHER_COMMAND="l"
 # * if notifications are too frequent, they seem to be muted - no sound and no popup, but can be seen in center
 zinit wait'0' silent atload'
   zstyle ":notify:*" activate-terminal yes
-  zstyle ":notify:*" blacklist-regex "vim|code|more|less|bat|cat|man|run-help"
   zstyle ":notify:*" command-complete-timeout 60
   zstyle ":notify:*" enable-on-ssh yes
   zstyle ":notify:*" error-sound "Sosumi"
