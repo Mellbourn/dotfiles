@@ -180,12 +180,15 @@ zinit wait'4' lucid light-mode for \
   paulirish/git-open \
   peterhurford/git-it-on.zsh
 
-# set up a bell after command that run longer than this many seconds
-zbell_duration=180
+# set up a bell after command that run longer than this many seconds (regardless of focus or result)
+if [[ -n $UNAME_LINUX ]]; then
+  zbell_duration=180
+else
+  # on macOS zsh-notify is generally better
+  zbell_duration=600
+fi
 zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help)
 zinit wait'4' lucid for OMZP::zbell
-# test reporting time too for heavy operations
-export REPORTTIME=300
 
 # zsh-notify is nice, but
 # * only notifies when the pane with the command is not focused

@@ -19,10 +19,6 @@ if [[ $(uname) == 'Linux' ]]; then
   export UNAME_LINUX=1
 fi
 
-if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
-  OS_UBUNTU=1
-fi
-
 if grep -q Raspbian /etc/os-release 2>/dev/null; then
   export DOTFILES_LITE=1
 fi
