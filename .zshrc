@@ -199,9 +199,9 @@ zinit wait'4' silent atload'
   zstyle ":notify:*" command-complete-timeout 60
   zstyle ":notify:*" enable-on-ssh yes
   zstyle ":notify:*" error-sound "Sosumi"
-  zstyle ":notify:*" error-title "⚠ errored (in #{time_elapsed})"
+  zstyle ":notify:*" error-title "⛔️ errored (in #{time_elapsed})"
   zstyle ":notify:*" success-sound "default"
-  zstyle ":notify:*" success-title "finished (in #{time_elapsed})"' \
+  zstyle ":notify:*" success-title "✅ finished (in #{time_elapsed})"' \
   for marzocchi/zsh-notify
 
 zinit wait'4' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' light-mode for hlissner/zsh-autopair
