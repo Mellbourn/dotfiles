@@ -200,7 +200,7 @@ zinit wait'4' silent atload'
   zstyle ":notify:*" enable-on-ssh yes
   zstyle ":notify:*" error-sound "Sosumi"
   zstyle ":notify:*" error-title "⛔️ errored (in #{time_elapsed})"
-  zstyle ":notify:*" success-sound "default"
+  zstyle ":notify:*" success-sound "Blow"
   zstyle ":notify:*" success-title "✅ finished (in #{time_elapsed})"' \
   for marzocchi/zsh-notify
 
