@@ -119,6 +119,30 @@ zinit wait'0' lucid for OMZP::magic-enter
 MAGIC_ENTER_GIT_COMMAND="l"
 MAGIC_ENTER_OTHER_COMMAND="l"
 
+# zsh-notify is nice, but
+# * only notifies when the pane with the command is not focused
+# * if notifications are too frequent, they seem to be muted - no sound and no popup, but can be seen in center
+zinit wait'0' silent atload'
+  zstyle ":notify:*" activate-terminal yes
+  zstyle ":notify:*" blacklist-regex "vim|code|more|less|bat|cat|man|run-help"
+  zstyle ":notify:*" command-complete-timeout 60
+  zstyle ":notify:*" enable-on-ssh yes
+  zstyle ":notify:*" error-sound "Sosumi"
+  zstyle ":notify:*" error-title "⛔️ errored (in #{time_elapsed})"
+  zstyle ":notify:*" success-sound "Blow"
+  zstyle ":notify:*" success-title "✅ finished (in #{time_elapsed})"' \
+  for marzocchi/zsh-notify
+
+# set up a bell after command that run longer than this many seconds (regardless of focus or result)
+if [[ -n $UNAME_LINUX ]]; then
+  zbell_duration=180
+else
+  # on macOS zsh-notify is generally better
+  zbell_duration=600
+fi
+zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help)
+zinit wait'1' lucid for OMZP::zbell
+
 zinit wait'1' lucid for supercrabtree/k
 
 zinit wait'1' atload"zpcdreplay" atclone'./zplug.zsh' lucid for g-plane/zsh-yarn-autocompletions
@@ -179,30 +203,6 @@ zinit wait'4' lucid for \
 zinit wait'4' lucid light-mode for \
   paulirish/git-open \
   peterhurford/git-it-on.zsh
-
-# set up a bell after command that run longer than this many seconds (regardless of focus or result)
-if [[ -n $UNAME_LINUX ]]; then
-  zbell_duration=180
-else
-  # on macOS zsh-notify is generally better
-  zbell_duration=600
-fi
-zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help)
-zinit wait'4' lucid for OMZP::zbell
-
-# zsh-notify is nice, but
-# * only notifies when the pane with the command is not focused
-# * if notifications are too frequent, they seem to be muted - no sound and no popup, but can be seen in center
-zinit wait'0' silent atload'
-  zstyle ":notify:*" activate-terminal yes
-  zstyle ":notify:*" blacklist-regex "vim|code|more|less|bat|cat|man|run-help"
-  zstyle ":notify:*" command-complete-timeout 60
-  zstyle ":notify:*" enable-on-ssh yes
-  zstyle ":notify:*" error-sound "Sosumi"
-  zstyle ":notify:*" error-title "⛔️ errored (in #{time_elapsed})"
-  zstyle ":notify:*" success-sound "Blow"
-  zstyle ":notify:*" success-title "✅ finished (in #{time_elapsed})"' \
-  for marzocchi/zsh-notify
 
 zinit wait'4' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' light-mode for hlissner/zsh-autopair
 
