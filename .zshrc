@@ -196,7 +196,7 @@ zinit wait'4' lucid atload'
   zstyle ":notify:*" command-complete-timeout 60
   zstyle ":notify:*" enable-on-ssh yes
   zstyle ":notify:*" error-sound "Sosumi"
-  zstyle ":notify:*" error-title "errored (in #{time_elapsed})"
+  zstyle ":notify:*" error-title "⚠ errored (in #{time_elapsed})"
   zstyle ":notify:*" success-sound "default"
   zstyle ":notify:*" success-title "finished (in #{time_elapsed})"' \
   for marzocchi/zsh-notify
