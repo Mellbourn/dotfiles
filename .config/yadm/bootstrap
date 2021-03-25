@@ -758,8 +758,8 @@ defaults write -g com.apple.mouse.scaling -float 3.0
 #defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 #defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton
-# Smart zoom disabled, double-tap with one finger (set to 1 to enable) (already default?)
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture -int 0
+# Smart zoom enabled, double-tap with one finger
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture -int 1
 # Double-tap with two fingers to Mission Control (set to 0 to disable) (already default?)
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerDoubleTapGesture -int 3
 # Two finger horizontal swipe
