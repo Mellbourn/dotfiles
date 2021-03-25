@@ -127,9 +127,9 @@ zinit wait'0' silent atload'
   zstyle ":notify:*" command-complete-timeout 60
   zstyle ":notify:*" enable-on-ssh yes
   zstyle ":notify:*" error-sound "Sosumi"
-  zstyle ":notify:*" error-title "⛔️ errored (in #{time_elapsed})"
+  zstyle ":notify:*" error-title "⛔️ errored in #{time_elapsed}"
   zstyle ":notify:*" success-sound "Blow"
-  zstyle ":notify:*" success-title "✅ finished (in #{time_elapsed})"' \
+  zstyle ":notify:*" success-title "✅ finished in #{time_elapsed}"' \
   for marzocchi/zsh-notify
 
 # set up a bell after command that run longer than this many seconds (regardless of focus or result)
