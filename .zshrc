@@ -370,7 +370,7 @@ if [ -n "$DOTFILES_LITE" ]; then
   export ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}+"
   export ZSH_THEME_GIT_PROMPT_UNTRACKED="..."
 fi
-export PROMPT_PERCENT_OF_LINE=20
+export PROMPT_PERCENT_OF_LINE=25
 function myPromptWidth() {
   echo $(( ${COLUMNS:-80} * PROMPT_PERCENT_OF_LINE / 100 ))
 }
