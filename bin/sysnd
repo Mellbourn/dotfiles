@@ -5,7 +5,7 @@ if [ -x "$(command -v afplay)" ]; then
     if [ -f $soundFile ]; then
         afplay $soundFile &
     else
-        afplay $soundFolder/Blow.aiff &
+        afplay $soundFolder/Submarine.aiff &
     fi
 else
     tput bel
