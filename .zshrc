@@ -124,10 +124,10 @@ zinit wait'0' silent atload'
   zstyle ":notify:*" activate-terminal yes
   zstyle ":notify:*" command-complete-timeout 60
   zstyle ":notify:*" enable-on-ssh yes
-  zstyle ":notify:*" error-icon "https://upload.wikimedia.org/wikipedia/commons/6/62/Icon_Transparent_Error.png"
+  zstyle ":notify:*" error-icon "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Blokkade.png/240px-Blokkade.png"
   zstyle ":notify:*" error-sound "Sosumi"
   zstyle ":notify:*" error-title "⛔️ errored in #{time_elapsed}"
-  zstyle ":notify:*" success-icon "https://upload.wikimedia.org/wikipedia/commons/4/47/Done.png"
+  zstyle ":notify:*" success-icon "https://upload.wikimedia.org/wikipedia/commons/a/a6/Green_approved.png"
   zstyle ":notify:*" success-sound "Blow"
   zstyle ":notify:*" success-title "✅ finished in #{time_elapsed}"' \
   for marzocchi/zsh-notify
