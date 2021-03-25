@@ -197,7 +197,7 @@ sudo launchctl config user path $PATH_OVERRIDE
 
 # if xcode has just been manually installed
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-sudo git-lfs install --system
+sudo git-lfs install --system || true
 
 export WORKING_FROM_HOME=1
 if [ -n "$WORKING_FROM_HOME" ]; then
