@@ -120,6 +120,7 @@ MAGIC_ENTER_GIT_COMMAND="l"
 MAGIC_ENTER_OTHER_COMMAND="l"
 
 # zsh-notify (as opposed to zbell) only notifies when the pane with the command is not focused
+# icons (whether remote or local) affects performance noticably
 zinit wait'0' silent atload'
   zstyle ":notify:*" activate-terminal yes
   zstyle ":notify:*" command-complete-timeout 60
