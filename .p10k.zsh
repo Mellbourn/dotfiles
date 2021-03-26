@@ -31,10 +31,8 @@
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-    os_icon                 # os identifier
     dir                     # current directory
-    vcs                     # git status
-    # prompt_char           # prompt symbol
+    prompt_char           # prompt symbol
   )
 
   # The list of segments shown on the right. Fill it with less important segments.
@@ -43,6 +41,7 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     status                  # exit code of the last command
+    vcs                     # git status
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
@@ -101,6 +100,7 @@
     # battery               # internal battery
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
+    os_icon                 # os identifier
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
