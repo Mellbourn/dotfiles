@@ -121,9 +121,10 @@ MAGIC_ENTER_OTHER_COMMAND="l"
 
 # zsh-notify (as opposed to zbell) only notifies when the pane with the command is not focused
 # icons (whether remote or local) affects performance noticably
+notification_command_complete_timeout=30
 zinit wait'0' silent atload'
   zstyle ":notify:*" activate-terminal yes
-  zstyle ":notify:*" command-complete-timeout 60
+  zstyle ":notify:*" command-complete-timeout $notification_command_complete_timeout
   zstyle ":notify:*" enable-on-ssh yes
   zstyle ":notify:*" error-icon "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Blokkade.png/240px-Blokkade.png"
   zstyle ":notify:*" error-sound "Sosumi"
@@ -135,7 +136,7 @@ zinit wait'0' silent atload'
 
 # set up a bell after command that run longer than this many seconds (regardless of focus or result)
 if [[ -n $UNAME_LINUX ]]; then
-  zbell_duration=180
+  zbell_duration=$notification_command_complete_timeout
 else
   # on macOS zsh-notify is generally better
   zbell_duration=600
