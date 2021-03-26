@@ -3,13 +3,7 @@ yb() {
     sudo -v &&
         yadm pull &&
         eval $yadmBootstrap &&
-        ~/.config/yadm/bootstrap-sudo
-    local exit_status=$?
-    if (( exit_status == 0 )); then
+        ~/.config/yadm/bootstrap-sudo &&
         yadm push
-        sysnd Glass
-    else
-        sysnd Bottle
-    fi
 }
 yb "$@"
