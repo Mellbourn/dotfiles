@@ -22,7 +22,7 @@ FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH
 source ~/.bash_profile
 
 # misc
-setopt interactive_comments long_list_jobs extendedglob notify list_packed transient_rprompt
+setopt interactive_comments long_list_jobs extendedglob notify list_packed
 
 # word movement should stop on slashes
 export WORDCHARS=$WORDCHARS:s:/:
