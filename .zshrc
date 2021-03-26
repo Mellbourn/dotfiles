@@ -588,4 +588,8 @@ fi
 #zprof
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [[ -n $UNAME_LINUX ]]; then
+  [[ ! -f ~/.p10k.ascii.zsh ]] || source ~/.p10k.ascii.zsh
+else
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+fi
