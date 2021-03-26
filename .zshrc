@@ -111,6 +111,7 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 ###############################################################################
 # zinit - zsh plugin manager
 ###############################################################################
+zinit depth=1 light-mode for romkatv/powerlevel10k
 
 zinit wait'0a' lucid blockf for zsh-users/zsh-completions
 
