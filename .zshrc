@@ -111,7 +111,6 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 ###############################################################################
 # zinit - zsh plugin manager
 ###############################################################################
-zinit atload'!_zsh_git_prompt_precmd_hook' lucid for woefe/git-prompt.zsh
 
 zinit wait'0a' lucid blockf for zsh-users/zsh-completions
 
@@ -363,45 +362,45 @@ fi
 ###############################################################################
 # prompt
 ###############################################################################
-UNUSUAL_HOSTNAME=$(hostname -s)
-WELL_KNOWN_COMPUTERS=("KlasKlarnaMacHN" "Klass-Mac-mini-2020-M1" "Klass-Mac-mini-2018")
-if [[ " ${WELL_KNOWN_COMPUTERS[@]} " =~ " ${UNUSUAL_HOSTNAME} " ]]; then
-  UNUSUAL_HOSTNAME=
-fi
-UNUSUAL_NAME=${LOGNAME}@
-if [[ $LOGNAME == *"ellbourn"* ]] || [[ $LOGNAME == *"klas"* ]]; then
-  UNUSUAL_NAME=
-fi
-export ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
-if [ -n "$DOTFILES_LITE" ]; then
-  # ssh terminal causes unicode to show as two left cursor, https://github.com/woefe/git-prompt.zsh/issues/8
-  export ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}v"
-  export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}*"
-  export ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[blue]%}~"
-  export ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}x"
-  export ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}+"
-  export ZSH_THEME_GIT_PROMPT_UNTRACKED="..."
-fi
-export PROMPT_PERCENT_OF_LINE=25
-function myPromptWidth() {
-  echo $(( ${COLUMNS:-80} * PROMPT_PERCENT_OF_LINE / 100 ))
-}
-width_part='$(myPromptWidth)'
-if [ -x "$(command -v md5sum)" ]; then
-  local prompt_hashcolor=$((16#${$(echo $HOST|md5sum):0:2}))
-else
-  local prompt_hashcolor=$(echo $HOST|cksum|awk '{print $1%233+23}')
-fi
-# other good: 239+17, 233+23, 253+3
-if [[ -n $UNAME_LINUX ]]; then
-  local prompt_ending="%(!.#.%%)"
-else
-  local prompt_ending="%(!..)"
-fi
-PROMPT="%K{${prompt_hashcolor}}%F%${width_part}<…<%4~%(?..%{ $bg[red]%}%?$(tput bel))%(1j.%{$bg[cyan]%} %j.)%k%F{${prompt_hashcolor}}${prompt_ending}%f "
-exit_part='${exit_status}'
-git_part='$(gitprompt)'
-RPROMPT="%(?..%{$fg[red]%}${exit_part})%(?.. )%f${git_part}%F{021}${UNUSUAL_NAME}%F{033}${UNUSUAL_HOSTNAME}%f"
+#UNUSUAL_HOSTNAME=$(hostname -s)
+#WELL_KNOWN_COMPUTERS=("KlasKlarnaMacHN" "Klass-Mac-mini-2020-M1" "Klass-Mac-mini-2018")
+#if [[ " ${WELL_KNOWN_COMPUTERS[@]} " =~ " ${UNUSUAL_HOSTNAME} " ]]; then
+#  UNUSUAL_HOSTNAME=
+#fi
+#UNUSUAL_NAME=${LOGNAME}@
+#if [[ $LOGNAME == *"ellbourn"* ]] || [[ $LOGNAME == *"klas"* ]]; then
+#  UNUSUAL_NAME=
+#fi
+#export ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[magenta]%}"
+#if [ -n "$DOTFILES_LITE" ]; then
+#  # ssh terminal causes unicode to show as two left cursor, https://github.com/woefe/git-prompt.zsh/issues/8
+#  export ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}v"
+#  export ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}*"
+#  export ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[blue]%}~"
+#  export ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}x"
+#  export ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}+"
+#  export ZSH_THEME_GIT_PROMPT_UNTRACKED="..."
+#fi
+#export PROMPT_PERCENT_OF_LINE=25
+#function myPromptWidth() {
+#  echo $(( ${COLUMNS:-80} * PROMPT_PERCENT_OF_LINE / 100 ))
+#}
+#width_part='$(myPromptWidth)'
+#if [ -x "$(command -v md5sum)" ]; then
+#  local prompt_hashcolor=$((16#${$(echo $HOST|md5sum):0:2}))
+#else
+#  local prompt_hashcolor=$(echo $HOST|cksum|awk '{print $1%233+23}')
+#fi
+## other good: 239+17, 233+23, 253+3
+#if [[ -n $UNAME_LINUX ]]; then
+#  local prompt_ending="%(!.#.%%)"
+#else
+#  local prompt_ending="%(!..)"
+#fi
+#PROMPT="%K{${prompt_hashcolor}}%F%${width_part}<…<%4~%(?..%{ $bg[red]%}%?$(tput bel))%(1j.%{$bg[cyan]%} %j.)%k%F{${prompt_hashcolor}}${prompt_ending}%f "
+#exit_part='${exit_status}'
+#git_part='$(gitprompt)'
+#RPROMPT="%(?..%{$fg[red]%}${exit_part})%(?.. )%f${git_part}%F{021}${UNUSUAL_NAME}%F{033}${UNUSUAL_HOSTNAME}%f"
 
 ###############################################################################
 # fun functions
