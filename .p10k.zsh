@@ -202,14 +202,14 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_{LEFT,RIGHT}_WHITESPACE=
 
   ##################################[ dir: current directory ]##################################
+  # Current directory background color.
   if [ -x "$(command -v md5sum)" ]; then
-    local prompt_hashcolor=$((16#${$(echo $HOST|md5sum):0:2}))
+    typeset -g POWERLEVEL9K_DIR_BACKGROUND=$((16#${$(echo $HOST|md5sum):0:2}))
   else
-    local prompt_hashcolor=$(echo $HOST|cksum|awk '{print $1%233+23}')
+    local prompt_hashcolor=
+    typeset -g POWERLEVEL9K_DIR_BACKGROUND=$(echo $HOST|cksum|awk '{print $1%233+23}')
   fi
 
-  # Current directory background color.
-  typeset -g POWERLEVEL9K_DIR_BACKGROUND=$prompt_hashcolor
   # Default current directory foreground color.
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=0
   # If directory is too long, shorten some of its segments to the shortest possible unique
