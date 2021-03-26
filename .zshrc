@@ -368,8 +368,12 @@ fi
 # direnv allow
 
 ###############################################################################
-# prompt
+# old prompt
 ###############################################################################
+# these two liens were higher up before
+# setopt transient_rprompt
+# zinit atload'!_zsh_git_prompt_precmd_hook' lucid for woefe/git-prompt.zsh
+#
 #UNUSUAL_HOSTNAME=$(hostname -s)
 #WELL_KNOWN_COMPUTERS=("KlasKlarnaMacHN" "Klass-Mac-mini-2020-M1" "Klass-Mac-mini-2018")
 #if [[ " ${WELL_KNOWN_COMPUTERS[@]} " =~ " ${UNUSUAL_HOSTNAME} " ]]; then
