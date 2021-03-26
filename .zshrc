@@ -115,10 +115,6 @@ zinit atload'!_zsh_git_prompt_precmd_hook' lucid for woefe/git-prompt.zsh
 
 zinit wait'0a' lucid blockf for zsh-users/zsh-completions
 
-zinit wait'0' lucid for OMZP::magic-enter
-MAGIC_ENTER_GIT_COMMAND="l"
-MAGIC_ENTER_OTHER_COMMAND="l"
-
 # zsh-notify (as opposed to zbell) only notifies when the pane with the command is not focused
 # icons (whether remote or local) affects performance noticably
 notification_command_complete_timeout=30
@@ -142,7 +138,11 @@ else
   zbell_duration=600
 fi
 zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help)
-zinit wait'1' lucid for OMZP::zbell
+zinit wait'0' lucid for OMZP::zbell
+
+zinit wait'1' lucid for OMZP::magic-enter
+MAGIC_ENTER_GIT_COMMAND="l"
+MAGIC_ENTER_OTHER_COMMAND="l"
 
 zinit wait'1' lucid for supercrabtree/k
 
