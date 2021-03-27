@@ -150,7 +150,7 @@ zinit wait'1' atload"zpcdreplay" atclone'./zplug.zsh' lucid for g-plane/zsh-yarn
 
 zinit wait'2' lucid light-mode for "cedi/meaningful-error-codes"
 
-zinit wait'2' lucid if'[[ -x "$(command -v fzf)" ]]' for wfxr/forgit
+zinit wait'2' lucid if'[[ -x "$(command -v fzf)" ]]' atinit'unalias gi' for wfxr/forgit
 
 # command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
 #zinit wait'4' lucid as'null' atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma/null
