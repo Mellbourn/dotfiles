@@ -27,7 +27,6 @@ alias ping='prettyping --nolegend'
 alias rm_node_modules='$FD -t d -u node_modules -x rm -rf'
 alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
 alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
-alias trash='trash -F'
 alias weather='curl v2.wttr.in'
 alias y='noglob yadm'
 alias zmv='noglob zmv'
