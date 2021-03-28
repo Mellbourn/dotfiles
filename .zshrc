@@ -343,7 +343,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 if [ -x "$(command -v bat)" ]; then
   export FZF_CTRL_T_OPTS="--preview 'bat --color always {} | head -120' --preview-window=right:33%"
 fi
-[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME
+zinit wait'1' lucid as'null' \
+  atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma/null
 
 # set up direnv
 if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
@@ -523,7 +524,6 @@ bindkey '^X^a' globalias
 # binding needed in VS Code integrated terminal when "terminal.integrated.macOptionIsMeta" is false
 bindkey '' accept-and-hold # option-a
 bindkey 'ƒ' forward-word # option-b
-bindkey 'ç' fzf-cd-widget #option-c
 bindkey '∂' delete-word #option-d
 bindkey '›' backward-word # option-f
 bindkey '¸' get-line # option-g
