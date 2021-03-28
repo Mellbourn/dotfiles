@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 ###############################################################################
 # .zshrc is sourced in interactive shells.
 # It should contain commands to set up aliases, functions, options, key bindings, etc.
@@ -12,6 +5,14 @@ fi
 #echo ".zshrc running"
 #zmodload zsh/zprof
 #START=$(gdate +%s.%N)
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #rm ~/.zcompdump ~/.zcompcache
 source ~/.zinit/bin/zinit.zsh
 
@@ -582,10 +583,10 @@ if [ -x "$(command -v lsd)" ]; then
   compdef lsd=ls
 fi
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)
 #echo "$END - $START" | bc
 #zprof
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
