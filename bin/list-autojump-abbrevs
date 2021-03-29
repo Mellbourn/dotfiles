@@ -1,6 +1,0 @@
-#!/bin/zsh
-# script to list what each letter of the alphabet results in what directory when using z to jump to that letter"
-for c in {a..z}; do
-    local dir=$(zoxide query $c)
-    echo "$c ${dir//$HOME/~}"
-done
