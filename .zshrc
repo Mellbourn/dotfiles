@@ -209,7 +209,10 @@ zinit wait'4' lucid light-mode for \
 
 zinit wait'4' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' light-mode for hlissner/zsh-autopair
 
-zinit wait'4' lucid light-mode as"program" pick"src/trash" for morgant/tools-osx
+if [[ -z $UNAME_LINUX ]]; then
+  # this works great _on macOS_
+  zinit wait'4' lucid light-mode as"program" pick"src/trash" for morgant/tools-osx
+fi
 
 # exa doesn't download well on WSL
 # zinit wait'2' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa" light-mode for ogham/exa
