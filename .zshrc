@@ -198,6 +198,8 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 # this doesn't really repair ctrl-space
 #bindkey $key[ControlSpace] set-mark-command
 
+zinit wait'3' lucid for unixorn/git-extra-commands
+
 # some nice OMZ functions: take, alias, try_alias_value, omz_urlencode, omz_urldecode
 zinit wait'4' lucid for \
   OMZ::lib/functions.zsh \
