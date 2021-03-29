@@ -24,9 +24,9 @@ export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 # it the --remote flag doesn't work as expected, we need to do this
 #git pull
 #popd
-pushd ~ > /dev/null
+pushd ~ >/dev/null
 yadm submodule update --init --recursive --remote
-popd > /dev/null
+popd >/dev/null
 
 if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
@@ -59,11 +59,11 @@ if [[ $(uname) == 'Darwin' ]]; then
   mas install 497799835
   mas lucky "Copy 'Em (Clipboard Manager)" # (2.9.0) 876540291
   # Safari extensions
-  mas lucky "Adblock Plus for Safari ABP"  # (2.1.8) 1432731683
-  mas lucky "CloseTabs Extension"          # (2.0) 1508584686
-  mas lucky "Dark Reader for Safari"       # (1.4.3) 1438243180
-  mas lucky "Grammarly for Safari "        # (9.29) 1462114288
-  mas lucky "Popcorn for Safari"           # (1.3) 1535719670
+  mas lucky "Adblock Plus for Safari ABP" # (2.1.8) 1432731683
+  mas lucky "CloseTabs Extension"         # (2.0) 1508584686
+  mas lucky "Dark Reader for Safari"      # (1.4.3) 1438243180
+  mas lucky "Grammarly for Safari "       # (9.29) 1462114288
+  mas lucky "Popcorn for Safari"          # (1.3) 1535719670
 
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     # these still require rosetta afaik
@@ -215,7 +215,6 @@ tmpreaper
 tmux
 tokei
 transcrypt
-trash
 tree
 vim
 wakeonlan
@@ -354,7 +353,6 @@ tmpreaper
 tmux
 tokei
 transcrypt
-trash
 tree
 vim
 wakeonlan
