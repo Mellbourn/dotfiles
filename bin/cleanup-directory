@@ -40,5 +40,5 @@ do
   then
     echo trashing "$filename"
   fi
-  $HOMEBREW_PREFIX/bin/trash "$filename"
+  trash "$filename"
 done
