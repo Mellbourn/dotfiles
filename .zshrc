@@ -79,7 +79,7 @@ export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
 ###############################################################################
 # completion
 ###############################################################################
-setopt nolistbeep
+setopt nobeep # could be just nolistbeep, but getting tired of unnecessary beeps
 # Do menu-driven completion.
 zstyle ':completion:*' menu select
 
