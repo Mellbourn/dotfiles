@@ -1,6 +1,8 @@
 yb() {
     local yadmBootstrap=$([[ "$(yadm --version)" == "yadm 3"* ]] && echo "yadm bootstrap" || echo "~/.config/yadm/bootstrap")
-    sudo -v &&
+    if ! sudo -n true 2>/dev/null; then
+        sudo -v
+    fi &&
         yadm pull &&
         eval $yadmBootstrap &&
         ~/.config/yadm/bootstrap-sudo &&
