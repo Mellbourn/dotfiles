@@ -79,7 +79,7 @@ export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
 ###############################################################################
 # completion
 ###############################################################################
-setopt nobeep # could be just nolistbeep, but getting tired of unnecessary beeps
+setopt nolistbeep # could be nobeep, but that will create cases where there is no repsone at all to a <tab>
 # Do menu-driven completion.
 zstyle ':completion:*' menu select
 
