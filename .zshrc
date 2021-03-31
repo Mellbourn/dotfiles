@@ -219,7 +219,7 @@ zinit wait'4' lucid light-mode for \
 
 zinit wait'4' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' light-mode for hlissner/zsh-autopair
 
-if [[ -z $UNAME_LINUX ]]; then
+if [[ -n $UNAME_MACOS ]]; then
   # this works great _on macOS_
   zinit wait'4' lucid light-mode as"program" pick"src/trash" for morgant/tools-osx
 fi

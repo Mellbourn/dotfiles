@@ -15,8 +15,11 @@ if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; t
   fi
 fi
 
-if [[ $(uname) == 'Linux' ]]; then
+UNAME=$(uname)
+if [[ $UNAME == 'Linux' ]]; then
   export UNAME_LINUX=1
+elif [[ $UNAME == 'Darwin' ]]; then
+  export UNAME_MACOS=1
 fi
 
 if grep -q Raspbian /etc/os-release 2>/dev/null; then
