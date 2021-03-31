@@ -205,6 +205,7 @@ redis
 ripgrep
 croc
 sd
+shfmt
 speedtest-cli
 stunnel
 terminal-notifier
@@ -343,6 +344,7 @@ redis
 ripgrep
 croc
 shellcheck
+shfmt
 sd
 speedtest-cli
 stunnel
