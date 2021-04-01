@@ -16,7 +16,8 @@ fi
 #rm ~/.zcompdump ~/.zcompcache
 source ~/.zinit/bin/zinit.zsh
 
-fpath=(~/.zsh-personal-functions ~/.zsh-personal-completions $fpath)
+GENCOMPL_FPATH=~/.zsh-personal-completions/generated
+fpath=(~/.zsh-personal-functions ~/.zsh-personal-completions $fpath $GENCOMPL_FPATH)
 autoload -U zmv
 # personal functions in ~/.zsh-personal-functions
 autoload -Uz yb
@@ -208,9 +209,6 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 zinit wait'3' lucid for unixorn/git-extra-commands
 
-GENCOMPL_FPATH=${XDG_CACHE_HOME:-$HOME/.cache}/zsh-completion-generator
-
-fpath=($fpath $GENCOMPL_FPATH)
 zstyle :plugin:zsh-completion-generator programs fzf
 zinit wait'3' lucid atclone'if [ ! -d "$GENCOMPL_FPATH" ]; then
   mkdir -p $GENCOMPL_FPATH
