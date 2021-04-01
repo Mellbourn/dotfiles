@@ -16,6 +16,8 @@
     path = .gitconfig.user.foss
 [core]
 	excludesfile = ~/.gitignore_global
+[init]
+	defaultBranch = main
 [commit]
 	gpgsign = true
 [mergetool]
