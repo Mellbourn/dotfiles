@@ -250,14 +250,14 @@ fi
 # give extra color to exa
 #zinit wait'2' lucid atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!' light-mode for trapd00r/LS_COLORS
 
-if [ -d "$HOMEBREW_PREFIX/share/z.lua" ]; then
-  export _ZL_MATCH_MODE=1
-  zinit wait'0' lucid as'null' atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh' light-mode for zdharma/null
-  alias c="z -I"
-elif [ -x "$(command -v zoxide)" ]; then
+if [ -x "$(command -v zoxide)" ]; then
   export _ZO_MAXAGE=400
   export _ZO_EXCLUDE_DIRS=$HOME
   zinit wait'0' lucid as'null' atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi' light-mode for zdharma/null
+elif [ -d "$HOMEBREW_PREFIX/share/z.lua" ]; then
+  export _ZL_MATCH_MODE=1
+  zinit wait'0' lucid as'null' atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh' light-mode for zdharma/null
+  alias c="z -I"
 else
   # zoxide not available on old raspberry pi. fasd is pure shell, but slow: fasd takes 0.06s
   zinit wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" \
