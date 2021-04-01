@@ -208,6 +208,14 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 zinit wait'3' lucid for unixorn/git-extra-commands
 
+GENCOMPL_FPATH=${XDG_CACHE_HOME:-$HOME/.cache}/zsh-completion-generator
+
+fpath=($GENCOMPL_FPATH $fpath)
+zstyle :plugin:zsh-completion-generator programs fzf
+zinit wait'3' lucid atclone'if [ ! -d "$GENCOMPL_FPATH" ]; then
+  mkdir -p $GENCOMPL_FPATH
+fi' for RobSis/zsh-completion-generator
+
 # some nice OMZ functions: take, alias, try_alias_value, omz_urlencode, omz_urldecode
 zinit wait'4' lucid for \
   OMZ::lib/functions.zsh \
