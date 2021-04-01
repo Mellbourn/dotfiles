@@ -209,7 +209,8 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 zinit wait'3' lucid for unixorn/git-extra-commands
 
-zstyle :plugin:zsh-completion-generator programs fzf
+# list programs to generate completions for here (fzf already got completions)
+#zstyle :plugin:zsh-completion-generator programs fzf
 zinit wait'3' lucid atclone'if [ ! -d "$GENCOMPL_FPATH" ]; then
   mkdir -p $GENCOMPL_FPATH
 fi' for RobSis/zsh-completion-generator
