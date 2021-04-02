@@ -18,6 +18,13 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 
+if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
+  OS_UBUNTU=1
+  if dpkg -l ubuntu-desktop >/dev/null; then
+    UBUNTU_DESKTOP=1
+  fi
+fi
+
 #pushd $HOME/.yadm-project
 # is this necessary? we're not on master by default
 #git switch master
@@ -453,17 +460,6 @@ zoom
 
   echo will cite | parallel --citation >/dev/null 2>&1
 
-  # fonts
-  pushd ~/Library/Fonts >/dev/null
-  # Delugia Nerd Font is Cascadia with Nerd and frequently updated, unfortunately it is buggy (too small or high icons)
-  trash Delugia.Nerd.Font.Complete.ttf || true
-  curl -sL github.com/adam7/delugia-code/releases/latest |
-    grep "Delugia.Nerd.Font.Book.ttf\"" |
-    head -1 |
-    awk -F "\"" '{print "https://github.com" $2}' |
-    wget --show-progress -qNi -
-  popd >/dev/null
-
   # set up wemux user name
   sed -i -- "s/host_list=(brew)/host_list=($USER)/" $HOMEBREW_PREFIX/etc/wemux.conf
   sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
@@ -547,6 +543,25 @@ if ! [ -f ~/.ssh/id_rsa ]; then
     ssh-add
   fi
   echo "Remember to add the new public key in ~/.ssh/id_rsa.pub to github and appropriate authorized_hosts."
+fi
+
+# fonts
+if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
+  if [[ $(uname) == 'Darwin' ]]; then
+    pushd ~/Library/Fonts >/dev/null
+  else
+    mkdir -p ~/.local/share/fonts
+    pushd ~/.local/share/fonts >/dev/null
+  fi
+
+  # Delugia Nerd Font is Cascadia with Nerd and frequently updated, unfortunately it is buggy (too small or high icons)
+  trash Delugia.Nerd.Font.Complete.ttf || true
+  curl -sL github.com/adam7/delugia-code/releases/latest |
+    grep "Delugia.Nerd.Font.Book.ttf\"" |
+    head -1 |
+    awk -F "\"" '{print "https://github.com" $2}' |
+    wget --show-progress -qNi -
+  popd >/dev/null
 fi
 
 # Install `zinit` if not installed
