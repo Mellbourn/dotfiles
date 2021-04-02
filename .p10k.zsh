@@ -391,7 +391,7 @@
     local      clean='%0F' # black foreground
     local conflicted='%1F' # red foreground
 
-    local commitsBehind='%F{4}' # dark blue foreground
+    local commitsBehind='%F{19}' # dark blue foreground
     local commitsAhead='%F{21}' # blue foreground
     local staged='%F{022}'      # dark green foreground
     local unstaged='%F{88}'     # dark red foreground
@@ -1611,7 +1611,7 @@
   ####################################[ time: current time ]####################################
   # Current time color.
   typeset -g POWERLEVEL9K_TIME_FOREGROUND=254
-  typeset -g POWERLEVEL9K_TIME_BACKGROUND=4
+  typeset -g POWERLEVEL9K_TIME_BACKGROUND=20
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
   # If set to true, time will update when you hit enter. This way prompts for the past
