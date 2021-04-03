@@ -93,10 +93,6 @@
     todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
     timewarrior             # timewarrior tracking status (https://timewarrior.net/)
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
-    time                    # current time
-    os_icon                 # os identifier
-    # =========================[ Line #2 ]=========================
-    newline
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
@@ -108,6 +104,10 @@
     disk_usage            # disk usage
     # ram                   # free RAM
     # swap                  # used swap
+    time                    # current time
+    os_icon                 # os identifier
+    # =========================[ Line #2 ]=========================
+    # newline
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
