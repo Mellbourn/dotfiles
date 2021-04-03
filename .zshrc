@@ -124,6 +124,12 @@ zinit depth=1 light-mode for romkatv/powerlevel10k
 
 zinit wait'0a' lucid blockf for zsh-users/zsh-completions
 
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+# for match_prev_cmd to work, it requires histignorealldups to be removed (which is ok: do histsavenodups instead)
+export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
+zinit wait'0' lucid atload"!_zsh_autosuggest_start && ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
+" for zsh-users/zsh-autosuggestions
+
 # zsh-notify (as opposed to zbell) only notifies when the pane with the command is not focused
 # icons (whether remote or local) affects performance noticably
 notification_command_complete_timeout=30
@@ -292,27 +298,13 @@ fi
 
 # TODO: convert these to zinit
 # zplug "lukechilds/zsh-better-npm-completion", defer:2
-# # I should only activate this when I need to generate completions
-# #zplug "RobSis/zsh-completion-generator", defer:2
-#
 if [[ -n $UNAME_LINUX ]]; then
   #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
-
-  zinit wait'1' lucid atload"!_zsh_autosuggest_start && ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
-" for zsh-users/zsh-autosuggestions
 fi
 
 ###############################################################################
 # add-ons installed by homebrew
 ###############################################################################
-
-if [ -f $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-  source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
-fi
-export ZSH_AUTOSUGGEST_USE_ASYNC=1
-# for match_prev_cmd to work, it requires histignorealldups to be removed (which is ok: do histsavenodups instead)
-export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 ###############################################################################
 # make paste safe and fix pasted urls, https://forum.endeavouros.com/t/tip-better-url-pasting-in-zsh/6962
