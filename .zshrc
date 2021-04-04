@@ -163,6 +163,9 @@ zinit wait'1' lucid for supercrabtree/k
 
 zinit wait'1' atload"zpcdreplay" atclone'./zplug.zsh' lucid for g-plane/zsh-yarn-autocompletions
 
+# has to be loaded aftr fzf, so that it overwrites ^R
+zinit wait'2' lucid for zdharma/history-search-multi-word
+
 zinit wait'2' lucid light-mode for "cedi/meaningful-error-codes"
 
 zinit wait'2' lucid if'[[ -x "$(command -v fzf)" ]]' for wfxr/forgit
