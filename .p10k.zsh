@@ -107,7 +107,7 @@
     #time                    # current time
     os_icon                 # os identifier
     # =========================[ Line #2 ]=========================
-    # newline
+    newline
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
