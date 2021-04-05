@@ -6,6 +6,18 @@
 # fortune takes 0.017s
 #fortune
 
+if [ -f ~/.profile ]; then
+  source ~/.profile
+fi
+
+# only start tmux if you are not already in tmux, or you are starting up Visual Studio Code from spotlight
+if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &>/dev/null && [ -z "$VSCODE_PID" ]; then
+  # use this "if" to suppress tmux in *debugging* in vscode
+  if [ -z "$VSCODE_WORKSPACE_FOLDER" ]; then
+    exec ~/bin/tmux-attach-or-new
+  fi
+fi
+
 export PROCESSOR_ARCHITECTURE=$(uname -p)
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
@@ -30,18 +42,6 @@ if [ -n "$SHELL" ]; then
   export SHELLNAME=$(echo $SHELL | sed 's#.*/##')
 else
   export SHELLNAME=$(ps -o comm= -c "$$" | sed 's/-//')
-fi
-
-if [ -f ~/.profile ]; then
-  source ~/.profile
-fi
-
-# only start tmux if you are not already in tmux, or you are starting up Visual Studio Code from spotlight
-if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &>/dev/null && [ -z "$VSCODE_PID" ]; then
-  # use this "if" to suppress tmux in *debugging* in vscode
-  if [ -z "$VSCODE_WORKSPACE_FOLDER" ]; then
-    exec ~/bin/tmux-attach-or-new
-  fi
 fi
 
 if [ -f ~/.protocol ]; then

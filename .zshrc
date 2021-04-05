@@ -6,18 +6,6 @@
 #zmodload zsh/zprof
 #START=$(gdate +%s.%N)
 
-#rm ~/.zcompdump ~/.zcompcache
-source ~/.zinit/bin/zinit.zsh
-
-GENCOMPL_FPATH=~/.zsh-personal-completions/generated
-fpath=(~/.zsh-personal-functions ~/.zsh-personal-completions $fpath $GENCOMPL_FPATH)
-autoload -U zmv
-# personal functions in ~/.zsh-personal-functions
-autoload -Uz yb
-
-# helping brew completion is needed if HOMEBREW_PREFIX is not /usr/local
-FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH
-
 ###############################################################################
 # remember your ancestor
 ###############################################################################
@@ -30,6 +18,18 @@ source ~/.bash_profile
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+#rm ~/.zcompdump ~/.zcompcache
+source ~/.zinit/bin/zinit.zsh
+
+GENCOMPL_FPATH=~/.zsh-personal-completions/generated
+fpath=(~/.zsh-personal-functions ~/.zsh-personal-completions $fpath $GENCOMPL_FPATH)
+autoload -U zmv
+# personal functions in ~/.zsh-personal-functions
+autoload -Uz yb
+
+# helping brew completion is needed if HOMEBREW_PREFIX is not /usr/local
+FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH
 
 # misc
 setopt interactive_comments long_list_jobs extendedglob notify list_packed transient_rprompt
