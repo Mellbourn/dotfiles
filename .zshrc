@@ -445,11 +445,6 @@ LBUFFER+="$(eval $history[$((HISTCMD-1))])"
 zle -N insert-last-command-output
 bindkey "^X^L" insert-last-command-output
 
-if [ -x "$(command -v bat)" ]; then
-  # this MUST be run after woefe/git-prompt.zsh
-  alias cat=bat
-fi
-
 ###############################################################################
 # Suffix aliases - http://zshwiki.org/home/examples/aliassuffix
 ###############################################################################
@@ -530,6 +525,11 @@ autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 zinit cdreplay
 
+if [ -x "$(command -v bat)" ]; then
+  # this MUST be run after woefe/git-prompt.zsh
+  alias cat=bat
+  compdef bat=cat
+fi
 if [ $(command -v _exa) ]; then
   compdef x='exa'
   compdef xl='exa'
@@ -537,6 +537,10 @@ fi
 if [ -x "$(command -v lsd)" ]; then
   alias ls=lsd
   compdef lsd=ls
+fi
+if [ -x "$(command -v prettyping)" ]; then
+  alias ping='prettyping --nolegend'
+  compdef prettyping=ping
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
