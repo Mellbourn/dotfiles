@@ -6,13 +6,6 @@
 #zmodload zsh/zprof
 #START=$(gdate +%s.%N)
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 #rm ~/.zcompdump ~/.zcompcache
 source ~/.zinit/bin/zinit.zsh
 
@@ -29,6 +22,14 @@ FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH
 # remember your ancestor
 ###############################################################################
 source ~/.bash_profile
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+# This must go after tmux auto start https://github.com/romkatv/powerlevel10k/issues/1203
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # misc
 setopt interactive_comments long_list_jobs extendedglob notify list_packed transient_rprompt
