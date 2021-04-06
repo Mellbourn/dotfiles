@@ -546,12 +546,15 @@ fi
 
 # fonts
 if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
+  # for some weird reason, rvm reports errors on changing directory
+  set +e
   if [[ $(uname) == 'Darwin' ]]; then
     pushd ~/Library/Fonts >/dev/null
   else
     mkdir -p ~/.local/share/fonts
     pushd ~/.local/share/fonts >/dev/null
   fi
+  set -e
 
   # Delugia Nerd Font is Cascadia with Nerd and frequently updated, unfortunately it is buggy (too small or high icons)
   trash Delugia.Nerd.Font.Complete.ttf || true
@@ -560,7 +563,9 @@ if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
     head -1 |
     awk -F "\"" '{print "https://github.com" $2}' |
     wget --show-progress -qNi -
+  set +e
   popd >/dev/null
+  set -e
 fi
 
 # Install `zinit` if not installed
