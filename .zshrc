@@ -529,6 +529,10 @@ if [ -x "$(command -v bat)" ]; then
   # this MUST be run after woefe/git-prompt.zsh
   alias cat=bat
   compdef bat=cat
+  function batgrep() {
+    command batgrep --color --smart-case --context=0 $* | less -+J -+W
+  }
+  alias batgrep='noglob batgrep'
 fi
 if [ $(command -v _exa) ]; then
   compdef x='exa'
