@@ -158,7 +158,7 @@ deno
 diff-so-fancy
 direnv
 duti
-eth-p/software/bat-extras
+eth-p/software/bat-extras-batgrep
 exa
 fd
 findutils
@@ -292,7 +292,7 @@ deno
 diff-so-fancy
 direnv
 duti
-eth-p/software/bat-extras
+eth-p/software/bat-extras-batgrep
 exa
 fd
 findutils
