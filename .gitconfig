@@ -14,8 +14,6 @@
 # redundant, but don't forget this repo
 [includeIf "gitdir:~/.yadm/"]
     path = .gitconfig.user.foss
-[core]
-	excludesfile = ~/.gitignore_global
 [init]
 	defaultBranch = main
 [commit]
