@@ -231,13 +231,23 @@ sudo sysctl debug.lowpri_throttle_enabled=0
 # installations for Klarna
 ###############################################################################
 if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]] && [[ $PATH == */.rvm/* ]]; then
+  set +e
   echo "Ruby (should be rvm version\!): $(which ruby) $(ruby --version)"
+  echo "RVM $RVM"
+  echo "GEM_HOME $GEM_HOME"
+  sudo echo "sudo Ruby (should be rvm version\!): $(which ruby) $(ruby --version)"
+  sudo echo "sudo RVM $RVM"
+  sudo echo "sudo GEM_HOME $GEM_HOME"
   # is sudo really needed here? Hmm, yeah it might be
-  sudo gem install cocoapods
-  yes | sudo gem update --system
-  yes | sudo gem update
+  gem install cocoapods
+  yes | gem update --system
+  yes | gem update
   # this is the exact version required by `klapp doctor`, this doesn't really work
-  yes | sudo gem install bundler:2.1.4
+  yes | gem install bundler:2.1.4
+  # I got "Ignoring bigdecimal-1.4.4 because its extensions are not built. Try: gem pristine bigdecimal --version 1.4.4"
+  #gem install bigdecimal -v '1.4.4'
+  #gem pristine bigdecimal --version 1.4.4
+  set -e
 fi
 
 ###############################################################################
