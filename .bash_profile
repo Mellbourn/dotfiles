@@ -72,8 +72,9 @@ export CLICOLOR=1
 export GCAL='--starting-day=Monday --iso-week-number=yes --with-week-number --cc-holidays=SE'
 if [[ -n $UNAME_LINUX ]]; then
   # WSL
-  # export LSCOLORS=gxfxcxdxbxegedabaggxgx
-  export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=36:ow=36'
+  #export LSCOLORS=gxfxcxdxbxegedabaggxgx
+  # LS_COLORS now set by trapd00r/LS_COLORS
+  #export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=36:ow=36'
   alias ls='ls --color=auto'
 
   export LESSOPEN="| $(which highlight) %s --out-format ansi --quiet --force"
@@ -83,9 +84,10 @@ else
   # fix for ENFILE: file table overflow
   ulimit -n 20000
 
+  # translated from LS_COLORS using https://geoff.greer.fm/lscolors/
   export LSCOLORS=gxfxcxdxbxegedabagacad
-  # for gnu ls, converted LSCOLORS using https://geoff.greer.fm/lscolors/
-  export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+  # LS_COLORS now set by trapd00r/LS_COLORS
+  #export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
   export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column"
 fi

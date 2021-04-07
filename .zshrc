@@ -85,10 +85,8 @@ setopt nolistbeep # could be nobeep, but that will create cases where there is n
 # Do menu-driven completion.
 zstyle ':completion:*' menu select
 
-# Color completion for some things.
-
-# make file completion match ls colors
-zstyle ':completion:*' list-colors $LS_COLORS
+# make file completion match ls colors - this now done by trapd00r/LS_COLORS
+#zstyle ':completion:*' list-colors $LS_COLORS
 
 # formatting and messages
 # http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
@@ -163,6 +161,12 @@ MAGIC_ENTER_OTHER_COMMAND="l"
 zinit wait'1' lucid for supercrabtree/k
 
 zinit wait'1' atload"zpcdreplay" atclone'./zplug.zsh' lucid for g-plane/zsh-yarn-autocompletions
+
+# add LOTS of file type colors
+zinit wait'1' atclone"gdircolors -b LS_COLORS > clrs.zsh" \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"' \
+    lucid light-mode for trapd00r/LS_COLORS
 
 # has to be loaded aftr fzf, so that it overwrites ^R
 zinit wait'2' lucid for zdharma/history-search-multi-word
@@ -244,7 +248,6 @@ fi
 # exa doesn't download well on WSL
 # zinit wait'2' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa" light-mode for ogham/exa
 export TIME_STYLE=long-iso
-export EXA_COLORS="uu=38;5;248:da=1;34:di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 if [ -x "$(command -v exa)" ]; then
   function x() {
     command exa -F --color-scale --group-directories-first --color=always --git-ignore --git -x $*
@@ -256,9 +259,6 @@ else
   alias x=l
   alias xl=ll
 fi
-
-# give extra color to exa
-#zinit wait'2' lucid atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!' light-mode for trapd00r/LS_COLORS
 
 if [ -x "$(command -v zoxide)" ]; then
   export _ZO_MAXAGE=400
