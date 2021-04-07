@@ -43,6 +43,9 @@
 	re = restore
 	sw = switch
 	d = diff --color-words=.
+	# logp and reflogp have been adjustd so that they are compatible with git-delta
+	logp = log -p --format='commit %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s'
+	reflogp = reflog -p --format='commit %C(auto)%h%d %gd: %gs (%s)'
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	worktree-skipped = !git ls-files -v | grep "^S"
