@@ -162,8 +162,11 @@ zinit wait'1' lucid for supercrabtree/k
 
 zinit wait'1' atload"zpcdreplay" atclone'./zplug.zsh' lucid for g-plane/zsh-yarn-autocompletions
 
+if [ ! -x "$(command -v dircolors)" ]; then
+  alias dircolors=gdircolors
+fi
 # add LOTS of file type colors
-zinit wait'1' atclone"gdircolors -b LS_COLORS > clrs.zsh" \
+zinit wait'1' atclone"dircolors -b LS_COLORS > clrs.zsh" \
     atpull'%atclone' pick"clrs.zsh" nocompile'!' \
     atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"' \
     lucid light-mode for trapd00r/LS_COLORS
