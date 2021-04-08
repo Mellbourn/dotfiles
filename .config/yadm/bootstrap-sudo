@@ -90,14 +90,6 @@ if [[ $(uname) == 'Linux' ]]; then
       wget --show-progress -O "$TEMP_DEB" -qNi - &&
       sudo dpkg --skip-same-version -i "$TEMP_DEB"
     rm -f "$TEMP_DEB"
-  else
-    if ! [ -x "$(command -v snap)" ]; then
-      sudo apt install -y snapd
-      sudo reboot
-    fi
-    sudo snap install core
-    sudo snap refresh
-    sudo snap install http --channel latest/candidate
   fi
 
   sudo apt autoremove --yes
@@ -116,6 +108,7 @@ if [[ $(uname) == 'Linux' ]]; then
   fi
 
   if [ -n "$OS_UBUNTU" ]; then
+    sudo snap install http --channel latest/candidate
     if [ -n "$UBUNTU_DESKTOP" ]; then
       # dark mode
       gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
