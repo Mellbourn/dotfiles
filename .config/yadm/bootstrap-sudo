@@ -90,6 +90,14 @@ if [[ $(uname) == 'Linux' ]]; then
       wget --show-progress -O "$TEMP_DEB" -qNi - &&
       sudo dpkg --skip-same-version -i "$TEMP_DEB"
     rm -f "$TEMP_DEB"
+  else
+    # the following was an attempt to use snap on Raspberry pi. Installed, but no command line tool except hello-world worked
+    #if ! [ -x "$(command -v snap)" ]; then
+    #  sudo apt install -y snapd
+    #  sudo reboot
+    #fi
+    #sudo snap install core
+    #sudo snap refresh
   fi
 
   sudo apt autoremove --yes
