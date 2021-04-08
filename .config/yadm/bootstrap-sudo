@@ -82,17 +82,22 @@ if [[ $(uname) == 'Linux' ]]; then
 
   if [ -n "$OS_WSL" ]; then
     SYSTEM_DEB_SUFFIX=amd64
+    TEMP_DEB="$(mktemp)" &&
+      curl -sL github.com/Peltoche/lsd/releases/latest |
+      grep "lsd_[[:digit:]]\.[[:digit:]]*\.[[:digit:]]*_$SYSTEM_DEB_SUFFIX.deb\"" |
+      head -1 |
+      awk -F "\"" '{print "https://github.com" $2}' |
+      wget --show-progress -O "$TEMP_DEB" -qNi - &&
+      sudo dpkg --skip-same-version -i "$TEMP_DEB"
+    rm -f "$TEMP_DEB"
   else
-    SYSTEM_DEB_SUFFIX=$(uname -m)
+    if ! [ -x "$(command -v snap)" ]; then
+      sudo apt install -y snapd
+      sudo reboot
+    fi
+    sudo snap install core
+    sudo snap install lsd
   fi
-  TEMP_DEB="$(mktemp)" &&
-    curl -sL github.com/Peltoche/lsd/releases/latest |
-    grep "lsd_[[:digit:]]\.[[:digit:]]*\.[[:digit:]]*_$SYSTEM_DEB_SUFFIX.deb\"" |
-    head -1 |
-    awk -F "\"" '{print "https://github.com" $2}' |
-    wget --show-progress -O "$TEMP_DEB" -qNi - &&
-    sudo dpkg --skip-same-version -i "$TEMP_DEB"
-  rm -f "$TEMP_DEB"
 
   sudo apt autoremove --yes
 
