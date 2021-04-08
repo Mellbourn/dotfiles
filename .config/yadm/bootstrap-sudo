@@ -92,20 +92,20 @@ if [[ $(uname) == 'Linux' ]]; then
     rm -f "$TEMP_DEB"
   }
 
+  if [[ $(dpkg --print-architecture) == "amd64" || $(dpkg --print-architecture) == "arm64" ]]; then
+    # WSL will have amd64
+    # Ubuntu desktop on Raspberry pi 400 will have arm64
+    installLsd $(dpkg --print-architecture)
+  fi
+
   if [ -n "$OS_WSL" ]; then
     ###############################################################################
     # configuration specific for Windows Subsystem for Linux (WSL)
     ###############################################################################
-
-    installLsd "amd64"
   else
-      ###############################################################################
+    #################################################################################
     # configuration specific non-WSL, e.g. raspberry pi, and those that support snap
     #################################################################################
-    if [[ $(uname -m) == "aarch64" ]]; then
-      # this works for Ubuntu desktop on Raspberry pi 400
-      installLsd "arm64"
-    fi
 
     # the following was an attempt to use snap on Raspberry pi. Installed, but no command line tool except hello-world worked
     if ! [ -x "$(command -v snap)" ]; then
