@@ -63,6 +63,11 @@ if [ -d /snap ]; then
     PATH="$PATH:/snap/croc/current"
   fi
 fi
+if [ -d "$HOME/.manually-installed" ]; then
+  if [ -d "$HOME/.manually-installed/lsd" ]; then
+    PATH="$PATH:$HOME/.manually-installed/lsd"
+  fi
+fi
 if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
