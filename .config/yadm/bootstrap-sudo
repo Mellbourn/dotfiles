@@ -98,11 +98,7 @@ if [[ $(uname) == 'Linux' ]]; then
     installLsd $(dpkg --print-architecture)
   fi
 
-  if [ -n "$OS_WSL" ]; then
-    ###############################################################################
-    # configuration specific for Windows Subsystem for Linux (WSL)
-    ###############################################################################
-  else
+  if [ -z "$OS_WSL" ]; then
     #################################################################################
     # configuration specific non-WSL, e.g. raspberry pi, and those that support snap
     #################################################################################
