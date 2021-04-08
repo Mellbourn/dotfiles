@@ -96,7 +96,7 @@ if [[ $(uname) == 'Linux' ]]; then
       sudo reboot
     fi
     sudo snap install core
-    sudo snap install lsd
+    sudo snap install http --channel latest/candidate
   fi
 
   sudo apt autoremove --yes
@@ -116,7 +116,6 @@ if [[ $(uname) == 'Linux' ]]; then
 
   if [ -n "$OS_UBUNTU" ]; then
     if [ -n "$UBUNTU_DESKTOP" ]; then
-      sudo snap install http --channel latest/candidate
       # dark mode
       gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
       # no background picture (default was 'zoom')
