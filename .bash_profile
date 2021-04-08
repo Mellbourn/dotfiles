@@ -58,6 +58,11 @@ fi
 
 ### environment variables
 export PATH=~/bin:$PATH:$HOMEBREW_PREFIX/sbin
+if [ -d /snap ]; then
+  if [ -d "/snap/croc/current" ]; then
+    PATH="$PATH:/snap/croc/current"
+  fi
+fi
 if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
