@@ -98,6 +98,7 @@ if [[ $(uname) == 'Linux' ]]; then
     fi
     sudo snap install core
     sudo snap refresh
+    sudo snap install lsd || true
   fi
 
   sudo apt autoremove --yes
