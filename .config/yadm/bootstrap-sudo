@@ -80,8 +80,8 @@ if [[ $(uname) == 'Linux' ]]; then
   fi
   set -e
 
-  if [ -n "$OS_WSL" ]; then
-    SYSTEM_DEB_SUFFIX=amd64
+  installLsd() {
+    SYSTEM_DEB_SUFFIX=$1
     TEMP_DEB="$(mktemp)" &&
       curl -sL github.com/Peltoche/lsd/releases/latest |
       grep "lsd_[[:digit:]]\.[[:digit:]]*\.[[:digit:]]*_$SYSTEM_DEB_SUFFIX.deb\"" |
@@ -90,7 +90,23 @@ if [[ $(uname) == 'Linux' ]]; then
       wget --show-progress -O "$TEMP_DEB" -qNi - &&
       sudo dpkg --skip-same-version -i "$TEMP_DEB"
     rm -f "$TEMP_DEB"
+  }
+
+  if [ -n "$OS_WSL" ]; then
+    ###############################################################################
+    # configuration specific for Windows Subsystem for Linux (WSL)
+    ###############################################################################
+
+    installLsd "amd64"
   else
+      ###############################################################################
+    # configuration specific non-WSL, e.g. raspberry pi, and those that support snap
+    #################################################################################
+    if [[ $(uname -m) == "aarch64" ]]; then
+      # this works for Ubuntu desktop on Raspberry pi 400
+      installLsd "arm64"
+    fi
+
     # the following was an attempt to use snap on Raspberry pi. Installed, but no command line tool except hello-world worked
     if ! [ -x "$(command -v snap)" ]; then
       sudo apt install -y snapd
@@ -98,7 +114,6 @@ if [[ $(uname) == 'Linux' ]]; then
     fi
     sudo snap install core
     sudo snap refresh
-    sudo snap install lsd || true
   fi
 
   sudo apt autoremove --yes
