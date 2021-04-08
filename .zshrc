@@ -151,7 +151,7 @@ else
   # on macOS zsh-notify is generally better
   zbell_duration=600
 fi
-zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help)
+zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help lnav)
 zinit wait'0' lucid for OMZP::zbell
 
 zinit wait'1' lucid for OMZP::magic-enter
