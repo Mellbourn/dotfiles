@@ -96,6 +96,7 @@ if [[ $(uname) == 'Linux' ]]; then
       sudo reboot
     fi
     sudo snap install core
+    sudo snap refresh
     sudo snap install http --channel latest/candidate
   fi
 
