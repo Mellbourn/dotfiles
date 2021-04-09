@@ -111,6 +111,7 @@ set rtp+=$HOMEBREW_PREFIX/opt/fzf
 set ignorecase
 
 call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'airblade/vim-gitgutter'
 call plug#end()
