@@ -121,6 +121,42 @@ if [[ $(uname) == 'Linux' ]]; then
     sudo snap install core
     sudo snap refresh
     sudo snap install croc
+    if [ -n "$OS_UBUNTU" ]; then
+      sudo snap install http --channel latest/candidate
+      if [ -n "$UBUNTU_DESKTOP" ]; then
+        # dark mode
+        gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+        # no background picture (default was 'zoom')
+        gsettings set org.gnome.desktop.background picture-options 'none'
+        # black Background (default was '#023c88')
+        gsettings set org.gnome.desktop.background primary-color '#000000'
+
+        # auto hide dock
+        gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+        gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
+        gsettings set org.gnome.shell.extensions.dash-to-dock intellihide-mode 'ALL_WINDOWS'
+
+        sudo apt install -y curl
+
+        # ssh
+        sudo apt install -y ssh
+        sudo systemctl enable --now ssh
+
+        # install vscode
+        wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >/tmp/packages.microsoft.gpg
+        sudo install -o root -g root -m 644 /tmp/packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+        sudo apt install -y apt-transport-https
+        sudo apt install -y code fonts-cascadia-code xclip
+
+        # install Chromium
+        sudo snap install chromium --channel latest/beta
+      fi
+      if [ -x "$(command -v cargo)" ]; then
+        cargo install -f hyperfine
+        cargo install exa
+      fi
+    fi
   fi
 
   sudo apt autoremove --yes
@@ -136,43 +172,6 @@ if [[ $(uname) == 'Linux' ]]; then
   sudo apt install git-lfs || true
   if [ -x "$(command -v git-lfs)" ]; then
     git lfs install --skip-smudge
-  fi
-
-  if [ -n "$OS_UBUNTU" ]; then
-    sudo snap install http --channel latest/candidate
-    if [ -n "$UBUNTU_DESKTOP" ]; then
-      # dark mode
-      gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-      # no background picture (default was 'zoom')
-      gsettings set org.gnome.desktop.background picture-options 'none'
-      # black Background (default was '#023c88')
-      gsettings set org.gnome.desktop.background primary-color '#000000'
-
-      # auto hide dock
-      gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
-      gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
-      gsettings set org.gnome.shell.extensions.dash-to-dock intellihide-mode 'ALL_WINDOWS'
-
-      sudo apt install -y curl
-
-      # ssh
-      sudo apt install -y ssh
-      sudo systemctl enable --now ssh
-
-      # install vscode
-      wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >/tmp/packages.microsoft.gpg
-      sudo install -o root -g root -m 644 /tmp/packages.microsoft.gpg /etc/apt/trusted.gpg.d/
-      sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-      sudo apt install -y apt-transport-https
-      sudo apt install -y code fonts-cascadia-code xclip
-
-      # install Chromium
-      sudo snap install chromium --channel latest/beta
-    fi
-    if [ -x "$(command -v cargo)" ]; then
-      cargo install -f hyperfine
-      cargo install exa
-    fi
   fi
 
   # do some cleanup
