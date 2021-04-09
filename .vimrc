@@ -112,6 +112,7 @@ set ignorecase
 
 call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 " n.b. you must manually load the plugins using :PlugInstall
 colorscheme dracula
