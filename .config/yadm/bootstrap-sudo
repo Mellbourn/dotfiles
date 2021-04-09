@@ -85,9 +85,9 @@ if [[ $(uname) == 'Linux' ]]; then
     TEMP_DEB="$(mktemp)" &&
       curl -sL github.com/Peltoche/lsd/releases/latest |
       grep "lsd_[[:digit:]]\.[[:digit:]]*\.[[:digit:]]*_$SYSTEM_DEB_SUFFIX.deb\"" |
-      head -1 |
-      awk -F "\"" '{print "https://github.com" $2}' |
-      wget --show-progress -O "$TEMP_DEB" -qNi - &&
+        head -1 |
+        awk -F "\"" '{print "https://github.com" $2}' |
+        wget --show-progress -O "$TEMP_DEB" -qNi - &&
       sudo dpkg --skip-same-version -i "$TEMP_DEB"
     rm -f "$TEMP_DEB"
   }
@@ -106,6 +106,9 @@ if [[ $(uname) == 'Linux' ]]; then
       awk -F "\"" '{print "https://github.com" $2}' |
       wget --show-progress -qNi - -O - |
       tar -xzv --strip=1 -C $LSD_INSTALL_DIR
+  else
+    # afaik this fallback is never used, but it should fail and stop the execution if it doesn't work
+    installLsd $(dpkg --print-architecture)
   fi
 
   if [ -z "$OS_WSL" ]; then
