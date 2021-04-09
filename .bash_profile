@@ -57,7 +57,7 @@ if [ -f ~/.local_settings ]; then
 fi
 
 ### environment variables
-export PATH=~/bin:$PATH:$HOMEBREW_PREFIX/sbin
+export PATH=$PATH:$HOMEBREW_PREFIX/sbin
 if [ -d /snap ]; then
   if [ -d "/snap/croc/current" ]; then
     PATH="$PATH:/snap/croc/current"
@@ -77,6 +77,7 @@ fi
 if [ -d ~/.cargo/bin ]; then
   export PATH=$PATH:~/.cargo/bin
 fi
+export PATH=~/bin:$PATH
 export CLICOLOR=1
 export GCAL='--starting-day=Monday --iso-week-number=yes --with-week-number --cc-holidays=SE'
 if [[ -n $UNAME_LINUX ]]; then
