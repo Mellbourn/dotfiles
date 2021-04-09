@@ -110,4 +110,4 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 colorscheme dracula
 set background=dark
-highlight Normal guibg=black guifg=white ctermbg=black
+highlight Normal guibg=black ctermbg=black
