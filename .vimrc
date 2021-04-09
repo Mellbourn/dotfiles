@@ -108,6 +108,7 @@ set ignorecase
 call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
+" n.b. you must manually load the plugins using :PlugInstall
 colorscheme dracula
 set background=dark
 highlight Normal guibg=black ctermbg=black
