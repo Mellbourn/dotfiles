@@ -522,6 +522,10 @@ fi
 # remove obsolete folder for .zplugin, since it has been renamed to zinit
 trash ~/.zplugin || true
 
+# vim
+mkdir -p ~/.vim/autoload
+wget --show-progress -qNP ~/.vim/autoload https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 if ! [ -f ~/.ssh/id_rsa ]; then
   ssh-keygen -t rsa -b 4096 -C "${USER}@$(hostname)" -f ~/.ssh/id_rsa -N ""
   eval $(ssh-agent -s)
