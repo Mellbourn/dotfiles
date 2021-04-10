@@ -524,6 +524,7 @@ zinit wait'2' lucid --atinit="ZINIT[COMPINIT_OPTS]=-C; zicompinit; autoload -U +
 if [ -x "$(command -v bat)" ]; then
   # this MUST be run after woefe/git-prompt.zsh
   alias cat=bat
+  alias less='bat --pager "less $LESS"'
 fi
 if [ -x "$(command -v lsd)" ]; then
   alias ls=lsd
