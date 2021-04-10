@@ -238,7 +238,6 @@ forgit_ignore=forgig
 #zinit wait'1' lucid as'null' atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma/null
 
 zinit wait'1' lucid for \
-  OMZP::colored-man-pages \
   djui/alias-tips \
   OMZP::dircycle
 
@@ -521,6 +520,10 @@ bindkey '¿' which-command #option-?
 # loads theme ~/.config/fsh/improved-default.ini for zdharma/fast-syntax-highlighting
 zinit wait'2' lucid --atinit="ZINIT[COMPINIT_OPTS]=-C; zicompinit; autoload -U +X bashcompinit && bashcompinit; zicdreplay" --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.log" light-mode for zdharma/fast-syntax-highlighting
 
+# colored man pages must be loaded after syntax-highlighting
+zinit wait'2b' lucid for \
+  OMZP::colored-man-pages \
+
 if [ -x "$(command -v bat)" ]; then
   # this MUST be run after woefe/git-prompt.zsh
   alias cat=bat
@@ -530,8 +533,8 @@ if [ -x "$(command -v lsd)" ]; then
   alias ls=lsd
 fi
 
-# load explicit compdefs after
-zinit wait'2' lucid as'null' atinit'
+# load explicit compdefs after compinit (not sure why this is necessary)
+zinit wait'2b' lucid as'null' atinit'
 
 [[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
 
