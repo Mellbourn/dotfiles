@@ -160,7 +160,7 @@ MAGIC_ENTER_OTHER_COMMAND="l"
 
 zinit wait'1' lucid for supercrabtree/k
 
-zinit wait'1' atload"zpcdreplay" atclone'./zplug.zsh' lucid for g-plane/zsh-yarn-autocompletions
+zinit wait'1' atclone'./zplug.zsh' lucid for g-plane/zsh-yarn-autocompletions
 
 if [ ! -x "$(command -v dircolors)" ]; then
   alias dircolors=gdircolors
@@ -515,40 +515,48 @@ bindkey '¿' which-command #option-?
 
 ###############################################################################
 # Syntax highlighting for the shell
-# syntax highlighting should be loaded after all widgets, to work with them
+# syntax highlighting should be loaded AFTER all widgets, to work with them
+# This last async call is also where compinit should be called, see https://github.com/zdharma/zinit#calling-compinit-with-turbo-mode
 ###############################################################################
 # loads theme ~/.config/fsh/improved-default.ini for zdharma/fast-syntax-highlighting
-zinit wait lucid --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.log" light-mode for zdharma/fast-syntax-highlighting
-
-[[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
-
-# it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zinit then
-#zinit wait'0z' lucid as'null' atinit'zpcompinit; zpcdreplay' light-mode for zdharma/null
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-zinit cdreplay
+zinit wait'4' lucid --atinit="ZINIT[COMPINIT_OPTS]=-C; zicompinit; autoload -U +X bashcompinit && bashcompinit; zicdreplay" --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.log" light-mode for zdharma/fast-syntax-highlighting
 
 if [ -x "$(command -v bat)" ]; then
   # this MUST be run after woefe/git-prompt.zsh
   alias cat=bat
-  compdef bat=cat
-  function batgrep() {
-    command batgrep --color --smart-case --context=0 $* | less -+J -+W
-  }
-  alias batgrep='noglob batgrep'
-fi
-if [ $(command -v _exa) ]; then
-  compdef x='exa'
-  compdef xl='exa'
 fi
 if [ -x "$(command -v lsd)" ]; then
   alias ls=lsd
-  compdef lsd=ls
 fi
+
+# load explicit compdefs after
+zinit wait'4' lucid as'null' atinit'
+
+[[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
+
+# this MUST be run after woefe/git-prompt.zsh
+compdef bat=cat
+function batgrep() {
+  command batgrep --color --smart-case --context=0 $* | less -+J -+W
+}
+alias batgrep="noglob batgrep"
+if [ $(command -v _exa) ]; then
+  compdef x="exa"
+  compdef xl="exa"
+fi
+compdef lsd=ls
 if [ -x "$(command -v prettyping)" ]; then
-  alias ping='prettyping --nolegend'
+  alias ping="prettyping --nolegend"
   compdef prettyping=ping
 fi
+
+' light-mode for zdharma/null
+
+# it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zinit then
+#zinit wait'0z' lucid as'null' atinit'zpcompinit; zpcdreplay' light-mode for zdharma/null
+#autoload -U +X compinit && compinit
+#autoload -U +X bashcompinit && bashcompinit
+#zinit cdreplay
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
