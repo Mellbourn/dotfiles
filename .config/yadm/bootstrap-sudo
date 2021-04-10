@@ -327,9 +327,7 @@ sudo softwareupdate --schedule on
 sudo softwareupdate -i -a --restart
 
 # always boot in verbose mode (not MacOS GUI mode) - no longer seems to work on Big Sur
-if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-  sudo nvram -d boot-args
-else
+if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
   sudo nvram boot-args="-v"
 fi
 
