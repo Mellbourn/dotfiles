@@ -826,13 +826,13 @@
   typeset -g POWERLEVEL9K_LOAD_WHICH=5
   # don't show load below this threshold percentage
   if [[ $(uname -p) == "arm" ]]; then
-    typeset -g POWERLEVEL9K_LOAD_THRESHOLD=40
+    typeset -g POWERLEVEL9K_LOAD_WARNING_PCT=40
   else
-    typeset -g POWERLEVEL9K_LOAD_THRESHOLD=400
+    typeset -g POWERLEVEL9K_LOAD_WARNING_PCT=400
   fi
-  # Load color when load is under 50%.
-  typeset -g POWERLEVEL9K_LOAD_NORMAL_FOREGROUND=0
-  typeset -g POWERLEVEL9K_LOAD_NORMAL_BACKGROUND=2
+  # Hide `load` when it's under certain percentage of all CPUs.
+  typeset -g POWERLEVEL9K_LOAD_NORMAL_CONTENT_EXPANSION=
+  typeset -g POWERLEVEL9K_LOAD_NORMAL_VISUAL_IDENTIFIER_EXPANSION=
   # Load color when load is between 50% and 70%.
   typeset -g POWERLEVEL9K_LOAD_WARNING_FOREGROUND=0
   typeset -g POWERLEVEL9K_LOAD_WARNING_BACKGROUND=3
