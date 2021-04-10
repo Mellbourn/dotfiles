@@ -78,6 +78,7 @@ if has("autocmd")
     \   exe "normal! g`\"" |
     \ endif
 
+  " This autoloads vim-plug plugins at startup
   autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \|   PlugInstall --sync | q
