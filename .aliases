@@ -20,6 +20,7 @@ alias gn='git number --column' # note that command line completion does not work
 alias grep='grep --color=auto'
 alias l='ls -F '
 alias la='ls -AF '
+alias less='bat --pager "less $LESS"'
 alias ll='ls -lF '
 alias more=less
 alias mv='mv -v'
