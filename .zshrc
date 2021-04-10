@@ -154,6 +154,39 @@ fi
 zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help lnav)
 zinit wait'0' lucid for OMZP::zbell
 
+# exa doesn't download well on WSL
+# zinit wait'0' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa" light-mode for ogham/exa
+export TIME_STYLE=long-iso
+if [ -x "$(command -v exa)" ]; then
+  function x() {
+    command exa -F --color-scale --group-directories-first --color=always --git-ignore --git -x $*
+  }
+  function xl() {
+    command exa -F --color-scale --group-directories-first --color=always --git-ignore --git -l $* | less -r
+  }
+else
+  alias x=l
+  alias xl=ll
+fi
+
+if [ -x "$(command -v zoxide)" ]; then
+  export _ZO_MAXAGE=400
+  export _ZO_EXCLUDE_DIRS=$HOME
+  zinit wait'0' lucid as'null' atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi' light-mode for zdharma/null
+elif [ -d "$HOMEBREW_PREFIX/share/z.lua" ]; then
+  export _ZL_MATCH_MODE=1
+  zinit wait'0' lucid as'null' atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh' light-mode for zdharma/null
+  alias c="z -I"
+else
+  # zoxide not available on old raspberry pi. fasd is pure shell, but slow: fasd takes 0.06s
+  zinit wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" \
+    atinit'eval "$(fasd --init auto)" && alias sd="noglob sd"' light-mode for clvv/fasd
+  c() {
+    local dir
+    dir="$(fasd -Rdl "$1" | $FZF -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+  }
+fi
+
 zinit wait'1' lucid for OMZP::magic-enter
 MAGIC_ENTER_GIT_COMMAND="l"
 MAGIC_ENTER_OTHER_COMMAND="l"
@@ -171,6 +204,27 @@ zinit wait'1' atclone"dircolors -b LS_COLORS > clrs.zsh" \
     atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"' \
     lucid light-mode for trapd00r/LS_COLORS
 
+# fuzzy completion: ^R, ^T, ⌥C, **
+export FZF_DEFAULT_COMMAND="$FD --type file"
+# --ansi makes fzf a bit slower, but I haven't really noticed, this preview is used for ** completion
+export FZF_DEFAULT_OPTS="--ansi --select-1 --height 40% --reverse --tiebreak=begin --bind end:preview-down,home:preview-up"
+export FZF_TMUX_OPTS="-d 70%"
+# tmux was a bit slower
+#export FZF_TMUX=1
+#FZF="fzf-tmux"
+FZF=fzf
+# this harmed kill -9 and git co **
+#export FZF_COMPLETION_OPTS="--preview '(bat --color always --paging never {} 2> /dev/null || tree -C {}) 2> /dev/null | head -200' --preview-window=right:33%"
+# this is slow for large sets, could be sorted with ' | sort -u' but that is just the initial sorting
+export FZF_ALT_C_COMMAND='$FD --type directory'
+export FZF_ALT_C_OPTS="--preview 'CLICOLOR_FORCE=1 ls -GF {} | head -200' --preview-window=right:20%"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+if [ -x "$(command -v bat)" ]; then
+  export FZF_CTRL_T_OPTS="--preview 'bat --color always {} | head -120' --preview-window=right:33%"
+fi
+zinit wait'1' lucid as'null' \
+  atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma/null
+
 # has to be loaded aftr fzf, so that it overwrites ^R
 zinit wait'2' lucid for zdharma/history-search-multi-word
 
@@ -181,7 +235,7 @@ zinit wait'2' lucid if'[[ -x "$(command -v fzf)" ]]' for wfxr/forgit
 forgit_ignore=forgig
 
 # command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
-#zinit wait'4' lucid as'null' atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma/null
+#zinit wait'2' lucid as'null' atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma/null
 
 zinit wait'2' lucid for \
   OMZP::colored-man-pages \
@@ -248,39 +302,6 @@ if [[ -n $UNAME_MACOS ]]; then
   zinit wait'4' lucid light-mode as"program" pick"src/trash" for morgant/tools-osx
 fi
 
-# exa doesn't download well on WSL
-# zinit wait'2' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa" light-mode for ogham/exa
-export TIME_STYLE=long-iso
-if [ -x "$(command -v exa)" ]; then
-  function x() {
-    command exa -F --color-scale --group-directories-first --color=always --git-ignore --git -x $*
-  }
-  function xl() {
-    command exa -F --color-scale --group-directories-first --color=always --git-ignore --git -l $* | less -r
-  }
-else
-  alias x=l
-  alias xl=ll
-fi
-
-if [ -x "$(command -v zoxide)" ]; then
-  export _ZO_MAXAGE=400
-  export _ZO_EXCLUDE_DIRS=$HOME
-  zinit wait'0' lucid as'null' atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi' light-mode for zdharma/null
-elif [ -d "$HOMEBREW_PREFIX/share/z.lua" ]; then
-  export _ZL_MATCH_MODE=1
-  zinit wait'0' lucid as'null' atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh' light-mode for zdharma/null
-  alias c="z -I"
-else
-  # zoxide not available on old raspberry pi. fasd is pure shell, but slow: fasd takes 0.06s
-  zinit wait'0' lucid as"program" pick"$ZPFX/fasd" make"PREFIX=$ZPFX install" \
-    atinit'eval "$(fasd --init auto)" && alias sd="noglob sd"' light-mode for clvv/fasd
-  c() {
-    local dir
-    dir="$(fasd -Rdl "$1" | $FZF -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-  }
-fi
-
 if [ -z "$DOTFILES_LITE" ]
 then
   # Not really plugins, but very good to have async anyway
@@ -291,16 +312,16 @@ then
 
   # # python environent will also cause a lag
   # # this takes 0.166s
-  # zinit wait'2a' lucid as'null' atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"' light-mode for zdharma/null
-  # zinit wait'2b' lucid as'null' atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"' light-mode for zdharma/null
+  # zinit wait'4a' lucid as'null' atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"' light-mode for zdharma/null
+  # zinit wait'4b' lucid as'null' atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"' light-mode for zdharma/null
   # export WORKON_HOME=~/.py_virtualenvs
-  # zinit wait'2c' lucid as'null' atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi' light-mode for zdharma/null
+  # zinit wait'4c' lucid as'null' atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi' light-mode for zdharma/null
   # # this taskes 0.39s
   # # this has to be loaded much later than the preceding plugins, otherwise you will get "No module named virtualenvwrapper  "
   # zinit wait'10' lucid as'null' atinit'if [ -f $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh ]; then source $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh; fi' light-mode for zdharma/null
 
   # yarn must be run after node is defined, takes 0.31s, and only adds $HOMEBREW_PREFIX/bin
-  #zinit wait'2' lucid as'null' atinit'export PATH="$PATH:$(yarn global bin)"' light-mode for zdharma/null
+  #zinit wait'4' lucid as'null' atinit'export PATH="$PATH:$(yarn global bin)"' light-mode for zdharma/null
 fi
 
 # TODO: convert these to zinit
@@ -345,27 +366,6 @@ if [ -x "$(command -v fdfind)" ]; then
 else
   export FD=fd
 fi
-
-# fuzzy completion: ^R, ^T, ⌥C, **
-export FZF_DEFAULT_COMMAND="$FD --type file"
-# --ansi makes fzf a bit slower, but I haven't really noticed, this preview is used for ** completion
-export FZF_DEFAULT_OPTS="--ansi --select-1 --height 40% --reverse --tiebreak=begin --bind end:preview-down,home:preview-up"
-export FZF_TMUX_OPTS="-d 70%"
-# tmux was a bit slower
-#export FZF_TMUX=1
-#FZF="fzf-tmux"
-FZF=fzf
-# this harmed kill -9 and git co **
-#export FZF_COMPLETION_OPTS="--preview '(bat --color always --paging never {} 2> /dev/null || tree -C {}) 2> /dev/null | head -200' --preview-window=right:33%"
-# this is slow for large sets, could be sorted with ' | sort -u' but that is just the initial sorting
-export FZF_ALT_C_COMMAND='$FD --type directory'
-export FZF_ALT_C_OPTS="--preview 'CLICOLOR_FORCE=1 ls -GF {} | head -200' --preview-window=right:20%"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-if [ -x "$(command -v bat)" ]; then
-  export FZF_CTRL_T_OPTS="--preview 'bat --color always {} | head -120' --preview-window=right:33%"
-fi
-zinit wait'1' lucid as'null' \
-  atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma/null
 
 # set up direnv
 if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
@@ -553,7 +553,6 @@ fi
 ' light-mode for zdharma/null
 
 # it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zinit then
-#zinit wait'0z' lucid as'null' atinit'zpcompinit; zpcdreplay' light-mode for zdharma/null
 #autoload -U +X compinit && compinit
 #autoload -U +X bashcompinit && bashcompinit
 #zinit cdreplay
