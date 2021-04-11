@@ -531,19 +531,17 @@ zinit wait'2b' lucid for \
 if [ -x "$(command -v bat)" ]; then
   # this MUST be run after woefe/git-prompt.zsh
   alias cat=bat
-  # this function does not work for piping to less with arguments
+  # this function does not work for piping to less with (less) arguments (any flags will become bat flags)
   function less() {
-    if [ $# -gt 0 ]; then
-      local last="${@:$#}" # last parameter
-      local length=$(($# - 1))
-      if ((length > 0)); then
-        local other="${@:1:$length}"
-      else
-        local other=
-      fi
-      bat $last --pager "less $LESS $other"
+    local filename="${@:$#}" # last parameter, MUST be the filename
+    local flaglength=$(($# - 1))
+    if ((flaglength > 0)); then
+      local other="${@:1:$flaglength}"
+      bat $filename --pager "less $LESS $other"
+    elif ((flaglength == 0)); then
+      bat $filename --pager "less $LESS"
     else
-      # piping
+      # no arg at all -> piping
       bat --pager "less $LESS"
     fi
   }
