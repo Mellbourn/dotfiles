@@ -166,7 +166,7 @@ if [ -x "$(command -v exa)" ]; then
     command exa -F --color-scale --group-directories-first --color=always --git-ignore --git -x $*
   }
   function xl() {
-    command exa -F --color-scale --group-directories-first --color=always --git-ignore --git -l $* | less -r
+    command exa -F --color-scale --group-directories-first --color=always --git-ignore --git -l $* | command less -r
   }
 else
   alias x=l
@@ -561,7 +561,7 @@ zinit wait'2b' lucid as'null' atinit'
 if [ -x "$(command -v bat)" ]; then
   compdef less=less
   function batgrep() {
-    command batgrep --color --smart-case --context=0 $* | less -+J -+W
+    command batgrep --color --smart-case --context=0 $* | command less -+J -+W
   }
   alias batgrep="noglob batgrep"
 fi
