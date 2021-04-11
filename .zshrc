@@ -109,7 +109,11 @@ zstyle ':completion::complete:*' use-cache 1
 # limit to 1 error
 # zstyle ':completion:*:approximate:*' max-errors 1
 # case insensitive completion
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+#zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+#very allowing
+#zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+# if you use lower, interpret it as either. If you use upper force upper
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 # command line completion for kubectl, only activate if really needed, since this takes 0.2s to load
 #if [ -x "$(command -v kubectl)" ]; then
@@ -549,7 +553,6 @@ zinit wait'2b' lucid as'null' atinit'
 
 # this MUST be run after woefe/git-prompt.zsh
 if [ -x "$(command -v bat)" ]; then
-  compdef bat=cat
   compdef less=less
   function batgrep() {
     command batgrep --color --smart-case --context=0 $* | less -+J -+W
