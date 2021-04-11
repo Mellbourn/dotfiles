@@ -527,7 +527,16 @@ zinit wait'2b' lucid for \
 if [ -x "$(command -v bat)" ]; then
   # this MUST be run after woefe/git-prompt.zsh
   alias cat=bat
-  alias less='bat --pager "less $LESS"'
+  function less() {
+    local last="${@:$#}" # last parameter
+    local length=$(($# - 1))
+    if ((length > 0)); then
+      local other="${@:1:$length}"
+    else
+      local other=
+    fi
+    bat $last --pager "less $LESS $other"
+  }
 fi
 if [ -x "$(command -v lsd)" ]; then
   alias ls=lsd
@@ -539,11 +548,14 @@ zinit wait'2b' lucid as'null' atinit'
 [[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
 
 # this MUST be run after woefe/git-prompt.zsh
-compdef bat=cat
-function batgrep() {
-  command batgrep --color --smart-case --context=0 $* | less -+J -+W
-}
-alias batgrep="noglob batgrep"
+if [ -x "$(command -v bat)" ]; then
+  compdef bat=cat
+  compdef less=less
+  function batgrep() {
+    command batgrep --color --smart-case --context=0 $* | less -+J -+W
+  }
+  alias batgrep="noglob batgrep"
+fi
 if [ $(command -v _exa) ]; then
   compdef x="exa"
   compdef xl="exa"
