@@ -542,7 +542,7 @@ if [ -x "$(command -v bat)" ]; then
       bat $filename --pager "less $LESS"
     else
       # no arg at all -> piping
-      bat --pager "less $LESS"
+      command less
     fi
   }
 fi
