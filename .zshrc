@@ -208,6 +208,13 @@ zinit wait'1' atclone"dircolors -b LS_COLORS > clrs.zsh" \
     atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"' \
     lucid light-mode for trapd00r/LS_COLORS
 
+if [ -x "$(command -v fdfind)" ]; then
+  # alternate name used on ubuntu/debian
+  export FD=fdfind
+else
+  export FD=fd
+fi
+
 # fuzzy completion: ^R, ^T, ⌥C, **
 export FZF_DEFAULT_COMMAND="$FD --type file"
 # --ansi makes fzf a bit slower, but I haven't really noticed, this preview is used for ** completion
@@ -362,13 +369,6 @@ fi
 ###############################################################################
 # fzf
 ###############################################################################
-
-if [ -x "$(command -v fdfind)" ]; then
-  # alternate name used on ubuntu/debian
-  export FD=fdfind
-else
-  export FD=fd
-fi
 
 # set up direnv
 if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
