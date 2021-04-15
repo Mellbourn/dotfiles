@@ -115,6 +115,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'airblade/vim-gitgutter'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 " n.b. you must manually load the plugins using :PlugInstall
 colorscheme dracula
