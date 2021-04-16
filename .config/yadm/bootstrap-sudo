@@ -57,6 +57,7 @@ if [[ $(uname) == 'Linux' ]]; then
     aptitude
     lnav
     tmpreaper
+    libssl-dev
   "
   for app in $apps; do
     if ! dpkg-query -l $app >/dev/null; then
