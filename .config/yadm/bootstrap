@@ -517,11 +517,14 @@ fi ############################################################################
 ###############################################################################
 
 if [ -x "$(command -v cargo)" ]; then
-  if [ -f ~/.cargo/bin/cargo-install-update-config* ]; then
+  cargo install --verbose cargo-update || true
+  cargo install --verbose termimage || true
+  if [ -f ~/.cargo/bin/cargo-install-update ]; then
+    cargo install-update -a
+  fi
+  if [ -f ~/.cargo/bin/cargo-install-update-config ]; then
     mv ~/.cargo/bin/cargo-install-update-config ~/.cargo/bin/cargo-install-update-configure
   fi
-  cargo install cargo-update termimage
-  cargo install-update -a
 fi
 
 # this seems healthy to do every now and then to make sure zsh completion works
