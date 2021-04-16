@@ -75,7 +75,7 @@ if [ -d $HOMEBREW_PREFIX/opt/awscli@1/bin ]; then
   export PATH=$PATH:$HOMEBREW_PREFIX/opt/awscli@1/bin
 fi
 if [ -d ~/.cargo/bin ]; then
-  export PATH=$PATH:~/.cargo/bin
+  export PATH=~/.cargo/bin:$PATH
 fi
 export PATH=~/bin:$PATH
 export CLICOLOR=1
