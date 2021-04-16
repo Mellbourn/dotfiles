@@ -516,7 +516,10 @@ fi ############################################################################
 # configuration for both Mac and Linux
 ###############################################################################
 
-if [ -x "$(command -v cargo)" ]; then
+version_gte() {
+  printf '%s\n%s' "$1" "$2" | sort -C -V -r
+}
+if [ -x "$(command -v cargo)" ] && version_gte $(cargo --version | cut -d " " -f2) 1.0.0; then
   cargo install --verbose cargo-update || true
   cargo install --verbose termimage || true
   if [ -f ~/.cargo/bin/cargo-install-update ]; then
