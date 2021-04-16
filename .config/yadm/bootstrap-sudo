@@ -58,6 +58,7 @@ if [[ $(uname) == 'Linux' ]]; then
     lnav
     tmpreaper
     libssl-dev
+    pkg-config
   "
   for app in $apps; do
     if ! dpkg-query -l $app >/dev/null; then
