@@ -24,6 +24,9 @@ if [[ $(uname) == 'Linux' ]]; then
   if ! [ -x "$(command -v add-apt-repository)" ]; then
     sudo apt install -y software-properties-common
   fi
+  if vi --version|grep -q "Small version"; then
+    sudo apt install -y --reinstall vim
+  fi
   set +e
   # add repo to get newest git
   sudo add-apt-repository -y ppa:git-core/ppa
