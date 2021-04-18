@@ -98,8 +98,8 @@ else
 fi
 if (($(command less --version | head -1 | cut -d ' ' -f2) >= 581)); then
   export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
-  export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --HILITE-UNREAD --status-column \
-    --incsearch --use-color"
+  export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column \
+    --quit-if-one-screen --incsearch --use-color"
 else
   export LESSOPEN="| $(which highlight) %s --out-format ansi --quiet --force"
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column"
