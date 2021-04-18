@@ -97,11 +97,11 @@ else
   #export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 fi
 if (($(command less --version | head -1 | cut -d ' ' -f2) >= 581)); then
-  export LESSOPEN="| $(which highlight) %s --out-format xterm256 --quiet --force --style darkplus"
+  export LESSOPEN="| $(which highlight) %s --quiet --force --out-format xterm256 --style darkplus"
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column \
     --quit-if-one-screen --incsearch --use-color"
 else
-  export LESSOPEN="| $(which highlight) %s --out-format ansi --quiet --force"
+  export LESSOPEN="| $(which highlight) %s --quiet --force --out-format ansi"
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column"
 fi
 # git-delta can't handle a status column
