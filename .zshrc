@@ -136,7 +136,7 @@ zinit wait'0' lucid atload"!_zsh_autosuggest_start && ZSH_AUTOSUGGEST_CLEAR_WIDG
 # zsh-notify (as opposed to zbell) only notifies when the pane with the command is not focused
 # icons (whether remote or local) affects performance noticably
 notification_command_complete_timeout=30
-zinit wait'0' silent atload'
+zinit wait'0' lucid atload'
   zstyle ":notify:*" activate-terminal yes
   zstyle ":notify:*" command-complete-timeout $notification_command_complete_timeout
   zstyle ":notify:*" enable-on-ssh yes
@@ -146,7 +146,8 @@ zinit wait'0' silent atload'
   zstyle ":notify:*" success-icon "https://upload.wikimedia.org/wikipedia/commons/a/a6/Green_approved.png"
   zstyle ":notify:*" success-sound "Blow"
   zstyle ":notify:*" success-title "✅ finished in #{time_elapsed}"' \
-  for marzocchi/zsh-notify
+  for Mellbourn/zsh-notify
+# TODO: switch back to marzocchi/zsh-notify once my PR https://github.com/marzocchi/zsh-notify/pull/84 is accepted
 
 # set up a bell after command that run longer than this many seconds (regardless of focus or result)
 if [[ -n $UNAME_LINUX ]]; then
