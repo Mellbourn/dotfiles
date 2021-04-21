@@ -30,6 +30,7 @@
     submodule = log
 [merge]
     tool = kdiff3
+	log = true
 [status]
 	submodulesummary = true
 [alias]
