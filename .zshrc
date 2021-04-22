@@ -146,8 +146,7 @@ zinit wait'0' lucid atload'
   zstyle ":notify:*" success-icon "https://upload.wikimedia.org/wikipedia/commons/a/a6/Green_approved.png"
   zstyle ":notify:*" success-sound "Blow"
   zstyle ":notify:*" success-title "✅ finished in #{time_elapsed}"' \
-  for Mellbourn/zsh-notify
-# TODO: switch back to marzocchi/zsh-notify once my PR https://github.com/marzocchi/zsh-notify/pull/84 is accepted
+  for marzocchi/zsh-notify
 
 # set up a bell after command that run longer than this many seconds (regardless of focus or result)
 if [[ -n $UNAME_LINUX ]]; then
