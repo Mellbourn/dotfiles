@@ -826,7 +826,7 @@
   typeset -g POWERLEVEL9K_LOAD_WHICH=5
   # don't show load below this threshold percentage
   if [[ $(uname -p) != "arm" ]]; then
-    typeset -g POWERLEVEL9K_LOAD_CRITICAL_PCT=1500
+    typeset -g POWERLEVEL9K_LOAD_CRITICAL_PCT=1000
     typeset -g POWERLEVEL9K_LOAD_WARNING_PCT=400
   fi
   # Hide `load` when it's under certain percentage of all CPUs.
