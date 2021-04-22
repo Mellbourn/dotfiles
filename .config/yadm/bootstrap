@@ -118,6 +118,10 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   # remove brews here that were previously installed, to sync between machines
   brewSafeUninstall zsh-autosuggestions
+  # reinstall imagemagick when ilmbase dependency has gone
+  brewSafeUninstall imagemagick
+  brewSafeUninstall openexr
+  brewSafeUninstall ilmbase
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
@@ -175,7 +179,6 @@ highlight
 htop
 httpie
 hyperfine
-imagemagick
 jq
 kpcli
 lastpass-cli
@@ -314,7 +317,6 @@ highlight
 htop
 httpie
 hyperfine
-imagemagick
 jq
 kpcli
 lastpass-cli
