@@ -163,6 +163,9 @@ fi
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
+# bc settings
+export BC_ENV_ARGS="-l -q"
+
 # ansible needs sqlite3
 # macOS provides an older sqlite3.
 #If you need to have this software first in your PATH run:
