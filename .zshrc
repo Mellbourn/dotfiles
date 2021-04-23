@@ -52,6 +52,14 @@ export HISTFILE=~/.zsh_history
 export SAVEHIST=$HISTSIZE
 
 ###############################################################################
+# tmux
+###############################################################################
+set_p10k_branch_in_tmux() {
+  tmux setenv -g VCS_STATUS_LOCAL_BRANCH ${VCS_STATUS_LOCAL_BRANCH:-''}
+}
+precmd_functions+=set_p10k_branch_in_tmux
+
+###############################################################################
 # dynamic aliases
 ###############################################################################
 if [ -x "$(command -v grc)" ]; then
