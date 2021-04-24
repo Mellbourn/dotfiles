@@ -55,7 +55,7 @@ export SAVEHIST=$HISTSIZE
 # tmux
 ###############################################################################
 set_p10k_branch_in_tmux() {
-  # backward compatible version of: tmux select-pane -T "${VCS_STATUS_LOCAL_BRANCH}"
+  # backward compatible version (tmux < 2.5) of: tmux select-pane -T "${VCS_STATUS_LOCAL_BRANCH}"
   printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"
 }
 precmd_functions+=set_p10k_branch_in_tmux
