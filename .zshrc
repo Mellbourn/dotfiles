@@ -143,8 +143,9 @@ zinit wait'0' lucid atload"!_zsh_autosuggest_start && ZSH_AUTOSUGGEST_CLEAR_WIDG
 
 # zsh-notify (as opposed to zbell) only notifies when the pane with the command is not focused
 # icons (whether remote or local) affects performance noticably
+# silent because zsh-notify does not work on raspberry pi
 notification_command_complete_timeout=30
-zinit wait'0' lucid atload'
+zinit wait'0' silent atload'
   zstyle ":notify:*" activate-terminal yes
   zstyle ":notify:*" command-complete-timeout $notification_command_complete_timeout
   zstyle ":notify:*" enable-on-ssh yes
