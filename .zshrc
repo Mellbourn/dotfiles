@@ -58,7 +58,7 @@ zinit lucid light-mode for romkatv/zsh-defer
 
 set_p10k_branch_in_tmux() {
   # backward compatible version (tmux < 2.5) of: tmux select-pane -T "${VCS_STATUS_LOCAL_BRANCH}"
-  zsh-defer -a -t 0.2 -c 'printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"'
+  zsh-defer -1 -t 0.2 -c 'printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"'
 }
 precmd_functions+=set_p10k_branch_in_tmux
 
