@@ -116,7 +116,13 @@ if [[ $(uname) == 'Linux' ]]; then
     installLsd $(dpkg --print-architecture)
   fi
 
-  if [ -z "$OS_WSL" ]; then
+  if [ -n "$OS_WSL" ]; then
+    #################################################################################
+    # configuration specific for WSL
+    #################################################################################
+    # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
+    ~/bin/trash-empty-wsl +30
+  else
     #################################################################################
     # configuration specific non-WSL, e.g. raspberry pi, and those that support snap
     #################################################################################
@@ -184,8 +190,6 @@ if [[ $(uname) == 'Linux' ]]; then
 
   # do some cleanup
   trash-empty 30
-  # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
-  ~/bin/trash-empty-wsl +30
   sudo tmpreaper --all --showdeleted 30d /tmp
 
   # remove cron warning
