@@ -104,7 +104,7 @@
     disk_usage            # disk usage
     # ram                   # free RAM
     # swap                  # used swap
-    #time                    # current time
+    time                    # current time
     os_icon                 # os identifier
     # =========================[ Line #2 ]=========================
     newline
