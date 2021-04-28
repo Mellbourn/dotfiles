@@ -149,7 +149,6 @@ zinit wait'0' lucid atload"!_zsh_autosuggest_start && ZSH_AUTOSUGGEST_CLEAR_WIDG
 # silent because zsh-notify does not work on raspberry pi
 notification_command_complete_timeout=30
 zinit wait'0' silent atload'
-  zstyle ":notify:*" activate-terminal yes
   zstyle ":notify:*" command-complete-timeout $notification_command_complete_timeout
   zstyle ":notify:*" enable-on-ssh yes
   zstyle ":notify:*" error-icon "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Blokkade.png/240px-Blokkade.png"
