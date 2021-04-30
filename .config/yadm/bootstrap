@@ -238,7 +238,7 @@ zsh
       echo $installThese | xargs brew install
     fi
 
-    # TODO: add more: java8, google-chrome-beta, p4v philips-hue-sync launchcontrol plex private-internet-access
+    # TODO: add more: java8, p4v philips-hue-sync plex private-internet-access
     casks="
 bartender
 font-cascadia-code-pl
