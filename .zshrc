@@ -187,7 +187,7 @@ fi
 if [ -x "$(command -v zoxide)" ]; then
   export _ZO_MAXAGE=400
   export _ZO_EXCLUDE_DIRS=$HOME
-  zinit wait'0' lucid as'null' atinit'eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi' light-mode for zdharma/null
+  zinit wait'0' lucid as'null' atinit'unalias zi;eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi zi=zinit' light-mode for zdharma/null
 elif [ -d "$HOMEBREW_PREFIX/share/z.lua" ]; then
   export _ZL_MATCH_MODE=1
   zinit wait'0' lucid as'null' atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh' light-mode for zdharma/null
