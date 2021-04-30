@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
-command='zsh -is </dev/null'
+if grep -q Raspbian /etc/os-release 2>/dev/null; then
+  # Raspbian started having problems with zsh-defer in these measurements, so had to do simpler command for them
+  command='zsh -i -c exit'
+else
+  command='zsh -is </dev/null'
+fi
 min_runs=30
 warmup=3
 hyperfine_is_fine=1
