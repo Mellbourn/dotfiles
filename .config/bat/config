@@ -4,6 +4,8 @@
 --theme="Dracula"
 # header might be nice
 --style="changes"
+# with default-terminal "tmux-256color" and a modern ncurses first in path, italics will work in iTerm2
+--italic-text=always
 # remove first column, it confuses bat. Also, in cat, quit more easily
 --pager="less -+W -+J --QUIT-AT-EOF --no-init"
 # maybe never have a pager?
