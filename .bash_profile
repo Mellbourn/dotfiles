@@ -59,7 +59,9 @@ fi
 ### environment variables
 export PATH=$PATH:$HOMEBREW_PREFIX/sbin
 # to make tmux-256color work, you have to have a modern ncurses first in path
-export PATH="$HOMEBREW_PREFIX/opt/ncurses/bin:$PATH"
+if [ -d "$HOMEBREW_PREFIX/opt/ncurses/bin" ]; then
+  export PATH="$HOMEBREW_PREFIX/opt/ncurses/bin:$PATH"
+fi
 if [ -d /snap ]; then
   if [ -d "/snap/croc/current" ]; then
     PATH="$PATH:/snap/croc/current"
