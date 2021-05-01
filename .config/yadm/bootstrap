@@ -658,10 +658,6 @@ fi ############################################################################
 # mac specific configurations
 ###############################################################################
 
-# arrange mtux-256color for macOS
-infocmp tmux-256color >/tmp/tmux-256color.info
-tic -xe tmux-256color /tmp/tmux-256color.info
-
 if ! [ -f ~/.fzf.$(basename $SHELL) ]; then
   $HOMEBREW_PREFIX/opt/fzf/install --key-bindings --completion --no-update-rc
 fi
