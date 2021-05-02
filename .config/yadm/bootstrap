@@ -673,6 +673,11 @@ npm update -g
 # save some disk
 xcrun simctl delete unavailable
 
+# add tmux-256color terminfo to ~/.terminfo
+curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/terminfo.src.gz
+gunzip -f /tmp/terminfo.src.gz
+/usr/bin/tic -xe tmux-256color /tmp/terminfo.src
+
 # remove itunes from login items. This way it does not open when you plug in an iPhone
 osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2>/tmp/delete_itunes_helper_error.txt || true
 

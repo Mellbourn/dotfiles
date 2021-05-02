@@ -58,15 +58,6 @@ fi
 
 ### environment variables
 export PATH=$PATH:$HOMEBREW_PREFIX/sbin
-# to make tmux-256color work, you have to have a modern ncurses first in path
-if [ -d "$HOMEBREW_PREFIX/opt/ncurses/bin" ]; then
-  export PATH="$HOMEBREW_PREFIX/opt/ncurses/bin:$PATH"
-fi
-if [[ "$TERM" == "tmux-256color" ]]; then
-  # tmux-256color enables italics, but many programs (ncdu, nano) do not recognize tmux-256color, this hack fixes that
-  # but setting TERM is not recommended. Will it break something?
-  export TERM=screen-256color
-fi
 if [ -d /snap ]; then
   if [ -d "/snap/croc/current" ]; then
     PATH="$PATH:/snap/croc/current"
