@@ -117,12 +117,36 @@ if [[ $(uname) == 'Darwin' ]]; then
     fi
   }
 
+  brewSafeUninstallCask() {
+    if brew list --cask "$@" 2>/dev/null; then
+      brew uninstall --cask "$@"
+    fi
+  }
+
   # remove brews here that were previously installed, to sync between machines
   brewSafeUninstall zsh-autosuggestions
   # reinstall imagemagick when ilmbase dependency has gone
   brewSafeUninstall imagemagick
   brewSafeUninstall openexr
   brewSafeUninstall ilmbase
+  brewSafeUninstall asciinema
+  brewSafeUninstall cheat
+  brewSafeUninstall fortune
+  brewSafeUninstall git-number
+  brewSafeUninstall z.lua
+  brewSafeUninstall weechat
+  brewSafeUninstallCask luna-display
+  brewSafeUninstallCask zeplin
+  brewSafeUninstallCask zenmap
+  brewSafeUninstallCask pokerth
+  brewSafeUninstallCask dash
+  brewSafeUninstallCask controlplane
+  brewSafeUninstallCask fork
+  brewSafeUninstallCask keycastr
+  brewSafeUninstallCask postman
+  brewSafeUninstallCask shortcat
+  brewSafeUninstallCask tor-browser
+  brewSafeUninstallCask tripmode
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
@@ -137,13 +161,11 @@ if [[ $(uname) == 'Darwin' ]]; then
     # wix/brew/applesimutils (not ready yet?)
     # when cargo works, cargo install viu https://github.com/atanunq/viu, and maybe rpick
     apps="
-asciinema
 aws-sam-cli
 awscli@1
 bash
 bash-completion
 bat
-cheat
 cloc
 coreutils
 deno
@@ -155,7 +177,6 @@ eth-p/software/bat-extras-batgrep
 exa
 fd
 findutils
-fortune
 fpp
 fx
 fzf
@@ -167,7 +188,6 @@ git-crypt
 git-delta
 git-extras
 git-lfs
-git-number
 git-recent
 glances
 gnu-sed
@@ -222,12 +242,10 @@ vim
 wakeonlan
 watch
 watchman
-weechat
 wemux
 wget
 yadm
 yarn
-z.lua
 zoxide
 zsh
 "
@@ -252,7 +270,6 @@ istat-menus
 iterm2
 keeweb
 keka
-keycastr
 launchcontrol
 moom
 paletro
@@ -273,13 +290,11 @@ witch
 
   # this must be in alphabetical order!
   apps="
-asciinema
 aws-sam-cli
 awscli@1
 bash
 bash-completion
 bat
-cheat
 cloc
 coreutils
 deno
@@ -291,7 +306,6 @@ eth-p/software/bat-extras-batgrep
 exa
 fd
 findutils
-fortune
 fpp
 fx
 fzf
@@ -303,7 +317,6 @@ git-crypt
 git-delta
 git-extras
 git-lfs
-git-number
 git-recent
 glances
 gnu-sed
@@ -364,13 +377,11 @@ vim
 wakeonlan
 watch
 watchman
-weechat
 wemux
 wget
 wix/brew/applesimutils
 yadm
 yarn
-z.lua
 zoxide
 zsh
 "
@@ -393,8 +404,6 @@ android-studio
 bartender
 charles
 chromedriver
-controlplane
-dash
 discord
 docker
 firefox
@@ -403,7 +412,6 @@ font-caskaydia-cove-nerd-font
 font-fira-code
 font-jetbrains-mono
 font-jetbrains-mono-nerd-font
-fork
 google-backup-and-sync
 google-chrome-beta
 grandperspective
@@ -416,33 +424,24 @@ jdiskreport
 kdiff3
 keka
 keeweb
-keycastr
 keycue
 launchcontrol
-luna-display
 mockoon
 moom
 p4v
 paletro
 philips-hue-sync
 plex
-pokerth
-postman
 private-internet-access
 react-native-debugger
-shortcat
 skype
 slack
 spotify
-tor-browser
-tripmode
 ui-browser
 virtualbox
 visual-studio-code
 vlc
 witch
-zenmap
-zeplin
 zoom
 "
 
