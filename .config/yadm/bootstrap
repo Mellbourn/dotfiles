@@ -70,8 +70,8 @@ if [[ $(uname) == 'Darwin' ]]; then
   mas lucky "Adblock Plus for Safari ABP" # (2.1.10) 1432731683
   mas lucky "CloseTabs Extension"         # (2.0) 1508584686
   mas lucky "Dark Reader for Safari"      # (1.4.3) 1438243180
-  mas lucky "Grammarly for Safari"        # (9.33) 1462114288
-  mas lucky "Popcorn for Safari"          # (2.0) 1535719670
+  #mas lucky "Grammarly for Safari"        # (9.33) 1462114288
+  #mas lucky "Popcorn for Safari"          # (2.0) 1535719670
 
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     # these still require rosetta afaik
@@ -169,20 +169,11 @@ bash-completion
 bat
 cloc
 coreutils
-deno
-diff-so-fancy
 direnv
-dockutil
-duti
-eth-p/software/bat-extras-batgrep
-exa
 fd
 findutils
-fpp
-fx
 fzf
 gcal
-gettext
 gh
 git
 git-crypt
@@ -190,20 +181,15 @@ git-delta
 git-extras
 git-lfs
 git-recent
-glances
 gnu-sed
 gnupg
 graphicsmagick
 grc
 grep
-gtm
 highlight
-htop
 httpie
 hyperfine
 jq
-kpcli
-lastpass-cli
 less
 librsvg
 lnav
@@ -212,7 +198,6 @@ ncdu
 nginx
 nodebrew
 noti
-parallel
 pinentry-mac
 pipenv
 pkg-config
@@ -228,22 +213,17 @@ ripgrep
 croc
 sd
 shfmt
-speedtest-cli
-stunnel
 terminal-notifier
 thefuck
 tig
 tldr
 tmpreaper
 tmux
-tokei
 transcrypt
 tree
 vim
-wakeonlan
 watch
 watchman
-wemux
 wget
 yadm
 yarn
@@ -260,24 +240,17 @@ zsh
 
     # TODO: add more: java8, p4v philips-hue-sync plex private-internet-access
     casks="
-bartender
 font-cascadia-code-pl
 font-caskaydia-cove-nerd-font
 font-fira-code
 font-jetbrains-mono
 font-jetbrains-mono-nerd-font
 google-chrome-beta
-istat-menus
 iterm2
 keeweb
 keka
-launchcontrol
 moom
-paletro
-ui-browser
-vlc
 visual-studio-code
-witch
 "
 
     alreadyInstalled=$(brew list --cask)
@@ -452,10 +425,6 @@ zoom
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     echo $installThese | xargs brew install --cask
   fi
-
-  brew link --force gettext
-
-  echo will cite | parallel --citation >/dev/null 2>&1
 
   # set up wemux user name
   sed -i -- "s/host_list=(brew)/host_list=($USER)/" $HOMEBREW_PREFIX/etc/wemux.conf
@@ -663,7 +632,7 @@ fi
 ###############################################################################
 # development
 ###############################################################################
-npm i -g npm node-gyp
+#npm i -g npm node-gyp
 # yarn 2 should not be installed globally!
 #npm i -g yarn@berry
 npm rm -g eslint
@@ -678,30 +647,6 @@ gunzip -f /tmp/terminfo.src.gz
 
 # remove itunes from login items. This way it does not open when you plug in an iPhone
 osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2>/tmp/delete_itunes_helper_error.txt || true
-
-###############################################################################
-# Associate filetypes to apps that should open them                           #
-###############################################################################
-# open in Visual Studio Code
-duti -s com.microsoft.VSCode .graphql all
-duti -s com.microsoft.VSCode .js all                         # javascript. Look extensions works too!
-duti -s com.microsoft.VSCode .rb all                         # ruby. Look extensions works too!
-duti -s com.microsoft.VSCode .ts all                         # typescript. Look extensions works too!
-duti -s com.microsoft.VSCode com.apple.log all               # .log
-duti -s com.microsoft.VSCode net.daringfireball.markdown all # .md
-duti -s com.microsoft.VSCode public.json all
-duti -s com.microsoft.VSCode public.plain-text all    # text files
-duti -s com.microsoft.VSCode public.python-script all # .py
-#duti -s com.microsoft.VSCode public.shell-script all # .sh - no, you want it to be executable
-duti -s com.microsoft.VSCode public.source-code all # this has no effect?
-duti -s com.microsoft.VSCode public.text all        # does this have a real effect?
-duti -s com.microsoft.VSCode public.xml all
-duti -s com.microsoft.VSCode public.yaml all
-# seems to have no effecxt: public.data, .lock
-# open in chrome
-duti -s com.google.chrome public.svg-image all # .svg
-# prefer vlc over quicktime
-duti -s org.videolan.vlc .avi Viewer
 
 ###############################################################################
 # Finder                                                                      #
@@ -765,9 +710,6 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 # Expand print panel by default - these don't work anymore? (but expanded state is preserved between restarts)
 #defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 #defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-
-# restore window position when you restart an application
-defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
 
 # show battery percent
 defaults write com.apple.menuextra.battery ShowPercent YES
