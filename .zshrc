@@ -273,19 +273,21 @@ zinit wait'1' lucid as"completion" light-mode for nilsonholger/osx-zsh-completio
 
 zinit wait'1' lucid light-mode for mellbourn/zabb
 
-# fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
-zinit wait'1' lucid for Aloxaf/fzf-tab
-# disable sort when completing `git checkout`
-zstyle ':completion:*:git-checkout:*' sort false
-# set descriptions format to enable group support
-zstyle ':completion:*:descriptions' format '[%d]'
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -l --blocks name,permission,size,date --color=always --icon=always $realpath'
-zstyle ':fzf-tab:complete:ls:*' fzf-preview '[ -f "$realpath" ] && bat --color=always $realpath || lsd -l --blocks name,permission,size,date --color=always --icon=always $realpath'
-zstyle ':fzf-tab:complete:export:*' fzf-preview 'printenv $word'
-zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'ping -c1 $word'
-# switch group using `,` and `.`
-zstyle ':fzf-tab:*' switch-group ',' '.'
+zinit wait'1' lucid atload"source zsh/fzf-zsh-completion.sh && bindkey '^I' fzf_completion" for lincheney/fzf-tab-completion
+
+## fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
+#zinit wait'1' lucid for Aloxaf/fzf-tab
+## disable sort when completing `git checkout`
+#zstyle ':completion:*:git-checkout:*' sort false
+## set descriptions format to enable group support
+#zstyle ':completion:*:descriptions' format '[%d]'
+## preview directory's content with exa when completing cd
+#zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -l --blocks name,permission,size,date --color=always --icon=always $realpath'
+#zstyle ':fzf-tab:complete:ls:*' fzf-preview '[ -f "$realpath" ] && bat --color=always $realpath || lsd -l --blocks name,permission,size,date --color=always --icon=always $realpath'
+#zstyle ':fzf-tab:complete:export:*' fzf-preview 'printenv $word'
+#zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'ping -c1 $word'
+## switch group using `,` and `.`
+#zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # this was cool but a bit too slow - adds blank lines after ls after a while
 #zinit wait'1' lucid light-mode for marlonrichert/zsh-autocomplete
