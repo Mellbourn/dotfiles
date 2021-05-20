@@ -274,7 +274,7 @@ zinit wait'1' lucid as"completion" light-mode for nilsonholger/osx-zsh-completio
 zinit wait'1' lucid light-mode for mellbourn/zabb
 
 # fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
-zinit wait'1' lucid for Aloxaf/fzf-tab
+zinit wait'1' lucid atclone'source fzf-tab.zsh && build-fzf-tab-module' atpull'%atclone' for Aloxaf/fzf-tab
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
