@@ -497,6 +497,13 @@ globalias() {
 }
 zle -N globalias
 bindkey '^X^a' globalias
+# M-w copies to global pasteboard as well as zsh clipboard
+pb-copy-region-as-kill () {
+  zle copy-region-as-kill
+  print -rn $CUTBUFFER | pbcopy
+}
+zle -N pb-copy-region-as-kill
+bindkey -e '\ew' pb-copy-region-as-kill
 
 # binding needed in VS Code integrated terminal when "terminal.integrated.macOptionIsMeta" is true
 #bindkey -s "\e2" @   # option-2 maps to the at-sign
