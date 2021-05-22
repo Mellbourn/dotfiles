@@ -139,11 +139,6 @@ if [[ $SHELL == *bash ]]; then
     . $(brew --prefix)/etc/bash_completion
   fi
 
-  export PROMPT_DIRTRIM=3
-  if [ -f $HOMEBREW_PREFIX/share/liquidprompt ]; then
-    . $HOMEBREW_PREFIX/share/liquidprompt
-  fi
-
   # ctrl-p and ctrl-n now searches history
   bind '"":history-search-backward'
   bind '"":history-search-forward'
