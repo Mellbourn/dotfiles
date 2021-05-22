@@ -497,27 +497,29 @@ globalias() {
 }
 zle -N globalias
 bindkey '^X^a' globalias
-# M-w copies to global pasteboard as well as zsh clipboard
-pb-copy-region-as-kill () {
-  zle copy-region-as-kill
-  print -rn $CUTBUFFER | pbcopy
-}
-zle -N pb-copy-region-as-kill
-bindkey -e '\ew' pb-copy-region-as-kill
-# Ctrl-u copies to global pasteboard as well as zsh clipboard - is this overkill?
-pb-backward-kill-line () {
-  zle backward-kill-line
-  print -rn $CUTBUFFER | pbcopy
-}
-zle -N pb-backward-kill-line
-bindkey -e '^u' pb-backward-kill-line
-# Ctrl-k copies to global pasteboard as well as zsh clipboard - is this overkill?
-pb-kill-line () {
-  zle kill-line
-  print -rn $CUTBUFFER | pbcopy
-}
-zle -N pb-kill-line
-bindkey -e '^k' pb-kill-line
+if [[ $UNAME == 'Darwin' ]]; then
+  # M-w copies to global pasteboard as well as zsh clipboard
+  pb-copy-region-as-kill () {
+    zle copy-region-as-kill
+    print -rn $CUTBUFFER | pbcopy
+  }
+  zle -N pb-copy-region-as-kill
+  bindkey -e '\ew' pb-copy-region-as-kill
+  # Ctrl-u copies to global pasteboard as well as zsh clipboard - is this overkill?
+  pb-backward-kill-line () {
+    zle backward-kill-line
+    print -rn $CUTBUFFER | pbcopy
+  }
+  zle -N pb-backward-kill-line
+  bindkey -e '^u' pb-backward-kill-line
+  # Ctrl-k copies to global pasteboard as well as zsh clipboard - is this overkill?
+  pb-kill-line () {
+    zle kill-line
+    print -rn $CUTBUFFER | pbcopy
+  }
+  zle -N pb-kill-line
+  bindkey -e '^k' pb-kill-line
+fi
 
 # binding needed in VS Code integrated terminal when "terminal.integrated.macOptionIsMeta" is true
 #bindkey -s "\e2" @   # option-2 maps to the at-sign
