@@ -511,6 +511,13 @@ pb-backward-kill-line () {
 }
 zle -N pb-backward-kill-line
 bindkey -e '^u' pb-backward-kill-line
+# Ctrl-k copies to global pasteboard as well as zsh clipboard - is this overkill?
+pb-kill-line () {
+  zle kill-line
+  print -rn $CUTBUFFER | pbcopy
+}
+zle -N pb-kill-line
+bindkey -e '^k' pb-kill-line
 
 # binding needed in VS Code integrated terminal when "terminal.integrated.macOptionIsMeta" is true
 #bindkey -s "\e2" @   # option-2 maps to the at-sign
