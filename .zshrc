@@ -497,6 +497,8 @@ globalias() {
 }
 zle -N globalias
 bindkey '^X^a' globalias
+
+# make most kill commands in zsh copy to global pastboard as well as zsh clipboard
 if [[ $UNAME == 'Darwin' ]]; then
   # M-w copies to global pasteboard as well as zsh clipboard
   pb-copy-region-as-kill () {
