@@ -519,6 +519,13 @@ if [[ $UNAME == 'Darwin' ]]; then
   }
   zle -N pb-kill-line
   bindkey -e '^k' pb-kill-line
+  # Ctrl-x Ctrl-k copies to global pasteboard as well as zsh clipboard - is this overkill?
+  pb-kill-buffer () {
+    zle kill-buffer
+    print -rn $CUTBUFFER | pbcopy
+  }
+  zle -N pb-kill-buffer
+  bindkey -e '^x^k' pb-kill-buffer
 fi
 
 # binding needed in VS Code integrated terminal when "terminal.integrated.macOptionIsMeta" is true
