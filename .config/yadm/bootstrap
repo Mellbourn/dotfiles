@@ -166,6 +166,7 @@ awscli@1
 bash
 bash-completion
 bat
+broot
 cloc
 coreutils
 deno
@@ -295,6 +296,7 @@ awscli@1
 bash
 bash-completion
 bat
+broot
 cloc
 coreutils
 deno
