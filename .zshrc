@@ -354,9 +354,6 @@ fi
 ###############################################################################
 # add-ons installed by homebrew
 ###############################################################################
-if [ -f ~/.config/broot/launcher/bash/br ]; then
-  source ~/.config/broot/launcher/bash/br
-fi
 
 ###############################################################################
 # make paste safe and fix pasted urls, https://forum.endeavouros.com/t/tip-better-url-pasting-in-zsh/6962
