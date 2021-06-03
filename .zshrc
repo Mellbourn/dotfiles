@@ -206,6 +206,9 @@ zinit wait'1' lucid for OMZP::magic-enter
 MAGIC_ENTER_GIT_COMMAND="l"
 MAGIC_ENTER_OTHER_COMMAND="l"
 
+# zhps -y -r $(git config user.email)
+zinit wait'1' lucid for wulfgarpro/history-sync
+
 zinit wait'1' lucid for supercrabtree/k
 
 zinit wait'1' atclone'./zplug.zsh' lucid for g-plane/zsh-yarn-autocompletions

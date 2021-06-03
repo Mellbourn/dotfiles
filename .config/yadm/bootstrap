@@ -518,6 +518,10 @@ fi ############################################################################
 # configuration for both Mac and Linux
 ###############################################################################
 
+if [ ! -d ~/.zsh_history_proj ]; then
+  git clone git@github.com:Mellbourn/zsh-history-proj.git ~/.zsh_history_proj
+fi
+
 version_gte() {
   printf '%s\n%s' "$1" "$2" | sort -C -V -r
 }
