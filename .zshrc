@@ -472,8 +472,6 @@ alias -s zip="zipinfo"
 ###############################################################################
 bindkey "^P" history-beginning-search-backward
 bindkey "^N" history-beginning-search-forward
-# make zsh behave like bash for ctrl-u (fine to modify since most others will have bash, and ^x^k kills whole line)
-bindkey "^U" backward-kill-line
 # edit command line like in bash (zsh has 'fc' but it has to execute the command first)
 autoload -z edit-command-line
 zle -N edit-command-line
@@ -513,6 +511,7 @@ if [[ $UNAME == 'Darwin' ]]; then
     print -rn $CUTBUFFER | pbcopy
   }
   zle -N pb-backward-kill-line
+  # make zsh behave like bash for ctrl-u (fine to modify since most others will have bash, and ^x^k kills whole line)
   bindkey -e '^u' pb-backward-kill-line
   # Ctrl-k copies to global pasteboard as well as zsh clipboard - is this overkill?
   pb-kill-line () {
