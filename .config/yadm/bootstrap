@@ -135,6 +135,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstall git-number
   brewSafeUninstall z.lua
   brewSafeUninstall weechat
+  brewSafeUninstall broot
   brewSafeUninstallCask luna-display
   brewSafeUninstallCask zeplin
   brewSafeUninstallCask zenmap
