@@ -636,6 +636,8 @@ if [ -z "$DOTFILES_LITE" ]; then
   fi
 fi
 
+docker system prune -f 2>>/tmp/docker_system_prune.err.txt || true
+
 function zsh_performance_measurements() {
   ~/bin/mezsh -m 5
 }
@@ -680,8 +682,6 @@ gunzip -f /tmp/terminfo.src.gz
 
 # remove itunes from login items. This way it does not open when you plug in an iPhone
 osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2>/tmp/delete_itunes_helper_error.txt || true
-
-docker system prune -f 2>>/tmp/docker_system_prune.err.txt || true
 
 ###############################################################################
 # Associate filetypes to apps that should open them                           #
