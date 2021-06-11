@@ -198,6 +198,7 @@ ncdu
 nginx
 nodebrew
 noti
+openjdk@11
 pinentry-mac
 pipenv
 pkg-config
