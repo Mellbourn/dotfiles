@@ -58,6 +58,8 @@ fi
 
 ### environment variables
 export PATH=$PATH:$HOMEBREW_PREFIX/sbin
+export MANPATH="$HOMEBREW_PREFIX/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}";
 if [ -d /snap ]; then
   if [ -d "/snap/croc/current" ]; then
     PATH="$PATH:/snap/croc/current"
