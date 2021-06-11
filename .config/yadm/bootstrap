@@ -191,6 +191,7 @@ httpie
 hyperfine
 jq
 less
+libffi
 librsvg
 lnav
 lsd
@@ -313,6 +314,7 @@ jq
 kpcli
 lastpass-cli
 less
+libffi
 librsvg
 lnav
 lsd
@@ -444,6 +446,9 @@ zoom
       # install rvm and latest ruby
       curl -sSL https://get.rvm.io | bash -s stable --ruby
     fi
+    PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+    LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+    CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
     # update rvm
     rvm get stable
     # interesting ruby version
