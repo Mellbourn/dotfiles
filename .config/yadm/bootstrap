@@ -434,8 +434,10 @@ zoom
   fi
 
   # set up wemux user name
-  sed -i -- "s/host_list=(brew)/host_list=($USER)/" $HOMEBREW_PREFIX/etc/wemux.conf
-  sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
+  if [ -f $HOMEBREW_PREFIX/etc/wemux.conf ]; then
+    sed -i -- "s/host_list=(brew)/host_list=($USER)/" $HOMEBREW_PREFIX/etc/wemux.conf
+    sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
+  fi
 
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     # ruby version manager
