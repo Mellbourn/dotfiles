@@ -8,13 +8,13 @@ I use [yadm](https://github.com/TheLocehiliosan/yadm) to manage my dotfiles.
 
 ### MacOS
 
+```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&
 brew install yadm &&
 yadm clone --bootstrap https://github.com/Mellbourn/dotfiles.git &&
 .config/yadm/bootstrap-sudo &&
 yadm decrypt
-
-````
+```
 
 ### Windows Subsystem for Linux
 
@@ -47,4 +47,7 @@ pbcopy < ~/.ssh/id_rsa.pub
 # paste the key manually to github account, then change the remote url
 yadm remote set-url origin git@github.com:Mellbourn/dotfiles.git
 ```
-````
+
+```
+
+```
