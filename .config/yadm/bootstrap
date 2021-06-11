@@ -210,6 +210,7 @@ react-native-cli
 reattach-to-user-namespace
 redis
 ripgrep
+rust
 croc
 sd
 shfmt
@@ -334,6 +335,7 @@ react-native-cli
 reattach-to-user-namespace
 redis
 ripgrep
+rust
 croc
 shellcheck
 shfmt
