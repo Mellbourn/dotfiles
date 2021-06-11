@@ -292,6 +292,11 @@ sudo sysctl debug.lowpri_throttle_enabled=0
 ###############################################################################
 # installations for Klarna
 ###############################################################################
+if [ -d $HOMEBREW_PREFIX/opt/openjdk@11/libexec ]; then
+  # this is needed by android
+  sudo ln -sfn $HOMEBREW_PREFIX/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+fi
+
 if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]] && [[ $PATH == */.rvm/* ]]; then
   set +e
   echo "Ruby (should be rvm version\!): $(which ruby) $(ruby --version)"

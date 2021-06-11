@@ -72,6 +72,10 @@ fi
 if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
+if [ -d $HOMEBREW_PREFIX/opt/openjdk@11 ]; then
+  # this is needed by android
+  export PATH=$HOMEBREW_PREFIX/opt/openjdk@11/bin:$PATH
+fi
 if [ -d $HOMEBREW_PREFIX/opt/awscli@1/bin ]; then
   # this is needed while we are using an old awscli
   export PATH=$PATH:$HOMEBREW_PREFIX/opt/awscli@1/bin
