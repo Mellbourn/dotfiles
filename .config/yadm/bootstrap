@@ -103,7 +103,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew tap wix/brew              # for AppleSimulatorUtils
   brew tap homebrew/cask-fonts   # for font-fira-code
   brew tap homebrew/cask-drivers # for philips-hue-sync and luna-display
-  #brew tap homebrew/cask-versions # for visual-studio-code-insiders
+  brew tap homebrew/cask-versions # for google-chrome-beta
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
   brew tap homebrew/command-not-found
 
