@@ -364,6 +364,8 @@ sudo sysadminctl -guestAccount off
 
 # allow remote login
 sudo systemsetup -setremotelogin on
+sudo dseditgroup -q -o edit -a $LOGNAME -t staff com.apple.access_ssh
+
 
 # protect KeeWeb
 sudo chown -R root /Applications/KeeWeb.app
