@@ -650,7 +650,7 @@ fi
 npm rm -g eslint
 npm update -g
 # save some disk
-xcrun simctl delete unavailable
+xcrun simctl delete unavailable || true
 
 # add tmux-256color terminfo to ~/.terminfo
 curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/terminfo.src.gz
