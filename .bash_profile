@@ -76,6 +76,12 @@ if [ -d $HOMEBREW_PREFIX/opt/openjdk@11 ]; then
   # this is needed by android
   export PATH=$HOMEBREW_PREFIX/opt/openjdk@11/bin:$PATH
 fi
+if [ -d $HOMEBREW_PREFIX/opt/node@12/bin ]; then
+  export PATH="$HOMEBREW_PREFIX/opt/node@12/bin:$PATH"
+  # For compilers to find node@12 you may need to set:
+  export LDFLAGS="-L$HOMEBREW_PREFIX/opt/node@12/lib"
+  export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/node@12/include"
+fi
 if [ -d $HOMEBREW_PREFIX/opt/awscli@1/bin ]; then
   # this is needed while we are using an old awscli
   export PATH=$PATH:$HOMEBREW_PREFIX/opt/awscli@1/bin
