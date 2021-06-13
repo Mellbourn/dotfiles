@@ -244,6 +244,7 @@ zsh
     # TODO: add more: java8, p4v philips-hue-sync plex private-internet-access
     casks="
 bartender
+docker
 font-cascadia-code-pl
 font-caskaydia-cove-nerd-font
 font-fira-code
