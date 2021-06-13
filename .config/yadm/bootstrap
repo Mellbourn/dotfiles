@@ -439,29 +439,33 @@ zoom
     sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
   fi
 
+  # ruby version manager
+  gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || true
+  if ! hash rvm 2>/dev/null; then
+    # trust download
+    command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+    # install rvm and latest ruby
+    curl -sSL https://get.rvm.io | bash -s stable --ruby
+  fi
+  if [ -d $HOMEBREW_PREFIX/opt/libffi/ ]; then
+    export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
+    export LDFLAGS="-L$HOMEBREW_PREFIX/opt/libffi/lib"
+    export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/libffi/include"
+  fi
+  # update rvm
+  rvm get stable
+  # interesting ruby version
+  rvm install ruby-2.4.1
+  # v2.4.1 required by dev environment
+  set +e
+  rvm --default use ruby-2.4.1
+  set -e
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
-    # ruby version manager
-    gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || true
-    if ! hash rvm 2>/dev/null; then
-      # trust download
-      command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-      # install rvm and latest ruby
-      curl -sSL https://get.rvm.io | bash -s stable --ruby
-    fi
-    PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
-    LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
-    CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
-    # update rvm
-    rvm get stable
-    # interesting ruby version
-    rvm install ruby-2.4.1
     LATEST_STABLE_RUBY_VERSION=$(rvm list known | grep "\[ruby-\]" | grep -v "preview" | tail -1 | sed 's/\[ruby-\]\([0-9]*\.[0-9]\)*\[.*\]/\1/g')
     rvm install ruby-$LATEST_STABLE_RUBY_VERSION
     set +e
     source ~/.rvm/scripts/rvm
     #rvm --default use ruby-$LATEST_STABLE_RUBY_VERSION
-    # v2.4.1 required by dev environment
-    rvm --default use ruby-2.4.1
     set -e
 
     # pip no longer installable from pip3? not needed?
