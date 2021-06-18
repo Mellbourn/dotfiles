@@ -98,11 +98,11 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew update
   brew upgrade
   brew upgrade --cask
-  brew tap aws/tap               # for aws-sam-cli
-  brew tap git-time-metric/gtm   # for gtm
-  brew tap wix/brew              # for AppleSimulatorUtils
-  brew tap homebrew/cask-fonts   # for font-fira-code
-  brew tap homebrew/cask-drivers # for philips-hue-sync and luna-display
+  brew tap aws/tap                # for aws-sam-cli
+  brew tap git-time-metric/gtm    # for gtm
+  brew tap wix/brew               # for AppleSimulatorUtils
+  brew tap homebrew/cask-fonts    # for font-fira-code
+  brew tap homebrew/cask-drivers  # for philips-hue-sync and luna-display
   brew tap homebrew/cask-versions # for google-chrome-beta
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
   brew tap homebrew/command-not-found
@@ -191,7 +191,6 @@ httpie
 hyperfine
 jq
 less
-libffi
 librsvg
 lnav
 lsd
@@ -237,9 +236,7 @@ zsh
     alreadyInstalled=$(brew list --formula)
     installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
     installThese=${installTheseLines//$'\n'/ }
-    if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-      echo $installThese | xargs brew install
-    fi
+    echo $installThese | xargs brew install
 
     # TODO: add more: java8, p4v philips-hue-sync plex private-internet-access
     casks="
@@ -264,11 +261,26 @@ visual-studio-code
     alreadyInstalled=$(brew list --cask)
     installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
     installThese=${installTheseLines//$'\n'/ }
-    if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-      echo $installThese | xargs brew install --cask
+    echo $installThese | xargs brew install --cask
+
+    if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]]; then
+      # install x86 brew
+      if ! [ -f /usr/local/bin/brew ]; then
+        arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+      fi
+      # install x86 ruby
+      arch --x86_64 /usr/local/Homebrew/bin/brew install readline
+      brew install rbenv
+      brew install ruby-build
+      if ! [ -d $HOME/.rbenv/versions/2.4.1 ]; then
+        RUBY_CONFIGURE_OPTS=--with-readline-dir="$(arch --x86_64 /usr/local/Homebrew/bin/brew --prefix readline)" arch -x86_64 /bin/bash -c 'rbenv install 2.4.1'
+      fi
+      rbenv global 2.4.1
+      yes | gem install bundler:2.1.4
     fi
 
-  fi # arm part ends
+  fi
+  # arm part ends
 
   # this must be in alphabetical order!
   apps="
@@ -317,7 +329,6 @@ jq
 kpcli
 lastpass-cli
 less
-libffi
 librsvg
 lnav
 lsd

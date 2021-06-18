@@ -30,6 +30,8 @@ alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"
 alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
 alias weather='curl v2.wttr.in'
 alias y='noglob yadm'
+alias x86brew='arch --x86_64 /usr/local/Homebrew/bin/brew'
+alias x86='PATH=/usr/local/bin:$PATH'
 alias zmv='noglob zmv'
 
 # suffix aliases for file types: these become "executable"
