@@ -268,8 +268,9 @@ visual-studio-code
       if ! [ -f /usr/local/bin/brew ]; then
         arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
       fi
+      brew install node@14
       # install x86 ruby
-      arch --x86_64 /usr/local/Homebrew/bin/brew install readline
+      arch --x86_64 /usr/local/Homebrew/bin/brew install readline # node@12
       brew install rbenv
       brew install ruby-build
       if ! [ -d $HOME/.rbenv/versions/2.4.1 ]; then

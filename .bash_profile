@@ -58,8 +58,8 @@ fi
 
 ### environment variables
 export PATH=$PATH:$HOMEBREW_PREFIX/sbin
-export MANPATH="$HOMEBREW_PREFIX/share/man${MANPATH+:$MANPATH}:";
-export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}";
+export MANPATH="$HOMEBREW_PREFIX/share/man${MANPATH+:$MANPATH}:"
+export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
 if [ -d /snap ]; then
   if [ -d "/snap/croc/current" ]; then
     PATH="$PATH:/snap/croc/current"
@@ -81,6 +81,18 @@ if [ -d $HOMEBREW_PREFIX/opt/node@12/bin ]; then
   # For compilers to find node@12 you may need to set:
   export LDFLAGS="-L$HOMEBREW_PREFIX/opt/node@12/lib"
   export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/node@12/include"
+fi
+if [ -d $HOMEBREW_PREFIX/opt/node@14/bin ]; then
+  export PATH="$HOMEBREW_PREFIX/opt/node@14/bin:$PATH"
+  # For compilers to find node@14 you may need to set:
+  export LDFLAGS="-L$HOMEBREW_PREFIX/opt/node@14/lib"
+  export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/node@14/include"
+fi
+if [ -d /usr/local/opt/node@12/bin ]; then
+  export PATH="/usr/local/opt/node@12/bin:$PATH"
+  # For compilers to find node@12 you may need to set:
+  #export LDFLAGS="-L/usr/local/opt/node@12/lib"
+  #export CPPFLAGS="-I/usr/local/opt/node@12/include"
 fi
 if [ -d $HOMEBREW_PREFIX/opt/awscli@1/bin ]; then
   # this is needed while we are using an old awscli
