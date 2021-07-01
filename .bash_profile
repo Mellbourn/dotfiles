@@ -88,6 +88,14 @@ if [ -d $HOMEBREW_PREFIX/opt/node@14/bin ]; then
   export LDFLAGS="-L$HOMEBREW_PREFIX/opt/node@14/lib"
   export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/node@14/include"
 fi
+if [ -d /usr/local/opt/libffi ]; then
+  #For compilers to find libffi you may need to set:
+  export LDFLAGS="-L/usr/local/opt/libffi/lib"
+  export CPPFLAGS="-I/usr/local/opt/libffi/include"
+
+  #For pkg-config to find libffi you may need to set:
+  export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+fi
 if [ -d /usr/local/opt/node@12/bin ]; then
   export PATH="/usr/local/opt/node@12/bin:$PATH"
   # For compilers to find node@12 you may need to set:
