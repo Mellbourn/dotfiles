@@ -309,6 +309,8 @@ if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]] && [[ $PATH == */.rvm/* ]]; then
   gem install cocoapods
   yes | gem update --system
   yes | gem update
+  # this is the exact version required by `klapp doctor`, this doesn't really work
+  #yes | gem install bundler:2.1.4
   # I got "Ignoring bigdecimal-1.4.4 because its extensions are not built. Try: gem pristine bigdecimal --version 1.4.4"
   #gem install bigdecimal -v '1.4.4'
   #gem pristine bigdecimal --version 1.4.4
