@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "Cascadia Code PL, Delugia Nerd Font Book, CaskaydiaCove Nerd Font, Menlo, monospace",
+  "editor.fontFamily": "Delugia Book, Cascadia Code PL, CaskaydiaCove Nerd Font, Menlo, monospace",
   "editor.fontWeight": "400",
   "files.associations": {
     "_code": "shellscript",
