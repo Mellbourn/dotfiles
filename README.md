@@ -47,7 +47,3 @@ pbcopy < ~/.ssh/id_rsa.pub
 # paste the key manually to github account, then change the remote url
 yadm remote set-url origin git@github.com:Mellbourn/dotfiles.git
 ```
-
-```
-
-```
