@@ -331,6 +331,7 @@ if ! grep -q "$HOMEBREW_PREFIX/bin/zsh" "/etc/shells"; then
 fi
 sudo chsh -s $HOMEBREW_PREFIX/bin/zsh $(whoami)
 
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "This Mac belongs to Klas Mellbourn.\ne-mail: klas@mellbourn.net phone: +46 708 80 00 00\nReward offered for return of this Mac. No questions asked."
 ###############################################################################
 # Update App Store apps
 ###############################################################################
@@ -363,7 +364,6 @@ sudo sysadminctl -guestAccount off
 # allow remote login
 sudo systemsetup -setremotelogin on
 sudo dseditgroup -q -o edit -a $LOGNAME -t staff com.apple.access_ssh
-
 
 # protect KeeWeb
 sudo chown -R root /Applications/KeeWeb.app
