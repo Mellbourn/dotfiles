@@ -12,6 +12,8 @@ if [ -d "/opt/homebrew/bin" ] ; then
 else
   export HOMEBREW_PREFIX=/usr/local
 fi
+export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar";
+export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX";
 
 if [ -x "$(command -v code)" ]; then
   export EDITOR="code -wr"

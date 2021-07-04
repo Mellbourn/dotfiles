@@ -292,6 +292,11 @@ sudo sysctl debug.lowpri_throttle_enabled=0
 ###############################################################################
 # installations for Klarna
 ###############################################################################
+if [ -d $HOMEBREW_PREFIX/opt/openjdk@11/libexec ]; then
+  # this is needed by android
+  sudo ln -sfn $HOMEBREW_PREFIX/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+fi
+
 if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]] && [[ $PATH == */.rvm/* ]]; then
   set +e
   echo "Ruby (should be rvm version\!): $(which ruby) $(ruby --version)"
@@ -305,7 +310,7 @@ if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]] && [[ $PATH == */.rvm/* ]]; then
   yes | gem update --system
   yes | gem update
   # this is the exact version required by `klapp doctor`, this doesn't really work
-  yes | gem install bundler:2.1.4
+  #yes | gem install bundler:2.1.4
   # I got "Ignoring bigdecimal-1.4.4 because its extensions are not built. Try: gem pristine bigdecimal --version 1.4.4"
   #gem install bigdecimal -v '1.4.4'
   #gem pristine bigdecimal --version 1.4.4
@@ -360,6 +365,7 @@ sudo sysadminctl -guestAccount off
 
 # allow remote login
 sudo systemsetup -setremotelogin on
+sudo dseditgroup -q -o edit -a $LOGNAME -t staff com.apple.access_ssh
 
 # protect KeeWeb
 sudo chown -R root /Applications/KeeWeb.app

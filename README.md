@@ -8,8 +8,8 @@ I use [yadm](https://github.com/TheLocehiliosan/yadm) to manage my dotfiles.
 
 ### MacOS
 
-```bash
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &&
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&
 brew install yadm &&
 yadm clone --bootstrap https://github.com/Mellbourn/dotfiles.git &&
 .config/yadm/bootstrap-sudo &&

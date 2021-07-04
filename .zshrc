@@ -328,8 +328,13 @@ then
   # Not really plugins, but very good to have async anyway
   # sourcing rvm takes 0.51s, so there will be a lag when it is sourced
   # also, loading rvm as a zinit will make it ignore the .ruby-version file if you are already inside that folder
-  zinit wait'2' lucid as'null' \
-    atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi' light-mode for zdharma/null
+  if [ -d ~/.rbenv ]; then
+    zinit wait'2' lucid as'null' \
+      atinit'eval "$(rbenv init -)"' light-mode for zdharma/null
+  else
+    zinit wait'2' lucid as'null' \
+      atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi' light-mode for zdharma/null
+  fi
 
   # # python environent will also cause a lag
   # # this takes 0.166s

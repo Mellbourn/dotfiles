@@ -98,12 +98,12 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew update
   brew upgrade
   brew upgrade --cask
-  brew tap aws/tap               # for aws-sam-cli
-  brew tap git-time-metric/gtm   # for gtm
-  brew tap wix/brew              # for AppleSimulatorUtils
-  brew tap homebrew/cask-fonts   # for font-fira-code
-  brew tap homebrew/cask-drivers # for philips-hue-sync and luna-display
-  #brew tap homebrew/cask-versions # for visual-studio-code-insiders
+  brew tap aws/tap                # for aws-sam-cli
+  brew tap git-time-metric/gtm    # for gtm
+  brew tap wix/brew               # for AppleSimulatorUtils
+  brew tap homebrew/cask-fonts    # for font-fira-code
+  brew tap homebrew/cask-drivers  # for philips-hue-sync and luna-display
+  brew tap homebrew/cask-versions # for google-chrome-beta
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
   brew tap homebrew/command-not-found
 
@@ -136,6 +136,8 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstall z.lua
   brewSafeUninstall weechat
   brewSafeUninstall broot
+  brewSafeUninstall deno
+  brewSafeUninstall htop
   brewSafeUninstallCask luna-display
   brewSafeUninstallCask zeplin
   brewSafeUninstallCask zenmap
@@ -148,6 +150,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstallCask shortcat
   brewSafeUninstallCask tor-browser
   brewSafeUninstallCask tripmode
+  brewSafeUninstallCask stunnel
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
@@ -169,7 +172,6 @@ bash-completion
 bat
 cloc
 coreutils
-deno
 diff-so-fancy
 direnv
 dockutil
@@ -182,7 +184,6 @@ fpp
 fx
 fzf
 gcal
-gettext
 gh
 git
 git-crypt
@@ -198,7 +199,6 @@ grc
 grep
 gtm
 highlight
-htop
 httpie
 hyperfine
 jq
@@ -213,6 +213,7 @@ nginx
 nodebrew
 noti
 parallel
+openjdk@11
 pinentry-mac
 pipenv
 pkg-config
@@ -225,11 +226,11 @@ react-native-cli
 reattach-to-user-namespace
 redis
 ripgrep
+rust
 croc
 sd
 shfmt
 speedtest-cli
-stunnel
 terminal-notifier
 thefuck
 tig
@@ -254,19 +255,20 @@ zsh
     alreadyInstalled=$(brew list --formula)
     installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
     installThese=${installTheseLines//$'\n'/ }
-    if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-      echo $installThese | xargs brew install
-    fi
+    echo $installThese | xargs brew install
 
     # TODO: add more: java8, p4v philips-hue-sync plex private-internet-access
     casks="
 bartender
+chromium
+docker
 font-cascadia-code-pl
 font-caskaydia-cove-nerd-font
 font-fira-code
 font-jetbrains-mono
 font-jetbrains-mono-nerd-font
 google-chrome-beta
+insomnia
 istat-menus
 iterm2
 keeweb
@@ -283,11 +285,29 @@ witch
     alreadyInstalled=$(brew list --cask)
     installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
     installThese=${installTheseLines//$'\n'/ }
-    if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-      echo $installThese | xargs brew install --cask
+    echo $installThese | xargs brew install --cask
+
+    if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]]; then
+      # install x86 brew
+      if ! [ -f /usr/local/bin/brew ]; then
+        arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+      fi
+      brew install node@14
+      # install x86 ruby
+      arch --x86_64 /usr/local/Homebrew/bin/brew install readline libffi # node@12
+      brew install rbenv
+      brew install ruby-build
+      if ! [ -d $HOME/.rbenv/versions/2.4.1 ]; then
+        RUBY_CONFIGURE_OPTS=--with-readline-dir="$(arch --x86_64 /usr/local/Homebrew/bin/brew --prefix readline)" arch -x86_64 /bin/bash -c 'rbenv install 2.4.1'
+      fi
+      rbenv global 2.4.1
+      yes | gem install bundler:2.1.4
+      #yes | gem uninstall ffi
+      yes | arch --x86_64 gem install ffi
     fi
 
-  fi # arm part ends
+  fi
+  # arm part ends
 
   # this must be in alphabetical order!
   apps="
@@ -298,7 +318,6 @@ bash-completion
 bat
 cloc
 coreutils
-deno
 diff-so-fancy
 direnv
 dockutil
@@ -329,7 +348,6 @@ grep
 gtm
 haskell-stack
 highlight
-htop
 httpie
 hyperfine
 jq
@@ -359,12 +377,12 @@ react-native-cli
 reattach-to-user-namespace
 redis
 ripgrep
+rust
 croc
 shellcheck
 shfmt
 sd
 speedtest-cli
-stunnel
 terminal-notifier
 thefuck
 tig
@@ -453,13 +471,13 @@ zoom
     echo $installThese | xargs brew install --cask
   fi
 
-  brew link --force gettext
-
   echo will cite | parallel --citation >/dev/null 2>&1
 
   # set up wemux user name
-  sed -i -- "s/host_list=(brew)/host_list=($USER)/" $HOMEBREW_PREFIX/etc/wemux.conf
-  sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
+  if [ -f $HOMEBREW_PREFIX/etc/wemux.conf ]; then
+    sed -i -- "s/host_list=(brew)/host_list=($USER)/" $HOMEBREW_PREFIX/etc/wemux.conf
+    sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
+  fi
 
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     # ruby version manager
@@ -474,13 +492,17 @@ zoom
     rvm get stable
     # interesting ruby version
     rvm install ruby-2.4.1
+    # v2.4.1 required by dev environment
+    set +e
+    rvm --default use ruby-2.4.1
+    set -e
+    # this is the exact version required by `klapp doctor`, this doesn't really work
+    yes | gem install bundler:2.1.4
     LATEST_STABLE_RUBY_VERSION=$(rvm list known | grep "\[ruby-\]" | grep -v "preview" | tail -1 | sed 's/\[ruby-\]\([0-9]*\.[0-9]\)*\[.*\]/\1/g')
     rvm install ruby-$LATEST_STABLE_RUBY_VERSION
     set +e
     source ~/.rvm/scripts/rvm
     #rvm --default use ruby-$LATEST_STABLE_RUBY_VERSION
-    # v2.4.1 required by dev environment
-    rvm --default use ruby-2.4.1
     set -e
 
     # pip no longer installable from pip3? not needed?
@@ -576,8 +598,8 @@ if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
     grep "delugia-book.zip\"" |
     head -1 |
     awk -F "\"" '{print "https://github.com" $2}' |
-    wget --show-progress -qNi - -O /tmp/delugia.zip
-  unzip -u /tmp/delugia.zip -d $FONT_DIRECTORY
+    wget --show-progress -qNi - -O ${XDG_CACHE_HOME:-~/.cache}/delugia-book.zip
+  unzip -u ${XDG_CACHE_HOME:-~/.cache}/delugia-book.zip -d $FONT_DIRECTORY
 fi
 
 # Install `zinit` if not installed
@@ -669,7 +691,7 @@ npm i -g npm node-gyp
 npm rm -g eslint
 npm update -g
 # save some disk
-xcrun simctl delete unavailable
+xcrun simctl delete unavailable || true
 
 # add tmux-256color terminfo to ~/.terminfo
 curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/terminfo.src.gz
@@ -683,23 +705,16 @@ osascript -e 'tell application "System Events" to delete login item "iTunesHelpe
 # Associate filetypes to apps that should open them                           #
 ###############################################################################
 # open in Visual Studio Code
-duti -s com.microsoft.VSCode .graphql all
-duti -s com.microsoft.VSCode .js all                         # javascript. Look extensions works too!
-duti -s com.microsoft.VSCode .rb all                         # ruby. Look extensions works too!
-duti -s com.microsoft.VSCode .ts all                         # typescript. Look extensions works too!
-duti -s com.microsoft.VSCode com.apple.log all               # .log
-duti -s com.microsoft.VSCode net.daringfireball.markdown all # .md
+duti -s com.microsoft.VSCode .ts all           # typescript. Look extension→
+duti -s com.microsoft.VSCode com.apple.log all # .log
 duti -s com.microsoft.VSCode public.json all
-duti -s com.microsoft.VSCode public.plain-text all    # text files
-duti -s com.microsoft.VSCode public.python-script all # .py
-#duti -s com.microsoft.VSCode public.shell-script all # .sh - no, you want it to be executable
-duti -s com.microsoft.VSCode public.source-code all # this has no effect?
-duti -s com.microsoft.VSCode public.text all        # does this have a real effect?
+duti -s com.microsoft.VSCode public.plain-text all # text files
+duti -s com.microsoft.VSCode public.text all       # does this have a real effect?
 duti -s com.microsoft.VSCode public.xml all
 duti -s com.microsoft.VSCode public.yaml all
 # seems to have no effecxt: public.data, .lock
 # open in chrome
-duti -s com.google.chrome public.svg-image all # .svg
+#duti -s com.google.chrome public.svg-image all # .svg
 # prefer vlc over quicktime
 duti -s org.videolan.vlc .avi Viewer
 
@@ -765,9 +780,6 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 # Expand print panel by default - these don't work anymore? (but expanded state is preserved between restarts)
 #defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 #defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-
-# restore window position when you restart an application
-defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
 
 # show battery percent
 defaults write com.apple.menuextra.battery ShowPercent YES
