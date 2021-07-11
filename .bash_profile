@@ -114,10 +114,11 @@ else
   # LS_COLORS now set by trapd00r/LS_COLORS
   #export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 fi
-if (($(command less --version | head -1 | cut -d ' ' -f2) >= 581)); then
+if (($(command less --version | head -1 | cut -d ' ' -f2) >= 590)); then
   export LESSOPEN="| $(which highlight) %s --quiet --force --out-format xterm256 --style darkplus"
+  # note: --file-size takes noticable extra startup time on large (100k) files
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quiet \
-    --no-histdups --save-marks --quit-if-one-screen --incsearch --use-color"
+    --no-histdups --save-marks --quit-if-one-screen --incsearch --use-color --file-size"
 else
   export LESSOPEN="| $(which highlight) %s --quiet --force --out-format ansi"
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quiet"
