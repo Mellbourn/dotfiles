@@ -293,6 +293,7 @@ witch
         arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
       fi
       brew install node@14
+      arch --x86_64 /usr/local/Homebrew/bin/brew doctor
       # install x86 ruby
       arch --x86_64 /usr/local/Homebrew/bin/brew install readline libffi # node@12
       brew install rbenv
