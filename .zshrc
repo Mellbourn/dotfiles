@@ -577,7 +577,7 @@ if false; then
     export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown # migrated to fsh
     export ZSH_HIGHLIGHT_STYLES[globbing]='fg=99' # lilac
     export ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=63' # softer lilac
-    export ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,underline' # make folders same colors as in ls
+    export ZSH_HIGHLIGHT_STYLES[path]='fg=30,underline' # make folders same colors as in ls
     export ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=243,underline' #migrated
     export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline' # migrated
     export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green #migrated
