@@ -568,8 +568,25 @@ bindkey '¿' which-command #option-?
 # syntax highlighting should be loaded AFTER all widgets, to work with them
 # This last async call is also where compinit should be called, see https://github.com/zdharma/zinit#calling-compinit-with-turbo-mode
 ###############################################################################
-# loads theme ~/.config/fsh/improved-default.ini for zdharma/fast-syntax-highlighting
-zinit wait'2' lucid --atinit="ZINIT[COMPINIT_OPTS]=-C; zicompinit; autoload -U +X bashcompinit && bashcompinit; zicdreplay" --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.log" light-mode for zdharma/fast-syntax-highlighting
+if false; then
+  zinit wait'2' lucid --atinit="ZINIT[COMPINIT_OPTS]=-C; zicompinit; autoload -U +X bashcompinit && bashcompinit; zicdreplay" --atload="
+    export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+    export ZSH_HIGHLIGHT_STYLES[assign]='bg=18,fg=220' # dark blue background # migrated
+    export ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=219,bg=236' # pink # migrated to fsh
+    export ZSH_HIGHLIGHT_STYLES[commandseparator]='bg=21,fg=195' # light on dark blue # migrat→
+    export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=94' # brown # migrated to fsh
+    export ZSH_HIGHLIGHT_STYLES[globbing]='fg=99' # lilac
+    export ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=63' # softer lilac
+    export ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,underline' # make folders same colors as in ls
+    export ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=243,underline' #migrated
+    export ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white,underline' # migrated
+    export ZSH_HIGHLIGHT_STYLES[redirection]='fg=148,bold,bg=235' # >> yellow-green #migrated
+    export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
+" light-mode for zsh-users/zsh-syntax-highlighting
+else
+  # loads theme ~/.config/fsh/improved-default.ini for zdharma/fast-syntax-highlighting
+  zinit wait'2' lucid --atinit="ZINIT[COMPINIT_OPTS]=-C; zicompinit; autoload -U +X bashcompinit && bashcompinit; zicdreplay" --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.log" light-mode for zdharma/fast-syntax-highlighting
+fi
 
 # colored man pages must be loaded after syntax-highlighting
 zinit wait'2b' lucid for \
