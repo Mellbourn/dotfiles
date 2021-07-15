@@ -170,6 +170,7 @@ awscli@1
 bash
 bash-completion
 bat
+choose-rust
 cloc
 coreutils
 diff-so-fancy
@@ -318,11 +319,13 @@ awscli@1
 bash
 bash-completion
 bat
+choose-rust
 cloc
 coreutils
 diff-so-fancy
 direnv
 dockutil
+duf
 duti
 eth-p/software/bat-extras-batgrep
 exa
