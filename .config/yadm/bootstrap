@@ -601,7 +601,7 @@ if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
     head -1 |
     awk -F "\"" '{print "https://github.com" $2}' |
     wget --show-progress -qNi - -O ${XDG_CACHE_HOME:-~/.cache}/delugia-book.zip
-  unzip -u ${XDG_CACHE_HOME:-~/.cache}/delugia-book.zip -d $FONT_DIRECTORY
+  yes | unzip -u ${XDG_CACHE_HOME:-~/.cache}/delugia-book.zip -d $FONT_DIRECTORY
 fi
 
 # Install `zinit` if not installed
