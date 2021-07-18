@@ -82,7 +82,9 @@ if [[ $(uname) == 'Darwin' ]]; then
   fi
 
   # upgrade all
-  mas upgrade
+  if [ $OS_MAJOR_VERSION -ge $BIG_SUR_MAJOR_VERSION ]; then
+    mas upgrade
+  fi
 
   xcode-select --install || true
 
