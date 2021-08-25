@@ -87,7 +87,11 @@ fi
 ###############################################################################
 # development
 ###############################################################################
-export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
+if [ -d "$HOME/Library/Android/sdk" ]; then
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+elif [ -d "$HOMEBREW_PREFIX/share/android-sdk" ]; then
+  export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
+fi
 
 ###############################################################################
 # completion

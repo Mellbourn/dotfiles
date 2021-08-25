@@ -263,6 +263,7 @@ zsh
 
     # TODO: add more: java8, p4v philips-hue-sync plex private-internet-access
     casks="
+android-studio
 bartender
 chromium
 docker
