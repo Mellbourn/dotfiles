@@ -153,6 +153,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstallCask tor-browser
   brewSafeUninstallCask tripmode
   brewSafeUninstallCask stunnel
+  brewSafeUninstallCask applesimutils
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
@@ -263,7 +264,6 @@ zsh
 
     # TODO: add more: java8, p4v philips-hue-sync plex private-internet-access
     casks="
-android-studio
 bartender
 chromium
 docker
@@ -307,10 +307,17 @@ witch
       if ! [ -d $HOME/.rbenv/versions/2.4.1 ]; then
         RUBY_CONFIGURE_OPTS=--with-readline-dir="$(arch --x86_64 /usr/local/Homebrew/bin/brew --prefix readline)" arch -x86_64 /bin/bash -c 'rbenv install 2.4.1'
       fi
+      set +e
       rbenv global 2.4.1
       yes | gem install bundler:2.1.4
       #yes | gem uninstall ffi
       yes | arch --x86_64 gem install ffi
+      set -e
+
+      # Android development
+      brew install --cask android-studio
+      brew install temurin8
+      #brew install adoptopenjdk8
     fi
 
   fi
@@ -407,7 +414,6 @@ watch
 watchman
 wemux
 wget
-wix/brew/applesimutils
 yadm
 yarn
 zoxide
@@ -894,5 +900,7 @@ defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 # run customer specific bootstrap
 . ${XDG_CONFIG_HOME:-$HOME/.config}/yadm/bootstrap-customer
 
+# this script makes brew doctor fail
+trash $HOMEBREW_PREFIX/Library/Taps/wix/homebrew-brew/applesimutils.rb
 brew doctor
 zsh_performance_measurements
