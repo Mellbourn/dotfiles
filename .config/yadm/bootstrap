@@ -140,6 +140,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstall broot
   brewSafeUninstall deno
   brewSafeUninstall htop
+  brewSafeUninstall applesimutils
   brewSafeUninstallCask luna-display
   brewSafeUninstallCask zeplin
   brewSafeUninstallCask zenmap
@@ -153,7 +154,6 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstallCask tor-browser
   brewSafeUninstallCask tripmode
   brewSafeUninstallCask stunnel
-  brewSafeUninstallCask applesimutils
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
