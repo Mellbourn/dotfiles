@@ -92,6 +92,10 @@ if [ -d "$HOME/Library/Android/sdk" ]; then
 elif [ -d "$HOMEBREW_PREFIX/share/android-sdk" ]; then
   export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
 fi
+if [ -d $ANDROID_HOME/platform-tools ]; then
+  # this is needed by android
+  export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
 
 ###############################################################################
 # completion
