@@ -7,6 +7,7 @@
     path = .gitconfig.user.foss
 [includeIf "gitdir:~/code/klarna/"]
     path = .gitconfig.user
+
 [includeIf "gitdir:~/code/klarna/ui/"]
     path = .gitconfig.user.foss
 [includeIf "gitdir:~/code/klarna/bubble-ui/"]
@@ -105,3 +106,5 @@
     insteadOf = https://github.com/rust-lang/crates.io-index
 [maintenance]
 	repo = /Users/klas.mellbourn/code/klarna/klarna-app
+[lfs]
+	locksverify = false
