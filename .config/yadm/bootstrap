@@ -128,7 +128,6 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   # remove brews here that were previously installed, to sync between machines
   brewSafeUninstall zsh-autosuggestions
-  brewSafeUninstall openexr
   brewSafeUninstall ilmbase
   brewSafeUninstall asciinema
   brewSafeUninstall cheat
