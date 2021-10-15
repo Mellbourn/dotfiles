@@ -128,8 +128,6 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   # remove brews here that were previously installed, to sync between machines
   brewSafeUninstall zsh-autosuggestions
-  # reinstall imagemagick when ilmbase dependency has gone
-  brewSafeUninstall imagemagick
   brewSafeUninstall openexr
   brewSafeUninstall ilmbase
   brewSafeUninstall asciinema
@@ -208,6 +206,7 @@ gtm
 highlight
 httpie
 hyperfine
+imagemagick
 jq
 kpcli
 lastpass-cli
@@ -368,6 +367,7 @@ haskell-stack
 highlight
 httpie
 hyperfine
+imagemagick
 jq
 kpcli
 lastpass-cli
