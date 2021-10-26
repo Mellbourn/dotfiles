@@ -704,7 +704,11 @@ npm i -g npm node-gyp
 # yarn 2 should not be installed globally!
 #npm i -g yarn@berry
 npm rm -g eslint
-npm update -g
+if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]]; then
+  npm update -g --registry https://artifactory.klarna.net/artifactory/api/npm/v-npm-production/
+else
+  npm update -g
+fi
 # save some disk
 xcrun simctl delete unavailable || true
 
