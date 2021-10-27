@@ -267,6 +267,7 @@ zsh
 bartender
 chromium
 docker
+flipper
 font-cascadia-code-pl
 font-caskaydia-cove-nerd-font
 font-fira-code
@@ -442,6 +443,7 @@ chromedriver
 discord
 docker
 firefox
+flipper
 font-cascadia-code-pl
 font-caskaydia-cove-nerd-font
 font-fira-code
