@@ -97,6 +97,21 @@ if [[ $(uname) == 'Darwin' ]]; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 
+  brewSafeUninstall() {
+    if brew list "$@" 2>/dev/null; then
+      brew uninstall "$@"
+    fi
+  }
+
+  brewSafeUninstallCask() {
+    if brew list --cask "$@" 2>/dev/null; then
+      brew uninstall --cask "$@"
+    fi
+  }
+
+  # some uninstalls must be made before update
+  brewSafeUninstallCask virtualbox
+
   brew cleanup
   brew update
   brew upgrade
@@ -112,18 +127,6 @@ if [[ $(uname) == 'Darwin' ]]; then
   # not all computers need logitech drivers, also, these need sudo
   # brew install --cask homebrew/cask-drivers/logitech-gaming-software
   # brew install --cask homebrew/cask-drivers/logitech-options
-
-  brewSafeUninstall() {
-    if brew list "$@" 2>/dev/null; then
-      brew uninstall "$@"
-    fi
-  }
-
-  brewSafeUninstallCask() {
-    if brew list --cask "$@" 2>/dev/null; then
-      brew uninstall --cask "$@"
-    fi
-  }
 
   # remove brews here that were previously installed, to sync between machines
   brew untap wix/brew # for AppleSimulatorUtils
@@ -474,7 +477,6 @@ skype
 slack
 spotify
 ui-browser
-virtualbox
 visual-studio-code
 vlc
 witch
