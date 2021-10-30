@@ -33,10 +33,7 @@
     "statusBar.background": "#92725299",
     "statusBarItem.hoverBackground": "#ac8b6b99",
     "statusBar.foreground": "#e7e7e7",
-    "editorGroup.border": "#92725299",
-    "panel.border": "#92725299",
     "sash.hoverBorder": "#92725299",
-    "sideBar.border": "#92725299",
     "statusBarItem.remoteBackground": "#92725299",
     "statusBarItem.remoteForeground": "#e7e7e7"
   },
