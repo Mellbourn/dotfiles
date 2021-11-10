@@ -62,6 +62,7 @@
 		  git branch -D $br >> /tmp/cleaned-branches.txt; \
 		done' ;\
     }; f"
+	stash-rename = "!_() { if [ -z \"$1\" ] || [ -z \"$2\" ]; then echo \"git rename-stash 0 NewName\" && echo \"\" && git stash list && exit 1; else stash=\"stash@{$1}\"; rev=$(git rev-parse \"${stash}\"); git stash drop \"${stash}\" || exit 1; git stash store -m \"$2\" \"$rev\" || exit 1; git stash list; fi }; _"
 [fetch]
 	prune = true
 [log]
