@@ -147,6 +147,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstall broot
   brewSafeUninstall deno
   brewSafeUninstall htop
+  brewSafeUninstall rbenv
   brewSafeUninstall applesimutils
   brewSafeUninstallCask luna-display
   brewSafeUninstallCask zeplin
@@ -306,23 +307,54 @@ witch
 
     if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]]; then
       # install x86 brew
-      if ! [ -f /usr/local/bin/brew ]; then
-        arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-      fi
+      #if ! [ -f /usr/local/bin/brew ]; then
+      #  arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+      #fi
       brew install node@14
-      arch --x86_64 /usr/local/Homebrew/bin/brew doctor
+      #arch --x86_64 /usr/local/Homebrew/bin/brew doctor
       # install x86 ruby
-      arch --x86_64 /usr/local/Homebrew/bin/brew install readline libffi # node@12
-      brew install rbenv
-      brew install ruby-build
-      if ! [ -d $HOME/.rbenv/versions/2.4.1 ]; then
-        RUBY_CONFIGURE_OPTS=--with-readline-dir="$(arch --x86_64 /usr/local/Homebrew/bin/brew --prefix readline)" arch -x86_64 /bin/bash -c 'rbenv install 2.4.1'
-      fi
+      #arch --x86_64 /usr/local/Homebrew/bin/brew install readline libffi # node@12
+      #arch --x86_64 /usr/local/Homebrew/bin/brew uninstall readline libffi # node@12
+      brew install readline libffi
+      #brew install rbenv
+      #brew install ruby-build
+      #if ! [ -d $HOME/.rbenv/versions/2.6.3 ]; then
+      #  #RUBY_CONFIGURE_OPTS=--with-readline-dir="$(arch --x86_64 /usr/local/Homebrew/bin/brew --prefix readline)" arch -x86_64 /bin/bash -c 'rbenv install 2.6.3'
+      #  rbenv install 2.6.3
+      #fi
+      #set +e
+      #rbenv global 2.6.3
+      #yes | sudo gem install ffi -- --enable-system-libffi
+      #if [ ! -d ~/code/klarna/backup-libffi-include ]; then
+      #  cp -r include ~/code/klarna/backup-libffi-include
+      #fi
+      #ln -s $(brew --cellar libffi)/*/include/ffi.h /usr/local/include/ffi.h
+      #ln -s $(brew --cellar libffi)/*/include/ffitarget.h /usr/local/include/ffitarget.h
+      #yes | sudo gem install bundler:2.1.4
+      ##yes | gem uninstall ffi
+      ##yes | arch --x86_64 gem install ffi
+      #set -e
+
       set +e
-      rbenv global 2.4.1
-      yes | gem install bundler:2.1.4
-      #yes | gem uninstall ffi
-      yes | arch --x86_64 gem install ffi
+      pushd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/include/ruby-2.6.0/
+      set -e
+      sudo ln -sf universal-darwin21 universal-darwin20
+
+      set +e
+      pushd $CODE_DIR/klarna
+      pushd klarna-app/clients/apps/native
+      set -e
+
+      bundle config set path 'vendor/bundle'
+
+      #bundle config set path '~/.vendor/bundle'
+      #bundle install --path vendor/bundle
+      #gem install --path vendor/bundle ffi -v '1.15.0' --source 'https://artifactory.klarna.net/artifactory/api/gems/v-gems-production/'
+
+      set +e
+      popd
+      popd
+      popd
       set -e
 
       # Android development
@@ -504,39 +536,43 @@ zoom
     sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
   fi
 
-  if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
-    # ruby version manager
-    gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || true
-    if ! hash rvm 2>/dev/null; then
-      # trust download
-      command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-      # install rvm and latest ruby
-      curl -sSL https://get.rvm.io | bash -s stable --ruby
-    fi
-    # update rvm
-    rvm get stable
-    # interesting ruby version
-    rvm install ruby-2.4.1
-    # v2.4.1 required by dev environment
-    set +e
-    rvm --default use ruby-2.4.1
-    set -e
-    # this is the exact version required by `klapp doctor`, this doesn't really work
-    yes | gem install bundler:2.1.4
-    LATEST_STABLE_RUBY_VERSION=$(rvm list known | grep "\[ruby-\]" | grep -v "preview" | tail -1 | sed 's/\[ruby-\]\([0-9]*\.[0-9]\)*\[.*\]/\1/g')
-    rvm install ruby-$LATEST_STABLE_RUBY_VERSION
-    set +e
-    source ~/.rvm/scripts/rvm
-    #rvm --default use ruby-$LATEST_STABLE_RUBY_VERSION
-    set -e
+  #if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]]; then
+  # ruby version manager
+  #gpg --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || true
+  #if ! hash rvm 2>/dev/null; then
+  #  # trust download
+  #  command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+  #  # install rvm and latest ruby
+  #  curl -sSL https://get.rvm.io | bash -s stable --ruby
+  #fi
+  ## update rvm
+  #rvm get stable
+  ## interesting ruby version
+  #
+  #rvm install ruby-2.6.3
+  ## v2.6.3 required by dev environment
+  #set +e
+  #rvm --default use ruby-2.6.3
+  #set -e
+  ## this is the exact version required by `klapp doctor`, this doesn't really work
 
-    # pip no longer installable from pip3? not needed?
-    #pip3 install --upgrade pip setuptools
-    pip3 install virtualenvwrapper
-    pip3 install autopep8 pylint rope
-    # install tmux session manager
-    pip3 install tmuxp -U
-  fi
+  ## is this needed?
+  #yes | gem install bundler:2.1.4
+
+  #LATEST_STABLE_RUBY_VERSION=$(rvm list known | grep "\[ruby-\]" | grep -v "preview" | tail -1 | sed 's/\[ruby-\]\([0-9]*\.[0-9]\)*\[.*\]/\1/g')
+  #rvm install ruby-$LATEST_STABLE_RUBY_VERSION
+  #set +e
+  #source ~/.rvm/scripts/rvm
+  ##rvm --default use ruby-$LATEST_STABLE_RUBY_VERSION
+  #set -e
+
+  # pip no longer installable from pip3? not needed?
+  #pip3 install --upgrade pip setuptools
+  #pip3 install virtualenvwrapper
+  #pip3 install autopep8 pylint rope
+  ## install tmux session manager
+  #pip3 install tmuxp -U
+  #fi
 
   if [ -d ~/.tmux/plugins ]; then
     for plugin in ~/.tmux/plugins/*; do
@@ -572,8 +608,11 @@ version_gte() {
 if [ -x "$(command -v cargo)" ] && version_gte $(cargo --version | cut -d " " -f2) 1.0.0; then
   cargo install --verbose cargo-update || true
   cargo install --verbose termimage || true
+  # not working anymore?
   if [ -f ~/.cargo/bin/cargo-install-update ]; then
+    set +e
     cargo install-update -a
+    set -e
   fi
   if [ -f ~/.cargo/bin/cargo-install-update-config ]; then
     mv ~/.cargo/bin/cargo-install-update-config ~/.cargo/bin/cargo-install-update-configure
@@ -665,7 +704,10 @@ if [ -z "$DOTFILES_LITE" ]; then
   fi
 
   if [ -x "$(command -v tldr)" ]; then
+    # this has stopped working? "Could Not Rename"
+    set +e
     tldr --update
+    set -e
   elif [ -x "$(command -v yarn)" ]; then
     yarn global add tldr
   fi
