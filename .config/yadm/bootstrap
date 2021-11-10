@@ -608,8 +608,11 @@ version_gte() {
 if [ -x "$(command -v cargo)" ] && version_gte $(cargo --version | cut -d " " -f2) 1.0.0; then
   cargo install --verbose cargo-update || true
   cargo install --verbose termimage || true
+  # not working anymore?
   if [ -f ~/.cargo/bin/cargo-install-update ]; then
+    set +e
     cargo install-update -a
+    set -e
   fi
   if [ -f ~/.cargo/bin/cargo-install-update-config ]; then
     mv ~/.cargo/bin/cargo-install-update-config ~/.cargo/bin/cargo-install-update-configure
@@ -701,7 +704,10 @@ if [ -z "$DOTFILES_LITE" ]; then
   fi
 
   if [ -x "$(command -v tldr)" ]; then
+    # this has stopped working? "Could Not Rename"
+    set +e
     tldr --update
+    set -e
   elif [ -x "$(command -v yarn)" ]; then
     yarn global add tldr
   fi
