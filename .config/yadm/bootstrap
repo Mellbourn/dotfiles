@@ -340,6 +340,11 @@ witch
       set -e
       sudo ln -sf universal-darwin21 universal-darwin20
 
+      if [ ! -f /usr/local/bin/node ] && [ -f $HOMEBREW_PREFIX/opt/node@14/bin/node ]; then
+        # this is to make node work in xcode
+        ln -s $HOMEBREW_PREFIX/opt/node@14/bin/node /usr/local/bin/node
+      fi
+
       set +e
       pushd $CODE_DIR/klarna
       pushd klarna-app/clients/apps/native
