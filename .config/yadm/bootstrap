@@ -675,7 +675,16 @@ fi
 if [ ! -d ~/.zinit ]; then
   mkdir ~/.zinit
   chmod go-w ~/.zinit # to avoid insecure directories complaint
-  git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
+  git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
+else
+  # when all computers have switchted to zdharma-continuum, this can be removed
+  pushd ~/.zinit/bin
+  git remote set-url origin https://github.com/zdharma-continuum/zinit.git
+  git pull
+  popd
+  zinit delete -y zdharma-continuum/fast-syntax-highlighting | true
+  zinit delete -y zdharma-continuum/history-search-multi-word | true
+  zinit delete -y zdharma-continuum/null | true
 fi
 if [ -x "$(command -v zsh)" ]; then
   zsh -ic "zinit self-update; zinit update --all; zinit cclear"

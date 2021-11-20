@@ -195,10 +195,10 @@ fi
 if [ -x "$(command -v zoxide)" ]; then
   export _ZO_MAXAGE=400
   export _ZO_EXCLUDE_DIRS=$HOME
-  zinit wait'0' lucid as'null' atinit'unalias zi;eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi zi=zinit' light-mode for zdharma/null
+  zinit wait'0' lucid as'null' atinit'unalias zi;eval "$(zoxide init --no-aliases zsh)" && alias z=__zoxide_z c=__zoxide_zi zi=zinit' light-mode for zdharma-continuum/null
 elif [ -d "$HOMEBREW_PREFIX/share/z.lua" ]; then
   export _ZL_MATCH_MODE=1
-  zinit wait'0' lucid as'null' atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh' light-mode for zdharma/null
+  zinit wait'0' lucid as'null' atinit'source $HOMEBREW_PREFIX/share/z.lua/z.lua.plugin.zsh' light-mode for zdharma-continuum/null
   alias c="z -I"
 else
   # zoxide not available on old raspberry pi. fasd is pure shell, but slow: fasd takes 0.06s
@@ -253,10 +253,10 @@ if [ -x "$(command -v bat)" ]; then
   export FZF_CTRL_T_OPTS="--preview 'bat --color always {} | head -120' --preview-window=right:33%"
 fi
 zinit wait'1' lucid as'null' \
-  atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma/null
+  atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma-continuum/null
 
 # has to be loaded aftr fzf, so that it overwrites ^R
-zinit wait'1' lucid for zdharma/history-search-multi-word
+zinit wait'1' lucid for zdharma-continuum/history-search-multi-word
 
 zinit wait'1' lucid light-mode for "cedi/meaningful-error-codes"
 
@@ -265,7 +265,7 @@ zinit wait'1' lucid if'[[ -x "$(command -v fzf)" ]]' for wfxr/forgit
 forgit_ignore=forgig
 
 # command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
-#zinit wait'1' lucid as'null' atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma/null
+#zinit wait'1' lucid as'null' atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma-continuum/null
 
 zinit wait'1' lucid for \
   djui/alias-tips \
@@ -275,7 +275,7 @@ zinit wait'1' lucid atinit'alias f=fuck' light-mode for laggardkernel/zsh-thefuc
 
 # load diff-so-fancy if not already present (it can have been installed by homebrew)
 zinit wait'1' lucid as"program" pick"bin/git-dsf" if'[[ ! -x "$(command -v diff-so-fancy)" ]]' light-mode for \
-  zdharma/zsh-diff-so-fancy
+  zdharma-continuum/zsh-diff-so-fancy
 
 zinit wait'1' lucid as"completion" light-mode for nilsonholger/osx-zsh-completions
 
@@ -338,10 +338,10 @@ then
   # also, loading rvm as a zinit will make it ignore the .ruby-version file if you are already inside that folder
   #if [ -d ~/.rbenv ]; then
   #  zinit wait'2' lucid as'null' \
-  #    atinit'eval "$(rbenv init -)"' light-mode for zdharma/null
+  #    atinit'eval "$(rbenv init -)"' light-mode for zdharma-continuum/null
   #else
   #  zinit wait'2' lucid as'null' \
-  #    atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi' light-mode for zdharma/null
+  #    atinit'if [ -s $HOME/.rvm/scripts/rvm ]; then source "$HOME/.rvm/scripts/rvm"; fi' light-mode for zdharma-continuum/null
   #fi
   if [ -s $HOME/.rvm/scripts/rvm ]; then
     source "$HOME/.rvm/scripts/rvm"
@@ -353,16 +353,16 @@ then
 
   # # python environent will also cause a lag
   # # this takes 0.166s
-  # zinit wait'2a' lucid as'null' atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"' light-mode for zdharma/null
-  # zinit wait'2b' lucid as'null' atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"' light-mode for zdharma/null
+  # zinit wait'2a' lucid as'null' atinit'command -v pyenv > /dev/null && eval "$(pyenv init -)"' light-mode for zdharma-continuum/null
+  # zinit wait'2b' lucid as'null' atinit'command -v pyenv-virtualenv-init > /dev/null && eval "$(pyenv virtualenv-init -)"' light-mode for zdharma-continuum/null
   # export WORKON_HOME=~/.py_virtualenvs
-  # zinit wait'2c' lucid as'null' atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi' light-mode for zdharma/null
+  # zinit wait'2c' lucid as'null' atinit'if [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python3); elif [ -x "$(command -v python3)" ]; then export VIRTUALENVWRAPPER_PYTHON=$(command -v python2); fi' light-mode for zdharma-continuum/null
   # # this taskes 0.39s
   # # this has to be loaded much later than the preceding plugins, otherwise you will get "No module named virtualenvwrapper  "
-  # zinit wait'9' lucid as'null' atinit'if [ -f $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh ]; then source $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh; fi' light-mode for zdharma/null
+  # zinit wait'9' lucid as'null' atinit'if [ -f $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh ]; then source $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh; fi' light-mode for zdharma-continuum/null
 
   # yarn must be run after node is defined, takes 0.31s, and only adds $HOMEBREW_PREFIX/bin
-  #zinit wait'2' lucid as'null' atinit'export PATH="$PATH:$(yarn global bin)"' light-mode for zdharma/null
+  #zinit wait'2' lucid as'null' atinit'export PATH="$PATH:$(yarn global bin)"' light-mode for zdharma-continuum/null
 fi
 
 # TODO: convert these to zinit
@@ -581,7 +581,7 @@ bindkey '¿' which-command #option-?
 ###############################################################################
 # Syntax highlighting for the shell
 # syntax highlighting should be loaded AFTER all widgets, to work with them
-# This last async call is also where compinit should be called, see https://github.com/zdharma/zinit#calling-compinit-with-turbo-mode
+# This last async call is also where compinit should be called, see https://github.com/zdharma-continuum/zinit#calling-compinit-with-turbo-mode
 ###############################################################################
 if false; then
   zinit wait'2' lucid --atinit="ZINIT[COMPINIT_OPTS]=-C; zicompinit; autoload -U +X bashcompinit && bashcompinit; zicdreplay" --atload="
@@ -599,8 +599,8 @@ if false; then
     export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=182' # light pink
 " light-mode for zsh-users/zsh-syntax-highlighting
 else
-  # loads theme ~/.config/fsh/improved-default.ini for zdharma/fast-syntax-highlighting
-  zinit wait'2' lucid --atinit="ZINIT[COMPINIT_OPTS]=-C; zicompinit; autoload -U +X bashcompinit && bashcompinit; zicdreplay" --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.log" light-mode for zdharma/fast-syntax-highlighting
+  # loads theme ~/.config/fsh/improved-default.ini for zdharma-continuum/fast-syntax-highlighting
+  zinit wait'2' lucid --atinit="ZINIT[COMPINIT_OPTS]=-C; zicompinit; autoload -U +X bashcompinit && bashcompinit; zicdreplay" --atload="fast-theme XDG:improved-default >> /tmp/fast-theme.log" light-mode for zdharma-continuum/fast-syntax-highlighting
 fi
 
 # colored man pages must be loaded after syntax-highlighting
@@ -652,7 +652,7 @@ if [ -x "$(command -v prettyping)" ]; then
   compdef prettyping=ping
 fi
 
-' light-mode for zdharma/null
+' light-mode for zdharma-continuum/null
 
 # it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zinit then
 #autoload -U +X compinit && compinit
