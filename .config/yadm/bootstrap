@@ -684,10 +684,10 @@ else
 fi
 if [ -x "$(command -v zsh)" ]; then
   zsh -ic "zinit self-update; zinit update --all; zinit cclear"
-  zsh -ic "zinit delete -y zdharma/fast-syntax-highlighting"
-  zsh -ic "zinit delete -y zdharma/history-search-multi-word"
-  zsh -ic "zinit delete -y zdharma/null"
-  zsh -ic "zinit delete -y zdharma/zsh-diff-so-fancy"
+  zsh -ic "zinit delete -y zdharma/fast-syntax-highlighting | true"
+  zsh -ic "zinit delete -y zdharma/history-search-multi-word | true"
+  zsh -ic "zinit delete -y zdharma/null | true"
+  zsh -ic "zinit delete -y zdharma/zsh-diff-so-fancy | true"
 fi
 
 # TODO: eventually remove this removal
