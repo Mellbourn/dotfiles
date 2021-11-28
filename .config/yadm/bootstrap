@@ -687,6 +687,7 @@ if [ -x "$(command -v zsh)" ]; then
   zsh -ic "zinit delete -y zdharma/fast-syntax-highlighting"
   zsh -ic "zinit delete -y zdharma/history-search-multi-word"
   zsh -ic "zinit delete -y zdharma/null"
+  zsh -ic "zinit delete -y zdharma/zsh-diff-so-fancy"
 fi
 
 # TODO: eventually remove this removal
