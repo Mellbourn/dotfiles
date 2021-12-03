@@ -67,6 +67,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   # Xcode
   mas install 497799835
   mas lucky "Copy 'Em (Clipboard Manager)" # (2.11) 876540291
+  mas lucky "John's Background Switcher"   # 907640277
   # Safari extensions
   mas lucky "Adblock Plus for Safari ABP" # (2.1.10) 1432731683
   mas lucky "CloseTabs Extension"         # (2.0) 1508584686
@@ -76,8 +77,7 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
     # these still require rosetta afaik
-    mas lucky "John's Background Switcher" # 907640277
-    mas lucky Bredbandskollen              # 1147976909
+    mas lucky Bredbandskollen # 1147976909
     # Microsoft Remote Desktop 10 1295203466
     mas lucky "Microsoft Remote Desktop"
   fi
