@@ -96,6 +96,10 @@ if [ -d $ANDROID_HOME/platform-tools ]; then
   # this is needed by android
   export PATH=$PATH:$ANDROID_HOME/platform-tools
 fi
+if [ -d $ANDROID_HOME/tools/bin ]; then
+  # this is needed by android
+  export PATH=$PATH:$ANDROID_HOME/tools/bin
+fi
 
 ###############################################################################
 # completion
