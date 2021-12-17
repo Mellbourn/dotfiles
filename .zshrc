@@ -153,7 +153,7 @@ zinit wait'0a' lucid blockf for zsh-users/zsh-completions
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 # for match_prev_cmd to work, it requires histignorealldups to be removed (which is ok: do histsavenodups instead)
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
-zinit wait'0' lucid atload"!_zsh_autosuggest_start && ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
+zinit wait'0' lucid atload"!_zsh_autosuggest_start
 " for zsh-users/zsh-autosuggestions
 
 # zsh-notify (as opposed to zbell) only notifies when the pane with the command is not focused
@@ -383,23 +383,24 @@ fi
 # make paste safe and fix pasted urls, https://forum.endeavouros.com/t/tip-better-url-pasting-in-zsh/6962
 # This is what inverts the text when pasting. Is it really needed, I can't provoke the "unsafe" behaviour.
 # The following must be after autosuggestion. It could affect performance?
+# commented out because it hurts insertion of emojis
 ###############################################################################
-if [ -z "$UBUNTU_DESKTOP" ]; then
-  autoload -U url-quote-magic bracketed-paste-magic
-  zle -N self-insert url-quote-magic
-  zle -N bracketed-paste bracketed-paste-magic
-  # Now the fix, setup these two hooks:
-  pasteinit() {
-    OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-    zle -N self-insert url-quote-magic
-  }
-  pastefinish() {
-    zle -N self-insert $OLD_SELF_INSERT
-  }
-  zstyle :bracketed-paste-magic paste-init pasteinit
-  zstyle :bracketed-paste-magic paste-finish pastefinish
+# if [ -z "$UBUNTU_DESKTOP" ]; then
+  #autoload -U url-quote-magic bracketed-paste-magic
+  #zle -N self-insert url-quote-magic
+  #zle -N bracketed-paste bracketed-paste-magic
+  ## Now the fix, setup these two hooks:
+  #pasteinit() {
+  #  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  #  zle -N self-insert url-quote-magic
+  #}
+  #pastefinish() {
+  #  zle -N self-insert $OLD_SELF_INSERT
+  #}
+  #zstyle :bracketed-paste-magic paste-init pasteinit
+  #zstyle :bracketed-paste-magic paste-finish pastefinish
   # n.b. ZSH_AUTOSUGGEST_CLEAR_WIDGETS must also be extended, and that is done in two ways above
-fi
+#fi
 
 ###############################################################################
 # fzf
