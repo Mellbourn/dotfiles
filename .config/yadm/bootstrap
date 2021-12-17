@@ -17,6 +17,9 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
   DOTFILES_LITE=1
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
+if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]] || [[ $(hostname) == "HKG"* ]]; then
+  KLARNA=1
+fi
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
   OS_UBUNTU=1
@@ -305,7 +308,7 @@ witch
     installThese=${installTheseLines//$'\n'/ }
     echo $installThese | xargs brew install --cask
 
-    if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]]; then
+    if [[ -n "$KLARNA" ]]; then
       # install x86 brew
       #if ! [ -f /usr/local/bin/brew ]; then
       #  arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -541,7 +544,7 @@ zoom
     sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
   fi
 
-  #if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]]; then
+  #if [[ -n "$KLARNA" ]]; then
   # ruby version manager
   #gpg --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB || true
   #if ! hash rvm 2>/dev/null; then
@@ -770,7 +773,7 @@ npm i -g npm node-gyp
 # yarn 2 should not be installed globally!
 #npm i -g yarn@berry
 npm rm -g eslint
-if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]]; then
+if [[ -n "$KLARNA" ]]; then
   npm update -g --registry https://artifactory.klarna.net/artifactory/api/npm/v-npm-production/
 else
   npm update -g
