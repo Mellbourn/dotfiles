@@ -345,7 +345,7 @@ witch
 
       if [ ! -f /usr/local/bin/node ] && [ -f $HOMEBREW_PREFIX/opt/node@14/bin/node ]; then
         # this is to make node work in xcode
-        ln -s $HOMEBREW_PREFIX/opt/node@14/bin/node /usr/local/bin/node
+        ln -sf $HOMEBREW_PREFIX/opt/node@14/bin/node /usr/local/bin/node
       fi
 
       set +e
