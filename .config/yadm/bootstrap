@@ -654,6 +654,23 @@ if ! [ -f ~/.ssh/id_rsa ]; then
   echo "Remember to add the new public key in ~/.ssh/id_rsa.pub to github and appropriate authorized_hosts."
 fi
 
+# add tmux-256color terminfo to ~/.terminfo
+curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/terminfo.src.gz
+gunzip -f /tmp/terminfo.src.gz
+/usr/bin/tic -xe tmux-256color /tmp/terminfo.src
+
+# Install `zinit` if not installed
+if [ ! -d ~/.zinit ]; then
+  mkdir ~/.zinit
+  chmod go-w ~/.zinit # to avoid insecure directories complaint
+  git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
+else
+  # when all computers have switchted to zdharma-continuum, this can be removed
+  pushd ~/.zinit/bin
+  git remote set-url origin https://github.com/zdharma-continuum/zinit.git
+  popd
+fi
+
 # fonts
 if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
   if [[ $(uname) == 'Darwin' ]]; then
@@ -674,17 +691,6 @@ if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
   yes | unzip -u ${XDG_CACHE_HOME:-~/.cache}/delugia-book.zip -d $FONT_DIRECTORY
 fi
 
-# Install `zinit` if not installed
-if [ ! -d ~/.zinit ]; then
-  mkdir ~/.zinit
-  chmod go-w ~/.zinit # to avoid insecure directories complaint
-  git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
-else
-  # when all computers have switchted to zdharma-continuum, this can be removed
-  pushd ~/.zinit/bin
-  git remote set-url origin https://github.com/zdharma-continuum/zinit.git
-  popd
-fi
 if [ -x "$(command -v zsh)" ]; then
   zsh -ic "zinit self-update; zinit update --all; zinit cclear"
   zsh -ic "zinit delete -y zdharma/fast-syntax-highlighting | true"
@@ -780,11 +786,6 @@ else
 fi
 # save some disk
 xcrun simctl delete unavailable || true
-
-# add tmux-256color terminfo to ~/.terminfo
-curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/terminfo.src.gz
-gunzip -f /tmp/terminfo.src.gz
-/usr/bin/tic -xe tmux-256color /tmp/terminfo.src
 
 # remove itunes from login items. This way it does not open when you plug in an iPhone
 osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2>/tmp/delete_itunes_helper_error.txt || true
