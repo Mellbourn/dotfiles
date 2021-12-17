@@ -18,7 +18,7 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]] || [[ $(hostname) == "HKG"* ]]; then
-  KLARNA=1
+  export KLARNA=1
 fi
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
@@ -939,6 +939,12 @@ defaults write -g com.apple.keyboard.fnState -bool true
 ###############################################################################
 # Dock                                                                        #
 ###############################################################################
+set +x
+dockutil --remove "Mail"
+dockutil --remove "Safari"
+dockutil --remove "Maps"
+set -x
+
 # autohide dock - my screen realestate is valuable!
 defaults write com.apple.dock autohide -bool true
 # Set the icon size of Dock items to 24 pixels
