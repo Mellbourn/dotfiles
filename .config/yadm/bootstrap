@@ -178,7 +178,6 @@ if [[ $(uname) == 'Darwin' ]]; then
     # maybe hadolint (cabal-install) although I should probably use a vs code plugin like shell-format instead
     # wix/brew/applesimutils (not ready yet?)
     # when cargo works, cargo install viu https://github.com/atanunq/viu, and maybe rpick
-    # TODO: add back git-lfs when 3 is supported
     apps="
 aws-sam-cli
 awscli@1
@@ -206,6 +205,7 @@ git
 git-crypt
 git-delta
 git-extras
+git-lfs
 git-recent
 glances
 gnu-sed
@@ -403,6 +403,7 @@ git
 git-crypt
 git-delta
 git-extras
+git-lfs
 git-recent
 glances
 gnu-sed
