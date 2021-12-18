@@ -886,6 +886,9 @@ defaults write com.apple.TextEdit RichText -int 0
 #defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 defaults delete CGFontRenderingFontSmoothingDisabled || true
 
+# set screen saver to activate after 20min instead of 5min
+defaults -currentHost write com.apple.screensaver idleTime 1200
+
 ###############################################################################
 # Mouse & Trackpad                                                            #
 ###############################################################################
