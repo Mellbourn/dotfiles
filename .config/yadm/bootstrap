@@ -585,7 +585,8 @@ zoom
     #pip3 install tmuxp -U
 
     if [[ -f $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh ]]; then
-      zsh -ic "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git; asdf install ruby 2.6.8 && asdf global ruby 2.6.8" || true
+      zsh -ic "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git; asdf install ruby 2.6.8 && asdf global ruby 2.6.8 && gem install bundler" || true
+      # default gems in .default-gems
     fi
   fi
   # TODO: asdf install nodejs latest
