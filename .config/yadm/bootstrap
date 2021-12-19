@@ -945,9 +945,9 @@ defaults write -g com.apple.keyboard.fnState -bool true
 ###############################################################################
 # Dock                                                                        #
 ###############################################################################
-declare -a apps_to_remove=("Mail" "Safari" "Maps" "Photos" "FaceTime" "Calendar" "Contacts" "Reminders" "Notes" "TV" "Music" "Podcasts" "Keynote" "Numbers" "Pages" "App Store")
+declare -a apps_to_remove=("Mail" "Safari" "Maps" "Photos" "FaceTime" "Calendar" "Contacts" "Reminders" "Notes" "TV" "Music" "Podcasts" "Keynote" "Numbers" "Pages" "App Store" "Messages")
 for app_to_remove in "${apps_to_remove[@]}"; do
-    dockutil --remove "$app_to_remove" --no-restart
+  dockutil --remove "$app_to_remove" --no-restart
 done
 set +e
 dockutil --add "/Applications/Google Chrome Beta.app" --after "Launchpad" --no-restart
