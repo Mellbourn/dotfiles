@@ -179,6 +179,7 @@ if [[ $(uname) == 'Darwin' ]]; then
     # wix/brew/applesimutils (not ready yet?)
     # when cargo works, cargo install viu https://github.com/atanunq/viu, and maybe rpick
     apps="
+asdf
 aws-sam-cli
 awscli@1
 bash
@@ -376,6 +377,7 @@ witch
 
   # this must be in alphabetical order!
   apps="
+asdf
 aws-sam-cli
 awscli@1
 bash

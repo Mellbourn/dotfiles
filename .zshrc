@@ -354,6 +354,9 @@ then
   if [ -d $HOME/.rbenv ]; then
     trash $HOME/.rbenv
   fi
+  if [[ -f $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh ]]; then
+    source $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
+  fi
 
   # # python environent will also cause a lag
   # # this takes 0.166s
