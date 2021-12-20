@@ -34,8 +34,9 @@ alias x86brew='arch --x86_64 /usr/local/Homebrew/bin/brew'
 alias x86='PATH=/usr/local/bin:$PATH'
 alias zmv='noglob zmv'
 
-alias bundle="arch -x86_64 bundle"
-alias pod="arch -x86_64 pod"
+# this used to be needed to get client to run on m1
+#alias bundle="arch -x86_64 bundle"
+#alias pod="arch -x86_64 pod"
 
 # suffix aliases for file types: these become "executable"
 alias -s {avdl,c,coffee,css,el,gql,gradle,graphql,h,handlebars,hpp,html,http,java,js,json,json5,jsx,lock,log,md,py,rb,scss,swift,text,ts,tsx,txt,xml,yaml,yml,yo}=code
