@@ -593,7 +593,8 @@ zoom
       # default gems in .default-gems
 
       # node
-      zsh -ic "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git; NODEJS_CHECK_SIGNATURES='no' asdf install nodejs 14.18.2 && asdf global nodejs 14.18.2 && sudo ln -sf $(asdf where nodejs)/node /usr/local/bin/node"
+      zsh -ic "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git; NODEJS_CHECK_SIGNATURES='no' asdf install nodejs latest:14 && asdf global nodejs latest:14 && sudo ln -sf $(asdf which node) /usr/local/bin/node"
+      zsh -ic "NODEJS_CHECK_SIGNATURES=no asdf install nodejs latest:16"
 
     fi
   fi
