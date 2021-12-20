@@ -1,0 +1,9 @@
+#!/bin/sh
+#git update-index --skip-worktree ~/code/klarna/klarna-app/clients/apps/native/ios/Klarna.xcodeproj/project.pbxproj
+#git update-index --skip-worktree ~/code/klarna/klarna-app/clients/apps/native/ios/Podfile
+#git update-index --skip-worktree ~/code/klarna/klarna-app/clients/apps/native/ios/Podfile.lock
+git update-index --skip-worktree ~/code/klarna/klarna-app/clients/src/mountApp.native.js
+git update-index --skip-worktree ~/code/klarna/klarna-app/services/shopping-payment-processing/bin/docker-compose-up.sh
+git update-index --skip-worktree ~/code/klarna/klarna-app/services/shopping-payment-processing/bin/run-tests-with-dependencies.sh
+#git update-index --skip-worktree ~/code/klarna/klarna-app/services/shopping-payment/generated/config.d.ts
+git update-index --skip-worktree ~/code/klarna/klarna-app/clients/src/features/shoppingPayments/paymentsWebview/ios/KLAWKWebView/KLPaymentInstanceManager.m

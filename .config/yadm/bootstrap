@@ -152,6 +152,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstall htop
   brewSafeUninstall rbenv
   brewSafeUninstall applesimutils
+  brewSafeUninstall node@14
   brewSafeUninstallCask luna-display
   brewSafeUninstallCask zeplin
   brewSafeUninstallCask zenmap
@@ -200,6 +201,7 @@ findutils
 fpp
 fx
 fzf
+gawk
 gcal
 gh
 git
@@ -314,7 +316,7 @@ witch
       #if ! [ -f /usr/local/bin/brew ]; then
       #  arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
       #fi
-      brew install node@14
+      #brew install node@14
       #arch --x86_64 /usr/local/Homebrew/bin/brew doctor
       # install x86 ruby
       #arch --x86_64 /usr/local/Homebrew/bin/brew install readline libffi # node@12
@@ -344,10 +346,10 @@ witch
       set -e
       sudo ln -sf universal-darwin21 universal-darwin20
 
-      if [ ! -f /usr/local/bin/node ] && [ -f $HOMEBREW_PREFIX/opt/node@14/bin/node ]; then
-        # this is to make node work in xcode
-        sudo ln -sf $HOMEBREW_PREFIX/opt/node@14/bin/node /usr/local/bin/node
-      fi
+      #if [ ! -f /usr/local/bin/node ] && [ -f $HOMEBREW_PREFIX/opt/node@14/bin/node ]; then
+      # this is to make node work in xcode
+      #sudo ln -sf $HOMEBREW_PREFIX/opt/node@14/bin/node /usr/local/bin/node
+      #fi
 
       set +e
       pushd $CODE_DIR/klarna
@@ -398,6 +400,7 @@ findutils
 fpp
 fx
 fzf
+gawk
 gcal
 gettext
 gh
@@ -585,8 +588,13 @@ zoom
     #pip3 install tmuxp -U
 
     if [[ -f $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh ]]; then
+      # ruby
       zsh -ic "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git; asdf install ruby 2.6.8 && asdf global ruby 2.6.8 && gem install bundler" || true
       # default gems in .default-gems
+
+      # node
+      zsh -ic "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git; NODEJS_CHECK_SIGNATURES='no' asdf install nodejs 14.18.2 && asdf global nodejs 14.18.2 && sudo ln -sf $(asdf where nodejs)/node /usr/local/bin/node"
+
     fi
   fi
   # TODO: asdf install nodejs latest
