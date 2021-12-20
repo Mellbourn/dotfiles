@@ -41,4 +41,6 @@
   "cSpell.words": [
     "pbcopy"
   ],
+  "atlascode.bitbucket.enabled": false,
+  "atlascode.jira.enabled": false,
 }
