@@ -311,6 +311,9 @@ witch
     installThese=${installTheseLines//$'\n'/ }
     echo $installThese | xargs brew install --cask
 
+    zsh -ic "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git"
+    zsh -ic "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git"
+
     if [[ -n "$KLARNA" ]]; then
       brew install readline libffi
 
@@ -319,16 +322,13 @@ witch
       set -e
       sudo ln -sf universal-darwin21 universal-darwin20
 
-      if [[ -f $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh ]]; then
-        # ruby
-        zsh -ic "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git; asdf install ruby 2.6.8 && asdf global ruby 2.6.8 && gem install bundler" || true
-        # default gems in .default-gems
+      # ruby
+      zsh -ic "asdf install ruby 2.6.8 && asdf global ruby 2.6.8 && gem install bundler" || true
+      # default gems in .default-gems
 
-        # node
-        zsh -ic "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git; NODEJS_CHECK_SIGNATURES='no' asdf install nodejs latest:14 && asdf global nodejs latest:14 && sudo ln -sf $(asdf which node) /usr/local/bin/node"
-        zsh -ic "NODEJS_CHECK_SIGNATURES=no asdf install nodejs latest:16; NODEJS_CHECK_SIGNATURES=no asdf install nodejs 12.18.4"
-
-      fi
+      # node
+      zsh -ic "NODEJS_CHECK_SIGNATURES='no' asdf install nodejs latest:14 && asdf global nodejs latest:14 && sudo ln -sf $(asdf which node) /usr/local/bin/node"
+      zsh -ic "NODEJS_CHECK_SIGNATURES=no asdf install nodejs latest:16; NODEJS_CHECK_SIGNATURES=no asdf install nodejs 12.18.4"
 
       set +e
       pushd $CODE_DIR/klarna
@@ -354,6 +354,9 @@ witch
       #pip3 install autopep8 pylint rope
       ## install tmux session manager
       #pip3 install tmuxp -U
+    else
+      zsh -ic "asdf global ruby system"
+      zsh -ic "asdf global nodejs system"
     fi
 
   fi
