@@ -28,6 +28,7 @@ alias ql='qlmanage -p 2>/dev/null'
 alias rm_node_modules='$FD -t d -u node_modules -x rm -rf'
 alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
 alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
+alias tig='TERM=xterm-256color tig'
 alias weather='curl v2.wttr.in'
 alias y='noglob yadm'
 alias x86brew='arch --x86_64 /usr/local/Homebrew/bin/brew'
