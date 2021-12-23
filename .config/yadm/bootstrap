@@ -189,6 +189,7 @@ bat
 choose-rust
 cloc
 coreutils
+croc
 diff-so-fancy
 direnv
 dockutil
@@ -234,8 +235,8 @@ ncdu
 nginx
 nodebrew
 noti
-parallel
 openjdk@11
+parallel
 pinentry-mac
 pipenv
 pkg-config
@@ -249,7 +250,6 @@ reattach-to-user-namespace
 redis
 ripgrep
 rust
-croc
 sd
 shfmt
 speedtest-cli
@@ -301,8 +301,8 @@ moom
 paletro
 react-native-debugger
 ui-browser
-vlc
 visual-studio-code
+vlc
 witch
 "
 
@@ -372,6 +372,7 @@ bat
 choose-rust
 cloc
 coreutils
+croc
 diff-so-fancy
 direnv
 dockutil
@@ -436,10 +437,9 @@ reattach-to-user-namespace
 redis
 ripgrep
 rust
-croc
+sd
 shellcheck
 shfmt
-sd
 speedtest-cli
 terminal-notifier
 thefuck
@@ -498,8 +498,8 @@ iterm2
 java8
 jdiskreport
 kdiff3
-keka
 keeweb
+keka
 keycue
 launchcontrol
 mockoon
