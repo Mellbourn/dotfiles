@@ -314,6 +314,7 @@ witch
     zsh -ic "asdf plugin update --all"
     zsh -ic "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git" || true
     zsh -ic "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git" || true
+    # if no versions are installed, the asdf plugin will fall back to "system"
 
     if [[ -n "$KLARNA" ]]; then
       brew install readline libffi
@@ -355,9 +356,6 @@ witch
       #pip3 install autopep8 pylint rope
       ## install tmux session manager
       #pip3 install tmuxp -U
-    else
-      zsh -ic "asdf global ruby system"
-      zsh -ic "asdf global nodejs system"
     fi
 
   fi
