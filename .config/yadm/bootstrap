@@ -251,6 +251,7 @@ redis
 ripgrep
 rust
 sd
+shellcheck
 shfmt
 speedtest-cli
 terminal-notifier
