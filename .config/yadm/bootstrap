@@ -22,7 +22,7 @@ if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostnam
 fi
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
-  OS_UBUNTU=1
+  #OS_UBUNTU=1
   if dpkg -l ubuntu-desktop >/dev/null; then
     UBUNTU_DESKTOP=1
   fi
@@ -42,7 +42,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
   # macOS specific installations
   ###############################################################################
-  export OS_MAJOR_VERSION=$(sw_vers -productVersion | cut -d. -f1)
+  OS_MAJOR_VERSION=$(sw_vers -productVersion | cut -d. -f1)
   BIG_SUR_MAJOR_VERSION=11
   MONTEREY_MAJOR_VERSION=12
 
@@ -56,11 +56,11 @@ if [[ $(uname) == 'Darwin' ]]; then
   launchctl unload ~/Library/LaunchAgents/local.cleanup.trash.plist
   launchctl load -w ~/Library/LaunchAgents/local.cleanup.trash.plist
   # they don't work, so run them anyway
-  $HOME/bin/cleanup-directory -d $HOME/Downloads -l 10 -v
-  $HOME/bin/cleanup-directory -d $HOME/Pictures -l 10 -v
+  "$HOME"/bin/cleanup-directory -d "$HOME"/Downloads -l 10 -v
+  "$HOME"/bin/cleanup-directory -d "$HOME"/Pictures -l 10 -v
   # not needed: tmux-resurrect deletes files older than 30 days by default
   #$HOME/bin/cleanup-directory -d $HOME/.tmux/resurrect -f \*/tmux_resurrect_\*.txt -l 5 -v
-  $HOMEBREW_PREFIX/sbin/tmpreaper -vv 2d -T 180 $HOME/.Trash &
+  "$HOMEBREW_PREFIX"/sbin/tmpreaper -vv 2d -T 180 "$HOME"/.Trash &
 
   ###############################################################################
   # App store                                                                   #
@@ -86,7 +86,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   fi
 
   # upgrade all
-  if [ $OS_MAJOR_VERSION -ge $BIG_SUR_MAJOR_VERSION ]; then
+  if [ "$OS_MAJOR_VERSION" -ge "$BIG_SUR_MAJOR_VERSION" ]; then
     mas upgrade
   fi
 
@@ -277,7 +277,7 @@ zsh
     alreadyInstalled=$(brew list --formula)
     installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
     installThese=${installTheseLines//$'\n'/ }
-    echo $installThese | xargs brew install
+    echo "$installThese" | xargs brew install
 
     # TODO: add more: java8, p4v philips-hue-sync plex private-internet-access
     casks="
@@ -309,7 +309,7 @@ witch
     alreadyInstalled=$(brew list --cask)
     installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
     installThese=${installTheseLines//$'\n'/ }
-    echo $installThese | xargs brew install --cask
+    echo "$installThese" | xargs brew install --cask
 
     zsh -ic "asdf plugin update --all"
     zsh -ic "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git" || true
@@ -333,7 +333,7 @@ witch
       zsh -ic "NODEJS_CHECK_SIGNATURES=no asdf install nodejs latest:16; NODEJS_CHECK_SIGNATURES=no asdf install nodejs 12.18.4"
 
       set +e
-      pushd $CODE_DIR/klarna
+      pushd "$CODE_DIR"/klarna
       pushd klarna-app/clients/apps/native
       set -e
 
@@ -466,7 +466,7 @@ zsh
   installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
   installThese=${installTheseLines//$'\n'/ }
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
-    echo $installThese | xargs brew install
+    echo "$installThese" | xargs brew install
   fi
 
   # not working, destroys existing installation: intel-power-gadget
@@ -523,21 +523,21 @@ zoom
   installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
   installThese=${installTheseLines//$'\n'/ }
   if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
-    echo $installThese | xargs brew install --cask
+    echo "$installThese" | xargs brew install --cask
   fi
 
   echo will cite | parallel --citation >/dev/null 2>&1
 
   # set up wemux user name
-  if [ -f $HOMEBREW_PREFIX/etc/wemux.conf ]; then
-    sed -i -- "s/host_list=(brew)/host_list=($USER)/" $HOMEBREW_PREFIX/etc/wemux.conf
-    sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' $HOMEBREW_PREFIX/etc/wemux.conf
+  if [ -f "$HOMEBREW_PREFIX"/etc/wemux.conf ]; then
+    sed -i -- "s/host_list=(brew)/host_list=($USER)/" "$HOMEBREW_PREFIX"/etc/wemux.conf
+    sed -i -- 's/# allow_server_change="true"/allow_server_change="true"/' "$HOMEBREW_PREFIX"/etc/wemux.conf
   fi
 
   if [ -d ~/.tmux/plugins ]; then
     for plugin in ~/.tmux/plugins/*; do
       set +e
-      pushd $plugin
+      pushd "$plugin"
       git pull
       git submodule update --init --recursive
       popd
@@ -556,7 +556,7 @@ zoom
   fi
 
   # this is needed to suppress zsh message "compinit: insecure directories""
-  chmod g-w $HOMEBREW_PREFIX/share ~/.zsh-personal-completions
+  chmod g-w "$HOMEBREW_PREFIX"/share ~/.zsh-personal-completions
 
 fi ############################################################################
 # configuration for both Mac and Linux
@@ -565,7 +565,7 @@ fi ############################################################################
 version_gte() {
   printf '%s\n%s' "$1" "$2" | sort -C -V -r
 }
-if [ -x "$(command -v cargo)" ] && version_gte $(cargo --version | cut -d " " -f2) 1.0.0; then
+if [ -x "$(command -v cargo)" ] && version_gte "$(cargo --version | cut -d " " -f2)" 1.0.0; then
   cargo install --verbose cargo-update || true
   cargo install --verbose termimage || true
   # not working anymore?
@@ -584,7 +584,7 @@ trash ~/.zcompdump* ~/.zcompcache 2>/tmp/zcomp_delete_error.txt || true
 
 # if, after yadm 3.0 migration, the old .yadm folder is empty, remove it
 if [ -n "$(find "$HOME/.yadm" -maxdepth 0 -type d -empty 2>/dev/null)" ]; then
-  trash $HOME/.yadm
+  trash "$HOME"/.yadm
 fi
 
 # TODO: eventually remove this removal
@@ -597,7 +597,7 @@ wget --show-progress -qNP ~/.vim/autoload https://raw.githubusercontent.com/june
 
 if ! [ -f ~/.ssh/id_rsa ]; then
   ssh-keygen -t rsa -b 4096 -C "${USER}@$(hostname)" -f ~/.ssh/id_rsa -N ""
-  eval $(ssh-agent -s)
+  eval "$(ssh-agent -s)"
   if [[ $(uname) == 'Darwin' ]]; then
     ssh-add -K ~/.ssh/id_rsa
   else
@@ -639,8 +639,8 @@ if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
     grep "delugia-book.zip\"" |
     head -1 |
     awk -F "\"" '{print "https://github.com" $2}' |
-    wget --show-progress -qNi - -O ${XDG_CACHE_HOME:-~/.cache}/delugia-book.zip
-  yes | unzip -u ${XDG_CACHE_HOME:-~/.cache}/delugia-book.zip -d $FONT_DIRECTORY
+    wget --show-progress -qNi - -O "${XDG_CACHE_HOME:-$HOME/.cache}"/delugia-book.zip
+  yes | unzip -u "${XDG_CACHE_HOME:-$HOME/.cache}"/delugia-book.zip -d $FONT_DIRECTORY
 fi
 
 if [ -x "$(command -v zsh)" ]; then
@@ -659,15 +659,15 @@ yadm alt
 
 # supress Spotlight indexing of code folder
 if [ "$CODE_DIR" ]; then
-  mkdir -p $CODE_DIR
-  touch $CODE_DIR/.metadata_never_index
-  mkdir -p $CODE_DIR/private
-  mkdir -p $CODE_DIR/experiments
+  mkdir -p "$CODE_DIR"
+  touch "$CODE_DIR"/.metadata_never_index
+  mkdir -p "$CODE_DIR"/private
+  mkdir -p "$CODE_DIR"/experiments
 fi
 
 if [ -z "$DOTFILES_LITE" ]; then
-  if [ -x "$(command -v $HOMEBREW_PREFIX/opt/nodebrew/bin/nodebrew)" ]; then
-    $HOMEBREW_PREFIX/opt/nodebrew/bin/nodebrew setup_dirs
+  if [ -x "$(command -v "$HOMEBREW_PREFIX"/opt/nodebrew/bin/nodebrew)" ]; then
+    "$HOMEBREW_PREFIX"/opt/nodebrew/bin/nodebrew setup_dirs
   fi
   if [ -x "$(command -v nodebrew)" ]; then
     nodebrew selfupdate
@@ -720,8 +720,8 @@ fi ############################################################################
 # mac specific configurations
 ###############################################################################
 
-if ! [ -f ~/.fzf.$(basename $SHELL) ]; then
-  $HOMEBREW_PREFIX/opt/fzf/install --key-bindings --completion --no-update-rc
+if ! [ -f ~/.fzf."$SHELLNAME" ]; then
+  "$HOMEBREW_PREFIX"/opt/fzf/install --key-bindings --completion --no-update-rc
 fi
 
 ###############################################################################
@@ -940,11 +940,12 @@ defaults write com.apple.Safari BlockStoragePolicy -int 1
 defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 
 # run customer specific bootstrap
-. ${XDG_CONFIG_HOME:-$HOME/.config}/yadm/bootstrap-customer
+# shellcheck disable=SC1091
+. "${XDG_CONFIG_HOME:-$HOME/.config}"/yadm/bootstrap-customer
 
 # this script makes brew doctor fail
-trash $HOMEBREW_PREFIX/Library/Taps/wix/homebrew-brew/applesimutils.rb
-if [ $OS_MAJOR_VERSION -ge $MONTEREY_MAJOR_VERSION ]; then
+trash "$HOMEBREW_PREFIX"/Library/Taps/wix/homebrew-brew/applesimutils.rb
+if [ "$OS_MAJOR_VERSION" -ge "$MONTEREY_MAJOR_VERSION" ]; then
   # brew doctor will always fail on Monterey while it is in beta
   set +e
 fi
