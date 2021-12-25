@@ -156,39 +156,13 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   # remove brews here that were previously installed, to sync between machines
   brewSafeUntap wix/brew # for AppleSimulatorUtils
-  brewSafeUninstall zsh-autosuggestions
-  brewSafeUninstall ilmbase
-  brewSafeUninstall asciinema
-  brewSafeUninstall cheat
-  brewSafeUninstall fortune
-  brewSafeUninstall git-number
-  brewSafeUninstall z.lua
-  brewSafeUninstall weechat
-  brewSafeUninstall broot
-  brewSafeUninstall deno
-  brewSafeUninstall htop
-  brewSafeUninstall rbenv
-  brewSafeUninstall applesimutils
-  brewSafeUninstall node@14
-  brewSafeUninstall nodebrew
-  brewSafeUninstall asdf
-  brewSafeUninstall pipenv
-  brewSafeUninstall pyenv-virtualenvwrapper
-  brewSafeUninstall pyenv-virtualenv
-  brewSafeUninstall pyenv
-  brewSafeUninstallCask luna-display
-  brewSafeUninstallCask zeplin
-  brewSafeUninstallCask zenmap
-  brewSafeUninstallCask pokerth
-  brewSafeUninstallCask dash
-  brewSafeUninstallCask controlplane
-  brewSafeUninstallCask fork
-  brewSafeUninstallCask keycastr
-  brewSafeUninstallCask postman
-  brewSafeUninstallCask shortcat
-  brewSafeUninstallCask tor-browser
-  brewSafeUninstallCask tripmode
-  brewSafeUninstallCask stunnel
+  for formula in zsh-autosuggestions ilmbase asciinema cheat fortune git-number z.lua weechat broot deno htop rbenv applesimutils node@14 nodebrew asdf pipenv pyenv-virtualenvwrapper pyenv-virtualenv pyenv; do
+    brewSafeUninstall $formula
+  done
+
+  for cask in luna-display zeplin zenmap pokerth dash controlplane fork keycastr postman shortcat tor-browser tripmode stunnel; do
+    brewSafeUninstallCask $cask
+  done
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
