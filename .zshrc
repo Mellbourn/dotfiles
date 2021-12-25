@@ -335,6 +335,9 @@ if [[ -n $UNAME_MACOS ]]; then
   zinit wait'2' lucid light-mode as"program" pick"src/trash" for morgant/tools-osx
 fi
 
+source $HOME/.asdf/asdf.sh
+fpath=(${ASDF_DIR}/completions $fpath)
+
 if [ -z "$DOTFILES_LITE" ]
 then
   # Not really plugins, but very good to have async anyway
@@ -351,8 +354,6 @@ then
     source "$HOME/.rvm/scripts/rvm"
     rvm implode
   fi
-  source $HOME/.asdf/asdf.sh
-  fpath=(${ASDF_DIR}/completions $fpath)
 
   # # python environent will also cause a lag
   # # this takes 0.166s
