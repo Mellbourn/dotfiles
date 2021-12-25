@@ -173,9 +173,9 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstall nodebrew
   brewSafeUninstall asdf
   brewSafeUninstall pipenv
-  brewSafeUninstall pyenv
-  brewSafeUninstall pyenv-virtualenv
   brewSafeUninstall pyenv-virtualenvwrapper
+  brewSafeUninstall pyenv-virtualenv
+  brewSafeUninstall pyenv
   brewSafeUninstallCask luna-display
   brewSafeUninstallCask zeplin
   brewSafeUninstallCask zenmap
