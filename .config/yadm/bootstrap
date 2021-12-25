@@ -153,6 +153,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstall rbenv
   brewSafeUninstall applesimutils
   brewSafeUninstall node@14
+  brewSafeUninstall nodebrew
   brewSafeUninstallCask luna-display
   brewSafeUninstallCask zeplin
   brewSafeUninstallCask zenmap
@@ -232,7 +233,6 @@ lnav
 lsd
 ncdu
 nginx
-nodebrew
 noti
 openjdk@11
 parallel
@@ -421,7 +421,6 @@ maven
 mono
 ncdu
 nginx
-nodebrew
 noti
 parallel
 pinentry-mac
@@ -666,18 +665,6 @@ if [ "$CODE_DIR" ]; then
 fi
 
 if [ -z "$DOTFILES_LITE" ]; then
-  if [ -x "$(command -v "$HOMEBREW_PREFIX"/opt/nodebrew/bin/nodebrew)" ]; then
-    "$HOMEBREW_PREFIX"/opt/nodebrew/bin/nodebrew setup_dirs
-  fi
-  if [ -x "$(command -v nodebrew)" ]; then
-    nodebrew selfupdate
-    nodebrew install-binary latest || true
-    if ! [ -x "$(command -v node)" ]; then
-      # if no node is present, definitely use the latest
-      nodebrew use latest
-    fi
-  fi
-
   if [ -x "$(command -v tldr)" ]; then
     # this has stopped working? "Could Not Rename"
     set +e

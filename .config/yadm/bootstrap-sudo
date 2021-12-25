@@ -223,11 +223,6 @@ if [[ $(uname) == 'Linux' ]]; then
     if ! [ -x "$(command -v stack)" ]; then
       wget -qO- https://get.haskellstack.org/ | sh || true
     fi
-
-    # install nodebrew, node version manager
-    if ! [ -x "$(command -v nodebrew)" ]; then
-      curl -L git.io/nodebrew | perl - setup
-    fi
   fi
 
   # when it is needed, this updates the OS, so it will take a LONG time
