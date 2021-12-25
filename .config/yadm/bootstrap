@@ -865,6 +865,10 @@ defaults write -g com.apple.keyboard.fnState -bool true
 ###############################################################################
 # Dock                                                                        #
 ###############################################################################
+# show more recent apps than three
+defaults write com.apple.dock show-recents -bool true
+defaults write com.apple.dock show-recent-count -int 8
+# arrange the icons
 declare -a apps_to_remove=("Mail" "Safari" "Maps" "Photos" "FaceTime" "Calendar" "Contacts" "Reminders" "Notes" "TV" "Music" "Podcasts" "Keynote" "Numbers" "Pages" "App Store" "Messages")
 for app_to_remove in "${apps_to_remove[@]}"; do
   dockutil --remove "$app_to_remove" --no-restart
