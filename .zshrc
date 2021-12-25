@@ -351,12 +351,8 @@ then
     source "$HOME/.rvm/scripts/rvm"
     rvm implode
   fi
-  if [ -d $HOME/.rbenv ]; then
-    trash $HOME/.rbenv
-  fi
-  if [[ -f $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh ]]; then
-    source $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
-  fi
+  source $HOME/.asdf/asdf.sh
+  fpath=(${ASDF_DIR}/completions $fpath)
 
   # # python environent will also cause a lag
   # # this takes 0.166s

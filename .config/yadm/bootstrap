@@ -38,6 +38,23 @@ pushd ~ >/dev/null
 yadm submodule update --init --recursive --remote
 popd >/dev/null
 
+# TODO: eventually delete clean up of old version handlers
+if [ -d ~/.nodebrew ]; then
+  trash ~/.nodebrew
+fi
+if [ -d ~/.rbenv ]; then
+  trash ~/.rbenv
+fi
+# install asdf version manager https://asdf-vm.com/
+if [ ! -d ~/.asdf ]; then
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+fi
+zsh -ic "asdf update"
+zsh -ic "asdf plugin update --all"
+zsh -ic "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git" || true
+zsh -ic "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git" || true
+# if no versions are installed, the asdf plugin will fall back to "system"
+
 if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
   # macOS specific installations
@@ -154,6 +171,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstall applesimutils
   brewSafeUninstall node@14
   brewSafeUninstall nodebrew
+  brewSafeUninstall asdf
   brewSafeUninstallCask luna-display
   brewSafeUninstallCask zeplin
   brewSafeUninstallCask zenmap
@@ -180,7 +198,6 @@ if [[ $(uname) == 'Darwin' ]]; then
     # wix/brew/applesimutils (not ready yet?)
     # when cargo works, cargo install viu https://github.com/atanunq/viu, and maybe rpick
     apps="
-asdf
 aws-sam-cli
 awscli@1
 bash
@@ -310,11 +327,6 @@ witch
     installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
     installThese=${installTheseLines//$'\n'/ }
     echo "$installThese" | xargs brew install --cask
-
-    zsh -ic "asdf plugin update --all"
-    zsh -ic "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git" || true
-    zsh -ic "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git" || true
-    # if no versions are installed, the asdf plugin will fall back to "system"
 
     if [[ -n "$KLARNA" ]]; then
       brew install readline libffi
