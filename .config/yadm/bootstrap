@@ -172,6 +172,10 @@ if [[ $(uname) == 'Darwin' ]]; then
   brewSafeUninstall node@14
   brewSafeUninstall nodebrew
   brewSafeUninstall asdf
+  brewSafeUninstall pipenv
+  brewSafeUninstall pyenv
+  brewSafeUninstall pyenv-virtualenv
+  brewSafeUninstall pyenv-virtualenvwrapper
   brewSafeUninstallCask luna-display
   brewSafeUninstallCask zeplin
   brewSafeUninstallCask zenmap
@@ -254,13 +258,9 @@ noti
 openjdk@11
 parallel
 pinentry-mac
-pipenv
 pkg-config
 prettyping
 pv
-pyenv
-pyenv-virtualenv
-pyenv-virtualenvwrapper
 react-native-cli
 reattach-to-user-namespace
 redis
@@ -436,13 +436,9 @@ nginx
 noti
 parallel
 pinentry-mac
-pipenv
 pkg-config
 prettyping
 pv
-pyenv
-pyenv-virtualenv
-pyenv-virtualenvwrapper
 react-native-cli
 reattach-to-user-namespace
 redis
