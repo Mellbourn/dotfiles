@@ -336,8 +336,8 @@ witch
       set -e
       sudo ln -sf universal-darwin21 universal-darwin20
 
-      # ruby
-      zsh -ic "asdf install ruby 2.6.8 && asdf global ruby 2.6.8 && gem install bundler" || true
+      # ruby (2.6.8 definitely worked, 2.7.5 seems ok too)
+      zsh -ic "asdf install ruby latest:2 && asdf global ruby latest:2 && gem install bundler" || true
       # default gems in .default-gems
 
       # node
