@@ -3,4 +3,4 @@ source "$(asdf direnv hook asdf)"
 # see https://github.com/asdf-community/asdf-direnv
 
 # Uncomment the following line to make direnv silent by default.
-export DIRENV_LOG_FORMAT=""
+#export DIRENV_LOG_FORMAT=""
