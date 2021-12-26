@@ -49,12 +49,14 @@ fi
 if [ ! -d ~/.asdf ]; then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 fi
-zsh -ic "asdf update"
-zsh -ic "asdf plugin update --all"
-zsh -ic "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git" || true
-zsh -ic "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git" || true
+asdf update
+asdf plugin update --all
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git || true
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
 # asdf direnv doesn't seem absolutely necessary, but could improve performance
-zsh -ic "asdf plugin add direnv; asdf install direnv latest; asdf global direnv latest"
+asdf plugin add direnv || true
+asdf install direnv latest
+asdf global direnv latest
 # if no versions are installed, the asdf plugin will fall back to "system"
 
 if [[ $(uname) == 'Darwin' ]]; then
@@ -313,12 +315,13 @@ witch
       sudo ln -sf universal-darwin21 universal-darwin20
 
       # ruby (2.6.8 definitely worked, 2.7.5 seems ok too)
-      zsh -ic "asdf install ruby latest:2 && asdf global ruby latest:2 && gem install bundler" || true
+      asdf install ruby latest:2 && asdf global ruby latest:2 && gem install bundler || true
       # default gems in .default-gems
 
       # node
-      zsh -ic "NODEJS_CHECK_SIGNATURES='no' asdf install nodejs latest:14 && asdf global nodejs latest:14 && sudo ln -sf $(asdf which node) /usr/local/bin/node"
-      zsh -ic "NODEJS_CHECK_SIGNATURES=no asdf install nodejs latest:16; NODEJS_CHECK_SIGNATURES=no asdf install nodejs 12.18.4"
+      NODEJS_CHECK_SIGNATURES='no' asdf install nodejs latest:14 && asdf global nodejs latest:14 && sudo ln -sf "$(asdf which node)" /usr/local/bin/node
+      NODEJS_CHECK_SIGNATURES=no asdf install nodejs latest:16
+      NODEJS_CHECK_SIGNATURES=no asdf install nodejs 12.18.4
 
       set +e
       pushd "$CODE_DIR"/klarna
