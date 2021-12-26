@@ -408,10 +408,10 @@ fi
 
 # set up direnv
 if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
-  eval "$(direnv hook $SHELL)"
+  eval "$(asdf exec direnv hook $SHELL)"
 fi
-# this needs to be done just once, and you will be prompted about it
-# direnv allow
+direnv() { asdf exec direnv "$@"; }
+
 
 ###############################################################################
 # fun functions

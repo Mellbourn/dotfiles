@@ -53,6 +53,8 @@ zsh -ic "asdf update"
 zsh -ic "asdf plugin update --all"
 zsh -ic "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git" || true
 zsh -ic "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git" || true
+# asdf direnv doesn't seem absolutely necessary, but could improve performance
+zsh -ic "asdf plugin add direnv; asdf install direnv latest; asdf global direnv latest"
 # if no versions are installed, the asdf plugin will fall back to "system"
 
 if [[ $(uname) == 'Darwin' ]]; then
