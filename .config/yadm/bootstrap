@@ -656,18 +656,12 @@ if [ -z "$DOTFILES_LITE" ]; then
     set +e
     tldr --update
     set -e
-  elif [ -x "$(command -v yarn)" ]; then
-    yarn global add tldr
-  fi
-
-  ###############################################################################
-  # development
-  ###############################################################################
-  # TODO: remove this when global eslint has been removed everywhere
-  if [ -x "$(command -v eslint)" ]; then
-    yarn global remove eslint
   fi
 fi
+
+###############################################################################
+# development
+###############################################################################
 
 docker system prune -f 2>>/tmp/docker_system_prune.err.txt || true
 
