@@ -354,7 +354,6 @@ witch
 
   # this must be in alphabetical order!
   apps="
-asdf
 aws-sam-cli
 awscli@1
 bash
