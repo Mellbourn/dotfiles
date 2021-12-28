@@ -214,6 +214,15 @@ else
   }
 fi
 
+zinit wait'0' lucid as'null' atinit'source $HOME/.asdf/asdf.sh
+# setup direnv
+if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
+  eval "$(asdf exec direnv hook $SHELL)"
+fi
+direnv() { asdf exec direnv "$@"; }
+' light-mode for zdharma-continuum/null
+fpath=(${ASDF_DIR:-$HOME/.asdf}/completions $fpath)
+
 zinit wait'1' lucid for OMZP::magic-enter
 MAGIC_ENTER_GIT_COMMAND="l"
 MAGIC_ENTER_OTHER_COMMAND="l"
@@ -335,9 +344,6 @@ if [[ -n $UNAME_MACOS ]]; then
   zinit wait'2' lucid light-mode as"program" pick"src/trash" for morgant/tools-osx
 fi
 
-source $HOME/.asdf/asdf.sh
-fpath=(${ASDF_DIR}/completions $fpath)
-
 if [ -z "$DOTFILES_LITE" ]
 then
   # Not really plugins, but very good to have async anyway
@@ -405,13 +411,6 @@ fi
 ###############################################################################
 # fzf
 ###############################################################################
-
-# set up direnv
-if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
-  eval "$(asdf exec direnv hook $SHELL)"
-fi
-direnv() { asdf exec direnv "$@"; }
-
 
 ###############################################################################
 # fun functions
