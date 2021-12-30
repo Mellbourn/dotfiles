@@ -161,7 +161,7 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   # remove brews here that were previously installed, to sync between machines
   brewSafeUntap wix/brew # for AppleSimulatorUtils
-  for formula in zsh-autosuggestions ilmbase asciinema cheat fortune git-number z.lua weechat broot deno htop rbenv applesimutils node@14 nodebrew asdf pipenv pyenv-virtualenvwrapper pyenv-virtualenv pyenv openjdk@11; do
+  for formula in zsh-autosuggestions ilmbase asciinema cheat fortune git-number z.lua weechat broot deno htop rbenv applesimutils node@14 nodebrew asdf pipenv pyenv-virtualenvwrapper pyenv-virtualenv pyenv openjdk@11 transcrypt; do
     brewSafeUninstall $formula
   done
 
@@ -255,7 +255,6 @@ tldr
 tmpreaper
 tmux
 tokei
-transcrypt
 tree
 vim
 wakeonlan
@@ -444,7 +443,6 @@ tldr
 tmpreaper
 tmux
 tokei
-transcrypt
 tree
 vim
 wakeonlan
