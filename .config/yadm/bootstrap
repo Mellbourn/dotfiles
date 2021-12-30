@@ -165,7 +165,7 @@ if [[ $(uname) == 'Darwin' ]]; then
     brewSafeUninstall $formula
   done
 
-  for cask in luna-display zeplin zenmap pokerth dash controlplane fork keycastr postman shortcat tor-browser tripmode stunnel java8; do
+  for cask in luna-display zeplin zenmap pokerth dash controlplane fork keycastr postman shortcat tor-browser tripmode stunnel java8 p4v; do
     brewSafeUninstallCask $cask
   done
 
@@ -497,7 +497,6 @@ keycue
 launchcontrol
 mockoon
 moom
-p4v
 paletro
 philips-hue-sync
 plex
