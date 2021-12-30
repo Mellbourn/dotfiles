@@ -13,8 +13,8 @@ I use [yadm](https://github.com/TheLocehiliosan/yadm) to manage my dotfiles.
 eval "$(/opt/homebrew/bin/brew shellenv)" &&
 brew install yadm &&
 yadm clone --bootstrap https://github.com/Mellbourn/dotfiles.git &&
-.config/yadm/bootstrap-sudo &&
-yadm decrypt
+.config/yadm/bootstrap-sudo
+yadm crypt unlock <keyfile>
 ```
 
 ### Windows Subsystem for Linux
@@ -36,7 +36,7 @@ ssh-keygen -t ed25519 -C "klas@mellbourn.net"
 yadm clone --recurse-submodules https://github.com/Mellbourn/dotfiles.git
 yadm bootstrap
 ~/.config/yadm/bootstrap-sudo
-yadm decrypt
+yadm crypt unlock <keyfile>
 ```
 
 ## post Installation
