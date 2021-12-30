@@ -384,7 +384,7 @@ fi
 if [[ -n $UNAME_LINUX ]]; then
   #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
 
-  zinit wait'2' lucid light-mode as"program" pick"transcrypt" for elasticdog/transcrypt
+  zinit wait'2' lucid light-mode as"program" pick"transcrypt" ver"main" for elasticdog/transcrypt
 fi
 
 ###############################################################################
