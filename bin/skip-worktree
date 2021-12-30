@@ -6,4 +6,4 @@ git update-index --skip-worktree ~/code/klarna/klarna-app/clients/src/mountApp.n
 git update-index --skip-worktree ~/code/klarna/klarna-app/services/shopping-payment-processing/bin/docker-compose-up.sh
 git update-index --skip-worktree ~/code/klarna/klarna-app/services/shopping-payment-processing/bin/run-tests-with-dependencies.sh
 #git update-index --skip-worktree ~/code/klarna/klarna-app/services/shopping-payment/generated/config.d.ts
-git update-index --skip-worktree ~/code/klarna/klarna-app/clients/src/features/shoppingPayments/paymentsWebview/ios/KLAWKWebView/KLPaymentInstanceManager.m
+git update-index --skip-worktree ~/code/klarna/klarna-app/clients/packages/features/app-credit-issuing-webview/native/ios/KLAWKWebView/KLPaymentInstanceManager.m
