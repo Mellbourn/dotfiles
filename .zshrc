@@ -383,6 +383,8 @@ fi
 # zplug "lukechilds/zsh-better-npm-completion", defer:2
 if [[ -n $UNAME_LINUX ]]; then
   #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
+
+  zinit wait'2' lucid light-mode as"program" pick"transcrypt" for elasticdog/transcrypt
 fi
 
 ###############################################################################
