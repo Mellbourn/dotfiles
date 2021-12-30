@@ -348,9 +348,9 @@ witch
       yes | sdkmanager --licenses
 
       asdf plugin add cmake https://github.com/srivathsanmurali/asdf-cmake.git || true
-      asdf install cmake latest:3.10.2 && asdf global cmake latest:3.10.2
-      asdf plugin-add ninja https://github.com/asdf-community/asdf-ninja.git
-      asdf install ninja latest:1.9.0 && asdf global ninja latest:1.9.0
+      asdf install cmake 3.10.2 && asdf global cmake 3.10.2
+      asdf plugin-add ninja https://github.com/asdf-community/asdf-ninja.git || true
+      asdf install ninja latest:1 && asdf global ninja latest:1
 
       # pip no longer installable from pip3? not needed?
       #pip3 install --upgrade pip setuptools
