@@ -220,6 +220,10 @@ if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
   eval "$(asdf exec direnv hook $SHELL)"
 fi
 direnv() { asdf exec direnv "$@"; }
+# java_home
+if [ -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
+  source "${ASDF_DIR:-$HOME/.asdf}"/plugins/java/set-java-home.zsh
+fi
 ' light-mode for zdharma-continuum/null
 fpath=(${ASDF_DIR:-$HOME/.asdf}/completions $fpath)
 
