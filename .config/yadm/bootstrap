@@ -92,6 +92,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   # Xcode
   mas install 497799835
   mas lucky "Copy 'Em (Clipboard Manager)" # (2.11) 876540291
+  mas lucky "OTP Manager"                  # 928941247
   mas lucky "John's Background Switcher"   # 907640277
   # Safari extensions
   mas lucky "Adblock Plus for Safari ABP" # (2.1.10) 1432731683
