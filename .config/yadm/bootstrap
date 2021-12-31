@@ -54,7 +54,7 @@ asdf plugin update --all
 asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git || true
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
 asdf plugin add java https://github.com/halcyon/asdf-java || true
-# asdf direnv doesn't seem absolutely necessary, but could improve performance
+# asdf direnv doesn't seem absolutely necessary, but could improve performance. 2.30.2 works
 asdf plugin add direnv || true
 asdf install direnv latest
 asdf global direnv latest
@@ -273,7 +273,7 @@ zsh
     installThese=${installTheseLines//$'\n'/ }
     echo "$installThese" | xargs brew install
 
-    # TODO: add more: java8, p4v philips-hue-sync plex private-internet-access
+    # TODO: add more: philips-hue-sync plex private-internet-access
     casks="
 bartender
 chromium
@@ -313,11 +313,11 @@ witch
       set -e
       sudo ln -sf universal-darwin21 universal-darwin20
 
-      # ruby (2.6.8 definitely worked, 2.7.5 seems ok too)
+      # ruby (works: 2.6.8, 2.7.5, 3.1.0)
       asdf install ruby latest && asdf global ruby latest && gem install bundler || true
       # default gems in .default-gems
 
-      # node
+      # node 14.18.2 works, 12.18.4 does not work, 16.13.1 works for clients I think
       NODEJS_CHECK_SIGNATURES='no' asdf install nodejs latest:14 && asdf global nodejs latest:14 && sudo ln -sf "$(asdf which node)" /usr/local/bin/node
       NODEJS_CHECK_SIGNATURES=no asdf install nodejs latest:16
       NODEJS_CHECK_SIGNATURES=no asdf install nodejs 12.18.4
@@ -346,8 +346,10 @@ witch
       # this is fix for Android Studio Warning: License for package Android SDK Build-Tools 30.0.2 not accepted.
       yes | sdkmanager --licenses
 
+      # cmake 3.10.3 did not work
       asdf plugin add cmake https://github.com/srivathsanmurali/asdf-cmake.git || true
       asdf install cmake 3.10.2 && asdf global cmake 3.10.2
+      # ninja 1.9.0 and 1.10.2 works
       asdf plugin-add ninja https://github.com/asdf-community/asdf-ninja.git || true
       asdf install ninja latest:1 && asdf global ninja latest:1
 
