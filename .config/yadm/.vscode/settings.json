@@ -39,7 +39,8 @@
   },
   "peacock.color": "#92725299",
   "cSpell.words": [
-    "pbcopy"
+    "keyfile",
+    "shellenv",
   ],
   "atlascode.bitbucket.enabled": false,
   "atlascode.jira.enabled": false,

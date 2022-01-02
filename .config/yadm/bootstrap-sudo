@@ -64,8 +64,8 @@ if [[ $(uname) == 'Linux' ]]; then
     pkg-config
   "
   for app in $apps; do
-    if ! dpkg-query -l $app >/dev/null; then
-      sudo apt install -y $app
+    if ! dpkg-query -l "$app" >/dev/null; then
+      sudo apt install -y "$app"
     fi
   done
 
@@ -100,20 +100,20 @@ if [[ $(uname) == 'Linux' ]]; then
   if [[ $(dpkg --print-architecture) == "amd64" || $(dpkg --print-architecture) == "arm64" ]]; then
     # WSL will have amd64
     # Ubuntu desktop on Raspberry pi 400 will have arm64
-    installLsd $(dpkg --print-architecture)
+    installLsd "$(dpkg --print-architecture)"
   elif [[ $(dpkg --print-architecture) == "armhf" ]]; then
     # probably 32 bit Rapberry Pi OS
     LSD_INSTALL_DIR="$HOME/.manually-installed/lsd"
-    mkdir -p $LSD_INSTALL_DIR
+    mkdir -p "$LSD_INSTALL_DIR"
     curl -sL github.com/Peltoche/lsd/releases/latest |
       grep "lsd-[[:digit:]]\.[[:digit:]]*\.[[:digit:]]*-arm-unknown-linux-gnueabihf.tar.gz\"" |
       head -1 |
       awk -F "\"" '{print "https://github.com" $2}' |
       wget --show-progress -qNi - -O - |
-      tar -xzv --strip=1 -C $LSD_INSTALL_DIR
+      tar -xzv --strip=1 -C "$LSD_INSTALL_DIR"
   else
     # afaik this fallback is never used, but it should fail and stop the execution if it doesn't work
-    installLsd $(dpkg --print-architecture)
+    installLsd "$(dpkg --print-architecture)"
   fi
 
   if [ -n "$OS_WSL" ]; then
@@ -204,7 +204,7 @@ if [[ $(uname) == 'Linux' ]]; then
   fi
 
   if ! grep -q "$USR:.*zsh" /etc/passwd; then
-    sudo chsh -s $(which zsh) $(whoami)
+    sudo chsh -s "$(which zsh)" "$(whoami)"
   fi
 
   # install fuzzy matcher (^R, Alt-C, ^T, **)
@@ -254,7 +254,7 @@ sudo rm -rf /Applications/Mic\ Drop.app
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
 # not working on Big Sur?
 PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:${HOME}/.nodebrew/current/bin:$HOMEBREW_PREFIX/bin
-sudo launchctl config user path $PATH_OVERRIDE
+sudo launchctl config user path "$PATH_OVERRIDE"
 
 # if xcode has just been manually installed
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
@@ -306,7 +306,7 @@ fi
 if ! grep -q "$HOMEBREW_PREFIX/bin/zsh" "/etc/shells"; then
   sudo sh -c "echo $HOMEBREW_PREFIX/bin/zsh >> /etc/shells"
 fi
-sudo chsh -s $HOMEBREW_PREFIX/bin/zsh $(whoami)
+sudo chsh -s $HOMEBREW_PREFIX/bin/zsh "$(whoami)"
 
 sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "This Mac belongs to Klas Mellbourn.\ne-mail: klas@mellbourn.net phone: +46 708 80 00 00\nReward offered for return of this Mac. No questions asked."
 ###############################################################################
@@ -340,10 +340,10 @@ sudo sysadminctl -guestAccount off
 
 # allow remote login
 sudo systemsetup -setremotelogin on
-sudo dseditgroup -q -o edit -a $LOGNAME -t staff com.apple.access_ssh
+sudo dseditgroup -q -o edit -a "$LOGNAME" -t staff com.apple.access_ssh
 
 # protect KeeWeb
 sudo chown -R root /Applications/KeeWeb.app
 
 # run customer specific bootstrap
-. ${XDG_CONFIG_HOME:-$HOME/.config}/yadm/bootstrap-sudo-customer
+. "${XDG_CONFIG_HOME:-$HOME/.config}"/yadm/bootstrap-sudo-customer

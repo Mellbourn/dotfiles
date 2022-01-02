@@ -286,6 +286,7 @@ font-fira-code
 font-jetbrains-mono
 font-jetbrains-mono-nerd-font
 google-chrome-beta
+grandperspective
 insomnia
 istat-menus
 iterm2
@@ -315,6 +316,7 @@ witch
       sudo ln -sf universal-darwin21 universal-darwin20
 
       # ruby (works: 2.6.8, 2.7.5, 3.1.0)
+      # shellcheck disable=SC2015
       asdf install ruby latest && asdf global ruby latest && gem install bundler || true
       # default gems in .default-gems
 
@@ -921,8 +923,7 @@ defaults write com.apple.Safari BlockStoragePolicy -int 1
 defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 
 # run customer specific bootstrap
-# shellcheck disable=SC1091
-. "${XDG_CONFIG_HOME:-$HOME/.config}"/yadm/bootstrap-customer
+source "${XDG_CONFIG_HOME:-$HOME/.config}"/yadm/bootstrap-customer
 
 # this script makes brew doctor fail
 trash "$HOMEBREW_PREFIX"/Library/Taps/wix/homebrew-brew/applesimutils.rb
