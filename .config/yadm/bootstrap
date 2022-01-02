@@ -28,15 +28,9 @@ if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; t
   fi
 fi
 
-#pushd $HOME/.yadm-project
-# is this necessary? we're not on master by default
-#git switch master
-# it the --remote flag doesn't work as expected, we need to do this
-#git pull
-#popd
-pushd ~ >/dev/null
+pushd ~
 yadm submodule update --init --recursive --remote
-popd >/dev/null
+popd
 
 # TODO: eventually delete clean up of old version handlers
 if [ -d ~/.nodebrew ]; then
