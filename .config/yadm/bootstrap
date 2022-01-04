@@ -20,6 +20,12 @@ export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]] || [[ $(hostname) == "HKG"* ]]; then
   export KLARNA=1
 fi
+if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.bom" ]; then
+  export ROSETTA_INSTALLED=1
+fi
+if [[ $PROCESSOR_ARCHITECTURE != 'arm' || -n "$ROSETTA_INSTALLED" ]]; then
+  export X86_OR_ROSETTA=1
+fi
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
   #OS_UBUNTU=1
@@ -95,7 +101,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   mas lucky "Grammarly for Safari"        # (9.33) 1462114288
   mas lucky "Popcorn for Safari"          # (2.0) 1535719670
 
-  if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
+  if [[ -n $X86_OR_ROSETTA ]]; then
     # these still require rosetta afaik
     mas lucky Bredbandskollen # 1147976909
     # Microsoft Remote Desktop 10 1295203466
