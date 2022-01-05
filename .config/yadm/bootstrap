@@ -789,6 +789,9 @@ fi
 # Save screenshots to Pictures
 defaults write com.apple.screencapture location "${HOME}/Pictures"
 
+# reopen previous windows when starting an app
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
+
 # don't restore images in preview
 defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
 
