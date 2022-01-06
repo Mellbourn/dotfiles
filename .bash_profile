@@ -8,19 +8,20 @@
 # fortune takes 0.017s
 #fortune
 
-if [ -f ~/.profile ]; then
-  source ~/.profile
+if [ -f "$HOME"/.profile ]; then
+  source "$HOME"/.profile
 fi
 
 # only start tmux if you are not already in tmux, or you are starting up Visual Studio Code from spotlight
 if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &>/dev/null && [ -z "$VSCODE_PID" ]; then
   # use this "if" to suppress tmux in *debugging* in vscode
   if [ -z "$VSCODE_WORKSPACE_FOLDER" ]; then
-    exec ~/bin/tmux-attach-or-new
+    exec "$HOME"/bin/tmux-attach-or-new
   fi
 fi
 
-export PROCESSOR_ARCHITECTURE=$(uname -p)
+PROCESSOR_ARCHITECTURE=$(uname -p)
+export PROCESSOR_ARCHITECTURE
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
   export OS_UBUNTU=1
@@ -41,21 +42,23 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
 fi
 
 if [ -n "$SHELL" ]; then
-  export SHELLNAME=$(echo $SHELL | sed 's#.*/##')
+  SHELLNAME=${SHELL//*\//}
+  export SHELLNAME
 else
-  export SHELLNAME=$(ps -o comm= -c "$$" | sed 's/-//')
+  SHELLNAME=$(ps -o comm= -c "$$" | sed 's/-//')
+  export SHELLNAME
 fi
 
-if [ -f ~/.protocol ]; then
-  source ~/.protocol
+if [ -f "$HOME"/.protocol ]; then
+  source "$HOME"/.protocol
 fi
 
-if [ -f ~/.bashrc ]; then
-  source ~/.bashrc
+if [ -f "$HOME"/.bashrc ]; then
+  source "$HOME"/.bashrc
 fi
 
-if [ -f ~/.local_settings ]; then
-  source ~/.local_settings
+if [ -f "$HOME"/.local_settings ]; then
+  source "$HOME"/.local_settings
 fi
 
 ### environment variables
@@ -74,18 +77,14 @@ fi
 if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
-if [ -d $HOMEBREW_PREFIX/opt/openjdk@11 ]; then
-  # this is needed by android
-  export PATH=$HOMEBREW_PREFIX/opt/openjdk@11/bin:$PATH
-fi
-if [ -d $HOMEBREW_PREFIX/opt/awscli@1/bin ]; then
+if [ -d "$HOMEBREW_PREFIX"/opt/awscli@1/bin ]; then
   # this is needed while we are using an old awscli
   export PATH=$PATH:$HOMEBREW_PREFIX/opt/awscli@1/bin
 fi
-if [ -d ~/.cargo/bin ]; then
-  export PATH=~/.cargo/bin:$PATH
+if [ -d "$HOME"/.cargo/bin ]; then
+  export PATH="$HOME"/.cargo/bin:$PATH
 fi
-export PATH=~/bin:$PATH
+export PATH="$HOME"/bin:$PATH
 export CLICOLOR=1
 export GCAL='--starting-day=Monday --iso-week-number=yes --with-week-number --cc-holidays=SE'
 if [[ -n $UNAME_LINUX ]]; then
@@ -105,12 +104,14 @@ else
   #export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 fi
 if (($(command less --version | head -1 | cut -d ' ' -f2) >= 590)); then
-  export LESSOPEN="| $(which highlight) %s --quiet --force --out-format xterm256 --style darkplus"
+  LESSOPEN="| $(which highlight) %s --quiet --force --out-format xterm256 --style darkplus"
+  export LESSOPEN
   # note: --file-size takes noticable extra startup time on large (100k) files
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quiet \
     --no-histdups --save-marks --quit-if-one-screen --incsearch --use-color --file-size"
 else
-  export LESSOPEN="| $(which highlight) %s --quiet --force --out-format ansi"
+  LESSOPEN="| $(which highlight) %s --quiet --force --out-format ansi"
+  export LESSOPEN
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quiet"
 fi
 # git-delta can't handle a status column
@@ -121,7 +122,8 @@ export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 # make gpg prompt work, otherwise I get "Inappropriate ioctl for device"
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
+export GPG_TTY
 export CHEATCOLORS=true
 # git checkout should only complete local branches (unless origin/), since I have fzf for more complex scenarios
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
@@ -138,14 +140,12 @@ function current_context() {
   osascript -e 'tell application "ControlPlane"' -e 'get current context' -e 'end tell'
 }
 
-if [[ $BASH_VERSINFO == 4 ]]; then
+if [[ $SHELL == *bash ]]; then
   # bash shell options
   shopt -s autocd globstar
-fi
-if [[ $SHELL == *bash ]]; then
   ### prompt
-  if [ -x "$(command -v brew)" ] && [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+  if [ -x "$(command -v brew)" ] && [ -f "$HOMEBREW_PREFIX"/etc/bash_completion ]; then
+    . "$HOMEBREW_PREFIX"/etc/bash_completion
   fi
 
   # ctrl-p and ctrl-n now searches history
@@ -160,7 +160,8 @@ if [ ! -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
   if [ -f /usr/libexec/java_home ] && ! /usr/libexec/java_home 2>&1 | grep -q 'Unable to locate a Java Runtime'; then
     JAVA_HOME_FROM_COMMAND="$(/usr/libexec/java_home -v 1.8)"
     if [[ $JAVA_HOME_FROM_COMMAND == *"JavaAppletPlugin"* ]]; then
-      export JAVA_HOME=$(print /Library/Java/JavaVirtualMachines/jdk1.8.*.jdk/Contents/Home)
+      JAVA_HOME=$(print /Library/Java/JavaVirtualMachines/jdk1.8.*.jdk/Contents/Home)
+      export JAVA_HOME
     else
       export JAVA_HOME=$JAVA_HOME_FROM_COMMAND
     fi
@@ -174,7 +175,7 @@ export BC_ENV_ARGS="-l -q"
 # ansible needs sqlite3
 # macOS provides an older sqlite3.
 #If you need to have this software first in your PATH run:
-#  echo 'export PATH="$HOMEBREW_PREFIX/opt/sqlite/bin:$PATH"' >> ~/.bash_profile
+#  echo 'export PATH="$HOMEBREW_PREFIX/opt/sqlite/bin:$PATH"' >> "$HOME"/.bash_profile
 export PATH="$HOMEBREW_PREFIX/opt/sqlite/bin:$PATH"
 # For compilers to find this software you may need to set:
 #    LDFLAGS:  -L$HOMEBREW_PREFIX/opt/sqlite/lib
@@ -184,7 +185,7 @@ export PATH="$HOMEBREW_PREFIX/opt/sqlite/bin:$PATH"
 
 # ansible also needed openssl
 # If you need to have this software first in your PATH run:
-#  echo 'export PATH="$HOMEBREW_PREFIX/opt/openssl@1.1/bin:$PATH"' >> ~/.bash_profile
+#  echo 'export PATH="$HOMEBREW_PREFIX/opt/openssl@1.1/bin:$PATH"' >> "$HOME"/.bash_profile
 export PATH="$HOMEBREW_PREFIX/opt/openssl@1.1/bin:$PATH"
 # For compilers to find this software you may need to set:
 #    LDFLAGS:  -L$HOMEBREW_PREFIX/opt/openssl@1.1/lib
@@ -193,7 +194,7 @@ export PATH="$HOMEBREW_PREFIX/opt/openssl@1.1/bin:$PATH"
 #    PKG_CONFIG_PATH: $HOMEBREW_PREFIX/opt/openssl@1.1/lib/pkgconfig
 
 ### aliases
-. ~/.aliases
+. "$HOME"/.aliases
 
 #echo ".bash_profile took:"
 #END=$(gdate +%s.%N)
