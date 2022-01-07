@@ -170,18 +170,11 @@ if [[ $(uname) == 'Darwin' ]]; then
     brewSafeUninstallCask $cask
   done
 
-  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
-
-    # this must be in alphabetical order!
-    #add these eventually:
-    # gradle (when java installed)
-    # maven (when java installed)
-    # haskell-stack (when cabal-install?)
-    # mono (when arm64 supported)
-    # maybe hadolint (cabal-install) although I should probably use a vs code plugin like shell-format instead
-    # wix/brew/applesimutils (not ready yet?)
-    # when cargo works, cargo install viu https://github.com/atanunq/viu, and maybe rpick
-    apps="
+  # this must be in alphabetical order!
+  # maybe add these eventually:
+  # haskell-stack
+  # and then: cargo install viu https://github.com/atanunq/viu
+  apps="
 aws-sam-cli
 awscli@1
 bash
@@ -268,14 +261,14 @@ yarn
 zoxide
 zsh
 "
-    # note: yarn will install node, which you might want to remove, since it is handled by nvm
-    alreadyInstalled=$(brew list --formula)
-    installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
-    installThese=${installTheseLines//$'\n'/ }
-    echo "$installThese" | xargs brew install
+  # note: yarn will install node, which you might want to remove, since it is handled by nvm
+  alreadyInstalled=$(brew list --formula)
+  installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
+  installThese=${installTheseLines//$'\n'/ }
+  echo "$installThese" | xargs brew install
 
-    # TODO: add more: philips-hue-sync plex private-internet-access
-    casks="
+  # TODO: add more when better arm support: philips-hue-sync plex keycue imageoptim private-internet-access mockoon
+  casks="
 bartender
 chromium
 docker
@@ -302,10 +295,12 @@ vlc
 witch
 "
 
-    alreadyInstalled=$(brew list --cask)
-    installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
-    installThese=${installTheseLines//$'\n'/ }
-    echo "$installThese" | xargs brew install --cask
+  alreadyInstalled=$(brew list --cask)
+  installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
+  installThese=${installTheseLines//$'\n'/ }
+  echo "$installThese" | xargs brew install --cask
+
+  if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
     if [[ -n "$KLARNA" ]]; then
       brew install readline libffi
@@ -366,162 +361,6 @@ witch
 
   fi
   # arm part ends
-
-  # this must be in alphabetical order!
-  apps="
-aws-sam-cli
-awscli@1
-bash
-bash-completion
-bat
-choose-rust
-cloc
-coreutils
-croc
-diff-so-fancy
-direnv
-dockutil
-duf
-duti
-eth-p/software/bat-extras-batgrep
-exa
-fd
-findutils
-fpp
-fx
-fzf
-gawk
-gcal
-gettext
-gh
-git
-git-crypt
-git-delta
-git-extras
-git-lfs
-git-recent
-glances
-gnu-sed
-gnupg
-gradle
-graphicsmagick
-grc
-grep
-gron
-gtm
-haskell-stack
-highlight
-httpie
-hyperfine
-imagemagick
-jq
-kpcli
-lastpass-cli
-less
-librsvg
-lnav
-lsd
-mas
-maven
-mono
-ncdu
-nginx
-noti
-parallel
-pinentry-mac
-pkg-config
-prettyping
-pv
-react-native-cli
-reattach-to-user-namespace
-redis
-ripgrep
-rust
-sd
-shellcheck
-shfmt
-speedtest-cli
-terminal-notifier
-thefuck
-tig
-tldr
-tmpreaper
-tmux
-tokei
-tree
-vim
-wakeonlan
-watch
-watchman
-wemux
-wget
-yadm
-yarn
-zoxide
-zsh
-"
-  # note: yarn will install node, which you might want to remove, since it is handled by nvm
-  alreadyInstalled=$(brew list --formula)
-  installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
-  installThese=${installTheseLines//$'\n'/ }
-  if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
-    echo "$installThese" | xargs brew install
-  fi
-
-  # not working, destroys existing installation: intel-power-gadget
-
-  casks="
-abstract
-adobe-acrobat-reader
-android-platform-tools
-android-sdk
-android-studio
-bartender
-charles
-chromedriver
-discord
-docker
-firefox
-flipper
-font-cascadia-code-pl
-font-caskaydia-cove-nerd-font
-font-fira-code
-font-jetbrains-mono
-font-jetbrains-mono-nerd-font
-google-chrome-beta
-grandperspective
-imageoptim
-insomnia
-istat-menus
-iterm2
-jdiskreport
-kdiff3
-keeweb
-keka
-keycue
-launchcontrol
-mockoon
-moom
-paletro
-philips-hue-sync
-plex
-private-internet-access
-react-native-debugger
-skype
-spotify
-ui-browser
-visual-studio-code
-vlc
-witch
-zoom
-"
-
-  alreadyInstalled=$(brew list --cask)
-  installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
-  installThese=${installTheseLines//$'\n'/ }
-  if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
-    echo "$installThese" | xargs brew install --cask
-  fi
 
   echo will cite | parallel --citation >/dev/null 2>&1
 
