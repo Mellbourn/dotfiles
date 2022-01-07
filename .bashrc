@@ -1,6 +1,7 @@
 ###############################################################################
 # .bashrc subshells run only this, not .bash_profile
 ###############################################################################
+# shellcheck shell=bash
 #echo ".bashrc running"
 
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -8,7 +9,7 @@
 # history settings
 # HISTSIZE 2500 had good performance (250ms startup, contains about three to four months history)
 export HISTSIZE=9999
-if ! [ -z $BASH_VERSION ]; then
+if [ -n "$BASH_VERSION" ]; then
   export HISTFILESIZE=$HISTSIZE
   export HISTTIMEFORMAT='%F %T '
   # make sure history is saved

@@ -1,8 +1,8 @@
-# shellcheck shell=bash
-# shellcheck disable=SC1091
 ###############################################################################
 # .bash_profile is read by login shells, but not run by subshells
 ###############################################################################
+# shellcheck shell=bash
+# shellcheck disable=SC1091
 #START=$(gdate +%s.%N)
 #echo ".bash_profile running"
 # fortune takes 0.017s

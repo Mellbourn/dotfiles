@@ -1,6 +1,7 @@
 ###############################################################################
 # .profile is read by many shells in the absence of their own shell-specific config files.
 ###############################################################################
+# shellcheck shell=bash
 #echo ".profile running"
 
 # directory for git repositories, should be set up before tmux starts
