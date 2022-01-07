@@ -3,7 +3,7 @@
 extension_list=$(mktemp /tmp/extension_list.XXXXX)
 reinstall_log=$(mktemp /tmp/reinstall_log.XXXXX)
 echo "extension list: $extension_list. reintallation log: $reinstall_log"
-code --list-extensions > $extension_list
-while read extension; do
-  code --uninstall-extension $extension | tee -a $reinstall_log && code --install-extension $extension | tee -a $reinstall_log
-done <$extension_list
+code --list-extensions >"$extension_list"
+while read -r extension; do
+  code --uninstall-extension "$extension" | tee -a "$reinstall_log" && code --install-extension "$extension" | tee -a "$reinstall_log"
+done <"$extension_list"

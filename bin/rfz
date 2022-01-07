@@ -4,7 +4,7 @@
 # 2. Interactively narrow down the list using fzf
 # 3. Open the file in VS Code
 IFS=: read -ra selected < <(
-    rg --color=always --line-number --no-heading --smart-case $* |
+    rg --color=always --line-number --no-heading --smart-case "$*" |
         fzf --ansi \
             --color "hl:-1:underline,hl+:-1:underline:reverse" \
             --delimiter : \

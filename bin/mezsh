@@ -9,7 +9,7 @@ min_runs=30
 warmup=3
 hyperfine_is_fine=1
 
-usage () { echo "OPTIONS:
+usage() { echo "OPTIONS:
 
 -c command to profile, e.g. 'bash -i -l -c exit'
 -m minimum number of runs
@@ -18,67 +18,74 @@ usage () { echo "OPTIONS:
 -v verbose"; }
 
 while getopts "hnvc:m:w:" opt; do
-    case $opt in
-        c ) command=$OPTARG;;
-        m ) min_runs=$OPTARG;;
-        w ) warmup=$OPTARG;;
-        n ) hyperfine_is_fine=;;
-        v ) verbose=1;;
-        h ) usage; exit;;
-    esac
+  case $opt in
+  c) command=$OPTARG ;;
+  m) min_runs=$OPTARG ;;
+  w) warmup=$OPTARG ;;
+  n) hyperfine_is_fine= ;;
+  v) verbose=1 ;;
+  h)
+    usage
+    exit
+    ;;
+  *)
+    usage
+    exit
+    ;;
+  esac
 done
 
-LOGDIR=${XDG_CACHE_HOME:-~/.cache}/$(basename $0)
-mkdir -p $LOGDIR
+LOGDIR=${XDG_CACHE_HOME:-~/.cache}/$(basename "$0")
+mkdir -p "$LOGDIR"
 
 # TODO: remove this migration
 OLDLOGDIR=${XDG_CACHE_HOME:-~/.cache}/measure-zsh-startup-time
-if [ -d $OLDLOGDIR ]; then
-  mv $OLDLOGDIR/* $LOGDIR
-  trash $OLDLOGDIR
+if [ -d "$OLDLOGDIR" ]; then
+  mv "$OLDLOGDIR"/* "$LOGDIR"
+  trash "$OLDLOGDIR"
 fi
 
 if [ -x "$(command -v hyperfine)" ] && [ -n "$hyperfine_is_fine" ]; then
 
   LOGFILE=$LOGDIR/times.md
   TEMP_LOGFILE=$(mktemp)
-  hyperfine --warmup $warmup --min-runs $min_runs --export-markdown $TEMP_LOGFILE "$command"
-  if [ -f $LOGFILE ]; then
-    tac $TEMP_LOGFILE | head -n 1 >> $LOGFILE
+  hyperfine --warmup "$warmup" --min-runs "$min_runs" --export-markdown "$TEMP_LOGFILE" "$command"
+  if [ -f "$LOGFILE" ]; then
+    tac "$TEMP_LOGFILE" | head -n 1 >>"$LOGFILE"
   else
-    mv $TEMP_LOGFILE $LOGFILE
+    mv "$TEMP_LOGFILE" "$LOGFILE"
   fi
   # remove last newline
-  truncate -s-1 $LOGFILE
-  date "+ %Y-%m-%dT%H:%M:%S" >> $LOGFILE
+  truncate -s-1 "$LOGFILE"
+  date "+ %Y-%m-%dT%H:%M:%S" >>"$LOGFILE"
 
 else
 
   # warmup
-  for ((i=1;i<=$warmup;i++)); do
+  for ((i = 1; i <= warmup; i++)); do
     eval "time $command"
-  done > /dev/null 2>&1
+  done >/dev/null 2>&1
 
   # run
-  FILENAME=`mktemp`
-  for ((i=1;i<=$min_runs;i++)); do
+  FILENAME=$(mktemp)
+  for ((i = 1; i <= min_runs; i++)); do
     eval "time $command"
-  done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" | sort > $FILENAME
+  done 2>&1 | grep real | sed 's/real//' | sed 's/0m//' | sed 's/s$//' | tr -d "[:blank:]" | sort >"$FILENAME"
 
   if [ -n "$verbose" ]; then
-    cat $FILENAME
+    cat "$FILENAME"
   fi
 
   LOGFILE=$LOGDIR/times.log
-  date "+%Y-%m-%dT%H:%M:%S" >> $LOGFILE
-  echo $command >> $LOGFILE
+  date "+%Y-%m-%dT%H:%M:%S" >>"$LOGFILE"
+  echo "$command" >>"$LOGFILE"
 
   # produce report
   awk '{ sum += $1; sum_square += $1^2 } \
   END { \
     printf "Runs\t%4d\nTotal\t%4.2gs\nSt.dev.\t%4.2gms\nAverage\t%4.0fms\n", \
       NR, sum, sqrt(sum_square/NR-(sum/NR)^2)*1000, sum/NR*1000 \
-  }' $FILENAME | tee -a $LOGFILE
-  echo -en '\n' >> $LOGFILE
+  }' "$FILENAME" | tee -a "$LOGFILE"
+  echo -en '\n' >>"$LOGFILE"
 
 fi

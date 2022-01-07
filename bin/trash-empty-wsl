@@ -2,14 +2,14 @@
 # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems, this command enables that.
 
 if [ $# -ne 1 ]; then
-    echo $0: must give age parameter in days. E.g. +30 to empty file over 30 days old
-    exit 1
+  echo "$0": must give age parameter in days. E.g. +30 to empty file over 30 days old
+  exit 1
 fi
 
 age=$1
 if [ -d /mnt/c ]; then
-  find /mnt/c/.Trash/*/files -mindepth 1 -mtime $age | while read trashFile; do
+  find /mnt/c/.Trash/*/files -mindepth 1 -mtime "$age" | while read -r trashFile; do
     infoFile=${trashFile/files/info}
-    rm -r $trashFile && rm ${infoFile}.trashinfo
+    rm -r "$trashFile" && rm "${infoFile}".trashinfo
   done
 fi
