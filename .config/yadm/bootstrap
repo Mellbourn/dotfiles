@@ -270,7 +270,6 @@ zsh
   casks="
 bartender
 chromium
-docker
 flipper
 font-cascadia-code-pl
 font-caskaydia-cove-nerd-font
