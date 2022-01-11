@@ -186,10 +186,10 @@ zinit wait'0' lucid for OMZP::zbell
 export TIME_STYLE=long-iso
 if [ -x "$(command -v exa)" ]; then
   function x() {
-    command exa -F --color-scale --group-directories-first --color=always --git-ignore --git -x $*
+    command exa -F --color-scale --group-directories-first --color=always --icons -x $*
   }
   function xl() {
-    command exa -F --color-scale --group-directories-first --color=always --git-ignore --git -l $* | command less -r
+    command exa -F --color-scale --group-directories-first --color=always --icons -l $* | command less -r
   }
 else
   alias x=l
