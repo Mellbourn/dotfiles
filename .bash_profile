@@ -154,7 +154,9 @@ if [[ $SHELL == *bash ]]; then
 fi
 
 # this line is added by iTerm command "Install shell integration"
-#test -e "${HOME}/.iterm2_shell_integration.$SHELLNAME" && source "${HOME}/.iterm2_shell_integration.$SHELLNAME"
+if [ -z "$TMUX" ] && [ -f "${HOME}/.iterm2_shell_integration.$SHELLNAME" ]; then
+  source "${HOME}/.iterm2_shell_integration.$SHELLNAME"
+fi
 
 if [ ! -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
   if [ -f /usr/libexec/java_home ] && ! /usr/libexec/java_home 2>&1 | grep -q 'Unable to locate a Java Runtime'; then
