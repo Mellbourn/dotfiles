@@ -713,6 +713,29 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write -g com.apple.keyboard.fnState -bool true
 
 ###############################################################################
+# Keyboard shortcuts                                                          #
+###############################################################################
+# local keyboard shortucts
+
+# repair full screen for chrome beta
+defaults write com.google.Chrome.beta NSUserKeyEquivalents -dict-add "Enter Full Screen" "@^f"
+# undo the setting, do
+# defaults delete com.google.Chrome.beta NSUserKeyEquivalents
+
+# this didn't work anyway
+#defaults write com.electron.react-native-debugger NSUserKeyEquivalents -dict-add "Enter Full Screen" "@^f"
+
+# global keyboard shortcuts fixed
+
+#defaults write -globalDomain NSUserKeyEquivalents -dict-add "Enter Full Screen" "@^f"
+defaults write -globalDomain NSUserKeyEquivalents -dict-add "Zoom In" "@+"
+# couldn't get @< to parse
+#defaults write -globalDomain NSUserKeyEquivalents -dict-add "Move focus to next window" '@\\<'
+
+# to undo the setting
+#defaults delete -globalDomain NSUserKeyEquivalents
+
+###############################################################################
 # Dock                                                                        #
 ###############################################################################
 # show more recent apps than three
