@@ -272,8 +272,16 @@ fi
 zinit wait'1' lucid as'null' \
   atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma-continuum/null
 
-# has to be loaded aftr fzf, so that it overwrites ^R
-zinit wait'1' lucid for zdharma-continuum/history-search-multi-word
+# history search has to be loaded aftr fzf, so that it overwrites ^R
+if [ -x $(command -v mcfly) ]; then
+  # Mcfly: pro: neural net, fuzzy, rust. con: bad coloring, no highlighting
+  export MCFLY_RESULTS=90
+  export MCFLY_FUZZY=1
+  export MCFLY_HISTORY_LIMIT="$SAVEHIST"
+  zinit wait"1" lucid as'null' atinit'eval "$(mcfly init zsh)"' light-mode for zdharma-continuum/null
+else
+  zinit wait'1' lucid for zdharma-continuum/history-search-multi-word
+fi
 
 zinit wait'1' lucid light-mode for "cedi/meaningful-error-codes"
 
