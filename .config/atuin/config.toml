@@ -25,4 +25,4 @@ dialect = "uk"
 
 ## which search mode to use
 ## possible values: prefix, fulltext, fuzzy
-# search_mode = "prefix"
+search_mode = "fuzzy"
