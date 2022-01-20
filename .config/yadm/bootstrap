@@ -445,6 +445,12 @@ fi
 # this seems healthy to do every now and then to make sure zsh completion works
 trash ~/.zcompdump* ~/.zcompcache 2>/tmp/zcomp_delete_error.txt || true
 
+# atuin completion
+if [ -n "$GENCOMPL_FPATH" ] && [[ -x "$(command -v atuin)" ]]; then
+  mkdir -p "$GENCOMPL_FPATH"
+  atuin gen-completions --shell zsh --out-dir "$GENCOMPL_FPATH"
+fi
+
 # if, after yadm 3.0 migration, the old .yadm folder is empty, remove it
 if [ -n "$(find "$HOME/.yadm" -maxdepth 0 -type d -empty 2>/dev/null)" ]; then
   trash "$HOME"/.yadm

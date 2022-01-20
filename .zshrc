@@ -22,7 +22,6 @@ fi
 #rm ~/.zcompdump ~/.zcompcache
 source ~/.zinit/bin/zinit.zsh
 
-GENCOMPL_FPATH=~/.zsh-personal-completions/generated
 fpath=(~/.zsh-personal-functions ~/.zsh-personal-completions $fpath $GENCOMPL_FPATH)
 autoload -U zmv
 # personal functions in ~/.zsh-personal-functions
