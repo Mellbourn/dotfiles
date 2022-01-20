@@ -199,6 +199,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   # haskell-stack
   # and then: cargo install viu https://github.com/atanunq/viu
   apps="
+atuin
 aws-sam-cli
 awscli@1
 bash

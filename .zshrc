@@ -259,8 +259,13 @@ fi
 zinit wait'1' lucid as'null' \
   atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma-continuum/null
 
-# has to be loaded aftr fzf, so that it overwrites ^R
-zinit wait'1' lucid for zdharma-continuum/history-search-multi-word
+# history search has to be loaded aftr fzf, so that it overwrites ^R
+if [[ -x $(command -v atuin) ]]; then
+  # atuin: synced
+  zinit wait"1" lucid light-mode for ellie/atuin
+else
+  zinit wait'1' lucid for zdharma-continuum/history-search-multi-word
+fi
 
 zinit wait'1' lucid light-mode for "cedi/meaningful-error-codes"
 
