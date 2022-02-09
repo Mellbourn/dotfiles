@@ -17,6 +17,8 @@
     path = .gitconfig.user.foss
 [init]
 	defaultBranch = main
+[checkout]
+	workers = 0
 [commit]
 	gpgsign = true
 [mergetool]
