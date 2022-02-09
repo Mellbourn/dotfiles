@@ -81,7 +81,6 @@ if [ -d "$HOMEBREW_PREFIX"/opt/awscli@1/bin ]; then
   # this is needed while we are using an old awscli
   export PATH=$PATH:$HOMEBREW_PREFIX/opt/awscli@1/bin
 fi
-export FLIPPER_ENABLED=1
 if [ -d "$HOME"/.cargo/bin ]; then
   export PATH="$HOME"/.cargo/bin:$PATH
 fi
