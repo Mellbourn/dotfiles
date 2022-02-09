@@ -35,6 +35,7 @@
     tool = kdiff3
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	conflictStyle = zdiff3
 [status]
 	submodulesummary = true
 [alias]
