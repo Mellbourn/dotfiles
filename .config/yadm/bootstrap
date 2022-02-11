@@ -45,6 +45,19 @@ fi
 if [ -d ~/.rbenv ]; then
   trash ~/.rbenv
 fi
+
+# Install `zinit` if not installed
+if [ ! -d ~/.zinit ]; then
+  mkdir ~/.zinit
+  chmod go-w ~/.zinit # to avoid insecure directories complaint
+  git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
+else
+  # when all computers have switchted to zdharma-continuum, this can be removed
+  pushd ~/.zinit/bin
+  git remote set-url origin https://github.com/zdharma-continuum/zinit.git
+  popd
+fi
+
 # install asdf version manager https://asdf-vm.com/
 if [ ! -d ~/.asdf ]; then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf
@@ -445,18 +458,6 @@ fi
 curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/terminfo.src.gz
 gunzip -f /tmp/terminfo.src.gz
 /usr/bin/tic -xe tmux-256color /tmp/terminfo.src
-
-# Install `zinit` if not installed
-if [ ! -d ~/.zinit ]; then
-  mkdir ~/.zinit
-  chmod go-w ~/.zinit # to avoid insecure directories complaint
-  git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
-else
-  # when all computers have switchted to zdharma-continuum, this can be removed
-  pushd ~/.zinit/bin
-  git remote set-url origin https://github.com/zdharma-continuum/zinit.git
-  popd
-fi
 
 # fonts
 if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
