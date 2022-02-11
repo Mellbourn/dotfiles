@@ -719,7 +719,7 @@ defaults write -g com.apple.keyboard.fnState -bool true
 # local keyboard shortucts
 
 # repair full screen for chrome beta
-defaults write com.google.Chrome.beta NSUserKeyEquivalents -dict-add "Enter Full Screen" "@^f"
+#defaults write com.google.Chrome.beta NSUserKeyEquivalents -dict-add "Enter Full Screen" "@^f"
 # undo the setting, do
 # defaults delete com.google.Chrome.beta NSUserKeyEquivalents
 
@@ -729,7 +729,7 @@ defaults write com.google.Chrome.beta NSUserKeyEquivalents -dict-add "Enter Full
 # global keyboard shortcuts fixed
 
 #defaults write -globalDomain NSUserKeyEquivalents -dict-add "Enter Full Screen" "@^f"
-defaults write -globalDomain NSUserKeyEquivalents -dict-add "Zoom In" "@+"
+#defaults write -globalDomain NSUserKeyEquivalents -dict-add "Zoom In" "@+"
 # couldn't get @< to parse
 #defaults write -globalDomain NSUserKeyEquivalents -dict-add "Move focus to next window" '@\\<'
 
