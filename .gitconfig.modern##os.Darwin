@@ -1,0 +1,5 @@
+# these commands are modern and not supported by older git
+[merge]
+	conflictStyle = zdiff3
+[help]
+	autocorrect = prompt

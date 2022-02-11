@@ -2,6 +2,8 @@
 	name = Klas Mellbourn
 	signingkey = 9421003411C7A828
 [include]
+    path = .gitconfig.modern
+[include]
     path = .gitconfig.pager
 [include]
     path = .gitconfig.user.foss
@@ -38,7 +40,6 @@
     tool = kdiff3
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
-	conflictStyle = zdiff3
 [status]
 	submodulesummary = true
 [alias]
@@ -96,8 +97,6 @@
 # diff for binary Apple property list files
 [diff "plist"]
 	textconv = plutil -convert xml1 -o -
-[help]
-	autocorrect = prompt
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge --skip -- %f
