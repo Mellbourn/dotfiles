@@ -242,7 +242,7 @@ if [ -d "/opt/homebrew/bin" ]; then
 else
   export HOMEBREW_PREFIX=/usr/local
   # the /opt/homebrew path is hard coded n gpg-agent.conf
-  mkdir -p /opt/homebrew/bin
+  sudo mkdir -p /opt/homebrew/bin
   sudo ln -fs $HOMEBREW_PREFIX/bin/pinentry-mac /opt/homebrew/bin/pinentry-mac
 fi
 export HW_MODEL=${HW_MODEL:-$(sysctl -n hw.model)}
