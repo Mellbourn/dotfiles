@@ -154,6 +154,15 @@ fi
 # this line is added by iTerm command "Install shell integration"
 #test -e "${HOME}/.iterm2_shell_integration.$SHELLNAME" && source "${HOME}/.iterm2_shell_integration.$SHELLNAME"
 
+###############################################################################
+# Java and Android development
+###############################################################################
+if [ -d "$HOME/Library/Android/sdk" ]; then
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+elif [ -d "$HOMEBREW_PREFIX/share/android-sdk" ]; then
+  export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
+fi
+
 if [ ! -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
   if [ -f /usr/libexec/java_home ] && ! /usr/libexec/java_home 2>&1 | grep -q 'Unable to locate a Java Runtime'; then
     JAVA_HOME_FROM_COMMAND="$(/usr/libexec/java_home -v 1.8)"
@@ -163,7 +172,19 @@ if [ ! -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
     else
       export JAVA_HOME=$JAVA_HOME_FROM_COMMAND
     fi
+  elif [ -d "/Applications/Android Studio.app/Contents/jre/Contents/Home" ]; then
+    export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
   fi
+fi
+
+if [ -d "$ANDROID_HOME"/tools/bin ]; then
+  export PATH=$PATH:$ANDROID_HOME/tools/bin
+fi
+if [ -d "$ANDROID_HOME"/platform-tools ]; then
+  export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
+if [ -d /Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin ]; then
+  export PATH=/Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin:$PATH
 fi
 
 # bc settings

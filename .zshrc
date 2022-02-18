@@ -85,24 +85,6 @@ if [ -x "$(command -v grc)" ]; then
 fi
 
 ###############################################################################
-# development
-###############################################################################
-if [ -d "$HOME/Library/Android/sdk" ]; then
-  export ANDROID_HOME=$HOME/Library/Android/sdk
-elif [ -d "$HOMEBREW_PREFIX/share/android-sdk" ]; then
-  export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
-fi
-if [ -d $ANDROID_HOME/tools/bin ]; then
-  export PATH=$PATH:$ANDROID_HOME/tools/bin
-fi
-if [ -d $ANDROID_HOME/platform-tools ]; then
-  export PATH=$PATH:$ANDROID_HOME/platform-tools
-fi
-if [ -d /Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin ]; then
-  export PATH=/Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin:$PATH
-fi
-
-###############################################################################
 # completion
 ###############################################################################
 setopt nolistbeep # could be nobeep, but that will create cases where there is no repsone at all to a <tab>
