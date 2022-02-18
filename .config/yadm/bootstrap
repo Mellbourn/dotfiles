@@ -361,20 +361,16 @@ witch
 
       # Android Studio homebrew installation no longer supported, install it manually
       #brew install --cask android-studio
-      brewSafeUninstallCask android-studio
+      brewSafeUninstallCask android-stuydio
       #brew install temurin8
       brewSafeUninstall temurin8
 
-      #cmake and ninja were needed for java 8, but not java 11
-      asdf plugin remove cmake || true
-      asdf plugin remove ninja || true
-
       # cmake 3.10.3 did not work
-      #asdf plugin add cmake https://github.com/srivathsanmurali/asdf-cmake.git || true
-      #asdf install cmake 3.10.2 && asdf global cmake 3.10.2
+      asdf plugin add cmake https://github.com/srivathsanmurali/asdf-cmake.git || true
+      asdf install cmake 3.10.2 && asdf global cmake 3.10.2
       # ninja 1.9.0 and 1.10.2 works
-      #asdf plugin-add ninja https://github.com/asdf-community/asdf-ninja.git || true
-      #asdf install ninja latest:1 && asdf global ninja latest:1
+      asdf plugin-add ninja https://github.com/asdf-community/asdf-ninja.git || true
+      asdf install ninja latest:1 && asdf global ninja latest:1
 
       # pip no longer installable from pip3? not needed?
       #pip3 install --upgrade pip setuptools
