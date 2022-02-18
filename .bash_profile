@@ -116,8 +116,6 @@ else
 fi
 # git-delta can't handle a status column
 export DELTA_PAGER="less -+J -+W"
-# this is to compile vim
-export C_INCLUDE_PATH=/System/Library/Frameworks/Python.framework/Headers
 # why is this important? This doesn't always work on old raspbian
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
