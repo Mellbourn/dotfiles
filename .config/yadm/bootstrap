@@ -351,7 +351,10 @@ witch
       pushd klarna-app/clients/apps/native
       set -e
 
-      bundle config set path 'vendor/bundle'
+      # bundle path no longer needed?
+      # bundle config set path 'vendor/bundle'
+      bundle config unset path
+      bundle config unset --global path
 
       set +e
       popd
