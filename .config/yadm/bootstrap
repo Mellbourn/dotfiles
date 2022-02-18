@@ -279,7 +279,7 @@ zsh
   installThese=${installTheseLines//$'\n'/ }
   echo "$installThese" | xargs brew install
 
-  # TODO: add more when better arm support: philips-hue-sync plex keycue imageoptim private-internet-access mockoon
+  # TODO: add more when better arm support: philips-hue-sync plex imageoptim private-internet-access mockoon
   casks="
 bartender
 chromium
@@ -296,6 +296,7 @@ istat-menus
 iterm2
 keeweb
 keka
+keycue
 launchcontrol
 moom
 p4v
