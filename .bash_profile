@@ -167,7 +167,6 @@ if [ ! -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
     fi
   fi
 fi
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # bc settings
 export BC_ENV_ARGS="-l -q"
