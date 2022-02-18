@@ -93,15 +93,12 @@ elif [ -d "$HOMEBREW_PREFIX/share/android-sdk" ]; then
   export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
 fi
 if [ -d $ANDROID_HOME/tools/bin ]; then
-  # this is needed by android
   export PATH=$PATH:$ANDROID_HOME/tools/bin
 fi
 if [ -d $ANDROID_HOME/platform-tools ]; then
-  # this is needed by android
   export PATH=$PATH:$ANDROID_HOME/platform-tools
 fi
 if [ -d /Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin ]; then
-  # this is needed by android
   export PATH=/Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin:$PATH
 fi
 
