@@ -364,7 +364,7 @@ witch
 
       # Android Studio homebrew installation no longer supported, install it manually
       #brew install --cask android-studio
-      brewSafeUninstallCask android-stuydio
+      brewSafeUninstallCask android-studio
       #brew install temurin8
       brewSafeUninstall temurin8
 
