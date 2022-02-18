@@ -64,9 +64,15 @@ if [ ! -d ~/.asdf ]; then
 fi
 asdf update
 asdf plugin update --all
-asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git || true
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
-asdf plugin add java https://github.com/halcyon/asdf-java || true
+
+# remove these removals eventually
+asdf uninstall java zulu-8.58.0.13 || true
+asdf plugin remove java || true
+
+asdf plugin add ruby || true
+asdf plugin add nodejs || true
+asdf plugin add python || true
+asdf plugin add bundler || true
 # asdf direnv doesn't seem absolutely necessary, but could improve performance. 2.30.2 works
 asdf plugin add direnv || true
 asdf install direnv latest
@@ -325,8 +331,15 @@ witch
 
       # ruby (works: 2.6.8, 2.7.5, 3.1.0)
       # shellcheck disable=SC2015
-      asdf install ruby latest && asdf global ruby latest && gem install bundler || true
+      set +e
       # default gems in .default-gems
+      pushd "$CODE_DIR"/klarna/klarna-app
+      set -e
+      asdf install
+      set +e
+      popd
+      set -e
+      asdf global python 3.9.10
 
       # node 14.18.2 works, 12.18.4 does not work, 16.13.1 works for clients I think
       NODEJS_CHECK_SIGNATURES='no' asdf install nodejs latest:14 && asdf global nodejs latest:14 && sudo ln -sf "$(asdf which node)" /usr/local/bin/node
@@ -351,11 +364,6 @@ witch
       brewSafeUninstallCask android-studio
       #brew install temurin8
       brewSafeUninstall temurin8
-      #brew install adoptopenjdk8
-      asdf install java zulu-8.58.0.13 && asdf global java zulu-8.58.0.13
-
-      # this is fix for Android Studio Warning: License for package Android SDK Build-Tools 30.0.2 not accepted.
-      yes | sdkmanager --licenses
 
       # cmake 3.10.3 did not work
       asdf plugin add cmake https://github.com/srivathsanmurali/asdf-cmake.git || true
