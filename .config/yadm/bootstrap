@@ -809,4 +809,5 @@ if [ "$OS_MAJOR_VERSION" -ge "$MONTEREY_MAJOR_VERSION" ]; then
   set +e
 fi
 brew doctor
+set -e
 zsh_performance_measurements
