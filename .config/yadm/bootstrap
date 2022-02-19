@@ -363,21 +363,12 @@ witch
       set -e
 
       # Android Studio homebrew installation no longer supported, install it manually
-      #brew install --cask android-studio
       brewSafeUninstallCask android-studio
-      #brew install temurin8
       brewSafeUninstall temurin8
 
       # running yarn android:setup makes these unnecessary
       asdf plugin remove cmake || true
       asdf plugin remove ninja || true
-
-      # pip no longer installable from pip3? not needed?
-      #pip3 install --upgrade pip setuptools
-      #pip3 install virtualenvwrapper
-      #pip3 install autopep8 pylint rope
-      ## install tmux session manager
-      #pip3 install tmuxp -U
     fi
 
   fi
