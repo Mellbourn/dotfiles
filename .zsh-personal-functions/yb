@@ -14,10 +14,19 @@ yb() {
         # if not, request sudo login right away
         sudo -v
     fi &&
+       if [[ -n $UNAME_MACOS ]]; then
         (echo "\n$(date -u +%F\ %T)" &&
         yadm pull &&
             [[ "$(yadm --version)" == "yadm 3"* ]] && script -q /dev/null yadm bootstrap || script -q /dev/null $HOME/.config/yadm/bootstrap &&
             script -q /dev/null ~/.config/yadm/bootstrap-sudo &&
-            yadm push) 2>&1 | tee -a $logfile
+            script -q /dev/null yadm push) 2>&1 | tee -a $logfile
+       else
+        script -qefa $logfile -c 'yadm pull' &&
+            [[ "$(yadm --version)" == "yadm 3"* ]] &&
+            script -qefa $logfile -c "yadm bootstrap" ||
+            script -qefa $logfile -c "$HOME/.config/yadm/bootstrap" &&
+            script -qefa $logfile -c "$HOME/.config/yadm/bootstrap-sudo" &&
+            script -qefa $logfile -c "yadm push"
+       fi
 }
 yb "$@"
