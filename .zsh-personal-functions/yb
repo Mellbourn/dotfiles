@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 yb() {
-    local yadmBootstrap
-    yadmBootstrap=$()
     local logfile
     if [[ -n $UNAME_MACOS ]]; then
         logfile=$HOME/Library/Logs/yadm_log
@@ -16,12 +14,15 @@ yb() {
     fi &&
        if [[ -n $UNAME_MACOS ]]; then
         (echo "\n$(date -u +%F\ %T)" &&
-        yadm pull &&
-            [[ "$(yadm --version)" == "yadm 3"* ]] && script -q /dev/null yadm bootstrap || script -q /dev/null $HOME/.config/yadm/bootstrap &&
+        script -q /dev/null yadm pull &&
+            [[ "$(yadm --version)" == "yadm 3"* ]] &&
+            script -q /dev/null yadm bootstrap ||
+            script -q /dev/null $HOME/.config/yadm/bootstrap &&
             script -q /dev/null ~/.config/yadm/bootstrap-sudo &&
             script -q /dev/null yadm push) 2>&1 | tee -a $logfile
        else
-        script -qefa $logfile -c 'yadm pull' &&
+         echo "\n$(date -u +%F\ %T)" >> $logfile &&
+         script -qefa $logfile -c 'yadm pull' &&
             [[ "$(yadm --version)" == "yadm 3"* ]] &&
             script -qefa $logfile -c "yadm bootstrap" ||
             script -qefa $logfile -c "$HOME/.config/yadm/bootstrap" &&
