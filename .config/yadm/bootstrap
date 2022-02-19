@@ -368,12 +368,9 @@ witch
       #brew install temurin8
       brewSafeUninstall temurin8
 
-      # cmake 3.10.3 did not work
-      asdf plugin add cmake https://github.com/srivathsanmurali/asdf-cmake.git || true
-      asdf install cmake 3.10.2 && asdf global cmake 3.10.2
-      # ninja 1.9.0 and 1.10.2 works
-      asdf plugin-add ninja https://github.com/asdf-community/asdf-ninja.git || true
-      asdf install ninja latest:1 && asdf global ninja latest:1
+      # running yarn android:setup makes these unnecessary
+      asdf plugin remove cmake || true
+      asdf plugin remove ninja || true
 
       # pip no longer installable from pip3? not needed?
       #pip3 install --upgrade pip setuptools
