@@ -1,13 +1,23 @@
+#!/usr/bin/env zsh
 yb() {
-    local yadmBootstrap=$([[ "$(yadm --version)" == "yadm 3"* ]] && echo "yadm bootstrap" || echo "~/.config/yadm/bootstrap")
+    local yadmBootstrap
+    yadmBootstrap=$()
+    local logfile
+    if [[ -n $UNAME_MACOS ]]; then
+        logfile=$HOME/Library/Logs/yadm_log
+    else
+        logfile=${XDG_STATE_HOME:-~/.cache}/yadm_log
+    fi
+
     # check if I already have sudo rights
     if ! sudo -n true 2>/dev/null; then
         # if not, request sudo login right away
         sudo -v
     fi &&
+        (echo "\n$(date -u +%F\ %T)" &&
         yadm pull &&
-        eval $yadmBootstrap &&
-        ~/.config/yadm/bootstrap-sudo &&
-        yadm push
+            [[ "$(yadm --version)" == "yadm 3"* ]] && script -q /dev/null yadm bootstrap || script -q /dev/null $HOME/.config/yadm/bootstrap &&
+            script -q /dev/null ~/.config/yadm/bootstrap-sudo &&
+            yadm push) 2>&1 | tee -a $logfile
 }
 yb "$@"
