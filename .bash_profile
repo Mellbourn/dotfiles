@@ -164,7 +164,9 @@ elif [ -d "$HOMEBREW_PREFIX/share/android-sdk" ]; then
 fi
 
 if [ ! -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
-  if [ -f /usr/libexec/java_home ] && ! /usr/libexec/java_home 2>&1 | grep -q 'Unable to locate a Java Runtime'; then
+  if [ -d "/Applications/Android Studio.app/Contents/jre/Contents/Home" ]; then
+    export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
+  elif [ -f /usr/libexec/java_home ] && ! /usr/libexec/java_home 2>&1 | grep -q 'Unable to locate a Java Runtime'; then
     JAVA_HOME_FROM_COMMAND="$(/usr/libexec/java_home -v 1.8)"
     if [[ $JAVA_HOME_FROM_COMMAND == *"JavaAppletPlugin"* ]]; then
       JAVA_HOME=$(print /Library/Java/JavaVirtualMachines/jdk1.8.*.jdk/Contents/Home)
@@ -172,8 +174,6 @@ if [ ! -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
     else
       export JAVA_HOME=$JAVA_HOME_FROM_COMMAND
     fi
-  elif [ -d "/Applications/Android Studio.app/Contents/jre/Contents/Home" ]; then
-    export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
   fi
 fi
 
