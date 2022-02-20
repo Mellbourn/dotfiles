@@ -7,10 +7,9 @@ yb() {
         logfile=${XDG_STATE_HOME:-~/.cache}/yadm_log
     fi
 
-    rm -f /tmp/yberr
-
     # check if I already have sudo rights
     if [[ -n $UNAME_MACOS ]]; then
+        local tmpfile=$(mktemp /tmp/yb-script.XXXXXX)
         (
             (
                 set -e
@@ -29,10 +28,10 @@ yb() {
                 script -q /dev/null yadm push
             )
 
-            echo $? >/tmp/yberr
+            echo $? >$tmpfile
 
         ) 2>&1 | tee -a $logfile
-        return $(cat /tmp/yberr)
+        return $(cat $tmpfile)
     else
         if ! sudo -n true 2>/dev/null; then
             # if not, request sudo login right away
