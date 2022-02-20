@@ -36,9 +36,13 @@ yb() {
         else
             echo "\n$(date -u +%F\ %T)" >>$logfile &&
                 script -qefa $logfile -c 'yadm pull' &&
-                [[ "$(yadm --version)" == "yadm 3"* ]] &&
-                script -qefa $logfile -c "yadm bootstrap" ||
-                script -qefa $logfile -c "$HOME/.config/yadm/bootstrap" &&
+                (
+                    if [[ "$(yadm --version)" == "yadm 3"* ]]; then
+                        script -qefa $logfile -c "yadm bootstrap"
+                    else
+                        script -qefa $logfile -c "$HOME/.config/yadm/bootstrap"
+                    fi
+                ) &&
                 script -qefa $logfile -c "$HOME/.config/yadm/bootstrap-sudo" &&
                 script -qefa $logfile -c "yadm push"
         fi
