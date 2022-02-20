@@ -1,11 +1,16 @@
 #!/usr/bin/env zsh
 yb() {
-    local logfile
+    local logdir
     if [[ -n $UNAME_MACOS ]]; then
-        logfile=$HOME/Library/Logs/yadm_log
+        logdir=$HOME/Library/Logs/yb
     else
-        logfile=${XDG_STATE_HOME:-~/.cache}/yadm_log
+        logdir=${XDG_STATE_HOME:-~/.cache}/yb
     fi
+    if [ ! -d $logdir ]; then
+        mkdir -p $logdir
+    fi
+    local logfile
+    logfile=$logdir/yadm_log
 
     # check if I already have sudo rights
     if [[ -n $UNAME_MACOS ]]; then
