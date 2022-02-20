@@ -12,7 +12,7 @@ yb() {
     # check if I already have sudo rights
     if ! sudo -n true 2>/dev/null; then
         # if not, request sudo login right away
-        #sudo -v
+        sudo -v
     fi &&
         if [[ -n $UNAME_MACOS ]]; then
             (
