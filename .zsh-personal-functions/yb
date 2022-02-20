@@ -10,41 +10,45 @@ yb() {
     rm -f /tmp/yberr
 
     # check if I already have sudo rights
-    if ! sudo -n true 2>/dev/null; then
-        # if not, request sudo login right away
-        sudo -v
-    fi &&
-        if [[ -n $UNAME_MACOS ]]; then
+    if [[ -n $UNAME_MACOS ]]; then
+        (
             (
-                (
-                    set -e
-                    echo "\n$(date -u +%F\ %T)"
-                    script -q /dev/null yadm pull
-                    if [[ "$(yadm --version)" == "yadm 3"* ]]; then
-                        script -q /dev/null yadm bootstrap
-                    else
-                        script -q /dev/null $HOME/.config/yadm/bootstrap
-                    fi
-                    script -q /dev/null ~/.config/yadm/bootstrap-sudo
-                    script -q /dev/null yadm push
-                )
+                set -e
+                if ! sudo -n true 2>/dev/null; then
+                    # if not, request sudo login right away
+                    sudo -v
+                fi
+                echo "\n$(date -u +%F\ %T)"
+                script -q /dev/null yadm pull
+                if [[ "$(yadm --version)" == "yadm 3"* ]]; then
+                    script -q /dev/null yadm bootstrap
+                else
+                    script -q /dev/null $HOME/.config/yadm/bootstrap
+                fi
+                sudo script -q /dev/null ~/.config/yadm/bootstrap-sudo
+                script -q /dev/null yadm push
+            )
 
-                echo $? >/tmp/yberr
+            echo $? >/tmp/yberr
 
-            ) 2>&1 | tee -a $logfile
-            return $(cat /tmp/yberr)
-        else
-            echo "\n$(date -u +%F\ %T)" >>$logfile &&
-                script -qefa $logfile -c 'yadm pull' &&
-                (
-                    if [[ "$(yadm --version)" == "yadm 3"* ]]; then
-                        script -qefa $logfile -c "yadm bootstrap"
-                    else
-                        script -qefa $logfile -c "$HOME/.config/yadm/bootstrap"
-                    fi
-                ) &&
-                script -qefa $logfile -c "$HOME/.config/yadm/bootstrap-sudo" &&
-                script -qefa $logfile -c "yadm push"
+        ) 2>&1 | tee -a $logfile
+        return $(cat /tmp/yberr)
+    else
+        if ! sudo -n true 2>/dev/null; then
+            # if not, request sudo login right away
+            sudo -v
         fi
+        echo "\n$(date -u +%F\ %T)" >>$logfile &&
+            script -qefa $logfile -c 'yadm pull' &&
+            (
+                if [[ "$(yadm --version)" == "yadm 3"* ]]; then
+                    script -qefa $logfile -c "yadm bootstrap"
+                else
+                    script -qefa $logfile -c "$HOME/.config/yadm/bootstrap"
+                fi
+            ) &&
+            script -qefa $logfile -c "$HOME/.config/yadm/bootstrap-sudo" &&
+            script -qefa $logfile -c "yadm push"
+    fi
 }
 yb "$@"
