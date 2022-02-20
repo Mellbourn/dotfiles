@@ -210,6 +210,11 @@ fi
 ' light-mode for zdharma-continuum/null
 fpath=(${ASDF_DIR:-$HOME/.asdf}/completions $fpath)
 
+if [[ -n $UNAME_MACOS ]]; then
+  # this works great _on macOS_
+  zinit wait'0' lucid light-mode as"program" pick"src/trash" for morgant/tools-osx
+fi
+
 zinit wait'1' lucid for OMZP::magic-enter
 MAGIC_ENTER_GIT_COMMAND="l"
 MAGIC_ENTER_OTHER_COMMAND="l"
@@ -327,11 +332,6 @@ zinit wait'2' lucid light-mode for \
   peterhurford/git-it-on.zsh
 
 zinit wait'2' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' light-mode for hlissner/zsh-autopair
-
-if [[ -n $UNAME_MACOS ]]; then
-  # this works great _on macOS_
-  zinit wait'2' lucid light-mode as"program" pick"src/trash" for morgant/tools-osx
-fi
 
 if [ -z "$DOTFILES_LITE" ]
 then
