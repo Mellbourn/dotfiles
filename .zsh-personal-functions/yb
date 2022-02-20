@@ -12,6 +12,10 @@ yb() {
     local logfile
     logfile=$logdir/yadm_log
 
+    if command -v newsyslog &>/dev/null; then
+        newsyslog -r -v -f "${XDG_CONFIG_HOME:-$HOME/.config}"/yadm/newsyslog.conf $logfile
+    fi
+
     # check if I already have sudo rights
     if [[ -n $UNAME_MACOS ]]; then
         local tmpfile=$(mktemp /tmp/yb-script.XXXXXX)
