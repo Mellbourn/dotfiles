@@ -35,11 +35,11 @@ while getopts "hnvc:m:w:" opt; do
   esac
 done
 
-LOGDIR=${XDG_STATE_HOME:-~/.cache}/$(basename "$0")
+LOGDIR=${XDG_STATE_HOME:-$HOME/.local/state}/$(basename "$0")
 mkdir -p "$LOGDIR"
 
 # TODO: remove this migration
-OLDLOGDIR=${XDG_STATE_HOME:-~/.cache}/measure-zsh-startup-time
+OLDLOGDIR=${XDG_STATE_HOME:-~/.cache}/$(basename "$0")
 if [ -d "$OLDLOGDIR" ]; then
   mv "$OLDLOGDIR"/* "$LOGDIR"
   trash "$OLDLOGDIR"
