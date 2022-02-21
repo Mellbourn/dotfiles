@@ -4,7 +4,7 @@ yb() {
     if [[ -n $UNAME_MACOS ]]; then
         logdir=$HOME/Library/Logs/yb
     else
-        logdir=${XDG_STATE_HOME:-~/.cache}/yb
+        logdir=${XDG_STATE_HOME:-~/.local/state}/yb
     fi
     if [ ! -d $logdir ]; then
         mkdir -p $logdir
@@ -14,6 +14,8 @@ yb() {
 
     if command -v newsyslog &>/dev/null; then
         newsyslog -r -v -f "${XDG_CONFIG_HOME:-$HOME/.config}"/yadm/newsyslog.conf $logfile
+    elif command -v logrotate &>/dev/null; then
+        logrotate -v -s "${XDG_STATE_HOME:-~/.local/state}/logrotate.status" "${XDG_CONFIG_HOME:-$HOME/.config}"/yadm/logrotate.conf
     fi
 
     # check if I already have sudo rights
