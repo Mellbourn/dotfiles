@@ -327,7 +327,7 @@ witch
       set +e
       pushd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/include/ruby-2.6.0/
       set -e
-      if [ ! -L universal-darwin20 ] && [ ! -f universal-darwin20 ]; then
+      if [ ! -e universal-darwin20 ]; then
         sudo ln -s universal-darwin21 universal-darwin20
       fi
 
