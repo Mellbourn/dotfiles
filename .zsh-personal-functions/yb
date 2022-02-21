@@ -28,7 +28,7 @@ yb() {
                     # if not, request sudo login right away
                     sudo -v
                 fi
-                echo "\n$(date -u +%F\ %T)"
+                echo "\n$(date +%F\ %T)"
                 script -q /dev/null yadm pull
                 if [[ "$(yadm --version)" == "yadm 3"* ]]; then
                     script -q /dev/null yadm bootstrap
@@ -48,7 +48,7 @@ yb() {
             # if not, request sudo login right away
             sudo -v
         fi
-        echo "\n$(date -u +%F\ %T)" >>$logfile &&
+        echo "\n$(date +%F\ %T)" >>$logfile &&
             script -qefa $logfile -c 'yadm pull' &&
             (
                 if [[ "$(yadm --version)" == "yadm 3"* ]]; then
