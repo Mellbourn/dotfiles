@@ -15,7 +15,7 @@ yb() {
     if command -v newsyslog &>/dev/null; then
         newsyslog -r -v -f "${XDG_CONFIG_HOME:-$HOME/.config}"/yadm/newsyslog.conf $logfile
     elif command -v logrotate &>/dev/null; then
-        logrotate -d -v -s "${XDG_STATE_HOME:-$HOME/.local/state}/logrotate.status" "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/logrotate.conf"
+        logrotate -v -s "${XDG_STATE_HOME:-$HOME/.local/state}/logrotate.status" "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/logrotate.conf"
     fi
 
     # check if I already have sudo rights
