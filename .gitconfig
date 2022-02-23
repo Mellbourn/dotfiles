@@ -53,6 +53,8 @@
 	re = restore
 	sw = switch
 	d = diff --color-words=.
+	# fetch only current branch and master
+	f = "!git fetch origin $(git rev-parse --abbrev-ref HEAD) master:master"
 	# logp and reflogp have been adjustd so that they are compatible with git-delta
 	logp = log -p --format='commit %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s'
 	reflogp = reflog -p --format='commit %C(auto)%h%d %gd: %gs (%s)'
