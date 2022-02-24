@@ -276,6 +276,7 @@ wemux
 wget
 yadm
 yarn
+zellij
 zoxide
 zsh
 "
