@@ -344,11 +344,11 @@ witch
       asdf global python 3.9.10
 
       # node 14.18.2 works, 12.18.4 does not work, 16.13.1 works for clients I think
-      NODEJS_CHECK_SIGNATURES='no' asdf install nodejs latest:14 && asdf global nodejs latest:14
+      NODEJS_CHECK_SIGNATURES='no' asdf install nodejs latest:14
+      NODEJS_CHECK_SIGNATURES=no asdf install nodejs 16.13.1 && asdf global nodejs 16.13.1
       if [ ! "$(asdf which node)" -ef /usr/local/bin/node ]; then
         sudo ln -sf "$(asdf which node)" /usr/local/bin/node
       fi
-      NODEJS_CHECK_SIGNATURES=no asdf install nodejs latest:16
       NODEJS_CHECK_SIGNATURES=no asdf install nodejs 12.18.4
 
       set +e
