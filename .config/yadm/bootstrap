@@ -351,6 +351,8 @@ witch
       fi
       NODEJS_CHECK_SIGNATURES=no asdf install nodejs 12.18.4
 
+      asdf install bundler 2.3.3 && asdf global bundler 2.3.3
+
       set +e
       pushd "$CODE_DIR"/klarna
       pushd klarna-app/clients/apps/native
