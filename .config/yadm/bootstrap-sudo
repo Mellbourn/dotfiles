@@ -286,14 +286,6 @@ sudo xcodebuild -license accept
 sudo sysctl debug.lowpri_throttle_enabled=0
 
 ###############################################################################
-# installations for Klarna
-###############################################################################
-#if [ -d $HOMEBREW_PREFIX/opt/openjdk@11/libexec ]; then
-#  # this is needed by android
-#  sudo ln -sfn $HOMEBREW_PREFIX/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
-#fi
-
-###############################################################################
 # bash4
 ###############################################################################
 if ! grep -q "$HOMEBREW_PREFIX/bin/bash" "/etc/shells"; then
