@@ -1,6 +1,13 @@
 #!/bin/sh
 git update-index --no-skip-worktree clients/apps/native/ios/Podfile.lock
-git update-index --no-skip-worktree clients/src/mountApp.native.js
 git update-index --no-skip-worktree services/shopping-payment-processing/bin/docker-compose-up.sh
 git update-index --no-skip-worktree clients/packages/features/app-credit-issuing-webview/native/ios/KLAWKWebView/KLPaymentInstanceManager.m
 git update-index --no-skip-worktree clients/apps/native/ios/Klarna/Images.xcassets/pink_horizontal_se_svg_67ab95.imageset/light.pdf
+
+# make git commit work in git worktree
+git update-index --no-skip-worktree bin/link-git-hooks
+git update-index --no-skip-worktree clis/commit/commit
+git update-index --no-skip-worktree clis/commit/validate-commit-message.js
+git update-index --no-skip-worktree git-hooks/commit-msg
+git update-index --no-skip-worktree git-hooks/pre-commit
+git update-index --no-skip-worktree git-hooks/prepare-commit-msg
