@@ -1,9 +1,7 @@
 #!/bin/sh
-#git update-index --no-skip-worktree ~/code/klarna/klarna-app/clients/apps/native/ios/Klarna.xcodeproj/project.pbxproj
-#git update-index --no-skip-worktree ~/code/klarna/klarna-app/clients/apps/native/ios/Podfile
-git update-index --no-skip-worktree ~/code/klarna/klarna-app/clients/apps/native/ios/Podfile.lock
-git update-index --no-skip-worktree ~/code/klarna/klarna-app/clients/src/mountApp.native.js
-git update-index --no-skip-worktree ~/code/klarna/klarna-app/services/shopping-payment-processing/bin/docker-compose-up.sh
-git update-index --no-skip-worktree ~/code/klarna/klarna-app/services/shopping-payment-processing/bin/run-tests-with-dependencies.sh
-#git update-index --no-skip-worktree ~/code/klarna/klarna-app/services/shopping-payment/generated/config.d.ts
-git update-index --no-skip-worktree ~/code/klarna/klarna-app/clients/packages/features/app-credit-issuing-webview/native/ios/KLAWKWebView/KLPaymentInstanceManager.m
+git update-index --no-skip-worktree clients/apps/native/ios/Podfile.lock
+git update-index --no-skip-worktree clients/src/mountApp.native.js
+git update-index --no-skip-worktree services/shopping-payment-processing/bin/docker-compose-up.sh
+git update-index --no-skip-worktree services/shopping-payment-processing/bin/run-tests-with-dependencies.sh
+git update-index --no-skip-worktree clients/packages/features/app-credit-issuing-webview/native/ios/KLAWKWebView/KLPaymentInstanceManager.m
+git update-index --no-skip-worktree clients/apps/native/ios/Klarna/Images.xcassets/pink_horizontal_se_svg_67ab95.imageset/light.pdf
