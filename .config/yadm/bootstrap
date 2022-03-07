@@ -321,6 +321,11 @@ witch
   installThese=${installTheseLines//$'\n'/ }
   echo "$installThese" | xargs brew install --cask
 
+  if gdu --version | head -1 | grep -q "coreutils"; then
+    brew install --force gdu || true
+    brew link --overwrite gdu
+  fi
+
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
     if [[ -n "$KLARNA" ]]; then
