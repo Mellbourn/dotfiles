@@ -342,7 +342,7 @@ witch
       # shellcheck disable=SC2015
       set +e
       # default gems in .default-gems
-      pushd "$CODE_DIR"/klarna/klarna-app
+      pushd "$CODE_DIR"/klarna/klarna-app/master
       set -e
       asdf install
       set +e

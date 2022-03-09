@@ -112,7 +112,7 @@
 	insteadOf = https://github.com/
 [url "https://github.com/rust-lang/crates.io-index"]
     insteadOf = https://github.com/rust-lang/crates.io-index
-[maintenance]
-	repo = /Users/klas.mellbourn/code/klarna/klarna-app
 [lfs]
 	locksverify = false
+[maintenance]
+	repo = /Users/klas.mellbourn/code/klarna/klarna-app/.git
