@@ -337,6 +337,9 @@ witch
       if [ ! -e universal-darwin20 ]; then
         sudo ln -s universal-darwin21 universal-darwin20
       fi
+      set +e
+      popd
+      set -e
 
       # ruby (works: 2.6.8, 2.7.5, 3.1.0)
       # shellcheck disable=SC2015
@@ -360,29 +363,12 @@ witch
 
       asdf install bundler 2.3.3 && asdf global bundler 2.3.3
 
-      set +e
-      pushd "$CODE_DIR"/klarna
-      pushd klarna-app/clients/apps/native
-      set -e
-
-      # bundle path no longer needed?
-      # bundle config set path 'vendor/bundle'
-      bundle config unset path
-      bundle config unset --global path
-
-      set +e
-      popd
-      popd
-      popd
-      set -e
-
       # Android Studio homebrew installation no longer supported, install it manually
       brewSafeUninstallCask android-studio
       brewSafeUninstall temurin8
 
       # running yarn android:setup makes these unnecessary
       asdf plugin remove cmake || true
-      asdf plugin remove ninja || true
     fi
 
   fi
