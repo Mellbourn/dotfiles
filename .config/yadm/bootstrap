@@ -554,7 +554,7 @@ fi
 if [ ! -d $HOME/.volta ]; then
   if [[ -n "$KLARNA" ]]; then
     if \ping -c1 -W1 jira.int.klarna.net; then
-      npm update -g --registry https://artifactory.klarna.net/artifactory/api/npm/v-npm-production/
+      npm update -g --registry=https://artifactory.klarna.net/artifactory/api/npm/v-npm-production/
     fi
   else
     npm update -g
