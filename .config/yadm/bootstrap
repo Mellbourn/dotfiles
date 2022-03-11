@@ -65,16 +65,18 @@ fi
 asdf update
 asdf plugin update --all
 
+set +e
 # remove these removals eventually
-asdf uninstall java zulu-8.58.0.13 || true
-asdf plugin remove java || true
+asdf uninstall java zulu-8.58.0.13
+asdf plugin remove java
+asdf plugin remove nodejs
 
-asdf plugin add ruby || true
-asdf plugin add nodejs || true
-asdf plugin add python || true
-asdf plugin add bundler || true
+asdf plugin add ruby
+asdf plugin add python
+asdf plugin add bundler
 # asdf direnv doesn't seem absolutely necessary, but could improve performance. 2.30.2 works
-asdf plugin add direnv || true
+asdf plugin add direnv
+set -e
 asdf install direnv latest
 asdf global direnv latest
 # if no versions are installed, the asdf plugin will fall back to "system"
@@ -270,6 +272,7 @@ tmux
 tokei
 tree
 vim
+volta
 wakeonlan
 watch
 watchman
@@ -348,18 +351,18 @@ witch
       pushd "$CODE_DIR"/klarna/klarna-app/master
       set -e
       asdf install
+      if [ ! -d "$HOME/.volta" ]; then
+        # not sure this actually works from the script
+        ./bin/install-node-version-manager.sh
+      fi
       set +e
       popd
       set -e
-      asdf global python 3.9.10
-
-      # node 14.18.2 works, 12.18.4 does not work, 16.13.1 works for clients I think
-      NODEJS_CHECK_SIGNATURES='no' asdf install nodejs latest:14
-      NODEJS_CHECK_SIGNATURES=no asdf install nodejs 16.13.1 && asdf global nodejs 16.13.1
-      if [ ! "$(asdf which node)" -ef /usr/local/bin/node ]; then
-        sudo ln -sf "$(asdf which node)" /usr/local/bin/node
+      if [ -d "$HOME/.volta" ]; then
+        volta install node@latest
+        volta install yarn@latest
       fi
-      NODEJS_CHECK_SIGNATURES=no asdf install nodejs 12.18.4
+      asdf global python 3.9.10
 
       asdf install bundler 2.3.3 && asdf global bundler 2.3.3
 
@@ -545,16 +548,17 @@ fi
 ###############################################################################
 # development
 ###############################################################################
-npm i -g npm node-gyp
-# yarn 2 should not be installed globally!
-#npm i -g yarn@berry
-npm rm -g eslint
-if [[ -n "$KLARNA" ]]; then
-  if \ping -c1 -W1 jira.int.klarna.net; then
-    npm update -g --registry https://artifactory.klarna.net/artifactory/api/npm/v-npm-production/
+# Is node-gyp really necessary?
+#npm i -g npm node-gyp
+# stopped working with volta
+if [ ! -d $HOME/.volta ]; then
+  if [[ -n "$KLARNA" ]]; then
+    if \ping -c1 -W1 jira.int.klarna.net; then
+      npm update -g --registry https://artifactory.klarna.net/artifactory/api/npm/v-npm-production/
+    fi
+  else
+    npm update -g
   fi
-else
-  npm update -g
 fi
 # save some disk
 xcrun simctl delete unavailable || true
