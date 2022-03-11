@@ -360,7 +360,9 @@ witch
       set -e
       if [ -d "$HOME/.volta" ]; then
         volta install node@latest
-        volta install yarn@latest
+        # do not install yarn latest, it will override the scripted yarn wrapper
+
+        # volta install yarn@latest
       fi
       asdf global python 3.9.10
 
