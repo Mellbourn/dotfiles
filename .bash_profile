@@ -119,6 +119,8 @@ export DELTA_PAGER="less -+J -+W"
 # why is this important? This doesn't always work on old raspbian
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+# enable flipper compilation
+export FLIPPER_ENABLED=1
 # make gpg prompt work, otherwise I get "Inappropriate ioctl for device"
 GPG_TTY=$(tty)
 export GPG_TTY
