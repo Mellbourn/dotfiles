@@ -361,8 +361,10 @@ witch
       if [ -d "$HOME/.volta" ]; then
         volta install node@latest
         # do not install yarn latest, it will override the scripted yarn wrapper
-
         # volta install yarn@latest
+
+        # installing npm tools using volta
+        volta install git-branch-delete
       fi
       asdf global python 3.9.10
 
