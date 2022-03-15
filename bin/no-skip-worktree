@@ -1,6 +1,7 @@
 #!/bin/sh
 TOPLEVEL=$(git rev-parse --show-toplevel)
 git update-index --no-skip-worktree "$TOPLEVEL/clients/apps/native/ios/Podfile.lock"
-git update-index --no-skip-worktree "$TOPLEVEL/services/shopping-payment-processing/bin/docker-compose-up.sh"
-git update-index --no-skip-worktree "$TOPLEVEL/clients/packages/features/app-credit-issuing-webview/native/ios/KLAWKWebView/KLPaymentInstanceManager.m"
-git update-index --no-skip-worktree "$TOPLEVEL/clients/apps/native/ios/Klarna/Images.xcassets/pink_horizontal_se_svg_67ab95.imageset/light.pdf"
+git update-index --no-skip-worktree "$TOPLEVEL/clients/apps/native/ios/Klarna.xcodeproj/project.pbxproj"
+#git update-index --no-skip-worktree "$TOPLEVEL/services/shopping-payment-processing/bin/docker-compose-up.sh"
+#git update-index --no-skip-worktree "$TOPLEVEL/clients/packages/features/app-credit-issuing-webview/native/ios/KLAWKWebView/KLPaymentInstanceManager.m"
+#git update-index --no-skip-worktree "$TOPLEVEL/clients/apps/native/ios/Klarna/Images.xcassets/pink_horizontal_se_svg_67ab95.imageset/light.pdf"
