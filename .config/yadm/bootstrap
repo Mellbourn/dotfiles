@@ -363,6 +363,8 @@ witch
         #volta install node@latest
         trash "$HOME/.volta/tools/image/node/17.7.1" || true
         trash "$HOME"/.volta/tools/inventory/node/node-v17.7.1* || true
+        trash "$HOME/.volta/tools/image/node/16.14.0" || true
+        trash "$HOME"/.volta/tools/inventory/node/node-v16.14.0* || true
         # do not install yarn latest, it will override the scripted yarn wrapper
         # volta install yarn@latest
 
