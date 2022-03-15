@@ -361,8 +361,8 @@ witch
       if [ -d "$HOME/.volta" ]; then
         # no point in using a global "install", that would be overridden anyway by git hooks
         #volta install node@latest
-        trash "$HOME/.volta/tools/image/node/17.7.1"
-        trash "$HOME/.volta/tools/inventory/node/node-v17.7.1*"
+        trash "$HOME/.volta/tools/image/node/17.7.1" || true
+        trash "$HOME"/.volta/tools/inventory/node/node-v17.7.1* || true
         # do not install yarn latest, it will override the scripted yarn wrapper
         # volta install yarn@latest
 
