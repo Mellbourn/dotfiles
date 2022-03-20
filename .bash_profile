@@ -12,7 +12,7 @@ if [ -f "$HOME"/.profile ]; then
   source "$HOME"/.profile
 fi
 
-# only start tmux if you are not already in tmux, or you are starting up Visual Studio Code from spotlight
+# start tmux unless you are already in tmux, you have set NO_TMUX or you are starting up VSCode from Spotlight
 if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &>/dev/null && [ -z "$VSCODE_PID" ]; then
   # use this "if" to suppress tmux in *debugging* in vscode
   if [ -z "$VSCODE_WORKSPACE_FOLDER" ]; then
