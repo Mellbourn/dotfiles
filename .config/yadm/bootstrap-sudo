@@ -288,6 +288,7 @@ sudo sysctl debug.lowpri_throttle_enabled=0
 # set up cleanup of Downloads and Pictures
 cat <<EOF >/etc/periodic.conf
 daily_clean_tmps_dirs="/tmp $HOME/Downloads $HOME/Pictures"
+daily_clean_tmps_ignore=".X*-lock .X11-unix .ICE-unix .font-unix .XIM-unix *.photoslibrary *Library"
 #daily_clean_tmps_days="14"
 EOF
 
