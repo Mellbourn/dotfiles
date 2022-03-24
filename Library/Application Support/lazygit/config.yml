@@ -1,3 +1,6 @@
+gui:
+  skipUnstageLineWarning: true
+  skipStashWarning: true
 git:
   branchLogCmd: 'git log --graph {{branchName}} --'
   allBranchesLogCmd: 'git log --graph --all'
