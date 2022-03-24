@@ -5,6 +5,7 @@ git:
     colorArg: always
     pager: delta --dark --paging=never
 refresher:
-  refreshInterval: 10 # file/submodule refresh interval in seconds
+  refreshInterval: 2 # file/submodule refresh interval in seconds
   fetchInterval: 300 # re-fetch interval in seconds
 notARepository: 'skip'
+promptToReturnFromSubprocess: false
