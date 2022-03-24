@@ -22,22 +22,18 @@ alias l='ls -F '
 alias la='ls -AF '
 alias lg=lazygit
 alias ll='ls -lF '
-alias ly='lazygit -w ~ -g ~/.local/share/yadm/repo.git'
 alias more=less
 alias mv='mv -v'
 alias prev='open -a Preview'
 alias ql='qlmanage -p 2>/dev/null'
+alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
 alias rm_node_modules='$FD -t d -u node_modules -x rm -rf'
 alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
-alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
 alias tig='TERM=xterm-256color tig'
 alias weather='curl v2.wttr.in'
 alias y='noglob yadm'
+alias yl='lazygit -w ~ -g ~/.local/share/yadm/repo.git'
 alias zmv='noglob zmv'
-
-# this used to be needed to get client to run on m1
-#alias bundle="arch -x86_64 bundle"
-#alias pod="arch -x86_64 pod"
 
 # suffix aliases for file types: these become "executable"
 alias -s {avdl,c,coffee,css,el,gql,gradle,graphql,h,handlebars,hpp,html,http,java,js,json,json5,jsx,lock,log,md,py,rb,scss,swift,text,ts,tsx,txt,xml,yaml,yml,yo}=code
