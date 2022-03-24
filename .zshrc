@@ -471,6 +471,18 @@ function h {
   grep --color=always -E "$1|$" $2 | less
 }
 
+# make lazygit change dir if repo is changed during running lg
+lg() {
+    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+    lazygit "$@"
+
+    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+    fi
+}
+
 # Use Ctrl-x,Ctrl-l to get the output of the last command
 insert-last-command-output() {
 LBUFFER+="$(eval $history[$((HISTCMD-1))])"
