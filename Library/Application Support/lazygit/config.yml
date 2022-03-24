@@ -1,4 +1,9 @@
 git:
+  branchLogCmd: 'git log --graph {{branchName}} --'
+  allBranchesLogCmd: 'git log --graph --all'
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+refresher:
+  refreshInterval: 10 # file/submodule refresh interval in seconds
+  fetchInterval: 300 # re-fetch interval in seconds
