@@ -17,6 +17,10 @@
     "repo.git": true,
     "files.gpg": true
   },
+  "git.countBadge": "tracked",
+  "git.ignoreLimitWarning": true,
+  "git.statusLimit": 100,
+  "git.untrackedChanges": "hidden",
   "window.zoomLevel": 0,
   "workbench.colorCustomizations": {
     "activityBar.background": "#92725299",
