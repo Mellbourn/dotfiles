@@ -26,7 +26,7 @@ GENCOMPL_FPATH=~/.zsh-personal-completions/generated
 fpath=(~/.zsh-personal-functions ~/.zsh-personal-completions $fpath $GENCOMPL_FPATH)
 autoload -U zmv
 # personal functions in ~/.zsh-personal-functions
-autoload -Uz yb
+autoload -Uz $(ls ~/.zsh-personal-functions)
 
 # helping brew completion is needed if HOMEBREW_PREFIX is not /usr/local
 FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH

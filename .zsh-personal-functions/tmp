@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+tmp() {
+    (
+        export MY_SHLVL=tmp:$MY_SHLVL
+        export od=$PWD
+        export tmp=$(mktemp -d)
+        trap "trash $tmp" 0
+        cd $tmp
+        if [ -z "$1" ]; then
+            $SHELL -l
+        else
+            [ "$1" = "-l" ] && {
+                shift
+                set "$@" ";" "$SHELL -l"
+            }
+            eval "$@"
+        fi
+    )
+}
