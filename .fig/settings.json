@@ -1,4 +1,4 @@
 {
-  "autocomplete.disable" : false,
-  "autocomplete.theme" : "dark"
+  "autocomplete.fuzzySearch": true,
+  "autocomplete.theme": "dracula"
 }
