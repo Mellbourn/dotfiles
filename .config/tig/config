@@ -7,3 +7,4 @@ bind refs    M !git merge %(branch)
 set main-view-author-width = 18
 set main-view-date = relative
 set tree-view-date = relative
+set line-graphics = utf-8
