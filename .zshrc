@@ -1,3 +1,6 @@
+# Fig pre block. Keep at the top of this file.
+eval "$(fig init zsh pre)"
+
 ###############################################################################
 # .zshrc is sourced in interactive shells.
 # It should contain commands to set up aliases, functions, options, key bindings, etc.
@@ -675,3 +678,6 @@ fi
 #END=$(gdate +%s.%N)
 #echo "$END - $START" | bc
 #zprof
+
+# Fig post block. Keep at the bottom of this file.
+eval "$(fig init zsh post)"
