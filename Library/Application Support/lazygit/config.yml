@@ -12,3 +12,6 @@ refresher:
   fetchInterval: 300 # re-fetch interval in seconds
 notARepository: 'skip'
 promptToReturnFromSubprocess: false
+keybinding:
+  files:
+    toggleTreeView: 'ö' # default is ` which is undetectable`
