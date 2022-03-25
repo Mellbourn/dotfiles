@@ -114,6 +114,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   mas install 497799835
   mas lucky "Copy 'Em (Clipboard Manager)" # (2.11) 876540291
   mas lucky "John's Background Switcher"   # 907640277
+  mas install 847260112                    # SnailGit: Git for Finder
   # Safari extensions
   mas lucky "Adblock Plus for Safari ABP" # (2.1.10) 1432731683
   mas lucky "CloseTabs Extension"         # (2.0) 1508584686
