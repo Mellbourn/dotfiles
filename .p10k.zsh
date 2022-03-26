@@ -1631,6 +1631,8 @@
   # Don't show the remaining time to charge/discharge.
   typeset -g POWERLEVEL9K_BATTERY_VERBOSE=false
   typeset -g POWERLEVEL9K_BATTERY_BACKGROUND=0
+  # Don't show battery if it's at or above this charge level.
+  typeset -g POWERLEVEL9K_BATTERY_HIDE_ABOVE_THRESHOLD=33
 
   #####################################[ wifi: wifi speed ]#####################################
   # WiFi color.
