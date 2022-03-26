@@ -1,4 +1,6 @@
 {
   "autocomplete.fuzzySearch": true,
+  "autocomplete.height": 500,
+  "autocomplete.immediatelyRunGitAliases": true,
   "autocomplete.theme": "dracula"
 }
