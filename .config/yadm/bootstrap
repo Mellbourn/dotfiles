@@ -253,6 +253,7 @@ parallel
 pinentry-mac
 pkg-config
 prettyping
+procs
 pv
 react-native-cli
 reattach-to-user-namespace
