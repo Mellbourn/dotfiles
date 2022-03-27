@@ -3,7 +3,7 @@ tmp() {
     (
         export MY_SHLVL=tmp:$MY_SHLVL
         export od=$PWD
-        export tmp=$(mktemp -d)
+        export tmp=$(mktemp -d /tmp/playground.$(date -u +%FT%T).XX)
         trap "trash $tmp" 0
         cd $tmp
         if [ -z "$1" ]; then
