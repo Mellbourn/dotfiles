@@ -25,5 +25,3 @@ if [ -x "$(command -v code)" ]; then
 else
   export EDITOR=vi
 fi
-
-#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
