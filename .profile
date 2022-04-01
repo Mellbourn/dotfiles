@@ -7,11 +7,13 @@
 # directory for git repositories, should be set up before tmux starts
 export CODE_DIR=~/code
 
-if [ -d "/opt/homebrew/bin" ]; then
+if [ -d "/opt/homebrew" ]; then
   export HOMEBREW_PREFIX=/opt/homebrew
-  PATH=$HOMEBREW_PREFIX/bin:$PATH
 else
   export HOMEBREW_PREFIX=/usr/local
+fi
+if [ -d "$HOMEBREW_PREFIX/bin" ] && [[ ":$PATH:" != *":$HOMEBREW_PREFIX/bin:"* ]]; then
+  PATH="$HOMEBREW_PREFIX/bin${PATH:+":$PATH"}"
 fi
 export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar"
 export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX"
