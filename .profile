@@ -12,7 +12,9 @@ if [ -d "/opt/homebrew" ]; then
 else
   export HOMEBREW_PREFIX=/usr/local
 fi
-if [ -d "$HOMEBREW_PREFIX/bin" ] && [[ ":$PATH:" != *":$HOMEBREW_PREFIX/bin:"* ]]; then
+# in order to force /opt/homebrew/bin to be unique and early in path, remove it first
+PATH="${PATH//$HOMEBREW_PREFIX\/bin:/}"
+if [ -d "$HOMEBREW_PREFIX/bin" ]; then
   PATH="$HOMEBREW_PREFIX/bin${PATH:+":$PATH"}"
 fi
 export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar"
