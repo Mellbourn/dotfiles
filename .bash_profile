@@ -61,30 +61,31 @@ if [ -f "$HOME"/.local_settings ]; then
   source "$HOME"/.local_settings
 fi
 
+addFirstInPath() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="$1${PATH:+":$PATH"}"
+  fi
+}
+addLastInPath() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="${PATH:+"$PATH:"}$1"
+  fi
+}
 ### environment variables
-export PATH=$PATH:$HOMEBREW_PREFIX/sbin
+addLastInPath "$HOMEBREW_PREFIX/sbin"
 export MANPATH="$HOMEBREW_PREFIX/share/man${MANPATH+:$MANPATH}:"
 export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
 if [ -d /snap ]; then
-  if [ -d "/snap/croc/current" ]; then
-    PATH="$PATH:/snap/croc/current"
-  fi
+  addLastInPath "/snap/croc/current"
 fi
-PATH="$HOME/.manually-installed/bin:$PATH"
-if [ -d "$HOME/.manually-installed/lsd" ]; then
-  PATH="$PATH:$HOME/.manually-installed/lsd"
-fi
-if [ -d "$HOME/.local/bin" ]; then
-  PATH="$HOME/.local/bin:$PATH"
-fi
-if [ -d "$HOMEBREW_PREFIX"/opt/awscli@1/bin ]; then
-  # this is needed while we are using an old awscli
-  export PATH=$PATH:$HOMEBREW_PREFIX/opt/awscli@1/bin
-fi
-if [ -d "$HOME"/.cargo/bin ]; then
-  export PATH="$HOME"/.cargo/bin:$PATH
-fi
-export PATH="$HOME"/bin:$PATH
+addFirstInPath "$HOME/.manually-installed/bin"
+addLastInPath "$HOME/.manually-installed/lsd"
+addFirstInPath "$HOME/.local/bin"
+# this is needed while we are using an old awscli
+addLastInPath "$HOMEBREW_PREFIX/opt/awscli@1/bin"
+addFirstInPath "$HOME"/.cargo/bin
+addFirstInPath "$HOME"/bin
+
 export CLICOLOR=1
 export GCAL='--starting-day=Monday --iso-week-number=yes --with-week-number --cc-holidays=SE'
 if [[ -n $UNAME_LINUX ]]; then
@@ -157,7 +158,7 @@ fi
 #test -e "${HOME}/.iterm2_shell_integration.$SHELLNAME" && source "${HOME}/.iterm2_shell_integration.$SHELLNAME"
 
 export VOLTA_HOME=$HOME/.volta
-export PATH=$VOLTA_HOME/bin:$PATH
+addFirstInPath "$VOLTA_HOME/bin"
 
 ###############################################################################
 # Java and Android development
@@ -182,15 +183,9 @@ if [ ! -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
   fi
 fi
 
-if [ -d "$ANDROID_HOME"/tools/bin ]; then
-  export PATH=$PATH:$ANDROID_HOME/tools/bin
-fi
-if [ -d "$ANDROID_HOME"/platform-tools ]; then
-  export PATH=$PATH:$ANDROID_HOME/platform-tools
-fi
-if [ -d /Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin ]; then
-  export PATH=/Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin:$PATH
-fi
+addLastInPath "$ANDROID_HOME/tools/bin"
+addLastInPath "$ANDROID_HOME/platform-tools"
+addFirstInPath /Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin
 
 # bc settings
 export BC_ENV_ARGS="-l -q"
@@ -199,7 +194,7 @@ export BC_ENV_ARGS="-l -q"
 # macOS provides an older sqlite3.
 #If you need to have this software first in your PATH run:
 #  echo 'export PATH="$HOMEBREW_PREFIX/opt/sqlite/bin:$PATH"' >> "$HOME"/.bash_profile
-export PATH="$HOMEBREW_PREFIX/opt/sqlite/bin:$PATH"
+addFirstInPath "$HOMEBREW_PREFIX/opt/sqlite/bin"
 # For compilers to find this software you may need to set:
 #    LDFLAGS:  -L$HOMEBREW_PREFIX/opt/sqlite/lib
 #    CPPFLAGS: -I$HOMEBREW_PREFIX/opt/sqlite/include
@@ -209,7 +204,7 @@ export PATH="$HOMEBREW_PREFIX/opt/sqlite/bin:$PATH"
 # ansible also needed openssl
 # If you need to have this software first in your PATH run:
 #  echo 'export PATH="$HOMEBREW_PREFIX/opt/openssl@1.1/bin:$PATH"' >> "$HOME"/.bash_profile
-export PATH="$HOMEBREW_PREFIX/opt/openssl@1.1/bin:$PATH"
+addFirstInPath "$HOMEBREW_PREFIX/opt/openssl@1.1/bin"
 # For compilers to find this software you may need to set:
 #    LDFLAGS:  -L$HOMEBREW_PREFIX/opt/openssl@1.1/lib
 #    CPPFLAGS: -I$HOMEBREW_PREFIX/opt/openssl@1.1/include
