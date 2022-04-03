@@ -13,7 +13,7 @@ else
   export HOMEBREW_PREFIX=/usr/local
 fi
 # in order to force /opt/homebrew/bin to be unique and early in path, remove it first
-PATH="${PATH//$HOMEBREW_PREFIX\/bin:/}"
+PATH="${PATH//:$HOMEBREW_PREFIX\/bin/}"
 if [ -d "$HOMEBREW_PREFIX/bin" ]; then
   PATH="$HOMEBREW_PREFIX/bin${PATH:+":$PATH"}"
 fi
