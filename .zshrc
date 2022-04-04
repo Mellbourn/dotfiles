@@ -200,9 +200,8 @@ fi
 zinit wait'0' lucid as'null' atinit'source $HOME/.asdf/asdf.sh
 # setup direnv
 if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
-  eval "$(asdf exec direnv hook $SHELL)"
+  source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc
 fi
-direnv() { asdf exec direnv "$@"; }
 # java_home
 if [ -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
   source "${ASDF_DIR:-$HOME/.asdf}"/plugins/java/set-java-home.zsh
