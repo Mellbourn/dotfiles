@@ -338,10 +338,6 @@ sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 # disable guest user
 sudo sysadminctl -guestAccount off
 
-# allow remote login
-sudo systemsetup -setremotelogin on
-sudo dseditgroup -q -o edit -a "$LOGNAME" -t staff com.apple.access_ssh
-
 # protect KeeWeb
 sudo chown -R root /Applications/KeeWeb.app
 
