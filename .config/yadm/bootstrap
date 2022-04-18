@@ -164,11 +164,13 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   # some uninstalls must be made before update
   brewSafeUninstallCask virtualbox
+  brewSafeUninstall gdu
 
   brew cleanup
   brew update
   brew upgrade
-  brew upgrade --cask
+  # is a separate upgrade for casks redundant?
+  #brew upgrade --cask
   brew tap aws/tap                # for aws-sam-cli
   brew tap git-time-metric/gtm    # for gtm
   brew tap homebrew/cask-fonts    # for font-fira-code
@@ -324,11 +326,6 @@ witch
   installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
   installThese=${installTheseLines//$'\n'/ }
   echo "$installThese" | xargs brew install --cask
-
-  if gdu --version | head -1 | grep -q "coreutils"; then
-    brew install --force gdu || true
-    brew link --overwrite gdu
-  fi
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
