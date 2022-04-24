@@ -297,6 +297,7 @@ zsh
   # TODO: add more when better arm support: philips-hue-sync plex imageoptim private-internet-access mockoon
   casks="
 bartender
+browserstacklocal
 chromium
 docker
 flipper
