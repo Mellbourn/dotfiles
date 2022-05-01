@@ -21,6 +21,7 @@ alias grep='grep --color=auto'
 alias l='ls -F '
 alias la='ls -AF '
 alias ll='ls -lF '
+alias lla='ll -A'
 alias more=less
 alias mv='mv -v'
 alias prev='open -a Preview'
