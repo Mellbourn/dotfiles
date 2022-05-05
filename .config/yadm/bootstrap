@@ -178,6 +178,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew tap homebrew/cask-versions # for google-chrome-beta
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
   brew tap homebrew/command-not-found
+  brew tap facebook/fb # for idb-companion for flipper
 
   # not all computers need logitech drivers, also, these need sudo
   # brew install --cask homebrew/cask-drivers/logitech-gaming-software
@@ -241,6 +242,7 @@ highlight
 htmlq
 httpie
 hyperfine
+idb-companion
 imagemagick
 jesseduffield/lazygit/lazygit
 jq
