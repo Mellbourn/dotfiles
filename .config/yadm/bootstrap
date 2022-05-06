@@ -757,7 +757,7 @@ defaults write -g com.apple.keyboard.fnState -bool true
 ###############################################################################
 # show more recent apps than three
 defaults write com.apple.dock show-recents -bool true
-defaults write com.apple.dock show-recent-count -int 8
+defaults write com.apple.dock show-recent-count -int 12
 # arrange the icons
 set +e
 declare -a apps_to_remove=("Mail" "Safari" "Maps" "Photos" "FaceTime" "Calendar" "Contacts" "Reminders" "Notes" "TV" "Music" "Podcasts" "Keynote" "Numbers" "Pages" "App Store" "Messages" "Epson Photo+" "Epson Photo+ Tool" "Feedback Assistant")
