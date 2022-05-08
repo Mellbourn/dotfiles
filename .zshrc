@@ -366,7 +366,12 @@ fi
 # TODO: convert these to zinit
 # zplug "lukechilds/zsh-better-npm-completion", defer:2
 if [[ -n $UNAME_LINUX ]]; then
-  zinit wait'2' lucid light-mode from"gh-r" as"program" bpick"*Linux_arm64*" for jesseduffield/lazygit
+  # this will work on 64 bit linux, but not on old raspberry, and probably not on wsl?
+  if [[ -n $UNAME_LINUX_64 ]]; then
+    zinit wait'2' lucid light-mode from"gh-r" as"program" bpick"*Linux_arm64*" for jesseduffield/lazygit
+  else
+    zinit wait'2' lucid light-mode from"gh-r" as"program" bpick"*Linux_armv*" for jesseduffield/lazygit
+  fi
 fi
 
 ###############################################################################

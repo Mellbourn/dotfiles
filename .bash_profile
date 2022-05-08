@@ -33,6 +33,9 @@ fi
 UNAME=$(uname)
 if [[ $UNAME == 'Linux' ]]; then
   export UNAME_LINUX=1
+  if [[ $(uname -m) == *"64"* ]]; then
+    export UNAME_LINUX_64=1
+  fi
 elif [[ $UNAME == 'Darwin' ]]; then
   export UNAME_MACOS=1
 fi
