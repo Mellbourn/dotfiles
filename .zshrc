@@ -366,10 +366,7 @@ fi
 # TODO: convert these to zinit
 # zplug "lukechilds/zsh-better-npm-completion", defer:2
 if [[ -n $UNAME_LINUX ]]; then
-  #  zplug "holygeek/git-number", as:command, use:'git-*', lazy:true
-
-  # transcrypt wasn't any good
-  #zinit wait'2' lucid light-mode as"program" pick"transcrypt" ver"main" for elasticdog/transcrypt
+  zinit wait'2' lucid light-mode from"gh-r" as"program" bpick"*Linux_arm64*" for jesseduffield/lazygit
 fi
 
 ###############################################################################
