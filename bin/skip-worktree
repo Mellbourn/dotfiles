@@ -3,4 +3,6 @@ TOPLEVEL=$(git rev-parse --show-toplevel)
 git update-index --skip-worktree "$TOPLEVEL/clients/apps/native/ios/Podfile.lock"
 git update-index --skip-worktree "$TOPLEVEL/clients/apps/native/ios/Klarna.xcodeproj/project.pbxproj"
 #git update-index --skip-worktree "$TOPLEVEL/clients/packages/features/app-credit-issuing-webview/native/ios/KLAWKWebView/KLPaymentInstanceManager.m"
+git update-index --skip-worktree "$TOPLEVEL/clients/apps/native/ios/Klarna/Images.xcassets/donations_36_svg_281b55.imageset/light.pdf"
+git update-index --skip-worktree "$TOPLEVEL/clients/apps/native/ios/Klarna/Images.xcassets/klarna_card_frozen_svg_070cf8.imageset/light.pdf"
 git update-index --skip-worktree "$TOPLEVEL/clients/apps/native/ios/Klarna/Images.xcassets/pink_horizontal_se_svg_67ab95.imageset/light.pdf"
