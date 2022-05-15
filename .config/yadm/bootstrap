@@ -531,6 +531,11 @@ if [ -z "$DOTFILES_LITE" ]; then
   fi
 fi
 
+# you have to register atuin once
+#atuin register -u Mellbourn -e klas@mellbourn.net
+atuin import auto
+atuin sync
+
 ###############################################################################
 # development
 ###############################################################################
