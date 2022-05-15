@@ -260,6 +260,7 @@ zinit wait'1' lucid as'null' \
 
 # history search has to be loaded aftr fzf, so that it overwrites ^R
 if [[ -x $(command -v atuin) ]]; then
+  zinit wait'1' lucid light-mode atinit"bindkey '^xr' history-search-multi-word" for zdharma-continuum/history-search-multi-word
   export ATUIN_NOBIND="true"
   zinit wait"1" lucid light-mode atinit"bindkey '^r' _atuin_search_widget" for ellie/atuin
 else
