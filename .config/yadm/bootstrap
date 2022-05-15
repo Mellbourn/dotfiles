@@ -533,7 +533,7 @@ fi
 
 atuin import auto
 # you have to register atuin once
-atuin sync||atuin register -u Mellbourn -e klas@mellbourn.net
+atuin sync||atuin register -u Mellbourn2 -e klas+2@mellbourn.net
 
 ###############################################################################
 # development
