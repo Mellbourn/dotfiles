@@ -101,11 +101,6 @@
 # diff for binary Apple property list files
 [diff "plist"]
 	textconv = plutil -convert xml1 -o -
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge --skip -- %f
-	process = git-lfs filter-process --skip
-	required = true
 # this will redirect all http based remote URLs to the git protocol instead, fixing auth problems at github. But causing https://stackoverflow.com/questions/58596233/failed-to-fetch-https-github-com-rust-lang-crates-io-index, but when I comment these lines out I get https://stackoverflow.com/questions/10909221/why-is-github-asking-for-username-password-when-following-the-instructions-on-sc
 [url "git@github.com:"]
 	insteadOf = http://github.com/
@@ -116,3 +111,8 @@
 	locksverify = false
 [maintenance]
 	repo = /Users/klas.mellbourn/code/klarna/klarna-app/.git
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
