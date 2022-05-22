@@ -82,8 +82,6 @@
 	enabled = true
 [pull]
 	rebase = true
-[push]
-	followTags = true
 [rebase]
 	autoStash = true
 [format]
