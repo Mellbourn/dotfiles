@@ -21,7 +21,7 @@ dialect = "uk"
 sync_frequency = "5m"
 
 ## address of the sync server
-sync_address = "http://Klass-Mac-mini-2020-M1.local:8888"
+sync_address = "http://192.168.211.50:8888"
 #sync_address = "http://127.0.0.1:8888"
 
 ## which search mode to use
