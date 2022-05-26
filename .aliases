@@ -21,6 +21,7 @@ alias grep='grep --color=auto'
 alias kp='g push && sysnd Funk && klapp ci build'
 alias l='ls -F '
 alias la='ls -AF '
+alias ld=lazydocker
 alias ll='ls -lF '
 alias lla='ll -A'
 alias more=less

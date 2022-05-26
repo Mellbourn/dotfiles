@@ -76,10 +76,12 @@ asdf plugin add python
 asdf plugin add bundler
 # asdf direnv doesn't seem absolutely necessary, but could improve performance. 2.30.2 works
 asdf plugin add direnv
+asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
 set -e
 asdf install direnv latest
 asdf global direnv latest
 # if no versions are installed, the asdf plugin will fall back to "system"
+asdf install lazydocker latest && asdf global lazydocker latest
 
 if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
@@ -533,7 +535,7 @@ fi
 
 atuin import auto
 # you have to register atuin once
-atuin sync||atuin register -u Mellbourn2 -e klas+2@mellbourn.net
+atuin sync || atuin register -u Mellbourn2 -e klas+2@mellbourn.net
 
 ###############################################################################
 # development
