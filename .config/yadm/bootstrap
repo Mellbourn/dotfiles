@@ -76,10 +76,12 @@ asdf plugin add python
 asdf plugin add bundler
 # asdf direnv doesn't seem absolutely necessary, but could improve performance. 2.30.2 works
 asdf plugin add direnv
+asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
 set -e
 asdf install direnv latest
 asdf global direnv latest
 # if no versions are installed, the asdf plugin will fall back to "system"
+asdf install lazydocker latest && asdf global lazydocker latest
 
 if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
@@ -199,6 +201,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   # haskell-stack
   # and then: cargo install viu https://github.com/atanunq/viu
   apps="
+atuin
 aws-sam-cli
 awscli@1
 bash
@@ -444,6 +447,12 @@ fi
 # this seems healthy to do every now and then to make sure zsh completion works
 trash ~/.zcompdump* ~/.zcompcache 2>/tmp/zcomp_delete_error.txt || true
 
+# atuin completion
+if [ -n "$GENCOMPL_FPATH" ] && [[ -x "$(command -v atuin)" ]]; then
+  mkdir -p "$GENCOMPL_FPATH"
+  atuin gen-completions --shell zsh --out-dir "$GENCOMPL_FPATH"
+fi
+
 # if, after yadm 3.0 migration, the old .yadm folder is empty, remove it
 if [ -n "$(find "$HOME/.yadm" -maxdepth 0 -type d -empty 2>/dev/null)" ]; then
   trash "$HOME"/.yadm
@@ -523,6 +532,10 @@ if [ -z "$DOTFILES_LITE" ]; then
     set -e
   fi
 fi
+
+atuin import auto
+# you have to register atuin once
+atuin sync || atuin register -u Mellbourn2 -e klas+2@mellbourn.net
 
 ###############################################################################
 # development

@@ -22,7 +22,6 @@ fi
 #rm ~/.zcompdump ~/.zcompcache
 source ~/.zinit/bin/zinit.zsh
 
-GENCOMPL_FPATH=~/.zsh-personal-completions/generated
 fpath=(~/.zsh-personal-functions ~/.zsh-personal-completions $fpath $GENCOMPL_FPATH)
 autoload -U zmv
 # personal functions in ~/.zsh-personal-functions
@@ -259,8 +258,14 @@ fi
 zinit wait'1' lucid as'null' \
   atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma-continuum/null
 
-# has to be loaded aftr fzf, so that it overwrites ^R
-zinit wait'1' lucid for zdharma-continuum/history-search-multi-word
+# history search has to be loaded aftr fzf, so that it overwrites ^R
+if [[ -x $(command -v atuin) ]]; then
+  zinit wait'1' lucid light-mode atinit"bindkey '^xr' history-search-multi-word" for zdharma-continuum/history-search-multi-word
+  export ATUIN_NOBIND="true"
+  zinit wait"1" lucid light-mode atinit"bindkey '^r' _atuin_search_widget" for ellie/atuin
+else
+  zinit wait'1' lucid for zdharma-continuum/history-search-multi-word
+fi
 
 zinit wait'1' lucid light-mode for "cedi/meaningful-error-codes"
 

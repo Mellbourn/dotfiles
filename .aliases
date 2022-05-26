@@ -18,8 +18,10 @@ alias generate_password='LC_ALL=C tr -dc "[:alnum:]" < /dev/urandom | head -c 20
 alias glances='TERM=xterm-256color glances --process-short-name'
 alias gn='git number --column' # note that command line completion does not work well for this alias
 alias grep='grep --color=auto'
+alias kp='g push && sysnd Funk && klapp ci build'
 alias l='ls -F '
 alias la='ls -AF '
+alias ld=lazydocker
 alias ll='ls -lF '
 alias lla='ll -A'
 alias more=less
