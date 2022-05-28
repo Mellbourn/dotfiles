@@ -1,6 +1,7 @@
 .protocol filter=git-crypt diff=git-crypt
 .kube/config filter=git-crypt diff=git-crypt
 .kube/certificate-authority.pem filter=git-crypt diff=git-crypt
+.kube/src/secrets.yaml filter=git-crypt diff=git-crypt
 .ssh/config filter=git-crypt diff=git-crypt
 .config/yadm/bootstrap-customer filter=git-crypt diff=git-crypt
 .config/yadm/bootstrap-sudo-customer filter=git-crypt diff=git-crypt
