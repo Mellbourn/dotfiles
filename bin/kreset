@@ -1,0 +1,7 @@
+#/usr/bin/env bash
+kubectl delete all --all
+kubectl delete persistentvolumeclaims --all
+kubectl delete persistentvolume --all
+kubectl apply -f ~/.kube/src/yopass.yaml \
+-f ~/.kube/src/secrets.yaml \
+-f ~/.kube/src/atuin.yaml
