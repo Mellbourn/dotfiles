@@ -1,7 +1,7 @@
 #/usr/bin/env bash
-set -e
 set -x
 kubectl delete namespaces atuin-namespace yopass-namespace
+set -e
 kubectl delete all --all
 kubectl delete persistentvolumeclaims --all
 kubectl delete persistentvolume --all
