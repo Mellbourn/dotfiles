@@ -641,7 +641,7 @@ if [ -x "$(command -v bat)" ]; then
 fi
 if [ -x "$(command -v lsd)" ]; then
   alias ls=lsd
-  alias ll='ls -l --date relative --blocks name,size,date,permission'
+  alias ll='ls -l --date relative --blocks permission,size,date,name'
 fi
 
 # load explicit compdefs after compinit (not sure why this is necessary)
