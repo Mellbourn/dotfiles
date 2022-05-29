@@ -1,7 +1,14 @@
 #/usr/bin/env bash
+set -e
+set -x
+kubectl delete namespaces atuin-namespace yopass-namespace
 kubectl delete all --all
 kubectl delete persistentvolumeclaims --all
 kubectl delete persistentvolume --all
-kubectl apply -f ~/.kube/src/yopass.yaml \
--f ~/.kube/src/secrets.yaml \
--f ~/.kube/src/atuin.yaml
+pushd ~/.kube/src
+kubectl apply -f ./namespaces.yaml
+kubectl apply -f ./yopass.yaml -n yopass-namespace
+kubectl apply -n atuin-namespace \
+              -f ./secrets.yaml \
+              -f ./atuin.yaml
+popd
