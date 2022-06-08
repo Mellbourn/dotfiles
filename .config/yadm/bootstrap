@@ -282,6 +282,7 @@ tmpreaper
 tmux
 tokei
 tree
+ugit
 vim
 volta
 wakeonlan
@@ -335,6 +336,8 @@ witch
   installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
   installThese=${installTheseLines//$'\n'/ }
   echo "$installThese" | xargs brew install --cask
+
+  brew link --overwrite ugit
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
