@@ -542,9 +542,9 @@ if [ -z "$DOTFILES_LITE" ]; then
 fi
 
 if [[ -x "$(command -v atuin)" ]]; then
-  atuin import auto
+  # atuin import auto
   # you have to register atuin once
-  atuin sync || atuin login -u Mellbourn
+  atuin sync || (atuin login -u Mellbourn && atuin import auto)
 fi
 
 ###############################################################################
