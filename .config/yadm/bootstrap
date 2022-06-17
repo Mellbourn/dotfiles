@@ -544,7 +544,7 @@ fi
 if [[ -x "$(command -v atuin)" ]]; then
   atuin import auto
   # you have to register atuin once
-  atuin sync || atuin login -u Mellbourn2
+  atuin sync || atuin login -u Mellbourn
 fi
 
 ###############################################################################
