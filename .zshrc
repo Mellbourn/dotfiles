@@ -644,6 +644,9 @@ if [ -x "$(command -v lsd)" ]; then
   alias ll='ls -l --date relative --blocks permission,size,date,name'
 fi
 
+# Visual Studio Code shell integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && zinit wait'2b' lucid as'null' atinit'source "/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench/contrib/terminal/browser/media/shellIntegration-rc.zsh"' light-mode for zdharma-continuum/null
+
 # load explicit compdefs after compinit (not sure why this is necessary)
 zinit wait'2b' lucid as'null' atinit'
 
