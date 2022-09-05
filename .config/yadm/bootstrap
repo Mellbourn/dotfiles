@@ -545,8 +545,7 @@ fi
 
 if [[ -x "$(command -v atuin)" ]]; then
   # you have to register atuin once and import _once_
-  atuin sync || (if atuin login -u Mellbourn | grep "You are already logged in! Please run 'atuin logout' if you wish to login again"
-  then
+  atuin sync || (if atuin login -u Mellbourn | grep "You are already logged in! Please run 'atuin logout' if you wish to login again"; then
     atuin logout
     atuin login -u Mellbourn
   fi && atuin import auto)
