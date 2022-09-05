@@ -210,6 +210,7 @@ bat
 choose-rust
 coreutils
 croc
+dasel
 diff-so-fancy
 direnv
 dockutil
