@@ -38,14 +38,6 @@ pushd ~
 yadm submodule update --init --recursive --remote
 popd
 
-# TODO: eventually delete clean up of old version handlers
-if [ -d ~/.nodebrew ]; then
-  trash ~/.nodebrew
-fi
-if [ -d ~/.rbenv ]; then
-  trash ~/.rbenv
-fi
-
 # Install `zinit` if not installed
 if [ ! -d ~/.zinit ]; then
   mkdir ~/.zinit
@@ -467,10 +459,6 @@ if [ -n "$(find "$HOME/.yadm" -maxdepth 0 -type d -empty 2>/dev/null)" ]; then
   trash "$HOME"/.yadm
 fi
 
-# TODO: eventually remove this removal
-# remove obsolete folder for .zplugin, since it has been renamed to zinit
-trash ~/.zplugin || true
-
 # vim
 mkdir -p ~/.vim/autoload
 wget --show-progress -qNP ~/.vim/autoload https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -518,9 +506,6 @@ if [ -x "$(command -v zsh)" ]; then
   zsh -ic "zinit delete -y zdharma/null | true"
   zsh -ic "zinit delete -y zdharma/zsh-diff-so-fancy | true"
 fi
-
-# TODO: eventually remove this removal
-trash ~/.gitconfig.local || true
 
 # set up alternate gitconfig file used to determine local settings
 yadm alt
