@@ -17,5 +17,5 @@ hunk-header-line-number-style = "#4169e1"       # royal blue
 hunk-header-decoration-style = ol "#000080"     # navy
 commit-decoration-style = bold "#00fa9a" box ul # medium spring green
 word-diff-regex = ''                            # weirdly, this makes the diff character level, which I prefer
-# plus-style = syntax "#004500"                   # added lines need to be a bit brighter green
-# plus-emph-style = syntax "#008500"              # added words now need to be even greener
+# plus-style = syntax "#004000"                   # added lines need to be a bit brighter green
+# plus-emph-style = syntax "#007500"              # added words now need to be even greener
