@@ -38,13 +38,6 @@ done
 LOGDIR=${XDG_STATE_HOME:-$HOME/.local/state}/$(basename "$0")
 mkdir -p "$LOGDIR"
 
-# TODO: remove this migration
-OLDLOGDIR=${XDG_STATE_HOME:-~/.cache}/$(basename "$0")
-if [ -d "$OLDLOGDIR" ]; then
-  mv "$OLDLOGDIR"/* "$LOGDIR"
-  trash "$OLDLOGDIR"
-fi
-
 if [ -x "$(command -v hyperfine)" ] && [ -n "$hyperfine_is_fine" ]; then
 
   LOGFILE=$LOGDIR/times.md
