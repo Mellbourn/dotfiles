@@ -37,7 +37,7 @@
     colorMoved = default
     submodule = log
 [merge]
-    tool = kdiff3
+    tool = vscode
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 [status]
@@ -85,11 +85,11 @@
 [rebase]
 	autoStash = true
 [format]
-	pretty = %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s
+	pretty = "%C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s"
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
 [mergetool "vscode"]
-    cmd = code --wait $MERGED
+    cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
