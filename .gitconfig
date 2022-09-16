@@ -2,21 +2,21 @@
 	name = Klas Mellbourn
 	signingkey = 9421003411C7A828
 [include]
-    path = .gitconfig.modern
+	path = .gitconfig.modern
 [include]
-    path = .gitconfig.pager
+	path = .gitconfig.pager
 [include]
-    path = .gitconfig.user.foss
+	path = .gitconfig.user.foss
 [includeIf "gitdir:~/code/klarna/"]
-    path = .gitconfig.user
+	path = .gitconfig.user
 
 [includeIf "gitdir:~/code/klarna/ui/"]
-    path = .gitconfig.user.foss
+	path = .gitconfig.user.foss
 [includeIf "gitdir:~/code/klarna/bubble-ui/"]
-    path = .gitconfig.user.foss
+	path = .gitconfig.user.foss
 # redundant, but don't forget this repo
 [includeIf "gitdir:~/.yadm/"]
-    path = .gitconfig.user.foss
+	path = .gitconfig.user.foss
 [init]
 	defaultBranch = main
 [checkout]
@@ -26,18 +26,18 @@
 [mergetool]
 	keepbackup = false
 	prompt = false
-    trustExitCode = true
+	trustExitCode = true
 [difftool]
-    prompt = true
+	prompt = true
 [diff]
-    algorithm = histogram
+	algorithm = histogram
 	# Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject instead of a/b/c/d as prefixes for patches
-  	mnemonicPrefix = true
-    tool = vscode
-    colorMoved = default
-    submodule = log
+	mnemonicPrefix = true
+	tool = vscode
+	colorMoved = default
+	submodule = log
 [merge]
-    tool = vscode
+	tool = vscode
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 [status]
@@ -64,7 +64,7 @@
 	last = log -1 HEAD
 	worktree-skipped = !git ls-files -v | grep "^S"
 	unchange-assumed = !git ls-files -v | grep "^[[:lower:]]"
-    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
 	cleanup-all = "!f(){\
         git branch | grep -v 'master' | grep -v ^* | sh -c 'while read br; \
 		  do git log -1 $br; \
@@ -87,9 +87,9 @@
 [format]
 	pretty = "%C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s"
 [difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+	cmd = code --wait --diff $LOCAL $REMOTE
 [mergetool "vscode"]
-    cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
@@ -104,7 +104,7 @@
 	insteadOf = http://github.com/
 	insteadOf = https://github.com/
 [url "https://github.com/rust-lang/crates.io-index"]
-    insteadOf = https://github.com/rust-lang/crates.io-index
+	insteadOf = https://github.com/rust-lang/crates.io-index
 [lfs]
 	locksverify = false
 [filter "lfs"]
