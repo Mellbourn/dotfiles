@@ -282,6 +282,9 @@ fi
 
 sudo xcodebuild -license accept
 
+# FirstVet might need this
+#sudo ln -s $(which python3) /usr/local/bin/python
+
 # speed up time machine backups until next reboot
 sudo sysctl debug.lowpri_throttle_enabled=0
 

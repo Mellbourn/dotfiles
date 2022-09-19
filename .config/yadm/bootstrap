@@ -595,6 +595,9 @@ fi
 # Is node-gyp really necessary?
 #npm i -g npm node-gyp
 npm i -g detox-cli @antfu/ni
+# FirstVet might need this
+# npm i -g typescript
+
 if [[ -n "$KLARNA" ]]; then
   if \ping -c1 -W1 jira.int.klarna.net; then
     npm update -g --registry=https://artifactory.klarna.net/artifactory/api/npm/v-npm-production/
