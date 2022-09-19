@@ -335,6 +335,7 @@ if [[ -n "$FIRSTVET" ]]; then
   if [[ -z "$ROSETTA_INSTALLED" ]]; then
     yes A | softwareupdate --install-rosetta
   fi
+  xcodes update
   XCODE_VERSION=13.4.1
   if ! xcodes installed | grep -q "$XCODE_VERSION"; then
     xcodes install "$XCODE_VERSION"
