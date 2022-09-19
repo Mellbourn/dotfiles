@@ -6,6 +6,10 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
   DOTFILES_LITE=1
 fi
 
+if [[ $(hostname) == *"MacBook-Pro-16-2021"* ]]; then
+  export FIRSTVET=1
+fi
+
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
   OS_UBUNTU=1
   if dpkg -l ubuntu-desktop >/dev/null; then
@@ -323,6 +327,12 @@ sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyI
 # this will not install major updates, e.g. Catalina
 sudo softwareupdate --schedule on
 sudo softwareupdate -i -a --restart
+if [[ -n "$FIRSTVET" ]]; then
+  # needed for python2 which is needed for node-gyp and node-sass
+  if ! /usr/bin/pgrep -q oahd; then
+    yes A | softwareupdate --install-rosetta
+  fi
+fi
 
 # always boot in verbose mode (not MacOS GUI mode) - no longer seems to work on Big Sur
 if [[ $PROCESSOR_ARCHITECTURE != 'arm' ]]; then
