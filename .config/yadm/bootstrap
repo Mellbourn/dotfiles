@@ -20,6 +20,9 @@ export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]] || [[ $(hostname) == "HKG"* ]]; then
   export KLARNA=1
 fi
+if [[ $(hostname) == *"MacBook-Pro-16-2021"* ]]; then
+  export FIRSTVET=1
+fi
 if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.bom" ]; then
   export ROSETTA_INSTALLED=1
 fi
@@ -60,8 +63,9 @@ asdf plugin update --all
 set +e
 # remove these removals eventually
 asdf uninstall java zulu-8.58.0.13
-asdf plugin remove java
-asdf plugin remove nodejs
+
+asdf plugin add nodejs
+asdf plugin add java
 
 asdf plugin add ruby
 asdf plugin add python
@@ -72,6 +76,19 @@ asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
 set -e
 asdf install direnv latest
 asdf global direnv latest
+
+if [[ -n "$FIRSTVET" ]]; then
+  asdf install nodejs 16.17.0
+  asdf install nodejs 14.20.0
+  asdf global nodejs 16.17.0
+  asdf install java temurin-11.0.16+101
+  asdf global java temurin-11.0.16+101
+  asdf install ruby 2.7.6
+  asdf install python 3.10.6
+  asdf global python 3.10.6
+#asdf global ruby 2.7.6
+fi
+
 # if no versions are installed, the asdf plugin will fall back to "system"
 asdf install lazydocker latest && asdf global lazydocker latest
 
