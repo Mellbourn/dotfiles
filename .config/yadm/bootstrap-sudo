@@ -335,6 +335,10 @@ if [[ -n "$FIRSTVET" ]]; then
   if [[ -z "$ROSETTA_INSTALLED" ]]; then
     yes A | softwareupdate --install-rosetta
   fi
+  XCODE_VERSION=13.4.1
+  if ! xcodes installed | grep -q "$XCODE_VERSION"; then
+    xcodes install "$XCODE_VERSION"
+  fi
 fi
 
 # always boot in verbose mode (not MacOS GUI mode) - no longer seems to work on Big Sur
