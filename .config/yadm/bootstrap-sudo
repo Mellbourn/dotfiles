@@ -9,6 +9,9 @@ fi
 if [[ $(hostname) == *"MacBook-Pro-16-2021"* ]]; then
   export FIRSTVET=1
 fi
+if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.bom" ]; then
+  export ROSETTA_INSTALLED=1
+fi
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
   OS_UBUNTU=1
@@ -329,7 +332,7 @@ sudo softwareupdate --schedule on
 sudo softwareupdate -i -a --restart
 if [[ -n "$FIRSTVET" ]]; then
   # needed for python2 which is needed for node-gyp and node-sass
-  if ! /usr/bin/pgrep -q oahd; then
+  if [[ -z "$ROSETTA_INSTALLED" ]]; then
     yes A | softwareupdate --install-rosetta
   fi
 fi
