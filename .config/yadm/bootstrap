@@ -385,6 +385,13 @@ witch
 
       # running yarn android:setup makes these unnecessary
       asdf plugin remove cmake || true
+      # else
+      #asdf install kubectl latest && asdf global kubectl latest
+      # is krew important?
+      # set +e
+      # asdf plugin-add krew https://github.com/nlamirault/asdf-krew.git
+      # set -e
+      # asdf install krew latest && asdf global krew latest
     fi
 
   fi
@@ -492,12 +499,9 @@ if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
   # Delugia Nerd Font is Cascadia with Nerd and frequently updated, unfortunately it is buggy (too small or high icons)
   trash $FONT_DIRECTORY/Delugia.Nerd.Font.Complete.ttf || true
   trash $FONT_DIRECTORY/Delugia.Nerd.Font.Book.ttf || true
-  curl -sL github.com/adam7/delugia-code/releases/latest |
-    grep "delugia-book.zip\"" |
-    head -1 |
-    awk -F "\"" '{print "https://github.com" $2}' |
-    wget --show-progress -qNi - -O "${XDG_CACHE_HOME:-$HOME/.cache}"/delugia-book.zip
-  yes | unzip -u "${XDG_CACHE_HOME:-$HOME/.cache}"/delugia-book.zip -d $FONT_DIRECTORY
+  LATEST_TAG=$(gh release list --exclude-drafts -R adam7/delugia-code -L 1 | awk '{print $1;}')
+  gh release download "$LATEST_TAG" -R adam7/delugia-code -p delugia-book.zip --skip-existing -D "$TMPDIR"
+  yes | unzip -u "$TMPDIR"delugia-book.zip -d $FONT_DIRECTORY
 fi
 
 if [ -x "$(command -v zsh)" ]; then
