@@ -70,6 +70,7 @@ asdf plugin add java
 asdf plugin add ruby
 asdf plugin add python
 asdf plugin add bundler
+#asdf plugin add kubectl
 # asdf direnv doesn't seem absolutely necessary, but could improve performance. 2.30.2 works
 asdf plugin add direnv
 asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
