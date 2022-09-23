@@ -244,6 +244,7 @@ git-delta
 git-extras
 git-lfs
 git-recent
+git-secret
 glances
 gnu-sed
 gnupg
