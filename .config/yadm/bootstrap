@@ -599,7 +599,12 @@ fi
 ###############################################################################
 # Is node-gyp really necessary?
 #npm i -g npm node-gyp
-npm i -g detox-cli @antfu/ni
+npm i -g detox-cli
+# @antfu/ni conflicts with nx
+#npm i -g @antfu/ni
+npm uninstall -g @antfu/ni
+# this conflicts with antfu/ni
+npm i -g nx lerna
 # FirstVet might need this
 # npm i -g typescript
 
