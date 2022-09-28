@@ -219,6 +219,7 @@ MAGIC_ENTER_OTHER_COMMAND="l"
 
 zinit wait'1' lucid for supercrabtree/k
 
+zinit wait'1' lucid light-mode for lukechilds/zsh-better-npm-completion
 zinit wait'1' atclone'./zplug.zsh' lucid for g-plane/zsh-yarn-autocompletions
 
 if [ ! -x "$(command -v dircolors)" ]; then
@@ -368,8 +369,6 @@ then
   #zinit wait'2' lucid as'null' atinit'export PATH="$PATH:$(yarn global bin)"' light-mode for zdharma-continuum/null
 fi
 
-# TODO: convert these to zinit
-# zplug "lukechilds/zsh-better-npm-completion", defer:2
 if [[ -n $UNAME_LINUX ]]; then
   # this will work on 64 bit linux, but not on old raspberry, and probably not on wsl?
   if [[ -n $UNAME_LINUX_64 ]]; then
