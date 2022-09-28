@@ -649,8 +649,6 @@ fi
 # load explicit compdefs after compinit (not sure why this is necessary)
 zinit wait'2b' lucid as'null' atinit'
 
-[[ -f /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh ]] && . /Users/klas.mellbourn/code/klarna/klarna-app/bin/completion/klapp.zsh.sh || true
-
 # this MUST be run after woefe/git-prompt.zsh
 if [ -x "$(command -v bat)" ]; then
   compdef less=less
