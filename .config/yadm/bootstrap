@@ -597,6 +597,9 @@ fi
 ###############################################################################
 # development
 ###############################################################################
+gh extension install dlvhdr/gh-dash
+gh extension install gennaro-tedesco/gh-f
+gh extension upgrade --all
 # Is node-gyp really necessary?
 #npm i -g npm node-gyp
 npm i -g detox-cli
