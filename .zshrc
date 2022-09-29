@@ -222,6 +222,7 @@ zinit wait'1' lucid for supercrabtree/k
 zinit wait'1' lucid light-mode for lukechilds/zsh-better-npm-completion
 zinit wait'1' atclone'./zplug.zsh' lucid for g-plane/zsh-yarn-autocompletions
 zinit wait'1' lucid light-mode for jscutlery/nx-completion
+zinit wait'1' lucid light-mode for favware/zsh-lerna
 
 if [ ! -x "$(command -v dircolors)" ]; then
   alias dircolors=gdircolors
