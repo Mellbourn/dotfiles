@@ -114,3 +114,5 @@
 	required = true
 [maintenance]
 	repo = /Users/klas.mellbourn/code/klarna/klarna-app/.git
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
