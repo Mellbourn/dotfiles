@@ -306,6 +306,7 @@ wemux
 wget
 wix/brew/applesimutils
 xcodes
+xplr
 yadm
 yank
 yarn
@@ -454,6 +455,23 @@ witch
 fi ############################################################################
 # configuration for both Mac and Linux
 ###############################################################################
+
+## xplr plugins
+mkdir -p ~/.config/xplr/plugins
+pushd "$HOME"/.config/xplr/plugins
+install_xplr_plugin() {
+  if [ -d "$2" ]; then
+    pushd "$2"
+    git pull
+    popd
+  else
+    git clone https://github.com/"$1"/"$2".xplr "$2"
+  fi
+}
+install_xplr_plugin prncss-xyz icons
+install_xplr_plugin sayanarijit map
+install_xplr_plugin sayanarijit zoxide
+popd
 
 version_gte() {
   printf '%s\n%s' "$1" "$2" | sort -C -V -r
