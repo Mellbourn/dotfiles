@@ -10,3 +10,4 @@ package.path = home
 require"icons".setup()
 require"map".setup()
 require"zoxide".setup()
+require"fzf".setup()

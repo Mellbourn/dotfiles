@@ -471,6 +471,7 @@ install_xplr_plugin() {
 install_xplr_plugin prncss-xyz icons
 install_xplr_plugin sayanarijit map
 install_xplr_plugin sayanarijit zoxide
+install_xplr_plugin sayanarijit fzf
 popd
 
 version_gte() {
