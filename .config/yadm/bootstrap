@@ -212,6 +212,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   # haskell-stack
   # and then: cargo install viu https://github.com/atanunq/viu
   apps="
+1password-cli
 atuin
 aws-sam-cli
 awscli@1
@@ -261,6 +262,7 @@ httpie
 hyperfine
 idb-companion
 imagemagick
+jc
 jesseduffield/lazygit/lazygit
 jq
 kpcli
@@ -322,6 +324,7 @@ zsh
 
   # TODO: add more when better arm support: philips-hue-sync plex imageoptim private-internet-access mockoon
   casks="
+1password
 bartender
 browserstacklocal
 chromium
