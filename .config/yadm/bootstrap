@@ -362,6 +362,10 @@ witch
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
+    if [[ -n "$FIRSTVET" ]]; then
+      gem install fastlane
+    fi
+
     if [[ -n "$KLARNA" ]]; then
       brew install readline libffi
 
