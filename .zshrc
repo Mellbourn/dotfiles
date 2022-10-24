@@ -668,6 +668,9 @@ if [ -x "$(command -v prettyping)" ]; then
   alias ping="prettyping --nolegend"
   compdef prettyping=ping
 fi
+if [ -x "$(command -v op)" ]; then
+  eval "$(op completion zsh)"; compdef _op op
+fi
 
 ' light-mode for zdharma-continuum/null
 
