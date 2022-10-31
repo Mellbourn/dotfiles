@@ -671,6 +671,9 @@ fi
 if [ -x "$(command -v op)" ]; then
   eval "$(op completion zsh)"; compdef _op op
 fi
+if [ -x "$(command -v circleci)" ]; then
+  eval "$(circleci completion zsh)" && compdef _circleci circleci
+fi
 
 ' light-mode for zdharma-continuum/null
 
