@@ -119,14 +119,10 @@ if [[ $(uname) == 'Linux' ]]; then
     installLsd "$(dpkg --print-architecture)"
   elif [[ $(dpkg --print-architecture) == "armhf" ]]; then
     # probably 32 bit Rapberry Pi OS
-    LSD_INSTALL_DIR="$HOME/.manually-installed/lsd"
-    mkdir -p "$LSD_INSTALL_DIR"
-    curl -sL github.com/Peltoche/lsd/releases/latest |
-      grep "lsd-[[:digit:]]\.[[:digit:]]*\.[[:digit:]]*-arm-unknown-linux-gnueabihf.tar.gz\"" |
-      head -1 |
-      awk -F "\"" '{print "https://github.com" $2}' |
-      wget --show-progress -qNi - -O - |
-      tar -xzv --strip=1 -C "$LSD_INSTALL_DIR"
+    LATEST_TAG=$(gh release list --exclude-drafts -R Peltoche/lsd -L 1 | awk '{print $1;}')
+    gh release download "$LATEST_TAG" -R Peltoche/lsd -p "lsd-$LATEST_TAG-arm-unknown-linux-gnueabihf.tar.gz" --skip-existing -D "/tmp"
+    tar -xzvf "/tmp/lsd-$LATEST_TAG-arm-unknown-linux-gnueabihf.tar.gz" --keep-newer-files --strip-components=1 -C "$HOME/.manually-installed/lsd/"
+
   else
     # afaik this fallback is never used, but it should fail and stop the execution if it doesn't work
     installLsd "$(dpkg --print-architecture)"
