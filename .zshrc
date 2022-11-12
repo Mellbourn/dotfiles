@@ -198,6 +198,7 @@ fi
 
 zinit wait'0' lucid as'null' atinit'source $HOME/.asdf/asdf.sh
 # setup direnv
+export DIRENV_LOG_FORMAT=""
 if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
   source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc
 fi
