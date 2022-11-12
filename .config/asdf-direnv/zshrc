@@ -3,3 +3,13 @@
 DIRENV_PATH=$(find $HOME/.asdf/installs/direnv -maxdepth 1 -type d | sort --version-sort | tail -1)
 export ASDF_DIRENV_BIN="$DIRENV_PATH/bin/direnv"
 eval "$($ASDF_DIRENV_BIN hook zsh)"
+copy_function() {
+    test -n "$(declare -f "$1")" || return
+    eval "${_/$1/$2}"
+}
+
+copy_function _direnv_hook _direnv_hook__old
+
+_direnv_hook() {
+    _direnv_hook__old "$@" 2> >(egrep --color=never '^direnv: (export|unloading)')
+}
