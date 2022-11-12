@@ -11,8 +11,10 @@ aliases:
     co: pr checkout
     open: '!gh browse . -b $(git rev-parse --abbrev-ref HEAD)'
     work: status -o firstvetcom
-    myruns: run list -u Mellbourn
-    myprs: pr list -A @me
+    whoami: '!gh api user | jq -r .login'
+    runs: '!gh run list -u $(gh whoami)'
+    fail: '!gh run view --log-failed $(gh run list -u $(gh whoami) --limit 1 --json databaseId -q .[0].databaseId) | less +G'
+    prs: pr list -A @me
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
