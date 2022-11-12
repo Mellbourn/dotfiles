@@ -65,11 +65,11 @@ unstage = reset HEAD --
 last = log -1 HEAD
 worktree-skipped = !git ls-files -v | grep "^S"
 unchange-assumed = !git ls-files -v | grep "^[[:lower:]]"
-cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|main\\|develop\\|hotfix\\|[0-9]task' | xargs -n 1 git branch -d"
 cleanup-all = "!f(){\
-        git branch | grep -v 'master' | grep -v ^* | sh -c 'while read br; \
+        git branch | grep -v 'master\\|main\\|develop\\|hotfix\\|[0-9]task' | grep -v ^* | sh -c 'while read br; \
 		  do git log -1 $br; \
-		  git branch -D $br >> /tmp/cleaned-branches.txt; \
+		  git branch -D $br >> ~/temp/cleaned-branches.txt; \
 		done' ;\
     }; f"
 stash-rename = "!_() { if [ -z \"$1\" ] || [ -z \"$2\" ]; then echo \"git rename-stash 0 NewName\" && echo \"\" && git stash list && exit 1; else stash=\"stash@{$1}\"; rev=$(git rev-parse \"${stash}\"); git stash drop \"${stash}\" || exit 1; git stash store -m \"$2\" \"$rev\" || exit 1; git stash list; fi }; _"
