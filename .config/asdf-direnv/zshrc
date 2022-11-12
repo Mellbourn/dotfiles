@@ -13,5 +13,5 @@ copy_function() {
 copy_function _direnv_hook _direnv_hook__old
 
 _direnv_hook() {
-    _direnv_hook__old "$@" 2> >(egrep --color=never '^direnv: (export|unloading)')
+    _direnv_hook__old "$@" 2> >(egrep -v -e 'direnv: (loading|using)')
 }
