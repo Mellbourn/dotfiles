@@ -15,6 +15,7 @@ aliases:
     runs: '!gh run list -u $(gh whoami) --limit 5'
     fail: '!gh run view --log-failed $(gh run list -u $(gh whoami) --limit 1 --json databaseId -q .[0].databaseId) | less +G'
     prs: pr list -A @me
+    url: '!gh pr view --json url -q .url|pbcopy'
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
