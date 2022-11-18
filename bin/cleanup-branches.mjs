@@ -1,3 +1,5 @@
 #!/usr/bin/env zx
 
-await $`git branch --merged | grep  -v '\\*\\|master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task' | xargs -n 1 git branch -d`;
+const neverDelete = "\\*\\|master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task";
+
+await $`git branch --merged | grep  -v ${neverDelete} | xargs -n 1 git branch -d`;
