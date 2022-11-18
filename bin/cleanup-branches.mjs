@@ -8,17 +8,24 @@ try {
   console.log(`No merged branches to delete (${p.exitCode})`);
 }
 
-let branches = [];
+let branchLines = "";
 
 try {
-  branches = await $`git branch --no-merged | grep  -v ${neverDelete}`;
+  branchLines = await $`git branch --no-merged | grep  -v ${neverDelete}`;
 } catch (p) {
   console.log(`No unmerged branches to delete (${p.exitCode})`);
   process.exit(0);
 }
 
-console.log(chalk.blue(`Branches to delete: ${branches.stdout}`));
+const branches = branchLines.stdout
+  .split("\n")
+  .map((b) => b.trim())
+  .filter((b) => b.length > 0);
 
-// branches.forEach((branch) => {
-//   console.log(`delete ${branch}`);
-// });
+console.warn("Deleting unmerged branches: ", branches);
+for (const branch of branches) {
+  const shouldDelete = await question(`delete "${branch}"? [y/N] `);
+  if (shouldDelete && shouldDelete[0].toLowerCase() === "y") {
+    await $`git branch -D ${branch}`;
+  }
+}
