@@ -626,16 +626,10 @@ gh extension install gennaro-tedesco/gh-f
 gh extension install meiji163/gh-notify
 set -e
 gh extension upgrade --all
-# Is node-gyp really necessary?
-#npm i -g npm node-gyp
-npm i -g detox-cli
-# @antfu/ni conflicts with nx
-#npm i -g @antfu/ni
-npm uninstall -g @antfu/ni
-# this conflicts with antfu/ni
-npm i -g nx lerna
-# FirstVet might need this
-# npm i -g typescript
+
+# these uninstalls don't remove the exceutables from /opt/homebrew/bin - had to remove them manually
+npm uninstall -g nx lerna detox-cli @antfu/ni
+npm i -g zx
 
 if [[ -n "$KLARNA" ]]; then
   if \ping -c1 -W1 jira.int.klarna.net; then
