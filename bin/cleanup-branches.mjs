@@ -13,12 +13,6 @@ const linesToArray = (lines) =>
 const neverDelete =
   "'^\\*\\|master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task'";
 
-try {
-  await $`git branch --merged | grep  -v ${neverDelete} | xargs -n 1 git branch -d`;
-} catch (p) {
-  console.log(`No merged branches to delete (${p.exitCode})`);
-}
-
 const deleteBranches = async ({ merged, remote, ask }) => {
   const getBranches = `git branch ${remote ? "-r" : ""} ${
     merged ? "--merged" : "--no-merged"
@@ -31,33 +25,37 @@ const deleteBranches = async ({ merged, remote, ask }) => {
     const branchLines = await $`${cmd}`;
     branches = linesToArray(branchLines);
   } catch (p) {
-    if (p.exitCode === 1) {
-      console.log(`No branches to delete`);
-    } else {
+    if (p.exitCode !== 1) {
       throw p;
     }
+  }
+  if (branches.length === 0) {
+    console.log(`No branches to delete`);
+    return;
   }
 
   const deleteBranch = remote
     ? "git push origin --delete"
     : "git branch " + (merged ? "-d" : "-D");
 
-  if (branches.length > 0) {
-    console.warn("Deleting branches: ", branches);
-    for (const branch of branches) {
-      await $`git log origin/main..${(remote ? "origin/" : "") + branch}`;
-      const shouldDelete = ask
-        ? await question(`delete "${branch}"? [y/N] `)
-        : "y";
-      if (shouldDelete && shouldDelete[0].toLowerCase() === "y") {
-        await $`${deleteBranch.split(" ")} ${branch}`;
-      }
+  console.warn("Deleting branches: ", branches);
+  for (const branch of branches) {
+    await $`git log origin/main..${(remote ? "origin/" : "") + branch}`;
+    const shouldDelete = ask
+      ? await question(`delete "${branch}"? [y/N] `)
+      : "y";
+    if (shouldDelete && shouldDelete[0].toLowerCase() === "y") {
+      await $`${deleteBranch.split(" ")} ${branch}`;
     }
-  } else {
-    console.log(`No branches to delete`);
   }
 };
 
+console.log("-----------------> Delete local merged");
+await deleteBranches({
+  merged: true,
+  remote: false,
+  ask: false,
+});
 console.log("-----------------> Delete remote merged");
 await deleteBranches({
   merged: true,
@@ -68,5 +66,11 @@ console.log("-----------------> Delete unmerged");
 await deleteBranches({
   merged: false,
   remote: false,
+  ask: true,
+});
+console.log("-----------------> Delete unmerged remote");
+await deleteBranches({
+  merged: false,
+  remote: true,
   ask: true,
 });

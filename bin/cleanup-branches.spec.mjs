@@ -120,3 +120,13 @@ if (await branchExists("unmergedPushed1")) {
     )
   );
 }
+if (await branchExists("origin/unmergedPushed1")) {
+  console.log(
+    chalk.red(
+      "unmerged remote branches should be deleted even if they have been pushed"
+    )
+  );
+}
+
+console.log(chalk.bold("****************** REPORT ********************"));
+await $`git lol --color=always`;
