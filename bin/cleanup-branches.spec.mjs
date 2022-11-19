@@ -32,6 +32,7 @@ const createBranch = async (name, isMerged = true, isPushed = false) => {
   }
 };
 
+await $`git switch main`;
 await addCommittedFile("firstFile.txt");
 await $`git push -u origin main`;
 
@@ -40,4 +41,6 @@ await createBranch("merged1");
 await createBranch("unmergedPushed1", false, true);
 await createBranch("mergedPushed1", true, true);
 
+await createBranch("current");
+await $`git switch current`;
 await $`cleanup-branches.mjs`;
