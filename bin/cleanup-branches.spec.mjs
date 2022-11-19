@@ -43,21 +43,24 @@ const branchExists = async (name) => {
 
 const createBranch = async (name, isMerged = true, isPushed = false) => {
   await $`git switch main`;
-  if (!(await branchExists(name))) {
-    await $`git switch -c ${name}`;
-    if (!isMerged) {
-      addCommittedFile(`${name}.txt`);
-    }
-    if (isPushed) {
-      await $`git push -u origin ${name}`;
-    }
-    await $`git switch main`;
+  if (await branchExists(name)) {
+    // await $`git push origin --delete ${name}`;
+    await $`git branch -D ${name}`;
   }
+  await $`git switch -c ${name}`;
+  if (!isMerged) {
+    await addCommittedFile(`${name}.txt`);
+  }
+  if (isPushed) {
+    await $`git push --force -u origin ${name}`;
+  }
+  await $`git switch main`;
 };
 
 if (await branchExists("main")) {
   await $`git switch main`;
 }
+await $`git reset --hard $(git log --reverse --format=%H|head -1)`;
 await $`git cleanup-all`;
 await addCommittedFile("firstFile.txt");
 await $`git push -u origin main`;
