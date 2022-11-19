@@ -1,5 +1,11 @@
 #!/usr/bin/env zx
 
+const linesToArray = (lines) =>
+  lines.stdout
+    .split("\n")
+    .map((b) => b.trim())
+    .filter((b) => b.length > 0);
+
 const neverDelete =
   "^\\*\\|master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task";
 
@@ -12,7 +18,7 @@ try {
 try {
   await $`git branch -r --merged | sd 'origin/' '' | grep  -v ${neverDelete} | xargs -n 1 git push origin --delete`;
 } catch (p) {
-  console.log(`No merged branches to delete (${p.exitCode})`);
+  console.log(`No remote merged branches to delete (${p.exitCode})`);
 }
 
 let unmergedBranchLines = "";
@@ -24,12 +30,6 @@ try {
   console.log(`No unmerged branches to delete (${p.exitCode})`);
   process.exit(0);
 }
-
-const linesToArray = (lines) =>
-  lines.stdout
-    .split("\n")
-    .map((b) => b.trim())
-    .filter((b) => b.length > 0);
 
 const branches = linesToArray(unmergedBranchLines);
 
