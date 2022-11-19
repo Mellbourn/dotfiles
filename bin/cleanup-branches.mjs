@@ -19,7 +19,7 @@ try {
   console.log(`No merged branches to delete (${p.exitCode})`);
 }
 
-const deleteBranches = async (getBranches, deleteBranch, remote, ask) => {
+const deleteBranches = async ({ getBranches, deleteBranch, remote, ask }) => {
   const cmd = `${getBranches} | grep  -v ${neverDelete}`;
   const branchLines = await $`${cmd.split(" ")}`;
 
@@ -42,11 +42,16 @@ const deleteBranches = async (getBranches, deleteBranch, remote, ask) => {
 };
 
 console.log("-----------------> Delete remote merged");
-await deleteBranches(
-  'git branch -r --merged | sd origin/ ""',
-  "git push origin --delete",
-  true,
-  false
-);
+await deleteBranches({
+  getBranches: 'git branch -r --merged | sd origin/ ""',
+  deleteBranch: "git push origin --delete",
+  remote: true,
+  ask: false,
+});
 console.log("-----------------> Delete unmerged");
-await deleteBranches("git branch --no-merged", "git branch -D", false, true);
+await deleteBranches({
+  getBranches: "git branch --no-merged",
+  deleteBranch: "git branch -D",
+  remote: false,
+  ask: true,
+});
