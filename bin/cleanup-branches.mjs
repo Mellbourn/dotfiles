@@ -1,5 +1,9 @@
 #!/usr/bin/env zx
 
+// suppress quoting, it doesn't allow for dynamic commands
+const q = $.quote;
+$.quote = (v) => v;
+
 const linesToArray = (lines) =>
   lines.stdout
     .split("\n")
@@ -7,7 +11,7 @@ const linesToArray = (lines) =>
     .filter((b) => b.length > 0);
 
 const neverDelete =
-  "^\\*\\|master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task";
+  "'^\\*\\|master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task'";
 
 try {
   await $`git branch --merged | grep  -v ${neverDelete} | xargs -n 1 git branch -d`;
@@ -15,23 +19,16 @@ try {
   console.log(`No merged branches to delete (${p.exitCode})`);
 }
 
-try {
-  await $`git branch -r --merged | sd 'origin/' '' | grep  -v ${neverDelete} | xargs -n 1 git push origin --delete`;
-} catch (p) {
-  console.log(`No remote merged branches to delete (${p.exitCode})`);
-}
-
-const deleteBranches = async (getBranches, deleteBranch, ask) => {
-  const branchLines = await $`${getBranches.split(
-    " "
-  )} | grep  -v ${neverDelete}`;
+const deleteBranches = async (getBranches, deleteBranch, remote, ask) => {
+  const cmd = `${getBranches} | grep  -v ${neverDelete}`;
+  const branchLines = await $`${cmd.split(" ")}`;
 
   const branches = linesToArray(branchLines);
 
   if (branches.length > 0) {
     console.warn("Deleting branches: ", branches);
     for (const branch of branches) {
-      await $`git log origin/main..${branch}`;
+      await $`git log origin/main..${(remote ? "origin/" : "") + branch}`;
       const shouldDelete = ask
         ? await question(`delete "${branch}"? [y/N] `)
         : "y";
@@ -44,5 +41,12 @@ const deleteBranches = async (getBranches, deleteBranch, ask) => {
   }
 };
 
+console.log("-----------------> Delete remote merged");
+await deleteBranches(
+  'git branch -r --merged | sd origin/ ""',
+  "git push origin --delete",
+  true,
+  false
+);
 console.log("-----------------> Delete unmerged");
-deleteBranches("git branch --no-merged", "git branch -D", true);
+await deleteBranches("git branch --no-merged", "git branch -D", false, true);
