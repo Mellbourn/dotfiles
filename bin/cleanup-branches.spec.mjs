@@ -1,6 +1,27 @@
 #!/usr/bin/env zx
 
-cd(`${$.env.HOME}/code/experiments/git/branch-experiment`);
+cd(`${$.env.HOME}/code/experiments/`);
+const repo = "cleanup-branches-test";
+
+// the following was an attempt to delete the repo, but that was too difficult
+// try {
+//   await $`trash ${repo}`;
+//   await $`gh auth refresh -h github.com -s delete_repo`;
+//   await $`gh repo delete --confirm ${repo}`;
+// } catch (p) {
+//   console.log(`No repo to delete (${p.exitCode})`);
+// }
+
+await $`mkdir -p ${repo}`;
+let repoExists = false;
+try {
+  await $`gh repo view ${repo}`;
+  repoExists = true;
+} catch (p) {}
+if (!repoExists) {
+  await $`gh repo create ${repo} --public -c -d 'repo for testing cleanup-branches.mjs'`;
+}
+cd(repo);
 
 const addCommittedFile = async (name) => {
   if (!fs.existsSync(name)) {
@@ -20,6 +41,7 @@ const branchExists = async (name) => {
 };
 
 const createBranch = async (name, isMerged = true, isPushed = false) => {
+  await $`git switch main`;
   if (!(await branchExists(name))) {
     await $`git switch -c ${name}`;
     if (!isMerged) {
@@ -32,7 +54,10 @@ const createBranch = async (name, isMerged = true, isPushed = false) => {
   }
 };
 
-await $`git switch main`;
+if (await branchExists("main")) {
+  await $`git switch main`;
+}
+await $`git cleanup-all`;
 await addCommittedFile("firstFile.txt");
 await $`git push -u origin main`;
 
