@@ -35,6 +35,7 @@ const branches = linesToArray(unmergedBranchLines);
 
 console.warn("Deleting unmerged branches: ", branches);
 for (const branch of branches) {
+  await $`git log origin/main..${branch}`;
   const shouldDelete = await question(`delete "${branch}"? [y/N] `);
   if (shouldDelete && shouldDelete[0].toLowerCase() === "y") {
     await $`git branch -D ${branch}`;
