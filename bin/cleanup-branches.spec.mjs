@@ -12,7 +12,7 @@ const addCommittedFile = async (name) => {
 
 const branchExists = async (name) => {
   try {
-    const { exitCode } = await $`git show-ref --quiet refs/heads/ ${name}`;
+    const { exitCode } = await $`git show-ref --quiet refs/heads/${name}`;
     return exitCode === 0;
   } catch (p) {
     return false;
@@ -44,3 +44,17 @@ await createBranch("mergedPushed1", true, true);
 await createBranch("current");
 await $`git switch current`;
 await $`cleanup-branches.mjs`;
+
+if (!(await branchExists("current"))) {
+  console.log(
+    chalk.red(
+      "current branch should not have been deleted, since it is currently checked out"
+    )
+  );
+}
+
+if (await branchExists("merged1")) {
+  console.log(
+    chalk.red("merged1 should have been deleted, since it is merged")
+  );
+}
