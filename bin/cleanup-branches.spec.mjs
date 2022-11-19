@@ -44,7 +44,11 @@ const branchExists = async (name) => {
 const createBranch = async (name, isMerged = true, isPushed = false) => {
   await $`git switch main`;
   if (await branchExists(name)) {
-    // await $`git push origin --delete ${name}`;
+    try {
+      await $`git push origin --delete ${name}`;
+    } catch (p) {
+      console.log(`No branch to delete (${p.exitCode})`);
+    }
     await $`git branch -D ${name}`;
   }
   await $`git switch -c ${name}`;
