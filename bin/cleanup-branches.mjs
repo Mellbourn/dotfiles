@@ -9,6 +9,12 @@ try {
   console.log(`No merged branches to delete (${p.exitCode})`);
 }
 
+try {
+  await $`git branch -r --merged | sd 'origin/' '' | grep  -v ${neverDelete} | xargs -n 1 git push origin --delete`;
+} catch (p) {
+  console.log(`No merged branches to delete (${p.exitCode})`);
+}
+
 let unmergedBranchLines = "";
 
 try {
