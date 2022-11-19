@@ -65,7 +65,7 @@ unstage = reset HEAD --
 last = log -1 HEAD
 worktree-skipped = !git ls-files -v | grep "^S"
 unchange-assumed = !git ls-files -v | grep "^[[:lower:]]"
-cleanup = "!git branch --merged | grep  -v 'master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task' | xargs -n 1 git branch -d"
+cleanup = "!git branch --merged | grep  -v '\\^*\\|master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task' | xargs -n 1 git branch -d"
 cleanup-all = "!f(){\
         git branch | grep -v 'master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task' | grep -v ^* | sh -c 'while read br; \
 		  do git log -1 $br; \
