@@ -96,5 +96,27 @@ if (await branchExists("merged1")) {
   );
 }
 
+if (!(await branchExists("unmerged1"))) {
+  console.log(chalk.red("unmerged branches should still exist"));
+}
+
 console.log(chalk.bold("****************** REPORT ********************"));
 await $`git lol --color=always`;
+
+console.log(chalk.bold("****************** ACT **********************"));
+
+await $`echo $(yes y | cleanup-branches.mjs)`;
+
+console.log(chalk.bold("****************** ASSERT *******************"));
+
+if (await branchExists("unmerged1")) {
+  console.log(chalk.red("unmerged branches should be deleted"));
+}
+
+if (await branchExists("unmergedPushed1")) {
+  console.log(
+    chalk.red(
+      "unmerged branches should be deleted even if they have been pushed"
+    )
+  );
+}
