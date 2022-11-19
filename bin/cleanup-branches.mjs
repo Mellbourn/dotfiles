@@ -56,19 +56,19 @@ await deleteBranches({
   remote: false,
   ask: false,
 });
-console.log("-----------------> Delete remote merged");
+console.log(chalk.bold("-----------------> Delete remote merged"));
 await deleteBranches({
   merged: true,
   remote: true,
   ask: false,
 });
-console.log("-----------------> Delete unmerged");
+console.log(chalk.yellow("-----------------> Delete unmerged"));
 await deleteBranches({
   merged: false,
   remote: false,
   ask: true,
 });
-console.log("-----------------> Delete unmerged remote");
+console.log(chalk.yellow.bold("-----------------> Delete unmerged remote"));
 await deleteBranches({
   merged: false,
   remote: true,
