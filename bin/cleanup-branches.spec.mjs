@@ -1,5 +1,6 @@
 #!/usr/bin/env zx
 
+//****************** ARRANGE ******************//
 cd(`${$.env.HOME}/code/experiments/`);
 const repo = "cleanup-branches-test";
 
@@ -68,8 +69,11 @@ await createBranch("mergedPushed1", true, true);
 
 await createBranch("current");
 await $`git switch current`;
+
+//****************** ACT **********************//
 await $`cleanup-branches.mjs`;
 
+//****************** ASSERT *******************//
 if (!(await branchExists("current"))) {
   console.log(
     chalk.red(
