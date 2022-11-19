@@ -20,12 +20,12 @@ try {
 }
 
 const linesToArray = (lines) =>
-  lines
+  lines.stdout
     .split("\n")
     .map((b) => b.trim())
     .filter((b) => b.length > 0);
 
-const branches = linesToArray(unmergedBranchLines.stdout);
+const branches = linesToArray(unmergedBranchLines);
 
 console.warn("Deleting unmerged branches: ", branches);
 for (const branch of branches) {
