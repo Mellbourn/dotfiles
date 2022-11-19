@@ -77,9 +77,11 @@ await createBranch("current");
 await $`git switch current`;
 
 console.log(chalk.bold("****************** ACT **********************"));
-await $`cleanup-branches.mjs`;
+
+await $`echo $(yes n | cleanup-branches.mjs)`;
 
 console.log(chalk.bold("****************** ASSERT *******************"));
+
 if (!(await branchExists("current"))) {
   console.log(
     chalk.red(
