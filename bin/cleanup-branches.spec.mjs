@@ -58,3 +58,5 @@ if (await branchExists("merged1")) {
     chalk.red("merged1 should have been deleted, since it is merged")
   );
 }
+
+await $`git lol --color=always`;
