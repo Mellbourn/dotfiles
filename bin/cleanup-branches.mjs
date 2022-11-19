@@ -21,23 +21,26 @@ try {
   console.log(`No remote merged branches to delete (${p.exitCode})`);
 }
 
-let unmergedBranchLines = "";
+const deleteBranches = async (getBranches, deleteBranch) => {
+  const branchLines = await $`${getBranches.split(
+    " "
+  )} | grep  -v ${neverDelete}`;
 
-try {
-  unmergedBranchLines =
-    await $`git branch --no-merged | grep  -v ${neverDelete}`;
-} catch (p) {
-  console.log(`No unmerged branches to delete (${p.exitCode})`);
-  process.exit(0);
-}
+  const branches = linesToArray(branchLines);
 
-const branches = linesToArray(unmergedBranchLines);
-
-console.warn("Deleting unmerged branches: ", branches);
-for (const branch of branches) {
-  await $`git log origin/main..${branch}`;
-  const shouldDelete = await question(`delete "${branch}"? [y/N] `);
-  if (shouldDelete && shouldDelete[0].toLowerCase() === "y") {
-    await $`git branch -D ${branch}`;
+  if (branches.length > 0) {
+    console.warn("Deleting branches: ", branches);
+    for (const branch of branches) {
+      await $`git log origin/main..${branch}`;
+      const shouldDelete = await question(`delete "${branch}"? [y/N] `);
+      if (shouldDelete && shouldDelete[0].toLowerCase() === "y") {
+        await $`${deleteBranch.split(" ")} ${branch}`;
+      }
+    }
+  } else {
+    console.log(`No branches to delete`);
   }
-}
+};
+
+console.log("-----------------> Delete unmerged");
+deleteBranches("git branch --no-merged", "git branch -D");
