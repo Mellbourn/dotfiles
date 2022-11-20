@@ -630,6 +630,7 @@ gh extension upgrade --all
 # these uninstalls don't remove the exceutables from /opt/homebrew/bin - had to remove them manually
 npm uninstall -g nx lerna detox-cli @antfu/ni
 npm i -g zx
+npm i -g cleanup-branches
 
 if [[ -n "$KLARNA" ]]; then
   if \ping -c1 -W1 jira.int.klarna.net; then
