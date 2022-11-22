@@ -541,11 +541,7 @@ if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
     FONT_DIRECTORY=~/.local/share/fonts
   fi
 
-  # Delugia Nerd Font is Cascadia with Nerd and frequently updated, unfortunately it is buggy (too small or high icons)
-  trash $FONT_DIRECTORY/Delugia.Nerd.Font.Complete.ttf || true
-  trash $FONT_DIRECTORY/Delugia.Nerd.Font.Book.ttf || true
-  LATEST_TAG=$(gh release list --exclude-drafts -R adam7/delugia-code -L 1 | awk '{print $1;}')
-  gh release download "$LATEST_TAG" -R adam7/delugia-code -p delugia-book.zip --skip-existing -D "$TMPDIR"
+  gh release download -R adam7/delugia-code -p delugia-book.zip --skip-existing -D "$TMPDIR"
   yes | unzip -u "$TMPDIR"delugia-book.zip -d $FONT_DIRECTORY
 fi
 
