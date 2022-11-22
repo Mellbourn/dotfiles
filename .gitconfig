@@ -110,10 +110,10 @@ insteadOf = https://github.com/
 insteadOf = https://github.com/rust-lang/crates.io-index
 [lfs]
 locksverify = false
-[filter "lfs"]
-clean = git-lfs clean -- %f
-smudge = git-lfs smudge -- %f
-process = git-lfs filter-process
-required = true
 [maintenance]
 repo = /Users/klas.mellbourn/code/firstvet/monorepo/.bare
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
