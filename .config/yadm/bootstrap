@@ -203,7 +203,7 @@ if [[ $(uname) == 'Darwin' ]]; then
     brewSafeUninstall $formula
   done
 
-  for cask in luna-display zeplin zenmap pokerth dash controlplane fork keycastr postman shortcat tor-browser tripmode stunnel java8 p4v authy; do
+  for cask in luna-display zeplin zenmap pokerth dash controlplane fork keycastr postman shortcat tor-browser tripmode stunnel java8 p4v authy browserstacklocal; do
     brewSafeUninstallCask $cask
   done
 
@@ -327,7 +327,6 @@ zsh
   casks="
 1password
 bartender
-browserstacklocal
 chromium
 docker
 flipper
