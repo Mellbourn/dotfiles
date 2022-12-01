@@ -6,9 +6,9 @@ const run = (command: string) => {
   const options: SpawnSyncOptions = {
     encoding: "utf8",
   };
-  const cmd = command.split(" ");
-  const rest = cmd.slice(1);
-  const ls = spawnSync(cmd[0], rest, options);
+  const commandParts = command.split(" ");
+  const [cmd, ...rest] = commandParts;
+  const ls = spawnSync(cmd, rest, options);
   if (ls.error) {
     throw ls.error;
   }
