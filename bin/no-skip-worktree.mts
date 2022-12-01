@@ -8,18 +8,19 @@ const run = (command: string) => {
   };
   const commandParts = command.split(" ");
   const [cmd, ...rest] = commandParts;
-  const ls = spawnSync(cmd, rest, options);
-  if (ls.error) {
-    throw ls.error;
+  const child = spawnSync(cmd, rest, options);
+  if (child.error) {
+    throw child.error;
   }
-  if (ls.stderr) {
-    console.log(`stderr: ${ls.stderr.toString()}`);
-    process.exit(1);
+  if (child.status !== 0) {
+    console.log(child.stdout);
+    console.error(`stderr: ${child.stderr.toString()}`);
+    process.exit(child.status || 1);
   }
-  if (ls.stdout) {
-    console.log(`stdout: ${ls.stdout.toString()}`);
+  if (child.stdout) {
+    console.info(`stdout: ${child.stdout.toString()}`);
   }
-  return ls.stdout;
+  return child.stdout;
 };
 
 run("git update-index --no-skip-worktree .vscode/settings.json");
