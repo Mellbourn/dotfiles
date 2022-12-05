@@ -414,6 +414,9 @@ fi
 ###############################################################################
 # fun functions
 ###############################################################################
+function dasel() {
+  command dasel --colour $* | less
+}
 # usage: cd services && getTreeidForService orders
 function getTreeidForService() {
 	noglob git cat-file -p @^{tree} | \
@@ -454,13 +457,6 @@ _fzf_compgen_path() {
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
   $FD --type d --follow . "$1"
-}
-
-function go() {
-    local repos repo
-    repos=$(find $CODE_DIR -name .git -type d -maxdepth 3 -prune | egrep -i "$1"  | sed 's#/.git$##') &&
-    repo=$(echo "$repos" | $FZF +s +m) &&
-    cd $(echo "$repo" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
 
 function fd() {

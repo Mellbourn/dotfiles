@@ -43,10 +43,7 @@
     "commandCenter.border": "#e7e7e799"
   },
   "peacock.color": "#92725299",
-  "cSpell.words": [
-    "keyfile",
-    "shellenv",
-  ],
+  "cSpell.words": ["keyfile", "shellenv"],
   "atlascode.bitbucket.enabled": false,
-  "atlascode.jira.enabled": false,
+  "atlascode.jira.enabled": false
 }
