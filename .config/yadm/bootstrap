@@ -193,6 +193,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew tap facebook/fb           # for idb-companion for flipper
   brew tap wix/brew              # for applesimutils
   brew tap robotsandpencils/made # for xcodes
+  brew tap ankitpokhrel/jira-cli # for jira-cli
 
   # not all computers need logitech drivers, also, these need sudo
   # brew install --cask homebrew/cask-drivers/logitech-gaming-software
@@ -265,6 +266,7 @@ idb-companion
 imagemagick
 jc
 jesseduffield/lazygit/lazygit
+jira-cli
 jq
 kpcli
 lastpass-cli
