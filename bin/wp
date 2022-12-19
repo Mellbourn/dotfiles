@@ -1,0 +1,44 @@
+#!/usr/bin/env zx
+
+import { readdirSync } from "fs";
+import path from "path";
+
+const getDirectories = (source) =>
+  readdirSync(source, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .filter((dirent) => dirent.name !== ".bare" && dirent.name !== ".vscode")
+    .map((dirent) => dirent.name);
+
+const baseDir = path.join($.env.CODE_DIR, "firstvet/monorepo");
+
+const repos = getDirectories(baseDir).map((repo) => path.join(baseDir, repo));
+
+const promises = [];
+for (const repo of repos) {
+  console.log(`Pulling ${repo}`);
+  try {
+    promises.push(
+      $`pushd ${repo} && git pull && npm i && npm run bootstrap && npm run build && npm run lint && npm run test && popd`
+    );
+  } catch (e) {
+    console.warn(`Failed to create promise ${repo}, error: ${e.stderr}`);
+  }
+}
+
+Promise.allSettled(promises).then((values) => {
+  const failed = values.filter((v) => v.status !== "fulfilled");
+  console.log(
+    "#######################################################################"
+  );
+  console.log(failed);
+  console.log(
+    "workspaces that failed: ",
+    failed.map((v) => {
+      const input = v.reason.stdout;
+      const lines = input.split("\n");
+      const path = lines[0].split(" ")[0];
+      const taskName = path.slice(lines[0].lastIndexOf("/") + 1);
+      return taskName;
+    })
+  );
+});
