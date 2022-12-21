@@ -25,7 +25,6 @@ alias jil='jila -s~Done'
 alias jila='jira issue list -a$(jira me)'
 alias jilp='jil --plain'
 alias jilw='jira issue list -q "assignee = currentUser() and updated >= startofDay(-8d)" --order-by updated --plain'
-alias kp='g push && sysnd Funk && klapp ci build'
 alias l='ls -F '
 alias la='ls -AF '
 alias ld=lazydocker
