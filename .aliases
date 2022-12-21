@@ -15,15 +15,16 @@ alias drmi='docker rmi -f $(docker images -q); docker rmi -f $(docker images -f 
 alias egrep='egrep --color=auto'
 alias g='noglob git'
 alias ga='git number add'
-alias gr=gitroot
 alias generate_password='LC_ALL=C tr -dc "[:alnum:]" < /dev/urandom | head -c 20 | pbcopy  '
 alias glances='TERM=xterm-256color glances --process-short-name'
 alias gn='git number --column' # note that command line completion does not work well for this alias
+alias gr=gitroot
 alias grep='grep --color=auto'
 alias jic='jira issue create -a@me --web -l"team-tech-enabling" -yMedium -tTask --custom sprint=65'
-alias jila='jira issue list -a$(jira me)'
 alias jil='jira issue list -a$(jira me) -s~Done'
+alias jila='jira issue list -a$(jira me)'
 alias jilp='jira issue list -a$(jira me) -s~Done --plain'
+alias jilw='jira issue list -q "assignee = currentUser() and updated >= startofDay(-8d)" --order-by updated'
 alias kp='g push && sysnd Funk && klapp ci build'
 alias l='ls -F '
 alias la='ls -AF '
