@@ -19,7 +19,7 @@ alias glances='TERM=xterm-256color glances --process-short-name'
 alias gn='git number --column' # note that command line completion does not work well for this alias
 alias gr=gitroot
 alias grep='grep --color=auto'
-alias jic='jira issue create -a@me --web -l"team-tech-enabling" -yMedium -tTask --custom sprint=65'
+alias jic='jira issue create -a@me --web -l"team-tech-enabling" -yMedium -tTask --custom sprint=65 --no-input'
 alias jil='jila -s~Done'
 alias jila='jira issue list -a$(jira me)'
 alias jilp='jil --plain'
