@@ -20,8 +20,8 @@ alias gn='git number --column' # note that command line completion does not work
 alias gr=gitroot
 alias grep='grep --color=auto'
 alias jic='jira issue create -a@me --web --no-input -l"team-tech-enabling" -yMedium -tTask --custom sprint=65'
-alias jil='jila -s~Done'
-alias jila='jira issue list -a$(jira me)'
+alias jil='jila -q "resolution = Unresolved"'
+alias jila='jira issue list -a$(jira me) --order-by lastViewed'
 alias jilp='jil --plain'
 alias jilw='jira issue list -q "assignee = currentUser() and updated >= startofDay(-8d)" --order-by updated --plain'
 alias l='ls -F '
