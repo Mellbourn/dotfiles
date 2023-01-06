@@ -112,7 +112,7 @@ if (($(command less --version | head -1 | cut -d ' ' -f2) >= 590)); then
   export LESSOPEN
   # note: --file-size takes noticable extra startup time on large (100k) files
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quiet \
-    --no-histdups --save-marks --quit-if-one-screen --incsearch --use-color --file-size"
+    --no-histdups --save-marks --quit-if-one-screen --incsearch --use-color"
 else
   LESSOPEN="| $(which highlight) %s --quiet --force --out-format ansi"
   export LESSOPEN
