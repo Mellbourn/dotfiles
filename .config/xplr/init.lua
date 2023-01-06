@@ -1,4 +1,4 @@
-version = "0.19.4"
+version = "0.20.1"
 
 local home = os.getenv("HOME")
 package.path = home
