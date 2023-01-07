@@ -1,4 +1,4 @@
-#!/usr/bin/env npx --yes tsx
+#!/usr/bin/env tsx
 
 // running tsx directly
 // #!/usr/bin/env tsx

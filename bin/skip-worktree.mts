@@ -1,4 +1,4 @@
-#!/usr/bin/env npx --yes ts-node --swc --esm
+#!/usr/bin/env ts-node --swc --esm
 
 // running ts-node via npx
 //#!/usr/bin/env npx --yes ts-node --swc --esm
