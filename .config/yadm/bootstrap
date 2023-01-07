@@ -630,6 +630,7 @@ gh extension upgrade --all
 npm uninstall -g nx lerna detox-cli @antfu/ni
 npm i -g zx
 npm i -g tsx
+# @swc/core needed for _debugging_ ts-node, but not for running it
 npm i -g ts-node @swc/core
 npm i -g cleanup-branches
 
