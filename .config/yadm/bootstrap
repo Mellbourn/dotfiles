@@ -629,6 +629,8 @@ gh extension upgrade --all
 # these uninstalls don't remove the exceutables from /opt/homebrew/bin - had to remove them manually
 npm uninstall -g nx lerna detox-cli @antfu/ni
 npm i -g zx
+npm i -g tsx
+npm i -g ts-node @swc/core
 npm i -g cleanup-branches
 
 if [[ -n "$KLARNA" ]]; then
@@ -648,8 +650,8 @@ osascript -e 'tell application "System Events" to delete login item "iTunesHelpe
 # Associate filetypes to apps that should open them                           #
 ###############################################################################
 # open in Visual Studio Code
-duti -s com.microsoft.VSCode .js all           # javascript - extensions work too
-duti -s com.microsoft.VSCode .ts all           # typescript
+#duti -s com.microsoft.VSCode .js all           # javascript - extensions work too
+#duti -s com.microsoft.VSCode .ts all           # typescript
 duti -s com.microsoft.VSCode .md all           # markdown
 duti -s com.microsoft.VSCode com.apple.log all # .log
 duti -s com.microsoft.VSCode public.json all

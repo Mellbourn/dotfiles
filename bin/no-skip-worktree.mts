@@ -1,5 +1,11 @@
 #!/usr/bin/env npx --yes tsx
 
+// running tsx directly
+// #!/usr/bin/env tsx
+
+// non-install alternative
+// #!/usr/bin/env npx --yes tsx
+
 import { spawnSync, SpawnSyncOptions } from "child_process";
 
 const run = (command: string) => {

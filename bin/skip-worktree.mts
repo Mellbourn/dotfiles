@@ -1,4 +1,10 @@
-#!/usr/bin/env npx --yes tsx
+#!/usr/bin/env npx --yes ts-node --swc --esm
+
+// running ts-node via npx
+//#!/usr/bin/env npx --yes ts-node --swc --esm
+
+// running ts-node -directly
+// #!/usr/bin/env ts-node --swc --esm
 
 import { spawnSync, SpawnSyncOptions } from "child_process";
 

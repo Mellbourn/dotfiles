@@ -4,14 +4,24 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+    // both mts configs work for both ts-node and tsx scripts, and do not require tsx or ts-node to be installed
     {
       "type": "node",
       "request": "launch",
-      "name": "tsx launcher",
+      "name": "tsx launcher -- best",
       "skipFiles": ["<node_internals>/**"],
       "runtimeExecutable": "npx",
       "runtimeArgs": ["--yes", "tsx"],
       "program": "${workspaceFolder}/no-skip-worktree.mts"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "ts-node launcher -- requires @swc/core npm installed globally",
+      "skipFiles": ["<node_internals>/**"],
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "ts-node", "--swc", "--esm"],
+      "program": "${workspaceFolder}/skip-worktree.mts"
     }
   ]
 }
