@@ -418,7 +418,7 @@ function dasel() {
   command dasel --colour $* | less
 }
 function httpp() {
-  # note that this will remove header info, if you need it, add "--print hb" or "-v" parameter
+  # note that this will remove header info, if you need it, add "-p hb" or "-v" parameter
   command http --pretty=all $* | command less -r
 }
 # usage: cd services && getTreeidForService orders
