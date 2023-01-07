@@ -417,7 +417,7 @@ fi
 function dasel() {
   command dasel --colour $* | less
 }
-function http() {
+function httpp() {
   # note that this will remove header info, if you need it, add "--print hb" or "-v" parameter
   command http --pretty=all $* | command less -r
 }
