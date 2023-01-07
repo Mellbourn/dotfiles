@@ -28,7 +28,8 @@ autoload -U zmv
 autoload -Uz $(ls ~/.zsh-personal-functions)
 
 # helping brew completion is needed if HOMEBREW_PREFIX is not /usr/local
-FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH
+# curl is here to enablie curlie to get to curls completions
+FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$HOMEBREW_PREFIX/opt/curl/share/zsh/site-functions:$FPATH
 
 # misc
 setopt interactive_comments long_list_jobs extendedglob notify list_packed transient_rprompt
@@ -677,6 +678,9 @@ fi
 if [ -x "$(command -v circleci)" ]; then
   eval "$(circleci completion zsh)" && compdef _circleci circleci
 fi
+# for this to work, an addition to fpath is necessary, see above
+compdef _curl curlie
+alias curl=curlie
 
 ' light-mode for zdharma-continuum/null
 
