@@ -417,6 +417,10 @@ fi
 function dasel() {
   command dasel --colour $* | less
 }
+function http() {
+  # note that this will remove header info, if you need it, add "--print hb" or "-v" parameter
+  command http --pretty=all $* | command less -r
+}
 # usage: cd services && getTreeidForService orders
 function getTreeidForService() {
 	noglob git cat-file -p @^{tree} | \
@@ -673,12 +677,6 @@ fi
 if [ -x "$(command -v circleci)" ]; then
   eval "$(circleci completion zsh)" && compdef _circleci circleci
 fi
-function httpp() {
-  # note that this may remove header info, if you need it, add -v parameter
-  command http --pretty=all $* | command less -r
-}
-compdef httpp=http
-
 
 ' light-mode for zdharma-continuum/null
 
