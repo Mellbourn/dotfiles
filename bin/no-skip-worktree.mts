@@ -8,7 +8,7 @@
 
 import { spawnSync, SpawnSyncOptions } from "child_process";
 
-const run = (command: string) => {
+const run = (command: string): string => {
   const options: SpawnSyncOptions = {
     encoding: "utf8",
   };
@@ -23,10 +23,15 @@ const run = (command: string) => {
     console.error(`stderr: ${child.stderr.toString()}`);
     process.exit(child.status || 1);
   }
-  if (child.stdout) {
-    console.info(`stdout: ${child.stdout.toString()}`);
-  }
-  return child.stdout;
+  if (typeof child.stdout !== "string")
+    throw new Error("child.stdout is not a string: " + child.stdout);
+  return child.stdout.trim();
 };
 
-run("git update-index --no-skip-worktree .vscode/settings.json");
+const toplevel = run("git rev-parse --show-toplevel");
+const stdout = run(
+  `git update-index --no-skip-worktree ${toplevel}/.vscode/settings.json`
+);
+if (stdout) {
+  console.log(stdout);
+}
