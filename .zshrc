@@ -131,6 +131,8 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 ###############################################################################
 zinit depth=1 light-mode for romkatv/powerlevel10k
 
+zinit silent light-mode lucid for SinaKhalili/mecho
+
 zinit wait'0a' lucid blockf for zsh-users/zsh-completions
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
@@ -343,8 +345,6 @@ zinit wait'2' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' lig
 
 # make text copy operations generic: clipcopy/clippaste
 zinit wait'2' lucid for OMZL::clipboard.zsh
-
-zinit wait'2' lucid for SinaKhalili/mecho
 
 if [ -z "$DOTFILES_LITE" ]
 then
