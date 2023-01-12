@@ -341,6 +341,9 @@ zinit wait'2' lucid light-mode for \
 
 zinit wait'2' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' light-mode for hlissner/zsh-autopair
 
+# make text copy operations generic: clipcopy/clippaste
+zinit wait'2' lucid for OMZL::clipboard.zsh
+
 if [ -z "$DOTFILES_LITE" ]
 then
   # Not really plugins, but very good to have async anyway
