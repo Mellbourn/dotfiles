@@ -285,7 +285,7 @@ export FORGIT_STASH_FZF_OPTS='--bind="ctrl-d:reload(git stash drop $(cut -d: -f1
 #zinit wait'1' lucid as'null' atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma-continuum/null
 
 zinit wait'1' lucid for \
-  djui/alias-tips \
+  MichaelAquilina/zsh-you-should-use \
   OMZP::dircycle
 
 zinit wait'1' lucid atinit'alias f=fuck' light-mode for laggardkernel/zsh-thefuck
