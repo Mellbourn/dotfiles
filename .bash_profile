@@ -88,6 +88,7 @@ addFirstInPath "$HOME/.local/bin"
 addLastInPath "$HOMEBREW_PREFIX/opt/awscli@1/bin"
 addFirstInPath "$HOME"/.cargo/bin
 addFirstInPath "$HOME"/bin
+addFirstInPath "$HOME"/bin/mts
 
 export CLICOLOR=1
 export GCAL='--starting-day=Monday --iso-week-number=yes --with-week-number --cc-holidays=SE'

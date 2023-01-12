@@ -13,7 +13,7 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["--yes", "tsx"],
       "program": "${workspaceFolder}/no-skip-worktree.mts",
-      "cwd": "${workspaceFolder}/../code/firstvet/monorepo/temp/apps/flexiapp"
+      "cwd": "${workspaceFolder}/../../code/firstvet/monorepo/temp/apps/flexiapp"
     },
     {
       "type": "node",
@@ -23,7 +23,7 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["--yes", "ts-node", "--swc", "--esm"],
       "program": "${workspaceFolder}/skip-worktree.mts",
-      "cwd": "${workspaceFolder}/../code/firstvet/monorepo/temp/apps/flexiapp"
+      "cwd": "${workspaceFolder}/../../code/firstvet/monorepo/temp/apps/flexiapp"
     }
   ]
 }
