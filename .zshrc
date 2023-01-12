@@ -683,9 +683,11 @@ fi
 if [ -x "$(command -v circleci)" ]; then
   eval "$(circleci completion zsh)" && compdef _circleci circleci
 fi
-# for this to work, an addition to fpath is necessary, see above
-compdef _curl curlie
-alias curl=curlie
+if [ -x "$(command -v curlie)" ]; then
+  # for this to work, an addition to fpath is necessary, see above
+  compdef _curl curlie
+  alias curl=curlie
+fi
 
 # repair c completion after it was boken by zinit
 compdef __zoxide_z_complete __zoxide_zi
