@@ -344,6 +344,8 @@ zinit wait'2' lucid atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' lig
 # make text copy operations generic: clipcopy/clippaste
 zinit wait'2' lucid for OMZL::clipboard.zsh
 
+zinit wait'2' lucid for SinaKhalili/mecho
+
 if [ -z "$DOTFILES_LITE" ]
 then
   # Not really plugins, but very good to have async anyway
