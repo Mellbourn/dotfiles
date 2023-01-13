@@ -120,7 +120,7 @@ if [[ $(uname) == 'Linux' ]]; then
     # WSL will have amd64
     LATEST_TAG=$(gh release list --exclude-drafts -R Peltoche/lsd -L 1 | awk '{print $1;}')
     gh release download "$LATEST_TAG" -R Peltoche/lsd -p "lsd_${LATEST_TAG}_amd64.deb" --skip-existing -D "/tmp"
-    sudo dpkg --skip-same-version -i "lsd_${LATEST_TAG}_amd64.deb"
+    sudo dpkg --skip-same-version -i "/tmp/lsd_${LATEST_TAG}_amd64.deb"
 
   elif [ -x "$(command -v gh)" ] && [[ $(dpkg --print-architecture) == "armhf" ]]; then
     # probably 32 bit Rapberry Pi OS
