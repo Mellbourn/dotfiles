@@ -53,8 +53,8 @@ dt = difftool
 re = restore
 sw = switch
 d = diff --color-words=.
-# fetch only current branch and master
-f = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'master' ]]; then git fetch --no-tags origin master; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) master:master; fi"
+# fetch only current branch and main
+f = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no-tags origin main; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) main:main; fi"
 # pull only current branch, fetch nothing else
 p = "!git pull --no-tags origin $(git rev-parse --abbrev-ref HEAD)"
 pc = "!git push && sleep 3 && gh pr checks --watch"
