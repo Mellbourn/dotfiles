@@ -285,6 +285,7 @@ pv
 react-native-cli
 reattach-to-user-namespace
 redis
+rich-cli
 ripgrep
 rs/tap/curlie
 rust

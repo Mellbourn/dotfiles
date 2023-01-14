@@ -129,9 +129,9 @@ if [[ $(uname) == 'Linux' ]]; then
     gh release download "$LATEST_TAG" -R Peltoche/lsd -p "lsd-$LATEST_TAG-arm-unknown-linux-gnueabihf.tar.gz" --skip-existing -D "/tmp"
     tar -xzvf "/tmp/lsd-$LATEST_TAG-arm-unknown-linux-gnueabihf.tar.gz" --keep-newer-files --strip-components=1 -C "$HOME/.manually-installed/lsd/"
 
-  else
-    # afaik this fallback is never used, but it should fail and stop the execution if it doesn't work
-    installLsd "$(dpkg --print-architecture)"
+    #else
+    # alternate pi hole ends up here
+    #installLsd "$(dpkg --print-architecture)"
   fi
 
   if [ -n "$OS_WSL" ]; then
