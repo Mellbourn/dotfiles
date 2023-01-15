@@ -933,9 +933,9 @@
   typeset -g POWERLEVEL9K_CPU_ARCH_FOREGROUND=0
   typeset -g POWERLEVEL9K_CPU_ARCH_BACKGROUND=8
 
-  # Hide the segment when on a specific CPU architecture.
-  # typeset -g POWERLEVEL9K_CPU_ARCH_X86_64_CONTENT_EXPANSION=
-  # typeset -g POWERLEVEL9K_CPU_ARCH_X86_64_VISUAL_IDENTIFIER_EXPANSION=
+  # Hide the segment when on a specific CPU architecture, i.e. M1
+  typeset -g POWERLEVEL9K_CPU_ARCH_ARM64E_CONTENT_EXPANSION=
+  typeset -g POWERLEVEL9K_CPU_ARCH_ARM64E_VISUAL_IDENTIFIER_EXPANSION=
 
   # Custom icon. The existing icon, but with an extra space
   typeset -g POWERLEVEL9K_CPU_ARCH_VISUAL_IDENTIFIER_EXPANSION=' '
