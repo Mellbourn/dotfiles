@@ -937,8 +937,8 @@
   # typeset -g POWERLEVEL9K_CPU_ARCH_X86_64_CONTENT_EXPANSION=
   # typeset -g POWERLEVEL9K_CPU_ARCH_X86_64_VISUAL_IDENTIFIER_EXPANSION=
 
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_CPU_ARCH_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # Custom icon. The existing icon, but with an extra space
+  typeset -g POWERLEVEL9K_CPU_ARCH_VISUAL_IDENTIFIER_EXPANSION=' '
 
   ##################################[ context: user@hostname ]##################################
   # Context color when running with privileges.
