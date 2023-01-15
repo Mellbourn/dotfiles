@@ -27,7 +27,7 @@
   unset -m '(POWERLEVEL9K_*|DEFAULT_USER)~POWERLEVEL9K_GITSTATUS_DIR'
 
   # Zsh >= 5.1 is required.
-  autoload -Uz is-at-least && is-at-least 5.1 || return
+  [[ $ZSH_VERSION == (5.<1->*|<6->.*) ]] || return
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
@@ -88,6 +88,7 @@
     nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
     ranger                  # ranger shell (https://github.com/ranger/ranger)
     nnn                     # nnn shell (https://github.com/jarun/nnn)
+    lf                      # lf shell (https://github.com/gokcehan/lf)
     xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
     vim_shell               # vim shell indicator (:sh)
     midnight_commander      # midnight commander shell (https://midnight-commander.org/)
@@ -356,7 +357,7 @@
   # typeset -g POWERLEVEL9K_DIR_PREFIX='in '
 
   #####################################[ vcs: git status ]######################################
-  # Version control system colors.
+  # Version control background colors.
   typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=2
   typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=3
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=6
@@ -758,6 +759,13 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_NNN_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
+  ######################[ lf: lf shell (https://github.com/gokcehan/lf) ]#######################
+  # lf shell color.
+  typeset -g POWERLEVEL9K_LF_FOREGROUND=0
+  typeset -g POWERLEVEL9K_LF_BACKGROUND=6
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_LF_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
   ##################[ xplr: xplr shell (https://github.com/sayanarijit/xplr) ]##################
   # xplr shell color.
   typeset -g POWERLEVEL9K_XPLR_FOREGROUND=0
@@ -918,6 +926,18 @@
 
   # Custom icon.
   # typeset -g POWERLEVEL9K_TASKWARRIOR_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+  ################################[ cpu_arch: CPU architecture ]################################
+  # CPU architecture color.
+  typeset -g POWERLEVEL9K_CPU_ARCH_FOREGROUND=0
+  typeset -g POWERLEVEL9K_CPU_ARCH_BACKGROUND=3
+
+  # Hide the segment when on a specific CPU architecture.
+  # typeset -g POWERLEVEL9K_CPU_ARCH_X86_64_CONTENT_EXPANSION=
+  # typeset -g POWERLEVEL9K_CPU_ARCH_X86_64_VISUAL_IDENTIFIER_EXPANSION=
+
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_CPU_ARCH_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ##################################[ context: user@hostname ]##################################
   # Context color when running with privileges.
@@ -1321,7 +1341,7 @@
   #############[ kubecontext: current kubernetes context (https://kubernetes.io/) ]#############
   # Show kubecontext only when the command you are typing invokes one of these tools.
   # Tip: Remove the next line to always show kubecontext.
-  typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile|flux|fluxctl|stern|kubeseal|skaffold'
+  typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile|flux|fluxctl|stern|kubeseal|skaffold|kubent'
 
   # Kubernetes context classes for the purpose of using different colors, icons and expansions with
   # different contexts.
@@ -1746,7 +1766,7 @@
   # For example, you can type POWERLEVEL9K_BACKGROUND=red and see your prompt turn red. Hot reload
   # can slow down prompt by 1-2 milliseconds, so it's better to keep it turned off unless you
   # really need it.
-  typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=false
+  typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true
 
   # If p10k is already loaded, reload configuration.
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
