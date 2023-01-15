@@ -931,7 +931,7 @@
   ################################[ cpu_arch: CPU architecture ]################################
   # CPU architecture color.
   typeset -g POWERLEVEL9K_CPU_ARCH_FOREGROUND=0
-  typeset -g POWERLEVEL9K_CPU_ARCH_BACKGROUND=3
+  typeset -g POWERLEVEL9K_CPU_ARCH_BACKGROUND=8
 
   # Hide the segment when on a specific CPU architecture.
   # typeset -g POWERLEVEL9K_CPU_ARCH_X86_64_CONTENT_EXPANSION=
