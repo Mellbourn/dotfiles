@@ -3,6 +3,8 @@ underline = false
 bold = false
 italic = false
 
+# below is my home made dracula theme
+
 [style.command_name]
 foreground = { ansi = 183 } # purple
 underline = false
@@ -10,19 +12,19 @@ bold = false
 italic = false
 
 [style.example_text]
-foreground = { ansi = 120 } # green
+foreground = { ansi = 103 } # comment
 underline = false
 bold = false
 italic = false
 
 [style.example_code]
-foreground = { ansi = 159 } # cyan
+foreground = { ansi = 222 } # orange
 underline = false
 bold = false
 italic = false
 
 [style.example_variable]
-foreground = { ansi = 229 } # yellow
+foreground = { ansi = 120 } # green
 underline = false
 bold = false
 italic = true
