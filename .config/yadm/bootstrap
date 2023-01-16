@@ -586,6 +586,10 @@ if [[ -x "$(command -v atuin)" ]]; then
   fi && atuin import auto)
 fi
 
+if [[ -x "$(command -v cheat)" ]] && [ ! -d ~/.config/cheat/cheatsheets ]; then
+  git clone https://github.com/cheat/cheatsheets.git ~/.config/cheat/cheatsheets/community
+fi
+
 ###############################################################################
 # development
 ###############################################################################
