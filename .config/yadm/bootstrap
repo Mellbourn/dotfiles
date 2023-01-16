@@ -578,16 +578,16 @@ if [ -z "$DOTFILES_LITE" ]; then
   fi
 fi
 
+if [[ -x "$(command -v cheat)" ]] && [ ! -d ~/.config/cheat/cheatsheets ]; then
+  git clone https://github.com/cheat/cheatsheets.git ~/.config/cheat/cheatsheets/community
+fi
+
 if [[ -x "$(command -v atuin)" ]]; then
   # you have to register atuin once and import _once_
   atuin sync || (if atuin login -u Mellbourn | grep "You are already logged in! Please run 'atuin logout' if you wish to login again"; then
     atuin logout
     atuin login -u Mellbourn
   fi && atuin import auto)
-fi
-
-if [[ -x "$(command -v cheat)" ]] && [ ! -d ~/.config/cheat/cheatsheets ]; then
-  git clone https://github.com/cheat/cheatsheets.git ~/.config/cheat/cheatsheets/community
 fi
 
 ###############################################################################
