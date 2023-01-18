@@ -113,11 +113,20 @@ set ignorecase
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 " n.b. you must manually load the plugins using :PlugInstall
-colorscheme dracula
+"colorscheme dracula
+" Dracula Pro installation start
+packadd! dracula_pro
+
+syntax enable
+
+let g:dracula_colorterm = 0
+
+colorscheme dracula_pro
+" Dracula Pro installation end
 set background=dark
 highlight Normal guibg=black ctermbg=black
