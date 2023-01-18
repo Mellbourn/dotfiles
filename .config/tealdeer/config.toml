@@ -6,25 +6,25 @@ italic = false
 # below is my home made dracula theme
 
 [style.command_name]
-foreground = { ansi = 183 } # purple
+foreground = {rgb = { r = 189, g = 147, b = 249 } } # purple
 underline = false
 bold = false
 italic = false
 
 [style.example_text]
-foreground = { ansi = 103 } # comment
+foreground = { rgb = { r = 98, g = 114, b = 164 } } # comment
 underline = false
 bold = false
 italic = false
 
 [style.example_code]
-foreground = { ansi = 222 } # orange
+foreground = { rgb = { r = 255, g = 184, b = 108 } } # orange
 underline = false
 bold = false
 italic = false
 
 [style.example_variable]
-foreground = { ansi = 120 } # green
+foreground = { rgb = { r = 80, g = 250, b = 123 } } # green
 underline = false
 bold = false
 italic = true
