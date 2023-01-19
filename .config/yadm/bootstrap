@@ -494,6 +494,7 @@ popd
 if [ -x "$(command -v cargo)" ] && version_gte "$(cargo --version | cut -d " " -f2)" 1.0.0; then
   cargo install --verbose cargo-update || true
   cargo install --verbose termimage || true
+  cargo install --verbose cyme || true
   if ! [ -x "$(command -v atuin)" ]; then
     cargo install --verbose atuin || true
   fi
