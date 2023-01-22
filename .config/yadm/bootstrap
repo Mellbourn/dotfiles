@@ -208,7 +208,7 @@ if [[ $(uname) == 'Darwin' ]]; then
     brewSafeUninstallFormula $formula
   done
 
-  for cask in luna-display zeplin zenmap pokerth dash controlplane fork keycastr postman shortcat tor-browser tripmode stunnel java8 p4v authy browserstacklocal; do
+  for cask in luna-display zeplin zenmap pokerth dash controlplane fork keycastr postman shortcat tor-browser tripmode stunnel java8 p4v authy browserstacklocal insomnia keka; do
     brewSafeUninstallCask $cask
   done
 
@@ -346,11 +346,9 @@ google-chrome-beta
 grandperspective
 hpedrorodrigues/tools/dockutil
 httpie
-insomnia
 istat-menus
 iterm2
 keeweb
-keka
 keycue
 launchcontrol
 moom
