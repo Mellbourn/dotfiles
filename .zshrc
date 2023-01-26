@@ -389,7 +389,7 @@ if [[ -n $UNAME_LINUX ]]; then
 fi
 
 # note that this is for completion of cyme only, the command is gotten from cargo
-zinit wait'2' lucid light-mode from"gh-r" mv"cyme-* -> cyme" as"completion" for tuna-f1sh/cyme
+zinit wait'2' lucid light-mode from"gh" pick"doc/_cyme" as"completion" for tuna-f1sh/cyme
 
 ###############################################################################
 # add-ons installed by homebrew
