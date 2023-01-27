@@ -1,5 +1,6 @@
 {
   "devDependencies": {
-    "@types/node": "^18.11.10"
+    "@types/node": "^18.11.10",
+    "zx": "^7.1.1"
   }
 }
