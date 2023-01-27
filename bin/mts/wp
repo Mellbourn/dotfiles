@@ -39,7 +39,7 @@ Promise.allSettled(promises).then((values) => {
       const input = v.reason.stdout;
       const lines = input.split("\n");
       const path = lines[0].split(" ")[0];
-      const taskName = path.slice(lines[0].lastIndexOf("/") + 1);
+      const taskName = path.slice(path.lastIndexOf("/") + 1);
       return taskName;
     })
   );
