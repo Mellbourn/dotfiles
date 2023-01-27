@@ -11,6 +11,8 @@ const getDirectories = (source) =>
 
 const baseDir = path.join($.env.CODE_DIR, "firstvet/monorepo");
 
+await $`pushd ${baseDir}/main && git fetch && popd`;
+
 const repos = getDirectories(baseDir).map((repo) => path.join(baseDir, repo));
 
 const promises = [];
