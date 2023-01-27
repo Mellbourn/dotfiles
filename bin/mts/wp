@@ -24,6 +24,8 @@ await $`pushd ${baseDir}/main && git fetch && popd`;
 
 const repos = getDirectories(baseDir).map((repo) => path.join(baseDir, repo));
 
+// I want to type like this, but I can't get typescript typing to work
+// const promises: ProcessPromise[] = [];
 const promises = [];
 for (const repo of repos) {
   console.log(`Pulling ${repo}`);
