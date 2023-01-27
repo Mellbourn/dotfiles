@@ -1,6 +1,7 @@
 #!/usr/bin/env zx
 
 import "zx/globals";
+import { $ } from "zx";
 
 import { readdirSync } from "fs";
 import path from "path";
@@ -11,7 +12,13 @@ const getDirectories = (source) =>
     .filter((dirent) => dirent.name !== ".bare" && dirent.name !== ".vscode")
     .map((dirent) => dirent.name);
 
-const baseDir = path.join($.env.CODE_DIR, "firstvet/monorepo");
+const codeDir = $.env.CODE_DIR;
+if (!codeDir) {
+  throw "CODE_DIR not set";
+}
+const baseDir = path.join(codeDir, "firstvet/monorepo");
+
+await $`pushd ${baseDir}/main && git fetch && popd`;
 
 await $`pushd ${baseDir}/main && git fetch && popd`;
 
