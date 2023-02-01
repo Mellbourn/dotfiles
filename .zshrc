@@ -182,7 +182,6 @@ else
 fi
 
 if [ -x "$(command -v zoxide)" ]; then
-  export _ZO_MAXAGE=400
   export _ZO_EXCLUDE_DIRS=$HOME
   zinit wait'0' lucid as'null' atinit'unalias zi;eval "$(zoxide init zsh --hook prompt)" && alias c=__zoxide_zi zi=zinit' light-mode for zdharma-continuum/null
 elif [ -d "$HOMEBREW_PREFIX/share/z.lua" ]; then
