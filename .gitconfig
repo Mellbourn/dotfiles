@@ -83,9 +83,8 @@ date = relative
 enabled = true
 [pull]
 rebase = true
-# autoSetupRemote is dangerous while I am changing master to main, eventually I can restore this
-#[push]
-#autoSetupRemote = true
+[push]
+autoSetupRemote = true
 [rebase]
 autoStash = true
 [format]
