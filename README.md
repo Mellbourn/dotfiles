@@ -12,8 +12,9 @@ I use [yadm](https://github.com/TheLocehiliosan/yadm) to manage my dotfiles.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 brew install yadm git-crypt
-yadm clone --bootstrap https://github.com/Mellbourn/dotfiles.git
+yadm clone https://github.com/Mellbourn/dotfiles.git
 yadm crypt unlock <keyfile>
+yadm bootstrap
 .config/yadm/bootstrap-sudo
 ```
 

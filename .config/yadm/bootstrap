@@ -24,7 +24,7 @@ export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]] || [[ $(hostname) == "HKG"* ]]; then
   export KLARNA=1
 fi
-if [[ $(hostname) == *"MacBook-Pro-16-2021"* ]]; then
+if [[ $(hostname) == *"MacBook-Pro-16"* ]]; then
   export FIRSTVET=1
 fi
 if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.bom" ]; then
