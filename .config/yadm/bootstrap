@@ -60,6 +60,7 @@ fi
 # install asdf version manager https://asdf-vm.com/
 if [ ! -d ~/.asdf ]; then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+  source ~/.asdf/asdf.sh
 fi
 asdf update
 asdf plugin update --all
