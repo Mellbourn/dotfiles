@@ -537,6 +537,12 @@ curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/ter
 gunzip -f /tmp/terminfo.src.gz
 /usr/bin/tic -xe tmux-256color /tmp/terminfo.src
 
+if [ -x "$(command -v gh)" ]; then
+  if ! gh auth status; then
+    gh auth login -p ssh -h github.com -w || true
+  fi
+fi
+
 # fonts
 if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
   if [[ $(uname) == 'Darwin' ]]; then
