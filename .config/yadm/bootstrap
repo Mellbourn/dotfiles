@@ -568,8 +568,11 @@ fi
 # set up alternate gitconfig file used to determine local settings
 yadm alt
 
-# supress Spotlight indexing of code folder
-if [ "$CODE_DIR" ]; then
+# make a persistent temp directory
+mkdir -p ~/temp
+
+if ! [ "$CODE_DIR" ]; then
+  # supress Spotlight indexing of code folder, no longer working?
   mkdir -p "$CODE_DIR"
   touch "$CODE_DIR"/.metadata_never_index
   mkdir -p "$CODE_DIR"/private
