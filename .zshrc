@@ -295,7 +295,7 @@ zinit wait'1' lucid atinit'alias f=fuck' light-mode for laggardkernel/zsh-thefuc
 zinit wait'1' lucid as"program" pick"bin/git-dsf" if'[[ ! -x "$(command -v diff-so-fancy)" ]]' light-mode for \
   zdharma-continuum/zsh-diff-so-fancy
 
-zinit wait'1' lucid as"completion" light-mode for nilsonholger/osx-zsh-completions
+zinit wait'1' lucid as"completion" light-mode pick"_*" for nilsonholger/osx-zsh-completions
 
 zinit wait'1' lucid light-mode for mellbourn/zabb
 
