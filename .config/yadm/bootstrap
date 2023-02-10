@@ -510,11 +510,12 @@ if [ -x "$(command -v cargo)" ] && version_gte "$(cargo --version | cut -d " " -
   fi
 fi
 
-pushd -q "$HOMEBREW_PREFIX"/share/zsh/site-functions
-if [ -f cheat.zsh ] && ! [ -f _cheat ]; then
+HOMEBREW_SITE_FUNCTIONS="$HOMEBREW_PREFIX"/share/zsh/site-functions
+if [ -f "$HOMEBREW_SITE_FUNCTIONS"/cheat.zsh ] && ! [ -f "$HOMEBREW_SITE_FUNCTIONS"/_cheat ]; then
+  pushd "$HOMEBREW_SITE_FUNCTIONS"
   ln -s cheat.zsh _cheat
+  popd
 fi
-popd -q
 
 # this seems healthy to do every now and then to make sure zsh completion works
 trash ~/.zcompdump* ~/.zcompcache 2>/tmp/zcomp_delete_error.txt || true
