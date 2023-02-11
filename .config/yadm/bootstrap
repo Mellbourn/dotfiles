@@ -510,6 +510,7 @@ if [ -x "$(command -v cargo)" ] && version_gte "$(cargo --version | cut -d " " -
   fi
 fi
 
+# repair cheat completion
 HOMEBREW_SITE_FUNCTIONS="$HOMEBREW_PREFIX"/share/zsh/site-functions
 if [ -f "$HOMEBREW_SITE_FUNCTIONS"/cheat.zsh ] && ! [ -f "$HOMEBREW_SITE_FUNCTIONS"/_cheat ]; then
   pushd "$HOMEBREW_SITE_FUNCTIONS"
