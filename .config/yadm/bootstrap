@@ -41,6 +41,17 @@ if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; t
   fi
 fi
 
+if ! [ -f ~/.ssh/id_ed25519 ]; then
+  ssh-keygen -t ed25519 -b 4096 -C "${USER}@$(hostname)" -f ~/.ssh/id_ed25519
+  eval "$(ssh-agent -s)"
+  if [[ $(uname) == 'Darwin' ]]; then
+    ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+  else
+    ssh-add
+  fi
+  echo "Remember to add the new public key in ~/.ssh/id_ed25519.pub to github and appropriate authorized_hosts."
+fi
+
 pushd ~
 yadm submodule update --init --recursive --remote
 popd
@@ -530,17 +541,6 @@ fi
 # vim
 mkdir -p ~/.vim/autoload
 wget --show-progress -qNP ~/.vim/autoload https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-if ! [ -f ~/.ssh/id_ed25519 ]; then
-  ssh-keygen -t ed25519 -b 4096 -C "${USER}@$(hostname)" -f ~/.ssh/id_ed25519
-  eval "$(ssh-agent -s)"
-  if [[ $(uname) == 'Darwin' ]]; then
-    ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-  else
-    ssh-add
-  fi
-  echo "Remember to add the new public key in ~/.ssh/id_ed25519.pub to github and appropriate authorized_hosts."
-fi
 
 # add tmux-256color terminfo to ~/.terminfo
 curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/terminfo.src.gz
