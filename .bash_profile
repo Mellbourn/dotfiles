@@ -12,6 +12,24 @@ if [ -f "$HOME"/.profile ]; then
   source "$HOME"/.profile
 fi
 
+UNAME=$(uname)
+if [[ $UNAME == 'Linux' ]]; then
+  export UNAME_LINUX=1
+  if [[ $(uname -m) == *"64"* ]]; then
+    export UNAME_LINUX_64=1
+  fi
+elif [[ $UNAME == 'Darwin' ]]; then
+  export UNAME_MACOS=1
+fi
+
+if [[ -n $UNAME_LINUX ]]; then
+  if [ -x "$(command -v keychain)" ]; then
+    eval $(keychain --eval -Q -q --inherit any --agents ssh id_ed25519)
+  else
+    eval $(ssh-agent) > /dev/null
+  fi
+fi
+
 # start tmux unless you are already in tmux, you have set NO_TMUX or you are starting up VSCode from Spotlight
 if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &>/dev/null && [ -z "$VSCODE_PID" ]; then
   # use this "if" to suppress tmux in *debugging* in vscode
@@ -28,16 +46,6 @@ if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; t
   if dpkg -l ubuntu-desktop >/dev/null 2>&1; then
     export UBUNTU_DESKTOP=1
   fi
-fi
-
-UNAME=$(uname)
-if [[ $UNAME == 'Linux' ]]; then
-  export UNAME_LINUX=1
-  if [[ $(uname -m) == *"64"* ]]; then
-    export UNAME_LINUX_64=1
-  fi
-elif [[ $UNAME == 'Darwin' ]]; then
-  export UNAME_MACOS=1
 fi
 
 if grep -q Raspbian /etc/os-release 2>/dev/null; then

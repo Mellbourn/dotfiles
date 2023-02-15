@@ -215,14 +215,6 @@ if [[ -n $UNAME_MACOS ]]; then
   zinit wait'0' lucid light-mode as"program" pick"src/trash" for morgant/tools-osx
 fi
 
-if [[ -n $UNAME_LINUX ]]; then
-  if [ -x "$(command -v keychain)" ]; then
-    eval $(keychain --eval -Q -q --inherit any --agents ssh id_ed25519)
-  else
-    eval $(ssh-agent) > /dev/null
-  fi
-fi
-
 zinit wait'1' lucid for OMZP::magic-enter
 MAGIC_ENTER_GIT_COMMAND="g st"
 MAGIC_ENTER_OTHER_COMMAND="l"
