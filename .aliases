@@ -23,6 +23,7 @@ alias jil='jila -q "resolution = Unresolved"'
 alias jila='jira issue list -a$(jira me) --order-by lastViewed'
 alias jilp='jil --plain'
 alias jilw='jira issue list -q "assignee = currentUser() and updated >= startofDay(-8d)" --order-by updated --plain'
+alias jim='jira issue move'
 alias l='ls -F '
 alias la='ls -AF '
 alias ld=lazydocker
