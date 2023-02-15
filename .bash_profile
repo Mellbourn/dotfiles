@@ -24,7 +24,7 @@ fi
 
 if [[ -n $UNAME_LINUX ]]; then
   if [ -x "$(command -v keychain)" ]; then
-    eval $(keychain --eval -Q -q --inherit any id_ed25519)
+    eval $(keychain --eval -Q --inherit any id_ed25519)
   else
     eval $(ssh-agent) > /dev/null
   fi
