@@ -22,14 +22,14 @@ elif [[ $UNAME == 'Darwin' ]]; then
   export UNAME_MACOS=1
 fi
 
-sshr () { ssh-add -l >&/dev/null || eval "$(ssh-agent)" >/dev/null; }
+sshr() { ssh-add -l >&/dev/null || eval "$(ssh-agent)" >/dev/null; }
+sshrfa() {
+  source "$HOME/bin/ssh-find-agent.sh"
+  echo "ssh-find-agent sourced"
+  ssh-add -l >&/dev/null || ssh-find-agent -a || eval "$(ssh-agent)" >/dev/null
+}
 if [[ -n $UNAME_LINUX ]]; then
-  sshrfa () {
-    source "$HOME/bin/ssh-find-agent.sh"
-    echo "ssh-find-agent sourced"
-    ssh-add -l >&/dev/null || ssh-find-agent -a || eval "$(ssh-agent)" >/dev/null
-  }
-  sshrk () { eval "$(keychain --eval -Q --inherit any id_ed25519)"; }
+  sshrk() { eval "$(keychain --eval -Q --inherit any id_ed25519)"; }
 
   if [[ -n "$WSL_DISTRO_NAME" ]]; then
     if [ -x "$(command -v keychain)" ]; then
