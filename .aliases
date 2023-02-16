@@ -35,7 +35,8 @@ alias prev='open -a Preview'
 alias ql='qlmanage -p >/dev/null 2>&1'
 alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
 alias rm_node_modules='$FD -t d -u node_modules -x rm -rf'
-alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
+# screws up rm in sourced files, e.g. ssh-find-agent
+#alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
 alias tig='TERM=xterm-256color tig'
 alias weather='curl -s v2.wttr.in'
 alias y='noglob yadm'

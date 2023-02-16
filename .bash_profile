@@ -23,10 +23,14 @@ elif [[ $UNAME == 'Darwin' ]]; then
 fi
 
 if [[ -n $UNAME_LINUX ]]; then
-  if [ -x "$(command -v keychain)" ]; then
-    eval $(keychain --eval -Q --inherit any id_ed25519)
+  if [ -f ~/bin/ssh-find-agent.sh ]; then
+    source "$HOME/bin/ssh-find-agent.sh"
+    echo "ssh-find-agent sourced"
+    ssh-add -l >&/dev/null || ssh-find-agent -a || eval "$(ssh-agent)" >/dev/null
+  elif [ -x "$(command -v keychain)" ]; then
+    eval "$(keychain --eval -Q --inherit any id_ed25519)"
   else
-    eval $(ssh-agent) > /dev/null
+    ssh-add -l >&/dev/null || eval "$(ssh-agent)" >/dev/null
   fi
 fi
 
