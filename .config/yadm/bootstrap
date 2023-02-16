@@ -547,6 +547,9 @@ curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/ter
 gunzip -f /tmp/terminfo.src.gz
 /usr/bin/tic -xe tmux-256color /tmp/terminfo.src
 
+curl -o ~/bin/ssh-find-agent.sh -L https://raw.githubusercontent.com/wwalker/ssh-find-agent/master/ssh-find-agent.sh
+chmod +x ~/bin/ssh-find-agent.sh
+
 if [ -x "$(command -v gh)" ]; then
   if ! gh auth status; then
     gh auth login -p ssh -h github.com -w || true
