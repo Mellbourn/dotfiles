@@ -31,6 +31,12 @@ autoload -Uz $(ls ~/.zsh-personal-functions)
 # curl is here to enablie curlie to get to curls completions
 FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$HOMEBREW_PREFIX/opt/curl/share/zsh/site-functions:$FPATH
 
+# fixing weird error of fpath on Klas's MacBook Pro 16" 2023, having 5.8.1 instead of 5.9
+case "$FPATH" in
+    */usr/share/zsh/site-functions:/usr/share/zsh/5.8.1/functions*)
+      FPATH=$FPATH:/opt/homebrew/share/zsh/site-functions:/opt/homebrew/Cellar/zsh/5.9/share/zsh/functions ;;
+esac
+
 # misc
 setopt interactive_comments long_list_jobs extendedglob notify list_packed transient_rprompt
 
