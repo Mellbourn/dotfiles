@@ -905,10 +905,5 @@ defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 
 # this script makes brew doctor fail
 trash "$HOMEBREW_PREFIX"/Library/Taps/wix/homebrew-brew/applesimutils.rb
-if [ "$OS_MAJOR_VERSION" -ge "$MONTEREY_MAJOR_VERSION" ]; then
-  # brew doctor will always fail on Monterey while it is in beta
-  set +e
-fi
 brew doctor
-set -e
 zsh_performance_measurements
