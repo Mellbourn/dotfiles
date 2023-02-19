@@ -139,8 +139,8 @@ if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
   brew install mas || true
 
-  # Xcode
-  mas install 497799835
+  mas install 497799835                    # Xcode
+  mas install 1352778147                   # Bitwarden
   mas lucky "Copy 'Em (Clipboard Manager)" # (2.11) 876540291
   mas lucky "John's Background Switcher"   # 907640277
   # Safari extensions
@@ -236,6 +236,7 @@ awscli
 bash
 bash-completion
 bat
+bitwarden-cli
 cheat
 choose-rust
 circleci
