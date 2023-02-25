@@ -132,7 +132,8 @@ if [[ $(uname) == 'Darwin' ]]; then
   "$HOME"/bin/cleanup-directory -d "$HOME"/Pictures -l 10 -v
   # not needed: tmux-resurrect deletes files older than 30 days by default
   #$HOME/bin/cleanup-directory -d $HOME/.tmux/resurrect -f \*/tmux_resurrect_\*.txt -l 5 -v
-  "$HOMEBREW_PREFIX"/sbin/tmpreaper -vv 2d -T 180 "$HOME"/.Trash &
+  # not needed - I have enough space
+  # "$HOMEBREW_PREFIX"/sbin/tmpreaper -vv 2d -T 180 "$HOME"/.Trash &
 
   ###############################################################################
   # App store                                                                   #
