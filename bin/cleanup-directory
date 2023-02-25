@@ -5,7 +5,7 @@ file_glob=*
 ignore_files_younger_than_days=2
 exclude=*.photoslibrary
 
-usage () { echo "-d directory to clean
+usage() { echo "-d directory to clean
 -f glob pattern of files to clean
 -l number of files to leave
 -i ignore files younger than this number of days, and don't count them towards the number of files to leave
@@ -13,32 +13,31 @@ usage () { echo "-d directory to clean
 -v verbose"; }
 
 while getopts "hvd:f:l:i:x:" opt; do
-    case $opt in
-        d ) directory=$OPTARG;;
-        f ) file_glob=$OPTARG;;
-        l ) number_left=$OPTARG;;
-        v ) verbose=1;;
-        i ) ignore_files_younger_than_days=$OPTARG;;
-        x ) exclude=$OPTARG;;
-        h ) usage; exit;;
-    esac
+  case $opt in
+  d) directory=$OPTARG ;;
+  f) file_glob=$OPTARG ;;
+  l) number_left=$OPTARG ;;
+  v) verbose=1 ;;
+  i) ignore_files_younger_than_days=$OPTARG ;;
+  x) exclude=$OPTARG ;;
+  h)
+    usage
+    exit
+    ;;
+  esac
 done
 
 setopt GLOB_SUBST
 
-
-find $directory -maxdepth 1 -path "$file_glob" -not -path '*/\.*' -atime +$ignore_files_younger_than_days \( -type f -or -type d \) -not -path "$exclude" |\
-while read file
-do
-  stat -f "%-10m %40N" "$file"
-done |\
-sort -n | \
-$HOMEBREW_PREFIX/bin/ghead --lines=-$number_left |\
-while read date filename
-do
-  if [[ -v verbose ]]
-  then
-    echo trashing "$filename"
-  fi
-  trash "$filename"
-done
+find $directory -maxdepth 1 -path "$file_glob" -not -path '*/\.*' -atime +$ignore_files_younger_than_days \( -type f -or -type d \) -not -path "$exclude" |
+  while read file; do
+    stat -f "%-10m %40N" "$file"
+  done |
+  sort -n |
+  ghead --lines=-$number_left |
+  while read date filename; do
+    if [[ -v verbose ]]; then
+      echo trashing "$filename"
+    fi
+    trash "$filename"
+  done
