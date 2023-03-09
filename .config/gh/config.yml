@@ -20,6 +20,7 @@ aliases:
   # github runs seldom fail since we run checks in circlci
   failgh: "!gh run view --log-failed $(gh run list -u $(gh whoami) --limit 1 --json databaseId -q .[0].databaseId) | less +G"
   prs: pr status --conflict-status
+  prv: pr view -w
   url: "!gh pr view --json url -q .url|pbcopy"
   review: search prs --review-requested=@me --state=open -w
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
