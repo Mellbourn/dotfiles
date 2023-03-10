@@ -860,13 +860,14 @@ defaults write com.apple.dock show-recents -bool true
 defaults write com.apple.dock show-recent-count -int 12
 # arrange the icons
 set +e
-declare -a apps_to_remove=("Mail" "Safari" "Maps" "Photos" "FaceTime" "Calendar" "Contacts" "Reminders" "Notes" "TV" "Music" "Podcasts" "Keynote" "Numbers" "Pages" "App Store" "Messages" "Epson Photo+" "Epson Photo+ Tool" "Feedback Assistant")
+declare -a apps_to_remove=("Mail" "Safari" "Maps" "Photos" "FaceTime" "Calendar" "Contacts" "Reminders" "Notes" "TV" "Music" "Podcasts" "Keynote" "Numbers" "Pages" "App Store" "Messages" "Epson Photo+" "Epson Photo+ Tool" "Feedback Assistant" "Freeform")
 for app_to_remove in "${apps_to_remove[@]}"; do
   dockutil --remove "$app_to_remove" --no-restart
 done
 dockutil --add "/Applications/Google Chrome Beta.app" --after "Launchpad" --no-restart
 dockutil --add "/Applications/iTerm.app" --after "Google Chrome Beta" --no-restart
-dockutil --add "/Applications/Visual Studio Code.app" --after "iTerm"
+dockutil --add "/Applications/Visual Studio Code.app" --after "iTerm" --no-restart
+dockutil --add "/Applications/Bitwarden.app" --after "Visual Studio Code"
 set -e
 
 # autohide dock - my screen realestate is valuable!
