@@ -334,6 +334,7 @@ xplr
 yadm
 yank
 yarn
+ykman
 zoxide
 zsh
 "
@@ -371,6 +372,7 @@ ui-browser
 visual-studio-code
 vlc
 witch
+yubico-yubikey-manager
 "
 
   alreadyInstalled=$(brew list --cask)
