@@ -371,7 +371,6 @@ ui-browser
 visual-studio-code
 vlc
 witch
-yubico-yubikey-manager
 "
 
   alreadyInstalled=$(brew list --cask)
@@ -380,6 +379,11 @@ yubico-yubikey-manager
   echo "$installThese" | xargs brew install --cask
 
   brew link --overwrite ugit
+
+  if [ -n "$X86_OR_ROSETTA" ]; then
+    # TODO: when there are Apple Silicon versions of these packages, move the installation to the normal list
+    brew install --cask yubico-yubikey-manager
+  fi
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
