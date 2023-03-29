@@ -144,6 +144,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   mas install 1352778147                   # Bitwarden
   mas lucky "Copy 'Em (Clipboard Manager)" # (2.11) 876540291
   mas lucky "John's Background Switcher"   # 907640277
+  mas lucky "Yubico Authenticator"         # (6.1.0) 1497506650
   # Safari extensions
   mas lucky "Adblock Plus for Safari ABP" # (2.1.10) 1432731683
   mas lucky "DuckTabs Extension"          # (2.0) 1508584686
