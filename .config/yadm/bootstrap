@@ -243,6 +243,7 @@ choose-rust
 circleci
 coreutils
 croc
+d2
 dasel
 diff-so-fancy
 direnv
