@@ -57,7 +57,7 @@ d = diff --color-words=.
 f = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no-tags origin main; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) main:main; fi"
 # pull only current branch, fetch nothing else
 p = "!git pull --no-tags origin $(git rev-parse --abbrev-ref HEAD)"
-pc = "!git push && sleep 3 && gh pr checks --watch"
+pc = "!git push && gh cws"
 # logp and reflogp have been adjustd so that they are compatible with git-delta
 logp = log -p --format='commit %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s'
 reflogp = reflog -p --format='commit %C(auto)%h%d %gd: %gs (%s)'

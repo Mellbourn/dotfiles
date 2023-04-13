@@ -9,7 +9,8 @@ pager: less
 # Aliases allow you to create nicknames for gh commands
 aliases:
   cw: pr checks --watch
-  cwm: "!gh cw && gh pr merge --merge --auto"
+  cwm: "!gh cws && gh pr merge --merge --auto"
+  cws: "!sleep 5 && gh cw"
   co: pr checkout
   open: "!gh browse . -b $(git rev-parse --abbrev-ref HEAD)"
   work: "!gh status -o $GITHUB_ORGANIZATION"
