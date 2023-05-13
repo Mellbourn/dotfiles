@@ -350,7 +350,7 @@ zsh
   installThese=${installTheseLines//$'\n'/ }
   echo "$installThese" | xargs brew install
 
-  # TODO: add more when better arm support: philips-hue-sync plex imageoptim private-internet-access mockoon
+  # TODO: add more when better arm support: philips-hue-sync plex imageoptim mockoon
   casks="
 1password
 bartender
@@ -373,6 +373,7 @@ keycue
 launchcontrol
 moom
 paletro
+private-internet-access
 react-native-debugger
 ui-browser
 visual-studio-code
