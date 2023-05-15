@@ -34,11 +34,11 @@ if [[ -n $UNAME_LINUX ]]; then
   if [[ -n "$WSL_DISTRO_NAME" ]]; then
     # the following is no longer needed for git credentials, if using native windows git (defined in .gitconfig.credentials##os.WSL)
     # https://github.com/git-ecosystem/git-credential-manager/blob/main/docs/wsl.md
-    if [ -x "$(command -v keychain)" ]; then
-      sshrk
-    else
-      sshr
-    fi
+    #if [ -x "$(command -v keychain)" ]; then
+    #  sshrk
+    #else
+    #  sshr
+    #fi
   else # unix, but not WSL
     if [ -f ~/bin/ssh-find-agent.sh ]; then
       sshrfa
