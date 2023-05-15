@@ -121,9 +121,11 @@ if [[ $(uname) == 'Linux' ]]; then
     installLsd "$(dpkg --print-architecture)"
   elif [[ $(dpkg --print-architecture) == "amd64" ]]; then
     # WSL will have amd64
-    LATEST_TAG=$(gh release list --exclude-drafts -R Peltoche/lsd -L 1 | awk '{print $1;}')
-    gh release download "$LATEST_TAG" -R Peltoche/lsd -p "lsd_${LATEST_TAG}_amd64.deb" --skip-existing -D "/tmp"
-    sudo dpkg --skip-same-version -i "/tmp/lsd_${LATEST_TAG}_amd64.deb"
+    if gh auth status; then
+      LATEST_TAG=$(gh release list --exclude-drafts -R Peltoche/lsd -L 1 | awk '{print $1;}')
+      gh release download "$LATEST_TAG" -R Peltoche/lsd -p "lsd_${LATEST_TAG}_amd64.deb" --skip-existing -D "/tmp"
+      sudo dpkg --skip-same-version -i "/tmp/lsd_${LATEST_TAG}_amd64.deb"
+    fi
 
   elif [ -x "$(command -v gh)" ] && [[ $(dpkg --print-architecture) == "armhf" ]]; then
     # probably 32 bit Rapberry Pi OS
@@ -142,7 +144,9 @@ if [[ $(uname) == 'Linux' ]]; then
     # configuration specific for WSL
     #################################################################################
     # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
-    ~/bin/trash-empty-wsl +30
+    if [ -f ~/bin/trash-empty-wsl ]; then
+      ~/bin/trash-empty-wsl +30
+    fi
   else
     #################################################################################
     # configuration specific non-WSL, e.g. raspberry pi, and those that support snap
