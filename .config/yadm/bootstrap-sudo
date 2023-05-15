@@ -228,7 +228,7 @@ if [[ $(uname) == 'Linux' ]]; then
     popd
   fi
 
-  if ! grep -q "$USR:.*zsh" /etc/passwd; then
+  if ! grep -q "$USER:.*zsh" /etc/passwd; then
     sudo chsh -s "$(which zsh)" "$(whoami)"
   fi
 

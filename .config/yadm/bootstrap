@@ -639,6 +639,10 @@ function zsh_performance_measurements() {
 # configuration for just Linux
 ###############################################################################
 if [[ $(uname) == 'Linux' ]]; then
+  # unclear if this is needed, maybe bootstrap-sudo handles this
+  #if [[ -x "$(command -v zsh)" ]] && ! grep -q "$USER:.*zsh" /etc/passwd; then
+  #  chsh -s "$(which zsh)" "$(whoami)"
+  #fi
 
   # do some cleanup
   if [ -x "$(command -v trash-empty)" ]; then
