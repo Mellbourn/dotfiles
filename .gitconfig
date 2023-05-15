@@ -7,6 +7,8 @@ path = .gitconfig.modern
 path = .gitconfig.pager
 [include]
 path = .gitconfig.user.foss
+[include]
+path = .gitconfig.credentials
 [includeIf "gitdir:~/code/klarna/"]
 path = .gitconfig.user
 
