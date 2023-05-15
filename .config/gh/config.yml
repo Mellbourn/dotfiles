@@ -8,24 +8,24 @@ prompt: enabled
 pager: less
 # Aliases allow you to create nicknames for gh commands
 aliases:
-  cw: pr checks --watch
-  cwm: "!gh cws && gh pr merge --merge --auto"
-  cws: "!sleep 5 && gh cw"
-  co: pr checkout
-  open: "!gh browse . -b $(git rev-parse --abbrev-ref HEAD)"
-  work: "!gh status -o $GITHUB_ORGANIZATION"
-  members: "!gh api /orgs/$GITHUB_ORGANIZATION/members -q .[].login"
-  whoami: "!gh api user | jq -r .login"
-  # runs are no longer so interesting, since we run actual checks in circeci
-  runs: "!gh run list -u $(gh whoami) --limit 5"
-  runsb: "!gh run list -u $(gh whoami) --limit 5 -b $(git rev-parse --abbrev-ref HEAD)"
-  fail: "!gh pr checks | grep fail | choose -1 | xargs open"
-  # github runs seldom fail since we run checks in circlci
-  failgh: "!gh run view --log-failed $(gh run list -u $(gh whoami) --limit 1 --json databaseId -q .[0].databaseId) | less +G"
-  prs: pr status --conflict-status
-  prv: pr view -w
-  url: "!gh pr view --json url -q .url|pbcopy"
-  review: search prs --review-requested=@me --state=open -w
+    cw: pr checks --watch
+    cwm: "!gh cws && gh pr merge --merge --auto"
+    cws: "!sleep 5 && gh cw"
+    co: pr checkout
+    open: "!gh browse . -b $(git rev-parse --abbrev-ref HEAD)"
+    work: "!gh status -o $GITHUB_ORGANIZATION"
+    members: "!gh api /orgs/$GITHUB_ORGANIZATION/members -q .[].login"
+    whoami: "!gh api user | jq -r .login"
+    # runs are no longer so interesting, since we run actual checks in circeci
+    runs: "!gh run list -u $(gh whoami) --limit 5"
+    runsb: "!gh run list -u $(gh whoami) --limit 5 -b $(git rev-parse --abbrev-ref HEAD)"
+    fail: "!gh pr checks | grep fail | choose -1 | xargs open"
+    # github runs seldom fail since we run checks in circlci
+    failgh: "!gh run view --log-failed $(gh run list -u $(gh whoami) --limit 1 --json databaseId -q .[0].databaseId) | less +G"
+    prs: pr status --conflict-status
+    prv: pr view -w
+    url: "!gh pr view --json url -q .url|pbcopy"
+    review: search prs --review-requested=@me --state=open -w
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
