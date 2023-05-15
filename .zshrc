@@ -515,8 +515,10 @@ bindkey "^X^L" insert-last-command-output
 
 ###############################################################################
 # Suffix aliases - http://zshwiki.org/home/examples/aliassuffix
+# these become "executable"
 ###############################################################################
 alias -s zip="zipinfo"
+alias -s {avdl,c,coffee,css,el,gql,gradle,graphql,h,handlebars,hpp,html,http,java,js,json,json5,jsx,lock,log,md,py,rb,scss,swift,text,ts,tsx,txt,xml,yaml,yml,yo}=code
 
 ###############################################################################
 # keybindings
