@@ -32,13 +32,15 @@ if [[ -n $UNAME_LINUX ]]; then
   sshrk() { eval "$(keychain --eval -q -Q --inherit any id_ed25519)"; }
 
   if [[ -n "$WSL_DISTRO_NAME" ]]; then
-    # the following is no longer needed for git credentials, if using native windows git (defined in .gitconfig.credentials##os.WSL)
+    # the following should longer needed for git credentials, if using native windows git
+    # (defined in .gitconfig.credentials##os.WSL)
     # https://github.com/git-ecosystem/git-credential-manager/blob/main/docs/wsl.md
-    #if [ -x "$(command -v keychain)" ]; then
-    #  sshrk
-    #else
-    #  sshr
-    #fi
+    # however, I could not get git-credential-manager solution to work
+    if [ -x "$(command -v keychain)" ]; then
+      sshrk
+    else
+      sshr
+    fi
   else # unix, but not WSL
     if [ -f ~/bin/ssh-find-agent.sh ]; then
       sshrfa
