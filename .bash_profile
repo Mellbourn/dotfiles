@@ -41,6 +41,8 @@ if [[ -n $UNAME_LINUX ]]; then
     else
       sshr
     fi
+    # this printf makes the cursor blink in Windows Terminal
+    printf "\e[?12h"
   else # unix, but not WSL
     if [ -f ~/bin/ssh-find-agent.sh ]; then
       sshrfa
