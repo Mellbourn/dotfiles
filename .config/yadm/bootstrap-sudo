@@ -70,6 +70,7 @@ if [[ $(uname) == 'Linux' ]]; then
     tmpreaper
     libssl-dev
     pkg-config
+    cargo
   "
   for app in $apps; do
     if ! dpkg-query -l "$app" >/dev/null; then
@@ -85,7 +86,6 @@ if [[ $(uname) == 'Linux' ]]; then
       build-essential \
       python-pip \
       python3-pip \
-      cargo \
       fortune-mod
 
     sudo -H pip install --upgrade pip
