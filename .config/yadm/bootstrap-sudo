@@ -84,13 +84,13 @@ if [[ $(uname) == 'Linux' ]]; then
     sudo apt install -y \
       direnv \
       build-essential \
-      python-pip \
+      python-is-python3 \
       python3-pip \
       fortune-mod
 
-    sudo -H pip install --upgrade pip
+    #sudo -H pip install --upgrade pip
     sudo -H pip3 install --upgrade pip
-    sudo -H pip install virtualenv virtualenvwrapper
+    #sudo -H pip install virtualenv virtualenvwrapper
     sudo -H pip3 install thefuck
   fi
 
