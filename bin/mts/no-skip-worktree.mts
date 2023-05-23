@@ -11,8 +11,9 @@ import { run } from "./common.mjs";
 const toplevel = run("git rev-parse --show-toplevel");
 [
   `git update-index --no-skip-worktree ${toplevel}/.vscode/settings.json`,
-  `git update-index --no-skip-worktree ${toplevel}/packages/rn/features/identity/src/hooks/use-is-authenticated/use-is-authenticated.ts`,
-  `git update-index --no-skip-worktree ${toplevel}/packages/rn/features/identity/src/hooks/use-is-authenticated/use-is-authenticated.spec.tsx`,
+  `git update-index --no-skip-worktree ${toplevel}/.vscode/launch.json`,
+  `git update-index --no-skip-worktree ${toplevel}/apps/flexiapp-e2e/.detoxrc.json`,
+  `git update-index --no-skip-worktree ${toplevel}/apps/flexiapp/ios/Podfile.lock`,
 ].forEach((cmd) => {
   const stdout = run(cmd);
   if (stdout) {
