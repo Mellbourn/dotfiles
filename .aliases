@@ -32,6 +32,7 @@ alias lla='ll -A'
 alias more=less
 alias mv='mv -v'
 alias prev='open -a Preview'
+alias psh='pwsh.exe'
 alias ql='qlmanage -p >/dev/null 2>&1'
 alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
 alias rm_node_modules='$FD -t d -u node_modules -x rm -rf'
