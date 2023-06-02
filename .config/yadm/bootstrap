@@ -200,10 +200,6 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew update
   brew upgrade
 
-  # these untaps became possible after brew 4. Remove them eventually
-  brewSafeUntap homebrew/cask
-  brewSafeUntap homebrew/core
-
   # is a separate upgrade for casks redundant?
   #brew upgrade --cask
   brew tap aws/tap                # for aws-sam-cli
