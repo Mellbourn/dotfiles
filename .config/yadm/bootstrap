@@ -195,6 +195,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   # some uninstalls must be made before update
   brewSafeUninstallCask virtualbox
   brewSafeUninstallFormula gdu
+  brewSafeUntap Homebrew/homebrew-cask-drivers # for philips-hue-sync and luna-display
 
   brew cleanup
   brew update
@@ -218,8 +219,6 @@ if [[ $(uname) == 'Darwin' ]]; then
   # brew install --cask homebrew/cask-drivers/logitech-options
 
   # remove brews here that were previously installed, to sync between machines
-  brewSafeUntap Homebrew/homebrew-cask-drivers # for philips-hue-sync and luna-display
-
   for formula in zsh-autosuggestions ilmbase asciinema fortune git-number z.lua weechat broot deno htop rbenv node@14 nodebrew asdf pipenv pyenv-virtualenvwrapper pyenv-virtualenv pyenv openjdk@11 transcrypt nginx cloc mosh volta dockutil tldr awscli@1 git-extras git-cliff libgit2@1.5 awscli pycparser; do
     brewSafeUninstallFormula $formula
   done
