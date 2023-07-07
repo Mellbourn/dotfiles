@@ -116,7 +116,6 @@ if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
   OS_MAJOR_VERSION=$(sw_vers -productVersion | cut -d. -f1)
   BIG_SUR_MAJOR_VERSION=11
-  MONTEREY_MAJOR_VERSION=12
 
   # activate cleanup jobs, doesn't actually update?
   launchctl unload ~/Library/LaunchAgents/local.cleanup.downloads.plist
