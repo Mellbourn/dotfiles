@@ -185,16 +185,12 @@ if [[ $(uname) == 'Darwin' ]]; then
     fi
   }
 
-  brewSafeUntap() {
-    if brew tap "$@" 2>/dev/null; then
-      brew untap "$@"
-    fi
-  }
-
   # some uninstalls must be made before update
+  set +e
+  brew untap homebrew/homebrew-cask-drivers # for philips-hue-sync and luna-display
+  set -e
   brewSafeUninstallCask virtualbox
   brewSafeUninstallFormula gdu
-  brewSafeUntap Homebrew/homebrew-cask-drivers # for philips-hue-sync and luna-display
 
   brew cleanup
   brew update
