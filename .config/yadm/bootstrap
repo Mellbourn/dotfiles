@@ -214,7 +214,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   # brew install --cask homebrew/cask-drivers/logitech-options
 
   # remove brews here that were previously installed, to sync between machines
-  for formula in zsh-autosuggestions ilmbase asciinema fortune git-number z.lua weechat broot deno htop rbenv node@14 nodebrew asdf pipenv pyenv-virtualenvwrapper pyenv-virtualenv pyenv openjdk@11 transcrypt nginx cloc mosh volta dockutil tldr awscli@1 git-extras git-cliff libgit2@1.5 awscli; do
+  for formula in zsh-autosuggestions ilmbase asciinema fortune git-number z.lua weechat broot deno htop rbenv node@14 nodebrew asdf pipenv pyenv-virtualenvwrapper pyenv-virtualenv pyenv openjdk@11 transcrypt nginx cloc mosh volta dockutil tldr awscli@1 git-extras git-cliff libgit2@1.5 awscli gcal; do
     brewSafeUninstallFormula $formula
   done
 
@@ -253,7 +253,6 @@ fpp
 fx
 fzf
 gawk
-gcal
 gh
 git
 git-crypt
