@@ -10,7 +10,7 @@ pager: less
 aliases:
   cw: pr checks --watch
   cwm: "!gh cws && gh pr merge --merge --auto"
-  cws: "!sleep 8 && gh cw"
+  cws: "!sleep 10 && gh cw"
   co: pr checkout
   open: "!gh browse . -b $(git rev-parse --abbrev-ref HEAD)"
   work: "!gh status -o $GITHUB_ORGANIZATION"
