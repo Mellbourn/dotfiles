@@ -231,6 +231,8 @@ addLastInPath "$ANDROID_HOME/tools/bin"
 addLastInPath "$ANDROID_HOME/platform-tools"
 addFirstInPath /Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin
 
+export REACT_NATIVE_DOWNLOADS_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/react-native-downloads"
+
 # bc settings
 export BC_ENV_ARGS="-l -q"
 
