@@ -100,11 +100,11 @@ if [[ -n "$FIRSTVET" ]]; then
   asdf install java temurin-11.0.16+101
   asdf global java temurin-11.0.16+101
   asdf install ruby 2.7.6
-  asdf install ruby 3.1.2
+  asdf install ruby 3.1.4
   asdf install python 3.9.10 # this is for klapp
   asdf install python 3.10.6
   asdf global python 3.10.6
-  asdf global ruby 3.1.2
+  asdf global ruby 3.1.4
 fi
 
 # if no versions are installed, the asdf plugin will fall back to "system"
