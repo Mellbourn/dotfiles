@@ -202,6 +202,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew tap git-time-metric/gtm    # for gtm
   brew tap homebrew/cask-fonts    # for font-fira-code
   brew tap homebrew/cask-versions # for google-chrome-beta
+  brew tap lokalise/cli-2
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
   brew tap homebrew/command-not-found
   brew tap facebook/fb           # for idb-companion for flipper
@@ -282,6 +283,7 @@ jira-cli
 jq
 kpcli
 lastpass-cli
+lokalise2
 less
 librsvg
 lnav
