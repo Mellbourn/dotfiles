@@ -914,5 +914,8 @@ defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 
 # this script makes brew doctor fail
 trash "$HOMEBREW_PREFIX"/Library/Taps/wix/homebrew-brew/applesimutils.rb
+# brew doctor fails with Unexpected dylibs:  /usr/local/lib/libDellMonitorSdkLib.dylib
+set +e
 brew doctor
+set -e
 zsh_performance_measurements
