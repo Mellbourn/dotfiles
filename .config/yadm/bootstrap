@@ -185,12 +185,13 @@ if [[ $(uname) == 'Darwin' ]]; then
     fi
   }
 
+  brewSafeUninstallFormula eth-p/software/bat-extras-batgrep
+  brewSafeUninstallCask virtualbox
+  brewSafeUninstallFormula gdu
   # some uninstalls must be made before update
   set +e
   brew untap homebrew/homebrew-cask-drivers # for philips-hue-sync and luna-display
   set -e
-  brewSafeUninstallCask virtualbox
-  brewSafeUninstallFormula gdu
 
   brew cleanup
   brew update
@@ -246,7 +247,6 @@ diff-so-fancy
 direnv
 duf
 duti
-eth-p/software/bat-extras-batgrep
 exa
 fd
 findutils
