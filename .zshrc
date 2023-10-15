@@ -172,21 +172,6 @@ fi
 zbell_ignore+=($EDITOR $PAGER vim code less bat cat man run-help lnav)
 zinit wait'0' lucid for OMZP::zbell
 
-# exa doesn't download well on WSL
-# zinit wait'0' lucid as"program" from"gh-r" mv"exa* -> exa" pick"$ZPFX/exa" light-mode for ogham/exa
-export TIME_STYLE=long-iso
-if [ -x "$(command -v exa)" ]; then
-  function x() {
-    command exa -F --color-scale --group-directories-first --color=always --icons -x $*
-  }
-  function xl() {
-    command exa -F --color-scale --group-directories-first --color=always --icons -l $* | command less -r
-  }
-else
-  alias x=l
-  alias xl=ll
-fi
-
 if [ -x "$(command -v zoxide)" ]; then
   export _ZO_EXCLUDE_DIRS=$HOME
   zinit wait'0' lucid as'null' atinit'unalias zi;eval "$(zoxide init zsh --hook prompt)" && alias c=__zoxide_zi zi=zinit' light-mode for zdharma-continuum/null
@@ -311,7 +296,7 @@ zinit wait'1' lucid atclone'source fzf-tab.zsh && build-fzf-tab-module' atpull'%
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
-# preview directory's content with exa when completing cd
+# preview directory's content with lsd when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -l --blocks name,permission,size,date --color=always --icon=always $realpath'
 zstyle ':fzf-tab:complete:ls:*' fzf-preview '[ -f "$realpath" ] && bat --color=always $realpath || lsd -l --blocks name,permission,size,date --color=always --icon=always $realpath'
 zstyle ':fzf-tab:complete:export:*' fzf-preview 'printenv $word'
@@ -676,10 +661,6 @@ if [ -x "$(command -v bat)" ]; then
     command batgrep --color --smart-case --context=0 $* | command less -+J -+W
   }
   alias batgrep="noglob batgrep"
-fi
-if [ $(command -v _exa) ]; then
-  compdef x="exa"
-  compdef xl="exa"
 fi
 compdef lsd=ls
 if [ -x "$(command -v prettyping)" ]; then
