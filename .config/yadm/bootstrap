@@ -343,12 +343,12 @@ zsh
   echo "$installThese" | xargs brew install
 
   # TODO: add more when better arm support: philips-hue-sync private-internet-access plex imageoptim mockoon
+  # TODO: add back flipper when versions beyond 0.237 work with debugger https://github.com/facebook/flipper/issues/5334
   casks="
 1password
 bartender
 chromium
 docker
-flipper
 font-cascadia-code-pl
 font-caskaydia-cove-nerd-font
 font-fira-code
