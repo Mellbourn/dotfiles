@@ -670,13 +670,16 @@ npm i -g tsx
 npm i -g ts-node @swc/core
 npm i -g cleanup-branches
 
-if [[ -n "$KLARNA" ]]; then
-  if \ping -c1 -W1 jira.int.klarna.net; then
-    npm update -g --registry=https://artifactory.klarna.net/artifactory/api/npm/v-npm-production/
-  fi
-else
-  npm update -g
-fi
+# this is the version used for 16.20
+npm i -g npm@8.19.4
+#npm i -g npm@8.15.0
+#if [[ -n "$KLARNA" ]]; then
+#  if \ping -c1 -W1 jira.int.klarna.net; then
+#    npm update -g --registry=https://artifactory.klarna.net/artifactory/api/npm/v-npm-production/
+#  fi
+#else
+#  npm update -g
+#fi
 # save some disk
 xcrun simctl delete unavailable || true
 
