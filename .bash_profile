@@ -76,9 +76,9 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
   export DOTFILES_LITE=1
 fi
 
-if [[ $(hostname) == *"MacBook-Pro-16"* ]]; then
-  export FIRSTVET=1
-fi
+#if [[ $(hostname) == *"MacBook-Pro-16"* ]]; then
+#  export FIRSTVET=1
+#fi
 
 if [[ -n $FIRSTVET ]]; then
   export GITHUB_ORGANIZATION=firstvetcom

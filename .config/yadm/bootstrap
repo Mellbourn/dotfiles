@@ -24,9 +24,9 @@ export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]] || [[ $(hostname) == "HKG"* ]]; then
   export KLARNA=1
 fi
-if [[ $(hostname) == *"MacBook-Pro-16"* ]]; then
-  export FIRSTVET=1
-fi
+# if [[ $(hostname) == *"MacBook-Pro-16"* ]]; then
+#   export FIRSTVET=1
+# fi
 if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.bom" ]; then
   export ROSETTA_INSTALLED=1
 fi
@@ -105,6 +105,13 @@ if [[ -n "$FIRSTVET" ]]; then
   asdf install python 3.10.6
   asdf global python 3.10.6
   asdf global ruby 3.1.4
+else
+  asdf install nodejs latest
+  asdf global nodejs latest
+  asdf install python latest
+  asdf global python latest
+  asdf install ruby latest
+  asdf global ruby latest
 fi
 
 # if no versions are installed, the asdf plugin will fall back to "system"
