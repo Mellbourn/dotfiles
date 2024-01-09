@@ -213,10 +213,11 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew tap homebrew/cask-versions # for google-chrome-beta
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
   brew tap homebrew/command-not-found
-  brew tap facebook/fb           # for idb-companion for flipper
-  brew tap wix/brew              # for applesimutils
-  brew tap robotsandpencils/made # for xcodes
-  brew tap ankitpokhrel/jira-cli # for jira-cli
+  brew tap facebook/fb             # for idb-companion for flipper
+  brew tap wix/brew                # for applesimutils
+  brew tap robotsandpencils/made   # for xcodes
+  brew tap ankitpokhrel/jira-cli   # for jira-cli
+  brew tap jakehilborn/jakehilborn # for displayplacer
 
   # not all computers need logitech drivers, also, these need sudo
   # brew install --cask homebrew/cask-drivers/logitech-gaming-software
@@ -252,6 +253,7 @@ d2
 dasel
 diff-so-fancy
 direnv
+displayplacer
 dockutil
 duf
 duti
