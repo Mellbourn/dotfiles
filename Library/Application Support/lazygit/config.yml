@@ -1,17 +1,17 @@
 gui:
-  skipUnstageLineWarning: true
-  skipStashWarning: true
+    skipDiscardChangeWarning: true
+    skipStashWarning: true
 git:
-  branchLogCmd: 'git log --graph {{branchName}} --'
-  allBranchesLogCmd: 'git log --graph --all'
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
+    branchLogCmd: 'git log --graph {{branchName}} --'
+    allBranchesLogCmd: 'git log --graph --all'
+    paging:
+        colorArg: always
+        pager: delta --dark --paging=never
 refresher:
-  refreshInterval: 2 # file/submodule refresh interval in seconds
-  fetchInterval: 300 # re-fetch interval in seconds
+    refreshInterval: 2 # file/submodule refresh interval in seconds
+    fetchInterval: 300 # re-fetch interval in seconds
 notARepository: 'skip'
 promptToReturnFromSubprocess: false
 keybinding:
-  files:
-    toggleTreeView: 'ö' # default is ` which is undetectable`
+    files:
+        toggleTreeView: 'ö' # default is ` which is undetectable`
