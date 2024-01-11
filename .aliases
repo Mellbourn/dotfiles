@@ -16,9 +16,6 @@ alias generate_password='LC_ALL=C tr -dc "[:alnum:]" < /dev/urandom | head -c 20
 alias glances='TERM=xterm-256color glances --process-short-name'
 alias gn='git number --column' # note that command line completion does not work well for this alias
 alias gr='cd $(git rev-parse --show-toplevel)'
-alias grep='ugrep -G --color=auto --config'  # search with basic regular expressions (BRE)
-alias egrep='ugrep -E --color=auto --config' # search with extended regular expressions (ERE)
-alias fgrep='ugrep -F --color=auto --config' # find string(s)
 alias jic='jira issue create -a@me --web --no-input -l"frontend" -l"team-treatment" -yMedium -tTask'
 alias jil='jila -q "status != done and status != \"not needed\""'
 alias jila='jira issue list -a$(jira me) --order-by lastViewed'
@@ -46,3 +43,8 @@ alias yc='GIT_DIR=~/.local/share/yadm/repo.git code ~/.config/yadm'
 alias yl='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml,$HOME/Library/Application Support/lazygit/config.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
 alias yv='GIT_DIR=~/.local/share/yadm/repo.git vi ~/.config/yadm'
 alias zmv='noglob zmv'
+
+# ugrep is a drop-in replacement for grep
+alias grep='ugrep -G --color=auto --config'  # search with basic regular expressions (BRE)
+alias egrep='ugrep -E --color=auto --config' # search with extended regular expressions (ERE)
+alias fgrep='ugrep -F --color=auto --config' # find string(s)
