@@ -1,0 +1,110 @@
+# ugrep configuration used by ug and ugrep --config.
+#
+# A long option is defined per line with an optional `=' and its argument,
+# when applicable.  Empty lines and lines starting with a `#' are ignored.
+#
+# Try `ug --help' or `ug --help WHAT' for help with options.
+
+### TERMINAL DISPLAY ###
+
+# Custom color scheme, overrides default GREP_COLORS parameters
+# colors=
+# The argument is a colon-separated list of one or more parameters `sl='
+# (selected line), `cx=' (context line), `mt=' (matched text), `ms=' (match
+# selected), `mc=' (match context), `fn=' (file name), `ln=' (line number),
+# `cn=' (column number), `bn=' (byte offset), `se=' (separator), `qp=' (TUI
+# prompt), `qe=' (TUI errors), `qr=' (TUI regex), `qm=' (TUI regex meta
+# characters), `ql=' (TUI regex lists and literals), `qb=' (TUI regex braces).
+# Parameter values are ANSI SGR color codes or `k' (black), `r' (red), `g'
+# (green), `y' (yellow), `b' (blue), `m' (magenta), `c' (cyan), `w' (white), or
+# leave empty for no color.
+# Upper case specifies background colors.
+# A `+' qualifies a color as bright.
+# A foreground and a background color may be combined with font properties `n'
+# (normal), `f' (faint), `h' (highlight), `i' (invert), `u' (underline).
+# Parameter `hl' enables file name hyperlinks (same as --hyperlink).
+# Parameter `rv' reverses the `sl=' and `cx=' parameters when option -v is
+# used.
+#
+# The ugrep default color scheme:
+#   colors=cx=33:mt=1;31:fn=1;35:ln=1;32:cn=1;32:bn=1;32:se=36:qp=1;32:qe=1;37;41:qm=1;32:ql=36:qb=1;35
+# The GNU grep and ripgrep default color scheme:
+#   colors=sl=37:cx=33:mt=1;31:fn=35:ln=32:cn=32:bn=32:se=36:qp=1;32:qe=1;37;41:qm=1;32:ql=36:qb=1;35
+# The silver searcher default color scheme:
+#   colors=mt=30;43:fn=1;32:ln=1;33:cn=1;33:bn=1;33:qp=1;32:qe=1;37;41:qm=1;32:ql=36:qb=1;35
+# Underlined bright green matches with shaded background on bright selected lines:
+#   colors=sl=1:cx=33:ms=1;4;32;100:mc=1;4;32:fn=1;32;100:ln=1;32:cn=1;32:bn=1;32:se=36:qp=1;32:qe=1;37;41:qm=1;32:ql=36:qb=1;35
+# Inverted bright yellow matches and TUI regex syntax highlighting with background colors:
+#   colors=cx=hb:ms=hiy:mc=hic:fn=hi+y+K:ln=hg:cn=hg:bn=hg:se=c:gp=hg:qr=hwB:qm=hwG:ql=hwC:qb=hwM
+# Only change the TUI regex syntax highlighting to use background colors:
+#   colors=gp=hg:qr=hwB:qm=hwG:ql=hwC:qb=hwM
+
+# Enable color output to a terminal
+color
+
+# Enable query TUI confirmation prompts, default: confirm
+# no-confirm
+
+# Split query TUI screen on startup, default: no-split
+# split
+
+# Default query TUI response delay in units of 100ms, default: delay=4
+# delay=4
+
+# Enable query TUI file viewing command with CTRL-Y or F2, default: view
+# view=less
+
+# Enable a pager for terminal output, default: no-pager
+# pager=less
+
+# Enable pretty output to the terminal, default: pretty
+no-pretty
+
+# Enable directory tree output to a terminal for -l (--files-with-matches) and -c (--count)
+no-tree
+
+### SEARCH PATTERNS ###
+
+# Enable case-insensitive search, default: no-ignore-case
+# no-ignore-case
+
+# Enable smart case, default: no-smart-case
+# no-smart-case
+
+# Enable empty pattern matches, default: no-empty
+# no-empty
+
+# Force option -c (--count) to return nonzero matches with --min-count=1, default: --min-count=0
+# min-count=1
+
+### SEARCH TARGETS ###
+
+# Enable case-insensitive glob matching, default: no-glob-ignore-case
+# glob-ignore-case
+
+# Search hidden files and directories, default: no-hidden
+no-hidden
+
+# Ignore binary files, default: no-ignore-binary
+# ignore-binary
+
+# Enable decompression and archive search, default: no-decompress
+# decompress
+
+# Maximum decompression and de-archiving nesting levels, default: zmax=1
+zmax=1
+
+# Search devices, default: devices=skip
+# devices=skip
+
+# Warn when searching directories specified on the command line (like grep) with directories=read
+# directories=read
+
+# Ignore files and directories specified in .gitignore, default: no-ignore-files
+# ignore-files
+
+### OUTPUT ###
+
+# Sort the list of files and directories searched and matched, default: sort
+# sort
+
