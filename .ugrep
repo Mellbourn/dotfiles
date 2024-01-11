@@ -55,10 +55,10 @@ color
 # view=less
 
 # Enable a pager for terminal output, default: no-pager
-# pager=less
+pager=bat
 
 # Enable pretty output to the terminal, default: pretty
-no-pretty
+pretty
 
 # Enable directory tree output to a terminal for -l (--files-with-matches) and -c (--count)
 no-tree
@@ -69,7 +69,7 @@ no-tree
 # no-ignore-case
 
 # Enable smart case, default: no-smart-case
-# no-smart-case
+smart-case
 
 # Enable empty pattern matches, default: no-empty
 # no-empty
@@ -107,4 +107,3 @@ zmax=1
 
 # Sort the list of files and directories searched and matched, default: sort
 # sort
-
