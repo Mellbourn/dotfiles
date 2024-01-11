@@ -11,13 +11,14 @@ alias dkill='docker stop $(docker ps -a -q)'
 alias drm='docker rm $(docker ps -a -q)'
 alias drma='docker system prune -a --volumes # dkill; drm; drmi; drmv'
 alias drmi='docker rmi -f $(docker images -q); docker rmi -f $(docker images -f "dangling=true" -q)'
-alias egrep='egrep --color=auto'
 alias g='noglob git'
 alias generate_password='LC_ALL=C tr -dc "[:alnum:]" < /dev/urandom | head -c 20 | pbcopy  '
 alias glances='TERM=xterm-256color glances --process-short-name'
 alias gn='git number --column' # note that command line completion does not work well for this alias
 alias gr='cd $(git rev-parse --show-toplevel)'
-alias grep='ugrep --color=auto --config'
+alias grep='ugrep -G --color=auto --config'  # search with basic regular expressions (BRE)
+alias egrep='ugrep -E --color=auto --config' # search with extended regular expressions (ERE)
+alias fgrep='ugrep -F --color=auto --config' # find string(s)
 alias jic='jira issue create -a@me --web --no-input -l"frontend" -l"team-treatment" -yMedium -tTask'
 alias jil='jila -q "status != done and status != \"not needed\""'
 alias jila='jira issue list -a$(jira me) --order-by lastViewed'
