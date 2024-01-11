@@ -46,7 +46,7 @@ color
 # no-confirm
 
 # Split query TUI screen on startup, default: no-split
-# split
+split
 
 # Default query TUI response delay in units of 100ms, default: delay=4
 # delay=4
@@ -86,7 +86,7 @@ smart-case
 no-hidden
 
 # Ignore binary files, default: no-ignore-binary
-# ignore-binary
+ignore-binary
 
 # Enable decompression and archive search, default: no-decompress
 # decompress
