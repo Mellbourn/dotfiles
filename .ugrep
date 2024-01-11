@@ -55,7 +55,7 @@ color
 view=less
 
 # Enable a pager for terminal output, default: no-pager
-pager=bat
+pager
 
 # Enable pretty output to the terminal, default: pretty
 pretty
