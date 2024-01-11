@@ -52,7 +52,7 @@ color
 # delay=4
 
 # Enable query TUI file viewing command with CTRL-Y or F2, default: view
-# view=less
+view=less
 
 # Enable a pager for terminal output, default: no-pager
 pager=bat
@@ -61,7 +61,7 @@ pager=bat
 pretty
 
 # Enable directory tree output to a terminal for -l (--files-with-matches) and -c (--count)
-no-tree
+# no-tree
 
 ### SEARCH PATTERNS ###
 
@@ -101,7 +101,7 @@ zmax=1
 # directories=read
 
 # Ignore files and directories specified in .gitignore, default: no-ignore-files
-# ignore-files
+ignore-files
 
 ### OUTPUT ###
 
