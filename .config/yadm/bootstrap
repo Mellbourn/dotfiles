@@ -218,6 +218,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew tap robotsandpencils/made   # for xcodes
   brew tap ankitpokhrel/jira-cli   # for jira-cli
   brew tap jakehilborn/jakehilborn # for displayplacer
+  brew tap kardolus/chatgpt-cli
 
   # not all computers need logitech drivers, also, these need sudo
   # brew install --cask homebrew/cask-drivers/logitech-gaming-software
@@ -244,6 +245,7 @@ bash
 bash-completion
 bat
 bitwarden-cli
+chatgpt-cli
 cheat
 choose-rust
 circleci
@@ -498,6 +500,9 @@ witch
 fi ############################################################################
 # configuration for both Mac and Linux
 ###############################################################################
+
+# chatgpt history tracking
+mkdir -p ~/.chatgpt-cli
 
 ## xplr plugins
 mkdir -p ~/.config/xplr/plugins
