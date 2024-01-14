@@ -6,9 +6,9 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
   DOTFILES_LITE=1
 fi
 
-if [[ $(hostname) == *"MacBook-Pro-16-2021"* ]]; then
-  export FIRSTVET=1
-fi
+#if [[ $(hostname) == *"MacBook-Pro-16-2021"* ]]; then
+#  export FIRSTVET=1
+#fi
 if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.bom" ]; then
   export ROSETTA_INSTALLED=1
 fi
