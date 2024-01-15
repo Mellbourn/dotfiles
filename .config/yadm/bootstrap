@@ -18,7 +18,7 @@ version_gte() {
 }
 
 if grep -q Raspbian /etc/os-release 2>/dev/null; then
-  RASPBIAN=1
+  OS_RASPBIAN=1
   DOTFILES_LITE=1
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
@@ -36,7 +36,7 @@ if [[ $PROCESSOR_ARCHITECTURE != 'arm' || -n "$ROSETTA_INSTALLED" ]]; then
 fi
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
-  #OS_UBUNTU=1
+  OS_UBUNTU=1
   if dpkg -l ubuntu-desktop >/dev/null; then
     UBUNTU_DESKTOP=1
   fi
@@ -111,7 +111,7 @@ else
   asdf global nodejs latest
   asdf install python latest
   asdf global python latest
-  if [ -z "$RASPBIAN" ]; then
+  if [ -z "$OS_RASPBIAN" ] && [ -z "$OS_UBUNTU" ]; then
     asdf install ruby latest
     asdf global ruby latest
   fi
@@ -527,7 +527,7 @@ popd
 
 ## install rust
 if ! command -v rustup &>/dev/null; then
-if [[ -n "$RASPBIAN" ]]; then
+if [[ -n "$OS_RASPBIAN" ]]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --default-host arm-unknown-linux-gnueabihf -y
   else
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
