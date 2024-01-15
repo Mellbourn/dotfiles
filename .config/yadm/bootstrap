@@ -18,6 +18,7 @@ version_gte() {
 }
 
 if grep -q Raspbian /etc/os-release 2>/dev/null; then
+  RASPBIAN=1
   DOTFILES_LITE=1
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
@@ -110,8 +111,10 @@ else
   asdf global nodejs latest
   asdf install python latest
   asdf global python latest
-  asdf install ruby latest
-  asdf global ruby latest
+  if [ -z "$RASPBIAN" ]; then
+    asdf install ruby latest
+    asdf global ruby latest
+  fi
 fi
 
 # if no versions are installed, the asdf plugin will fall back to "system"
@@ -524,9 +527,15 @@ popd
 
 ## install rust
 if ! command -v rustup &>/dev/null; then
+if [[ -n "$RASPBIAN" ]]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --default-host arm-unknown-linux-gnueabihf -y
+  else
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
+  fi
 fi
-rustup update
+if [ -x "$(command -v rustup)" ]; then
+  rustup update
+fi
 if [ -x "$(command -v cargo)" ] && version_gte "$(cargo --version | cut -d " " -f2)" 1.0.0; then
   cargo install --verbose cargo-update || true
   cargo install --verbose termimage || true

@@ -45,7 +45,7 @@ if [[ $(uname) == 'Linux' ]]; then
   sudo apt update
   sudo apt full-upgrade -y
   # eventually remove the removals
-  sudo apt remove -y fasd
+  sudo apt remove -y fasd cargo
   # tmux-next, ripgrep and bat are absent from raspbian
   apps="
     zsh
@@ -63,6 +63,7 @@ if [[ $(uname) == 'Linux' ]]; then
     fd-find
     gh
     keychain
+    ugrep
     tree
     tig
     aptitude
@@ -70,7 +71,6 @@ if [[ $(uname) == 'Linux' ]]; then
     tmpreaper
     libssl-dev
     pkg-config
-    cargo
   "
   for app in $apps; do
     if ! dpkg-query -l "$app" >/dev/null; then
