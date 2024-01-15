@@ -30,7 +30,7 @@ yb() {
                 fi
                 echo "\n$(date +%F\ %T)"
                 script -q /dev/null yadm pull
-                if [[ "$(yadm --version)" == "yadm 3"* ]]; then
+                if [[ "$(yadm --version | tail -1)" == "yadm version 3"* ]]; then
                     script -q /dev/null yadm bootstrap
                 else
                     script -q /dev/null $HOME/.config/yadm/bootstrap
@@ -51,7 +51,7 @@ yb() {
         echo "\n$(date +%F\ %T)" >>$logfile &&
             script -qefa $logfile -c 'yadm pull' &&
             (
-                if [[ "$(yadm --version)" == "yadm 3"* ]]; then
+                if [[ "$(yadm --version | tail -1)" == "yadm version 3"* ]]; then
                     script -qefa $logfile -c "yadm bootstrap"
                 else
                     script -qefa $logfile -c "$HOME/.config/yadm/bootstrap"
