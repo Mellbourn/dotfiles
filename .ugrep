@@ -46,7 +46,8 @@ color
 # no-confirm
 
 # Split query TUI screen on startup, default: no-split
-split
+# unfortuantely, this is not backward compatible
+#split
 
 # Default query TUI response delay in units of 100ms, default: delay=4
 # delay=4
