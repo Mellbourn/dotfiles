@@ -689,7 +689,8 @@ npm i -g zx
 npm i -g tsx
 # @swc/core needed for _debugging_ ts-node, but not for running it
 npm i -g ts-node @swc/core
-npm i -g cleanup-branches
+# cleanup-branches no longer installable
+#npm i -g cleanup-branches
 
 if [[ -n "$KLARNA" ]]; then
   if \ping -c1 -W1 jira.int.klarna.net; then
