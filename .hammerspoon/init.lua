@@ -45,10 +45,10 @@ if machineName == 'Klas’s MacBook Pro 16" 2023' then
 end
 
 -- test command
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "W", function()
-  hs.notify.new({title="Hammerspoon", informativeText="Hello World"}):send()
-  appendToLogFile("Hello World")
-end)
+-- hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "W", function()
+--   hs.notify.new({title="Hammerspoon", informativeText="Hello World"}):send()
+--   appendToLogFile("Hello World")
+-- end)
 
 -- reload config automatically
 function reloadConfig(files)
