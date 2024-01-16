@@ -32,11 +32,11 @@ local machineName = hs.host.localizedName()
 if machineName == 'Klas’s MacBook Pro 16" 2023' then
     watcher = hs.caffeinate.watcher.new(function(eventType)
         -- screensDidWake, systemDidWake, screensaverDidStop, screensDidUnlock
-        -- screensDidUnlock worked well, but not 100% of the time
-        -- screensDidWake did not work well
+        -- screensDidUnlock worked well, but not 100% of the time, failed once
+        -- added sleep 4, failed once again
         appendToLogFile('caffeinte.watcher: ' .. eventTypeToStr(eventType))
         if eventType == hs.caffeinate.watcher.screensDidUnlock then
-            os.execute("sleep " .. 4)
+            os.execute("sleep " .. 6)
             local output = hs.execute("/Users/klas.mellbourn/bin/dp", false)
             appendToLogFile('display placement: ' .. output)
         end
