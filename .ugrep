@@ -46,14 +46,15 @@ color
 # no-confirm
 
 # Split query TUI screen on startup, default: no-split
-# unfortuantely, this is not backward compatible
+# unfortuantely, this is not backward compatible with version 3 on raspberry pi
 #split
 
 # Default query TUI response delay in units of 100ms, default: delay=4
 # delay=4
 
 # Enable query TUI file viewing command with CTRL-Y or F2, default: view
-view=less
+# unfortuantely, this is not backward compatible with version 3 on raspberry pi
+#view=less
 
 # Enable a pager for terminal output, default: no-pager
 pager
@@ -93,7 +94,8 @@ ignore-binary
 # decompress
 
 # Maximum decompression and de-archiving nesting levels, default: zmax=1
-zmax=1
+# unfortuantely, this is not backward compatible with version 3 on raspberry pi
+#zmax=1
 
 # Search devices, default: devices=skip
 # devices=skip
