@@ -34,9 +34,11 @@ if machineName == 'Klas’s MacBook Pro 16" 2023' then
         -- screensDidWake, systemDidWake, screensaverDidStop, screensDidUnlock
         -- screensDidUnlock worked well, but not 100% of the time, failed once
         -- added sleep 4, failed once again
+        -- added sleep 6, failed once again
+        -- added sleep 8, failed once again
         appendToLogFile('caffeinte.watcher: ' .. eventTypeToStr(eventType))
         if eventType == hs.caffeinate.watcher.screensDidUnlock then
-            os.execute("sleep " .. 6)
+            os.execute("sleep " .. 10)
             local output = hs.execute("/Users/klas.mellbourn/bin/dp", false)
             appendToLogFile('display placement: ' .. output)
         end
