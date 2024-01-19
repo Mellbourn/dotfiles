@@ -75,7 +75,7 @@ sync_frequency = "10m"
 # word_jump_mode = "emacs"
 
 ## characters that count as a part of a word
-# word_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+word_chars = "abcdefghijklmnopqrstuvwxyzpåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ0123456789"
 
 ## number of context lines to show when scrolling by pages
 # scroll_context_lines = 1
