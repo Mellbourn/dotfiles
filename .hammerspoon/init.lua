@@ -27,6 +27,26 @@ function eventTypeToStr(eventType)
     return eventTypeToString[eventType] or eventType
 end
 
+function areBothDellScreensConnected()
+    local screens = hs.screen.allScreens()
+    if #screens ~= 3 then
+        return false
+    end
+    local foundDell1 = false
+    local foundDell2 = false
+
+    for _, screen in ipairs(screens) do
+        local name = screen:name()
+        if name == "DELL U3224KBA (1)" then
+            foundDell1 = true
+        elseif name == "DELL U3224KBA (2)" then
+            foundDell2 = true
+        end
+    end
+
+    return foundDell1 and foundDell2
+end
+
 -- make sure displays are placed correctly on wakeup, since dual DELL U3224KB are unreliable
 local machineName = hs.host.localizedName()
 if machineName == 'Klas’s MacBook Pro 16" 2023' then
@@ -38,9 +58,21 @@ if machineName == 'Klas’s MacBook Pro 16" 2023' then
         -- added sleep 8, failed once again
         appendToLogFile('caffeinte.watcher: ' .. eventTypeToStr(eventType))
         if eventType == hs.caffeinate.watcher.screensDidUnlock then
-            os.execute("sleep " .. 10)
-            local output = hs.execute("/Users/klas.mellbourn/bin/dp", false)
-            appendToLogFile('display placement: ' .. output)
+            hs.timer.doAfter(10, function()
+                if(areBothDellScreensConnected()) then
+                    local output, status, type, rc = hs.execute("/Users/klas.mellbourn/bin/dp", false)
+                    if (output == "" and status and type == "exit" and rc == 0) then
+                        appendToLogFile('display placement succeeded quitetly')
+                    else
+                        appendToLogFile('display placement: output: "' .. output
+                        .. '", status: ' .. tostring(status)
+                        .. ', type: "' .. type
+                        .. '", rc: '.. tostring(rc))
+                    end
+                else
+                    appendToLogFile("The two DELL screens were not detected.")
+                end
+            end)
         end
     end)
     watcher:start()
