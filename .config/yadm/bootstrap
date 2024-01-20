@@ -116,12 +116,9 @@ else
     asdf global ruby latest
   fi
 
-  #!/bin/bash
-
+  ## clean up old versions of asdf plugins, unless we specifically want to keep them
   # Obtain the list of plugins from `asdf plugin list`
   plugins=$(asdf plugin list)
-
-  # Loop through each plugin obtained from `asdf plugin list`
   while read -r plugin; do
     versions_to_keep=""
 
@@ -138,15 +135,12 @@ else
       ;;
     esac
 
-    # Check if there are versions to keep for this plugin
     if [[ -n "$versions_to_keep" ]]; then
-      # Call the script with versions to keep
-      echo "Running asdf-clean for $plugin with versions to keep: $versions_to_keep"
+      #echo "Running asdf-clean for $plugin with versions to keep: $versions_to_keep"
       # shellcheck disable=SC2086
       ./asdf-clean -v "$plugin" $versions_to_keep
     else
       # Call the script without specifying versions to keep
-      echo "Running asdf-clean for $plugin without specifying versions to keep"
       ./asdf-clean -v "$plugin"
     fi
   done <<<"$plugins"
