@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+# Function to display messages if verbose mode is on
+verbose=0
+log() {
+    if [[ $verbose -eq 1 ]]; then
+        echo "$@"
+    fi
+}
+
+# Check if verbose flag is provided
+while getopts "v" opt; do
+    case $opt in
+    v) verbose=1 ;;
+    \?)
+        echo "Invalid option: -$OPTARG" >&2
+        exit 1
+        ;;
+    esac
+done
+
+# Shift away processed flags
+shift $((OPTIND - 1))
+
+# Check if at least one argument is provided (plugin)
+if [ "$#" -lt 1 ]; then
+    echo "Usage: $0 [-v] <plugin> [<version1> [<version2> ...]]"
+    exit 1
+fi
+
+# First argument is the plugin name, e.g., nodejs
+plugin_name=$1
+
+# Remaining arguments are the versions to keep
+shift # Remove the first argument (plugin name)
+versions_to_keep=("$@")
+
+# Function to check if an item is in array
+contains() {
+    local e match="$1"
+    shift
+    for e; do [[ "$e" == "$match" ]] && return 0; done
+    return 1
+}
+
+# Read installed versions into an array using mapfile, trimming whitespace and removing asterisks
+mapfile -t installed_versions < <(asdf list "$plugin_name" | awk '{print $NF}' | sed '/^$/d')
+
+# Determine the latest installed version
+latest_version=$(printf '%s\n' "${installed_versions[@]}" | sort -V | tail -n 1)
+
+# Loop through installed versions
+for version in "${installed_versions[@]}"; do
+    # Check if the version is the latest or in the keep-list
+    if [ "$version" != "$latest_version" ] && ! contains "$version" "${versions_to_keep[@]}"; then
+        log "Uninstalling $plugin_name version $version"
+        asdf uninstall "$plugin_name" "$version"
+    else
+        log "Skipping $plugin_name version $version"
+    fi
+done
+
+log "Cleanup completed."

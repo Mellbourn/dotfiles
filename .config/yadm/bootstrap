@@ -115,6 +115,41 @@ else
     asdf install ruby latest
     asdf global ruby latest
   fi
+
+  #!/bin/bash
+
+  # Obtain the list of plugins from `asdf plugin list`
+  plugins=$(asdf plugin list)
+
+  # Loop through each plugin obtained from `asdf plugin list`
+  while read -r plugin; do
+    versions_to_keep=""
+
+    # Determine versions to keep based on the plugin
+    case "$plugin" in
+    # "ruby")
+    #   versions_to_keep="2.7.6"
+    #   ;;
+    # "direnv")
+    #   versions_to_keep="2.32.3 2.32.2"
+    #   ;;
+    *)
+      versions_to_keep=""
+      ;;
+    esac
+
+    # Check if there are versions to keep for this plugin
+    if [[ -n "$versions_to_keep" ]]; then
+      # Call the script with versions to keep
+      echo "Running asdf-clean for $plugin with versions to keep: $versions_to_keep"
+      # shellcheck disable=SC2086
+      ./asdf-clean -v "$plugin" $versions_to_keep
+    else
+      # Call the script without specifying versions to keep
+      echo "Running asdf-clean for $plugin without specifying versions to keep"
+      ./asdf-clean -v "$plugin"
+    fi
+  done <<<"$plugins"
 fi
 
 # if no versions are installed, the asdf plugin will fall back to "system"
