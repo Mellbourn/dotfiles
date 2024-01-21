@@ -89,7 +89,8 @@ process_plugin_versions() {
     if [[ $install -eq 1 ]]; then
         for version in "${keep_versions[@]}"; do
             cleaned_version=$(clean_version "$version")
-            if ! asdf list "$plugin" | grep -q "^$cleaned_version\$"; then
+            # Check if version is already installed before installing
+            if ! asdf list "$plugin" | grep -q "\b$cleaned_version\$"; then
                 log "Installing $plugin version $cleaned_version"
                 asdf install "$plugin" "$cleaned_version"
             fi
