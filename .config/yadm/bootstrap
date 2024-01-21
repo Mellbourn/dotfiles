@@ -117,7 +117,7 @@ else
   fi
 
   ## clean up old versions of asdf plugins, unless we specifically want to keep them
-  # e.g. asdf-clean -v nodejs 20.9.0 direnv 2.32.0 2.32.1
+  # e.g. asdf-clean -v -i nodejs 20.9.0 direnv 2.32.0 2.32.1 # this would also install if necessary
   asdf-clean -v
 fi
 
