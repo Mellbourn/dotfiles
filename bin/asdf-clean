@@ -82,8 +82,11 @@ done
 # Function to uninstall other versions and optionally install specified versions
 process_plugin_versions() {
     local plugin="$1"
-    local -a keep_versions=(${versions_to_keep["$plugin"]})
     local version
+    local -a keep_versions
+
+    # Split versions_to_keep string into an array
+    IFS=' ' read -r -a keep_versions <<<"${versions_to_keep["$plugin"]}"
 
     # Optionally install specified versions
     if [[ $install -eq 1 ]]; then
