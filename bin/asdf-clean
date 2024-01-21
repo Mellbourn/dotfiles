@@ -29,7 +29,7 @@ while [[ "$1" =~ ^- ]]; do
 done
 
 # Gather all installed plugins
-installed_plugins=($(asdf plugin list))
+mapfile -t installed_plugins < <(asdf plugin list)
 
 # Function to remove asterisks and trim whitespaces
 clean_version() {
