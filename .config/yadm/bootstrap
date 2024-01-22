@@ -671,7 +671,11 @@ if [[ $(uname) == 'Linux' ]]; then
 
   # do some cleanup
   if [ -x "$(command -v trash-empty)" ]; then
+    # problem: -f parameter necessary on WSL, but not supported on raspberrypi
+    set +e
     trash-empty -f 30
+    trash-empty 30
+    set -e
   fi
   # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
   ~/bin/trash-empty-wsl +30

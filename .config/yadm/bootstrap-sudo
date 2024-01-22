@@ -214,7 +214,6 @@ if [[ $(uname) == 'Linux' ]]; then
   fi
 
   # do some cleanup
-  trash-empty -f 30
   sudo tmpreaper --all --showdeleted 30d /tmp
 
   # remove cron warning
