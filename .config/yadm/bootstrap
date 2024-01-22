@@ -675,7 +675,6 @@ if [[ $(uname) == 'Linux' ]]; then
     set +e
     trash-empty -f 30
     set -e
-    # I doubt this really works
     yes | trash-empty 30
   fi
   # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
