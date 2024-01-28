@@ -542,7 +542,7 @@ if [ -x "$(command -v rustup)" ]; then
 fi
 if [ -x "$(command -v cargo)" ] && version_gte "$(cargo --version | cut -d " " -f2)" 1.0.0; then
   cargo install --verbose cargo-update || true
-  cargo install --verbose termimage || true
+  cargo install --verbose termimage || true # tiv is better, but this works on raspberry pi, where tiv does not
   cargo install --verbose cyme || true
   cargo install --verbose --git https://github.com/jez/as-tree || true
   if ! [ -x "$(command -v atuin)" ]; then
