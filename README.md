@@ -24,7 +24,7 @@ yadm bootstrap
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
 
-Install Ubuntu from windows store, then continue the instructions under the heading "Ubuntu"
+Install Ubuntu from the Windows store, then continue the instructions under the heading "Ubuntu"
 
 ### Ubuntu & Debian
 
@@ -43,7 +43,7 @@ yadm bootstrap
 
 ## post Installation
 
-After ssh keys have been set up, enable pushing changes by pasting the public key into github and changing the remote url.
+After SSH keys have been set up, enable pushing changes by pasting the public key into GitHub and changing the remote URL.
 
 ```bash
 pbcopy < ~/.ssh/id_rsa.pub
