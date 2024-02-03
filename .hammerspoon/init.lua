@@ -30,6 +30,7 @@ end
 function areBothDellScreensConnected()
     local screens = hs.screen.allScreens()
     if #screens ~= 3 then
+        appendToLogFile("Number of screens is not 3, but " .. #screens)
         return false
     end
     local foundDell1 = false
@@ -38,8 +39,10 @@ function areBothDellScreensConnected()
     for _, screen in ipairs(screens) do
         local name = screen:name()
         if name == "DELL U3224KBA (1)" then
+            appendToLogFile("Found " .. name)
             foundDell1 = true
         elseif name == "DELL U3224KBA (2)" then
+            appendToLogFile("Found " .. name)
             foundDell2 = true
         end
     end
