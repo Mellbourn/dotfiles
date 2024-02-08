@@ -34,7 +34,7 @@ FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$HOMEBREW_PREFIX/opt/curl/share/
 # fixing weird error of fpath on Klas's MacBook Pro 16" 2023, having 5.8.1 instead of 5.9
 case "$FPATH" in
     */usr/share/zsh/site-functions:/usr/share/zsh/5.8.1/functions*)
-      FPATH=$FPATH:/opt/homebrew/share/zsh/site-functions:/opt/homebrew/Cellar/zsh/5.9/share/zsh/functions ;;
+      FPATH=$FPATH:$HOMEBREW_PREFIX/share/zsh/site-functions:$HOMEBREW_PREFIX/Cellar/zsh/5.9/share/zsh/functions ;;
 esac
 
 # misc
@@ -72,7 +72,7 @@ precmd_functions+=set_p10k_branch_in_tmux
 # dynamic aliases
 ###############################################################################
 if [ -x "$(command -v grc)" ]; then
-  # colorize standard commands. Possibilites here /opt/homebrew/share/grc
+  # colorize standard commands. Possibilites here $HOMEBREW_PREFIX/share/grc
   # don't add
   # * netstat - waits for command to finish
   # * ifconfig - completion breaks

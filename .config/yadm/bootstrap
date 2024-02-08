@@ -697,7 +697,7 @@ gh extension install meiji163/gh-notify
 set -e
 gh extension upgrade --all
 
-# these uninstalls don't remove the exceutables from /opt/homebrew/bin - had to remove them manually
+# these uninstalls don't remove the exceutables from $HOMEBREW_PREFIX/bin - had to remove them manually
 npm uninstall -g nx lerna detox-cli @antfu/ni
 npm i -g zx
 npm i -g tsx
