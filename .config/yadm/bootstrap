@@ -244,7 +244,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   # maybe add these eventually:
   # haskell-stack
   # and then: cargo install viu https://github.com/atanunq/viu
-  apps="
+  apps=$(echo "
 1password-cli
 atuin
 aws-sam-cli
@@ -258,6 +258,7 @@ choose-rust
 circleci
 coreutils
 croc
+curlie
 d2
 dasel
 diff-so-fancy
@@ -320,7 +321,6 @@ reattach-to-user-namespace
 redis
 rich-cli
 ripgrep
-rs/tap/curlie
 sd
 shellcheck
 shfmt
@@ -355,16 +355,17 @@ yazi
 ykman
 zoxide
 zsh
-"
+" | xargs -n1 | sort -u)
+
   # note: yarn will install node, which you might want to remove, since it is handled by nvm
-  alreadyInstalled=$(brew list --formula)
+  alreadyInstalled=$(brew list --formula | sort -u)
   installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
   installThese=${installTheseLines//$'\n'/ }
   echo "$installThese" | xargs brew install
 
   # TODO: add more when better arm support: philips-hue-sync private-internet-access plex imageoptim mockoon
   # TODO: add back flipper when versions beyond 0.237 work with debugger https://github.com/facebook/flipper/issues/5334
-  casks="
+  casks=$(echo "
 1password
 bartender
 chromium
@@ -389,9 +390,9 @@ react-native-debugger
 visual-studio-code
 vlc
 witch
-"
+" | xargs -n1 | sort -u)
 
-  alreadyInstalled=$(brew list --cask)
+  alreadyInstalled=$(brew list --cask | sort -u)
   installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
   installThese=${installTheseLines//$'\n'/ }
   echo "$installThese" | xargs brew install --cask
