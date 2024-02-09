@@ -97,6 +97,34 @@ if [[ $(uname) == 'Linux' ]]; then
     sudo -H pip3 install thefuck
   fi
 
+  if [ -n "$OS_UBUNTU" ] && [[ $(uname -m) == "x86_64" ]]; then
+    # homebrew ready (assuming "apt-get install build-essential procps curl file git")
+    if ! hash brew 2>/dev/null; then
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+
+    apps="
+bat
+httpie
+"
+
+    desiredApps=()
+    while IFS= read -r line; do
+        [[ "$line" ]] && desiredApps+=("$line")
+    done <<< "$(echo "$apps" | xargs -n1 | sort -u)"
+
+    installThese=()
+    for app in "${desiredApps[@]}"; do
+        if ! grep -Fxq "$app" <<< "$alreadyInstalled"; then
+            installThese+=("$app")
+        fi
+    done
+
+    if [ ${#installThese[@]} -ne 0 ]; then
+        echo "${installThese[@]}" | xargs -r brew install
+    fi
+  fi
+
   # install gh
   type -p curl >/dev/null || sudo apt install curl -y
   curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
