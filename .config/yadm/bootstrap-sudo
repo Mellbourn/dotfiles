@@ -55,6 +55,10 @@ if [[ $(uname) == 'Linux' ]]; then
     vim
     tmux
     tmux-next
+    build-essential
+    procps
+    curl
+    file
     highlight
     trash-cli
     zoxide
@@ -83,7 +87,6 @@ if [[ $(uname) == 'Linux' ]]; then
   if [ -z "$DOTFILES_LITE" ]; then
     sudo apt install -y \
       direnv \
-      build-essential \
       python-is-python3 \
       python3-pip \
       fortune-mod
