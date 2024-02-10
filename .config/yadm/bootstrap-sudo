@@ -3,6 +3,7 @@
 set -e
 
 if grep -q Raspbian /etc/os-release 2>/dev/null; then
+  OS_RASPBIAN=1
   DOTFILES_LITE=1
 fi
 
@@ -83,6 +84,10 @@ if [[ $(uname) == 'Linux' ]]; then
   # for some reason, keychain cannot be installed using the list
   sudo apt install -y keychain
 
+  if [ -n "$OS_RASPBIAN" ]; then
+      sudo apt install -y ruby
+  fi
+
   if [ -z "$DOTFILES_LITE" ]; then
     sudo apt install -y \
       direnv \
@@ -96,7 +101,7 @@ if [[ $(uname) == 'Linux' ]]; then
     sudo -H pip3 install thefuck
   fi
 
-  if [ -n "$OS_UBUNTU" ] && [[ $(uname -m) == "x86_64" ]]; then
+  if [ -n "$OS_UBUNTU" ] || { [ -n "$OS_RASPBIAN" ] && [ -x "$(command -v ruby)" ]; }; then
     # homebrew ready (assuming "apt-get install build-essential procps curl file git")
     if ! hash brew 2>/dev/null; then
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
