@@ -198,6 +198,11 @@ fi
 if [ -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
   source "${ASDF_DIR:-$HOME/.asdf}"/plugins/java/set-java-home.zsh
 fi
+# dotnet environment variables and functions
+if [ -f "$HOME/.asdf/plugins/dotnet/set-dotnet-env.zsh" ]; then
+  source "$HOME/.asdf/plugins/dotnet/set-dotnet-env.zsh"
+fi
+export PATH="$PATH:$HOME/.dotnet/tools"
 ' light-mode for zdharma-continuum/null
 fpath=(${ASDF_DIR:-$HOME/.asdf}/completions $fpath)
 
