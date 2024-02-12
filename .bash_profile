@@ -130,6 +130,7 @@ addFirstInPath "$HOME"/.cargo/bin
 addFirstInPath "$HOME"/bin
 addFirstInPath "$HOME"/bin/mts
 
+export DOTNET_ROOT="$HOMEBREW_PREFIX/opt/dotnet/libexec"
 export CLICOLOR=1
 export GCAL='--starting-day=Monday --iso-week-number=yes --with-week-number --cc-holidays=SE'
 if [[ -n $UNAME_LINUX ]]; then
