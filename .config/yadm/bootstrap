@@ -266,56 +266,66 @@ if [[ $(uname) == 'Darwin' ]]; then
   cheat
   tealdeer # tldr command
 
+  # drop in replacements
+  bat
+  curlie
+
+  # improved commands that are not drop in
+  choose-rust
+  httpie
+  sd
+  ripgrep
+  duf
+  fd
+  gnu-sed
+
+  # json handlers
+  dasel
+  fx
+  jq
+  gron
+  jc
+
+  # communication
+  croc
+
+  # development tooling
+
+  # version control
+  git git-crypt git-lfs git-recent git-secret
+  gh
+
 aws-sam-cli
-bat
 bitwarden-cli
 chatgpt-cli
-choose-rust
 circleci
 coreutils
-croc
-curlie
 d2
-dasel
 direnv
 displayplacer
 dockutil
-duf
 duti
 exiftool # image metadata
-fd
 findutils
 fpp
-fx
 fzf
 gawk
-gh
-git
-git-crypt
-git-lfs
-git-recent
-git-secret
 glances
-gnu-sed
 gnupg
 gpg-tui
 gradle
 graphicsmagick
 grc
 grep
-gron
 gtm
 highlight
 htmlq
-httpie
 hyperfine
 idb-companion
 imagemagick
 iproute2mac
-jc
 jesseduffield/lazygit/lazygit
 jira-cli
-jq
 less
 librsvg
 lnav
@@ -335,8 +345,6 @@ react-native-cli
 reattach-to-user-namespace
 redis
 rich-cli
-ripgrep
-sd
 shellcheck
 shfmt
 speedtest-cli
