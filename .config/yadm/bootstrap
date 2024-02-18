@@ -240,11 +240,15 @@ if [[ $(uname) == 'Darwin' ]]; then
     brewSafeUninstallCask $cask
   done
 
-  # this must be in alphabetical order!
+  stripCommentsAndWhitespace() {
+    echo "$1" | sed '/^#/d' | sed 's/#.*//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed '/^$/d' | tr '[:space:]' '\n' | xargs -n1 | sort -u
+  }
+
+  # this list no longer needs to be one per line, and can use comments
   # maybe add these eventually:
   # haskell-stack
   # and then: cargo install viu https://github.com/atanunq/viu
-  apps=$(echo "
+  apps=$(stripCommentsAndWhitespace "
 1password-cli
 atuin
 aws-sam-cli
@@ -267,6 +271,7 @@ displayplacer
 dockutil
 duf
 duti
+exiftool # image metadata
 fd
 findutils
 fpp
@@ -357,7 +362,7 @@ yazi
 ykman
 zoxide
 zsh
-" | sed '/^#/d' | sed 's/#.*//' | sed 's/^[ ]*//;s/[ ]*$//' | xargs -n1 | sort -u)
+")
 
   # note: yarn will install node, which you might want to remove, since it is handled by nvm
   alreadyInstalled=$(brew list --formula | sort -u)
@@ -367,7 +372,7 @@ zsh
 
   # TODO: add more when better arm support: philips-hue-sync private-internet-access plex imageoptim mockoon
   # TODO: add back flipper when versions beyond 0.237 work with debugger https://github.com/facebook/flipper/issues/5334
-  casks=$(echo "
+  casks=$(stripCommentsAndWhitespace "
 1password
 bartender
 chromium
@@ -392,7 +397,7 @@ react-native-debugger
 visual-studio-code
 vlc
 witch
-" | xargs -n1 | sort -u)
+")
 
   alreadyInstalled=$(brew list --cask | sort -u)
   installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
