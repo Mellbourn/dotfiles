@@ -249,15 +249,27 @@ if [[ $(uname) == 'Darwin' ]]; then
   # haskell-stack
   # and then: cargo install viu https://github.com/atanunq/viu
   apps=$(stripCommentsAndWhitespace "
-1password-cli
-atuin
+  # diff
+  diff-so-fancy
+  git-delta
+
+  # shell
+  bash
+  bash-completion
+  atuin
+
+  # password managers
+  1password-cli
+  kpcli
+
+  # documentation
+  cheat
+  tealdeer # tldr command
+
 aws-sam-cli
-bash
-bash-completion
 bat
 bitwarden-cli
 chatgpt-cli
-cheat
 choose-rust
 circleci
 coreutils
@@ -265,7 +277,6 @@ croc
 curlie
 d2
 dasel
-diff-so-fancy
 direnv
 displayplacer
 dockutil
@@ -281,7 +292,6 @@ gawk
 gh
 git
 git-crypt
-git-delta
 git-lfs
 git-recent
 git-secret
@@ -306,7 +316,6 @@ jc
 jesseduffield/lazygit/lazygit
 jira-cli
 jq
-kpcli
 less
 librsvg
 lnav
@@ -331,7 +340,6 @@ sd
 shellcheck
 shfmt
 speedtest-cli
-tealdeer
 terminal-notifier
 thefuck
 tig
