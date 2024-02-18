@@ -313,6 +313,7 @@ parallel
 pastel
 pinentry-mac
 pkg-config
+poppler # pdf rendering library used by yazi, creates pdftocairo
 prettyping
 procs
 pv
@@ -334,9 +335,10 @@ tmpreaper
 tmux
 tokei
 tree
-trippy
+trippy # installs trip command for traceroute like gui
 tuc
 ugit
+unar # unarchiver used by yazi
 ugrep
 viddy
 vim
@@ -355,7 +357,7 @@ yazi
 ykman
 zoxide
 zsh
-" | xargs -n1 | sort -u)
+" | sed '/^#/d' | sed 's/#.*//' | sed 's/^[ ]*//;s/[ ]*$//' | xargs -n1 | sort -u)
 
   # note: yarn will install node, which you might want to remove, since it is handled by nvm
   alreadyInstalled=$(brew list --formula | sort -u)
