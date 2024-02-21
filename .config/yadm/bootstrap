@@ -262,8 +262,6 @@ if [[ $(uname) == 'Darwin' ]]; then
   installThese=${installTheseLines//$'\n'/ }
   echo "$installThese" | xargs brew install
 
-  # TODO: add more when better arm support: philips-hue-sync private-internet-access plex imageoptim mockoon
-  # TODO: add back flipper when versions beyond 0.237 work with debugger https://github.com/facebook/flipper/issues/5334
   casks=$(stripCommentsAndWhitespace "$casks_raw")
 
   alreadyInstalled=$(brew list --cask | sort -u)
