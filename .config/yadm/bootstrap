@@ -42,6 +42,8 @@ if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; t
   fi
 fi
 
+SCRIPT_DIR=$(dirname "$0")
+
 if ! [ -f ~/.ssh/id_ed25519 ]; then
   ssh-keygen -t ed25519 -b 4096 -C "${USER}@$(hostname)" -f ~/.ssh/id_ed25519
   eval "$(ssh-agent -s)"
@@ -248,137 +250,11 @@ if [[ $(uname) == 'Darwin' ]]; then
   # maybe add these eventually:
   # haskell-stack
   # and then: cargo install viu https://github.com/atanunq/viu
-  apps=$(stripCommentsAndWhitespace "
-  # diff
-  diff-so-fancy
-  git-delta
-
-  # shell
-  bash
-  bash-completion
-  atuin
-
-  # password managers
-  1password-cli
-  kpcli
-
-  # documentation
-  cheat
-  tealdeer # tldr command
-
-  # drop in replacements
-  bat
-  curlie
-
-  # improved commands that are not drop in
-  choose-rust
-  httpie
-  sd
-  ripgrep
-  duf
-  fd
-  gnu-sed
-
-  # json handlers
-  dasel
-  fx
-  jq
-  gron
-  jc
-
-  # communication
-  croc
-
-  # development tooling
-
-  # version control
-  git git-crypt git-lfs git-recent git-secret
-  gh
-
-aws-sam-cli
-bitwarden-cli
-chatgpt-cli
-circleci
-coreutils
-d2
-direnv
-displayplacer
-dockutil
-duti
-exiftool # image metadata
-findutils
-fpp
-fzf
-gawk
-glances
-gnupg
-gpg-tui
-gradle
-graphicsmagick
-grc
-grep
-gtm
-highlight
-htmlq
-hyperfine
-idb-companion
-imagemagick
-iproute2mac
-jesseduffield/lazygit/lazygit
-jira-cli
-less
-librsvg
-lnav
-lsd
-ncdu
-noti
-ouch
-parallel
-pastel
-pinentry-mac
-pkg-config
-poppler # pdf rendering library used by yazi, creates pdftocairo
-prettyping
-procs
-pv
-react-native-cli
-reattach-to-user-namespace
-redis
-rich-cli
-shellcheck
-shfmt
-speedtest-cli
-terminal-notifier
-thefuck
-tig
-tiv
-tmpreaper
-tmux
-tokei
-tree
-trippy # installs trip command for traceroute like gui
-tuc
-ugit
-unar # unarchiver used by yazi
-ugrep
-viddy
-vim
-wakeonlan
-watch
-watchman
-wemux
-wget
-wix/brew/applesimutils
-xcodes
-xplr
-yadm
-yank
-yarn
-yazi
-ykman
-zoxide
-zsh
-")
+  brews=$(cat "$SCRIPT_DIR/brew.ini")
+  apps_raw="${brews%%\[casks\]*}"
+  casks_raw="${brews#*\[casks\]}"
+  apps=$(stripCommentsAndWhitespace "$apps_raw")
+  casks=$(stripCommentsAndWhitespace "$casks_raw")
 
   # note: yarn will install node, which you might want to remove, since it is handled by nvm
   alreadyInstalled=$(brew list --formula | sort -u)
@@ -388,32 +264,7 @@ zsh
 
   # TODO: add more when better arm support: philips-hue-sync private-internet-access plex imageoptim mockoon
   # TODO: add back flipper when versions beyond 0.237 work with debugger https://github.com/facebook/flipper/issues/5334
-  casks=$(stripCommentsAndWhitespace "
-1password
-bartender
-chromium
-docker
-font-cascadia-code-pl
-font-caskaydia-cove-nerd-font
-font-fira-code
-font-jetbrains-mono
-font-jetbrains-mono-nerd-font
-google-chrome-beta
-grandperspective
-hammerspoon
-httpie
-istat-menus
-iterm2
-keeweb
-keycue
-launchcontrol
-moom
-paletro
-react-native-debugger
-visual-studio-code
-vlc
-witch
-")
+  casks=$(stripCommentsAndWhitespace "$casks_raw")
 
   alreadyInstalled=$(brew list --cask | sort -u)
   installTheseLines=$(comm -23 <(echo "$casks") <(echo "$alreadyInstalled"))
