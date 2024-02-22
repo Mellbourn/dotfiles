@@ -120,7 +120,8 @@ else
 
   ## clean up old versions of asdf plugins, unless we specifically want to keep them
   # e.g. asdf-clean -v -i nodejs 20.9.0 direnv 2.32.0 2.32.1 # this would also install if necessary
-  asdf-clean -v
+  # python 3.11.8 needed for tensorflow: python -m pip install --upgrade https://files.pythonhosted.org/packages/85/15/cf99a373812d37f8ae99752a34a9f5f690d820ceb5b302e922705bc18944/tensorflow-2.15.0-cp311-cp311-macosx_12_0_arm64.whl
+  asdf-clean -v python 3.11.8
 fi
 
 # if no versions are installed, the asdf plugin will fall back to "system"
