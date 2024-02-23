@@ -475,9 +475,9 @@ _fzf_compgen_dir() {
 
 function fd() {
   if [ -t 1 ]; then
-    env fd -c always $* | less
+    command $FD -c always $* | less
   else
-    env fd $*
+    command $FD $*
   fi
 }
 alias fd='noglob fd'
