@@ -571,6 +571,7 @@ set +e
 gh extension install dlvhdr/gh-dash
 gh extension install gennaro-tedesco/gh-f
 gh extension install meiji163/gh-notify
+gh extension install github/gh-copilot
 set -e
 gh extension upgrade --all
 
