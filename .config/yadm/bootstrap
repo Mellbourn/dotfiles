@@ -275,6 +275,12 @@ if [[ $(uname) == 'Darwin' ]]; then
   # https://www.reddit.com/r/MacOS/comments/q9d772/homebrew_chromium_is_damaged_and_cant_be_openend/
   xattr -cr /Applications/Chromium.app
 
+  # pull the llama2 model for ollama, if it is not already present
+  model_present=$(ollama list | grep "llama2")
+  if [ -z "$model_present" ]; then
+    ollama pull llama2
+  fi
+
   if [ -n "$X86_OR_ROSETTA" ]; then
     # TODO: when there are Apple Silicon versions of these packages, move the installation to the normal list
     brew install --cask yubico-yubikey-manager
