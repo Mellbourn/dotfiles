@@ -26,7 +26,7 @@ aliases:
   prv: pr view -w
   url: "!gh pr view --json url -q .url|pbcopy"
   review: search prs --review-requested=@me --state=open -w
-  latest: "!gh api graphql -f query=' query { viewer { repositories(first: 10, orderBy: {field: PUSHED_AT, direction: DESC}) { nodes { name url pushedAt } } } }' | jq -r '.data.viewer.repositories.nodes[].url' "
+  latest: "!gh api graphql -f query=' query { viewer { repositories(first: 20, orderBy: {field: PUSHED_AT, direction: DESC}) { nodes { name url pushedAt } } } }' | jq -r '.data.viewer.repositories.nodes[].url' "
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
