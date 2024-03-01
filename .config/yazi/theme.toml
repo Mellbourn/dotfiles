@@ -3,30 +3,6 @@
 [filetype]
 
 rules = [
-    # Images
-    { mime = "image/*", fg = "cyan" },
-
-    # Videos
-    { mime = "video/*", fg = "yellow" },
-    { mime = "audio/*", fg = "yellow" },
-
-    # Archives
-    { mime = "application/zip", fg = "magenta" },
-    { mime = "application/gzip", fg = "magenta" },
-    { mime = "application/x-tar", fg = "magenta" },
-    { mime = "application/x-bzip", fg = "magenta" },
-    { mime = "application/x-bzip2", fg = "magenta" },
-    { mime = "application/x-7z-compressed", fg = "magenta" },
-    { mime = "application/x-rar", fg = "magenta" },
-    { mime = "application/xz", fg = "magenta" },
-
-    # Documents
-    { mime = "application/doc", fg = "green" },
-    { mime = "application/pdf", fg = "green" },
-    { mime = "application/rtf", fg = "green" },
-    { mime = "application/vnd.*", fg = "green" },
-
-
     { name = "*LS_COLORS", fg = "#ff0033", bg = "#660033", bold = true, underline = true },
     { name = "*.txt", fg = "#dadada" },
     { name = "*README", fg = "#ffcc00", bold = true },
