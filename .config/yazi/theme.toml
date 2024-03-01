@@ -674,5 +674,5 @@ rules = [
 
     # Fallback
     # { name = "*", fg = "white" },
-    { name = "*/", fg = "blue" },
+    { name = "*/", fg = "#107674", bold = true },
 ]
