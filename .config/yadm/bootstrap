@@ -441,6 +441,11 @@ if [ -x "$(command -v cargo)" ] && version_gte "$(cargo --version | cut -d " " -
   fi
 fi
 
+# yazi theme
+if [ -d ~/.config/yazi ]; then
+  wget -qNP ~/.config/yazi https://raw.githubusercontent.com/dracula/sublime/master/Dracula.tmTheme
+fi
+
 # repair cheat completion
 HOMEBREW_SITE_FUNCTIONS="$HOMEBREW_PREFIX"/share/zsh/site-functions
 if [ -f "$HOMEBREW_SITE_FUNCTIONS"/cheat.zsh ] && ! [ -f "$HOMEBREW_SITE_FUNCTIONS"/_cheat ]; then

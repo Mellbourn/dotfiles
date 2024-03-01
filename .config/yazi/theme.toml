@@ -1,4 +1,5 @@
-
+[manager]
+syntect_theme = "~/.config/yazi/Dracula.tmTheme"
 
 [filetype]
 
