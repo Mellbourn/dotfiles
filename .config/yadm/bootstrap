@@ -425,6 +425,10 @@ if [ -x "$(command -v cargo)" ] && version_gte "$(cargo --version | cut -d " " -
   if ! [ -x "$(command -v atuin)" ]; then
     cargo install --verbose atuin || true
   fi
+  # yazi should have been installed by brew on macOS
+  if ! [ -x "$(command -v yazi)" ]; then
+    cargo install --verbose yazi-fm || true
+  fi
   # not working anymore?
   if [ -f ~/.cargo/bin/cargo-install-update ]; then
     set +e
