@@ -100,4 +100,35 @@ function reloadConfig(files)
     end
 end
 myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
+
+-- Define a table mapping SSIDs to desired volume levels
+local ssidVolumeMap = {
+    ["Anticimex-Guest"] = 10, -- Example SSID and volume level for work
+    ["Cisco731Router"] = 70  -- Example SSID and volume level for home
+}
+
+local function adjustVolumeForSSID(ssid)
+    hs.alert.show(adjustVolumeForSSID)
+    if ssidVolumeMap[ssid] then
+        -- Set the system volume to the level defined for the current SSID
+        hs.audiodevice.defaultOutputDevice():setVolume(ssidVolumeMap[ssid])
+    else
+        -- Optional: Define a default volume for unknown SSIDs
+        hs.audiodevice.defaultOutputDevice():setVolume(25) -- Example default volume
+    end
+end
+
+-- Create a WiFi watcher to monitor for SSID changes
+local wifiWatcher = hs.wifi.watcher.new(function()
+    local currentSSID = hs.wifi.currentNetwork()
+    hs.alert.show(currentSSID)
+    if currentSSID then
+        adjustVolumeForSSID(currentSSID)
+    end
+end)
+
+-- Start the WiFi watcher
+wifiWatcher:start()
+
+
 hs.alert.show("Config loaded")
