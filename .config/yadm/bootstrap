@@ -25,9 +25,10 @@ export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]] || [[ $(hostname) == "HKG"* ]]; then
   export KLARNA=1
 fi
-# if [[ $(hostname) == *"MacBook-Pro-16"* ]]; then
-#   export FIRSTVET=1
-# fi
+if [[ $(hostname) == *"MacBook-Pro-16"* ]]; then
+  export PROJ_ANTICIMEX=1
+  #export FIRSTVET=1
+fi
 if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.bom" ]; then
   export ROSETTA_INSTALLED=1
 fi
@@ -281,6 +282,13 @@ if [[ $(uname) == 'Darwin' ]]; then
   fi
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
+
+    if [[ -n "$PROJ_ANTICIMEX" ]]; then
+      az upgrade
+      az extension add --name azure-devops # for git repos
+      brew install microsoft-teams microsoft-word
+      mas lucky "Microsoft Outlook"
+    fi
 
     if [[ -n "$FIRSTVET" ]]; then
       gem install fastlane
