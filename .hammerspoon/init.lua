@@ -1,3 +1,6 @@
+-- you may need to uncomment the following line to make Hammerspoon show up in Location s https://github.com/Hammerspoon/hammerspoon/issues/3537#issuecomment-1743870568
+--print(hs.location.get())
+
 local home = os.getenv("HOME")
 local logFilePath = home .. "/Library/Logs/hammerspoon.log"
 local function appendToLogFile(str)
