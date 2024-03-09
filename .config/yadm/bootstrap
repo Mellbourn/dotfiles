@@ -286,7 +286,7 @@ if [[ $(uname) == 'Darwin' ]]; then
     if [[ -n "$PROJ_ANTICIMEX" ]]; then
       az upgrade
       az extension add --name azure-devops # for git repos
-      brew install microsoft-teams microsoft-word
+      brew install microsoft-word
       mas lucky "Microsoft Outlook"
     fi
 
