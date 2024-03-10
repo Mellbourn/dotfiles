@@ -25,7 +25,7 @@ export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]] || [[ $(hostname) == "HKG"* ]]; then
   export KLARNA=1
 fi
-if [[ $(hostname) == *"MacBook-Pro-16"* ]]; then
+if [[ $(hostname) == *"Klass-MacBook-Pro-16"* ]]; then
   export PROJ_ANTICIMEX=1
   #export FIRSTVET=1
 fi
@@ -283,9 +283,9 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
+    az upgrade
+    az extension add --name azure-devops # for git repos
     if [[ -n "$PROJ_ANTICIMEX" ]]; then
-      az upgrade
-      az extension add --name azure-devops # for git repos
       brew install microsoft-word
       mas lucky "Microsoft Outlook"
     fi
