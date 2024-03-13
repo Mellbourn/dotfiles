@@ -33,7 +33,7 @@ mapfile -t installed_plugins < <(asdf plugin list)
 
 # Function to remove asterisks and trim whitespaces
 clean_version() {
-    echo "$1" | sed 's/^\*//;s/^[[:space:]]*//;s/[[:space:]]*$//'
+    echo "$1" | sed "s/^[[:space:]]*//;s/[[:space:]]*$//;s/^\*//"
 }
 
 # Function to check if a given string is an installed plugin
@@ -61,7 +61,7 @@ declare -A versions_to_keep
 
 # First, for each installed plugin, keep only the latest version
 for plugin in "${installed_plugins[@]}"; do
-    latest_version=$(asdf list "$plugin" | grep -v '^[[:space:]]*$' | sort -V | tail -n 1)
+    latest_version=$(asdf list "$plugin" | grep -v '^[[:space:]]*$' | sed 's/^[[:space:]]*\**//' | sort -V | tail -n 1)
     latest_version=$(clean_version "$latest_version")
     versions_to_keep["$plugin"]="$latest_version"
 done
