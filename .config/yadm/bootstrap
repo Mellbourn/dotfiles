@@ -286,8 +286,14 @@ if [[ $(uname) == 'Darwin' ]]; then
     az upgrade
     az extension add --name azure-devops # for git repos
     if [[ -n "$PROJ_ANTICIMEX" ]]; then
+      asdf plugin add pnpm
+      asdf install pnpm latest
+      #asdf global pnpm latest
+
       brew install microsoft-word
-      mas lucky "Microsoft Outlook"
+
+      #npm install -g vsts-npm-auth
+      npm i -g better-vsts-npm-auth
     fi
 
     if [[ -n "$FIRSTVET" ]]; then
