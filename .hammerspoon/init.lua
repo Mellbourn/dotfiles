@@ -113,6 +113,7 @@ local ssidVolumeMap = {
 local function adjustVolumeForSSID(ssid)
     hs.alert.show(adjustVolumeForSSID)
     if ssidVolumeMap[ssid] then
+        appendToLogFile("Setting volume to " .. ssidVolumeMap[ssid] .. " for SSID " .. ssid)
         -- Set the system volume to the level defined for the current SSID
         hs.audiodevice.defaultOutputDevice():setVolume(ssidVolumeMap[ssid])
     else
