@@ -111,7 +111,6 @@ local ssidVolumeMap = {
 }
 
 local function adjustVolumeForSSID(ssid)
-    hs.alert.show(adjustVolumeForSSID)
     if ssidVolumeMap[ssid] then
         appendToLogFile("Setting volume to " .. ssidVolumeMap[ssid] .. " for SSID " .. ssid)
         -- Set the system volume to the level defined for the current SSID
@@ -125,7 +124,6 @@ end
 -- Create a WiFi watcher to monitor for SSID changes
 local wifiWatcher = hs.wifi.watcher.new(function()
     local currentSSID = hs.wifi.currentNetwork()
-    hs.alert.show(currentSSID)
     if currentSSID then
         adjustVolumeForSSID(currentSSID)
     end
