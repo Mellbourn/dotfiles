@@ -247,7 +247,7 @@ FZF=fzf
 # this harmed kill -9 and git co **
 #export FZF_COMPLETION_OPTS="--preview '(bat --color always --paging never {} 2> /dev/null || tree -C {}) 2> /dev/null | head -200' --preview-window=right:33%"
 # this is slow for large sets, could be sorted with ' | sort -u' but that is just the initial sorting
-export FZF_ALT_C_COMMAND='$FD --type directory'
+export FZF_ALT_C_COMMAND="$FD --type directory"
 export FZF_ALT_C_OPTS="--preview 'CLICOLOR_FORCE=1 ls -GF {} | head -200' --preview-window=right:20%"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 if [ -x "$(command -v bat)" ]; then
