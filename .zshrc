@@ -694,6 +694,8 @@ if [ -x "$(command -v curlie)" ]; then
   compdef _curl curlie
   alias curl=curlie
 fi
+# tabtab completions for pnpm
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
 # repair c completion after it was boken by zinit
 compdef __zoxide_z_complete __zoxide_zi
