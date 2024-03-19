@@ -447,10 +447,10 @@ if [ -x "$(command -v cargo)" ] && version_gte "$(cargo --version | cut -d " " -
   # not working anymore?
   if [ -f ~/.cargo/bin/cargo-install-update ]; then
     set +e
-    # yazi needs locked
-    CARGO_INSTALL_OPTS=--locked cargo install-update -a
-    # for the rest, try to get latest dependencies
+    # for most, try to get latest dependencies
     cargo install-update -a
+    # yazi needs locked, i.e. not latest https://github.com/sxyazi/yazi/issues/801
+    CARGO_INSTALL_OPTS=--locked cargo install-update -a
     set -e
   fi
   if [ -f ~/.cargo/bin/cargo-install-update-config ]; then
