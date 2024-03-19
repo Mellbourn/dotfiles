@@ -442,11 +442,14 @@ if [ -x "$(command -v cargo)" ] && version_gte "$(cargo --version | cut -d " " -
   fi
   # yazi should have been installed by brew on macOS
   if ! [ -x "$(command -v yazi)" ]; then
-    cargo install --verbose yazi-fm || true
+    cargo install --locked --verbose yazi-fm || true
   fi
   # not working anymore?
   if [ -f ~/.cargo/bin/cargo-install-update ]; then
     set +e
+    # yazi needs locked
+    CARGO_INSTALL_OPTS=--locked cargo install-update -a
+    # for the rest, try to get latest dependencies
     cargo install-update -a
     set -e
   fi
