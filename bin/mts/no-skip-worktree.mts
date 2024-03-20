@@ -11,10 +11,7 @@ import { run } from "./common.mjs";
 const toplevel = run("git rev-parse --show-toplevel");
 [
   `git update-index --no-skip-worktree ${toplevel}/.vscode/settings.json`,
-  `git update-index --no-skip-worktree ${toplevel}/.vscode/launch.json`,
-  `git update-index --no-skip-worktree ${toplevel}/apps/flexiapp-e2e/.detoxrc.json`,
-  `git update-index --no-skip-worktree ${toplevel}/apps/firstvet-auth/package-lock.json`,
-  `git update-index --no-skip-worktree ${toplevel}/apps/flexiapp/ios/Podfile.lock`,
+  // `git update-index --no-skip-worktree ${toplevel}/.vscode/launch.json`,
 ].forEach((cmd) => {
   const stdout = run(cmd);
   if (stdout) {
