@@ -121,6 +121,10 @@ export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
 if [ -d /snap ]; then
   addLastInPath "/snap/croc/current"
 fi
+if [ -d "$HOME/.dotnet-manual" ]; then
+  addLastInPath "$HOME/.dotnet-manual"
+  export DOTNET_ROOT="$HOME/.dotnet-manual"
+fi
 addFirstInPath "$HOME/.manually-installed/bin"
 addLastInPath "$HOME/.manually-installed/lsd"
 addFirstInPath "$HOME/.local/bin"

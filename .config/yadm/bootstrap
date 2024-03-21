@@ -294,6 +294,10 @@ if [[ $(uname) == 'Darwin' ]]; then
 
       #npm install -g vsts-npm-auth
       npm i -g better-vsts-npm-auth
+
+      mkdir -p "$HOME/.dotnet-manual"
+      curl -fsSL https://download.visualstudio.microsoft.com/download/pr/4a4728b7-96e6-48f1-a072-6906205e6a58/de54331936784caded5ecd5d10b0ee81/dotnet-sdk-6.0.420-osx-arm64.tar.gz -o /tmp/dotnet-sdk-6.0.420-osx-arm64.tar.gz
+      tar -xzf /tmp/dotnet-sdk-6.0.420-osx-arm64.tar.gz -C "$HOME/.dotnet-manual"
     fi
 
     if [[ -n "$FIRSTVET" ]]; then
