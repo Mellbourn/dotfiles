@@ -4,8 +4,10 @@ syntect_theme = "~/.config/yazi/Dracula.tmTheme"
 [filetype]
 
 rules = [
+
   { name = "*", is = "block", fg = "#5f87d7" },
   { name = "*", is = "char", fg = "#87d75f", bold = true },
+  { name = "*/", fg = "#008787" },
   { name = "*", is = "exec", fg = "#ff8700", bold = true },
   { name = "*", is = "fifo", fg = "#af0087" },
   { name = "*", is = "orphan", fg = "#080808", bg = "#ff0000", bold = true },
@@ -643,5 +645,4 @@ rules = [
 
   # Fallback
   # { name = "*", fg = "white" },
-  { name = "*/", fg = "#107674", bold = true },
 ]
