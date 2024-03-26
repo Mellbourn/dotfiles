@@ -260,7 +260,7 @@ zinit wait'1' lucid as'null' \
 if [[ -x $(command -v atuin) ]]; then
   zinit wait'1' lucid light-mode atinit"bindkey '^xr' history-search-multi-word" for zdharma-continuum/history-search-multi-word
   export ATUIN_NOBIND="true"
-  zinit wait"1" lucid light-mode atinit"bindkey '^r' atuin-search" for ellie/atuin
+  zinit wait"1" lucid light-mode atinit"bindkey '^r' atuin-search" for atuinsh/atuin
 else
   zinit wait'1' lucid for zdharma-continuum/history-search-multi-word
 fi
