@@ -91,7 +91,7 @@ ctrl_n_shortcuts = true
 ## https://docs.rs/regex/latest/regex/#syntax
 # history_filter = [
 #   "^secret-cmd",
-#   "^innocuous-cmd .*--secret=.+"
+#   "^innocuous-cmd .*--secret=.+",
 # ]
 
 ## prevent commands run with cwd matching any of these regexes from being written
@@ -100,7 +100,7 @@ ctrl_n_shortcuts = true
 ## For details on the supported regular expression syntax, see
 ## https://docs.rs/regex/latest/regex/#syntax
 # cwd_filter = [
-#   "^/very/secret/area"
+#   "^/very/secret/area",
 # ]
 
 ## Configure the maximum height of the preview to show.
@@ -112,6 +112,9 @@ ctrl_n_shortcuts = true
 ## version (and whether an update is available), a keymap hint, and the total
 ## amount of commands in your history.
 # show_help = true
+
+## Configure whether or not to show tabs for search and inspect
+# show_tabs = true
 
 ## Defaults to true. This matches history against a set of default regex, and will not save it if we get a match. Defaults include
 ## 1. AWS key id
