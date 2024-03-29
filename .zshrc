@@ -316,6 +316,9 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 # this doesn't really repair ctrl-space
 #bindkey $key[ControlSpace] set-mark-command
 
+zinit wait'1' lucid as'null' \
+  atinit"[ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br" light-mode for zdharma-continuum/null
+
 zinit wait'2' lucid for unixorn/git-extra-commands
 
 # list programs to generate completions for here
