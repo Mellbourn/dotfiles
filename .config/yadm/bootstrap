@@ -26,7 +26,8 @@ if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostnam
   export KLARNA=1
 fi
 if [[ $(hostname) == *"Klass-MacBook-Pro-16"* ]]; then
-  export PROJ_ANTICIMEX=1
+  #export PROJ_ANTICIMEX=1
+  export PROJ_DMAZE=1
   #export FIRSTVET=1
 fi
 if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.bom" ]; then
