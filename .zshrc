@@ -68,6 +68,7 @@ set_p10k_branch_in_tmux() {
     # backward compatible version (tmux < 2.5) of: tmux select-pane -T "${VCS_STATUS_LOCAL_BRANCH}"
     zsh-defer -1sm -t 0.2 -c 'printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"'
     # note that the above line makes shelling out less convenient to get back from, since you need to fg
+    # I could run this without zsh-defer, see below, but then this is only working on the second prompt of a repo
     # printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"
   fi
 }
