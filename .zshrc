@@ -64,7 +64,7 @@ zinit lucid light-mode for romkatv/zsh-defer
 
 set_p10k_branch_in_tmux() {
   # this hack is to avoid running this in subshells (e.g. shelling out from "less")
-  if [ "$SHLVL" -lt 5 ]; then
+  if [ "$SHLVL" -lt 5 ] && [ -z "$YAZI_LEVEL" ]; then
     # backward compatible version (tmux < 2.5) of: tmux select-pane -T "${VCS_STATUS_LOCAL_BRANCH}"
     zsh-defer -1sm -t 0.2 -c 'printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"'
     # note that the above line makes shelling out less convenient to get back from, since you need to fg
