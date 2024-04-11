@@ -629,8 +629,8 @@ osascript -e 'tell application "System Events" to delete login item "iTunesHelpe
 # Associate filetypes to apps that should open them                           #
 ###############################################################################
 # open in Visual Studio Code
-#duti -s com.microsoft.VSCode .js all           # javascript - extensions work too
-#duti -s com.microsoft.VSCode .ts all           # typescript
+duti -s com.microsoft.VSCode .js all           # javascript - extensions work too
+duti -s com.microsoft.VSCode .ts all           # typescript
 duti -s com.microsoft.VSCode .md all           # markdown
 duti -s com.microsoft.VSCode com.apple.log all # .log
 duti -s com.microsoft.VSCode public.json all
