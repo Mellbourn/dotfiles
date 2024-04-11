@@ -63,8 +63,13 @@ export SAVEHIST=$HISTSIZE
 zinit lucid light-mode for romkatv/zsh-defer
 
 set_p10k_branch_in_tmux() {
-  # backward compatible version (tmux < 2.5) of: tmux select-pane -T "${VCS_STATUS_LOCAL_BRANCH}"
-  zsh-defer -1sm -t 0.2 -c 'printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"'
+  # this hack is to avoid running this in subshells (e.g. shelling out from "less")
+  if [ "$SHLVL" -lt 5 ]; then
+    # backward compatible version (tmux < 2.5) of: tmux select-pane -T "${VCS_STATUS_LOCAL_BRANCH}"
+    zsh-defer -1sm -t 0.2 -c 'printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"'
+    # note that the above line makes shelling out less convenient to get back from, since you need to fg
+    # printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"
+  fi
 }
 precmd_functions+=set_p10k_branch_in_tmux
 
