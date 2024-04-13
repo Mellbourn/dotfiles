@@ -137,6 +137,7 @@ addFirstInPath "$HOME"/bin
 addFirstInPath "$HOME"/bin/mts
 
 export CLICOLOR=1
+export FX_SHOW_SIZE=true
 export GCAL='--starting-day=Monday --iso-week-number=yes --with-week-number --cc-holidays=SE'
 if [[ -n $UNAME_LINUX ]]; then
   # WSL
