@@ -417,6 +417,7 @@
       # Tip: To always show local branch name in full without truncation, delete the next line.
       (( $#branch > 70 )) && branch[35,-35]="…"  # <-- this line
       res+="${clean}${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
+      printf "\033]2;$branch\033\\"
     fi
 
     if [[ -n $VCS_STATUS_TAG
