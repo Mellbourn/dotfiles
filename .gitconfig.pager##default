@@ -1,3 +1,9 @@
+# settings for difftastic https://cheatsheets.stephane.plus/misc/difftastic/#git-difftool
+# difftastic is an experiment: it has less syntax highlighting than git-delta, but it's smarter
+# just delete these two lines to return to delta
+[diff]
+external = difft
+
 # settings for git-delta https://github.com/dandavison/delta
 [core]
 pager = delta
