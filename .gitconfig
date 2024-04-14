@@ -92,6 +92,8 @@ autoSetupRemote = true
 autoStash = true
 [format]
 pretty = "%C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s"
+[difftool "difftastic"]
+cmd = difft "$LOCAL" "$REMOTE"
 [difftool "vscode"]
 cmd = code --wait --diff $LOCAL $REMOTE
 [mergetool "vscode"]
