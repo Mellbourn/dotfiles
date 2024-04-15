@@ -440,13 +440,9 @@ function httpp() {
   # note that this will remove header info, if you need it, add "-p hb" or "-v" parameter
   command http --pretty=all $* | command less -r
 }
-# usage: cd services && getTreeidForService orders
-function getTreeidForService() {
-	noglob git cat-file -p @^{tree} | \
-     grep "services$" | \
-     awk '{ system("git cat-file -p " $3) }' | \
-     egrep "$1$" | \
-     awk '{ print substr($3, 0, 11) }'
+
+function bri() {
+  brew info --json "$1"| jq -r '.[0].homepage'| xargs open
 }
 
 function co() {
