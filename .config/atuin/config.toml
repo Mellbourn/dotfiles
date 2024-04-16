@@ -32,7 +32,7 @@ sync_frequency = "10m"
 
 ## which search mode to use
 ## possible values: prefix, fulltext, fuzzy, skim
-search_mode = "prefix"
+#search_mode = "prefix"
 
 ## which filter mode to use
 ## possible values: global, host, session, directory
