@@ -30,12 +30,12 @@ keepbackup = false
 prompt = false
 trustExitCode = true
 [difftool]
-prompt = true
+prompt = false
 [diff]
 algorithm = histogram
 # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject instead of a/b/c/d as prefixes for patches
 mnemonicPrefix = true
-tool = vscode
+tool = vimdiff
 colorMoved = default
 submodule = log
 [merge]
