@@ -39,7 +39,7 @@ tool = vimdiff
 colorMoved = default
 submodule = log
 [merge]
-tool = vscode
+tool = vimdiff
 # Include summaries of merged commits in newly created merge commit messages
 log = true
 [status]
