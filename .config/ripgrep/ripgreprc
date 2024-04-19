@@ -1,3 +1,7 @@
+--smart-case
+
 --max-columns=155
 --max-columns-preview
---smart-case
+# if you want to increase the preview window, line numbers make the separation of lines easie to see
+#--max-columns=500
+#--line-number
