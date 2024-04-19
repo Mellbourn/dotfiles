@@ -699,6 +699,9 @@ if [ -x "$(command -v curlie)" ]; then
   compdef _curl curlie
   alias curl=curlie
 fi
+# azure-cli command completions
+[[ -f ~/.zsh-personal-functions/az.completion ]] && . ~/.zsh-personal-functions/az.completion || true
+
 # tabtab completions for pnpm
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
