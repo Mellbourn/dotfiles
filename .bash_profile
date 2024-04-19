@@ -166,6 +166,7 @@ else
   export LESSOPEN
   export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quiet"
 fi
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 # git-delta can't handle a status column
 export DELTA_PAGER="less -+J -+W"
 # why is this important? This doesn't always work on old raspbian

@@ -488,7 +488,7 @@ function fd() {
 alias fd='noglob fd'
 
 function rg() {
-  command rg --pretty --smart-case --no-line-number $* | less
+  command rg --color=always --heading $* | less
 }
 alias rg='noglob rg'
 
