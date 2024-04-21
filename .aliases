@@ -47,6 +47,6 @@ alias yv='GIT_DIR=~/.local/share/yadm/repo.git vi ~/.config/yadm'
 alias zmv='noglob zmv'
 
 # ugrep is a drop-in replacement for grep
-alias grep='ugrep -G --color=auto --config'  # search with basic regular expressions (BRE)
-alias egrep='ugrep -E --color=auto --config' # search with extended regular expressions (ERE)
-alias fgrep='ugrep -F --color=auto --config' # find string(s)
+alias grep='ugrep -G --config'  # search with basic regular expressions (BRE)
+alias egrep='ugrep -E --config' # search with extended regular expressions (ERE)
+alias fgrep='ugrep -F --config' # find string(s)
