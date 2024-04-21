@@ -1,5 +1,7 @@
 --smart-case
 
+--hyperlink-format=vscode
+
 --max-columns=155
 --max-columns-preview
 # if you want to increase the preview window, line numbers make the separation of lines easie to see
