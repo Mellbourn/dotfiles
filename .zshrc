@@ -28,8 +28,7 @@ autoload -U zmv
 autoload -Uz $(ls ~/.zsh-personal-functions)
 
 # helping brew completion is needed if HOMEBREW_PREFIX is not /usr/local
-# curl is here to enablie curlie to get to curls completions
-FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$HOMEBREW_PREFIX/opt/curl/share/zsh/site-functions:$FPATH
+FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH
 
 # fixing weird error of fpath on Klas's MacBook Pro 16" 2023, having 5.8.1 instead of 5.9
 case "$FPATH" in
@@ -695,7 +694,9 @@ if [ -x "$(command -v circleci)" ]; then
   eval "$(circleci completion zsh)" && compdef _circleci circleci
 fi
 if [ -x "$(command -v curlie)" ]; then
-  # for this to work, an addition to fpath is necessary, see above
+  # for this to work, _curl must be generated and put not in the ~/.zsh-personal-completions/generated but in
+  # ~/.zsh-personal-completions because it is earlier in the path.
+  # Note that _curl must be generated with a script (done above) it is no longer included by homebrew
   compdef _curl curlie
   alias curl=curlie
 fi
