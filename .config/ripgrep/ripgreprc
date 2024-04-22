@@ -10,4 +10,4 @@
 
 # my type
 --type-add
-dev:*.{ts,js,json,jsx,tsx}
+dev:*.{ts,js,jsx,tsx}
