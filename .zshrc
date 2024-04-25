@@ -256,15 +256,6 @@ fi
 zinit wait'1' lucid as'null' \
   atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma-continuum/null
 
-# history search has to be loaded aftr fzf, so that it overwrites ^R
-if [[ -x $(command -v atuin) ]]; then
-  zinit wait'1' lucid light-mode atinit"bindkey '^xr' history-search-multi-word" for zdharma-continuum/history-search-multi-word
-  export ATUIN_NOBIND="true"
-  zinit wait"1" lucid light-mode atinit"bindkey '^r' atuin-search" for atuinsh/atuin
-else
-  zinit wait'1' lucid for zdharma-continuum/history-search-multi-word
-fi
-
 zinit wait'1' lucid light-mode for "cedi/meaningful-error-codes"
 
 zinit wait'1' lucid if'[[ -x "$(command -v fzf)" ]]' for wfxr/forgit
@@ -291,7 +282,7 @@ zinit wait'1' lucid as"completion" light-mode pick"_*" for nilsonholger/osx-zsh-
 zinit wait'1' lucid light-mode for mellbourn/zabb
 
 # this was cool but a bit too slow - adds blank lines after ls after a while
-zinit wait'1' lucid light-mode --atload="bindkey '^r' atuin-search" for marlonrichert/zsh-autocomplete
+zinit wait'1' lucid light-mode for marlonrichert/zsh-autocomplete
 zstyle ':autocomplete:*' config off
 zstyle ':autocomplete:*' min-input 2
 #zstyle ':autocomplete:*' min-delay 0.4
@@ -321,6 +312,15 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 zinit wait'1' lucid atload"!_zsh_autosuggest_start
 " for zsh-users/zsh-autosuggestions
+
+# history search has to be loaded aftr fzf and zsh-autocomplete, so that it overwrites ^R
+if [[ -x $(command -v atuin) ]]; then
+  zinit wait'1' lucid light-mode atinit"bindkey '^xr' history-search-multi-word" for zdharma-continuum/history-search-multi-word
+  export ATUIN_NOBIND="true"
+  zinit wait"1" lucid light-mode atinit"bindkey '^r' atuin-search" for atuinsh/atuin
+else
+  zinit wait'1' lucid for zdharma-continuum/history-search-multi-word
+fi
 
 zinit wait'1' lucid as'null' \
   atinit"[ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br" light-mode for zdharma-continuum/null
