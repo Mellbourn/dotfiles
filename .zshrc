@@ -291,7 +291,7 @@ zinit wait'1' lucid as"completion" light-mode pick"_*" for nilsonholger/osx-zsh-
 zinit wait'1' lucid light-mode for mellbourn/zabb
 
 # this was cool but a bit too slow - adds blank lines after ls after a while
-zinit wait'1' lucid light-mode for marlonrichert/zsh-autocomplete
+zinit wait'1' lucid light-mode --atload="bindkey '^r' atuin-search" for marlonrichert/zsh-autocomplete
 zstyle ':autocomplete:*' config off
 zstyle ':autocomplete:*' min-input 2
 #zstyle ':autocomplete:*' min-delay 0.4
