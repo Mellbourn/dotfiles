@@ -147,12 +147,6 @@ zinit silent light-mode lucid for SinaKhalili/mecho
 
 zinit wait'0a' lucid blockf for zsh-users/zsh-completions
 
-export ZSH_AUTOSUGGEST_USE_ASYNC=1
-# for match_prev_cmd to work, it requires histignorealldups to be removed (which is ok: do histsavenodups instead)
-export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
-zinit wait'0' lucid atload"!_zsh_autosuggest_start
-" for zsh-users/zsh-autosuggestions
-
 # zsh-notify (as opposed to zbell) only notifies when the pane with the command is not focused
 # icons (whether remote or local) affects performance noticably
 # silent because zsh-notify does not work on raspberry pi
@@ -296,6 +290,18 @@ zinit wait'1' lucid as"completion" light-mode pick"_*" for nilsonholger/osx-zsh-
 
 zinit wait'1' lucid light-mode for mellbourn/zabb
 
+# this was cool but a bit too slow - adds blank lines after ls after a while
+zinit wait'1' lucid light-mode for marlonrichert/zsh-autocomplete
+zstyle ':autocomplete:*' config off
+zstyle ':autocomplete:*' min-input 2
+#zstyle ':autocomplete:*' min-delay 0.4
+zstyle ':autocomplete:tab:*' insert-unambiguous yes
+zstyle ':autocomplete:tab:*' widget-style menu-select
+# when fzf work test this
+zstyle ':autocomplete:tab:*' fzf-completion yes
+# this doesn't really repair ctrl-space
+#bindkey $key[ControlSpace] set-mark-command
+
 # fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
 zinit wait'1' lucid atclone'source fzf-tab.zsh && build-fzf-tab-module' atpull'%atclone' for Aloxaf/fzf-tab
 # disable sort when completing `git checkout`
@@ -310,17 +316,11 @@ zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'ping -c1 $word'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
-# this was cool but a bit too slow - adds blank lines after ls after a while
-#zinit wait'1' lucid light-mode for marlonrichert/zsh-autocomplete
-#zstyle ':autocomplete:*' config off
-#zstyle ':autocomplete:*' min-input 2
-##zstyle ':autocomplete:*' min-delay 0.4
-#zstyle ':autocomplete:tab:*' insert-unambiguous yes
-#zstyle ':autocomplete:tab:*' widget-style menu-select
-# when fzf work test this
-#zstyle ':autocomplete:tab:*' fzf-completion yes
-# this doesn't really repair ctrl-space
-#bindkey $key[ControlSpace] set-mark-command
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+# for match_prev_cmd to work, it requires histignorealldups to be removed (which is ok: do histsavenodups instead)
+export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
+zinit wait'1' lucid atload"!_zsh_autosuggest_start
+" for zsh-users/zsh-autosuggestions
 
 zinit wait'1' lucid as'null' \
   atinit"[ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br" light-mode for zdharma-continuum/null
