@@ -558,14 +558,6 @@ if [[ -x "$(command -v atuin)" ]]; then
   fi && atuin import auto)
 fi
 
-curl_completion_file=~/.zsh-personal-completions/_curl
-if [ ! -f "$curl_completion_file" ]; then
-  temp_script=$(mktemp)
-  curl -s https://raw.githubusercontent.com/curl/curl/master/scripts/completion.pl -o "$temp_script"
-  perl "$temp_script" >"$curl_completion_file"
-  rm "$temp_script"
-fi
-
 ###############################################################################
 # development
 ###############################################################################
