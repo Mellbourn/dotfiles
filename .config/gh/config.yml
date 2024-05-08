@@ -8,7 +8,7 @@ prompt: enabled
 pager: less
 # Aliases allow you to create nicknames for gh commands
 aliases:
-  cw: pr checks --watch
+  cw: pr checks --watch # rw probably better
   cwm: "!gh cws && gh pr merge --merge --auto"
   cws: "!sleep 10 && gh cw"
   co: pr checkout
@@ -18,8 +18,8 @@ aliases:
   whoami: "!gh api user | jq -r .login"
   # runs are no longer so interesting, since we run actual checks in circeci
   runs: "!gh run list -u $(gh whoami) --limit 5"
-  runsb: "!gh run list -u $(gh whoami) --limit 5 -b $(git rev-parse --abbrev-ref HEAD)"
-  runw: "!noti gh run watch --exit-status $(gh run list -u $(gh whoami) -L 1 --json databaseId -q .[0].databaseId)"
+  runb: "!gh run list -u $(gh whoami) --limit 5 -b $(git rev-parse --abbrev-ref HEAD)"
+  rw: '!databaseId="$(gh run list -u $(gh whoami) -L 1 --json databaseId -q .[0].databaseId)"; gh run watch --exit-status $databaseId && result=Success || result=Fail; terminal-notifier -message $result -sound default -ignoreDnD -title "$([ $result = "Success" ] && echo 🍀 || echo 👺)" -contentImage https://www.svgrepo.com/show/353783/github-octocat.svg -open "$(gh run view --json url -q .url $databaseId)"'
   fail: "!gh pr checks | grep fail | choose -1 | xargs open"
   # github runs seldom fail since we run checks in circlci
   failgh: "!gh run view --log-failed $(gh run list -u $(gh whoami) --limit 1 --json databaseId -q .[0].databaseId) | less +G"
