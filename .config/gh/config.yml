@@ -19,6 +19,7 @@ aliases:
   # runs are no longer so interesting, since we run actual checks in circeci
   runs: "!gh run list -u $(gh whoami) --limit 5"
   runsb: "!gh run list -u $(gh whoami) --limit 5 -b $(git rev-parse --abbrev-ref HEAD)"
+  runw: "!noti gh run watch --exit-status $(gh run list -u $(gh whoami) -L 1 --json databaseId -q .[0].databaseId)"
   fail: "!gh pr checks | grep fail | choose -1 | xargs open"
   # github runs seldom fail since we run checks in circlci
   failgh: "!gh run view --log-failed $(gh run list -u $(gh whoami) --limit 1 --json databaseId -q .[0].databaseId) | less +G"

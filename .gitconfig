@@ -60,6 +60,7 @@ f = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no
 # pull only current branch, fetch nothing else
 p = "!git pull --no-tags origin $(git rev-parse --abbrev-ref HEAD)"
 pc = "!git push && gh cws"
+pw = "!git push && sleep 10 && gh runw"
 puff = push --force-if-includes --force-with-lease
 # logp and reflogp have been adjustd so that they are compatible with git-delta
 logp = log -p --format='commit %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s'
@@ -121,4 +122,4 @@ required = true
 clean = git-lfs clean -- %f
 smudge = git-lfs smudge -- %f
 [maintenance]
-	repo = /Users/klas.mellbourn/code/dmaze/frontend/.bare
+repo = /Users/klas.mellbourn/code/dmaze/frontend/.bare
