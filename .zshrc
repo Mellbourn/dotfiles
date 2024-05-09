@@ -243,7 +243,7 @@ fi
 export FZF_DEFAULT_COMMAND="$FD --type file"
 # --ansi makes fzf a bit slower, but I haven't really noticed, this preview is used for ** completion
 # colors are dracula theme
-export FZF_DEFAULT_OPTS="--ansi --select-1 --height ~40% --reverse --tiebreak=begin --bind end:preview-down,home:preview-up,ctrl-a:select-all+accept \
+export FZF_DEFAULT_OPTS="--ansi --select-1 --height ~40% --reverse --tiebreak=begin --bind alt-up:preview-page-up,alt-down:preview-page-down,alt-shift-up:preview-top,alt-shift-down:preview-bottom,alt-a:select-all \
  --color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4"
 export FZF_TMUX_OPTS="-d 70%"
 # tmux was a bit slower
