@@ -278,6 +278,7 @@ zinit wait'1' lucid if'[[ -x "$(command -v fzf)" ]]' for wfxr/forgit
 #forgit_ignore=forgig
 # ctrl-d to drop stash with gss
 export FORGIT_STASH_FZF_OPTS='--bind="ctrl-d:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'
+export FORGIT_DIFF_GIT_OPTS='--no-ext-diff'
 
 # command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
 #zinit wait'1' lucid as'null' atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma-continuum/null
