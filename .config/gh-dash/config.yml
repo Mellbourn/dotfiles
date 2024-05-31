@@ -12,10 +12,10 @@ prSections:
   - title: All - Involved
     filters: is:open involves:@me -author:@me
 issuesSections:
-  - title: Work - My Issues
-    filters: is:open author:@me repo:dmazeio/frontend
   - title: Work - Assigned
     filters: is:open assignee:@me repo:dmazeio/frontend
+  - title: Work - My Issues
+    filters: is:open author:@me repo:dmazeio/frontend
   - title: Work - Involved
     filters: is:open involves:@me -author:@me repo:dmazeio/frontend
   - title: All - My Issues
