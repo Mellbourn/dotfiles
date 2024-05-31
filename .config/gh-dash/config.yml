@@ -1,17 +1,29 @@
 prSections:
-  - title: My Pull Requests
+  - title: Work - My Pull Requests
     filters: is:open author:@me repo:dmazeio/frontend
-  - title: Needs My Review
+  - title: Work - Needs My Review
     filters: is:open review-requested:@me repo:dmazeio/frontend
-  - title: Involved
+  - title: Work - Involved
     filters: is:open involves:@me -author:@me repo:dmazeio/frontend
+  - title: All - My Pull Requests
+    filters: is:open author:@me
+  - title: All - Needs My Review
+    filters: is:open review-requested:@me
+  - title: All - Involved
+    filters: is:open involves:@me -author:@me
 issuesSections:
-  - title: My Issues
+  - title: Work - My Issues
     filters: is:open author:@me repo:dmazeio/frontend
-  - title: Assigned
+  - title: Work - Assigned
     filters: is:open assignee:@me repo:dmazeio/frontend
-  - title: Involved
+  - title: Work - Involved
     filters: is:open involves:@me -author:@me repo:dmazeio/frontend
+  - title: All - My Issues
+    filters: is:open author:@me
+  - title: All - Assigned
+    filters: is:open assignee:@me
+  - title: All - Involved
+    filters: is:open involves:@me -author:@me
 defaults:
   preview:
     open: true
