@@ -1,17 +1,17 @@
 prSections:
   - title: My Pull Requests
-    filters: is:open author:@me
+    filters: is:open author:@me repo:dmazeio/frontend
   - title: Needs My Review
-    filters: is:open review-requested:@me
+    filters: is:open review-requested:@me repo:dmazeio/frontend
   - title: Involved
-    filters: is:open involves:@me -author:@me
+    filters: is:open involves:@me -author:@me repo:dmazeio/frontend
 issuesSections:
   - title: My Issues
-    filters: is:open author:@me
+    filters: is:open author:@me repo:dmazeio/frontend
   - title: Assigned
-    filters: is:open assignee:@me
+    filters: is:open assignee:@me repo:dmazeio/frontend
   - title: Involved
-    filters: is:open involves:@me -author:@me
+    filters: is:open involves:@me -author:@me repo:dmazeio/frontend
 defaults:
   preview:
     open: true
