@@ -686,9 +686,6 @@ if [ -x "$(command -v prettyping)" ]; then
   alias ping="prettyping --nolegend"
   compdef prettyping=ping
 fi
-if [ -x "$(command -v op)" ]; then
-  eval "$(op completion zsh)"; compdef _op op
-fi
 if [ -x "$(command -v jira)" ]; then
   eval "$(jira completion zsh)" && compdef _jira jira
 fi
