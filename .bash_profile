@@ -209,9 +209,6 @@ if [[ $SHELL == *bash ]]; then
   bind '"":history-search-forward'
 fi
 
-# this line is added by iTerm command "Install shell integration"
-#test -e "${HOME}/.iterm2_shell_integration.$SHELLNAME" && source "${HOME}/.iterm2_shell_integration.$SHELLNAME"
-
 ###############################################################################
 # Java and Android development
 ###############################################################################

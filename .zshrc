@@ -391,6 +391,11 @@ fi
 # note that this is for completion of cyme only, the command is gotten from cargo
 zinit wait'2' lucid light-mode from"gh" pick"doc/_cyme" as"completion" for tuna-f1sh/cyme
 
+# this line is added by iTerm command "Install shell integration"
+if [ -n $ITERM_SESSION_ID ] && [ -f "${HOME}/.iterm2_shell_integration.$SHELLNAME" ]; then
+  source "${HOME}/.iterm2_shell_integration.$SHELLNAME"
+fi
+
 ###############################################################################
 # add-ons installed by homebrew
 ###############################################################################
