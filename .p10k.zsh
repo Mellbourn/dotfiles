@@ -821,6 +821,9 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_NIX_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
+  # this is to activate iterm2 shell integration
+  typeset -g POWERLEVEL9K_TERM_SHELL_INTEGRATION=true
+
   ##################[ chezmoi_shell: chezmoi shell (https://www.chezmoi.io/) ]##################
   # chezmoi shell color.
   typeset -g POWERLEVEL9K_CHEZMOI_SHELL_FOREGROUND=0
