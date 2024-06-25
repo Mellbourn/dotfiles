@@ -16,17 +16,15 @@ aliases:
   work: "!gh status -o $GITHUB_ORGANIZATION"
   members: "!gh api /orgs/$GITHUB_ORGANIZATION/members -q .[].login"
   whoami: "!gh api user | jq -r .login"
-  # runs are no longer so interesting, since we run actual checks in circeci
   runs: "!gh run list -u $(gh whoami) --limit 5"
   runb: "!gh run list -u $(gh whoami) --limit 5 -b $(git rev-parse --abbrev-ref HEAD)"
   rw: '!databaseId="$(gh run list -u $(gh whoami) -L 1 --json databaseId -q .[0].databaseId)"; gh run watch --exit-status $databaseId && result=Success || result=Fail; terminal-notifier -message $result -sound "$([ $result = "Success" ] && echo Glass || echo Frog)" -ignoreDnD -title "$([ $result = "Success" ] && echo 🍀 || echo 👺)" -contentImage https://www.svgrepo.com/show/353783/github-octocat.svg -open "$(gh run view --json url -q .url $databaseId)"'
-  fail: "!gh pr checks | grep fail | choose -1 | xargs open"
-  # github runs seldom fail since we run checks in circlci
-  failgh: "!gh run view --log-failed $(gh run list -u $(gh whoami) --limit 1 --json databaseId -q .[0].databaseId) | less +G"
+  failw: "!gh pr checks | grep fail | choose -1 | xargs open"
+  fail: "!gh run view --log-failed $(gh run list -u $(gh whoami) --limit 1 --json databaseId -q .[0].databaseId) | less +G"
   prs: pr status --conflict-status
   prv: pr view -w
-  url: "!gh pr view --json url -q .url|pbcopy"
-  rurl: "!gh repo view --json url -q .url|pbcopy"
+  pru: "!gh pr view --json url -q .url|pbcopy"
+  repou: "!gh repo view --json url -q .url|pbcopy"
   review: search prs --review-requested=@me --state=open -w
   latest: "!gh api graphql -f query=' query { viewer { repositories(first: 20, orderBy: {field: PUSHED_AT, direction: DESC}) { nodes { name url pushedAt } } } }' | jq -r '.data.viewer.repositories.nodes[].url' "
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
