@@ -510,6 +510,11 @@ lg() {
     fi
 }
 
+# copies file to clipboard. You can then
+# cmd-v paste into gmail
+# copy an image file and then paste image in some apps, like google docs
+pbcopyfile(){ osascript -e{'on run{a}','set the clipboard to posix file a',end} "$(greadlink -f -- "$1")";}
+
 # Use Ctrl-x,Ctrl-l to get the output of the last command
 insert-last-command-output() {
 LBUFFER+="$(eval $history[$((HISTCMD-1))])"
