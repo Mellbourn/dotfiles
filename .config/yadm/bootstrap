@@ -98,6 +98,9 @@ asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
 set -e
 asdf install direnv latest
 asdf global direnv latest
+asdf plugin add pipx
+asdf install pipx latest
+asdf global pipx latest
 
 if [[ -n "$FIRSTVET" ]]; then
   asdf install nodejs 16.17.0
@@ -184,6 +187,9 @@ if [[ $(uname) == 'Darwin' ]]; then
   fi
 
   xcode-select --install || true
+
+  pipx install poetry
+  pipx upgrade poetry
 
   ###############################################################################
   # Homebrew                                                                    #
