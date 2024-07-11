@@ -510,6 +510,11 @@ lg() {
     fi
 }
 
+# decode JWT tokens
+function jwtd() {
+  sed 's/\./\n/g' <<< $(cut -d. -f1,2 <<< $1) | base64 --decode | jq
+}
+
 # copies file to clipboard. You can then
 # cmd-v paste into gmail
 # copy an image file and then paste image in some apps, like google docs
