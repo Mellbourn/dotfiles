@@ -512,7 +512,7 @@ lg() {
 
 # decode JWT tokens
 function jwtd() {
-  sed 's/\./\n/g' <<< $(cut -d. -f1,2 <<< $1) | base64 --decode | jq
+  cut -d"." -f1,2 <<< $1 | sed 's/\./\n/g' | base64 --decode | jq
 }
 
 # copies file to clipboard. You can then
