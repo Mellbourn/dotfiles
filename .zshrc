@@ -481,7 +481,7 @@ _fzf_compgen_dir() {
 
 function fd() {
   if [ -t 1 ]; then
-    command $FD -c always $* | less
+    command $FD --hyperlink -c always $* | less
   else
     command $FD $*
   fi
