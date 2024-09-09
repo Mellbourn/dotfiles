@@ -28,20 +28,25 @@ git diff -U0 "$(git merge-base "$BASE_BRANCH" HEAD)"..HEAD --name-only | while r
       next;
     }
     $0 ~ regex {
-      # Trim leading plus and spaces before matching
-      sub(/^\+\s*/, "", $0);
-
-      # Find the start position of the regex match within the trimmed line
+      # Find the start position of the regex match within the original line
       match($0, regex);
       column_number = RSTART - 1; # Adjust RSTART by subtracting 1 to get the correct column
+
+      # Store original line and trim leading plus and spaces
+      original_line = $0;
+      trimmed_line = $0;
+      sub(/^\+\s*/, "", trimmed_line);
+
+      # Calculate the adjusted RSTART based on the trimmed line
+      adjusted_rstart = RSTART - (length(original_line) - length(trimmed_line));
 
       # Calculate the adjusted line number and subtract 6 to correct it
       line_number = diff_start_line + FNR - 1 - 6;
 
       # Highlight the matched part in the output line
-      highlighted_line = substr($0, 1, RSTART - 1) color_match substr($0, RSTART, RLENGTH) color_reset substr($0, RSTART + RLENGTH);
+      highlighted_line = substr(trimmed_line, 1, adjusted_rstart - 1) color_match substr(trimmed_line, adjusted_rstart, RLENGTH) color_reset substr(trimmed_line, adjusted_rstart + RLENGTH);
 
-      # Print the file name, line number, column number, and colored output
+      # Print the file name, line number, column number, and highlighted output
       print color_file file color_reset "(" color_position line_number "," column_number color_reset "): " highlighted_line;
     }
   '
