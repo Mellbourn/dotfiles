@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# This script finds strings in the diff of the current branch that match a regex
+
+# Check if the regex parameter is provided
+if [ -z "$1" ]; then
+    echo "Usage: prfd <regex>"
+    exit 1
+fi
+
+regex="$1"
+BASE_BRANCH=$(git rev-parse --verify --quiet main || git rev-parse --verify --quiet master)
+
+git diff -U0 "$(git merge-base "$BASE_BRANCH" HEAD)"..HEAD --name-only | while read -r file; do
+    git diff -U0 "$(git merge-base "$BASE_BRANCH" HEAD)"..HEAD -- "$file" |
+        gawk -v file=" $file" -v regex="$regex" '
+    /^@@/ {
+      # Extract the starting line number from the diff header using a regex
+      match($0, /\+([0-9]+)/, arr);
+      diff_start_line = arr[1];
+      next;
+    }
+    $0 ~ regex {
+      # Trim leading plus and spaces
+      sub(/^\+\s*/, "", $0);
+      # Calculate the adjusted line number and subtract 6 to correct it
+      line_number = diff_start_line + FNR - 1 - 6;
+      print file "(" line_number "): " $0;
+    }
+  '
+done
