@@ -21,11 +21,18 @@ git diff -U0 "$(git merge-base "$BASE_BRANCH" HEAD)"..HEAD --name-only | while r
       next;
     }
     $0 ~ regex {
+      # Find the start position of the regex match within the line
+      match($0, regex);
+      column_number = RSTART - 1; # Adjust RSTART by subtracting 1 to get the correct column
+
       # Trim leading plus and spaces
       sub(/^\+\s*/, "", $0);
+
       # Calculate the adjusted line number and subtract 6 to correct it
       line_number = diff_start_line + FNR - 1 - 6;
-      print file "(" line_number "): " $0;
+
+      # Print the file name, line number, and column number
+      print file "(" line_number "," column_number "): " $0;
     }
   '
 done
