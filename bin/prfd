@@ -4,16 +4,23 @@
 
 # Check if the regex parameter is provided
 if [ -z "$1" ]; then
-    echo "Usage: prfd <regex>"
-    exit 1
+  echo "Usage: prfd <regex>"
+  exit 1
 fi
 
 regex="$1"
 BASE_BRANCH=$(git rev-parse --verify --quiet main || git rev-parse --verify --quiet master)
 
 git diff -U0 "$(git merge-base "$BASE_BRANCH" HEAD)"..HEAD --name-only | while read -r file; do
-    git diff -U0 "$(git merge-base "$BASE_BRANCH" HEAD)"..HEAD -- "$file" |
-        gawk -v file=" $file" -v regex="$regex" '
+  git diff -U0 "$(git merge-base "$BASE_BRANCH" HEAD)"..HEAD -- "$file" |
+    gawk -v file=" $file" -v regex="$regex" '
+    BEGIN {
+      # ANSI color codes
+      color_reset = "\033[0m";
+      color_file = "\033[1;34m";     # Bold Blue for file name
+      color_position = "\033[1;33m"; # Bold Yellow for line and column
+      color_match = "\033[1;31m";    # Bold Red for the matched text
+    }
     /^@@/ {
       # Extract the starting line number from the diff header using a regex
       match($0, /\+([0-9]+)/, arr);
@@ -21,18 +28,21 @@ git diff -U0 "$(git merge-base "$BASE_BRANCH" HEAD)"..HEAD --name-only | while r
       next;
     }
     $0 ~ regex {
-      # Find the start position of the regex match within the line
+      # Trim leading plus and spaces before matching
+      sub(/^\+\s*/, "", $0);
+
+      # Find the start position of the regex match within the trimmed line
       match($0, regex);
       column_number = RSTART - 1; # Adjust RSTART by subtracting 1 to get the correct column
-
-      # Trim leading plus and spaces
-      sub(/^\+\s*/, "", $0);
 
       # Calculate the adjusted line number and subtract 6 to correct it
       line_number = diff_start_line + FNR - 1 - 6;
 
-      # Print the file name, line number, and column number
-      print file "(" line_number "," column_number "): " $0;
+      # Highlight the matched part in the output line
+      highlighted_line = substr($0, 1, RSTART - 1) color_match substr($0, RSTART, RLENGTH) color_reset substr($0, RSTART + RLENGTH);
+
+      # Print the file name, line number, column number, and colored output
+      print color_file file color_reset "(" color_position line_number "," column_number color_reset "): " highlighted_line;
     }
   '
 done
