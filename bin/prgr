@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script finds strings in the diff of the current branch that match a regex
+# This script finds/greps strings introduced in the current pull request
 
 # Check if the regex parameter is provided
 if [ -z "$1" ]; then
