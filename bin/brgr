@@ -51,4 +51,4 @@ git diff -U0 "$(git merge-base "$BASE_BRANCH" HEAD)"..HEAD --name-only | while r
       print color_file file color_reset "(" color_position line_number "," column_number color_reset "): " highlighted_line;
     }
   '
-done
+done | ${PAGER:-less -R}
