@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script finds/greps strings introduced in the current pull request
+# This script finds/greps strings introduced in the current branch relative to the main branch, e.g. current PR.
 
 # Check if the regex parameter is provided
 if [ -z "$1" ]; then
