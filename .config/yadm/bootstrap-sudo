@@ -24,6 +24,8 @@ if grep -q 'microsoft.*WSL' /proc/version; then OS_WSL=1; fi
 
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 
+OS_VERSION=$(sw_vers -productVersion)
+
 ###############################################################################
 # Linux (and Windows Subsystem for Linux)                                     #
 ###############################################################################
@@ -115,19 +117,19 @@ httpie
 
     desiredApps=()
     while IFS= read -r line; do
-        [[ "$line" ]] && desiredApps+=("$line")
-    done <<< "$(echo "$apps" | xargs -n1 | sort -u)"
+      [[ "$line" ]] && desiredApps+=("$line")
+    done <<<"$(echo "$apps" | xargs -n1 | sort -u)"
 
     installThese=()
     alreadyInstalled=$(brew list | sort -u)
     for app in "${desiredApps[@]}"; do
-        if ! grep -Fxq "$app" <<< "$alreadyInstalled"; then
-            installThese+=("$app")
-        fi
+      if ! grep -Fxq "$app" <<<"$alreadyInstalled"; then
+        installThese+=("$app")
+      fi
     done
 
     if [ ${#installThese[@]} -ne 0 ]; then
-        echo "${installThese[@]}" | xargs -r brew install
+      echo "${installThese[@]}" | xargs -r brew install
     fi
   fi
 
@@ -311,9 +313,11 @@ export HW_MODEL=${HW_MODEL:-$(sysctl -n hw.model)}
 #sudo rm -rf /Applications/Mic\ Drop.app
 
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
-# not working on Big Sur?
-PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:$HOMEBREW_PREFIX/bin
-sudo launchctl config user path "$PATH_OVERRIDE"
+# Getting "bus error" on macOS Sequoia 15.0
+if [[ "$OS_VERSION" != "15.0" ]]; then
+  PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:$HOMEBREW_PREFIX/bin
+  sudo launchctl config user path "$PATH_OVERRIDE"
+fi
 
 # if xcode has just been manually installed
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
@@ -367,7 +371,7 @@ fi
 if ! grep -q "$HOMEBREW_PREFIX/bin/zsh" "/etc/shells"; then
   sudo sh -c "echo $HOMEBREW_PREFIX/bin/zsh >> /etc/shells"
 fi
-sudo chsh -s $HOMEBREW_PREFIX/bin/zsh "$(whoami)"
+sudo chsh -s "$HOMEBREW_PREFIX"/bin/zsh "$(whoami)"
 
 sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "This Mac belongs to Klas Mellbourn.\ne-mail: klas@mellbourn.net phone: +46 708 80 00 00\nReward offered for return of this Mac. No questions asked."
 
