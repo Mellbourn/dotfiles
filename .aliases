@@ -31,6 +31,7 @@ alias ll='ls -lF '
 alias lla='ll -A'
 alias more=less
 alias mv='mv -v'
+alias ncdu='echo Use \"dua i\" instead of \"ncdu\", much faster'
 alias prev='open -a Preview'
 alias psh='pwsh.exe' # could add -NoLogo to get a more quiet startup
 alias ql='qlmanage -p >/dev/null 2>&1'
