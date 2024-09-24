@@ -24,7 +24,9 @@ if grep -q 'microsoft.*WSL' /proc/version; then OS_WSL=1; fi
 
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 
-OS_VERSION=$(sw_vers -productVersion)
+if [[ $(uname) == 'Darwin' ]]; then
+  OS_VERSION=$(sw_vers -productVersion)
+fi
 
 ###############################################################################
 # Linux (and Windows Subsystem for Linux)                                     #
