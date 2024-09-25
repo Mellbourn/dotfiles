@@ -13,8 +13,8 @@ aliases:
   cws: "!sleep 10 && gh cw"
   co: pr checkout
   open: "!gh browse . -b $(git rev-parse --abbrev-ref HEAD)"
-  issueMoveToInProgress: '!gh project item-edit --id $(gh project item-list --owner dmazeio 1 --limit 500 --format json --jq ".items[]| select(.content.number == $1) | .id") --field-id PVTSSF_lADOCQnWF84AYeyPzgPpt6k --project-id PVT_kwDOCQnWF84AYeyP --single-select-option-id 065c1207'
-  issueMoveToInTesting: '!gh issue reopen -c "should be tested" $1; gh project item-edit --id $(gh project item-list --owner dmazeio 1 --limit 500 --format json --jq ".items[]| select(.content.number == $1) | .id") --field-id PVTSSF_lADOCQnWF84AYeyPzgPpt6k --project-id PVT_kwDOCQnWF84AYeyP --single-select-option-id a1e7acd6'
+  issueMoveToInProgress: '!gh project item-edit --id $(gh project item-list --owner $GITHUB_ORGANIZATION 1 --limit 500 --format json --jq ".items[]| select(.content.number == $1) | .id") --field-id PVTSSF_lADOCQnWF84AYeyPzgPpt6k --project-id PVT_kwDOCQnWF84AYeyP --single-select-option-id 065c1207'
+  issueMoveToInTesting: '!gh issue reopen -c "should be tested" $1; gh project item-edit --id $(gh project item-list --owner $GITHUB_ORGANIZATION 1 --limit 500 --format json --jq ".items[]| select(.content.number == $1) | .id") --field-id PVTSSF_lADOCQnWF84AYeyPzgPpt6k --project-id PVT_kwDOCQnWF84AYeyP --single-select-option-id a1e7acd6'
   work: "!gh status -o $GITHUB_ORGANIZATION"
   members: "!gh api /orgs/$GITHUB_ORGANIZATION/members -q .[].login"
   whoami: "!gh api user | jq -r .login"
