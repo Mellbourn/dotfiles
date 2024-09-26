@@ -689,6 +689,10 @@ fi
 #defaults write com.apple.universalaccess reduceTransparency 1
 
 ###############################################################################
+# Non-apple settings                                                          #
+###############################################################################
+defaults write com.manytricks.Moom "All Hot Keys Are Local" -bool YES
+###############################################################################
 # Miscellaneous                                                               #
 ###############################################################################
 # Save screenshots to Pictures
