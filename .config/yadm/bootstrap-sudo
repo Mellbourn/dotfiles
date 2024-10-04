@@ -316,7 +316,7 @@ export HW_MODEL=${HW_MODEL:-$(sysctl -n hw.model)}
 
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
 # Getting "bus error" on macOS Sequoia 15.0
-if [[ "$OS_VERSION" != "15.0" ]]; then
+if [[ "$OS_VERSION" != "15.0.1" ]]; then
   PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:$HOMEBREW_PREFIX/bin
   sudo launchctl config user path "$PATH_OVERRIDE"
 fi
