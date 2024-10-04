@@ -26,7 +26,8 @@ aliases:
   prs: pr status --conflict-status
   prv: pr view -w
   pru: "!gh pr view --json url -q .url|pbcopy"
-  repou: "!gh repo view --json url -q .url|pbcopy"
+  reu: "!gh repo view --json url -q .url|pbcopy"
+  rev: repo view -w
   review: search prs --review-requested=@me --state=open -w
   latest: "!gh api graphql -f query=' query { viewer { repositories(first: 20, orderBy: {field: PUSHED_AT, direction: DESC}) { nodes { name url pushedAt } } } }' | jq -r '.data.viewer.repositories.nodes[].url' "
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
