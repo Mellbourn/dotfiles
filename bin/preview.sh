@@ -29,7 +29,7 @@ application/pdf)
     # Use pdftocairo to create an image from the PDF and display it
     pdf_image=$(mktemp "${TMPDIR:-/tmp/}pdf_image.XXXXX")
     pdftocairo -png -singlefile "$1" "$pdf_image" 2>/dev/null
-    img2sixel --width=500 <"$pdf_image.png" 2>/dev/null
+    img2sixel --width=600 <"$pdf_image.png" 2>/dev/null
     ;;
 application/epub+zip)
     # Use epub2txt for EPUB files
