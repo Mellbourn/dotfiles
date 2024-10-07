@@ -47,7 +47,7 @@ application/x-tar | application/gzip | application/x-compressed-tar | applicatio
     ;;
 *)
     # Default: show file details
-    echo "File type: $mime"
-    echo "No preview available for this file type."
+    echo "Unhandled file type: $mime"
+    bat --color=always "$1" | head -120 2>/dev/null
     ;;
 esac
