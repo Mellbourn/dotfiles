@@ -315,7 +315,7 @@ export HW_MODEL=${HW_MODEL:-$(sysctl -n hw.model)}
 #sudo rm -rf /Applications/Mic\ Drop.app
 
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
-# Getting "bus error" on macOS Sequoia 15.0
+# Getting "bus error" on macOS Sequoia 15.x https://discussions.apple.com/thread/255779464?login=true&sortBy=rank
 if [[ "$OS_VERSION" != "15.1" ]]; then
   PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:$HOMEBREW_PREFIX/bin
   sudo launchctl config user path "$PATH_OVERRIDE"
