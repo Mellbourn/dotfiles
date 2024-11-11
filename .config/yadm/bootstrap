@@ -99,18 +99,11 @@ set -e
 asdf install direnv latest
 asdf global direnv latest
 
-if [[ -n "$FIRSTVET" ]]; then
-  asdf install nodejs 16.17.0
-  asdf install nodejs 14.20.0
-  asdf global nodejs 16.17.0
-  asdf install java temurin-11.0.16+101
-  asdf global java temurin-11.0.16+101
-  asdf install ruby 2.7.6
-  asdf install ruby 3.1.4
-  asdf install python 3.9.10 # this is for klapp
-  asdf install python 3.10.6
-  asdf global python 3.10.6
-  asdf global ruby 3.1.4
+if [[ -n "$KLARNA" ]]; then
+  asdf install ruby latest
+  asdf global ruby latest
+  asdf install python latest
+  asdf global python latest
 else
   asdf install nodejs latest
   asdf global nodejs latest
@@ -159,11 +152,13 @@ if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
   brew install mas || true
 
-  mas install 497799835                  # Xcode
-  mas install 1352778147                 # Bitwarden
-  mas lucky "Copy 'Em"                   # (3.0.6) 876540291
-  mas lucky "John's Background Switcher" # 907640277
-  mas lucky "Yubico Authenticator"       # (6.1.0) 1497506650
+  mas install 497799835  # Xcode
+  mas install 1352778147 # Bitwarden
+  mas lucky "Copy 'Em"   # (3.0.6) 876540291
+  if [[ -z "$KLARNA" ]]; then
+    mas lucky "John's Background Switcher" # 907640277
+  fi
+  mas lucky "Yubico Authenticator" # (6.1.0) 1497506650
   # Safari extensions
   mas lucky "Adblock Plus for Safari ABP" # (2.1.10) 1432731683
   mas lucky "DuckTabs Extension"          # (2.0) 1508584686
@@ -254,7 +249,11 @@ if [[ $(uname) == 'Darwin' ]]; then
   # maybe add these eventually:
   # haskell-stack
   # and then: cargo install viu https://github.com/atanunq/viu
-  brews=$(cat "$SCRIPT_DIR/brew.ini")
+  if [[ -n "$KLARNA" ]]; then
+    brews=$(cat "$SCRIPT_DIR/brew.k.ini")
+  else
+    brews=$(cat "$SCRIPT_DIR/brew.ini")
+  fi
   apps_raw="${brews%%\[casks\]*}"
   casks_raw="${brews#*\[casks\]}"
   apps=$(stripCommentsAndWhitespace "$apps_raw")
