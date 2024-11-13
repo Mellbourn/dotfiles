@@ -83,28 +83,26 @@ asdf plugin update --all
 
 set +e
 # remove these removals eventually
-asdf uninstall java zulu-8.58.0.13
-asdf plugin remove pnpm
+#asdf uninstall java zulu-8.58.0.13
+#asdf plugin remove pnpm
 
-asdf plugin add nodejs
-asdf plugin add java
-
-asdf plugin add ruby
-asdf plugin add python
-asdf plugin add bundler
-# asdf direnv doesn't seem absolutely necessary, but could improve performance. 2.30.2 works
-asdf plugin add direnv
 asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
 set -e
-asdf install direnv latest
-asdf global direnv latest
 
 if [[ -n "$KLARNA" ]]; then
-  asdf install ruby latest
-  asdf global ruby latest
-  asdf install python latest
-  asdf global python latest
-else
+    echo "will use volta and rbenv instead"
+  else
+  asdf plugin add nodejs
+  asdf plugin add java
+  
+  asdf install direnv latest
+  asdf global direnv latest
+  asdf plugin add ruby
+  asdf plugin add python
+  asdf plugin add bundler
+  # asdf direnv doesn't seem absolutely necessary, but could improve performance. 2.30.2 works
+  asdf plugin add direnv
+
   asdf install nodejs latest
   asdf global nodejs latest
   asdf install python latest
