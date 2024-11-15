@@ -13,6 +13,10 @@ if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.
   export ROSETTA_INSTALLED=1
 fi
 
+if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "FXF"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "HKG"* ]]; then
+  export KLARNA=1
+fi
+
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
   OS_UBUNTU=1
   if dpkg -l ubuntu-desktop >/dev/null; then
@@ -319,6 +323,10 @@ export HW_MODEL=${HW_MODEL:-$(sysctl -n hw.model)}
 if [[ "$OS_VERSION" != "15.1" ]]; then
   PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:$HOMEBREW_PREFIX/bin
   sudo launchctl config user path "$PATH_OVERRIDE"
+fi
+
+if [[ -n "$KLARNA" ]]; then
+  exit 0
 fi
 
 # if xcode has just been manually installed
