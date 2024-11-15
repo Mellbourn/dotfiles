@@ -22,7 +22,7 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
   DOTFILES_LITE=1
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
-if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "FV"* ]] || [[ $(hostname) == "HKG"* ]]; then
+if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "FXF"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "HKG"* ]]; then
   export KLARNA=1
 fi
 if [[ $(hostname) == *"Klass-MacBook-Pro-16"* ]]; then
@@ -90,11 +90,11 @@ asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
 set -e
 
 if [[ -n "$KLARNA" ]]; then
-    echo "will use volta and rbenv instead"
-  else
+  echo "will use volta and rbenv instead"
+else
   asdf plugin add nodejs
   asdf plugin add java
-  
+
   asdf install direnv latest
   asdf global direnv latest
   asdf plugin add ruby
