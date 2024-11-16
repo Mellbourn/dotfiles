@@ -28,8 +28,9 @@ if [[ -d ~/.config/pilot/completions ]]; then # app
 fi # app
 autoload -U zmv
 # personal functions in ~/.zsh-personal-functions
+if [[ -d ~/.zsh-personal-functions ]]; then
 autoload -Uz $(ls ~/.zsh-personal-functions)
-
+fi
 # helping brew completion is needed if HOMEBREW_PREFIX is not /usr/local
 # curl is here to enablie curlie to get to curls completions
 FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$HOMEBREW_PREFIX/opt/curl/share/zsh/site-functions:$FPATH
