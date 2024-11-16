@@ -725,6 +725,13 @@ compdef __zoxide_z_complete z
 #autoload -U +X bashcompinit && bashcompinit
 #zinit cdreplay
 
+if [ -f ~/.keprc ]; then
+  ZSH_VERSION_TEMP="$ZSH_VERSION"
+  unset ZSH_VERSION
+  source ~/.keprc
+  export ZSH_VERSION="$ZSH_VERSION_TEMP"
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
