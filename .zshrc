@@ -198,16 +198,18 @@ else
   }
 fi
 
-zinit wait'0' lucid as'null' atinit'source $HOME/.asdf/asdf.sh
-# setup direnv
-if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
-  source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc
+if [[ -z "$KLARNA" ]]; then
+  zinit wait'0' lucid as'null' atinit'source $HOME/.asdf/asdf.sh
+  # setup direnv
+  if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
+    source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc
+  fi
+  # java_home
+  if [ -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
+    source "${ASDF_DIR:-$HOME/.asdf}"/plugins/java/set-java-home.zsh
+  fi
+  ' light-mode for zdharma-continuum/null
 fi
-# java_home
-if [ -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
-  source "${ASDF_DIR:-$HOME/.asdf}"/plugins/java/set-java-home.zsh
-fi
-' light-mode for zdharma-continuum/null
 fpath=(${ASDF_DIR:-$HOME/.asdf}/completions $fpath)
 
 if [[ -n $UNAME_MACOS ]]; then
