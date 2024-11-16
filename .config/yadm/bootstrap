@@ -537,7 +537,7 @@ npm i -g ts-node @swc/core
 
 if [[ -n "$KLARNA" ]]; then
   if \ping -c1 -W1 jira.int.klarna.net; then
-    npm update -g --registry="$COREPACK_NPM_REGISTRY"
+    npm update -g --registry="$NPM_CONFIG_REGISTRY"
   fi
 else
   npm update -g
