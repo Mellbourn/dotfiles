@@ -66,11 +66,6 @@ if [ ! -d ~/.zinit ]; then
   mkdir ~/.zinit
   chmod go-w ~/.zinit # to avoid insecure directories complaint
   git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
-else
-  # when all computers have switchted to zdharma-continuum, this can be removed
-  pushd ~/.zinit/bin
-  git remote set-url origin https://github.com/zdharma-continuum/zinit.git
-  popd
 fi
 
 # install asdf version manager https://asdf-vm.com/
