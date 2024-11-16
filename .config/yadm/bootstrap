@@ -84,7 +84,6 @@ asdf plugin update --all
 set +e
 # remove these removals eventually
 #asdf uninstall java zulu-8.58.0.13
-#asdf plugin remove pnpm
 
 asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
 set -e
@@ -198,15 +197,9 @@ if [[ $(uname) == 'Darwin' ]]; then
     fi
   }
 
-  brewSafeUninstallFormula eth-p/software/bat-extras-batgrep
-  brewSafeUninstallCask virtualbox
-  brewSafeUninstallFormula gdu
   # some uninstalls must be made before update
   set +e
   brew untap homebrew/homebrew-cask-drivers # for philips-hue-sync and luna-display
-  brew untap lokalise/cli-2
-  brew untap homebrew/cask-versions
-  brew untap homebrew/cask-fonts # for font-fira-code
   set -e
 
   brew cleanup
@@ -231,11 +224,11 @@ if [[ $(uname) == 'Darwin' ]]; then
   # brew install --cask homebrew/cask-drivers/logitech-options
 
   # remove brews here that were previously installed, to sync between machines
-  for formula in zsh-autosuggestions ilmbase asciinema fortune git-number z.lua weechat broot deno htop rbenv node@14 nodebrew asdf pipenv pyenv-virtualenvwrapper pyenv-virtualenv pyenv openjdk@11 transcrypt nginx cloc mosh volta tldr awscli@1 git-extras git-cliff libgit2@1.5 awscli gcal exa lastpass-cli lokalise2 rust procs tiv 1password-cli ncdu unar chatgpt-cli; do
+  for formula in ncdu chatgpt-cli; do
     brewSafeUninstallFormula $formula
   done
 
-  for cask in luna-display zeplin zenmap pokerth dash controlplane fork keycastr shortcat tor-browser tripmode stunnel java8 p4v authy browserstacklocal insomnia keka ui-browser 1password azure-data-studio keycombiner; do
+  for cask in ui-browser keycombiner; do
     brewSafeUninstallCask $cask
   done
 
@@ -244,9 +237,6 @@ if [[ $(uname) == 'Darwin' ]]; then
   }
 
   # this list no longer needs to be one per line, and can use comments
-  # maybe add these eventually:
-  # haskell-stack
-  # and then: cargo install viu https://github.com/atanunq/viu
   if [[ -n "$KLARNA" ]]; then
     brews=$(cat "$SCRIPT_DIR/brew.k.ini")
   else
@@ -341,20 +331,6 @@ if [[ $(uname) == 'Darwin' ]]; then
       asdf global python 3.9.10
 
       asdf install bundler 2.3.3 && asdf global bundler 2.3.3
-
-      # Android Studio homebrew installation no longer supported, install it manually
-      brewSafeUninstallCask android-studio
-      brewSafeUninstallFormula temurin8
-
-      # running yarn android:setup makes these unnecessary
-      asdf plugin remove cmake || true
-      # else
-      #asdf install kubectl latest && asdf global kubectl latest
-      # is krew important?
-      # set +e
-      # asdf plugin-add krew https://github.com/nlamirault/asdf-krew.git
-      # set -e
-      # asdf install krew latest && asdf global krew latest
     fi
 
   fi
@@ -602,8 +578,6 @@ gh extension install github/gh-copilot
 set -e
 gh extension upgrade --all
 
-# these uninstalls don't remove the exceutables from $HOMEBREW_PREFIX/bin - had to remove them manually
-npm uninstall -g nx lerna detox-cli @antfu/ni
 npm i -g zx
 npm i -g tsx
 # @swc/core needed for _debugging_ ts-node, but not for running it
@@ -620,9 +594,6 @@ else
 fi
 # save some disk
 xcrun simctl delete unavailable || true
-
-# remove itunes from login items. This way it does not open when you plug in an iPhone
-osascript -e 'tell application "System Events" to delete login item "iTunesHelper"' 2>/tmp/delete_itunes_helper_error.txt || true
 
 ###############################################################################
 # Associate filetypes to apps that should open them                           #

@@ -52,8 +52,6 @@ if [[ $(uname) == 'Linux' ]]; then
   sudo apt-add-repository -y https://cli.github.com/packages
   sudo apt update
   sudo apt full-upgrade -y
-  # eventually remove the removals
-  sudo apt remove -y fasd cargo
   # tmux-next, ripgrep and bat are absent from raspbian
   apps="
     zsh
@@ -312,11 +310,6 @@ if ! [ -d "/opt/homebrew/bin" ]; then
   sudo ln -fs "$HOMEBREW_PREFIX/bin/pinentry-mac" /opt/homebrew/bin/pinentry-mac
 fi
 export HW_MODEL=${HW_MODEL:-$(sysctl -n hw.model)}
-
-# uninstall mac apps, remove when run on all macs
-# (1.3.5)  "Mic Drop."
-#sudo mas uninstall 1489816366
-#sudo rm -rf /Applications/Mic\ Drop.app
 
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
 # Getting "bus error" on macOS Sequoia 15.x https://discussions.apple.com/thread/255779464?login=true&sortBy=rank
