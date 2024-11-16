@@ -20,6 +20,10 @@ if [[ $UNAME == 'Linux' ]]; then
   fi
 elif [[ $UNAME == 'Darwin' ]]; then
   export UNAME_MACOS=1
+  export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
+  if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "FXF"* ]]; then
+    export KLARNA=1
+  fi
 fi
 
 sshr() { ssh-add -l >&/dev/null || eval "$(ssh-agent)" >/dev/null; }
@@ -218,31 +222,33 @@ fi
 ###############################################################################
 # Java and Android development
 ###############################################################################
-if [ -d "$HOME/Library/Android/sdk" ]; then
-  export ANDROID_HOME=$HOME/Library/Android/sdk
-elif [ -d "$HOMEBREW_PREFIX/share/android-sdk" ]; then
-  export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
-fi
+if [[ -z "$KLARNA" ]]; then
+  if [ -d "$HOME/Library/Android/sdk" ]; then
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+  elif [ -d "$HOMEBREW_PREFIX/share/android-sdk" ]; then
+    export ANDROID_HOME=$HOMEBREW_PREFIX/share/android-sdk
+  fi
 
-if [ ! -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
-  if [ -d "/Applications/Android Studio.app/Contents/jre/Contents/Home" ]; then
-    export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
-  elif [ -f /usr/libexec/java_home ] && ! /usr/libexec/java_home 2>&1 | grep -q 'Unable to locate a Java Runtime'; then
-    JAVA_HOME_FROM_COMMAND="$(/usr/libexec/java_home -v 1.8)"
-    if [[ $JAVA_HOME_FROM_COMMAND == *"JavaAppletPlugin"* ]]; then
-      JAVA_HOME=$(print /Library/Java/JavaVirtualMachines/jdk1.8.*.jdk/Contents/Home)
-      export JAVA_HOME
-    else
-      export JAVA_HOME=$JAVA_HOME_FROM_COMMAND
+  if [ ! -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
+    if [ -d "/Applications/Android Studio.app/Contents/jre/Contents/Home" ]; then
+      export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
+    elif [ -f /usr/libexec/java_home ] && ! /usr/libexec/java_home 2>&1 | grep -q 'Unable to locate a Java Runtime'; then
+      JAVA_HOME_FROM_COMMAND="$(/usr/libexec/java_home -v 1.8)"
+      if [[ $JAVA_HOME_FROM_COMMAND == *"JavaAppletPlugin"* ]]; then
+        JAVA_HOME=$(print /Library/Java/JavaVirtualMachines/jdk1.8.*.jdk/Contents/Home)
+        export JAVA_HOME
+      else
+        export JAVA_HOME=$JAVA_HOME_FROM_COMMAND
+      fi
     fi
   fi
+
+  addLastInPath "$ANDROID_HOME/tools/bin"
+  addLastInPath "$ANDROID_HOME/platform-tools"
+  addFirstInPath /Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin
+
+  export REACT_NATIVE_DOWNLOADS_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/react-native-downloads"
 fi
-
-addLastInPath "$ANDROID_HOME/tools/bin"
-addLastInPath "$ANDROID_HOME/platform-tools"
-addFirstInPath /Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin
-
-export REACT_NATIVE_DOWNLOADS_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/react-native-downloads"
 
 # bc settings
 export BC_ENV_ARGS="-l -q"

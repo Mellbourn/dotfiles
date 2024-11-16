@@ -288,51 +288,6 @@ if [[ $(uname) == 'Darwin' ]]; then
       gem install cocoapods
     fi
 
-    if [[ -n "$KLARNA" ]]; then
-      brew install readline libffi
-
-      set +e
-      pushd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/include/ruby-2.6.0/
-      set -e
-      if [ ! -e universal-darwin20 ]; then
-        sudo ln -s universal-darwin21 universal-darwin20
-      fi
-      set +e
-      popd
-      set -e
-
-      # ruby (works: 2.6.8, 2.7.5, 3.1.0)
-      # shellcheck disable=SC2015
-      set +e
-      # default gems in .default-gems
-      pushd "$CODE_DIR"/klarna/klarna-app/master
-      set -e
-      asdf install
-      if [ ! -d "$HOME/.volta" ]; then
-        # not sure this actually works from the script
-        ./bin/install-node-version-manager.sh
-      fi
-      set +e
-      popd
-      set -e
-      if [ -d "$HOME/.volta" ]; then
-        # no point in using a global "install", that would be overridden anyway by git hooks
-        #volta install node@latest
-        trash "$HOME/.volta/tools/image/node/17.7.1" || true
-        trash "$HOME"/.volta/tools/inventory/node/node-v17.7.1* || true
-        trash "$HOME/.volta/tools/image/node/16.14.0" || true
-        trash "$HOME"/.volta/tools/inventory/node/node-v16.14.0* || true
-        # do not install yarn latest, it will override the scripted yarn wrapper
-        # volta install yarn@latest
-
-        # installing npm tools using volta
-        volta install git-branch-delete
-      fi
-      asdf global python 3.9.10
-
-      asdf install bundler 2.3.3 && asdf global bundler 2.3.3
-    fi
-
   fi
   # arm part ends
 
