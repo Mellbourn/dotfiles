@@ -22,12 +22,13 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
   DOTFILES_LITE=1
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
-if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "FXF"* ]] || [[ $(hostname) == "C0"* ]] || [[ $(hostname) == "HKG"* ]]; then
+if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "FXF"* ]]; then
   export KLARNA=1
 fi
 if [[ $(hostname) == *"Klass-MacBook-Pro-16"* ]]; then
+  echo "add work project here"
   #export PROJ_ANTICIMEX=1
-  export PROJ_DMAZE=1
+  #export PROJ_DMAZE=1
   #export FIRSTVET=1
 fi
 if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.bom" ]; then
@@ -144,11 +145,12 @@ if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
   brew install mas || true
 
-  mas install 497799835  # Xcode
   mas install 1352778147 # Bitwarden
   mas lucky "Copy 'Em"   # (3.0.6) 876540291
   if [[ -z "$KLARNA" ]]; then
+    mas install 497799835                  # Xcode
     mas lucky "John's Background Switcher" # 907640277
+    mas lucky "Popcorn for Safari"         # (2.0) 1535719670
   fi
   mas lucky "Yubico Authenticator" # (6.1.0) 1497506650
   # Safari extensions
@@ -156,7 +158,6 @@ if [[ $(uname) == 'Darwin' ]]; then
   mas lucky "DuckTabs Extension"          # (2.0) 1508584686
   mas lucky "Dark Reader for Safari"      # (1.4.3) 1438243180
   mas lucky "Grammarly for Safari"        # (9.33) 1462114288
-  mas lucky "Popcorn for Safari"          # (2.0) 1535719670
 
   if [[ -n $X86_OR_ROSETTA ]]; then
     # these still require rosetta afaik
@@ -203,13 +204,15 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   # is a separate upgrade for casks redundant?
   #brew upgrade --cask
-  brew tap aws/tap             # for aws-sam-cli
+  if [[ -z "$KLARNA" ]]; then
+    brew tap aws/tap               # for aws-sam-cli
+    brew tap wix/brew              # for applesimutils
+    brew tap robotsandpencils/made # for xcodes
+  fi
   brew tap git-time-metric/gtm # for gtm
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
   brew tap homebrew/command-not-found
   brew tap facebook/fb             # for idb-companion for flipper
-  brew tap wix/brew                # for applesimutils
-  brew tap robotsandpencils/made   # for xcodes
   brew tap ankitpokhrel/jira-cli   # for jira-cli
   brew tap jakehilborn/jakehilborn # for displayplacer
   brew tap kardolus/chatgpt-cli
@@ -267,8 +270,10 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
-    az upgrade
-    az extension add --name azure-devops # for git repos
+    if command -v az &>/dev/null; then
+      az upgrade
+      az extension add --name azure-devops # for git repos
+    fi
     if [[ -n "$PROJ_ANTICIMEX" ]]; then
       #asdf global pnpm latest
 
@@ -404,7 +409,9 @@ if [ -n "$GENCOMPL_FPATH" ] && [[ -x "$(command -v atuin)" ]]; then
 fi
 
 # azure-cli completion
-wget -qNP ~/.zsh-personal-functions https://raw.githubusercontent.com/Azure/azure-cli/dev/az.completion
+if command -v az &>/dev/null; then
+  wget -qNP ~/.zsh-personal-functions https://raw.githubusercontent.com/Azure/azure-cli/dev/az.completion
+fi
 
 # vim
 mkdir -p ~/.vim/autoload
