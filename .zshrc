@@ -23,6 +23,9 @@ fi
 source ~/.zinit/bin/zinit.zsh
 
 fpath=(~/.zsh-personal-functions ~/.zsh-personal-completions $fpath $GENCOMPL_FPATH)
+if [[ -d ~/.config/pilot/completions ]]; then # app
+  fpath=(~/.config/pilot/completions $fpath) # app
+fi # app
 autoload -U zmv
 # personal functions in ~/.zsh-personal-functions
 autoload -Uz $(ls ~/.zsh-personal-functions)
