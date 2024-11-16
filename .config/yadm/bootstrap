@@ -542,7 +542,7 @@ npm i -g ts-node @swc/core
 
 if [[ -n "$KLARNA" ]]; then
   if \ping -c1 -W1 jira.int.klarna.net; then
-    npm update -g --registry=https://artifactory.klarna.net/artifactory/api/npm/v-npm-production/
+    npm update -g --registry="$COREPACK_NPM_REGISTRY"
   fi
 else
   npm update -g
