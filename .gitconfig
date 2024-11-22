@@ -11,7 +11,8 @@ path = .gitconfig.user.foss
 path = .gitconfig.credentials
 [includeIf "gitdir:~/code/klarna/"]
 path = .gitconfig.user
-
+[includeIf "gitdir:~/Klarna/"]
+path = .gitconfig.user
 [includeIf "gitdir:~/code/klarna/ui/"]
 path = .gitconfig.user.foss
 [includeIf "gitdir:~/code/klarna/bubble-ui/"]
