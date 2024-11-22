@@ -15,6 +15,22 @@ source ~/.bash_profile
 
 if [ -x "$(command -v starship)" ]; then
   eval "$(starship init zsh)"
+  # In ~/.zshrc
+
+  set-long-prompt() { PROMPT=$(starship prompt) }
+  precmd_functions=(set-long-prompt)
+
+  set-short-prompt() {
+    if [[ $PROMPT != '%# ' ]]; then
+        PROMPT=$(starship module character)
+      zle .reset-prompt
+    fi
+  }
+
+  zle-line-finish() { set-short-prompt }
+  zle -N zle-line-finish
+
+  trap 'set-short-prompt; return 130' INT
 else
   # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
   # Initialization code that may require console input (password prompts, [y/n]
