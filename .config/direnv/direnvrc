@@ -1,5 +1,7 @@
 # see https://github.com/asdf-community/asdf-direnv
-use asdf
+if [[ -z "$KLARNA" ]]; then
+  use asdf
+fi
 
 # Uncomment the following line to make direnv silent by default.
 #export DIRENV_LOG_FORMAT=""
