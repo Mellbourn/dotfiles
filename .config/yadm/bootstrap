@@ -742,8 +742,12 @@ for app_to_remove in "${apps_to_remove[@]}"; do
 done
 if [ -f "/Applications/Google Chrome Beta.app" ]; then
   dockutil --add "/Applications/Google Chrome Beta.app" --after "Launchpad" --no-restart
+  dockutil --add "/Applications/iTerm.app" --after "Google Chrome Beta" --no-restart
 fi
-dockutil --add "/Applications/iTerm.app" --after "Google Chrome Beta" --no-restart
+if [ -f "/Applications/Google Chrome.app" ]; then
+  dockutil --add "/Applications/Google Chrome.app" --after "Launchpad" --no-restart
+  dockutil --add "/Applications/iTerm.app" --after "Google Chrome" --no-restart
+fi
 dockutil --add "/Applications/Visual Studio Code.app" --after "iTerm" --no-restart
 dockutil --add "/Applications/Bitwarden.app" --after "Visual Studio Code"
 set -e
