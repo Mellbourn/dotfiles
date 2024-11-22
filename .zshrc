@@ -727,7 +727,10 @@ compdef __zoxide_z_complete z
 ' light-mode for zdharma-continuum/null
 
 # it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zinit then
-#autoload -U +X compinit && compinit
+if [[ -n "$KLARNA" ]]; then
+  # weirdly, this is needed
+  autoload -U +X compinit && compinit
+fi
 #autoload -U +X bashcompinit && bashcompinit
 #zinit cdreplay
 
