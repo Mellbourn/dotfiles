@@ -1,2 +1,36 @@
 [user]
     email = klas.mellbourn@klarna.com
+  [user]
+      name = Klas Mellbourn
+      email = klas.mellbourn@klarna.com
+  [log]
+      date = iso
+  [push]
+      default = current
+      autoSetupRemote = true
+  [pack]
+      useSparse = true
+  [help]
+      autocorrect = prompt
+  [init]
+      defaultBranch = main
+  [rerere]
+      enabled = true
+  [core]
+      fsmonitor = true
+      untrackedCache = true
+  [lfs]
+      locksverify = false
+      setlockablereadonly = false
+  [merge]
+      conflictStyle = zdiff3
+  [rebase]
+      autosquash = true
+  [feature]
+      manyFiles = false
+  [commit]
+      verbose = true
+  [checkout]
+      workers = 0
+  [pull]
+      rebase = true
