@@ -259,7 +259,9 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew link --overwrite ugit
   # if you get "Chromium" is damaged and can't be opened. You should move it to the bin
   # https://www.reddit.com/r/MacOS/comments/q9d772/homebrew_chromium_is_damaged_and_cant_be_openend/
-  xattr -cr /Applications/Chromium.app
+  if [ -f "/Applications/Chromium.app" ]; then
+    xattr -cr /Applications/Chromium.app
+  fi
 
   if [ -n "$X86_OR_ROSETTA" ]; then
     # TODO: when there are Apple Silicon versions of these packages, move the installation to the normal list
@@ -738,7 +740,9 @@ declare -a apps_to_remove=("Mail" "Safari" "Maps" "Photos" "FaceTime" "Calendar"
 for app_to_remove in "${apps_to_remove[@]}"; do
   dockutil --remove "$app_to_remove" --no-restart
 done
-dockutil --add "/Applications/Google Chrome Beta.app" --after "Launchpad" --no-restart
+if [ -f "/Applications/Google Chrome Beta.app" ]; then
+  dockutil --add "/Applications/Google Chrome Beta.app" --after "Launchpad" --no-restart
+fi
 dockutil --add "/Applications/iTerm.app" --after "Google Chrome Beta" --no-restart
 dockutil --add "/Applications/Visual Studio Code.app" --after "iTerm" --no-restart
 dockutil --add "/Applications/Bitwarden.app" --after "Visual Studio Code"
@@ -783,7 +787,9 @@ defaults write com.apple.Safari SafariGeolocationPermissionPolicy -int 2
 "${XDG_CONFIG_HOME:-$HOME/.config}"/yadm/bootstrap-customer
 
 # this script makes brew doctor fail
-trash "$HOMEBREW_PREFIX"/Library/Taps/wix/homebrew-brew/applesimutils.rb
+if [ -f "$HOMEBREW_PREFIX"/Library/Taps/wix/homebrew-brew/applesimutils.rb ]; then
+  trash "$HOMEBREW_PREFIX"/Library/Taps/wix/homebrew-brew/applesimutils.rb
+fi
 # brew doctor fails with Unexpected dylibs:  /usr/local/lib/libDellMonitorSdkLib.dylib
 set +e
 brew doctor
