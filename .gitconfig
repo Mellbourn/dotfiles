@@ -123,4 +123,4 @@ required = true
 clean = git-lfs clean -- %f
 smudge = git-lfs smudge -- %f
 [maintenance]
-repo = /Users/klas.mellbourn/code/dmaze/frontend/.bare
+	repo = /Users/klas.mellbourn/Klarna/klarna-app
