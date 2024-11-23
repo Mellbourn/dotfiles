@@ -22,7 +22,7 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
   DOTFILES_LITE=1
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
-if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "FXF"* ]]; then
+if [[ $(hostname) == "FXF"* ]]; then
   export KLA=1
 fi
 if [[ $(hostname) == *"Klass-MacBook-Pro-16"* ]]; then

@@ -13,7 +13,7 @@ if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.
   export ROSETTA_INSTALLED=1
 fi
 
-if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "FXF"* ]]; then
+if [[ $(hostname) == "FXF"* ]]; then
   export KLA=1
 fi
 

@@ -21,7 +21,7 @@ if [[ $UNAME == 'Linux' ]]; then
 elif [[ $UNAME == 'Darwin' ]]; then
   export UNAME_MACOS=1
   export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
-  if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "FXF"* ]]; then
+  if [[ $(hostname) == "FXF"* ]]; then
     export KLA=1
   fi
 fi
