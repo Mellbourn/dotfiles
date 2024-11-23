@@ -199,7 +199,7 @@ else
   }
 fi
 
-if [[ -z "$KLARNA" ]]; then
+if [[ -z "$KLA" ]]; then
   zinit wait'0' lucid as'null' atinit'source $HOME/.asdf/asdf.sh
   # setup direnv
   if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
@@ -727,7 +727,7 @@ compdef __zoxide_z_complete z
 ' light-mode for zdharma-continuum/null
 
 # it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zinit then
-if [[ -n "$KLARNA" ]]; then
+if [[ -n "$KLA" ]]; then
   # weirdly, this is needed
   autoload -U +X compinit && compinit
 fi

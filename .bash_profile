@@ -22,7 +22,7 @@ elif [[ $UNAME == 'Darwin' ]]; then
   export UNAME_MACOS=1
   export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
   if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "FXF"* ]]; then
-    export KLARNA=1
+    export KLA=1
   fi
 fi
 
@@ -222,7 +222,7 @@ fi
 ###############################################################################
 # Java and Android development
 ###############################################################################
-if [[ -z "$KLARNA" ]]; then
+if [[ -z "$KLA" ]]; then
   if [ -d "$HOME/Library/Android/sdk" ]; then
     export ANDROID_HOME=$HOME/Library/Android/sdk
   elif [ -d "$HOMEBREW_PREFIX/share/android-sdk" ]; then

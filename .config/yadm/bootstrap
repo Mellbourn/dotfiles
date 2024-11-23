@@ -23,7 +23,7 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
 fi
 export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "FXF"* ]]; then
-  export KLARNA=1
+  export KLA=1
 fi
 if [[ $(hostname) == *"Klass-MacBook-Pro-16"* ]]; then
   echo "add work project here"
@@ -69,7 +69,7 @@ if [ ! -d ~/.zinit ]; then
   git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
 fi
 
-if [[ -z "$KLARNA" ]]; then
+if [[ -z "$KLA" ]]; then
   # install asdf version manager https://asdf-vm.com/
   if [ ! -d ~/.asdf ]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf
@@ -145,7 +145,7 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   mas install 1352778147 # Bitwarden
   mas lucky "Copy 'Em"   # (3.0.6) 876540291
-  if [[ -z "$KLARNA" ]]; then
+  if [[ -z "$KLA" ]]; then
     mas install 497799835                  # Xcode
     mas lucky "John's Background Switcher" # 907640277
     mas lucky "Popcorn for Safari"         # (2.0) 1535719670
@@ -202,7 +202,7 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   # is a separate upgrade for casks redundant?
   #brew upgrade --cask
-  if [[ -z "$KLARNA" ]]; then
+  if [[ -z "$KLA" ]]; then
     brew tap aws/tap               # for aws-sam-cli
     brew tap wix/brew              # for applesimutils
     brew tap robotsandpencils/made # for xcodes
@@ -233,7 +233,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   }
 
   # this list no longer needs to be one per line, and can use comments
-  if [[ -n "$KLARNA" ]]; then
+  if [[ -n "$KLA" ]]; then
     brews=$(cat "$SCRIPT_DIR/brew.k.ini")
   else
     brews=$(cat "$SCRIPT_DIR/brew.ini")
@@ -538,7 +538,7 @@ npm i -g ts-node @swc/core
 # cleanup-branches no longer installable
 #npm i -g cleanup-branches
 
-if [[ -n "$KLARNA" ]]; then
+if [[ -n "$KLA" ]]; then
   if \ping -c1 -W1 jira.int.klarna.net; then
     npm update -g --registry="$NPM_CONFIG_REGISTRY"
   fi

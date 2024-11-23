@@ -14,7 +14,7 @@ if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.
 fi
 
 if [[ $(hostname) == *"Klarna"* ]] || [[ $(hostname) == "FXF"* ]]; then
-  export KLARNA=1
+  export KLA=1
 fi
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
@@ -318,7 +318,7 @@ if [[ "$OS_VERSION" != "15.1" ]]; then
   sudo launchctl config user path "$PATH_OVERRIDE"
 fi
 
-if [[ -n "$KLARNA" ]]; then
+if [[ -n "$KLA" ]]; then
   exit 0
 fi
 
