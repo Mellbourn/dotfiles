@@ -224,7 +224,7 @@ if [[ $(uname) == 'Darwin' ]]; then
     brewSafeUninstallFormula $formula
   done
 
-  for cask in ui-browser keycombiner; do
+  for cask in ui-browser keycombiner font-caskaydia-cove-nerd-font font-cascadia-code-pl; do
     brewSafeUninstallCask $cask
   done
 
@@ -431,7 +431,7 @@ if [ -x "$(command -v gh)" ]; then
   fi
 fi
 
-# fonts
+# fonts: Delugia still useful for iTerm2, but redundant for VSCode
 if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
   if [[ $(uname) == 'Darwin' ]]; then
     FONT_DIRECTORY=~/Library/Fonts
