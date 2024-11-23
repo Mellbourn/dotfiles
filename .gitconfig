@@ -122,5 +122,3 @@ process = git-lfs filter-process
 required = true
 clean = git-lfs clean -- %f
 smudge = git-lfs smudge -- %f
-[maintenance]
-	repo = /Users/klas.mellbourn/Klarna/klarna-app
