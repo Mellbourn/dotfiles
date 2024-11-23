@@ -24,9 +24,11 @@ yb() {
         (
             (
                 set -e
-                if ! sudo -n true 2>/dev/null; then
-                    # if not, request sudo login right away
-                    sudo -v
+                if [[ -z "$KLA" ]]; then
+                    if ! sudo -n true 2>/dev/null; then
+                        # if not, request sudo login right away
+                        sudo -v
+                    fi
                 fi
                 echo "\n$(date +%F\ %T)"
                 script -q /dev/null yadm pull
@@ -35,7 +37,9 @@ yb() {
                 else
                     script -q /dev/null $HOME/.config/yadm/bootstrap
                 fi
-                sudo script -q /dev/null ~/.config/yadm/bootstrap-sudo
+                if [[ -z "$KLA" ]]; then
+                    sudo script -q /dev/null ~/.config/yadm/bootstrap-sudo
+                fi
                 script -q /dev/null yadm push
             )
 
