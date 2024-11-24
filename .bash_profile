@@ -80,11 +80,12 @@ if grep -q Raspbian /etc/os-release 2>/dev/null; then
   export DOTFILES_LITE=1
 fi
 
-if [[ $(hostname) == *"Klass-MacBook-Pro-16"* ]]; then
-  #export PROJ_ANTICIMEX=1
-  export PROJ_DMAZE=1
-  #export FIRSTVET=1
-fi
+#echo "add work project here"
+#if [[ $(hostname) == *"Klass-MacBook-Pro-16"* ]]; then
+#export PROJ_ANTICIMEX=1
+#export PROJ_DMAZE=1
+#export FIRSTVET=1
+#fi
 
 if [[ -n $PROJ_DMAZE ]]; then
   export GITHUB_ORGANIZATION=Dmazeio

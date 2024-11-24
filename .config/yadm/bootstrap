@@ -25,12 +25,12 @@ export PROCESSOR_ARCHITECTURE=${PROCESSOR_ARCHITECTURE:-$(uname -p)}
 if [[ $(hostname) == "FXF"* ]]; then
   export KLA=1
 fi
-if [[ $(hostname) == *"Klass-MacBook-Pro-16"* ]]; then
-  echo "add work project here"
-  #export PROJ_ANTICIMEX=1
-  #export PROJ_DMAZE=1
-  #export FIRSTVET=1
-fi
+#echo "add work project here"
+#if [[ $(hostname) == *"Klass-MacBook-Pro-16"* ]]; then
+#export PROJ_ANTICIMEX=1
+#export PROJ_DMAZE=1
+#export FIRSTVET=1
+#fi
 if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.bom" ]; then
   export ROSETTA_INSTALLED=1
 fi
