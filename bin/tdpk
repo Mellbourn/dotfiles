@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# toggle old screen referesh rate to fix green half problem
+HOMEBREW_PREFIX="/opt/homebrew"
+"$HOMEBREW_PREFIX/bin/displayplacer" \
+    "id:37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1728x1117 hz:120 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0" \
+    "id:FD2202C6-69D4-4E19-9D90-B674E2C4AFE3 res:3008x1692 hz:30 color_depth:8 enabled:true scaling:on origin:(4800,-611) degree:0" \
+    "id:DF8E54BC-A1D8-4C2E-91AA-187EFF8DBC02 res:3072x1728 hz:30 color_depth:8 enabled:true scaling:on origin:(1728,-611) degree:0"
+
+if "$HOMEBREW_PREFIX/bin/displayplacer" \
+    "id:37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1728x1117 hz:120 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0" \
+    "id:FD2202C6-69D4-4E19-9D90-B674E2C4AFE3 res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(4800,-611) degree:0" \
+    "id:DF8E54BC-A1D8-4C2E-91AA-187EFF8DBC02 res:3072x1728 hz:60 color_depth:8 enabled:true scaling:on origin:(1728,-611) degree:0"; then
+    true #echo "success: old screen got high resolution"
+else
+    # sometimes the old screen is low resolution (1920x1080) and I get this message
+    # Screen ID DF8E54BC-A1D8-4C2E-91AA-187EFF8DBC02: could not find res:3072x1728 hz:60 color_depth:8 scaling:on
+    "$HOMEBREW_PREFIX/bin/displayplacer" \
+        "id:37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1728x1117 hz:120 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0" \
+        "id:DF8E54BC-A1D8-4C2E-91AA-187EFF8DBC02 res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(1728,-611) degree:0" \
+        "id:FD2202C6-69D4-4E19-9D90-B674E2C4AFE3 res:3072x1728 hz:60 color_depth:8 enabled:true scaling:on origin:(3648,-611) degree:0"
+fi
