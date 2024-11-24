@@ -1,5 +1,6 @@
 {
-  "editor.fontFamily": "Delugia Book, Cascadia Code PL, CaskaydiaCove Nerd Font, Menlo, monospace",
+  // Cascadia now supports NF, some icons still small compared to Caskaydia, but good enough for code
+  "editor.fontFamily": "Cascadia Code NF, CaskaydiaCove Nerd Font, Menlo, monospace",
   "editor.fontWeight": "400",
   "files.associations": {
     "_code": "shellscript",
