@@ -208,8 +208,8 @@ if [[ $SHELL == *bash ]]; then
   # bash shell options
   shopt -s autocd globstar
   ### prompt
-  if [ -x "$(command -v brew)" ] && [ -f "$HOMEBREW_PREFIX"/etc/bash_completion ]; then
-    . "$HOMEBREW_PREFIX"/etc/bash_completion
+  if [ -x "$(command -v brew)" ] && [ -r "$HOMEBREW_PREFIX"/etc/profile.d/bash_completion.sh ]; then
+    . "$HOMEBREW_PREFIX"/etc/profile.d/bash_completion.sh
   fi
 
   # ctrl-p and ctrl-n now searches history
