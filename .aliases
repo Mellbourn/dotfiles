@@ -15,7 +15,6 @@ alias eg='egrep'
 alias g='noglob git'
 alias generate_password='LC_ALL=C tr -dc "[:alnum:]" < /dev/urandom | head -c 20 | pbcopy  '
 alias glances='TERM=xterm-256color glances --process-short-name'
-alias gn='git number --column' # note that command line completion does not work well for this alias
 alias cop='gh copilot suggest -t shell'
 alias gr='cd $(git rev-parse --show-toplevel)'
 alias jic='jira issue create -a@me --web --no-input -l"frontend" -l"team-treatment" -yMedium -tTask'
