@@ -221,7 +221,9 @@
 
   ##################################[ dir: current directory ]##################################
   # Current directory background color.
-  if [ -x "$(command -v md5sum)" ]; then
+  if [[ -n "$KLA" ]]; then
+    typeset -g POWERLEVEL9K_DIR_BACKGROUND=218
+  elif [ -x "$(command -v md5sum)" ]; then
     typeset -g POWERLEVEL9K_DIR_BACKGROUND=$((16#${$(echo $HOST|md5sum):0:2}))
   else
     typeset -g POWERLEVEL9K_DIR_BACKGROUND=$(echo $HOST|cksum|awk '{print $1%233+23}')
