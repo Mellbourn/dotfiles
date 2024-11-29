@@ -43,6 +43,13 @@ alias weather='curl -s v2.wttr.in'
 alias y='noglob yadm'
 alias yc='GIT_DIR=~/.local/share/yadm/repo.git code ~/.config/yadm'
 alias yl='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml,$HOME/Library/Application Support/lazygit/config.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
+alias yco='y forgit checkout_branch'
+alias yd='y forgit diff'
+alias ycf='y forgit checkout_file'
+alias ylo='y forgit log'
+alias yrh='y forgit reset_head' #unstage
+alias yrl='y forgit reflog'
+alias yss='y forgit stash_show'
 alias yv='GIT_DIR=~/.local/share/yadm/repo.git vi ~/.config/yadm'
 alias zmv='noglob zmv'
 
