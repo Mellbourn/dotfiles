@@ -49,19 +49,22 @@ submodulesummary = true
 a = add
 ain = add --intent-to-add
 ap = a -p
-ca = commit --amend
-can = can --no-edit
+c = commit
+ca = c --amend
+can = ca --no-edit
 cle = clean
 cli = cle -i
 clo = clone
-con = config
+cf = config
 d = diff
 ds = d --staged
+f = fetch
 g = grep
+l = log
 m = merge
 q = push
-reb = rebase
-ref = reflog
+rb = rebase
+rl = reflog
 rem = remote
 sh = show
 s = stash
@@ -86,20 +89,21 @@ fsp = forgit stash_push # not for yadm
 fss = forgit stash_show
 # classic abbrevs
 lol = lo --all
-lo = log --graph
-ci = commit -v
+lo = l --graph
+ci = c
 br = branch
 st = status
 mt = mergetool
 dt = difftool
-re = restore
+r = restore
 sw = switch
 aliases = config --get-regexp alias
 out = lo @{u}..
 in = lo ..@{u}
 cur = symbolic-ref --short HEAD
 # fetch only current branch and main
-f = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no-tags origin master; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) master:master; fi"
+fm = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no-tags origin main; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) main:main; fi"
+fms = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'master' ]]; then git fetch --no-tags origin master; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) master:master; fi"
 # pull only current branch, fetch nothing else
 p = "!git pull --no-tags origin $(git symbolic-ref --short HEAD)"
 pc = "!git push && gh cws"
