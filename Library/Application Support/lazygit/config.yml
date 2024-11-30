@@ -3,8 +3,6 @@ gui:
   skipStashWarning: true
   nerdFontsVersion: "3"
   theme:
-    # Background color of selected line.
-    # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#highlighting-the-selected-line
     selectedLineBgColor:
       - reverse
 git:
@@ -12,7 +10,7 @@ git:
   allBranchesLogCmd: "git log --graph --all"
   paging:
     colorArg: always
-    pager: delta --dark --paging=never
+    pager: delta --true-color never --paging=never
 refresher:
   refreshInterval: 2 # file/submodule refresh interval in seconds
   fetchInterval: 300 # re-fetch interval in seconds
