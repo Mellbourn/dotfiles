@@ -57,6 +57,7 @@ con = config
 d = diff
 ds = diff --staged
 g = grep
+m = merge
 reb = rebase
 ref = reflog
 rem = remote
