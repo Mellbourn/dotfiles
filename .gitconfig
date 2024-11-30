@@ -59,6 +59,7 @@ d = diff
 ds = d --staged
 g = grep
 m = merge
+q = push
 reb = rebase
 ref = reflog
 rem = remote
