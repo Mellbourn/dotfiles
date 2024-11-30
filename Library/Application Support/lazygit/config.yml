@@ -4,7 +4,9 @@ gui:
   nerdFontsVersion: "3"
   theme:
     selectedLineBgColor:
-      - reverse
+      - bold
+      - underline
+      # - reverse
 git:
   branchLogCmd: "git log --graph {{branchName}} --"
   allBranchesLogCmd: "git log --graph --all"
