@@ -42,7 +42,8 @@ FPATH=$HOMEBREW_PREFIX/share/zsh/site-functions:$HOMEBREW_PREFIX/opt/curl/share/
 #esac
 
 # misc
-setopt interactive_comments long_list_jobs extendedglob notify list_packed transient_rprompt
+# removed extendedglob since 'noglob git' does not work with djui/alias-tips
+setopt interactive_comments long_list_jobs notify list_packed transient_rprompt
 
 # word movement should stop on slashes
 export WORDCHARS=$WORDCHARS:s:/:
