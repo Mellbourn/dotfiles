@@ -68,6 +68,22 @@ s = stash
 stb = st -sb
 u = update-index
 wt = worktree
+# forgit
+fa = forgit add # not for yadm
+fbd = forgit branch_delete
+fd = forgit diff
+fco = forgit checkout_branch
+fcc = forgit checkout_commit
+fcp = forgit cherry_pick
+fd = forgit diff
+fcf = forgit checkout_file
+flo = forgit log
+frc = forgit revert_commit
+frh = forgit reset_head #unstage
+frb = forgit rebase
+frl = forgit reflog
+fsp = forgit stash_push # not for yadm
+fss = forgit stash_show
 # classic abbrevs
 lol = lo --all
 lo = log --graph
