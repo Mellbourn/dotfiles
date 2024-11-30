@@ -285,6 +285,7 @@ export FORGIT_STASH_FZF_OPTS='
 --bind="ctrl-d:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"
 --bind="enter:execute(echo {} | cut -d: -f1 | xargs -I % git stash pop %)+accept"
 --bind="tab:execute(echo {} | cut -d: -f1 | xargs -I % git stash apply %)+accept"
+--prompt="[ctrl-d]: drop, [enter]: pop, [tab]: apply   "
 '
 export FORGIT_DIFF_GIT_OPTS='--no-ext-diff'
 
