@@ -297,9 +297,8 @@ fi
 # command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
 #zinit wait'1' lucid as'null' atinit'source "$HOMEBREW_PREFIX/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"' light-mode for zdharma-continuum/null
 
-zinit wait'1' lucid for \
-  MichaelAquilina/zsh-you-should-use \
-  OMZP::dircycle
+zinit wait'1' lucid light-mode for "djui/alias-tips"
+zinit wait'1' lucid light-mode for OMZP::dircycle
 
 zinit wait'1' lucid atinit'alias f=fuck' light-mode for laggardkernel/zsh-thefuck
 
