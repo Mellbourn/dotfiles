@@ -291,7 +291,7 @@ export FORGIT_DIFF_GIT_OPTS='--no-ext-diff'
 export FORGIT_LOG_GIT_OPTS='--date=format-local:%Y-%m-%dT%H:%M'
 export FORGIT_LOG_FORMAT='%C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s'
 if [[ -x $(command -v delta) ]]; then
-  export FORGIT_PAGER='delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}'
+  export FORGIT_PAGER='delta --wrap-max-lines 0 -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}'
 fi
 
 # command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
