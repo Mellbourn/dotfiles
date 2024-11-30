@@ -120,6 +120,8 @@ cleanup-all = "!f(){\
 		done' ;\
     }; f"
 stash-rename = "!_() { if [ -z \"$1\" ] || [ -z \"$2\" ]; then echo \"git rename-stash 0 NewName\" && echo \"\" && git stash list && exit 1; else stash=\"stash@{$1}\"; rev=$(git rev-parse \"${stash}\"); git stash drop \"${stash}\" || exit 1; git stash store -m \"$2\" \"$rev\" || exit 1; git stash list; fi }; _"
+[commit]
+verbose = 2
 [fetch]
 prune = true
 [log]
