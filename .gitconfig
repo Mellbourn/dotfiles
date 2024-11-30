@@ -47,15 +47,16 @@ log = true
 submodulesummary = true
 [alias]
 a = add
-ap = add -p
+ain = add --intent-to-add
+ap = a -p
 ca = commit --amend
-can = commit --amend --no-edit
+can = can --no-edit
 cle = clean
-cli = clean -i
+cli = cle -i
 clo = clone
 con = config
 d = diff
-ds = diff --staged
+ds = d --staged
 g = grep
 m = merge
 reb = rebase
@@ -63,11 +64,11 @@ ref = reflog
 rem = remote
 sh = show
 s = stash
-stb = status -sb
+stb = st -sb
 u = update-index
 wt = worktree
 # classic abbrevs
-lol = log --graph --all
+lol = lo --all
 lo = log --graph
 ci = commit -v
 br = branch
@@ -76,6 +77,9 @@ mt = mergetool
 dt = difftool
 re = restore
 sw = switch
+aliases = config --get-regexp alias
+out = lo @{u}..
+in = lo ..@{u}
 # fetch only current branch and main
 f = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no-tags origin master; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) master:master; fi"
 # pull only current branch, fetch nothing else
