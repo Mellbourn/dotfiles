@@ -46,6 +46,7 @@ log = true
 [status]
 submodulesummary = true
 [alias]
+a = add
 lol = log --graph --all
 lo = log --graph
 ci = commit -v
