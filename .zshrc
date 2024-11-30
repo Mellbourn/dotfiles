@@ -219,7 +219,7 @@ if [[ -n $UNAME_MACOS ]]; then
 fi
 
 zinit wait'1' lucid for OMZP::magic-enter
-MAGIC_ENTER_GIT_COMMAND="g st"
+MAGIC_ENTER_GIT_COMMAND="g stb"
 MAGIC_ENTER_OTHER_COMMAND="l"
 
 zinit wait'1' lucid for supercrabtree/k

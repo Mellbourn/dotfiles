@@ -51,6 +51,7 @@ ap = add -p
 ca = commit --amend
 cn = commit --amend --no-edit
 cle = clean
+cli = clean -i
 clo = clone
 con = config
 d = diff
@@ -63,6 +64,7 @@ sh = show
 ss = stash
 stb = status -sb
 u = update-index
+wt = worktree
 # classic abbrevs
 lol = log --graph --all
 lo = log --graph
