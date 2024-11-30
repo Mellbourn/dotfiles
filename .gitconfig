@@ -69,6 +69,7 @@ rem = remote
 sh = show
 s = stash
 stb = st -sb
+t = tag
 u = update-index
 wt = worktree
 # forgit
