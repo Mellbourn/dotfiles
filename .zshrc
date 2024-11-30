@@ -281,7 +281,11 @@ zinit wait'1' lucid if'[[ -x "$(command -v fzf)" ]]' atinit'alias co=forgit::che
 # gi for forgit_ignore was a confusing alias
 #forgit_ignore=forgig
 # ctrl-d to drop stash with gss
-export FORGIT_STASH_FZF_OPTS='--bind="ctrl-d:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"'
+export FORGIT_STASH_FZF_OPTS='
+--bind="ctrl-d:reload(git stash drop $(cut -d: -f1 <<<{}) 1>/dev/null && git stash list)"
+--bind="enter:execute(echo {} | cut -d: -f1 | xargs -I % git stash pop %)+accept"
+--bind="tab:execute(echo {} | cut -d: -f1 | xargs -I % git stash apply %)+accept"
+'
 export FORGIT_DIFF_GIT_OPTS='--no-ext-diff'
 
 # command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
