@@ -80,6 +80,7 @@ sw = switch
 aliases = config --get-regexp alias
 out = lo @{u}..
 in = lo ..@{u}
+cur = symbolic-ref --short HEAD
 # fetch only current branch and main
 f = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no-tags origin master; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) master:master; fi"
 # pull only current branch, fetch nothing else
