@@ -288,7 +288,7 @@ export FORGIT_STASH_FZF_OPTS='
 --prompt="[ctrl-d]: drop, [enter]: pop, [tab]: apply   "
 '
 export FORGIT_DIFF_GIT_OPTS='--no-ext-diff'
-export FORGIT_LOG_GIT_OPTS="--date=iso8601"
+export FORGIT_LOG_GIT_OPTS='--date=format-local:%Y-%m-%dT%H:%M'
 export FORGIT_LOG_FORMAT='%C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s'
 
 # command-not-found cuases lag in command prompt when starting, also makes unkown commands slower
