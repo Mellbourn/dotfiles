@@ -19,3 +19,5 @@ else
         "id:71DFCAA1-DCEB-46FD-9D84-29F6D83031D2 res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(1728,-611) degree:0" \
         "id:5A54AAA3-ABC6-4652-96A2-38738229436C res:3072x1728 hz:60 color_depth:8 enabled:true scaling:on origin:(3648,-611) degree:0"
 fi
+
+# last screen can be nanmed 95545405-36CF-4852-814F-E6082806FFA9 on personal macbook pro
