@@ -13,6 +13,7 @@ alias drma='docker system prune -a --volumes # dkill; drm; drmi; drmv'
 alias drmi='docker rmi -f $(docker images -q); docker rmi -f $(docker images -f "dangling=true" -q)'
 alias eg='egrep'
 alias g=git # removed noglob since djui/alias-tips will miss git aliases if it is used
+alias gl=lg
 alias generate_password='LC_ALL=C tr -dc "[:alnum:]" < /dev/urandom | head -c 20 | pbcopy  '
 alias glances='TERM=xterm-256color glances --process-short-name'
 alias cop='gh copilot suggest -t shell'
