@@ -92,6 +92,7 @@ fss = forgit stash_show
 lol = lo --all
 lo = l --graph
 ci = c
+co = checkout # note that moste of the time, you should use restore or switch instead of checkout
 br = branch
 st = status
 mt = mergetool
