@@ -160,8 +160,10 @@ if [[ $(uname) == 'Darwin' ]]; then
   if [[ -n $X86_OR_ROSETTA ]]; then
     # these still require rosetta afaik
     mas lucky Bredbandskollen # 1147976909
-    # Microsoft Remote Desktop 10 1295203466
-    mas lucky "Windows App" # was "Microsoft Remote Desktop"
+    if [[ -z "$KLA" ]]; then
+      # Microsoft Remote Desktop 10 1295203466
+      mas lucky "Windows App" # was "Microsoft Remote Desktop"
+    fi
   fi
 
   # upgrade all
