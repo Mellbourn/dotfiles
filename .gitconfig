@@ -97,6 +97,7 @@ br = branch
 st = status
 mt = mergetool
 dt = difftool
+re = r
 r = restore
 sw = switch
 aliases = config --get-regexp alias
