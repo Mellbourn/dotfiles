@@ -1,75 +1,15 @@
 [alias]
 a = add
 ain = add --intent-to-add
+aliases = config --get-regexp alias
 ap = a -p
+br = branch # classic abbrev
 c = commit
 ca = c --amend
 can = ca --no-edit
-cle = clean
-cli = cle -i
-clo = clone
 cf = config
-d = diff
-ds = d --staged
-f = fetch
-g = grep
-l = log
-m = merge
-q = push
-rb = rebase
-rl = reflog
-rem = remote
-sh = show
-s = stash
-stb = st -sb
-sts = st -s
-t = tag
-u = update-index
-w = worktree
-fa = forgit add # not for yadm
-fbd = forgit branch_delete
-fd = forgit diff
-fco = forgit checkout_branch
-fcc = forgit checkout_commit
-fcp = forgit cherry_pick
-fd = forgit diff
-fcf = forgit checkout_file
-flo = forgit log
-frc = forgit revert_commit
-frh = forgit reset_head #unstage
-frb = forgit rebase
-frl = forgit reflog
-fsp = forgit stash_push # not for yadm
-fss = forgit stash_show
-lol = lo --all # classic abbrev
-lo = l --graph # classic abbrev
 ci = c
-co = checkout  # classic abbrev, note that moste of the time, you should use restore or switch instead of checkout
-br = branch    # classic abbrev
-st = status    # classic abbrev
-mt = mergetool # classic abbrev
-dt = difftool  # classic abbrev
-r = restore
-sw = switch
-aliases = config --get-regexp alias
-out = lo @{u}..
-in = lo ..@{u}
-cur = symbolic-ref --short HEAD
-fm = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no-tags origin main; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) main:main; fi" # fetch only current branch and main
-
-fms = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'master' ]]; then git fetch --no-tags origin master; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) master:master; fi"
-
-p = "!git pull --no-tags origin $(git symbolic-ref --short HEAD)" # pull only current branch, fetch nothing else
-pc = "!git push && gh cws"
-pw = "!git push && sleep 10 && gh rw"
-ps = push
-puff = push --force-if-includes --force-with-lease
-logp = log -p --format='commit %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s' # logp and reflogp have been adjustd so that they are compatible with git-delta
-reflogp = reflog -p --format='commit %C(auto)%h%d %gd: %gs (%s)'                                         # logp and reflogp have been adjustd so that they are compatible with git-delta
-unstage = restore --staged
-last = log -1 HEAD
-worktree-skipped = !git ls-files -v | grep "^S"
-unchange-assumed = !git ls-files -v | grep "^[[:lower:]]"
+cle = clean
 cleanup = "!git branch --merged | grep  -v '^\\*\\|master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task' | xargs -n 1 git branch -d"
 cleanup-all = "!f(){\
         git branch | grep -v 'master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task' | grep -v ^* | sh -c 'while read br; \
@@ -77,4 +17,62 @@ cleanup-all = "!f(){\
 		  git branch -D $br >> ~/temp/cleaned-branches.txt; \
 		done' ;\
     }; f"
+cli = cle -i
+clo = clone
+co = checkout # classic abbrev, note that moste of the time, you should use restore or switch instead of checkout
+cur = symbolic-ref --short HEAD
+d = diff
+ds = d --staged
+dt = difftool # classic abbrev
+f = fetch
+fa = forgit add # not for yadm
+fbd = forgit branch_delete
+fcc = forgit checkout_commit
+fcf = forgit checkout_file
+fco = forgit checkout_branch
+fcp = forgit cherry_pick
+fd = forgit diff
+fd = forgit diff
+flo = forgit log
+fm = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no-tags origin main; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) main:main; fi" # fetch only current branch and main
+fms = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'master' ]]; then git fetch --no-tags origin master; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) master:master; fi"
+frb = forgit rebase
+frc = forgit revert_commit
+frh = forgit reset_head #unstage
+frl = forgit reflog
+fsp = forgit stash_push # not for yadm
+fss = forgit stash_show
+g = grep
+in = lo ..@{u}
+l = log
+last = log -1 HEAD
+lo = l --graph                                                                                           # classic abbrev
+logp = log -p --format='commit %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s' # logp and reflogp have been adjustd so that they are compatible with git-delta
+lol = lo --all                                                                                           # classic abbrev
+m = merge
+mt = mergetool # classic abbrev
+out = lo @{u}..
+p = "!git pull --no-tags origin $(git symbolic-ref --short HEAD)" # pull only current branch, fetch nothing else
+pc = "!git push && gh cws"
+ps = push
+puff = push --force-if-includes --force-with-lease
+pw = "!git push && sleep 10 && gh rw"
+q = push
+r = restore
+rb = rebase
+reflogp = reflog -p --format='commit %C(auto)%h%d %gd: %gs (%s)' # logp and reflogp have been adjustd so that they are compatible with git-delta
+rem = remote
+rl = reflog
+s = stash
+sh = show
+st = status # classic abbrev
 stash-rename = "!_() { if [ -z \"$1\" ] || [ -z \"$2\" ]; then echo \"git rename-stash 0 NewName\" && echo \"\" && git stash list && exit 1; else stash=\"stash@{$1}\"; rev=$(git rev-parse \"${stash}\"); git stash drop \"${stash}\" || exit 1; git stash store -m \"$2\" \"$rev\" || exit 1; git stash list; fi }; _"
+stb = st -sb
+sts = st -s
+sw = switch
+t = tag
+u = update-index
+unchange-assumed = !git ls-files -v | grep "^[[:lower:]]"
+unstage = restore --staged
+w = worktree
+worktree-skipped = !git ls-files -v | grep "^S"
