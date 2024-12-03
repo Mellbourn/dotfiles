@@ -26,7 +26,6 @@ sts = st -s
 t = tag
 u = update-index
 w = worktree
-# forgit
 fa = forgit add # not for yadm
 fbd = forgit branch_delete
 fd = forgit diff
@@ -42,32 +41,31 @@ frb = forgit rebase
 frl = forgit reflog
 fsp = forgit stash_push # not for yadm
 fss = forgit stash_show
-# classic abbrevs
-lol = lo --all
-lo = l --graph
+lol = lo --all # classic abbrev
+lo = l --graph # classic abbrev
 ci = c
-co = checkout # note that moste of the time, you should use restore or switch instead of checkout
-br = branch
-st = status
-mt = mergetool
-dt = difftool
+co = checkout  # classic abbrev, note that moste of the time, you should use restore or switch instead of checkout
+br = branch    # classic abbrev
+st = status    # classic abbrev
+mt = mergetool # classic abbrev
+dt = difftool  # classic abbrev
 r = restore
 sw = switch
 aliases = config --get-regexp alias
 out = lo @{u}..
 in = lo ..@{u}
 cur = symbolic-ref --short HEAD
-# fetch only current branch and main
-fm = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no-tags origin main; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) main:main; fi"
+fm = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no-tags origin main; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) main:main; fi" # fetch only current branch and main
+
 fms = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'master' ]]; then git fetch --no-tags origin master; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) master:master; fi"
-# pull only current branch, fetch nothing else
-p = "!git pull --no-tags origin $(git symbolic-ref --short HEAD)"
+
+p = "!git pull --no-tags origin $(git symbolic-ref --short HEAD)" # pull only current branch, fetch nothing else
 pc = "!git push && gh cws"
 pw = "!git push && sleep 10 && gh rw"
+ps = push
 puff = push --force-if-includes --force-with-lease
-# logp and reflogp have been adjustd so that they are compatible with git-delta
-logp = log -p --format='commit %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s'
-reflogp = reflog -p --format='commit %C(auto)%h%d %gd: %gs (%s)'
+logp = log -p --format='commit %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s' # logp and reflogp have been adjustd so that they are compatible with git-delta
+reflogp = reflog -p --format='commit %C(auto)%h%d %gd: %gs (%s)'                                         # logp and reflogp have been adjustd so that they are compatible with git-delta
 unstage = restore --staged
 last = log -1 HEAD
 worktree-skipped = !git ls-files -v | grep "^S"
