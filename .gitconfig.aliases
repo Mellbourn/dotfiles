@@ -11,12 +11,7 @@ cf = config
 ci = c
 cle = clean
 cleanup = "!git branch --merged | grep  -v '^\\*\\|master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task' | xargs -n 1 git branch -d"
-cleanup-all = "!f(){\
-        git branch | grep -v 'master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task' | grep -v ^* | sh -c 'while read br; \
-		  do git log -1 $br; \
-		  git branch -D $br >> ~/temp/cleaned-branches.txt; \
-		done' ;\
-    }; f"
+cleanup-all = "!f(){ git branch | grep -v 'master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task' | grep -v ^* | sh -c 'while read br; do git log -1 $br; git branch -D $br >> ~/temp/cleaned-branches.txt; done'; }; f"
 cli = cle -i
 clo = clone
 co = checkout # classic abbrev, note that moste of the time, you should use restore or switch instead of checkout
