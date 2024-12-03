@@ -69,6 +69,7 @@ rem = remote
 sh = show
 s = stash
 stb = st -sb
+sts = st -s
 t = tag
 u = update-index
 w = worktree
