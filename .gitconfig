@@ -2,6 +2,8 @@
 name = Klas Mellbourn
 signingkey = 9421003411C7A828
 [include]
+path = .gitconfig.aliases
+[include]
 path = .gitconfig.modern
 [include]
 path = .gitconfig.pager
@@ -45,88 +47,6 @@ tool = vimdiff
 log = true
 [status]
 submodulesummary = true
-[alias]
-a = add
-ain = add --intent-to-add
-ap = a -p
-c = commit
-ca = c --amend
-can = ca --no-edit
-cle = clean
-cli = cle -i
-clo = clone
-cf = config
-d = diff
-ds = d --staged
-f = fetch
-g = grep
-l = log
-m = merge
-q = push
-rb = rebase
-rl = reflog
-rem = remote
-sh = show
-s = stash
-stb = st -sb
-sts = st -s
-t = tag
-u = update-index
-w = worktree
-# forgit
-fa = forgit add # not for yadm
-fbd = forgit branch_delete
-fd = forgit diff
-fco = forgit checkout_branch
-fcc = forgit checkout_commit
-fcp = forgit cherry_pick
-fd = forgit diff
-fcf = forgit checkout_file
-flo = forgit log
-frc = forgit revert_commit
-frh = forgit reset_head #unstage
-frb = forgit rebase
-frl = forgit reflog
-fsp = forgit stash_push # not for yadm
-fss = forgit stash_show
-# classic abbrevs
-lol = lo --all
-lo = l --graph
-ci = c
-co = checkout # note that moste of the time, you should use restore or switch instead of checkout
-br = branch
-st = status
-mt = mergetool
-dt = difftool
-r = restore
-sw = switch
-aliases = config --get-regexp alias
-out = lo @{u}..
-in = lo ..@{u}
-cur = symbolic-ref --short HEAD
-# fetch only current branch and main
-fm = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'main' ]]; then git fetch --no-tags origin main; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) main:main; fi"
-fms = "!if [[ $(git rev-parse --abbrev-ref HEAD) == 'master' ]]; then git fetch --no-tags origin master; else git fetch --no-tags origin $(git rev-parse --abbrev-ref HEAD) master:master; fi"
-# pull only current branch, fetch nothing else
-p = "!git pull --no-tags origin $(git symbolic-ref --short HEAD)"
-pc = "!git push && gh cws"
-pw = "!git push && sleep 10 && gh rw"
-puff = push --force-if-includes --force-with-lease
-# logp and reflogp have been adjustd so that they are compatible with git-delta
-logp = log -p --format='commit %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s'
-reflogp = reflog -p --format='commit %C(auto)%h%d %gd: %gs (%s)'
-unstage = restore --staged
-last = log -1 HEAD
-worktree-skipped = !git ls-files -v | grep "^S"
-unchange-assumed = !git ls-files -v | grep "^[[:lower:]]"
-cleanup = "!git branch --merged | grep  -v '^\\*\\|master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task' | xargs -n 1 git branch -d"
-cleanup-all = "!f(){\
-        git branch | grep -v 'master\\|main\\|develop\\|hotfix\\|temp\\|[0-9]task' | grep -v ^* | sh -c 'while read br; \
-		  do git log -1 $br; \
-		  git branch -D $br >> ~/temp/cleaned-branches.txt; \
-		done' ;\
-    }; f"
-stash-rename = "!_() { if [ -z \"$1\" ] || [ -z \"$2\" ]; then echo \"git rename-stash 0 NewName\" && echo \"\" && git stash list && exit 1; else stash=\"stash@{$1}\"; rev=$(git rev-parse \"${stash}\"); git stash drop \"${stash}\" || exit 1; git stash store -m \"$2\" \"$rev\" || exit 1; git stash list; fi }; _"
 [commit]
 verbose = 2
 [fetch]
