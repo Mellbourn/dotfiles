@@ -278,7 +278,7 @@ fi
 
 zinit wait'1' lucid light-mode for "cedi/meaningful-error-codes"
 
-zinit wait'1' lucid if'[[ -x "$(command -v fzf)" ]]' atinit'alias co=forgit::checkout::branch' --atload='export PATH="$PATH:$FORGIT_INSTALL_DIR/bin"' for wfxr/forgit
+zinit wait'1' lucid if'[[ -x "$(command -v fzf)" ]]' --atload='export PATH="$PATH:$FORGIT_INSTALL_DIR/bin"' for wfxr/forgit
 # gi for forgit_ignore was a confusing alias
 #forgit_ignore=forgig
 # ctrl-d to drop stash with gss
@@ -465,9 +465,9 @@ function bri() {
 
 function co() {
     local branches branch
-    branches=$(git branch -a) &&
-    branch=$(echo "$branches" | egrep -i "$1"  | $FZF +s +m) &&
-    git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+    branches=$(git branch -a --color=always) &&
+    branch=$(echo "$branches" | egrep -i "$1"  | $FZF +s +m --preview "echo {} | sed 's/^[ *+]*//'| xargs git log -100") &&
+    git switch $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
 }
 
 # git co foo**<tab>
