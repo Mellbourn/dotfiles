@@ -249,6 +249,8 @@ if [[ -z "$KLA" ]]; then
   addFirstInPath /Applications/Android\ Studio.app/Contents/jre/Contents/Home/bin
 
   export REACT_NATIVE_DOWNLOADS_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/react-native-downloads"
+else
+  export DISABLE_PPS_LOG=1
 fi
 
 # bc settings
