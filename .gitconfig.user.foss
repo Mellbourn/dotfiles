@@ -1,2 +1,5 @@
 [user]
-    email = klas@mellbourn.net
+email = klas@mellbourn.net
+[core]
+# revert KLA
+fsmonitor = false
