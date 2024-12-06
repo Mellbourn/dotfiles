@@ -1,3 +1,9 @@
+export LANG=en_US.UTF-8
+
+if [ -n "$NEVER" ]; then
+  eval "$('/opt/homebrew/bin/brew' shellenv)"
+fi
+
 ###############################################################################
 # .bashrc subshells run only this, not .bash_profile
 ###############################################################################
@@ -22,4 +28,8 @@ if [ -n "$BASH_VERSION" ]; then
   PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+fi
+
+if [ -n "$NEVER" ]; then
+  source ~/.keprc
 fi

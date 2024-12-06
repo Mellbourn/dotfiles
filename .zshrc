@@ -1,3 +1,9 @@
+if [ -n "$NEVER" ]; then
+export LANG=en_US.UTF-8
+
+eval "$('/opt/homebrew/bin/brew' shellenv)"
+fi
+
 ###############################################################################
 # .zshrc is sourced in interactive shells.
 # It should contain commands to set up aliases, functions, options, key bindings, etc.

@@ -177,7 +177,7 @@ export DELTA_PAGER="less -+J -+W"
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 # why is this important? This doesn't always work on old raspbian
 export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+#export LANG=en_US.UTF-8 this set in .bashrc due to k
 # GNU coreutils use this
 export TIME_STYLE=long-iso
 # enable flipper compilation
