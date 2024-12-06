@@ -26,7 +26,7 @@ path = .gitconfig.user.foss
 [init]
 defaultBranch = main
 [core]
-#fsmonitor = true
+fsmonitor = true # KLA, not handled by yadm, this MUST be set to falt manually in ~/.local/share/yadm/repo.git/config
 # for this to work, hat mtime is working properly on your system
 untrackedCache = true # KLA
 [help]

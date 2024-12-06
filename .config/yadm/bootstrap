@@ -453,6 +453,9 @@ fi
 # set up alternate gitconfig file used to determine local settings
 yadm alt
 
+# this doesn't work for some reason
+#yadm config set --local core.fsmonitor false
+
 # make a persistent temp directory
 mkdir -p ~/temp
 
