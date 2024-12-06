@@ -105,6 +105,8 @@ setlockablereadonly = false
 [feature]
 # enables the untracked cache. This setting assumes that mtime is working on your machine.
 manyFiles = false # KLA
+[include]
+path = .gitconfig.old
 [filter "lfs"]
 process = git-lfs filter-process
 required = true
