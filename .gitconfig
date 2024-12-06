@@ -101,8 +101,8 @@ insteadOf = https://github.com/rust-lang/crates.io-index
 locksverify = false
 setlockablereadonly = false
 #locksverify = false
-#[feature]
-#manyFiles = false
+[feature]
+manyFiles = false # KLA
 [filter "lfs"]
 process = git-lfs filter-process
 required = true
