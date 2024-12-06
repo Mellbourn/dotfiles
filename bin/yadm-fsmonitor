@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# must set core.fsmonitor to false in the yadm git config
+CONFIG_FILE="$HOME/.local/share/yadm/repo.git/config"
+LINE="        fsmonitor = false"
+if [[ -f "$CONFIG_FILE" ]]; then
+    if ! grep -qF "$LINE" "$CONFIG_FILE"; then
+        if [[ "$(uname)" == "Darwin" ]]; then
+            sed -i.bak -e '/^\[core\]/a\
+'"$LINE" "$CONFIG_FILE"
+        else
+            sed -i.bak -e '/^\[core\]/a\
+'"$LINE" "$CONFIG_FILE"
+        fi
+    fi
+fi

@@ -18,6 +18,8 @@ yb() {
         logrotate -v -s "${XDG_STATE_HOME:-$HOME/.local/state}/logrotate.status" "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/logrotate.conf"
     fi
 
+    $HOME/bin/yadm-fsmonitor
+
     # check if I already have sudo rights
     if [[ -n $UNAME_MACOS ]]; then
         local tmpfile=$(mktemp /tmp/yb-script.XXXXXX)
