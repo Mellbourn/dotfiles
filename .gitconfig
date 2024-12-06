@@ -24,6 +24,8 @@ path = .gitconfig.user.foss
 path = .gitconfig.user.foss
 [init]
 defaultBranch = main
+[help]
+autocorrect = prompt
 [checkout]
 workers = 0
 [commit]
@@ -45,6 +47,7 @@ submodule = log
 tool = vimdiff
 # Include summaries of merged commits in newly created merge commit messages
 log = true
+conflictStyle = zdiff3 # KLA
 [status]
 submodulesummary = true
 [commit]
