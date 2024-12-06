@@ -61,6 +61,7 @@ enabled = true
 rebase = true
 [push]
 autoSetupRemote = true
+default = current # KLA
 [rebase]
 autoStash = true
 autoSquash = true
@@ -89,6 +90,10 @@ insteadOf = https://github.com/
 insteadOf = https://github.com/rust-lang/crates.io-index
 [lfs]
 locksverify = false
+setlockablereadonly = false
+#locksverify = false
+#[feature]
+#manyFiles = false
 [filter "lfs"]
 process = git-lfs filter-process
 required = true

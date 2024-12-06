@@ -1,14 +1,7 @@
 [user]
 email = klas.mellbourn@klarna.com
-[push]
-default = current
 [pack]
 useSparse = true
 [core]
 fsmonitor = true
 untrackedCache = true
-[lfs]
-#locksverify = false
-setlockablereadonly = false
-#[feature]
-#manyFiles = false
