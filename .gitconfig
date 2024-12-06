@@ -26,6 +26,8 @@ path = .gitconfig.user.foss
 defaultBranch = main
 [help]
 autocorrect = prompt
+[pack]
+useSparse = true # this is default
 [checkout]
 workers = 0
 [commit]
