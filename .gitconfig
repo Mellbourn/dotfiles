@@ -1,6 +1,7 @@
 [user]
 name = Klas Mellbourn
 signingkey = 9421003411C7A828
+email = klas.mellbourn@klarna.com
 [include]
 path = .gitconfig.aliases
 [include]
