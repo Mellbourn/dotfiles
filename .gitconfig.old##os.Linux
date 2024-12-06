@@ -1,0 +1,5 @@
+# this is mostly for raspbian
+[merge]
+conflictStyle = diff3 # zdiff3 added in git 2.35
+[help]
+autocorrect = false
