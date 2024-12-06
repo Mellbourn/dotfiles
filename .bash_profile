@@ -58,8 +58,9 @@ if [[ -n $UNAME_LINUX ]]; then
   fi
 fi
 
+#more change
 # start tmux unless you are already in tmux, you have set NO_TMUX or you are starting up VSCode from Spotlight
-if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &>/dev/null && [ -z "$VSCODE_PID" ] && [ -n "$KLA" ]; then
+if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &>/dev/null && [ -z "$VSCODE_PID" ] && [ -z "$KLA" ]; then
   # use this "if" to suppress tmux in *debugging* in vscode
   if [ -z "$VSCODE_WORKSPACE_FOLDER" ]; then
     exec "$HOME"/bin/tmux-attach-or-new
