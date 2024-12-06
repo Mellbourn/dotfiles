@@ -1,7 +1,4 @@
 [user]
 email = klas.mellbourn@klarna.com
-[pack]
-useSparse = true
 [core]
 fsmonitor = true
-untrackedCache = true

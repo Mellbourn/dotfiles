@@ -24,6 +24,10 @@ path = .gitconfig.user.foss
 path = .gitconfig.user.foss
 [init]
 defaultBranch = main
+[core]
+#fsmonitor = true
+# for this to work, hat mtime is working properly on your system
+untrackedCache = true # KLA
 [help]
 autocorrect = prompt
 [pack]
