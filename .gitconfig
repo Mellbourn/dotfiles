@@ -102,6 +102,7 @@ locksverify = false
 setlockablereadonly = false
 #locksverify = false
 [feature]
+# enables the untracked cache. This setting assumes that mtime is working on your machine.
 manyFiles = false # KLA
 [filter "lfs"]
 process = git-lfs filter-process
