@@ -200,9 +200,12 @@ httpie
       sudo apt install -y snapd
       sudo reboot
     fi
-    sudo snap install core
-    sudo snap refresh
-    sudo snap install croc
+    # snapd service stopped running by default on raspberry pi after installing git-all
+    if pgrep snapd > /dev/null 2>&1; then
+      sudo snap install core
+      sudo snap refresh
+      sudo snap install croc
+    fi
     if [ -n "$OS_UBUNTU" ]; then
       sudo snap install http --channel latest/candidate
       if [ -n "$UBUNTU_DESKTOP" ]; then
