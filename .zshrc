@@ -536,7 +536,11 @@ _fzf_compgen_dir() {
 
 function fd() {
   if [ -t 1 ]; then
-    command $FD --hyperlink -c always $* | less
+    if [[ -n $SSH_CONNECTION || -n $SSH_CLIENT || -n $SSH_TTY ]]; then
+      command $FD -c always $* | less
+    else
+      command $FD --hyperlink -c always $* | less
+    fi
   else
     command $FD $*
   fi
