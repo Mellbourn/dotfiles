@@ -726,8 +726,18 @@ fi
 zinit wait'2b' lucid for \
   OMZP::colored-man-pages \
 
+if [ -x "$(command -v lsd)" ]; then
+  alias ls=lsd
+  alias ll='ls -l --date relative --blocks permission,size,date,name'
+fi
+
+# Visual Studio Code shell integration. This slows down startup time by about 10ms
+[[ "$TERM_PROGRAM" == "vscode" ]] && source "/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench/contrib/terminal/browser/media/shellIntegration-rc.zsh"
+
+# load explicit compdefs after compinit (not sure why this is necessary)
+zinit wait'2b' lucid as'null' atinit'
+
 if [ -x "$(command -v bat)" ]; then
-  # this MUST be run after woefe/git-prompt.zsh
   alias cat=bat
   # this function does not work for piping to less with (less) arguments (any flags will become bat flags)
   function less() {
@@ -743,20 +753,7 @@ if [ -x "$(command -v bat)" ]; then
       command less
     fi
   }
-fi
-if [ -x "$(command -v lsd)" ]; then
-  alias ls=lsd
-  alias ll='ls -l --date relative --blocks permission,size,date,name'
-fi
 
-# Visual Studio Code shell integration. This slows down startup time by about 10ms
-[[ "$TERM_PROGRAM" == "vscode" ]] && source "/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench/contrib/terminal/browser/media/shellIntegration-rc.zsh"
-
-# load explicit compdefs after compinit (not sure why this is necessary)
-zinit wait'2b' lucid as'null' atinit'
-
-# this MUST be run after woefe/git-prompt.zsh
-if [ -x "$(command -v bat)" ]; then
   compdef less=less
   function batgrep() {
     command batgrep --color --smart-case --context=0 $* | command less -+J -+W
