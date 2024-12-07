@@ -4,4 +4,4 @@ fsmonitor = false
 [merge]
 conflictStyle = diff3 # zdiff3 added in git 2.35
 [help]
-autocorrect = false # doesn't work for some reason
+autocorrect = 0 # prompt is a newer version
