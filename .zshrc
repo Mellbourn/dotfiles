@@ -245,11 +245,11 @@ zinit wait'1' atclone"dircolors -b LS_COLORS > clrs.zsh" \
     atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"' \
     lucid light-mode for trapd00r/LS_COLORS
 
-if [ -x "$(command -v fdfind)" ]; then
+ if command -v fd &>/dev/null; then
+  export FD=fd
+else
   # alternate name used on ubuntu/debian
   export FD=fdfind
-else
-  export FD=fd
 fi
 
 # fuzzy completion: ^R, ^T, ⌥C, **
@@ -415,6 +415,23 @@ if [[ -n $UNAME_LINUX ]]; then
         mv'ripgrep-*/rg -> rg' for BurntSushi/ripgrep
     else
       zinit wait'2' lucid light-mode from"gh-r" as"program" for BurntSushi/ripgrep
+    fi
+  fi
+  fd_version_output=$(fdfind --version 2>/dev/null)
+  if [[ $? -ne 0 ]]; then
+      echo "fdfind is not installed."
+  fi
+  if [[ $fd_version_output =~ fd[[:space:]]*([0-9]+)\..* ]]; then
+      fd_version="${match[1]}"
+  else
+      echo "Could not determine fd version."
+  fi
+  if (( fd_version < 10 )); then
+    if [[ -n $OS_RASPBIAN   ]]; then
+      zinit wait'2' lucid light-mode from"gh-r" as"program" atinit'export FD=fd' \
+        bpick"*-unknown-linux-gnueabihf*" mv'fd-*/fd -> fd' for @sharkdp/fd
+    else
+      zinit wait'2' lucid light-mode from"gh-r" as"program" atinit'export FD=fd' for @sharkdp/fd
     fi
   fi
 
