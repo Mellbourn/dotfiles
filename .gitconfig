@@ -30,7 +30,7 @@ fsmonitor = true # KLA, not handled by yadm, this MUST be set to false manually 
 # for this to work, hat mtime is working properly on your system
 untrackedCache = true # KLA
 [help]
-autocorrect = prompt
+autocorrect = 0 # KLA preferred prompt, but tough
 [pack]
 useSparse = true # this is default
 [checkout]
@@ -54,7 +54,7 @@ submodule = log
 tool = vimdiff
 # Include summaries of merged commits in newly created merge commit messages
 log = true
-conflictStyle = zdiff3 # KLA
+conflictStyle = diff3 # KLA prefered zdiff3
 [status]
 submodulesummary = true
 [commit]
