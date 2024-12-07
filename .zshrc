@@ -544,7 +544,11 @@ function fd() {
 alias fd='noglob fd'
 
 function rg() {
-  command rg --color=always --heading $* | less
+  if [[ -n $SSH_CONNECTION || -n $SSH_CLIENT || -n $SSH_TTY ]]; then
+    command rg --color=always --heading $* | less
+  else
+    command rg --color=always --heading $* --hyperlink-format=vscode | less
+  fi
 }
 alias rg='noglob rg'
 
