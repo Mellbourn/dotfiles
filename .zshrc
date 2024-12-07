@@ -400,22 +400,12 @@ then
 fi
 
 if [[ -n $UNAME_LINUX ]]; then
-  rg_version_output=$(rg --version 2>/dev/null)
-  if [[ $? -ne 0 ]]; then
-      echo "ripgrep is not installed."
-  fi
-  if [[ $rg_version_output =~ ripgrep[[:space:]]*([0-9]+)\..* ]]; then
-      rg_version="${match[1]}"
+  if [[ -n $OS_RASPBIAN   ]]; then
+    zinit wait'2' lucid light-mode from"gh-r" as"program" bpick"*-unknown-linux-gnueabihf*" \
+      mv'ripgrep-*/rg -> rg' completions for BurntSushi/ripgrep
   else
-      echo "Could not determine ripgrep version."
-  fi
-  if (( rg_version < 14 )); then
-    if [[ -n $OS_RASPBIAN   ]]; then
-      zinit wait'2' lucid light-mode from"gh-r" as"program" bpick"*-unknown-linux-gnueabihf*" \
-        mv'ripgrep-*/rg -> rg' completions for BurntSushi/ripgrep
-    else
-      zinit wait'2' lucid light-mode from"gh-r" completions as"program" for BurntSushi/ripgrep
-    fi
+    zinit wait'2' lucid light-mode from"gh-r" as"program" \
+      mv'ripgrep-*/rg -> rg' completions for BurntSushi/ripgrep
   fi
   fd_version_output=$(fdfind --version 2>/dev/null)
   if [[ $? -ne 0 ]]; then

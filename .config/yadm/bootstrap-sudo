@@ -68,7 +68,6 @@ if [[ $(uname) == 'Linux' ]]; then
     highlight
     trash-cli
     zoxide
-    ripgrep
     fd-find
     gh
     keychain
