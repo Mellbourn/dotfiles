@@ -171,7 +171,7 @@ if (($(command less --version | head -1 | cut -d ' ' -f2) >= 590)); then
 else
   LESSOPEN="| $(which highlight) %s --quiet --force --out-format ansi"
   export LESSOPEN
-  export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quiet"
+  export LESS=" --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case --HILITE-UNREAD --status-column --quiet -F --no-init"
 fi
 export PAGER=less
 # git-delta can't handle a status column
