@@ -421,7 +421,7 @@ if [[ -n $UNAME_LINUX ]]; then
   if [[ $? -ne 0 ]]; then
       echo "fdfind is not installed."
   fi
-  if [[ $fd_version_output =~ fd[[:space:]]*([0-9]+)\..* ]]; then
+  if [[ $fd_version_output =~ fd(find)?[[:space:]]*([0-9]+)\..* ]]; then
       fd_version="${match[1]}"
   else
       echo "Could not determine fd version."
@@ -431,7 +431,8 @@ if [[ -n $UNAME_LINUX ]]; then
       zinit wait'2' lucid light-mode from"gh-r" as"program" atinit'export FD=fd' \
         bpick"*-unknown-linux-gnueabihf*" mv'fd-*/fd -> fd' for @sharkdp/fd
     else
-      zinit wait'2' lucid light-mode from"gh-r" as"program" atinit'export FD=fd' for @sharkdp/fd
+      zinit wait'2' lucid light-mode from"gh-r" as"program" atinit'export FD=fd' \
+         mv'fd-*/fd -> fd' for @sharkdp/fd
     fi
   fi
 
