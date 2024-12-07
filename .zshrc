@@ -412,9 +412,9 @@ if [[ -n $UNAME_LINUX ]]; then
   if (( rg_version < 14 )); then
     if [[ -n $OS_RASPBIAN   ]]; then
       zinit wait'2' lucid light-mode from"gh-r" as"program" bpick"*-unknown-linux-gnueabihf*" \
-        mv'ripgrep-*/rg -> rg' atpull='zinit creinstall BurntSushi/ripgrep' for BurntSushi/ripgrep
+        mv'ripgrep-*/rg -> rg' completions for BurntSushi/ripgrep
     else
-      zinit wait'2' lucid light-mode from"gh-r" as"program" for BurntSushi/ripgrep
+      zinit wait'2' lucid light-mode from"gh-r" completions as"program" for BurntSushi/ripgrep
     fi
   fi
   fd_version_output=$(fdfind --version 2>/dev/null)
