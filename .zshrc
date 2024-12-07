@@ -400,6 +400,25 @@ then
 fi
 
 if [[ -n $UNAME_LINUX ]]; then
+  rg_version_output=$(rg --version 2>/dev/null)
+  if [[ $? -ne 0 ]]; then
+      echo "ripgrep is not installed."
+  fi
+  if [[ $rg_version_output =~ ripgrep[[:space:]]*([0-9]+)\..* ]]; then
+      rg_version="${match[1]}"
+  else
+      echo "Could not determine ripgrep version."
+  fi
+  if (( rg_version < 14 )); then
+    if [[ -n $OS_RASPBIAN   ]]; then
+      zinit wait'2' lucid light-mode from"gh-r" as"program" bpick"*-unknown-linux-gnueabihf*" \
+        mv'ripgrep-*/rg -> rg' for BurntSushi/ripgrep
+    else
+      zinit wait'2' lucid light-mode from"gh-r" as"program" for BurntSushi/ripgrep
+    fi
+  fi
+
+
   if [[ -n $OS_RASPBIAN   ]]; then
     # this is for raspberry pi, mainly
     zinit wait'2' lucid if'[[ ! -x "$(command -v delta)" ]]' from"gh-r" as"program" \
