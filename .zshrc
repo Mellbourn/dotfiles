@@ -437,6 +437,15 @@ if [[ -n $UNAME_LINUX ]]; then
       mv'delta-*/delta -> delta' for dandavison/delta
   fi
 
+  if [[ -n $OS_RASPBIAN   ]]; then
+    # this is for raspberry pi, mainly
+    zinit wait'2' lucid from"gh-r" as"program" \
+      bpick"*-arm-unknown-linux-gnueabihf*" mv'bat-*/bat -> bat' for @sharkdp/bat
+    zinit wait'2' lucid from"gh-r" as"completion" id-as"sharkdp/_bat" \
+      bpick"*-arm-unknown-linux-gnueabihf*" mv"bat-*/autocomplete/bat.zsh -> _bat" \
+      pick"_bat" for @sharkdp/bat
+  fi
+
   zinit wait'2' lucid light-mode from"gh-r" as"program" for jesseduffield/lazygit
 fi
 
