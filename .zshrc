@@ -442,7 +442,7 @@ if [[ -n $UNAME_LINUX ]]; then
     zinit wait'2' lucid from"gh-r" as"program" \
       bpick"*-arm-unknown-linux-gnueabihf*" mv'bat-*/bat -> bat' for @sharkdp/bat
     zinit wait'2' lucid from"gh-r" as"completion" id-as"sharkdp/_bat" \
-      bpick"*-arm-unknown-linux-gnueabihf*" mv"bat-*/autocomplete/bat.zsh -> _bat" \
+      mv"bat-*/autocomplete/bat.zsh -> _bat" \
       pick"_bat" for @sharkdp/bat
   fi
 
