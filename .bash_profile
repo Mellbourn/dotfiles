@@ -78,6 +78,7 @@ if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; t
 fi
 
 if grep -q Raspbian /etc/os-release 2>/dev/null; then
+  export OS_RASPBIAN=1
   export DOTFILES_LITE=1
 fi
 
