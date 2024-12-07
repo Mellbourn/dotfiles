@@ -254,7 +254,7 @@ httpie
     curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
   fi
   sudo apt install git-lfs || true
-  if [ -x "$(command -v git-lfs)" ]; then
+  if [ -x "$(command -v git-lfs)" ] && ! git config --get-regexp 'filter\.lfs' &> /dev/null; then
     git lfs install --skip-smudge
   fi
 
