@@ -410,12 +410,7 @@ if [[ -n $UNAME_LINUX ]]; then
       mv'delta-*/delta -> delta' for dandavison/delta
   fi
 
-  if [[ -n $UNAME_LINUX_64 ]]; then
-    # this will work on 64 bit linux, but not on old raspberry, and probably not on wsl?'
-    zinit wait'2' lucid light-mode from"gh-r" as"program" bpick"*Linux_arm64*" for jesseduffield/lazygit
-  else
-    zinit wait'2' lucid light-mode from"gh-r" as"program" bpick"*Linux_armv*" for jesseduffield/lazygit
-  fi
+  zinit wait'2' lucid light-mode from"gh-r" as"program" for jesseduffield/lazygit
 fi
 
 # note that this is for completion of cyme only, the command is gotten from cargo
