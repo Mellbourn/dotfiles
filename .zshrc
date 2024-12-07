@@ -441,10 +441,11 @@ if [[ -n $UNAME_LINUX ]]; then
     # this is for raspberry pi, mainly
     zinit wait'2' lucid from"gh-r" as"program" \
       bpick"*-arm-unknown-linux-gnueabihf*" mv'bat-*/bat -> bat' for @sharkdp/bat
-    zinit wait'2' lucid from"gh-r" as"completion" id-as"sharkdp/_bat" \
-      mv"bat-*/autocomplete/bat.zsh -> _bat" \
-      pick"_bat" for @sharkdp/bat
   fi
+  # WSL can get bat from brew, but not completions, so get completions here for all linuxes
+  zinit wait'2' lucid from"gh-r" as"completion" id-as"sharkdp/_bat" \
+    mv"bat-*/autocomplete/bat.zsh -> _bat" \
+    pick"_bat" for @sharkdp/bat
 
   zinit wait'2' lucid light-mode from"gh-r" as"program" for jesseduffield/lazygit
 fi
