@@ -284,7 +284,7 @@ fi
 
 zinit wait'1' lucid light-mode for "cedi/meaningful-error-codes"
 
-zinit wait'1' lucid if'[[ -x "$(command -v fzf)" ]]' --atload='export PATH="$PATH:$FORGIT_INSTALL_DIR/bin"' for wfxr/forgit
+zinit wait'1' lucid --atload='export PATH="$PATH:$FORGIT_INSTALL_DIR/bin"' for wfxr/forgit
 # gi for forgit_ignore was a confusing alias
 #forgit_ignore=forgig
 # ctrl-d to drop stash with gss
