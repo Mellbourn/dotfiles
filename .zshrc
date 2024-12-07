@@ -400,8 +400,9 @@ then
 fi
 
 if [[ -n $UNAME_LINUX ]]; then
+  # this is for raspberry pi, mainly
   zinit wait'2' lucid if'[[ ! -x "$(command -v delta)" ]]' from"gh-r" as"program" \
-    bpick"*-arm-unknown-linux-gnueabihf*" mv'delta-*-arm-unknown-linux-gnueabihf/delta -> delta' for dandavison/delta
+    bpick"*-arm-unknown-linux-gnueabihf*" mv'delta-*/delta -> delta' for dandavison/delta
 
   if [[ -n $UNAME_LINUX_64 ]]; then
     # this will work on 64 bit linux, but not on old raspberry, and probably not on wsl?'
