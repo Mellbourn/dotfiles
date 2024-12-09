@@ -3,9 +3,9 @@ a = add
 ain = add --intent-to-add
 aliases = config --get-regexp alias
 ap = a -p
-br = branch # classic abbrev
-brd = d origin/master...
-brl = l origin/master..
+br = branch                                                                                                                                      # classic abbrev
+brd = "!f() { base=$(git branch -r --list origin/main origin/master | grep -m 1 -E 'origin/(main|master)' | xargs); git d \"$base...\" $1; }; f" # diff showing contributions of this branch (or PR) to master
+brl = "!f() { base=$(git branch -r --list origin/main origin/master | grep -m 1 -E 'origin/(main|master)' | xargs); git l \"$base..\" $1; }; f"  # log commits of this branch (or PR) that are not in master
 c = commit
 ca = c --amend
 can = ca --no-edit
