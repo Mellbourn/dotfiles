@@ -49,6 +49,7 @@ mt = mergetool # classic abbrev
 out = lo @{u}..
 p = "!git pull --no-tags origin $(git symbolic-ref --short HEAD)" # pull only current branch, fetch nothing else
 pc = "!git push && gh cws"
+prd = d @{u}...
 puff = push --force-if-includes --force-with-lease
 pw = "!git push && sleep 10 && gh rw"
 q = push
