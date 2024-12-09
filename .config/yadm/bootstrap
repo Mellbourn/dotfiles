@@ -539,7 +539,9 @@ gh extension upgrade --all
 npm i -g zx
 npm i -g tsx
 # @swc/core needed for _debugging_ ts-node, but not for running it
-npm i -g ts-node @swc/core
+if [[ -z "$KLA" ]]; then
+  npm i -g ts-node @swc/core
+fi
 # cleanup-branches no longer installable
 #npm i -g cleanup-branches
 
