@@ -44,7 +44,7 @@ in = lo ..@{u}
 l = log
 last = log -1 HEAD
 lo = l --graph                                                                                           # classic abbrev
-logp = log -p --format='commit %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s' # logp and reflogp have been adjustd so that they are compatible with git-delta
+logp = log -p --format='commit %C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s' # logp and reflogp have been adjusted so that they are compatible with git-delta
 lol = lo --all                                                                                           # classic abbrev
 m = merge
 mt = mergetool # classic abbrev
@@ -57,7 +57,7 @@ pw = "!git push && sleep 10 && gh rw"
 q = push
 r = restore
 rb = rebase
-reflogp = reflog -p --format='commit %C(auto)%h%d %gd: %gs (%s)' # logp and reflogp have been adjustd so that they are compatible with git-delta
+reflogp = reflog -p --format='commit %C(auto)%h%d %gd: %gs (%s)' # logp and reflogp have been adjusted so that they are compatible with git-delta
 rem = remote
 rl = reflog
 s = stash
