@@ -26,7 +26,7 @@ alias jilw='jira issue list -q "assignee = currentUser() and updated >= startofD
 alias jim='jira issue move'
 alias kb='kw && kn'
 alias kn='tmux split-window -v "zsh -c \"pilot start native\"" && pilot run ios'
-alias kw='tmux split-window -v "zsh -c \"if pilot start web; then exit; else echo \'pilot start web failed. Press Enter to close.\'; read; fi\""' 
+alias kw='tmux split-window -v "zsh -c \"if pilot start web; then exit; else read; fi\""' 
 alias l='ls -F '
 alias la='ls -AF '
 alias ld=lazydocker
