@@ -733,7 +733,7 @@ if [ -x "$(command -v lsd)" ]; then
 fi
 
 # Visual Studio Code shell integration. This slows down startup time by about 10ms
-[[ "$TERM_PROGRAM" == "vscode" ]] && source "/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench/contrib/terminal/browser/media/shellIntegration-rc.zsh"
+[[ "$TERM_PROGRAM" == "vscode" ]] && source /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh
 
 # load explicit compdefs after compinit (not sure why this is necessary)
 zinit wait'2b' lucid as'null' atinit'
