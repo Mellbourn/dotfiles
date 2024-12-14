@@ -1,22 +1,61 @@
 #!/bin/bash
 
-# Check for required arguments
-if [ "$#" -lt 3 ]; then
-    echo "Usage: $0 [-v] <repo_path> <timestamp_file> <time_in_days>"
-    exit 1
-fi
+# run git gc, possibly aggressive
 
-# Handle the verbose flag
+# Default values
 VERBOSE=false
-if [ "$1" == "-v" ]; then
-    VERBOSE=true
-    shift 1 # Remove the verbose flag from arguments
+REPO_PATH="" # This will be determined using git commands
+TIMESTAMP_FILE=""
+TIME_IN_DAYS=14 # Default to 14 days
+
+# Parse options using getopts
+while getopts "vr:f:t:" opt; do
+    case $opt in
+    v)
+        VERBOSE=true
+        ;;
+    r)
+        REPO_PATH=$OPTARG
+        ;;
+    f)
+        TIMESTAMP_FILE=$OPTARG
+        ;;
+    t)
+        TIME_IN_DAYS=$OPTARG
+        ;;
+    ?)
+        echo "Unknown option: $opt"
+        echo "Usage: $0 [-v] [-r <repo_path>] [-f <timestamp_file>] [-t <days>]"
+        exit 1
+        ;;
+    esac
+done
+
+# Determine the root of the Git repository if not explicitly provided
+if [ -z "$REPO_PATH" ]; then
+    if git rev-parse --show-toplevel >/dev/null 2>&1; then
+        REPO_PATH=$(git rev-parse --show-toplevel)
+    else
+        echo "Error: Current directory is not inside a Git repository. Please specify a repository path with -r."
+        exit 1
+    fi
+else
+    # Ensure REPO_PATH is resolved to its root if a subdirectory is provided
+    if cd "$REPO_PATH" && git rev-parse --show-toplevel >/dev/null 2>&1; then
+        REPO_PATH=$(git rev-parse --show-toplevel)
+    else
+        echo "Error: Specified path '$REPO_PATH' is not a Git repository."
+        exit 1
+    fi
 fi
 
-# Read command-line arguments
-REPO_PATH="$1"
-TIMESTAMP_FILE="$2"
-TIME_IN_DAYS="$3"
+# Determine the default timestamp file if not provided
+if [ -z "$TIMESTAMP_FILE" ]; then
+    TIMESTAMP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/ggc"
+    RELATIVE_PATH=$(cd "$REPO_PATH" && pwd -P | sed "s|^$HOME/||")
+    SANITIZED_PATH=$(echo "$RELATIVE_PATH" | sed 's|/|--|g') # Replace '/' with '--'
+    TIMESTAMP_FILE="${TIMESTAMP_DIR}/${SANITIZED_PATH}.date"
+fi
 
 # Convert time from days to seconds
 TIME_IN_SECONDS=$((TIME_IN_DAYS * 24 * 60 * 60))
@@ -40,7 +79,7 @@ fi
 
 # Navigate to the repository
 if ! cd "$REPO_PATH"; then
-    echo "Error: Could not change directory to '$REPO_PATH'. Please provide a valid Git repository path."
+    echo "Error: Could not change directory to '$REPO_PATH'."
     exit 1
 fi
 
