@@ -193,7 +193,7 @@ export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 export FLIPPER_ENABLED=1
 # GENCOMPL_FPATH is only used by zsh, but is needed by bootstrap
 export GENCOMPL_FPATH=~/.zsh-personal-completions/generated
-# this takes about 0.02s and is used by some Klarna seach docker containers
+# this takes about 0.02s and is used by some K seach docker containers
 if [ -x "$(command -v ifconfig)" ]; then
   HOST_IP=$(ifconfig | grep -E '([0-9]{1,3}\.){3}[0-9]{1,3}' | grep -v 127.0.0.1 | awk '{ print $2 }' | cut -f2 -d: | head -n1)
 else
