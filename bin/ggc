@@ -94,8 +94,8 @@ if [ -f "$TIMESTAMP_FILE" ]; then
 
     if ((TIME_DIFF > TIME_IN_SECONDS)); then
         # Run aggressive garbage collection
-        log_message "Running 'git gc --aggressive'..."
-        git gc --aggressive
+        log_message "Running 'git fsck and git gc --aggressive'..."
+        git fsck --unreachable --full --strict --lost-found --progress && git gc --aggressive
         # Update the timestamp file
         date +%s >"$TIMESTAMP_FILE"
     else
