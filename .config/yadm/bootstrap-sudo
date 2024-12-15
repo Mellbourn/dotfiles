@@ -201,7 +201,7 @@ httpie
       sudo reboot
     fi
     # snapd service stopped running by default on raspberry pi after installing git-all
-    if pgrep snapd > /dev/null 2>&1; then
+    if pgrep snapd >/dev/null 2>&1; then
       sudo snap install core
       sudo snap refresh
       sudo snap install croc
@@ -254,7 +254,7 @@ httpie
     curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
   fi
   sudo apt install git-lfs || true
-  if [ -x "$(command -v git-lfs)" ] && ! git config --get-regexp 'filter\.lfs' &> /dev/null; then
+  if [ -x "$(command -v git-lfs)" ] && ! git config --get-regexp 'filter\.lfs' &>/dev/null; then
     git lfs install --skip-smudge
   fi
 
@@ -315,7 +315,7 @@ export HW_MODEL=${HW_MODEL:-$(sysctl -n hw.model)}
 
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
 # Getting "bus error" on macOS Sequoia 15.x https://discussions.apple.com/thread/255779464?login=true&sortBy=rank
-if [[ "$OS_VERSION" != "15.1.1" ]]; then
+if [[ "$OS_VERSION" != "15.2" ]]; then
   PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:$HOMEBREW_PREFIX/bin
   sudo launchctl config user path "$PATH_OVERRIDE"
 fi
