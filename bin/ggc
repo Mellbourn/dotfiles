@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # run git gc --auto often, and git gc --aggressive seldomly
 
 VERBOSE=false
@@ -55,11 +54,11 @@ PREFIX="$(basename "$0")---${REPO_NAME}"
 OFTEN_CMD="git gc --auto"
 SELDOM_CMD="git gc --aggressive"
 
-runreg_opts=()
-[ "$VERBOSE" = true ] && runreg_opts+=("-v")
-runreg_opts+=("-p" "$PREFIX")
-runreg_opts+=("-t" "$TIME_IN_DAYS")
-runreg_opts+=("-o" "$OFTEN_CMD")
-runreg_opts+=("-s" "$SELDOM_CMD")
+periodicrun_opts=()
+[ "$VERBOSE" = true ] && periodicrun_opts+=("-v")
+periodicrun_opts+=("-p" "$PREFIX")
+periodicrun_opts+=("-t" "$TIME_IN_DAYS")
+periodicrun_opts+=("-o" "$OFTEN_CMD")
+periodicrun_opts+=("-s" "$SELDOM_CMD")
 
-runreg "${runreg_opts[@]}"
+periodicrun "${periodicrun_opts[@]}"

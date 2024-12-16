@@ -23,14 +23,14 @@ while getopts "vp:t:o:s:" opt; do
     esac
 done
 
-if [ -z "$OFTEN_CMD" ] || [ -z "$SELDOM_CMD" ]; then
-    log_message "Error: Both -o (often command) and -s (seldom command) must be provided."
+if [ -z "$SELDOM_CMD" ]; then
+    echo "Error: -s (seldom command) must be provided."
     exit 1
 fi
 
-TIMESTAMP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/runreg"
+TIMESTAMP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/periodicrun"
 mkdir -p "$TIMESTAMP_DIR" || {
-    log_message "Failed to create directory: $TIMESTAMP_DIR"
+    echo "Failed to create directory: $TIMESTAMP_DIR"
     exit 1
 }
 
@@ -46,9 +46,11 @@ if [ -f "$TIMESTAMP_FILE" ]; then
         log_message "Running seldom command..."
         eval "$SELDOM_CMD"
         date +%s >"$TIMESTAMP_FILE"
-    else
+    elif [ -n "$OFTEN_CMD" ]; then
         log_message "Running often command..."
         eval "$OFTEN_CMD"
+    else
+        log_message "No often command provided. Exiting."
     fi
 else
     log_message "Running seldom command for the first time..."
