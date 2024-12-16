@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# run often command often, and seldom command seldomly
+
+VERBOSE=false
+PREFIX=unknown
+TIME_IN_DAYS=14
+OFTEN_CMD=""
+SELDOM_CMD=""
+
+log_message() {
+    [ "$VERBOSE" = true ] && echo "$1"
+}
+
+while getopts "vp:t:o:s:" opt; do
+    case $opt in
+    v) VERBOSE=true ;;
+    p) PREFIX=$OPTARG ;;
+    t) TIME_IN_DAYS=$OPTARG ;;
+    o) OFTEN_CMD=$OPTARG ;;
+    s) SELDOM_CMD=$OPTARG ;;
+    *) exit 1 ;;
+    esac
+done
+
+if [ -z "$OFTEN_CMD" ] || [ -z "$SELDOM_CMD" ]; then
+    log_message "Error: Both -o (often command) and -s (seldom command) must be provided."
+    exit 1
+fi
+
+TIMESTAMP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/runreg"
+mkdir -p "$TIMESTAMP_DIR" || {
+    log_message "Failed to create directory: $TIMESTAMP_DIR"
+    exit 1
+}
+
+TIMESTAMP_FILE="$TIMESTAMP_DIR/${PREFIX}.date"
+TIME_IN_SECONDS=$((TIME_IN_DAYS * 86400))
+
+if [ -f "$TIMESTAMP_FILE" ]; then
+    LAST_RUN=$(cat "$TIMESTAMP_FILE")
+    CURRENT_TIME=$(date +%s)
+    TIME_DIFF=$((CURRENT_TIME - LAST_RUN))
+
+    if ((TIME_DIFF > TIME_IN_SECONDS)); then
+        log_message "Running seldom command..."
+        eval "$SELDOM_CMD"
+        date +%s >"$TIMESTAMP_FILE"
+    else
+        log_message "Running often command..."
+        eval "$OFTEN_CMD"
+    fi
+else
+    log_message "Running seldom command for the first time..."
+    eval "$SELDOM_CMD"
+    date +%s >"$TIMESTAMP_FILE"
+fi

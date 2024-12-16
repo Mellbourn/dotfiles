@@ -1,112 +1,65 @@
 #!/bin/bash
 
-# run git gc, possibly aggressive
+# run git gc --auto often, and git gc --aggressive seldomly
 
-# Default values
 VERBOSE=false
-REPO_PATH="" # This will be determined using git commands
-TIMESTAMP_FILE=""
-TIME_IN_DAYS=14 # Default to 14 days
+REPO_PATH=""
+TIME_IN_DAYS=14
 
-# Parse options using getopts
-while getopts "vr:f:t:" opt; do
+log_message() {
+    [ "$VERBOSE" = true ] && echo "$1"
+}
+
+while getopts "vr:t:" opt; do
     case $opt in
-    v)
-        VERBOSE=true
-        ;;
-    r)
-        REPO_PATH=$OPTARG
-        ;;
-    f)
-        TIMESTAMP_FILE=$OPTARG
-        ;;
-    t)
-        TIME_IN_DAYS=$OPTARG
-        ;;
+    v) VERBOSE=true ;;
+    r) REPO_PATH=$OPTARG ;;
+    t) TIME_IN_DAYS=$OPTARG ;;
     ?)
-        echo "Unknown option: $opt"
         echo "Usage: $0 [-v] [-r <repo_path>] [-f <timestamp_file>] [-t <days>]"
         exit 1
         ;;
+
     esac
 done
 
-# Determine the root of the Git repository if not explicitly provided
 if [ -z "$REPO_PATH" ]; then
     if git rev-parse --show-toplevel >/dev/null 2>&1; then
         REPO_PATH=$(git rev-parse --show-toplevel)
     else
-        echo "Error: Current directory is not inside a Git repository. Please specify a repository path with -r."
+        echo "Error: Not inside a Git repository. Please specify a repository path with -r."
         exit 1
     fi
 else
-    # Ensure REPO_PATH is resolved to its root if a subdirectory is provided
     if cd "$REPO_PATH" && git rev-parse --show-toplevel >/dev/null 2>&1; then
         REPO_PATH=$(git rev-parse --show-toplevel)
     else
-        echo "Error: Specified path '$REPO_PATH' is not a Git repository."
+        echo "Error: '$REPO_PATH' is not a Git repository."
         exit 1
     fi
 fi
 
-# Determine the default timestamp file if not provided
-if [ -z "$TIMESTAMP_FILE" ]; then
-    TIMESTAMP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/ggc"
-    RELATIVE_PATH=$(cd "$REPO_PATH" && pwd -P | sed "s|^$HOME/||")
-    SANITIZED_PATH=$(echo "$RELATIVE_PATH" | sed 's|/|--|g') # Replace '/' with '--'
-    TIMESTAMP_FILE="${TIMESTAMP_DIR}/${SANITIZED_PATH}.date"
-fi
-
-# Convert time from days to seconds
-TIME_IN_SECONDS=$((TIME_IN_DAYS * 24 * 60 * 60))
-
-# Function for conditional echo
-log_message() {
-    if [ "$VERBOSE" = true ]; then
-        echo "$1"
-    fi
-}
-
-# Ensure the directory for the timestamp file exists
-TIMESTAMP_DIR=$(dirname "$TIMESTAMP_FILE")
-if [ ! -d "$TIMESTAMP_DIR" ]; then
-    log_message "Timestamp directory does not exist. Creating: $TIMESTAMP_DIR"
-    mkdir -p "$TIMESTAMP_DIR" || {
-        echo "Failed to create directory: $TIMESTAMP_DIR"
-        exit 1
-    }
-fi
-
-# Navigate to the repository
-if ! cd "$REPO_PATH"; then
+cd "$REPO_PATH" || {
     echo "Error: Could not change directory to '$REPO_PATH'."
     exit 1
-fi
+}
 
-# Check if the timestamp file exists
-if [ -f "$TIMESTAMP_FILE" ]; then
-    # Get the last run time
-    LAST_RUN=$(cat "$TIMESTAMP_FILE")
-    CURRENT_TIME=$(date +%s)
+# Strip $HOME from REPO_PATH and remove leading slash
+REPO_PATH_REL=${REPO_PATH/#$HOME/}
+REPO_PATH_REL=${REPO_PATH_REL#/}
 
-    # Calculate the time difference
-    TIME_DIFF=$((CURRENT_TIME - LAST_RUN))
+# Process the repository name
+REPO_NAME=$(echo "$REPO_PATH_REL" | sed 's/\//--/g')
+PREFIX="$(basename "$0")---${REPO_NAME}"
 
-    if ((TIME_DIFF > TIME_IN_SECONDS)); then
-        # Run aggressive garbage collection
-        log_message "Running 'git fsck and git gc --aggressive'..."
-        git fsck --unreachable --full --strict --lost-found --progress && git gc --aggressive
-        # Update the timestamp file
-        date +%s >"$TIMESTAMP_FILE"
-    else
-        # Run automatic garbage collection
-        log_message "Running 'git gc --auto'..."
-        git gc --auto
-    fi
-else
-    # If the timestamp file does not exist, run aggressive garbage collection
-    log_message "No timestamp found. Running 'git gc --aggressive'..."
-    git gc --aggressive
-    # Create the timestamp file
-    date +%s >"$TIMESTAMP_FILE"
-fi
+OFTEN_CMD="git gc --auto"
+SELDOM_CMD="git gc --aggressive"
+
+runreg_opts=()
+[ "$VERBOSE" = true ] && runreg_opts+=("-v")
+runreg_opts+=("-p" "$PREFIX")
+runreg_opts+=("-t" "$TIME_IN_DAYS")
+runreg_opts+=("-o" "$OFTEN_CMD")
+runreg_opts+=("-s" "$SELDOM_CMD")
+
+runreg "${runreg_opts[@]}"
