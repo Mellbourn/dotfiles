@@ -131,10 +131,10 @@ if [[ $(uname) == 'Darwin' ]]; then
   launchctl unload ~/Library/LaunchAgents/local.cleanup.trash.plist
   launchctl load -w ~/Library/LaunchAgents/local.cleanup.trash.plist
   # they don't work, so run them anyway
-  "$HOME"/bin/cleanup-directory -d "$HOME"/Downloads -l 10 -v
-  "$HOME"/bin/cleanup-directory -d "$HOME"/Pictures -l 10 -v
+  "$HOME"/.local/bin/cleanup-directory -d "$HOME"/Downloads -l 10 -v
+  "$HOME"/.local/bin/cleanup-directory -d "$HOME"/Pictures -l 10 -v
   # not needed: tmux-resurrect deletes files older than 30 days by default
-  #$HOME/bin/cleanup-directory -d $HOME/.tmux/resurrect -f \*/tmux_resurrect_\*.txt -l 5 -v
+  #$HOME/.local/bin/cleanup-directory -d $HOME/.tmux/resurrect -f \*/tmux_resurrect_\*.txt -l 5 -v
   # not needed - I have enough space
   # "$HOMEBREW_PREFIX"/sbin/tmpreaper -vv 2d -T 180 "$HOME"/.Trash &
 
@@ -424,8 +424,8 @@ curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/ter
 gunzip -f /tmp/terminfo.src.gz
 /usr/bin/tic -xe tmux-256color /tmp/terminfo.src
 
-curl -o ~/bin/ssh-find-agent.sh -L https://raw.githubusercontent.com/wwalker/ssh-find-agent/master/ssh-find-agent.sh
-chmod +x ~/bin/ssh-find-agent.sh
+curl -o ~/.local/bin/ssh-find-agent.sh -L https://raw.githubusercontent.com/wwalker/ssh-find-agent/master/ssh-find-agent.sh
+chmod +x ~/.local/bin/ssh-find-agent.sh
 
 if [ -x "$(command -v gh)" ]; then
   if ! gh auth status; then
@@ -495,7 +495,7 @@ fi
 docker system prune -f 2>>/tmp/docker_system_prune.err.txt || true
 
 function zsh_performance_measurements() {
-  ~/bin/mezsh -m 5
+  ~/.local/bin/mezsh -m 5
 }
 
 ############################################################################
@@ -513,7 +513,7 @@ if [[ $(uname) == 'Linux' ]]; then
     yes | trash-empty 30
   fi
   # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
-  ~/bin/trash-empty-wsl +30
+  ~/.local/bin/trash-empty-wsl +30
 
   zsh_performance_measurements
   exit 0

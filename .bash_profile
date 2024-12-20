@@ -28,7 +28,7 @@ fi
 
 sshr() { ssh-add -l >&/dev/null || eval "$(ssh-agent)" >/dev/null; }
 sshrfa() {
-  source "$HOME/bin/ssh-find-agent.sh"
+  source "$HOME/.local/bin/ssh-find-agent.sh"
   #echo "ssh-find-agent sourced"
   ssh-add -l >&/dev/null || ssh-find-agent -a || eval "$(ssh-agent)" >/dev/null
 }
@@ -48,7 +48,7 @@ if [[ -n $UNAME_LINUX ]]; then
     # this printf makes the cursor blink in Windows Terminal
     printf "\e[?12h"
   else # unix, but not WSL
-    if [ -f ~/bin/ssh-find-agent.sh ]; then
+    if [ -f ~/.local/bin/ssh-find-agent.sh ]; then
       sshrfa
     elif [ -x "$(command -v keychain)" ]; then
       sshrk
@@ -63,7 +63,7 @@ fi
 if [ -n "$PS1" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ] && command -v tmux &>/dev/null && [ -z "$VSCODE_PID" ] && [ -z "$KLA" ]; then
   # use this "if" to suppress tmux in *debugging* in vscode
   if [ -z "$VSCODE_WORKSPACE_FOLDER" ]; then
-    exec "$HOME"/bin/tmux-attach-or-new
+    exec "$HOME"/.local/bin/tmux-attach-or-new
   fi
 fi
 
@@ -140,8 +140,8 @@ addFirstInPath "$HOME/.local/bin"
 # this is needed while we are using an old awscli
 addLastInPath "$HOMEBREW_PREFIX/opt/awscli@1/bin"
 addFirstInPath "$HOME"/.cargo/bin
-addFirstInPath "$HOME"/bin
-addFirstInPath "$HOME"/bin/mts
+addFirstInPath "$HOME"/.local/bin
+addFirstInPath "$HOME"/.local/bin/mts
 
 export CLICOLOR=1
 export FX_SHOW_SIZE=true

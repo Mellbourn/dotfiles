@@ -187,8 +187,8 @@ httpie
     # configuration specific for WSL
     #################################################################################
     # unfortunately trash-empty 0.12 does not clean NTFS mounted file systems
-    if [ -f ~/bin/trash-empty-wsl ]; then
-      ~/bin/trash-empty-wsl +30
+    if [ -f ~/.local/bin/trash-empty-wsl ]; then
+      ~/.local/bin/trash-empty-wsl +30
     fi
   else
     #################################################################################
@@ -316,7 +316,7 @@ export HW_MODEL=${HW_MODEL:-$(sysctl -n hw.model)}
 # overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
 # Getting "bus error" on macOS Sequoia 15.x https://discussions.apple.com/thread/255779464?login=true&sortBy=rank
 if [[ "$OS_VERSION" != "15.2" ]]; then
-  PATH_OVERRIDE=$(getconf PATH):${HOME}/bin:$HOMEBREW_PREFIX/bin
+  PATH_OVERRIDE=$(getconf PATH):${HOME}/.local/bin:$HOMEBREW_PREFIX/bin
   sudo launchctl config user path "$PATH_OVERRIDE"
 fi
 

@@ -66,7 +66,7 @@ if machineName == 'Klas’s MacBook Pro 16" 2023' then
         if eventType == hs.caffeinate.watcher.screensDidUnlock then
             hs.timer.doAfter(10, function()
                 if(areBothDellScreensConnected()) then
-                    local output, status, type, rc = hs.execute("/Users/klas.mellbourn/bin/dp", false)
+                    local output, status, type, rc = hs.execute("/Users/klas.mellbourn/.local/bin/dp", false)
                     if (output == "" and status and type == "exit" and rc == 0) then
                         appendToLogFile('display placement succeeded quitetly')
                     else
