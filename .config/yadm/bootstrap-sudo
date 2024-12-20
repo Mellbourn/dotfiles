@@ -72,6 +72,7 @@ if [[ $(uname) == 'Linux' ]]; then
     gh
     keychain
     ugrep
+    protobuf-compiler
     tree
     tig
     aptitude
