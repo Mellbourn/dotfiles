@@ -207,7 +207,12 @@ else
 fi
 
 if [[ -z "$KLA" ]]; then
-  zinit wait'0' lucid as'null' atinit'source $HOME/.asdf/asdf.sh
+  if [[ -d "$HOMEBREW_PREFIX/opt/asdf" ]]; then
+    ASDF_SCRIPT=$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
+  else
+    ASDF_SCRIPT=$HOME/.asdf/asdf.sh
+  fi
+  zinit wait'0' lucid as'null' atinit'source $ASDF_SCRIPT
   # setup direnv
   if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
     source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc

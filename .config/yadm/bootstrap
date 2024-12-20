@@ -75,7 +75,12 @@ if [[ -z "$KLA" ]]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf
     source ~/.asdf/asdf.sh
   fi
-  asdf update
+  if [[ $(uname) == 'Darwin' ]]; then
+    brew install asdf || true
+  else
+    # TODO: "asdf update" has stopped working, must switch to apt get soon, but not yet present for raspbian
+    asdf update || true
+  fi
   asdf plugin update --all
 
   set +e
