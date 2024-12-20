@@ -3,13 +3,16 @@ HOMEBREW_PREFIX="/opt/homebrew"
 if "$HOMEBREW_PREFIX/bin/displayplacer" \
     "id:37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1728x1117 hz:120 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0" \
     "id:5A54AAA3-ABC6-4652-96A2-38738229436C res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(4800,-611) degree:0" \
-    "id:71DFCAA1-DCEB-46FD-9D84-29F6D83031D2 res:3072x1728 hz:60 color_depth:8 enabled:true scaling:on origin:(1728,-611) degree:0"; then
+    "id:95545405-36CF-4852-814F-E6082806FFA9  res:3072x1728 hz:60 color_depth:8 enabled:true scaling:on origin:(1728,-611) degree:0"; then
     true #echo "success: old screen got high resolution"
 else
     # sometimes the old screen is low resolution (1920x1080) and I get this message
-    # Screen ID 71DFCAA1-DCEB-46FD-9D84-29F6D83031D2: could not find res:3072x1728 hz:60 color_depth:8 scaling:on
+    # Screen ID 95545405-36CF-4852-814F-E6082806FFA9 : could not find res:3072x1728 hz:60 color_depth:8 scaling:on
     "$HOMEBREW_PREFIX/bin/displayplacer" \
         "id:37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1728x1117 hz:120 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0" \
-        "id:71DFCAA1-DCEB-46FD-9D84-29F6D83031D2 res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(1728,-611) degree:0" \
+        "id:95545405-36CF-4852-814F-E6082806FFA9  res:3008x1692 hz:60 color_depth:8 enabled:true scaling:on origin:(1728,-611) degree:0" \
         "id:5A54AAA3-ABC6-4652-96A2-38738229436C res:3072x1728 hz:60 color_depth:8 enabled:true scaling:on origin:(3648,-611) degree:0"
 fi
+
+# Macbook 16"
+# 71DFCAA1-DCEB-46FD-9D84-29F6D83031D2 seems to have changed to 95545405-36CF-4852-814F-E6082806FFA9
