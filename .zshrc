@@ -590,7 +590,11 @@ lg() {
 
 # decode JWT tokens
 function jwtd() {
-  cut -d"." -f1,2 <<< $1 | sed 's/\./\n/g' | base64 --decode | jq
+  cut -d"." -f2 <<< $1 | sed 's/\./\n/g' | base64 --decode | jq
+}
+
+function jwtdp() {
+  jwtd $1 | jq -r .ext.persona_krn | choose -f ':' -1 | pbcopy
 }
 
 # copies file to clipboard. You can then
