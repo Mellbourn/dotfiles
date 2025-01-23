@@ -593,6 +593,7 @@ function jwtd() {
   cut -d"." -f2 <<< $1 | sed 's/\./\n/g' | base64 --decode | jq
 }
 
+# persona id for k
 function jwtdp() {
   jwtd $1 | jq -r .ext.persona_krn | choose -f ':' -1 | pbcopy
 }
