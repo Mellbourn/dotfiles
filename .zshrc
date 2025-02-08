@@ -211,7 +211,7 @@ version_gte() {
 }
 
 if [[ -z "$KLA" ]]; then
-  if version_gte $(asdf --version | sed 's/.* //') 0.16; then
+  if [ -x "$(command -v asdf)" ] && version_gte $(asdf --version | sed 's/.* //') 0.16; then
     export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
     zinit wait'0' lucid as'null' atinit'
     # setup direnv no longer works for asdf 0.16, see https://github.com/asdf-community/asdf-direnv/issues/194
