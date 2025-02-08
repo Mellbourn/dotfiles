@@ -107,7 +107,7 @@ if [[ -z "$KLA" ]]; then
   asdf install python latest
   if [ -z "$OS_RASPBIAN" ] && [ -z "$OS_UBUNTU" ]; then
     asdf install ruby latest
-    if version_gte "$(asdf --version | sed 's/.* //')" 0.16; then
+    if [ -x "$(command -v asdf)" ] && version_gte "$(asdf --version | sed 's/.* //' | sed 's/v//' | sed 's/\-.*//')" 0.16; then
       asdf set -u ruby latest
     else
       asdf global ruby latest
@@ -118,7 +118,7 @@ if [[ -z "$KLA" ]]; then
   asdf install lazydocker latest
   set -e
 
-  if version_gte "$(asdf --version | sed 's/.* //')" 0.16; then
+  if [ -x "$(command -v asdf)" ] && version_gte "$(asdf --version | sed 's/.* //' | sed 's/v//' | sed 's/\-.*//')" 0.16; then
     asdf set -u direnv latest
     set +e
     # nodejs not yet handling asdf well, fix incoming https://github.com/asdf-vm/asdf/pull/1899
