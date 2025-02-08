@@ -206,22 +206,40 @@ else
   }
 fi
 
+version_gte() {
+  printf '%s\n%s' "$1" "$2" | sort -C -V -r
+}
+
 if [[ -z "$KLA" ]]; then
-  if [[ -d "$HOMEBREW_PREFIX/opt/asdf" ]]; then
-    ASDF_SCRIPT=$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
+  if version_gte $(asdf --version | sed 's/.* //') 0.16; then
+    export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+    zinit wait'0' lucid as'null' atinit'
+    # setup direnv no longer works for asdf 0.16, see https://github.com/asdf-community/asdf-direnv/issues/194
+    #if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
+    #  source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc
+    #fi
+    # java_home
+    if [ -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
+      source "${ASDF_DIR:-$HOME/.asdf}"/plugins/java/set-java-home.zsh
+    fi
+    ' light-mode for zdharma-continuum/null
   else
-    ASDF_SCRIPT=$HOME/.asdf/asdf.sh
+    if [[ -d "$HOMEBREW_PREFIX/opt/asdf" ]]; then
+      ASDF_SCRIPT=$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
+    else
+      ASDF_SCRIPT=$HOME/.asdf/asdf.sh
+    fi
+    zinit wait'0' lucid as'null' atinit'source $ASDF_SCRIPT
+    # setup direnv
+    if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
+      source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc
+    fi
+    # java_home
+    if [ -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
+      source "${ASDF_DIR:-$HOME/.asdf}"/plugins/java/set-java-home.zsh
+    fi
+    ' light-mode for zdharma-continuum/null
   fi
-  zinit wait'0' lucid as'null' atinit'source $ASDF_SCRIPT
-  # setup direnv
-  if [ -z "$DOTFILES_LITE" ] && [ -x "$(command -v direnv)" ]; then
-    source ${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc
-  fi
-  # java_home
-  if [ -x "${ASDF_DIR:-$HOME/.asdf}"/shims/java ]; then
-    source "${ASDF_DIR:-$HOME/.asdf}"/plugins/java/set-java-home.zsh
-  fi
-  ' light-mode for zdharma-continuum/null
 fi
 fpath=(${ASDF_DIR:-$HOME/.asdf}/completions $fpath)
 
