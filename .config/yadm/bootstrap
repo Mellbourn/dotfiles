@@ -93,25 +93,46 @@ if [[ -z "$KLA" ]]; then
   asdf plugin add nodejs
   asdf plugin add java
 
+  set +e
   asdf install direnv latest
-  asdf global direnv latest
+  set -e
   asdf plugin add ruby
   asdf plugin add python
   asdf plugin add bundler
   # asdf direnv doesn't seem absolutely necessary, but could improve performance. 2.30.2 works
   asdf plugin add direnv
 
+  set +e
   asdf install nodejs latest
-  asdf global nodejs latest
   asdf install python latest
-  asdf global python latest
   if [ -z "$OS_RASPBIAN" ] && [ -z "$OS_UBUNTU" ]; then
     asdf install ruby latest
-    asdf global ruby latest
+    if version_gte "$(asdf --version | sed 's/.* //')" 0.16; then
+      asdf set -u ruby latest
+    else
+      asdf global ruby latest
+    fi
   fi
 
   # if no versions are installed, the asdf plugin will fall back to "system"
-  asdf install lazydocker latest && asdf global lazydocker latest
+  asdf install lazydocker latest
+  set -e
+
+  if version_gte "$(asdf --version | sed 's/.* //')" 0.16; then
+    asdf set -u direnv latest
+    set +e
+    # nodejs not yet handling asdf well, fix incoming https://github.com/asdf-vm/asdf/pull/1899
+    asdf set -u nodejs latest
+    # asdf for python not yet working with 0.16, https://github.com/asdf-community/asdf-python/issues/197
+    asdf set -u python latest
+    set -e
+    asdf set -u lazydocker latest
+  else
+    asdf global direnv latest
+    asdf global nodejs latest
+    asdf global python latest
+    asdf global lazydocker latest
+  fi
 
   ## clean up old versions of asdf plugins, unless we specifically want to keep them
   # e.g. asdf-clean -v -i nodejs 20.9.0 direnv 2.32.0 2.32.1 # this would also install if necessary
