@@ -253,6 +253,8 @@ if [[ -z "$KLA" ]]; then
   export REACT_NATIVE_DOWNLOADS_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/react-native-downloads"
 else
   export DISABLE_PPS_LOG=1
+  # COREPACK_ENABLE_UNSAFE_CUSTOM_URLS is necessary for jest to work in vscode at k
+  export COREPACK_ENABLE_UNSAFE_CUSTOM_URLS=1
 fi
 
 # bc settings
