@@ -314,13 +314,6 @@ if ! [ -d "/opt/homebrew/bin" ]; then
 fi
 export HW_MODEL=${HW_MODEL:-$(sysctl -n hw.model)}
 
-# overriding original path /usr/bin:/bin:/usr/sbin:/sbin with ${PATH_OVERRIDE} so that gpg and node will be on path for spotlight launched programs"
-# Getting "bus error" on macOS Sequoia 15.x https://discussions.apple.com/thread/255779464?login=true&sortBy=rank
-if [[ "$OS_VERSION" != "15.3" ]]; then
-  PATH_OVERRIDE=$(getconf PATH):${HOME}/.local/bin:$HOMEBREW_PREFIX/bin
-  sudo launchctl config user path "$PATH_OVERRIDE"
-fi
-
 if [[ -n "$KLA" ]]; then
   exit 0
 fi
