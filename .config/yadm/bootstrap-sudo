@@ -80,6 +80,8 @@ if [[ $(uname) == 'Linux' ]]; then
     tmpreaper
     libssl-dev
     pkg-config
+    ncurses-dev
+    autoconf
   "
   for app in $apps; do
     if ! dpkg-query -l "$app" >/dev/null; then
