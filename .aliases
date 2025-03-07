@@ -41,16 +41,17 @@ alias psh='pwsh.exe' # could add -NoLogo to get a more quiet startup
 alias ql='qlmanage -p >/dev/null 2>&1'
 alias resolution='system_profiler SPDisplaysDataType | grep Resolution'
 alias rm_node_modules='$FD -t d -u node_modules -x rm -rf'
-# screws up rm in sourced files, e.g. ssh-find-agent
-#alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
-alias tmk='tmux kill-pane -a'
 alias tig='TERM=xterm-256color tig'
+alias tmk='tmux kill-pane -a'
 alias weather='curl -s v2.wttr.in'
 alias y='noglob yadm'
 alias yc='GIT_DIR=~/.local/share/yadm/repo.git code ~/.config/yadm'
 alias yl='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml,$HOME/Library/Application Support/lazygit/config.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
 alias yv='GIT_DIR=~/.local/share/yadm/repo.git vi ~/.config/yadm'
 alias zmv='noglob zmv'
+
+# screws up rm in sourced files, e.g. ssh-find-agent
+#alias rm="echo Replace '\"rm\"' with '\"trash\"', or force the original with '\"\\\rm\"': trash "
 
 # ugrep is a drop-in replacement for grep
 alias grep='ugrep -G --config'  # search with basic regular expressions (BRE)
