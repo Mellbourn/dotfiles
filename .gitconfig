@@ -48,6 +48,8 @@ mnemonicPrefix = true
 tool = vimdiff
 colorMoved = default
 submodule = log
+# added by k
+renames = copies
 [merge]
 tool = vimdiff
 # Include summaries of merged commits in newly created merge commit messages
@@ -59,6 +61,8 @@ submodulesummary = true
 verbose = 2
 [fetch]
 prune = true
+# added by k
+pruneTags = true
 [log]
 decorate = short
 abbrevcommit = true
@@ -73,6 +77,8 @@ default = current # KLA
 [rebase]
 autoStash = true
 autoSquash = true
+# added by k
+updateRefs = true
 [format]
 pretty = "%C(yellow)%h %C(magenta)%<(15,trunc)%an %C(cyan)%cd %C(auto)%d%Creset %s"
 [difftool "difftastic"]
@@ -112,3 +118,9 @@ process = git-lfs filter-process
 required = true
 clean = git-lfs clean -- %f
 smudge = git-lfs smudge -- %f
+[tag]
+# added by k
+sort = refname
+[branch]
+# added by k
+sort = committerdate
