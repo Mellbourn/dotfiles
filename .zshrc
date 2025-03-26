@@ -616,6 +616,13 @@ function jwtdp() {
   jwtd $1 | jq -r .ext.persona_krn | choose -f ':' -1 | pbcopy
 }
 
+# sha of persona id for k
+function jwtds() {
+  jwtdp $1
+  krn=$(pbpaste)
+  echo -n "$krn" | sha512sum | choose 0 | pbcopy
+}
+
 # copies file to clipboard. You can then
 # cmd-v paste into gmail
 # copy an image file and then paste image in some apps, like google docs
