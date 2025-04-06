@@ -90,6 +90,7 @@ if [[ $(uname) == 'Linux' ]]; then
   done
   # for some reason, keychain cannot be installed using the list
   sudo apt install -y keychain
+  sudo apt install -y ntp
 
   if [ -z "$DOTFILES_LITE" ]; then
     sudo apt install -y \
