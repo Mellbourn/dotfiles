@@ -27,6 +27,7 @@ defaultBranch = main
 fsmonitor = true # KLA, not handled by yadm, this MUST be set to false manually in ~/.local/share/yadm/repo.git/config
 # for this to work, hat mtime is working properly on your system
 untrackedCache = true # KLA
+autocrlf = input      # KLA
 [help]
 autocorrect = 0 # KLA preferred prompt, but tough
 [pack]
