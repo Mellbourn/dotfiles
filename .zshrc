@@ -536,9 +536,9 @@ function bri() {
 
 function co() {
     local branches branch
-    branches=$(git branch -a --color=always | sed -E 's|remotes/[^/]+/|\x1b[31m&\x1b[0m|g') &&
-    branch=$(echo "$branches" | egrep -i "$1"  | $FZF +s +m --preview "echo {} | sed 's/^[ *+]*//'| xargs git log --color=always -100") &&
-    git switch $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
+    branches=$( { git branch --color=always; git branch -r --color=always | sed -E 's|remotes/[^/]+/|\x1b[31m&\x1b[0m|g'; } ) &&
+    branch=$(echo "$branches" | egrep -i "$1" | $FZF +s +m --preview "echo {} | sed 's/^[ *+]*//' | xargs git log --color=always -100") &&
+    git switch $(echo "$branch" | sed 's|.* remotes/origin/||' | sed 's|^[* +]*||')
 }
 
 # git co foo**<tab>
