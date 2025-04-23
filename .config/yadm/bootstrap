@@ -167,35 +167,39 @@ if [[ $(uname) == 'Darwin' ]]; then
   ###############################################################################
   # App store                                                                   #
   ###############################################################################
-  brew install mas || true
-
-  mas install 1352778147 # Bitwarden
-  mas lucky "Copy 'Em"   # (3.0.6) 876540291
   if [[ -z "$KLA" ]]; then
-    mas install 497799835                  # Xcode
-    mas lucky "John's Background Switcher" # 907640277
-    mas lucky "Popcorn for Safari"         # (2.0) 1535719670
-  fi
-  mas lucky "Yubico Authenticator" # (6.1.0) 1497506650
-  # Safari extensions
-  mas lucky "Adblock Plus for Safari ABP" # (2.1.10) 1432731683
-  # DuckTabs removed from store?
-  #mas lucky "DuckTabs Extension"            # (2.0) 1508584686
-  mas lucky "Dark Reader for Safari"        # (1.4.3) 1438243180
-  mas lucky "Grammarly: AI Writing Support" # (9.33) 1462114288
+    # mas no longer working well
+    brew install mas || true
 
-  if [[ -n $X86_OR_ROSETTA ]]; then
-    # these still require rosetta afaik
-    mas lucky Bredbandskollen # 1147976909
+    # no longer compatible
+    mas install 1352778147 # Bitwarden
+    mas lucky "Copy 'Em"   # (3.0.6) 876540291
     if [[ -z "$KLA" ]]; then
-      # Microsoft Remote Desktop 10 1295203466
-      mas lucky "Windows App" # was "Microsoft Remote Desktop"
+      mas install 497799835                  # Xcode
+      mas lucky "John's Background Switcher" # 907640277
+      mas lucky "Popcorn for Safari"         # (2.0) 1535719670
     fi
-  fi
+    mas lucky "Yubico Authenticator" # (6.1.0) 1497506650
+    # Safari extensions
+    mas lucky "Adblock Plus for Safari ABP" # (2.1.10) 1432731683
+    # DuckTabs removed from store?
+    #mas lucky "DuckTabs Extension"            # (2.0) 1508584686
+    mas lucky "Dark Reader for Safari"        # (1.4.3) 1438243180
+    mas lucky "Grammarly: AI Writing Support" # (9.33) 1462114288
 
-  # upgrade all
-  if [ "$OS_MAJOR_VERSION" -ge "$BIG_SUR_MAJOR_VERSION" ]; then
-    mas upgrade
+    if [[ -n $X86_OR_ROSETTA ]]; then
+      # these still require rosetta afaik
+      mas lucky Bredbandskollen # 1147976909
+      if [[ -z "$KLA" ]]; then
+        # Microsoft Remote Desktop 10 1295203466
+        mas lucky "Windows App" # was "Microsoft Remote Desktop"
+      fi
+    fi
+
+    # upgrade all
+    if [ "$OS_MAJOR_VERSION" -ge "$BIG_SUR_MAJOR_VERSION" ]; then
+      mas upgrade
+    fi
   fi
 
   xcode-select --install || true
