@@ -450,10 +450,14 @@ fi
 mkdir -p ~/.vim/autoload
 wget --show-progress -qNP ~/.vim/autoload https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# the following fix is no longer needed since macOS 14 ships with ncurses 6.2
 # add tmux-256color terminfo to ~/.terminfo
-curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/terminfo.src.gz
-gunzip -f /tmp/terminfo.src.gz
-/usr/bin/tic -xe tmux-256color /tmp/terminfo.src
+#curl -L https://invisible-island.net/datafiles/current/terminfo.src.gz >/tmp/terminfo.src.gz
+#gunzip -f /tmp/terminfo.src.gz
+#/usr/bin/tic -xe tmux-256color /tmp/terminfo.src
+if [ -d ~/.terminfo ]; then
+  trash ~/.terminfo
+fi
 
 curl -o ~/.local/bin/ssh-find-agent.sh -L https://raw.githubusercontent.com/wwalker/ssh-find-agent/master/ssh-find-agent.sh
 chmod +x ~/.local/bin/ssh-find-agent.sh
