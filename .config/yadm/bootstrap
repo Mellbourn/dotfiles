@@ -120,9 +120,8 @@ if [[ -z "$KLA" ]]; then
 
   if [ -x "$(command -v asdf)" ] && version_gte "$(asdf --version | sed 's/.* //' | sed 's/v//' | sed 's/\-.*//')" 0.16; then
     asdf set -u direnv latest
-    set +e
-    # nodejs not yet handling asdf well, fix incoming https://github.com/asdf-vm/asdf/pull/1899
     asdf set -u nodejs latest
+    set +e
     # asdf for python not yet working with 0.16, https://github.com/asdf-community/asdf-python/issues/197
     asdf set -u python latest
     set -e
