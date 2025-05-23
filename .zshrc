@@ -476,9 +476,6 @@ fi
 # note that this is for completion of cyme only, the command is gotten from cargo
 zinit wait'2' lucid light-mode from"gh" pick"doc/_cyme" as"completion" for tuna-f1sh/cyme
 
-# docfd finds strings in documenation files, e.g. pdf, word etc
-zinit wait'2' lucid light-mode from'gh-r' as'program' for darrenldl/docfd
-
 ###############################################################################
 # add-ons installed by homebrew
 ###############################################################################
