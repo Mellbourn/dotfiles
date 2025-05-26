@@ -293,8 +293,8 @@ export FZF_ALT_C_COMMAND="$FD --type directory"
 export FZF_ALT_C_OPTS="--preview 'CLICOLOR_FORCE=1 ls -GF {} | head -200' --preview-window=right:20%"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview '~/.local/bin/preview.sh {}' --preview-window=right:33%"
-zinit wait'1' lucid as'null' \
-  atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma-continuum/null
+#zinit wait'1' lucid as'null' \
+#  atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma-continuum/null
 
 # history search has to be loaded aftr fzf, so that it overwrites ^R
 if [[ -x $(command -v atuin) ]]; then
@@ -341,7 +341,7 @@ zinit wait'1' lucid as"completion" light-mode pick"_*" for nilsonholger/osx-zsh-
 zinit wait'1' lucid light-mode for mellbourn/zabb
 
 # fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
-zinit wait'1' lucid atclone'source fzf-tab.zsh && build-fzf-tab-module' atpull'%atclone' for Aloxaf/fzf-tab
+#zinit wait'1' lucid atclone'source fzf-tab.zsh && build-fzf-tab-module' atpull'%atclone' for Aloxaf/fzf-tab
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
@@ -771,58 +771,58 @@ fi
 [[ "$TERM_PROGRAM" == "vscode" ]] && source /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh
 
 # load explicit compdefs after compinit (not sure why this is necessary)
-zinit wait'2b' lucid as'null' atinit'
+# zinit wait'2b' lucid as'null' atinit'
 
-if [ -x "$(command -v bat)" ]; then
-  alias cat=bat
-  # this function does not work for piping to less with (less) arguments (any flags will become bat flags)
-  function less() {
-    local filename="${@:$#}" # last parameter, MUST be the filename
-    local flaglength=$(($# - 1))
-    if ((flaglength > 0)); then
-      local other="${@:1:$flaglength}"
-      bat $filename --pager "less $LESS $other"
-    elif ((flaglength == 0)); then
-      bat $filename --pager "less $LESS"
-    else
-      # no arg at all -> piping
-      command less
-    fi
-  }
+# if [ -x "$(command -v bat)" ]; then
+#   alias cat=bat
+#   # this function does not work for piping to less with (less) arguments (any flags will become bat flags)
+#   function less() {
+#     local filename="${@:$#}" # last parameter, MUST be the filename
+#     local flaglength=$(($# - 1))
+#     if ((flaglength > 0)); then
+#       local other="${@:1:$flaglength}"
+#       bat $filename --pager "less $LESS $other"
+#     elif ((flaglength == 0)); then
+#       bat $filename --pager "less $LESS"
+#     else
+#       # no arg at all -> piping
+#       command less
+#     fi
+#   }
 
-  compdef less=less
-  function batgrep() {
-    command batgrep --color --smart-case --context=0 $* | command less -+J -+W
-  }
-  alias batgrep="noglob batgrep"
-fi
-compdef lsd=ls
-if [ -x "$(command -v prettyping)" ]; then
-  alias ping="prettyping --nolegend"
-  compdef prettyping=ping
-fi
-if [ -x "$(command -v jira)" ]; then
-  eval "$(jira completion zsh)" && compdef _jira jira
-fi
-if [ -x "$(command -v circleci)" ]; then
-  eval "$(circleci completion zsh)" && compdef _circleci circleci
-fi
-if [ -x "$(command -v curlie)" ]; then
-  # for this to work, an addition to fpath is necessary, see above
-  compdef _curl curlie
-  alias curl=curlie
-fi
-# azure-cli command completions
-[[ -f ~/.zsh-personal-functions/az.completion ]] && . ~/.zsh-personal-functions/az.completion || true
+#   compdef less=less
+#   function batgrep() {
+#     command batgrep --color --smart-case --context=0 $* | command less -+J -+W
+#   }
+#   alias batgrep="noglob batgrep"
+# fi
+# compdef lsd=ls
+# if [ -x "$(command -v prettyping)" ]; then
+#   alias ping="prettyping --nolegend"
+#   compdef prettyping=ping
+# fi
+# if [ -x "$(command -v jira)" ]; then
+#   eval "$(jira completion zsh)" && compdef _jira jira
+# fi
+# if [ -x "$(command -v circleci)" ]; then
+#   eval "$(circleci completion zsh)" && compdef _circleci circleci
+# fi
+# if [ -x "$(command -v curlie)" ]; then
+#   # for this to work, an addition to fpath is necessary, see above
+#   compdef _curl curlie
+#   alias curl=curlie
+# fi
+# # azure-cli command completions
+# [[ -f ~/.zsh-personal-functions/az.completion ]] && . ~/.zsh-personal-functions/az.completion || true
 
-# tabtab completions for pnpm
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+# # tabtab completions for pnpm
+# [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
-# repair c completion after it was boken by zinit
-compdef __zoxide_z_complete __zoxide_zi
-compdef __zoxide_z_complete z
+# # repair c completion after it was boken by zinit
+# compdef __zoxide_z_complete __zoxide_zi
+# compdef __zoxide_z_complete z
 
-' light-mode for zdharma-continuum/null
+# ' light-mode for zdharma-continuum/null
 
 # it is 0.05s faster to load compinit in turbo mode, but all completions should be loaded with zinit then
 if [[ -n "$KLA" ]]; then
