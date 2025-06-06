@@ -82,6 +82,7 @@ if [[ $(uname) == 'Linux' ]]; then
     pkg-config
     ncurses-dev
     autoconf
+    pass
   "
   for app in $apps; do
     if ! dpkg-query -l "$app" >/dev/null; then
