@@ -21,7 +21,7 @@ source ~/.bash_profile
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 # This must go after tmux auto start https://github.com/romkatv/powerlevel10k/issues/1203
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [ "$TERM_PROGRAM" != "vscode" ] && [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
@@ -73,17 +73,19 @@ export SAVEHIST=$HISTSIZE
 ###############################################################################
 zinit lucid light-mode for romkatv/zsh-defer
 
-set_p10k_branch_in_tmux() {
-  # this hack is to avoid running this in subshells (e.g. shelling out from "less")
-  if [ "$SHLVL" -lt 5 ] && [ -z "$YAZI_LEVEL" ]; then
-    # backward compatible version (tmux < 2.5) of: tmux select-pane -T "${VCS_STATUS_LOCAL_BRANCH}"
-    zsh-defer -1sm -t 0.2 -c 'printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"'
-    # note that the above line makes shelling out less convenient to get back from, since you need to fg
-    # I could run this without zsh-defer, see below, but then this is only working on the second prompt of a repo
-    # printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"
-  fi
-}
-precmd_functions+=set_p10k_branch_in_tmux
+if [ "$TERM_PROGRAM" != "vscode" ]; then
+  set_p10k_branch_in_tmux() {
+    # this hack is to avoid running this in subshells (e.g. shelling out from "less")
+    if [ "$SHLVL" -lt 5 ] && [ -z "$YAZI_LEVEL" ]; then
+      # backward compatible version (tmux < 2.5) of: tmux select-pane -T "${VCS_STATUS_LOCAL_BRANCH}"
+      zsh-defer -1sm -t 0.2 -c 'printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"'
+      # note that the above line makes shelling out less convenient to get back from, since you need to fg
+      # I could run this without zsh-defer, see below, but then this is only working on the second prompt of a repo
+      # printf "\033]2;$VCS_STATUS_LOCAL_BRANCH\033\\"
+    fi
+  }
+  precmd_functions+=set_p10k_branch_in_tmux
+fi
 
 ###############################################################################
 # dynamic aliases
@@ -152,7 +154,9 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 ###############################################################################
 # zinit - zsh plugin manager
 ###############################################################################
-zinit depth=1 light-mode for romkatv/powerlevel10k
+if [ "$TERM_PROGRAM" != "vscode" ]; then
+  zinit depth=1 light-mode for romkatv/powerlevel10k
+fi
 
 zinit silent light-mode lucid for SinaKhalili/mecho
 
@@ -845,7 +849,9 @@ if [ -f ~/.keprc ]; then
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [ "$TERM_PROGRAM" != "vscode" ]; then
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+fi
 
 #echo ".zshrc finished:"
 #END=$(gdate +%s.%N)
