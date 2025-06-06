@@ -3,7 +3,7 @@
 
 VERBOSE=false
 REPO_PATH=""
-TIME_IN_DAYS=14
+TIME_IN_DAYS=30
 
 log_message() {
     [ "$VERBOSE" = true ] && echo "$1"
