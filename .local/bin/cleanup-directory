@@ -29,12 +29,12 @@ done
 
 setopt GLOB_SUBST
 
-find $directory -maxdepth 1 -path "$file_glob" -not -path '*/\.*' -atime +$ignore_files_younger_than_days \( -type f -or -type d \) -not -path "$exclude" |
+find $directory -maxdepth 1 -path "$file_glob" -not -path '*/\.*' -not -path "$directory" -atime +$ignore_files_younger_than_days \( -type f -or -type d \) -not -path "$exclude" |
   while read file; do
     stat -f "%-10m %40N" "$file"
   done |
   sort -n |
-  ghead --lines=-$number_left |
+  tail -n +$((number_left + 1)) |
   while read date filename; do
     if [[ -v verbose ]]; then
       echo trashing "$filename"
