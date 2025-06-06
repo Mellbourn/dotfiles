@@ -293,8 +293,10 @@ export FZF_ALT_C_COMMAND="$FD --type directory"
 export FZF_ALT_C_OPTS="--preview 'CLICOLOR_FORCE=1 ls -GF {} | head -200' --preview-window=right:20%"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview '~/.local/bin/preview.sh {}' --preview-window=right:33%"
-#zinit wait'1' lucid as'null' \
-#  atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma-continuum/null
+if [[ -x $(command -v fzf) ]]; then
+  zinit wait'1' lucid as'null' \
+  atinit"[ -f ~/.fzf.$SHELLNAME ] && source ~/.fzf.$SHELLNAME && bindkey 'ç' fzf-cd-widget #option-c" light-mode for zdharma-continuum/null
+fi
 
 # history search has to be loaded aftr fzf, so that it overwrites ^R
 if [[ -x $(command -v atuin) ]]; then
@@ -341,7 +343,9 @@ zinit wait'1' lucid as"completion" light-mode pick"_*" for nilsonholger/osx-zsh-
 zinit wait'1' lucid light-mode for mellbourn/zabb
 
 # fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
-#zinit wait'1' lucid atclone'source fzf-tab.zsh && build-fzf-tab-module' atpull'%atclone' for Aloxaf/fzf-tab
+if [[ -x $(command -v fzf) ]]; then
+  zinit wait'1' lucid atclone'source fzf-tab.zsh && build-fzf-tab-module' atpull'%atclone' for Aloxaf/fzf-tab
+fi
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
