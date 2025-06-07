@@ -93,9 +93,7 @@ if [[ -z "$KLA" ]]; then
   asdf plugin add nodejs
   asdf plugin add java
 
-  set +e
   asdf install direnv latest
-  set -e
   asdf plugin add ruby
   asdf plugin add python
   asdf plugin add bundler
@@ -121,10 +119,7 @@ if [[ -z "$KLA" ]]; then
   if [ -x "$(command -v asdf)" ] && version_gte "$(asdf --version | sed 's/.* //' | sed 's/v//' | sed 's/\-.*//')" 0.16; then
     asdf set -u direnv latest
     asdf set -u nodejs latest
-    set +e
-    # asdf for python not yet working with 0.16, https://github.com/asdf-community/asdf-python/issues/197
     asdf set -u python latest
-    set -e
     asdf set -u lazydocker latest
   else
     asdf global direnv latest
