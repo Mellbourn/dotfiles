@@ -221,6 +221,16 @@ if [[ $(uname) == 'Darwin' ]]; then
   # some uninstalls must be made before update
   set +e
   brew untap homebrew/homebrew-cask-drivers # for philips-hue-sync and luna-display
+  brew untap aws/tap
+  brew untap hpedrorodrigues/tools
+  brew untap eth-p/software
+  brew untap robotsandpencils/made
+  brew untap charmbracelet/tap
+  brew uninstall charmbracelet/tap/mods displayplacer curlie lazygit jira-cli freeze idb-companion
+  if [[ -z "$KLA" ]]; then
+    brew uninstall watchman
+  fi
+  brew untap ankitpokhrel/jira-cli charmbracelet/tap jakehilborn/jakehilborn jesseduffield/lazygit
   set -e
 
   brew cleanup
@@ -230,16 +240,16 @@ if [[ $(uname) == 'Darwin' ]]; then
   # is a separate upgrade for casks redundant?
   #brew upgrade --cask
   if [[ -z "$KLA" ]]; then
-    brew tap aws/tap               # for aws-sam-cli
-    brew tap wix/brew              # for applesimutils
-    brew tap robotsandpencils/made # for xcodes
+    #brew tap aws/tap               # for aws-sam-cli
+    brew tap wix/brew # for applesimutils
+    #brew tap robotsandpencils/made # for xcodes
   fi
   brew tap git-time-metric/gtm # for gtm
   # enables searching brew for commands not found, e.g. when. https://github.com/Homebrew/homebrew-command-not-found
   brew tap homebrew/command-not-found
-  brew tap facebook/fb             # for idb-companion for flipper
-  brew tap ankitpokhrel/jira-cli   # for jira-cli
-  brew tap jakehilborn/jakehilborn # for displayplacer
+  brew tap facebook/fb # for idb-companion for flipper
+  #brew tap ankitpokhrel/jira-cli   # for jira-cli
+  #brew tap jakehilborn/jakehilborn # for displayplacer
   brew tap kardolus/chatgpt-cli
 
   # not all computers need logitech drivers, also, these need sudo
