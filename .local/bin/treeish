@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Usage: ./treeish <partial_tree_hash> [<folder_path>] [<rev_range>]
+
+PARTIAL_HASH=$1
+FOLDER_PATH=${2:-./service/post-purchase}
+REV_RANGE=${3:-HEAD~500..HEAD}
+
+if [ -z "$PARTIAL_HASH" ]; then
+  echo "Usage: $0 <partial_tree_hash> [<folder_path>] [<rev_range>]"
+  exit 1
+fi
+
+echo "Looking for commits in $REV_RANGE where '$FOLDER_PATH' has a tree starting with $PARTIAL_HASH..."
+
+git rev-list "$REV_RANGE" | while read COMMIT; do
+  ENTRY=$(git ls-tree "$COMMIT" "$FOLDER_PATH" 2>/dev/null)
+  TREE_HASH=$(echo "$ENTRY" | awk '{print $3}')
+  if [[ "$TREE_HASH" == "$PARTIAL_HASH"* ]]; then
+    echo "Match: $COMMIT (tree: $TREE_HASH)"
+  fi
+done
