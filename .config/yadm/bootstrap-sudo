@@ -282,7 +282,7 @@ httpie
   fi
 
   # install fuzzy matcher (^R, Alt-C, ^T, **)
-  if [ -x "$(command -v fzf)" ]; then
+  if [ -d ~/.fzf ]; then
     pushd ~/.fzf
     git pull
     ./install --bin
