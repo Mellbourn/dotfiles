@@ -618,11 +618,15 @@ function jwtdp() {
   jwtd $1 | jq -r .ext.persona_krn | choose -f ':' -1 | pbcopy
 }
 
+function krnsha() {
+  echo -n "$1" | sha512sum | choose 0 | pbcopy
+}
+
 # sha of persona id for k
 function jwtds() {
   jwtdp $1
   krn=$(pbpaste)
-  echo -n "$krn" | sha512sum | choose 0 | pbcopy
+  krnsha "$krn"
 }
 
 # copies file to clipboard. You can then
