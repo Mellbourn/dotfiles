@@ -860,3 +860,7 @@ fi
 #END=$(gdate +%s.%N)
 #echo "$END - $START" | bc
 #zprof
+
+if [ -n "$NEVER" ]; then
+  export PATH=$HOME/.local/bin:$PATH
+fi

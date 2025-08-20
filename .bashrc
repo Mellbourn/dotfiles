@@ -33,3 +33,5 @@ fi
 if [ -n "$NEVER" ]; then
   source ~/.keprc
 fi
+
+export PATH=$HOME/.local/bin:$PATH
