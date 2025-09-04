@@ -311,6 +311,8 @@ fi
 ###############################################################################
 # macOS
 ###############################################################################
+sudo ~/.local/bin/enable-touchid-sudo.sh
+
 if ! [ -d "/opt/homebrew/bin" ]; then
   # the /opt/homebrew path is hard coded n gpg-agent.conf
   sudo mkdir -p /opt/homebrew/bin
