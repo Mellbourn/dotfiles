@@ -6,6 +6,7 @@ alias d='dirs -v | head -10'
 #personal
 alias cliplast='fc -ln|tail -1|pbcopy'
 alias cop='gh copilot suggest -t shell'
+alias copgit='gh copilot suggest -t git'
 alias cp='cp -v'
 alias cr='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
 alias dkill='docker stop $(docker ps -a -q)'
