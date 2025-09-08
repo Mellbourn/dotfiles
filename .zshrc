@@ -345,9 +345,9 @@ zinit wait'1' lucid as"completion" light-mode pick"_*" for nilsonholger/osx-zsh-
 
 zinit wait'1' lucid light-mode for mellbourn/zabb
 
-# fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189
-if [[ -x $(command -v fzf) ]]; then
-  zinit wait'1' lucid atclone'source fzf-tab.zsh && build-fzf-tab-module' atpull'%atclone' for Aloxaf/fzf-tab
+# fzf-tab doesn't currently work in Ubuntu https://github.com/Aloxaf/fzf-tab/issues/189, also fails at K
+if [[ -x $(command -v fzf) ]] && [[ -z "$KLA" ]]; then
+ zinit wait'1' lucid atclone'source fzf-tab.zsh && build-fzf-tab-module' atpull'%atclone' for Aloxaf/fzf-tab
 fi
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
