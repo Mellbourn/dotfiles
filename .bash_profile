@@ -255,8 +255,6 @@ else
   export DISABLE_PPS_LOG=1
   # COREPACK_ENABLE_UNSAFE_CUSTOM_URLS is necessary for jest to work in vscode at k
   export COREPACK_ENABLE_UNSAFE_CUSTOM_URLS=1
-  # this is needed for 'yarn tsm:link' to work (to fix "Cannot set properties of undefined (setting 'YAML')")
-  export PPS_TSM_ROOT=$HOME/Klarna/wt/2task/support/transaction-state-master
 fi
 
 # bc settings
