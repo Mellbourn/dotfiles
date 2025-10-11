@@ -226,7 +226,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   if [[ -z "$KLA" ]]; then
     brew uninstall watchman
   fi
-  brew untap homebrew/command-not-found charmbracelet/tap jakehilborn/jakehilborn jesseduffield/lazygit
+  brew untap ankitpokhrel/jira-cli charmbracelet/tap jakehilborn/jakehilborn jesseduffield/lazygit homebrew/command-not-found noahgorstein/tap
   set -e
 
   brew cleanup
