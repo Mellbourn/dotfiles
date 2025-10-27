@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Usage: ./list-treeish [-d <folder_path>] [-n <number>]
+# Example: ./list-treeish -d post-purchase -n 10
+
+FOLDER_PATH="$HOME/Klarna/klarna-app-services/services/post-purchase"
+NUM_COMMITS=5
+
+while getopts "d:n:" opt; do
+  case $opt in
+    d) FOLDER_PATH="$OPTARG" ;;
+    n) NUM_COMMITS="$OPTARG" ;;
+    \?) echo "Usage: $0 [-d <folder_path>] [-n <number>]" >&2
+        exit 1 ;;
+  esac
+done
+
+
+git log -n "$NUM_COMMITS" --pretty=tformat:"%H|%ct|%an|%s" -- "$FOLDER_PATH" | while IFS='|' read -r COMMIT TS AUTHOR MSG; do
+  TREE_HASH=$(git ls-tree -d "$COMMIT" "$FOLDER_PATH" 2>/dev/null | awk '{print $3}')
+  if [ -n "$TREE_HASH" ]; then
+    ISO_DATE=$(date -r "$TS" +"%Y-%m-%d %H:%M:%S")
+    TREE_COLOR="\033[32m"    # Green
+    AUTHOR_COLOR="\033[35m"  # Purple
+    TIME_COLOR="\033[36m"    # Cyan
+    COMMIT_COLOR="\033[33m"  # Yellow
+    RESET="\033[0m"
+    printf "${TREE_COLOR}%-11s${RESET} ${AUTHOR_COLOR}%-15s${RESET} ${TIME_COLOR}%-19s${RESET} %.72s ${COMMIT_COLOR}%s${RESET}\n" "${TREE_HASH:0:11}" "$AUTHOR" "$ISO_DATE" "$MSG" "${COMMIT:0:11}"
+  fi
+done
