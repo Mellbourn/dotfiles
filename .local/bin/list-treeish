@@ -4,7 +4,7 @@
 # Example: ./list-treeish -d post-purchase -n 10
 
 FOLDER_PATH="$HOME/Klarna/klarna-app-services/services/post-purchase"
-NUM_COMMITS=5
+NUM_COMMITS=4
 
 while getopts "d:n:" opt; do
   case $opt in
