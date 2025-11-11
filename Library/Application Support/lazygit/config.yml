@@ -9,9 +9,9 @@ gui:
       # - reverse
 git:
   branchLogCmd: "git log --graph {{branchName}} --"
-  paging:
-    colorArg: always
-    pager: delta --true-color never --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --true-color never --paging=never
   allBranchesLogCmds:
     - git log --graph --all
 refresher:
