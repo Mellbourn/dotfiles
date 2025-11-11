@@ -15,9 +15,24 @@ while getopts "d:n:" opt; do
   esac
 done
 
+# Find the git repository root
+GIT_ROOT=$(git -C "$FOLDER_PATH" rev-parse --show-toplevel 2>/dev/null || git rev-parse --show-toplevel 2>/dev/null)
+if [ -z "$GIT_ROOT" ]; then
+  echo "Error: Not in a git repository" >&2
+  exit 1
+fi
 
-git log -n "$NUM_COMMITS" --pretty=tformat:"%H|%ct|%an|%s" -- "$FOLDER_PATH" | while IFS='|' read -r COMMIT TS AUTHOR MSG; do
-  TREE_HASH=$(git ls-tree -d "$COMMIT" "$FOLDER_PATH" 2>/dev/null | awk '{print $3}')
+# Calculate relative path from git root to folder
+if [ -d "$FOLDER_PATH" ]; then
+  REL_PATH=$(realpath --relative-to="$GIT_ROOT" "$FOLDER_PATH" 2>/dev/null || echo "$FOLDER_PATH")
+else
+  REL_PATH="$FOLDER_PATH"
+fi
+
+pushd "$GIT_ROOT" > /dev/null || exit 1
+
+git log -n "$NUM_COMMITS" --pretty=tformat:"%H|%ct|%an|%s" -- "$REL_PATH" | while IFS='|' read -r COMMIT TS AUTHOR MSG; do
+  TREE_HASH=$(git ls-tree -d "$COMMIT" "$REL_PATH" 2>/dev/null | awk '{print $3}')
   if [ -n "$TREE_HASH" ]; then
     ISO_DATE=$(date -r "$TS" +"%Y-%m-%d %H:%M:%S")
     TREE_COLOR="\033[32m"    # Green
@@ -25,6 +40,8 @@ git log -n "$NUM_COMMITS" --pretty=tformat:"%H|%ct|%an|%s" -- "$FOLDER_PATH" | w
     TIME_COLOR="\033[36m"    # Cyan
     COMMIT_COLOR="\033[33m"  # Yellow
     RESET="\033[0m"
-    printf "${TREE_COLOR}%-11s${RESET} ${AUTHOR_COLOR}%-15s${RESET} ${TIME_COLOR}%-19s${RESET} %.72s ${COMMIT_COLOR}%s${RESET}\n" "${TREE_HASH:0:11}" "$AUTHOR" "$ISO_DATE" "$MSG" "${COMMIT:0:11}"
+    printf "${TREE_COLOR}%-11s${RESET} ${AUTHOR_COLOR}%-15s${RESET} ${TIME_COLOR}%-19s${RESET} ${COMMIT_COLOR}%s${RESET} %.72s\n" "${TREE_HASH:0:11}" "$AUTHOR" "$ISO_DATE" "${COMMIT:0:11}" "$MSG"
   fi
 done
+
+popd > /dev/null || exit 1
