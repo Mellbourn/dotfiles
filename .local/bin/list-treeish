@@ -40,7 +40,7 @@ git log -n "$NUM_COMMITS" --pretty=tformat:"%H|%ct|%an|%s" -- "$REL_PATH" | whil
     TIME_COLOR="\033[36m"    # Cyan
     COMMIT_COLOR="\033[33m"  # Yellow
     RESET="\033[0m"
-    printf "${TREE_COLOR}%-11s${RESET} ${AUTHOR_COLOR}%-15s${RESET} ${TIME_COLOR}%-19s${RESET} ${COMMIT_COLOR}%s${RESET} %.72s\n" "${TREE_HASH:0:11}" "$AUTHOR" "$ISO_DATE" "${COMMIT:0:11}" "$MSG"
+    printf "${TREE_COLOR}%-11s${RESET} ${AUTHOR_COLOR}%-15s${RESET} ${TIME_COLOR}%-19s${RESET} ${COMMIT_COLOR}%s${RESET} %.72s\n" "${TREE_HASH:0:11}" "${AUTHOR:0:15}" "$ISO_DATE" "${COMMIT:0:11}" "$MSG"
   fi
 done
 
