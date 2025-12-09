@@ -26,7 +26,9 @@ fi
 export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar"
 export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX"
 
-if [ -x "$(command -v code)" ]; then
+if [ -x "$(command -v cursor)" ]; then
+  export EDITOR="cursor -wr"
+elif [ -x "$(command -v code)" ]; then
   export EDITOR="code -wr"
 else
   export EDITOR=vi
