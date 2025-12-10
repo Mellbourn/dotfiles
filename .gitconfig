@@ -120,3 +120,5 @@ smudge = git-lfs smudge -- %f
 sort = refname # KLA
 [branch]
 sort = committerdate # KLA
+[lfs "ssh://klarna_225322@klarna.ghe.com"]
+	sshtransfer = never
