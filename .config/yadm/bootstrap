@@ -588,13 +588,14 @@ xcrun simctl delete unavailable || true
 # open in Visual Studio Code
 #duti -s com.microsoft.VSCode .js all           # javascript - extensions work too
 #duti -s com.microsoft.VSCode .ts all           # typescript
-duti -s com.microsoft.VSCode .md all           # markdown
-duti -s com.microsoft.VSCode com.apple.log all # .log
-duti -s com.microsoft.VSCode public.json all
-duti -s com.microsoft.VSCode public.plain-text all # text files
-duti -s com.microsoft.VSCode public.text all       # does this have a real effect?
-duti -s com.microsoft.VSCode public.xml all
-duti -s com.microsoft.VSCode public.yaml all
+# com.todesktop.230313mzl4w4u92 is Cursor
+duti -s com.todesktop.230313mzl4w4u92 .md all           # markdown
+duti -s com.todesktop.230313mzl4w4u92 com.apple.log all # .log
+duti -s com.todesktop.230313mzl4w4u92 public.json all
+duti -s com.todesktop.230313mzl4w4u92 public.plain-text all # text files
+duti -s com.todesktop.230313mzl4w4u92 public.text all       # does this have a real effect?
+duti -s com.todesktop.230313mzl4w4u92 public.xml all
+duti -s com.todesktop.230313mzl4w4u92 public.yaml all
 # seems to have no effecxt: public.data, .lock
 # open in chrome
 #duti -s com.google.chrome public.svg-image all # .svg
