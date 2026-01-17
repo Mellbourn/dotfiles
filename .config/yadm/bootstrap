@@ -480,7 +480,7 @@ if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
 fi
 
 if [ -x "$(command -v zsh)" ]; then
-  zsh -ic "zinit self-update; zinit update --all; zinit cclear"
+  zsh -ic "zinit self-update; zinit update --all; zinit cclear; zi delete -y ellie/atuin"
 fi
 
 # set up alternate gitconfig file used to determine local settings
