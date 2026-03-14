@@ -132,5 +132,20 @@ myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConf
 -- -- Start the WiFi watcher
 -- wifiWatcher:start()
 
+-- if media key (e.g. play on airpods) starts apple music, kill it immediately
+local readonlyMusicBundle = "com.apple.Music"
+
+local readonlyWatcher = hs.application.watcher.new(function(appName, eventType, appObject)
+  if eventType == hs.application.watcher.launched then
+    if appObject:bundleID() == readonlyMusicBundle then
+      hs.timer.doAfter(0.2, function()
+        if appObject:isRunning() then
+          appObject:kill()
+        end
+      end)
+    end
+  end
+end)
+readonlyWatcher:start()
 
 hs.alert.show("Config loaded")
