@@ -216,6 +216,7 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   # some uninstalls must be made before update
   set +e
+  brewSafeUninstallFormula xcodes
   brew untap homebrew/homebrew-cask-drivers # for philips-hue-sync and luna-display
   brew untap aws/tap
   brew untap hpedrorodrigues/tools
@@ -226,7 +227,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   if [[ -z "$KLA" ]]; then
     brew uninstall watchman
   fi
-  brew untap ankitpokhrel/jira-cli charmbracelet/tap jakehilborn/jakehilborn jesseduffield/lazygit homebrew/command-not-found noahgorstein/tap
+  brew untap ankitpokhrel/jira-cli charmbracelet/tap jakehilborn/jakehilborn jesseduffield/lazygit homebrew/command-not-found noahgorstein/tap robotsandpencils/homebrew-made
   set -e
 
   brew cleanup
