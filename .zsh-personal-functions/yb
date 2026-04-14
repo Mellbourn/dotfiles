@@ -54,17 +54,17 @@ yb() {
             # if not, request sudo login right away
             sudo -v
         fi
-        echo "\n$(date +%F\ %T)" >>$logfile &&
-            script -qefa $logfile -c 'yadm pull' &&
-            (
-                if [[ "$(yadm --version | tail -1)" == "yadm version 3"* ]]; then
-                    script -qefa $logfile -c "yadm bootstrap"
-                else
-                    script -qefa $logfile -c "$HOME/.config/yadm/bootstrap"
-                fi
-            ) &&
-            script -qefa $logfile -c "$HOME/.config/yadm/bootstrap-sudo" &&
-            script -qefa $logfile -c "yadm push"
+        (
+            echo "\n$(date +%F\ %T)"
+            script -q -c 'yadm pull' /dev/null
+            if [[ "$(yadm --version | tail -1)" == "yadm version 3"* ]]; then
+                script -q -c 'yadm bootstrap' /dev/null
+            else
+                script -q -c "$HOME/.config/yadm/bootstrap" /dev/null
+            fi
+            script -q -c "sudo $HOME/.config/yadm/bootstrap-sudo" /dev/null
+            script -q -c 'yadm push' /dev/null
+        ) 2>&1 | tee -a $logfile
     fi
 }
 yb "$@"
