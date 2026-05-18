@@ -137,9 +137,11 @@ fi
 asdf install nodejs latest:22
 pushd ~/code/desenio
 asdf set nodejs "$DESENIO_NODE_VERSION"
+npm i -g corepack
 corepack enable
 asdf reshim nodejs
 yarn set version stable
+npm i -g typescript-language-server typescript
 popd
 
 
@@ -585,7 +587,6 @@ gh extension upgrade --all
 
 npm i -g zx
 npm i -g tsx
-npm i -g corepack
 # @swc/core needed for _debugging_ ts-node, but not for running it
 if [[ -z "$KLA" ]]; then
   npm i -g ts-node @swc/core
