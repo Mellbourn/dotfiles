@@ -32,6 +32,9 @@ if [[ $(uname) == 'Darwin' ]]; then
   OS_VERSION=$(sw_vers -productVersion)
 fi
 
+# Default HOMEBREW_PREFIX when running under sudo (which strips the user environment)
+HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-$([ -d /opt/homebrew ] && echo /opt/homebrew || echo /usr/local)}"
+
 ###############################################################################
 # Linux (and Windows Subsystem for Linux)                                     #
 ###############################################################################
@@ -311,7 +314,25 @@ fi
 ###############################################################################
 # macOS
 ###############################################################################
+
 sudo ~/.local/bin/enable-touchid-sudo.sh
+
+# Add pam-reattach so TouchID works inside tmux (idempotent)
+PAM_FILE=/etc/pam.d/sudo_local
+REATTACH_SO="${HOMEBREW_PREFIX}/lib/pam/pam_reattach.so"
+if [[ -f "$PAM_FILE" ]] && [[ -f "$REATTACH_SO" ]] && ! sudo grep -q "pam_reattach" "$PAM_FILE"; then
+  TMPFILE=$(mktemp)
+  # shellcheck disable=SC2024  # sudo reads PAM_FILE; redirect to our own TMPFILE is intentional
+  sudo awk -v module="auth       optional       ${REATTACH_SO}" \
+    '/pam_tid\.so/{ print module } 1' "$PAM_FILE" > "$TMPFILE"
+  if grep -q "pam_reattach" "$TMPFILE" && grep -q "pam_tid" "$TMPFILE"; then
+    sudo cp "$TMPFILE" "$PAM_FILE"
+    echo "pam-reattach added to $PAM_FILE"
+  else
+    echo "Warning: pam_reattach insertion sanity check failed — $PAM_FILE unchanged"
+  fi
+  rm -f "$TMPFILE"
+fi
 
 if ! [ -d "/opt/homebrew/bin" ]; then
   # the /opt/homebrew path is hard coded n gpg-agent.conf
