@@ -69,7 +69,8 @@ if [ ! -d ~/.zinit ]; then
   git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
 fi
 
-export DESENIO_NODE_VERSION="22.22.2"
+export DESENIO_MAJOR_NODE_VERSION="24"
+export DESENIO_NODE_VERSION="$DESENIO_MAJOR_NODE_VERSION.16.0"
 
 if [[ -z "$KLA" ]]; then
   # install asdf version manager https://asdf-vm.com/
@@ -138,7 +139,7 @@ if [[ -z "$KLA" ]]; then
 fi
 
 # Desenio
-asdf install nodejs latest:22
+asdf install nodejs latest:$DESENIO_MAJOR_NODE_VERSION
 pushd ~/code/desenio
 asdf set nodejs "$DESENIO_NODE_VERSION"
 npm i -g corepack
