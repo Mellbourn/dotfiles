@@ -129,6 +129,7 @@ addLastInPath() {
 }
 ### environment variables
 export HOMEBREW_NO_ASK=1
+export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 addLastInPath "$HOMEBREW_PREFIX/sbin"
 export MANPATH="$HOMEBREW_PREFIX/share/man${MANPATH+:$MANPATH}:"
 export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
