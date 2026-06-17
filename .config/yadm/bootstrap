@@ -590,6 +590,7 @@ gh extension remove github/gh-copilot
 set -e
 gh extension upgrade --all
 
+npm i -g openclaw
 npm i -g zx
 npm i -g tsx
 # @swc/core needed for _debugging_ ts-node, but not for running it
