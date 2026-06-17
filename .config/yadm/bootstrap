@@ -251,7 +251,14 @@ if [[ $(uname) == 'Darwin' ]]; then
   if [[ -z "$KLA" ]]; then
     brew uninstall watchman
   fi
-  brew untap ankitpokhrel/jira-cli charmbracelet/tap jakehilborn/jakehilborn jesseduffield/lazygit homebrew/command-not-found noahgorstein/tap robotsandpencils/homebrew-made
+  brew untap ankitpokhrel/jira-cli
+  brew untap charmbracelet/tap
+  brew untap jakehilborn/jakehilborn
+  brew untap jesseduffield/lazygit
+  brew untap homebrew/command-not-found
+  brew untap noahgorstein/tap
+  brew untap robotsandpencils/homebrew-made
+  brew untap facebook/fb
   set -e
 
   brew cleanup
@@ -263,12 +270,15 @@ if [[ $(uname) == 'Darwin' ]]; then
   if [[ -z "$KLA" ]]; then
     #brew tap aws/tap               # for aws-sam-cli
     brew tap wix/brew # for applesimutils
+    brew trust wix/brew
     #brew tap robotsandpencils/made # for xcodes
   fi
-  brew tap facebook/fb # for idb-companion for flipper
-  #brew tap ankitpokhrel/jira-cli   # for jira-cli
-  #brew tap jakehilborn/jakehilborn # for displayplacer
-  brew tap kardolus/chatgpt-cli
+  # brew tap facebook/fb # for idb-companion for flipper
+  # brew trust facebook/fb
+  # #brew tap ankitpokhrel/jira-cli   # for jira-cli
+  # #brew tap jakehilborn/jakehilborn # for displayplacer
+  # brew trust jesseduffield/lazygit
+  # brew trust noahgorstein/tap # jqp
 
   # not all computers need logitech drivers, also, these need sudo
   # brew install --cask homebrew/cask-drivers/logitech-gaming-software
