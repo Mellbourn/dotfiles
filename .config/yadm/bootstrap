@@ -145,7 +145,10 @@ asdf set nodejs "$DESENIO_NODE_VERSION"
 npm i -g corepack
 corepack enable
 asdf reshim nodejs
-yarn set version stable
+#yarn set version stable
+#corepack use pnpm@latest-11
+# don't try to update turbo, it wants to update the code
+#pnpm dlx @turbo/codemod@latest update
 npm i -g typescript-language-server typescript
 popd
 
