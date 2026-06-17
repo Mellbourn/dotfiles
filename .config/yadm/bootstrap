@@ -97,21 +97,21 @@ if [[ -z "$KLA" ]]; then
   asdf plugin add nodejs
   asdf plugin add java
 
-  asdf plugin add ruby
+  #asdf plugin add ruby
   asdf plugin add python
   asdf plugin add bundler
 
   set +e
   asdf install nodejs latest
   asdf install python latest
-  if [ -z "$OS_RASPBIAN" ] && [ -z "$OS_UBUNTU" ]; then
-    asdf install ruby latest
-    if [ -x "$(command -v asdf)" ] && version_gte "$(asdf --version | sed 's/.* //' | sed 's/v//' | sed 's/\-.*//')" 0.16; then
-      asdf set -u ruby latest
-    else
-      asdf global ruby latest
-    fi
-  fi
+  # if [ -z "$OS_RASPBIAN" ] && [ -z "$OS_UBUNTU" ]; then
+  #   asdf install ruby latest
+  #   if [ -x "$(command -v asdf)" ] && version_gte "$(asdf --version | sed 's/.* //' | sed 's/v//' | sed 's/\-.*//')" 0.16; then
+  #     asdf set -u ruby latest
+  #   else
+  #     asdf global ruby latest
+  #   fi
+  # fi
 
   # if no versions are installed, the asdf plugin will fall back to "system"
   asdf install lazydocker latest
