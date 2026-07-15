@@ -150,6 +150,7 @@ asdf reshim nodejs
 # don't try to update turbo, it wants to update the code
 #pnpm dlx @turbo/codemod@latest update
 npm i -g typescript-language-server typescript
+python3 -m pip install --user --upgrade claude-swap
 popd
 
 
