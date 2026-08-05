@@ -46,15 +46,39 @@ if [[ $(uname) == 'Linux' ]]; then
     sudo apt install -y --reinstall vim
   fi
   set +e
+  # If dpkg was interrupted previously, attempt to recover before making changes
+  sudo dpkg --configure -a || true
+  sudo apt-get -f install -y || true
+
   # add repo to get newest git
   sudo add-apt-repository -y ppa:git-core/ppa
-  # add repo to get newest tmux
-  sudo add-apt-repository -y ppa:pi-rho/dev
-  # add repo to get gh
-  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-  sudo apt-add-repository -y https://cli.github.com/packages
-  sudo apt update
-  sudo apt full-upgrade -y
+
+  # determine current Ubuntu codename (if available) so we can skip repos that
+  # don't provide a Release file for this release (avoids apt errors like
+  # "does not have a Release file").
+  UBUNTU_CODENAME=""
+  if [ -x "$(command -v lsb_release)" ]; then
+    UBUNTU_CODENAME=$(lsb_release -cs)
+  fi
+
+  # add repo to get newest tmux only if it supports this Ubuntu codename
+  if [ -n "$UBUNTU_CODENAME" ]; then
+    if curl -fsSL "https://ppa.launchpadcontent.net/pi-rho/dev/ubuntu/dists/${UBUNTU_CODENAME}/Release" >/dev/null 2>&1; then
+      sudo add-apt-repository -y ppa:pi-rho/dev
+    else
+      echo "Skipping ppa:pi-rho/dev; no Release file for ${UBUNTU_CODENAME}"
+    fi
+  else
+    sudo add-apt-repository -y ppa:pi-rho/dev || true
+  fi
+
+  # For GitHub CLI we now use the signed keyring method later in the script
+  # (below), so avoid adding it here with the older apt-key/apt-add-repository
+  # approach which may cause the "does not have a Release file" error.
+
+  # Refresh package lists (don't fail the whole script if update has issues)
+  sudo apt update || true
+  sudo apt full-upgrade -y || true
   # tmux-next, ripgrep and bat are absent from raspbian
   apps="
     zsh
@@ -144,13 +168,20 @@ httpie
     fi
   fi
 
-  # install gh
+  # install gh (GitHub CLI) using the official signed keyring and the
+  # 'stable' distribution. If the upstream 'stable' Release is not present,
+  # skip adding the source to avoid "does not have a Release file" errors.
   type -p curl >/dev/null || sudo apt install curl -y
-  curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
-    sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
-    sudo apt update
-  sudo apt install gh -y
+  if curl -fsSL "https://cli.github.com/packages/dists/stable/Release" >/dev/null 2>&1; then
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
+      sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
+      echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
+      sudo apt update || true
+    sudo apt install -y gh || true
+  else
+    echo "GitHub CLI 'stable' release not available; skipping cli.github.com source"
+    sudo apt install -y gh || true
+  fi
 
   set -e
 
