@@ -246,14 +246,12 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew untap hpedrorodrigues/tools
   brew untap eth-p/software
   brew untap robotsandpencils/made
-  brew untap charmbracelet/tap
   brew untap git-time-metric/gtm
   brew uninstall charmbracelet/tap/mods displayplacer curlie lazygit jira-cli freeze idb-companion gtm
   if [[ -z "$KLA" ]]; then
     brew uninstall watchman
   fi
   brew untap ankitpokhrel/jira-cli
-  brew untap charmbracelet/tap
   brew untap jakehilborn/jakehilborn
   brew untap jesseduffield/lazygit
   brew untap homebrew/command-not-found
