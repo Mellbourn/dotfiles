@@ -1,0 +1,75 @@
+# What protocol to use when performing Git operations. Supported values: 'ssh', 'https'.
+git_protocol: ssh
+# Prefix used by 'glab stack' when naming generated branches. Defaults to the
+# current user's username (from 'os/user.Current'), falling back to 'glab-stack' if unavailable.
+branch_prefix:
+# Name of the 'git remote' that points at the GitLab repository. Used to
+# resolve which remote to operate against when multiple are configured.
+remote_alias:
+# What editor glab should run when creating issues, merge requests, etc. This global config cannot be overridden by hostname.
+editor:
+# What browser glab should run when opening links. This global config cannot be overridden by hostname.
+browser:
+# Your desired pager command to use, such as 'less -R'. Takes precedence over the PAGER environment variable. GLAB_PAGER takes precedence over both.
+glab_pager:
+# Output more logging information, including underlying Git commands, expanded aliases, and DNS error details.
+debug: false
+# Set your desired Markdown renderer style. Available options are [dark, light, notty]. To set a custom style, refer to https://github.com/charmbracelet/glamour#styles
+glamour_style: dark
+# Allow glab to automatically check for updates and notify you when there are new updates.
+# Setting the environment variable to true also forces a check, bypassing the once-a-day interval.
+check_update: true
+# Last update check timestamp, used for checking when the last update check was performed.
+last_update_check_timestamp: 2026-09-09T12:55:28+02:00
+# Show a one-time post-upgrade banner pointing at 'glab whatsnew' when a new version is detected.
+show_whats_new: true
+# Last glab version a post-upgrade banner was shown for (automatically set).
+last_seen_version: v1.117.0
+# Last glab version 'glab whatsnew' rendered notes for (automatically set).
+last_whatsnew_version: v1.100.0
+# Show a notice when an installed agent skill (bundled or remote) has updates available.
+notify_skill_updates: true
+# Whether or not to display hyperlinks in terminal output. Defaults to true (enabled for TTYs). Set to false to disable. Force hyperlinks in non-TTY environments by setting FORCE_HYPERLINKS=1.
+display_hyperlinks: true
+# Default GitLab hostname to use.
+host: gitlab.com
+# Set to true (1) to disable prompts, or false (0) to enable them.
+no_prompt: false
+# Set to false (0) to disable sending usage data to your GitLab instance or true (1) to enable.
+# See https://docs.gitlab.com/administration/settings/usage_statistics/
+# for more information
+telemetry: true
+# Automatically run GitLab Duo CLI without prompting (true/false). Set to true to skip the confirmation prompt.
+duo_cli_auto_run:
+# Automatically download Duo CLI binary without prompting (true/false).
+duo_cli_auto_download:
+# Path to the installed Duo CLI binary (automatically set). Default: ~/.config/glab-cli/bin/duo
+duo_cli_binary_path:
+# Version of the installed Duo CLI binary (automatically set).
+duo_cli_binary_version:
+# SHA256 checksum of the installed Duo CLI binary (automatically set).
+duo_cli_binary_checksum:
+# Last time an update check was performed (automatically set).
+duo_cli_last_update_check:
+# Automatically run Orbit local CLI without prompting (true/false). Set to true to skip the confirmation prompt.
+orbit_local_auto_run:
+# Automatically download Orbit local CLI binary without prompting (true/false).
+orbit_local_auto_download:
+# Path to the installed Orbit local CLI binary (automatically set). Default: ~/.config/glab-cli/bin/orbit
+orbit_local_binary_path:
+# Version of the installed Orbit local CLI binary (automatically set).
+orbit_local_binary_version:
+# SHA256 checksum of the installed Orbit local CLI binary (automatically set).
+orbit_local_binary_checksum:
+# Last time an Orbit local CLI update check was performed (automatically set).
+orbit_local_last_update_check:
+# Configuration specific for GitLab instances.
+hosts:
+    gitlab.wikinggruppen.se:
+        client_id: wgr
+        use_keyring: "true"
+        container_registry_domains: gitlab.wikinggruppen.se,gitlab.wikinggruppen.se:443,registry.gitlab.wikinggruppen.se
+        api_host: gitlab.wikinggruppen.se
+        git_protocol: ssh
+        api_protocol: https
+        user: Mellbourn
