@@ -31,6 +31,10 @@ fi
 #export PROJ_DMAZE=1
 #export FIRSTVET=1
 #fi
+# main dev machine. LocalHostName, since HostName is unset and hostname follows the network
+if [[ $(uname) == 'Darwin' && $(scutil --get LocalHostName) == "Klass-MacBook-Pro-16-2023" ]]; then
+  export PROJ_DESENIO=1
+fi
 if [ -f "/Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.bom" ]; then
   export ROSETTA_INSTALLED=1
 fi
@@ -150,9 +154,11 @@ asdf reshim nodejs
 # don't try to update turbo, it wants to update the code
 #pnpm dlx @turbo/codemod@latest update
 npm i -g typescript-language-server typescript
-# portless (#desenio specific): serves synapse's https://<branch>.desenio.localhost.
-# Its proxy daemon is installed by bootstrap-sudo, which expects it under the Desenio node.
-npm i -g portless
+if [[ -n "$PROJ_DESENIO" ]]; then
+  # portless (#desenio specific): serves synapse's https://<branch>.desenio.localhost.
+  # Its proxy daemon is installed by bootstrap-sudo, which expects it under the Desenio node.
+  npm i -g portless
+fi
 python3 -m pip install --user --upgrade claude-swap
 popd
 

@@ -16,6 +16,10 @@ fi
 if [[ $(hostname) == "FXF"* ]]; then
   export KLA=1
 fi
+# main dev machine. LocalHostName, since HostName is unset and hostname follows the network
+if [[ $(uname) == 'Darwin' && $(scutil --get LocalHostName) == "Klass-MacBook-Pro-16-2023" ]]; then
+  export PROJ_DESENIO=1
+fi
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
   OS_UBUNTU=1
@@ -422,15 +426,17 @@ sudo chsh -s "$HOMEBREW_PREFIX"/bin/zsh "$(whoami)"
 # installed by bootstrap, under the Desenio node version.
 # The plist pins absolute node and portless paths, so reinstall on every run to
 # follow Desenio node upgrades (asdf-clean removes the old node).
-DESENIO_NODE=$(cd ~/code/desenio && sudo -H -u "${SUDO_USER:-$USER}" "$HOMEBREW_PREFIX/bin/asdf" which node) || true
-PORTLESS_CLI="$(dirname "$(dirname "$DESENIO_NODE")")/lib/node_modules/portless/dist/cli.js"
-if [ -x "$DESENIO_NODE" ] && [ -f "$PORTLESS_CLI" ]; then
-  # /usr/bin first: when a missing CA gets generated here, Homebrew openssl@1.1
-  # writes Basic Constraints twice, and macOS then rejects the CA.
-  env PATH="/usr/bin:$PATH" HOME="$HOME" PORTLESS_STATE_DIR="$HOME/.portless" "$DESENIO_NODE" "$PORTLESS_CLI" service install ||
-    echo "portless service install failed, run it manually"
-else
-  echo "portless not found under the Desenio node, skipping (run bootstrap first)"
+if [[ -n "$PROJ_DESENIO" ]]; then
+  DESENIO_NODE=$(cd ~/code/desenio && sudo -H -u "${SUDO_USER:-$USER}" "$HOMEBREW_PREFIX/bin/asdf" which node) || true
+  PORTLESS_CLI="$(dirname "$(dirname "$DESENIO_NODE")")/lib/node_modules/portless/dist/cli.js"
+  if [ -x "$DESENIO_NODE" ] && [ -f "$PORTLESS_CLI" ]; then
+    # /usr/bin first: when a missing CA gets generated here, Homebrew openssl@1.1
+    # writes Basic Constraints twice, and macOS then rejects the CA.
+    env PATH="/usr/bin:$PATH" HOME="$HOME" PORTLESS_STATE_DIR="$HOME/.portless" "$DESENIO_NODE" "$PORTLESS_CLI" service install ||
+      echo "portless service install failed, run it manually"
+  else
+    echo "portless not found under the Desenio node, skipping (run bootstrap first)"
+  fi
 fi
 
 sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "This Mac belongs to Klas Mellbourn.\ne-mail: klas@mellbourn.net phone: +46 708 80 00 00\nReward offered for return of this Mac. No questions asked."
