@@ -527,6 +527,9 @@ fi
 # note that this is for completion of cyme only, the command is gotten from cargo
 zinit wait'2' lucid light-mode from"gh" pick"doc/_cyme" as"completion" for tuna-f1sh/cyme
 
+# Per-directory Claude Code session colour (see ~/.claude/session-color.zsh)
+[ -f "$HOME/.claude/session-color.zsh" ] && source "$HOME/.claude/session-color.zsh"
+
 ###############################################################################
 # add-ons installed by homebrew
 ###############################################################################
