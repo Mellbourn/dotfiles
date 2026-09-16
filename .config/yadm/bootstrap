@@ -150,6 +150,9 @@ asdf reshim nodejs
 # don't try to update turbo, it wants to update the code
 #pnpm dlx @turbo/codemod@latest update
 npm i -g typescript-language-server typescript
+# portless (#desenio specific): serves synapse's https://<branch>.desenio.localhost.
+# Its proxy daemon is installed by bootstrap-sudo, which expects it under the Desenio node.
+npm i -g portless
 python3 -m pip install --user --upgrade claude-swap
 popd
 

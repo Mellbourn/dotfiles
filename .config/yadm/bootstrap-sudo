@@ -413,6 +413,26 @@ if ! grep -q "$HOMEBREW_PREFIX/bin/zsh" "/etc/shells"; then
 fi
 sudo chsh -s "$HOMEBREW_PREFIX"/bin/zsh "$(whoami)"
 
+###############################################################################
+# portless (#desenio specific)
+###############################################################################
+# synapse's `pnpm dev` serves https://<branch>.desenio.localhost through the
+# portless proxy, which binds port 443 and therefore needs root. Install it as a
+# launchd daemon (sh.portless.proxy) so it starts at boot. portless itself is
+# installed by bootstrap, under the Desenio node version.
+# The plist pins absolute node and portless paths, so reinstall on every run to
+# follow Desenio node upgrades (asdf-clean removes the old node).
+DESENIO_NODE=$(cd ~/code/desenio && sudo -H -u "${SUDO_USER:-$USER}" "$HOMEBREW_PREFIX/bin/asdf" which node) || true
+PORTLESS_CLI="$(dirname "$(dirname "$DESENIO_NODE")")/lib/node_modules/portless/dist/cli.js"
+if [ -x "$DESENIO_NODE" ] && [ -f "$PORTLESS_CLI" ]; then
+  # /usr/bin first: when a missing CA gets generated here, Homebrew openssl@1.1
+  # writes Basic Constraints twice, and macOS then rejects the CA.
+  env PATH="/usr/bin:$PATH" HOME="$HOME" PORTLESS_STATE_DIR="$HOME/.portless" "$DESENIO_NODE" "$PORTLESS_CLI" service install ||
+    echo "portless service install failed, run it manually"
+else
+  echo "portless not found under the Desenio node, skipping (run bootstrap first)"
+fi
+
 sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "This Mac belongs to Klas Mellbourn.\ne-mail: klas@mellbourn.net phone: +46 708 80 00 00\nReward offered for return of this Mac. No questions asked."
 
 # supress "Disk Not Ejected Properly" for backup disk, since it does sleep  https://apple.stackexchange.com/a/12701/12219
