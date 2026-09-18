@@ -256,7 +256,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew untap eth-p/software
   brew untap robotsandpencils/made
   brew untap git-time-metric/gtm
-  brew uninstall charmbracelet/tap/mods displayplacer curlie lazygit jira-cli freeze idb-companion gtm
+  brew uninstall charmbracelet/tap/mods displayplacer curlie jira-cli freeze idb-companion gtm
   if [[ -z "$KLA" ]]; then
     brew uninstall watchman
   fi
@@ -279,6 +279,10 @@ if [[ $(uname) == 'Darwin' ]]; then
     #brew tap aws/tap               # for aws-sam-cli
     brew tap wix/brew # for applesimutils
     brew trust wix/brew
+    # the tap repo is the project itself, not chmouel/homebrew-lazyworktree, so the url is required
+    brew tap chmouel/lazyworktree https://github.com/chmouel/lazyworktree # for the lazyworktree cask
+    # without trust, brew ignores the tap entirely and the cask install aborts the script
+    brew trust --cask chmouel/lazyworktree/lazyworktree
     #brew tap robotsandpencils/made # for xcodes
   fi
   # brew tap facebook/fb # for idb-companion for flipper
@@ -334,6 +338,11 @@ if [[ $(uname) == 'Darwin' ]]; then
   # https://www.reddit.com/r/MacOS/comments/q9d772/homebrew_chromium_is_damaged_and_cant_be_openend/
   if [ -f "/Applications/Chromium.app" ]; then
     xattr -cr /Applications/Chromium.app
+  fi
+
+  # lazyworktree ships an unsigned binary; its cask caveat warns macOS will block it on first run
+  if [ -d "$HOMEBREW_PREFIX"/Caskroom/lazyworktree ]; then
+    xattr -dr com.apple.quarantine "$HOMEBREW_PREFIX"/Caskroom/lazyworktree 2>/dev/null || true
   fi
 
   if [ -n "$X86_OR_ROSETTA" ]; then
