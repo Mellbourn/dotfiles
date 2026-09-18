@@ -18,17 +18,17 @@ debug: false
 glamour_style: dark
 # Allow glab to automatically check for updates and notify you when there are new updates.
 # Setting the environment variable to true also forces a check, bypassing the once-a-day interval.
-check_update: true
+check_update: false
 # Last update check timestamp, used for checking when the last update check was performed.
-last_update_check_timestamp: 2026-09-16T16:42:16+02:00
+last_update_check_timestamp: 2026-09-17T16:55:31+02:00
 # Show a one-time post-upgrade banner pointing at 'glab whatsnew' when a new version is detected.
-show_whats_new: true
+show_whats_new: false
 # Last glab version a post-upgrade banner was shown for (automatically set).
 last_seen_version: v1.117.0
 # Last glab version 'glab whatsnew' rendered notes for (automatically set).
 last_whatsnew_version: v1.100.0
 # Show a notice when an installed agent skill (bundled or remote) has updates available.
-notify_skill_updates: true
+notify_skill_updates: false
 # Whether or not to display hyperlinks in terminal output. Defaults to true (enabled for TTYs). Set to false to disable. Force hyperlinks in non-TTY environments by setting FORCE_HYPERLINKS=1.
 display_hyperlinks: true
 # Default GitLab hostname to use.
