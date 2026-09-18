@@ -8,10 +8,12 @@ gui:
       - underline
       # - reverse
 git:
+  # lazygit changed the default to date; recency (reflog order) is the old behaviour
+  localBranchSortOrder: recency
   branchLogCmd: "git log --graph {{branchName}} --"
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --true-color never --paging=never
+      command: delta --true-color never --paging=never
   allBranchesLogCmds:
     - git log --graph --all
 refresher:
