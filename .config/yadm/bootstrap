@@ -265,8 +265,8 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew untap jesseduffield/lazygit
   brew untap homebrew/command-not-found
   brew untap noahgorstein/tap
+  brew untap kardolus/chatgpt-cli
   brew untap robotsandpencils/homebrew-made
-  brew untap facebook/fb
   set -e
 
   brew cleanup
