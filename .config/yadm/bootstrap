@@ -345,6 +345,12 @@ if [[ $(uname) == 'Darwin' ]]; then
     xattr -dr com.apple.quarantine "$HOMEBREW_PREFIX"/Caskroom/lazyworktree 2>/dev/null || true
   fi
 
+  # glab refuses to read its config unless it is 0600, and git only tracks the executable bit,
+  # so a fresh yadm clone or checkout of these leaves them 644
+  if [ -d "$HOME/Library/Application Support/glab-cli" ]; then
+    chmod 600 "$HOME/Library/Application Support/glab-cli"/*.yml
+  fi
+
   if [ -n "$X86_OR_ROSETTA" ]; then
     # TODO: when there are Apple Silicon versions of these packages, move the installation to the normal list
     brew install --cask yubico-yubikey-manager
