@@ -302,6 +302,28 @@ if [[ $(uname) == 'Darwin' ]]; then
     brewSafeUninstallCask $cask
   done
 
+  # Claude Code: use the native build, not the Homebrew cask. The cask went stale - it sat on
+  # 2.1.267 while 2.1.278 was out, and `brew outdated --cask` reported nothing - and it blocks
+  # claude's own updater. The native build self-updates and is not tied to an asdf node version.
+  # Use `latest`, not `stable`: stable trails by many patches (it was 2.1.267 while latest was
+  # 2.1.278), which is the same staleness the cask had.
+  # Login lives in the macOS keychain, so no re-authentication is needed.
+  if brew list --cask claude-code &>/dev/null; then
+    if pgrep -x claude >/dev/null; then
+      echo "WARNING: Claude Code sessions are running from the Homebrew binary."
+      echo "They keep working, but restart them to pick up the native install."
+    fi
+    # install first: this needs the brew claude still on PATH to invoke
+    claude install latest
+    brewSafeUninstallCask claude-code
+  elif ! command -v claude &>/dev/null && [ ! -x "$HOME/.local/bin/claude" ]; then
+    # Fresh machine: no cask and no claude, so there is nothing to run `claude install` with.
+    # This installer just fetches a checksummed binary and runs the same `claude install latest`.
+    # It does not touch shell rc files, so it relies on ~/.local/bin already being on PATH,
+    # which the dotfiles provide.
+    curl -fsSL https://claude.ai/install.sh | bash -s -- latest
+  fi
+
   stripCommentsAndWhitespace() {
     echo "$1" | sed '/^#/d' | sed 's/#.*//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed '/^$/d' | tr '[:space:]' '\n' | xargs -n1 | sort -u
   }
