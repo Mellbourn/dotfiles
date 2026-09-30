@@ -324,6 +324,16 @@ if [[ $(uname) == 'Darwin' ]]; then
     curl -fsSL https://claude.ai/install.sh | bash -s -- latest
   fi
 
+  # Skip Claude Code's trust prompt for the home folder. Claude never saves that answer itself,
+  # on purpose: non-git folders below home inherit the trust. ~/.claude.json is machine state and
+  # not tracked, so only this one flag is set, and only once claude has created the file.
+  if [ -f "$HOME/.claude.json" ] && command -v jq &>/dev/null; then
+    claudeJsonTmp=$(mktemp)
+    jq --arg home "$HOME" '.projects[$home].hasTrustDialogAccepted = true' "$HOME/.claude.json" >"$claudeJsonTmp" &&
+      cat "$claudeJsonTmp" >"$HOME/.claude.json"
+    rm -f "$claudeJsonTmp"
+  fi
+
   stripCommentsAndWhitespace() {
     echo "$1" | sed '/^#/d' | sed 's/#.*//' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed '/^$/d' | tr '[:space:]' '\n' | xargs -n1 | sort -u
   }
