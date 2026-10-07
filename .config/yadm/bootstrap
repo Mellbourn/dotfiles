@@ -158,6 +158,9 @@ if [[ -n "$PROJ_DESENIO" ]]; then
   # portless (#desenio specific): serves synapse's https://<branch>.desenio.localhost.
   # Its proxy daemon is installed by bootstrap-sudo, which expects it under the Desenio node.
   npm i -g portless
+  # Vercel CLI (#desenio specific): synapse's `pnpm run env:pull` runs `vercel env pull` (PR 2651).
+  # Needs a one-time `vercel login`, then `vercel link` in each app directory.
+  npm i -g vercel
 fi
 python3 -m pip install --user --upgrade claude-swap
 popd
