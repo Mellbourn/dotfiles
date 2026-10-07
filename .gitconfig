@@ -122,3 +122,5 @@ sort = refname # KLA
 sort = committerdate # KLA
 [lfs "ssh://klarna_225322@klarna.ghe.com"]
 	sshtransfer = never
+[maintenance]
+	repo = /Users/klas.mellbourn/code/desenio/synapse

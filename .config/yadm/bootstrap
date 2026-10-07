@@ -268,7 +268,8 @@ if [[ $(uname) == 'Darwin' ]]; then
 
   brew cleanup
   brew update
-  brew upgrade
+  # retry once: a single failed download makes upgrade exit non-zero, which would abort the script
+  brew upgrade || brew upgrade
 
   # is a separate upgrade for casks redundant?
   #brew upgrade --cask
