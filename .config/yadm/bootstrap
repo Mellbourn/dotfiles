@@ -157,6 +157,11 @@ if [[ -n "$PROJ_DESENIO" ]]; then
   npm i -g vercel
 fi
 python3 -m pip install --user --upgrade claude-swap
+# pip leaves the scripts alone when claude-swap is already current, so after an asdf Python
+# upgrade their shebang still names the removed install
+if ! "$HOME/.local/bin/cswap" --help >/dev/null 2>&1; then
+  python3 -m pip install --user --force-reinstall --no-deps claude-swap
+fi
 popd
 
 
