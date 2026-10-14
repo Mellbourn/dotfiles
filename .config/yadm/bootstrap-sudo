@@ -423,9 +423,9 @@ sudo chsh -s "$HOMEBREW_PREFIX"/bin/zsh "$(whoami)"
 # synapse's `pnpm dev` serves https://<branch>.desenio.localhost through the
 # portless proxy, which binds port 443 and therefore needs root. Install it as a
 # launchd daemon (sh.portless.proxy) so it starts at boot. portless itself is
-# installed by bootstrap, under the Desenio node version.
+# installed by bootstrap, under Homebrew's node (asdf "system" in ~/code/desenio).
 # The plist pins absolute node and portless paths, so reinstall on every run to
-# follow Desenio node upgrades (asdf-clean removes the old node).
+# follow wherever the Desenio node lives.
 if [[ -n "$PROJ_DESENIO" ]]; then
   DESENIO_NODE=$(cd ~/code/desenio && sudo -H -u "${SUDO_USER:-$USER}" "$HOMEBREW_PREFIX/bin/asdf" which node) || true
   PORTLESS_CLI="$(dirname "$(dirname "$DESENIO_NODE")")/lib/node_modules/portless/dist/cli.js"
