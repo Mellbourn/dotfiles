@@ -19,6 +19,8 @@ fi
 # main dev machine. LocalHostName, since HostName is unset and hostname follows the network
 if [[ $(uname) == 'Darwin' && $(scutil --get LocalHostName) == "Klass-MacBook-Pro-16-2023" ]]; then
   export PROJ_DESENIO=1
+  # the DYMO LabelWriter is used from this Mac
+  export DYMO_LABEL=1
 fi
 
 if [ -x "$(command -v lsb_release)" ] && [[ $(lsb_release -si) == 'Ubuntu' ]]; then
@@ -436,6 +438,29 @@ if [[ -n "$PROJ_DESENIO" ]]; then
       echo "portless service install failed, run it manually"
   else
     echo "portless not found under the Desenio node, skipping (run bootstrap first)"
+  fi
+fi
+
+###############################################################################
+# DYMO Label, for the LabelWriter
+###############################################################################
+# DYMO Label is Intel-only (so is DYMO Connect, the Homebrew cask) and the only reason to have
+# Rosetta, so both are limited to Macs with DYMO_LABEL. macOS 28 no longer runs Intel apps.
+if [[ -n "$DYMO_LABEL" ]]; then
+  if [[ -z "$ROSETTA_INSTALLED" ]]; then
+    softwareupdate --install-rosetta --agree-to-license || echo "WARNING: Rosetta install failed"
+  fi
+  # Not in Homebrew. Only when missing: the installer overwrites RecentLayouts.xml in ~/Documents/DYMO Label Software
+  if [[ ! -d "/Applications/DYMO Label.app" ]]; then
+    DYMO_TMP=$(mktemp -d)
+    if curl -fsSL -o "$DYMO_TMP/DLS.dmg" https://download.dymo.com/dymo/Software/Mac/DLS8Setup.8.7.5.dmg &&
+      hdiutil attach -nobrowse -readonly -mountpoint "$DYMO_TMP/mnt" "$DYMO_TMP/DLS.dmg"; then
+      installer -pkg "$DYMO_TMP/mnt/DYMO Label v.8.pkg" -target / || echo "WARNING: DYMO Label install failed"
+      hdiutil detach -force "$DYMO_TMP/mnt"
+    else
+      echo "WARNING: DYMO Label download failed"
+    fi
+    rm -rf "$DYMO_TMP"
   fi
 fi
 
