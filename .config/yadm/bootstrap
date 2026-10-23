@@ -392,7 +392,7 @@ if [[ $(uname) == 'Darwin' ]]; then
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
 
     if command -v az &>/dev/null; then
-      az upgrade
+      # no "az upgrade": brew upgrade covers azure-cli, and az upgrade fails whenever PyPI is ahead of Homebrew
       az extension add --name azure-devops # for git repos
     fi
     if [[ -n "$PROJ_ANTICIMEX" ]]; then
@@ -570,7 +570,8 @@ if [[ $(uname) == 'Darwin' || -n $UBUNTU_DESKTOP ]]; then
 fi
 
 if [ -x "$(command -v zsh)" ]; then
-  zsh -ic "zinit self-update; zinit update --all; zinit cclear; zi delete -y ellie/atuin"
+  # --no-pager: a long changelog otherwise opens less and stalls the unattended run
+  zsh -ic "zinit self-update --no-pager; zinit update --all --no-pager; zinit cclear; zi delete -y ellie/atuin"
 fi
 
 # set up alternate gitconfig file used to determine local settings
