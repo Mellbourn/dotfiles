@@ -831,6 +831,10 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Use all F1, F2, etc keys as standard function keys
 defaults write -g com.apple.keyboard.fnState -bool true
 
+# Press 🌐 key to: Start Dictation (0 nothing, 1 input source, 2 emoji, 3 dictation)
+defaults write com.apple.assistant.support "Dictation Enabled" -bool true
+defaults write com.apple.HIToolbox AppleFnUsageType -int 3
+
 ###############################################################################
 # Keyboard shortcuts                                                          #
 ###############################################################################
