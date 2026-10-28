@@ -389,6 +389,12 @@ else
 fi
 
 sudo xcodebuild -license accept
+# agree to the Apple Foundation Models CLI terms (machine-wide, macOS 27+) so fm never asks
+if command -v fm >/dev/null && ! fm license --status >/dev/null 2>&1; then
+  # fm takes the answer only from a terminal and drops typed-ahead input, so expect waits for the question
+  sudo expect -c 'spawn fm license; expect "DO YOU AGREE"; send "y\r"; expect eof' || true
+  fm license --status >/dev/null 2>&1 || echo "WARNING: fm license not agreed"
+fi
 
 # FirstVet might need this
 #sudo ln -s $(which python3) /usr/local/bin/python
