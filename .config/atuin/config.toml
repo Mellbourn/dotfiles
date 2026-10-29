@@ -162,3 +162,10 @@ common_subcommands = [
 
 [sync]
 records = true
+
+[daemon]
+enabled = true
+autostart = true
+
+[threads]
+capture = true

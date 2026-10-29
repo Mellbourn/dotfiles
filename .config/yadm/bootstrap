@@ -610,6 +610,12 @@ if [[ -x "$(command -v atuin)" ]]; then
     atuin logout
     atuin login -u Mellbourn
   fi && atuin import auto)
+  # atuin's MCP server (search of history and agent threads) in each coding agent installed here; reinstalling is harmless
+  for agent in claude-code codex opencode pi; do
+    if [[ -x "$(command -v "${agent%-code}")" ]]; then
+      atuin mcp install "$agent" >/dev/null || echo "WARNING: atuin mcp install $agent failed"
+    fi
+  done
 fi
 
 ###############################################################################
