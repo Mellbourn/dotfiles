@@ -744,6 +744,8 @@ defaults write com.manytricks.Moom "All Hot Keys Are Local" -bool YES
 ###############################################################################
 # Save screenshots to Pictures
 defaults write com.apple.screencapture location "${HOME}/Pictures"
+# Automatic Visual Look Up on screenshots (off until set)
+defaults write NSGlobalDomain SSPreferencesVisualLookUpInSSSEnabled -bool true
 
 # reopen previous windows when starting an app
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
