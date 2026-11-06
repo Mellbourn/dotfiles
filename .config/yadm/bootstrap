@@ -367,6 +367,13 @@ if [[ $(uname) == 'Darwin' ]]; then
   apps=$(stripCommentsAndWhitespace "$apps_raw")
   casks=$(stripCommentsAndWhitespace "$casks_raw")
 
+  # Homebrew's node used to bundle corepack, whose pnpm and pnpx links in bin block linking Homebrew's
+  # pnpm (brew.ini), and the failed link makes brew install fail
+  if [[ "$(readlink "$HOMEBREW_PREFIX/bin/pnpm")" == *corepack* ]]; then
+    rm -f "$HOMEBREW_PREFIX/bin/pnpm" "$HOMEBREW_PREFIX/bin/pnpx"
+    if brew list --formula pnpm >/dev/null 2>&1; then brew link pnpm; fi
+  fi
+
   # note: yarn will install node, which you might want to remove, since it is handled by nvm
   alreadyInstalled=$(brew list --formula | sort -u)
   installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
