@@ -15,7 +15,7 @@ glab_pager:
 # Output more logging information, including underlying Git commands, expanded aliases, and DNS error details.
 debug: false
 # Set your desired Markdown renderer style. Available options are [dark, light, notty]. To set a custom style, refer to https://github.com/charmbracelet/glamour#styles
-glamour_style: dark
+glamour_style: auto
 # Allow glab to automatically check for updates and notify you when there are new updates.
 # Setting the environment variable to true also forces a check, bypassing the once-a-day interval.
 check_update: false
@@ -73,3 +73,4 @@ hosts:
         git_protocol: ssh
         api_protocol: https
         user: Mellbourn
+glamour_style_auto_migrated: "true"
