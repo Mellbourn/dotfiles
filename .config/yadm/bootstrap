@@ -266,6 +266,12 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew untap noahgorstein/tap
   brew untap kardolus/chatgpt-cli
   brew untap robotsandpencils/homebrew-made
+  # idb-companion was only for Flipper (off); its tap moved to meta/fb and brew update refuses that redirect
+  brewSafeUninstallFormula facebook/fb/idb-companion
+  # untap reads the tap's formulae (watchman), which brew refuses for an untrusted tap
+  for tap in facebook/fb meta/fb; do
+    if brew tap | grep -qx "$tap"; then brew trust "$tap" && brew untap "$tap"; fi
+  done
   set -e
 
   brew cleanup
