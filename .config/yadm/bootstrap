@@ -138,31 +138,34 @@ if [[ -z "$KLA" ]]; then
   asdf-clean -v -i python 3.11.8
 fi
 
-# Desenio
-pushd ~/code/desenio
-# synapse's pnpm manages its own node and pnpm versions (devEngines), so Desenio uses Homebrew's
-# node and pnpm (brew.ini) instead of an asdf-pinned node with corepack. "system" makes asdf's
-# shims hand over to Homebrew below ~/code/desenio; asdf keeps node for the other projects.
-asdf set nodejs system
-#yarn set version stable
-# don't try to update turbo, it wants to update the code
-#pnpm dlx @turbo/codemod@latest update
-npm i -g typescript-language-server typescript
-if [[ -n "$PROJ_DESENIO" ]]; then
-  # portless (#desenio specific): serves synapse's https://<branch>.desenio.localhost.
-  # Its proxy daemon is installed by bootstrap-sudo, which expects it under Homebrew's node.
-  npm i -g portless
-  # Vercel CLI (#desenio specific): synapse's `pnpm run env:pull` runs `vercel env pull` (PR 2651).
-  # Needs a one-time `vercel login`, then `vercel link` in each app directory.
-  npm i -g vercel
+# Desenio, on machines that have it checked out
+if [[ -d ~/code/desenio ]]; then
+  pushd ~/code/desenio
+  # synapse's pnpm manages its own node and pnpm versions (devEngines), so Desenio uses Homebrew's
+  # node and pnpm (brew.ini) instead of an asdf-pinned node with corepack. "system" makes asdf's
+  # shims hand over to Homebrew below ~/code/desenio; asdf keeps node for the other projects.
+  asdf set nodejs system
+  #yarn set version stable
+  # don't try to update turbo, it wants to update the code
+  #pnpm dlx @turbo/codemod@latest update
+  npm i -g typescript-language-server typescript
+  if [[ -n "$PROJ_DESENIO" ]]; then
+    # portless (#desenio specific): serves synapse's https://<branch>.desenio.localhost.
+    # Its proxy daemon is installed by bootstrap-sudo, which expects it under Homebrew's node.
+    npm i -g portless
+    # Vercel CLI (#desenio specific): synapse's `pnpm run env:pull` runs `vercel env pull` (PR 2651).
+    # Needs a one-time `vercel login`, then `vercel link` in each app directory.
+    npm i -g vercel
+  fi
+  popd
 fi
+
 python3 -m pip install --user --upgrade claude-swap
 # pip leaves the scripts alone when claude-swap is already current, so after an asdf Python
 # upgrade their shebang still names the removed install
 if ! "$HOME/.local/bin/cswap" --help >/dev/null 2>&1; then
   python3 -m pip install --user --force-reinstall --no-deps claude-swap
 fi
-popd
 
 
 if [[ $(uname) == 'Darwin' ]]; then
