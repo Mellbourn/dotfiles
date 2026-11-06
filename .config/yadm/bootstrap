@@ -231,6 +231,11 @@ if [[ $(uname) == 'Darwin' ]]; then
   fi
 
   xcode-select --install || true
+  # after an Xcode update git, and with it brew, fails until the new license is accepted.
+  # bootstrap-sudo accepts it too, but only after this script, so accept it here first
+  if [[ -z "$KLA" && "$(xcode-select -p 2>/dev/null)" == *.app/* ]] && ! xcodebuild -license check >/dev/null 2>&1; then
+    sudo xcodebuild -license accept || echo "WARNING: Xcode license not accepted, git and brew will fail"
+  fi
 
   ###############################################################################
   # Homebrew                                                                    #
