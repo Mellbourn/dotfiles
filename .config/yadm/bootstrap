@@ -864,6 +864,8 @@ defaults write -g com.apple.keyboard.fnState -bool true
 defaults write com.apple.assistant.support "Dictation Enabled" -bool true
 defaults write com.apple.HIToolbox AppleDictationShortcutIdentifier -string Control
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 164 '<dict><key>enabled</key><true/><key>value</key><dict><key>parameters</key><array><integer>262144</integer><integer>18446744073709289471</integer></array><key>type</key><string>modifier</string></dict></dict>'
+# Dictation languages English and Swedish (Keyboard > Dictation > Languages)
+defaults write com.apple.speech.recognition.AppleSpeechRecognition.prefs VisibleNetworkSRLocaleIdentifiers -dict-add en_US -int 1 sv_SE -int 1
 
 ###############################################################################
 # Keyboard shortcuts                                                          #
