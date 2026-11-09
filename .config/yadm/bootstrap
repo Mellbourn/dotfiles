@@ -375,7 +375,10 @@ if [[ $(uname) == 'Darwin' ]]; then
   fi
 
   # note: yarn will install node, which you might want to remove, since it is handled by nvm
-  alreadyInstalled=$(brew list --formula | sort -u)
+  # --full-name lists tap formulae as tap/name, as brew.ini writes them. A name that brew list never shows
+  # (an alias, or a cask listed among the formulae) is reinstalled on every run, and when that turns into
+  # an upgrade whose download fails, brew install fails and stops the script
+  alreadyInstalled=$(brew list --formula --full-name | sort -u)
   installTheseLines=$(comm -23 <(echo "$apps") <(echo "$alreadyInstalled"))
   installThese=${installTheseLines//$'\n'/ }
   echo "$installThese" | xargs brew install
