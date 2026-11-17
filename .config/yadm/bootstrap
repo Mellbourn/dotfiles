@@ -274,6 +274,10 @@ if [[ $(uname) == 'Darwin' ]]; then
   brew untap noahgorstein/tap
   brew untap kardolus/chatgpt-cli
   brew untap robotsandpencils/homebrew-made
+  # Homebrew removed the YubiKey Manager cask; yubico-authenticator (brew.ini) replaces it
+  if brew list --cask yubico-yubikey-manager >/dev/null 2>&1; then
+    brew uninstall --cask yubico-yubikey-manager
+  fi
   # idb-companion was only for Flipper (off); its tap moved to meta/fb and brew update refuses that redirect
   brewSafeUninstallFormula facebook/fb/idb-companion
   # untap reads the tap's formulae (watchman), which brew refuses for an untrusted tap
@@ -406,11 +410,6 @@ if [[ $(uname) == 'Darwin' ]]; then
   # so a fresh yadm clone or checkout of these leaves them 644
   if [ -d "$HOME/Library/Application Support/glab-cli" ]; then
     chmod 600 "$HOME/Library/Application Support/glab-cli"/*.yml
-  fi
-
-  if [ -n "$X86_OR_ROSETTA" ]; then
-    # TODO: when there are Apple Silicon versions of these packages, move the installation to the normal list
-    brew install --cask yubico-yubikey-manager
   fi
 
   if [[ $PROCESSOR_ARCHITECTURE == 'arm' ]]; then
